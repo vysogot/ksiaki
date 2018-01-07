@@ -7,11 +7,13 @@
     <!-- send empty favicon fallback to prevent user's browser hitting the server for lots of favicon requests resulting in 404s -->
     <link rel="icon" href="data:;base64,=">
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css" />
+    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/normalize.css?v=<?php echo filemtime("css/normalize.css")?>" rel="styleshee" />
+    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/skeleton.css?v=<?php echo filemtime("css/skeleton.css")?>" rel="styleshee" />
+    <!--<link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css?v=<?php echo filemtime("css/style.css")?>" rel="styleshee" />-->
 </head>
 <body>
     <!-- wrapper, to center website -->
-    <div class="wrapper">
+    <div class="container">
 
         
 
