@@ -7,7 +7,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
 	 */
 	public function setUp()
 	{
-		$_SERVER['HTTP_HOST'] = 'localhost';
+		$_SERVER['HTTP_HOST'] = 'ksiaki.dev';
 		$_SERVER['SCRIPT_NAME'] = 'index.php';
 		Config::$config = null;
 	}
