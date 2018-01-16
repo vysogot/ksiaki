@@ -1,47 +1,58 @@
 <!doctype html>
 <html>
 <head>
-    <title>HUGE</title>
+    <title>Konkursiaki</title>
     <!-- META -->
     <meta charset="utf-8">
     <!-- send empty favicon fallback to prevent user's browser hitting the server for lots of favicon requests resulting in 404s -->
-    <link rel="icon" href="data:;base64,="> 
+    <link rel="icon" href="data:;base64,=">
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/normalize.css?v=<?php echo filemtime("css/normalize.css")?>" rel="styleshee" />
-    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/skeleton.css?v=<?php echo filemtime("css/skeleton.css")?>" rel="styleshee" /> 
     <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css?v=<?php echo filemtime("css/style.css")?>" rel="styleshee" />
 </head>
 <body>
-    <!-- wrapper, to center website -->
-    <div class="container">
+    
+    <div id="wrapper">
 
-        
+        <div id="logo">
+          logo
+        </div>
 
-        <!-- navigation -->
-        <ul class="navigation">
-            <li <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo Config::get('URL'); ?>index/index">Index</a>
-            </li>
-            <li <?php if (View::checkForActiveController($filename, "profile")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo Config::get('URL'); ?>profile/index">Profiles</a>
-            </li>
-            <?php if (Session::userIsLoggedIn()) { ?>
-                <li <?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo Config::get('URL'); ?>dashboard/index">Dashboard</a>
-                </li>
-                <li <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo Config::get('URL'); ?>note/index">My Notes</a>
-                </li>
-            <?php } else { ?>
-                <!-- for not logged in users -->
-                <li <?php if (View::checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo Config::get('URL'); ?>login/index">Login</a>
-                </li>
-                <li <?php if (View::checkForActiveControllerAndAction($filename, "register/index")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo Config::get('URL'); ?>register/index">Register</a>
-                </li>
-            <?php } ?>
-        </ul>
+        <div id="banner">
+          banner
+        </div>
+
+        <div id="nav">
+          <!-- navigation -->
+          <ul>
+              <li <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
+                  <a href="<?php echo Config::get('URL'); ?>index/index">Home</a>
+              </li>
+              <li>
+                <a href="#">Konkursy</a>
+              </li>
+              <li>
+                <a href="#">Ranking</a>
+              </li>
+              <li>
+                <a href="#">Pobierz</a>
+              </li>
+              <?php if (Session::userIsLoggedIn()) { ?>
+                  <li <?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
+                      <a href="<?php echo Config::get('URL'); ?>dashboard/index">Dashboard</a>
+                  </li>
+                  <li <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
+                      <a href="<?php echo Config::get('URL'); ?>note/index">My Notes</a>
+                  </li>
+              <?php } else { ?>
+                  <!-- for not logged in users -->
+                  <li <?php if (View::checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
+                      <a href="<?php echo Config::get('URL'); ?>login/index">Login</a>
+                  </li>
+                  <li <?php if (View::checkForActiveControllerAndAction($filename, "register/index")) { echo ' class="active" '; } ?> >
+                      <a href="<?php echo Config::get('URL'); ?>register/index">Register</a>
+                  </li>
+              <?php } ?>
+          </ul>
 
         <!-- my account -->
         <ul class="navigation right">
@@ -78,3 +89,5 @@
             <?php endif; ?>
         <?php endif; ?>
         </ul>
+
+        </div>

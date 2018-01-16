@@ -2,16 +2,95 @@ body {
     font-family: Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
+    background-color: black;
 }
-.wrapper {
-    width: 960px;
+
+#wrapper {
+    width: 930px;
     margin: 0 auto;
+    background-color: white;
 }
-.logo {
-    width: 722px;
-    height: 450px;
-    margin: auto;
+
+#logo {
+  width: 130px;
+  height: 130px;
+  background-color: yellow;
 }
+
+#banner {
+  width: 800px;
+  height: 130px;
+  background-color: lightblue;
+}
+
+#nav {
+  width: 930px;
+  height: 100px;
+  background-color: green;
+}
+
+#heroes {
+  width: 930px;
+  height: 100px;
+  background-color: red;
+}
+
+#slider {
+  width: 450px;
+  height: 270px;
+  background-color: gray;
+}
+
+#player {
+  width: 480px;
+  height: 270px;
+  background-color: orange;
+}
+
+#contests-container {
+  width: 480px;
+  height: 480px;
+  background-color: pink;
+}
+
+#banners-container {
+  width: 450px;
+  height: 480px;
+  background-color: lightgreen;
+}
+
+#static-sites-container {
+  width: 930px;
+  height: 50px;
+  background-color: lightblue;
+}
+
+#copyright {
+  width: 930px;
+  height: 50px;
+  background-color: lightgray;
+}
+
+#wrapper div { float: left; text-align: center;}
+
+#nav ul li { width: 184px; height: 100px; }
+#heroes ul li { width: 130px; height: 100px; }
+#contests-container ul li { width: 160px; height: 160px; }
+#banners-container ul li { width: 225px; height: 240px; }
+#static-sites-container ul li { width: 153px; height: 50px; }
+
+#nav ul, #heroes ul, #contests-container ul, #banners-container ul,
+#static-sites-container ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#nav ul li, #heroes ul li, #contests-container ul li, #banners-container ul li,
+#static-sites-container ul li {
+  float:left;
+}
+
 .support-button {
     position: absolute;
     cursor: pointer;
@@ -21,7 +100,7 @@ body {
     height: 233px;
 }
 .container {
-    max-width: 960px;
+    max-width: 930px;
     border: 1px solid #ccc;
     padding: 20px;
     margin: 30px 0 30px 0;
