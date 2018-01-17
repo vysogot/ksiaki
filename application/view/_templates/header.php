@@ -8,33 +8,37 @@
     <link rel="icon" href="data:;base64,=">
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css?v=<?php echo filemtime("css/style.css")?>" rel="styleshee" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Config::get('URL'); ?>css/slick.css?v=<?php echo filemtime("css/style.css")?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo Config::get('URL'); ?>css/slick-theme.css?v=<?php echo filemtime("css/style.css")?>"/>
+
 </head>
 <body>
-    
+
     <div id="wrapper">
 
         <div id="logo">
-          logo
+          <img src="/images/logo.png" />
         </div>
 
-        <div id="banner">
-          banner
+        <div id="banner" class="slider">
+          <div><img src="/images/banner-1.png" /></div>
+          <div><img src="/images/banner-2.png" /></div>
         </div>
 
         <div id="nav">
           <!-- navigation -->
           <ul>
               <li <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
-                  <a href="<?php echo Config::get('URL'); ?>index/index">Home</a>
+                  <a href="<?php echo Config::get('URL'); ?>index/index" id="menu-home">Home</a>
               </li>
               <li>
-                <a href="#">Konkursy</a>
+                <a href="#" id="menu-contests">Konkursy</a>
               </li>
               <li>
-                <a href="#">Ranking</a>
+                <a href="#" id="menu-rank">Ranking</a>
               </li>
               <li>
-                <a href="#">Pobierz</a>
+                <a href="#" id="menu-download">Pobierz</a>
               </li>
               <?php if (Session::userIsLoggedIn()) { ?>
                   <li <?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
@@ -46,7 +50,7 @@
               <?php } else { ?>
                   <!-- for not logged in users -->
                   <li <?php if (View::checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
-                      <a href="<?php echo Config::get('URL'); ?>login/index">Login</a>
+                      <a href="<?php echo Config::get('URL'); ?>login/index" id="menu-login">Login</a>
                   </li>
                   <li <?php if (View::checkForActiveControllerAndAction($filename, "register/index")) { echo ' class="active" '; } ?> >
                       <a href="<?php echo Config::get('URL'); ?>register/index">Register</a>

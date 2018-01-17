@@ -2,94 +2,116 @@ body {
     font-family: Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
-    background-color: black;
+    background: url('/images/bg-pattern-orange.png') left top repeat;
 }
 
 #wrapper {
     width: 930px;
     margin: 0 auto;
-    background-color: white;
+    background: url('/images/bg-clouds.png') center top no-repeat;
 }
 
 #logo {
   width: 130px;
   height: 130px;
-  background-color: yellow;
 }
+
+#logo img { margin-top: 10px;}
 
 #banner {
   width: 800px;
   height: 130px;
-  background-color: lightblue;
 }
 
 #nav {
   width: 930px;
   height: 100px;
-  background-color: green;
+  margin: 10px 0;
 }
 
 #heroes {
   width: 930px;
   height: 100px;
-  background-color: red;
+  background-color: black;
 }
 
 #slider {
   width: 450px;
   height: 270px;
-  background-color: gray;
 }
 
 #player {
   width: 480px;
   height: 270px;
-  background-color: orange;
 }
+
+#player video { width: 100%; height: 100%; }
 
 #contests-container {
   width: 480px;
   height: 480px;
-  background-color: pink;
 }
 
-#banners-container {
+#side-banners-container {
   width: 450px;
   height: 480px;
-  background-color: lightgreen;
 }
 
 #static-sites-container {
   width: 930px;
   height: 50px;
-  background-color: lightblue;
+  color: white;
+  background-color: #72c313;
 }
 
 #copyright {
   width: 930px;
   height: 50px;
-  background-color: lightgray;
+  color: #ff5000;
+  background-color: #4d4d4d;
 }
 
 #wrapper div { float: left; text-align: center;}
 
-#nav ul li { width: 184px; height: 100px; }
+#nav ul li { width: 184px; height: 100px; display: inline-block; vertical-align:bottom;}
 #heroes ul li { width: 130px; height: 100px; }
 #contests-container ul li { width: 160px; height: 160px; }
-#banners-container ul li { width: 225px; height: 240px; }
-#static-sites-container ul li { width: 153px; height: 50px; }
+#side-banners-container ul li { width: 225px; height: 240px; }
+#side-banners-container ul li.double { width: 450px; height: 240px; }
+#static-sites-container ul li { width: 153px; height: 50px; padding-top: 15px; }
 
-#nav ul, #heroes ul, #contests-container ul, #banners-container ul,
+#nav ul,
+#heroes ul,
+#contests-container ul,
+#side-banners-container ul,
 #static-sites-container ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-#nav ul li, #heroes ul li, #contests-container ul li, #banners-container ul li,
+#nav ul li,
+#heroes ul li,
+#contests-container ul li,
+#side-banners-container ul li,
 #static-sites-container ul li {
   float:left;
 }
+
+#nav ul li a { padding-top: 90px; min-width: 81px; display: inline-block;
+  color: white; font-size: 11px;
+  text-decoration: none; text-transform: uppercase; }
+
+#menu-home { background: url('/images/menu-home.png') center 0 no-repeat; }
+#menu-contests { background: url('/images/menu-contests.png') center 0 no-repeat; }
+#menu-rank { background: url('/images/menu-rank.png') center 0 no-repeat; }
+#menu-download { background: url('/images/menu-download.png') center 0 no-repeat; }
+#menu-login { background: url('/images/menu-login.png') center 0 no-repeat; }
+
+.jshowoff-controls, .jshowoff-prev, .jshowoff-next  { position: absolute; }
+.jshowoff-play { display: none; }
+.jshowoff-prev { top: 120px; }
+.jshowoff-next { top: 120px; width: 450px; text-align: right; }
 
 .support-button {
     position: absolute;

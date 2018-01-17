@@ -123,8 +123,8 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`_heroes` (
  `left_box_url` varchar(255) DEFAULT NULL,
  `middle_box_url` varchar(255) DEFAULT NULL,
  `video_url` varchar(255) DEFAULT NULL,
- `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
- `uploaded_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `created_at` timestamp,
+ `uploaded_at` timestamp,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Bohaterowie';
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`_notifications` (
 CREATE TABLE IF NOT EXISTS `ksiaki`.`_notification_status` (
  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
  `user_id` int(11) unsigned NOT NULL,
- `confirmed_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `confirmed_at` timestamp,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Status powiadomień dla użytkowników';
 
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`score_pointed_activities` (
  `user_id` int(11) unsigned DEFAULT NULL,
  `event_id` int(11) unsigned DEFAULT NULL,
  `points` int(11) DEFAULT NULL,
- `given_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `given_at` timestamp,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Punkty przyznane za punktowane aktywności';
 
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`score_contests` (
  `contest_id` int(11) unsigned DEFAULT NULL,
  `place` int(11) DEFAULT NULL,
  `points` int(11) DEFAULT NULL,
- `given_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `given_at` timestamp,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Punkty przyznane za miejsce w konkursie';
 
@@ -210,8 +210,8 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`score_games` (
  `user_id` int(11) unsigned DEFAULT NULL,
  `contest_id` int(11) unsigned DEFAULT NULL,
  `level` int(11) DEFAULT NULL,
- `level_begins_at` timestamp DEFAULT CURRENT_TIMESTAMP,
- `level_ends_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `level_begins_at` timestamp,
+ `level_ends_at` timestamp,
  `points_for_level` int(11) DEFAULT NULL,
  `points_total` int(11) DEFAULT NULL,
  PRIMARY KEY (`id`)
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`score_quizes` (
  `user_id` int(11) unsigned DEFAULT NULL,
  `quiz_id` int(11) unsigned DEFAULT NULL,
  `points` int(11) DEFAULT NULL,
- `given_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `given_at` timestamp,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Punkty zdobyte w quizach';
 
@@ -233,8 +233,8 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`static_sites` (
  `title` tinyint(1) DEFAULT NULL,
  `slug` varchar(255) DEFAULT NULL,
  `content` varchar(255) DEFAULT NULL,
- `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
- `uploaded_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+ `created_at` timestamp,
+ `uploaded_at` timestamp,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Strony statyczne';
 

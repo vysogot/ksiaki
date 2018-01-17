@@ -1,42 +1,50 @@
 <div id="heroes">
   <ul>
-    <li>B1</li>
-    <li>B2</li>
-    <li>B3</li>
-    <li>B4</li>
-    <li>B5</li>
-    <li>B6</li>
-    <li>B7</li>
+    <li><img src="/images/hero-1.png"></li>
+    <li><img src="/images/hero-2.png"></li>
+    <li><img src="/images/hero-1.png"></li>
+    <li><img src="/images/hero-2.png"></li>
+    <li><img src="/images/hero-1.png"></li>
+    <li><img src="/images/hero-2.png"></li>
+    <li><img src="/images/hero-1.png"></li>
   </ul>
 </div>
 
-<div id="slider">
-  Slider
+<div id="slider" class="slider">
+  <div><img src="/images/slider-1.jpg" /></div>
+  <div><img src="/images/slider-2.jpg" /></div>
+  <div><img src="/images/slider-3.jpg" /></div>
 </div>
 
 <div id="player">
-  Video player
+  <video controls poster="https://www.html5rocks.com/en/tutorials/video/basics/poster.png">
+  <source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm"
+          type='video/webm;codecs="vp8, vorbis"' />
+  <source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4"
+          type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+  <track src="https://www.html5rocks.com/en/tutorials/video/basics/devstories-en.vtt" label="English subtitles"
+         kind="subtitles" srclang="en" default></track>
+</video>
 </div>
 
 <div id="contests-container">
   <ul>
-    <li>K1</li>
-    <li>K2</li>
-    <li>K3</li>
-    <li>K4</li>
-    <li>K5</li>
-    <li>K6</li>
-    <li>K7</li>
-    <li>K8</li>
-    <li>K9</li>
+    <li><img src="/images/contest-1.jpg" /></li>
+    <li><img src="/images/contest-2.jpg" /></li>
+    <li><img src="/images/contest-3.jpg" /></li>
+    <li><img src="/images/contest-4.jpg" /></li>
+    <li><img src="/images/contest-5.jpg" /></li>
+    <li><img src="/images/contest-6.jpg" /></li>
+    <li><img src="/images/contest-7.jpg" /></li>
+    <li><img src="/images/contest-8.jpg" /></li>
+    <li><img src="/images/contest-9.jpg" /></li>
   </ul>
 </div>
 
-<div id="banners-container">
+<div id="side-banners-container">
   <ul>
-    <li>B1</li>
-    <li>B2</li>
-    <li>B3</li>
-    <li>B4</li>
+    <li class="double"><img src="/images/side-banner-1.jpg" /></li>
+    <li><img src="/images/side-banner-2.jpg" /></li>
+    <li><img src="/images/side-banner-3.jpg" /></li>
   </ul>
 </div>
