@@ -14,7 +14,8 @@
             <p>Copyright</p>
           </div>
         </div>
-    </div><!-- close class="wrapper" -->
+    </div><!-- close id="wrapper" -->
+  </div><!-- close id="page" -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
   <script src="<?php echo Config::get('URL'); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
 

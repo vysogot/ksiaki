@@ -1,14 +1,19 @@
 body {
+    margin: 0; padding: 0;
     font-family: Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
     background: url('/images/bg-pattern-orange.png') left top repeat;
 }
 
+#page {
+  margin: 0; padding-top: 40px; min-height: 300px; overflow: visible;
+  background: url('/images/bg-clouds.png') center top no-repeat;
+}
+
 #wrapper {
     width: 930px;
     margin: 0 auto;
-    background: url('/images/bg-clouds.png') center top no-repeat;
 }
 
 #logo {
@@ -26,7 +31,7 @@ body {
 #nav {
   width: 930px;
   height: 100px;
-  margin: 10px 0;
+  margin: 25px 0;
 }
 
 #heroes {

@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+  <div id="page">
     <div id="wrapper">
 
         <div id="logo">
