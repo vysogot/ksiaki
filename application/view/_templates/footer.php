@@ -1,6 +1,6 @@
         <div class="footer">
-          <div id="static-sites-container">
-            <ul>
+          <div id="static-sites">
+            <ul class="bare left">
               <li>O nas</li>
               <li>Dla rodziców</li>
               <li>Regulamin</li>
@@ -16,7 +16,7 @@
         </div>
     </div><!-- close id="wrapper" -->
   </div><!-- close id="page" -->
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="<?php echo Config::get('URL'); ?>js/jquery-1.11.0.min.js" type="text/javascript"></script>
   <script src="<?php echo Config::get('URL'); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
 
         <script type="text/javascript">
@@ -31,6 +31,16 @@
               infinite: true,
               arrows: false
             });
+
+            $("#heroes").slick({
+              dots: false,
+              infinite: true,
+              centerMode: true,
+              slidesToShow: 5,
+              slidesToScroll: 1,
+              variableWidth: true
+            });
+
           });
         </script>
 </body>

@@ -1,4 +1,4 @@
-body {
+html, body {
     margin: 0; padding: 0;
     font-family: Arial, sans-serif;
     font-weight: 400;
@@ -6,131 +6,66 @@ body {
     background: url('/images/bg-pattern-orange.png') left top repeat;
 }
 
-#page {
-  margin: 0; padding-top: 40px; min-height: 300px; overflow: visible;
-  background: url('/images/bg-clouds.png') center top no-repeat;
-}
+#page { margin: 0; padding-top: 40px; min-height: 300px; overflow: visible;
+  background: url('/images/bg-clouds.png') center top no-repeat; }
 
-#wrapper {
-    width: 930px;
-    margin: 0 auto;
-}
-
-#logo {
-  width: 130px;
-  height: 130px;
-}
+#wrapper      { width: 930px; margin: 0 auto; }
+#logo         { width: 130px; height: 130px; }
+#banner       { width: 800px; height: 130px; overflow: hidden; }
+#nav          { width: 930px; height: 100px; margin: 25px 0; }
+#heroes       { width: 930px; height: 100px; background: black; }
+#slider       { width: 450px; height: 270px; }
+#player       { width: 480px; height: 270px; }
+#contests     { width: 480px; height: 480px; }
+#side-banners { width: 450px; height: 480px; }
+#static-sites { width: 930px; height: 50px; color: white; background-color: #72c313; }
+#copyright    { width: 930px; height: 50px; color: #ff5000; background-color: #4d4d4d; }
 
 #logo img { margin-top: 10px;}
-
-#banner {
-  width: 800px;
-  height: 130px;
-}
-
-#nav {
-  width: 930px;
-  height: 100px;
-  margin: 25px 0;
-}
-
-#heroes {
-  width: 930px;
-  height: 100px;
-  background-color: black;
-}
-
-#slider {
-  width: 450px;
-  height: 270px;
-}
-
-#player {
-  width: 480px;
-  height: 270px;
-}
-
 #player video { width: 100%; height: 100%; }
 
-#contests-container {
-  width: 480px;
-  height: 480px;
-}
+#logo, #banner, #nav, #heroes, #slider, #player, #side-banners, #static-sites,
+#contests, #copyright { float: left; text-align: center; }
 
-#side-banners-container {
-  width: 450px;
-  height: 480px;
-}
+#nav ul li      { width: 184px; height: 100px; display: inline-block; vertical-align:bottom;}
+#heroes ul li   { width: 96px; height: 100px; }
+#contests ul li { width: 160px; height: 160px; }
+#static-sites ul li { width: 153px; height: 50px; padding-top: 15px; }
+#side-banners ul li { width: 225px; height: 240px; }
+#side-banners ul li.double { width: 450px; height: 240px; }
 
-#static-sites-container {
-  width: 930px;
-  height: 50px;
-  color: white;
-  background-color: #72c313;
-}
-
-#copyright {
-  width: 930px;
-  height: 50px;
-  color: #ff5000;
-  background-color: #4d4d4d;
-}
-
-#wrapper div { float: left; text-align: center;}
-
-#nav ul li { width: 184px; height: 100px; display: inline-block; vertical-align:bottom;}
-#heroes ul li { width: 130px; height: 100px; }
-#contests-container ul li { width: 160px; height: 160px; }
-#side-banners-container ul li { width: 225px; height: 240px; }
-#side-banners-container ul li.double { width: 450px; height: 240px; }
-#static-sites-container ul li { width: 153px; height: 50px; padding-top: 15px; }
-
-#nav ul,
-#heroes ul,
-#contests-container ul,
-#side-banners-container ul,
-#static-sites-container ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-#nav ul li,
-#heroes ul li,
-#contests-container ul li,
-#side-banners-container ul li,
-#static-sites-container ul li {
-  float:left;
-}
+ul.bare { padding: 0; margin: 0; list-style: none; }
+ul.left li, dl.left dt { float:left; }
 
 #nav ul li a { padding-top: 90px; min-width: 81px; display: inline-block;
-  color: white; font-size: 11px;
-  text-decoration: none; text-transform: uppercase; }
+  color: white; font-size: 11px; text-decoration: none; text-transform: uppercase; }
 
-#menu-home { background: url('/images/menu-home.png') center 0 no-repeat; }
+#menu-home     { background: url('/images/menu-home.png')     center 0 no-repeat; }
 #menu-contests { background: url('/images/menu-contests.png') center 0 no-repeat; }
-#menu-rank { background: url('/images/menu-rank.png') center 0 no-repeat; }
+#menu-ranking  { background: url('/images/menu-ranking.png')  center 0 no-repeat; }
 #menu-download { background: url('/images/menu-download.png') center 0 no-repeat; }
-#menu-login { background: url('/images/menu-login.png') center 0 no-repeat; }
+#menu-login    { background: url('/images/menu-login.png')    center 0 no-repeat; }
 
-.jshowoff-controls, .jshowoff-prev, .jshowoff-next  { position: absolute; }
-.jshowoff-play { display: none; }
-.jshowoff-prev { top: 120px; }
-.jshowoff-next { top: 120px; width: 450px; text-align: right; }
+#menu-home.active     { background: url('/images/menu-home-a.png')     center 0 no-repeat; }
+#menu-contests.active { background: url('/images/menu-contests-a.png') center 0 no-repeat; }
+#menu-ranking.active  { background: url('/images/menu-ranking-a.png')  center 0 no-repeat; }
+#menu-download.active { background: url('/images/menu-download-a.png') center 0 no-repeat; }
+#menu-login.active    { background: url('/images/menu-login-a.png')    center 0 no-repeat; }
 
-.support-button {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    right: 0;
-    width: 233px;
-    height: 233px;
-}
+.main-area { width: 610px; }
+.left-sidebar, .right-sidebar { width: 160px; }
+.left-sidebar, .main-area, .right-sidebar { float: left; }
+
+#contests-page ul.contests div { width: 300px; margin-right: 5px; height: 250px; }
+#ranking-page .main-area { width: 470px; }
+#ranking-page .right-sidebar { width: 300px; }
+
+
+/* legacy from HUGE below */
+
 .container {
-    max-width: 930px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 30px 0 30px 0;
+    width: 930px;
+    float: left;
 }
 .container a {
     color: #454545;

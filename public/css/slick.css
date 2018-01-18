@@ -7,6 +7,10 @@
   margin: 0px 0px;
 }
 
+/* #heroes .slick-slide {
+  width: 96px;
+} */
+
 .slick-slide img {
   width: 100%;
 }
@@ -19,11 +23,11 @@
 
 .slick-slide {
   transition: all ease-in-out .3s;
-  opacity: .2;
+  opacity: .5;
 }
 
 .slick-active {
-  opacity: .5;
+  opacity: .8;
 }
 
 .slick-current {

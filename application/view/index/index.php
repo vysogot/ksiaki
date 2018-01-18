@@ -1,13 +1,10 @@
-<div id="heroes">
-  <ul>
-    <li><img src="/images/hero-1.png"></li>
-    <li><img src="/images/hero-2.png"></li>
-    <li><img src="/images/hero-1.png"></li>
-    <li><img src="/images/hero-2.png"></li>
-    <li><img src="/images/hero-1.png"></li>
-    <li><img src="/images/hero-2.png"></li>
-    <li><img src="/images/hero-1.png"></li>
-  </ul>
+<div id="heroes" class="slider">
+    <div><img src="/images/hero-1.png"></div>
+    <div><img src="/images/hero-2.png"></div>
+    <div><img src="/images/hero-1.png"></div>
+    <div><img src="/images/hero-2.png"></div>
+    <div><img src="/images/hero-1.png"></div>
+    <div><img src="/images/hero-2.png"></div>
 </div>
 
 <div id="slider" class="slider">
@@ -27,8 +24,8 @@
 </video>
 </div>
 
-<div id="contests-container">
-  <ul>
+<div id="contests">
+  <ul class="bare left">
     <li><img src="/images/contest-1.jpg" /></li>
     <li><img src="/images/contest-2.jpg" /></li>
     <li><img src="/images/contest-3.jpg" /></li>
@@ -41,8 +38,8 @@
   </ul>
 </div>
 
-<div id="side-banners-container">
-  <ul>
+<div id="side-banners">
+  <ul class="bare left">
     <li class="double"><img src="/images/side-banner-1.jpg" /></li>
     <li><img src="/images/side-banner-2.jpg" /></li>
     <li><img src="/images/side-banner-3.jpg" /></li>

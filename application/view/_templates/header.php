@@ -15,7 +15,6 @@
 <body>
   <div id="page">
     <div id="wrapper">
-
         <div id="logo">
           <img src="/images/logo.png" />
         </div>
@@ -27,39 +26,36 @@
 
         <div id="nav">
           <!-- navigation -->
-          <ul>
-              <li <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
-                  <a href="<?php echo Config::get('URL'); ?>index/index" id="menu-home">Home</a>
+          <ul class="bare left">
+              <li>
+                  <a href="<?php echo Config::get('URL'); ?>index/index" id="menu-home" <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?>>Home</a>
               </li>
               <li>
-                <a href="#" id="menu-contests">Konkursy</a>
+                <a href="<?php echo Config::get('URL'); ?>contest/index" id="menu-contests" <?php if (View::checkForActiveController($filename, "contest")) { echo ' class="active" '; } ?>>Konkursy</a>
               </li>
               <li>
-                <a href="#" id="menu-rank">Ranking</a>
+                <a href="<?php echo Config::get('URL'); ?>ranking/index" id="menu-ranking" <?php if (View::checkForActiveController($filename, "ranking")) { echo ' class="active" '; } ?>>Ranking</a>
               </li>
               <li>
-                <a href="#" id="menu-download">Pobierz</a>
+                <a href="<?php echo Config::get('URL'); ?>download/index" id="menu-download" <?php if (View::checkForActiveController($filename, "download")) { echo ' class="active" '; } ?>>Pobierz</a>
               </li>
               <?php if (Session::userIsLoggedIn()) { ?>
-                  <li <?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
-                      <a href="<?php echo Config::get('URL'); ?>dashboard/index">Dashboard</a>
+                  <li>
+                      <a href="<?php echo Config::get('URL'); ?>dashboard/index"  <?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?>>Dashboard</a>
                   </li>
-                  <li <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
-                      <a href="<?php echo Config::get('URL'); ?>note/index">My Notes</a>
+                  <li>
+                      <a href="<?php echo Config::get('URL'); ?>note/index" <?php if (View::checkForActiveController($filename, "note")) { echo ' class="active" '; } ?>>My Notes</a>
                   </li>
               <?php } else { ?>
                   <!-- for not logged in users -->
-                  <li <?php if (View::checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
-                      <a href="<?php echo Config::get('URL'); ?>login/index" id="menu-login">Login</a>
-                  </li>
-                  <li <?php if (View::checkForActiveControllerAndAction($filename, "register/index")) { echo ' class="active" '; } ?> >
-                      <a href="<?php echo Config::get('URL'); ?>register/index">Register</a>
+                  <li>
+                      <a href="<?php echo Config::get('URL'); ?>login/index" id="menu-login" <?php if (View::checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?>>Login</a>
                   </li>
               <?php } ?>
           </ul>
 
         <!-- my account -->
-        <ul class="navigation right">
+        <ul class="bare right">
         <?php if (Session::userIsLoggedIn()) : ?>
             <li <?php if (View::checkForActiveController($filename, "user")) { echo ' class="active" '; } ?> >
                 <a href="<?php echo Config::get('URL'); ?>user/index">My Account</a>
