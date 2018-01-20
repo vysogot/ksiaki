@@ -1,3 +1,4 @@
+<div class="wrapper">
 <section id="heroes" class="slider">
     <div><img src="/images/hero-1.png"></div>
     <div><img src="/images/hero-2.png"></div>
@@ -45,3 +46,4 @@
     <li><img src="/images/side-banner-3.jpg" /></li>
   </ul>
 </section>
+</div>

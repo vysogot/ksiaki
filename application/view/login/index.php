@@ -1,3 +1,4 @@
+<div class="wrapper">
 <div class="container">
 
     <!-- echo out the system feedback (error and success messages) -->
@@ -47,4 +48,5 @@
 
         </div>
     </div>
+</div>
 </div>

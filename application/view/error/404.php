@@ -1,6 +1,6 @@
-<div class="container">
-    <h1>404 - Page not found</h1>
+<div class="wrapper">
+    <h1>404 - Nie znaleziono</h1>
     <div class="box">
-        <p class="red-text">This page does not exist.</p>
+        <p>Strona nie istnieje.</p>
     </div>
 </div>

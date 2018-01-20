@@ -1,3 +1,4 @@
+<div class="wrapper">
 <div id="ranking-page">
   <div class="left-sidebar">
     <img src="/images/contest-ad.jpg">
@@ -57,4 +58,5 @@
   <div class="right-sidebar">
     <img src="/images/contest-month-box.jpg">
   </div>
+</div>
 </div>

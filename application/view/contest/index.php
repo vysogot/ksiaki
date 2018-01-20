@@ -1,3 +1,4 @@
+<div class="wrapper">
 <section id="contests-page">
   <div class="left-sidebar">
     <aside class="month-rank">
@@ -42,4 +43,5 @@
   <div class="right-sidebar">
     <img src="/images/contest-ad.jpg">
   </div>
+</div>
 </div>

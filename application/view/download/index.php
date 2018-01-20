@@ -1,3 +1,4 @@
+<div class="wrapper">
 <div id="download-page">
   <div class="left-sidebar">
     <div class="quiz">
@@ -32,4 +33,5 @@
   <div class="right-sidebar">
     <img src="/images/contest-ad.jpg">
   </div>
+</div>
 </div>

@@ -1,3 +1,4 @@
+<div class="wrapper">
 <div class="container">
 
     <!-- echo out the system feedback (error and success messages) -->
@@ -35,4 +36,5 @@
         $_SESSION["captcha"] dump will not show the captcha characters. The captcha generation
         happens AFTER the request that generates THIS page has been finished.
     </p>
+</div>
 </div>

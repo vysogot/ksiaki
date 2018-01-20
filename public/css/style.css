@@ -15,6 +15,8 @@ header, nav, main, footer { width: 100%; clear: both; }
 .wrapper-full { width: 100%; }
 .wrapper, .wrapper-full { margin: 0 auto; overflow: visible; }
 
+.center { text-align: center; }
+
 #logo         { width: 130px; height: 130px; }
 #banner       { width: 800px; height: 130px; overflow: hidden; }
 #heroes       { width: 930px; height: 100px; background: black; }
@@ -61,6 +63,7 @@ nav ul li a { padding-top: 90px; min-width: 81px; display: inline-block;
 .left-sidebar, .main-area, .right-sidebar { float: left; }
 
 #contests-page ul.contests div, .download-section div { width: 265px; margin-right: 15px; height: 250px; }
+#contests-page .contest-banner img { width: 100%; min-width: 930px; min-height: 200px; }
 #ranking-page .main-area { width: 470px; }
 #ranking-page .right-sidebar { width: 300px; }
 

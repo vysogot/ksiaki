@@ -95,4 +95,3 @@
       </div>
       </nav>
 <main>
-  <div class="wrapper">
