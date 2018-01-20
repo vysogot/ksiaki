@@ -1,6 +1,6 @@
 <?php
 
-class ContestController extends Controller
+class DownloadController extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
@@ -16,11 +16,6 @@ class ContestController extends Controller
      */
     public function index()
     {
-        $this->View->render('contest/index');
-    }
-
-    public function show()
-    {
-        $this->View->render('contest/show');
+        $this->View->render('download/index');
     }
 }

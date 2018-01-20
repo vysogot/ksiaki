@@ -1,6 +1,9 @@
-<section id="contests-page">
+<div id="contests-page">
+  <div class="contest-banner">
+    <img src="/images/contest-banner.jpg">
+  </div>
   <div class="left-sidebar">
-    <aside class="month-rank">
+    <div class="month-rank">
       <h2>Ranking miesięczny</h2>
       <ol>
         <li>Kawazmlekiem</li>
@@ -14,9 +17,9 @@
         <li>lottainaczejkar...</li>
         <li>lusia44</li>
       </ol>
-    </aside>
+    </div>
 
-    <aside class="quiz">
+    <div class="quiz">
       <h2>Quiz</h2>
       <h3>Włoskie miasto, słynne z krzywej wieży to:</h3>
       <ul>
@@ -25,7 +28,7 @@
         <li>Odpowiedź 1</li>
       </ul>
       <a href="#">Odpowiadam</a>
-    </aside>
+    </div>
   </div>
 
   <div class="main-area">
@@ -34,8 +37,8 @@
       każda próba zwiększa Twoje szanse na wygraną. Nie czekaj! Graj!</h3>
 
       <ul class="bare left contests">
-        <li><div><img src="/images/contest-single.jpg"><a href="/contest/show">Fanaberia, do 3 stycznia</a></div></li>
-        <li><div><img src="/images/contest-single.jpg"><a href="/contest/show">Energia, do 5 stycznia</a></div></li>
+        <li><div><img src="/images/contest-single.jpg"><a href="/contest/1">Fanaberia, do 3 stycznia</a></div></li>
+        <li><div><img src="/images/contest-single.jpg"><a href="/contest/2">Energia, do 5 stycznia</a></div></li>
       </ul>
   </div>
 

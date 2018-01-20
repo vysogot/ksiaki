@@ -1,6 +1,6 @@
 <div id="ranking-page">
   <div class="left-sidebar">
-    <img src="/images/konkursy-baner.jpg">
+    <img src="/images/contest-ad.jpg">
   </div>
 
   <div class="main-area">
@@ -55,6 +55,6 @@
   </div>
 
   <div class="right-sidebar">
-    <img src="/images/konkursiak-miesiaca-ranking.jpg">
+    <img src="/images/contest-month-box.jpg">
   </div>
 </div>

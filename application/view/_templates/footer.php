@@ -1,22 +1,29 @@
-        <div class="footer">
-          <div id="static-sites">
-            <ul class="bare left">
-              <li>O nas</li>
-              <li>Dla rodziców</li>
-              <li>Regulamin</li>
-              <li>Polityka prywatności</li>
-              <li>FAQ</li>
-              <li>Kontakt</li>
-            </ul>
-          </div>
-
-          <div id="copyright">
-            <p>Copyright</p>
-          </div>
+</div>
+</main>
+  <footer>
+    <div class="wrapper-full">
+      <section id="static-sites">
+        <div class="wrapper">
+          <ul class="bare left">
+            <li><a href="#">O nas</a></li>
+            <li><a href="#">Dla rodziców</a></li>
+            <li><a href="#">Regulamin</a></li>
+            <li><a href="#">Polityka prywatności</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
         </div>
-    </div><!-- close id="wrapper" -->
-  </div><!-- close id="page" -->
-    <script src="<?php echo Config::get('URL'); ?>js/jquery-1.11.0.min.js" type="text/javascript"></script>
+      </section>
+
+      <section id="copyright">
+        <div class="wrapper">
+          <p>© Media Service Zawada sp. z o.o.</p>
+        <div class="wrapper">
+      </section>
+    </div>
+  </footer>
+
+  <script src="<?php echo Config::get('URL'); ?>js/jquery-1.11.0.min.js" type="text/javascript"></script>
   <script src="<?php echo Config::get('URL'); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
 
         <script type="text/javascript">

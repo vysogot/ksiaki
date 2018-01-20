@@ -13,8 +13,8 @@
 
 </head>
 <body>
-  <div id="page">
-    <div id="wrapper">
+  <header>
+    <div class="wrapper">
         <div id="logo">
           <img src="/images/logo.png" />
         </div>
@@ -23,12 +23,15 @@
           <div><img src="/images/banner-1.png" /></div>
           <div><img src="/images/banner-2.png" /></div>
         </div>
+      </div>
+    </header>
 
-        <div id="nav">
+        <nav>
+          <div class="wrapper">
           <!-- navigation -->
           <ul class="bare left">
               <li>
-                  <a href="<?php echo Config::get('URL'); ?>index/index" id="menu-home" <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?>>Home</a>
+                  <a href="<?php echo Config::get('URL'); ?>" id="menu-home" <?php if (View::checkForActiveController($filename, "index")) { echo ' class="active" '; } ?>>Home</a>
               </li>
               <li>
                 <a href="<?php echo Config::get('URL'); ?>contest/index" id="menu-contests" <?php if (View::checkForActiveController($filename, "contest")) { echo ' class="active" '; } ?>>Konkursy</a>
@@ -89,5 +92,7 @@
             <?php endif; ?>
         <?php endif; ?>
         </ul>
-
-        </div>
+      </div>
+      </nav>
+<main>
+  <div class="wrapper">

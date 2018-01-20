@@ -1,19 +1,19 @@
-<div id="heroes" class="slider">
+<section id="heroes" class="slider">
     <div><img src="/images/hero-1.png"></div>
     <div><img src="/images/hero-2.png"></div>
     <div><img src="/images/hero-1.png"></div>
     <div><img src="/images/hero-2.png"></div>
     <div><img src="/images/hero-1.png"></div>
     <div><img src="/images/hero-2.png"></div>
-</div>
+</section>
 
-<div id="slider" class="slider">
+<section id="slider" class="slider">
   <div><img src="/images/slider-1.jpg" /></div>
   <div><img src="/images/slider-2.jpg" /></div>
   <div><img src="/images/slider-3.jpg" /></div>
-</div>
+</section>
 
-<div id="player">
+<section id="player">
   <video controls poster="https://www.html5rocks.com/en/tutorials/video/basics/poster.png">
   <source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm"
           type='video/webm;codecs="vp8, vorbis"' />
@@ -22,9 +22,9 @@
   <track src="https://www.html5rocks.com/en/tutorials/video/basics/devstories-en.vtt" label="English subtitles"
          kind="subtitles" srclang="en" default></track>
 </video>
-</div>
+</section>
 
-<div id="contests">
+<section id="contests">
   <ul class="bare left">
     <li><img src="/images/contest-1.jpg" /></li>
     <li><img src="/images/contest-2.jpg" /></li>
@@ -36,12 +36,12 @@
     <li><img src="/images/contest-8.jpg" /></li>
     <li><img src="/images/contest-9.jpg" /></li>
   </ul>
-</div>
+</section>
 
-<div id="side-banners">
+<section id="side-banners">
   <ul class="bare left">
     <li class="double"><img src="/images/side-banner-1.jpg" /></li>
     <li><img src="/images/side-banner-2.jpg" /></li>
     <li><img src="/images/side-banner-3.jpg" /></li>
   </ul>
-</div>
+</section>
