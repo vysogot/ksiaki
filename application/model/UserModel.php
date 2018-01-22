@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /**
  * UserModel
@@ -17,15 +17,11 @@ class UserModel
      */
     public static function getPublicProfilesOfAllUsers()
     {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar, user_deleted FROM users";
-        $query = $database->prepare($sql);
-        $query->execute();
+        $users = DatabaseFactory::getFactory()->queryExecute('call sp_getPublicProfilesOfAllUsers();', array(), true);
 
         $all_users_profiles = array();
 
-        foreach ($query->fetchAll() as $user) {
+        foreach ($users as $user) {
 
             // all elements of array passed to Filter::XSSFilter for XSS sanitation, have a look into
             // application/core/Filter.php for more info on how to use. Removes (possibly bad) JavaScript etc from
@@ -51,16 +47,10 @@ class UserModel
      */
     public static function getPublicProfileOfUser($user_id)
     {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar, user_deleted
-                FROM users WHERE user_id = :user_id LIMIT 1";
-        $query = $database->prepare($sql);
-        $query->execute(array(':user_id' => $user_id));
-
-        $user = $query->fetch();
-
-        if ($query->rowCount() == 1) {
+        $user = DatabaseFactory::getFactory()->queryExecute('call sp_getPublicProfileOfUser(:p_user_id);'
+              , array(array('p_user_id', $user_id, PDO::PARAM_INT)));
+                
+        if (!empty($user)) {
             if (Config::get('USE_GRAVATAR')) {
                 $user->user_avatar_link = AvatarModel::getGravatarLinkByEmail($user->user_email);
             } else {
@@ -297,22 +287,13 @@ class UserModel
      */
     public static function getUserDataByUsername($user_name)
     {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "SELECT user_id, user_name, user_email, user_password_hash, user_active,user_deleted, user_suspension_timestamp, user_account_type,
-                       user_failed_logins, user_last_failed_login
-                  FROM users
-                 WHERE (user_name = :user_name OR user_email = :user_name)
-                       AND user_provider_type = :provider_type
-                 LIMIT 1";
-        $query = $database->prepare($sql);
-
         // DEFAULT is the marker for "normal" accounts (that have a password etc.)
         // There are other types of accounts that don't have passwords etc. (FACEBOOK)
-        $query->execute(array(':user_name' => $user_name, ':provider_type' => 'DEFAULT'));
-
-        // return one row (we only have one result or nothing)
-        return $query->fetch();
+               
+        return DatabaseFactory::getFactory()->queryExecute('call sp_getUserDataByUsername(:p_user_name, :p_provider_type);', array(
+          array('p_user_name', $user_name, PDO::PARAM_STR)
+          , array('p_provider_type', 'DEFAULT', PDO::PARAM_STR)
+        ));
     }
 
     /**
@@ -325,6 +306,7 @@ class UserModel
      */
     public static function getUserDataByUserIdAndToken($user_id, $token)
     {
+        /*
         $database = DatabaseFactory::getFactory()->getConnection();
 
         // get real token from database (and all other data)
@@ -339,5 +321,13 @@ class UserModel
 
         // return one row (we only have one result or nothing)
         return $query->fetch();
+        */
+        return DatabaseFactory::getFactory()->queryExecute('call sp_getUserDataByUserIdAndToken(:p_user_id, :p_user_remember_me_token, :p_provider_type);', array(
+          array('p_user_id', $user_id, PDO::PARAM_INT)
+          , array('p_user_remember_me_token', 'DEFAULT', PDO::PARAM_STR)
+          , array('p_provider_type', 'DEFAULT', PDO::PARAM_STR)
+        ));
+        
+        
     }
 }

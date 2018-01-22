@@ -42,7 +42,9 @@ class DatabaseFactory
              * by throwing custom error message
              */
             try {
-                $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING);
+                $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+                , PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+                , PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
                 $this->database = new PDO(
                    Config::get('DB_TYPE') . ':host=' . Config::get('DB_HOST') . ';dbname=' .
                    Config::get('DB_NAME') . ';port=' . Config::get('DB_PORT') . ';charset=' . Config::get('DB_CHARSET'),
@@ -60,5 +62,22 @@ class DatabaseFactory
             }
         }
         return $this->database;
+    }
+    
+    public function queryExecute($sql, $fields, $all=false)  {
+      $query = self::getConnection()->prepare($sql);
+
+      foreach ($fields as $field) {
+        $query->bindParam(':' . $field[0], $field[1], $field[2]);
+      }
+      
+      try {
+      			$query->execute();
+      		} catch(PDOException $e) {
+            //$this->logger->lwrite($e->getMessage());
+            exit('Error execute query');
+      		} 
+      $ret = $query->fetchAll();                
+      return $all ? $ret : $ret[0];
     }
 }

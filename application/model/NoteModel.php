@@ -12,14 +12,8 @@ class NoteModel
      */
     public static function getAllNotes()
     {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "SELECT user_id, note_id, note_text FROM notes WHERE user_id = :user_id";
-        $query = $database->prepare($sql);
-        $query->execute(array(':user_id' => Session::get('user_id')));
-
-        // fetchAll() is the PDO method that gets all result rows
-        return $query->fetchAll();
+        return DatabaseFactory::getFactory()->queryExecute('call sp_getAllNotes(:p_user_id);'
+              , array(array('p_user_id', Session::get('user_id'), PDO::PARAM_INT)), true);
     }
 
     /**
@@ -29,14 +23,10 @@ class NoteModel
      */
     public static function getNote($note_id)
     {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "SELECT user_id, note_id, note_text FROM notes WHERE user_id = :user_id AND note_id = :note_id LIMIT 1";
-        $query = $database->prepare($sql);
-        $query->execute(array(':user_id' => Session::get('user_id'), ':note_id' => $note_id));
-
-        // fetch() is the PDO method that gets a single result
-        return $query->fetch();
+        return DatabaseFactory::getFactory()->queryExecute('call sp_getNote(:p_user_id, :p_note_id);', array(
+              array('p_user_id', Session::get('user_id'), PDO::PARAM_INT)
+              , array('p_note_id', $note_id, PDO::PARAM_INT)
+              ));
     }
 
     /**
@@ -50,14 +40,13 @@ class NoteModel
             Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_CREATION_FAILED'));
             return false;
         }
+        
+        $query = DatabaseFactory::getFactory()->queryExecute('call sp_createNote(:p_note_text, :p_user_id);', array(
+              array('p_note_text', $note_text, PDO::PARAM_STR)
+              , array('p_user_id', Session::get('user_id'), PDO::PARAM_INT)
+              ));
 
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "INSERT INTO notes (note_text, user_id) VALUES (:note_text, :user_id)";
-        $query = $database->prepare($sql);
-        $query->execute(array(':note_text' => $note_text, ':user_id' => Session::get('user_id')));
-
-        if ($query->rowCount() == 1) {
+        if ($query->rowCount == 1) {
             return true;
         }
 
@@ -77,18 +66,19 @@ class NoteModel
         if (!$note_id || !$note_text) {
             return false;
         }
-
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sql = "UPDATE notes SET note_text = :note_text WHERE note_id = :note_id AND user_id = :user_id LIMIT 1";
-        $query = $database->prepare($sql);
-        $query->execute(array(':note_id' => $note_id, ':note_text' => $note_text, ':user_id' => Session::get('user_id')));
-
-        if ($query->rowCount() == 1) {
+        
+        $query = DatabaseFactory::getFactory()->queryExecute('call sp_updateNote(:p_note_id, :p_user_id, :p_note_text);', array(
+              array('p_note_id', $note_id, PDO::PARAM_INT)
+              , array('p_user_id', Session::get('user_id'), PDO::PARAM_INT)
+              , array('p_note_text', $note_text, PDO::PARAM_STR)
+              ));
+        
+        if ($query->rowCount == 1) {
             return true;
         }
 
         Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_EDITING_FAILED'));
+        
         return false;
     }
 
@@ -103,13 +93,13 @@ class NoteModel
             return false;
         }
 
-        $database = DatabaseFactory::getFactory()->getConnection();
+        $query = DatabaseFactory::getFactory()->queryExecute('call sp_deleteNote(:p_note_id, :p_user_id);', array(
+              array('p_note_id', $note_id, PDO::PARAM_INT)
+              , array('p_user_id', Session::get('user_id'), PDO::PARAM_INT)
+              ));
+        
 
-        $sql = "DELETE FROM notes WHERE note_id = :note_id AND user_id = :user_id LIMIT 1";
-        $query = $database->prepare($sql);
-        $query->execute(array(':note_id' => $note_id, ':user_id' => Session::get('user_id')));
-
-        if ($query->rowCount() == 1) {
+        if ($query->rowCount == 1) {
             return true;
         }
 

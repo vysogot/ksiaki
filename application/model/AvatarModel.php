@@ -46,13 +46,13 @@ class AvatarModel
      * @return string avatar picture path
      */
     public static function getPublicUserAvatarFilePathByUserId($user_id)
-    {
-        $database = DatabaseFactory::getFactory()->getConnection();
+    {        
+        $ret = DatabaseFactory::getFactory()->queryExecute('call sp_getPublicUserAvatarFilePathByUserId(:p_user_id);', array(
+          array('p_user_id', $user_id, PDO::PARAM_INT)
+        ));
 
-        $query = $database->prepare("SELECT user_has_avatar FROM users WHERE user_id = :user_id LIMIT 1");
-        $query->execute(array(':user_id' => $user_id));
-
-        if ($query->fetch()->user_has_avatar) {
+        
+        if ($ret->user_has_avatar) {
             return Config::get('URL') . Config::get('PATH_AVATARS_PUBLIC') . $user_id . '.jpg';
         }
 
@@ -138,10 +138,18 @@ class AvatarModel
      */
     public static function writeAvatarToDatabase($user_id)
     {
+        /*
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $query = $database->prepare("UPDATE users SET user_has_avatar = TRUE WHERE user_id = :user_id LIMIT 1");
         $query->execute(array(':user_id' => $user_id));
+        */
+        
+      $ret = DatabaseFactory::getFactory()->queryExecute('call sp_writeAvatarToDatabase(:p_user_id);', array(
+          array('p_user_id', $user_id, PDO::PARAM_INT)
+        ));
+        
+        
     }
 
     /**
@@ -207,23 +215,22 @@ class AvatarModel
      * @param int $userId
      * @return bool success
      */
-    public static function deleteAvatar($userId)
+    public static function deleteAvatar($user_id)
     {
-        if (!ctype_digit($userId)) {
+        if (!ctype_digit($user_id)) {
             Session::add("feedback_negative", Text::get("FEEDBACK_AVATAR_IMAGE_DELETE_FAILED"));
             return false;
         }
 
         // try to delete image, but still go on regardless of file deletion result
-        self::deleteAvatarImageFile($userId);
-
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        $sth = $database->prepare("UPDATE users SET user_has_avatar = 0 WHERE user_id = :user_id LIMIT 1");
-        $sth->bindValue(":user_id", (int)$userId, PDO::PARAM_INT);
-        $sth->execute();
-
-        if ($sth->rowCount() == 1) {
+        self::deleteAvatarImageFile($user_id);
+        
+        $ret = DatabaseFactory::getFactory()->queryExecute('call sp_deleteAvatar(:user_id);', array(
+          array('user_id', $user_id, PDO::PARAM_INT)
+        ));
+        
+        
+        if ($ret->rowCount == 1) {
             Session::set('user_avatar_file', self::getPublicUserAvatarFilePathByUserId($userId));
             Session::add("feedback_positive", Text::get("FEEDBACK_AVATAR_IMAGE_DELETE_SUCCESSFUL"));
             return true;

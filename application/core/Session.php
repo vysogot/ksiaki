@@ -74,13 +74,12 @@ class Session
      * @param  string $userId
      * @param  string $sessionId
      */
-    public static function updateSessionId($userId, $sessionId = null)
-    {
-        $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "UPDATE users SET session_id = :session_id WHERE user_id = :user_id";
-
-        $query = $database->prepare($sql);
-        $query->execute(array(':session_id' => $sessionId, ":user_id" => $userId));
+    public static function updateSessionId($user_id, $session_id = null)
+    {                
+        DatabaseFactory::getFactory()->queryExecute('call sp_updateSessionId(:p_user_id, :p_session_id);', array(
+          array('p_user_id', $user_id, PDO::PARAM_INT)
+          , array('p_session_id', $session_id, PDO::PARAM_STR)
+        ));        
     }
 
     /**
@@ -104,17 +103,22 @@ class Session
     public static function isConcurrentSessionExists()
     {
         $session_id = session_id();
-        $userId     = Session::get('user_id');
+        $user_id    = Session::get('user_id');
 
-        if (isset($userId) && isset($session_id)) {
+        if (isset($user_id) && isset($session_id)) {
 
+            /*
             $database = DatabaseFactory::getFactory()->getConnection();
             $sql = "SELECT session_id FROM users WHERE user_id = :user_id LIMIT 1";
 
             $query = $database->prepare($sql);
-            $query->execute(array(":user_id" => $userId));
+            $query->execute(array(":user_id" => $user_id));
 
             $result = $query->fetch();
+            */
+            $result = DatabaseFactory::getFactory()->queryExecute('call sp_isConcurrentSessionExists(:p_user_id);'
+                    , array(array('p_user_id', $user_id, PDO::PARAM_INT)));
+            
             $userSessionId = !empty($result)? $result->session_id: null;
 
             return $session_id !== $userSessionId;

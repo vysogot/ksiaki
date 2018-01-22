@@ -305,12 +305,17 @@ class LoginModel
      */
     public static function saveTimestampOfLoginOfUser($user_name)
     {
+        /*
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "UPDATE users SET user_last_login_timestamp = :user_last_login_timestamp
                 WHERE user_name = :user_name LIMIT 1";
         $sth = $database->prepare($sql);
         $sth->execute(array(':user_name' => $user_name, ':user_last_login_timestamp' => time()));
+        */
+        DatabaseFactory::getFactory()->queryExecute('call sp_saveTimestampOfLoginOfUser(:p_user_name);', array(
+          array('p_user_name', $user_name, PDO::PARAM_STR)
+        ));
     }
 
     /**
