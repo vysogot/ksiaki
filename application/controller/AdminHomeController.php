@@ -1,6 +1,6 @@
 <?php
 
-class adminHomeController extends Controller
+class AdminHomeController extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class

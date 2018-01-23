@@ -1,4 +1,5 @@
 <div class="wrapper">
+  <h2>Ustawienia konkursów</h2>
   <p><a href="/adminContest/new">Dodaj konkurs</a></p>
   <table>
     <tr>

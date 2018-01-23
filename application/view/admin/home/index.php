@@ -1,3 +1,3 @@
 <div class="wrapper">
-  Edycja banerów
+  <h2>Edycja banerów</h2>
 </div>

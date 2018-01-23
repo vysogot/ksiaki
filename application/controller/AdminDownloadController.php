@@ -1,6 +1,6 @@
 <?php
 
-class AdminRankingController extends Controller
+class AdminDownloadController extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
