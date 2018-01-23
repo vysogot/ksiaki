@@ -8,7 +8,7 @@ html, body {
 
 header { margin: 0; padding-top: 40px; min-height: 150px; overflow: visible;
   background: url('/images/bg-clouds.png') center top no-repeat; }
-nav    { height: 100px; margin: 25px auto; }
+nav    { height: 120px; margin: 25px auto; }
 header, nav, main, footer { width: 100%; clear: both; }
 
 .wrapper      { width: 930px; }
@@ -45,6 +45,7 @@ ul.left li { float:left; }
 
 nav ul li a { padding-top: 90px; min-width: 81px; display: inline-block;
   color: white; font-size: 11px; text-decoration: none; text-transform: uppercase; }
+nav ul li a.admin { padding-top: 0px;}
 
 #menu-home     { background: url('/images/menu-home.png')     center 0 no-repeat; }
 #menu-contests { background: url('/images/menu-contests.png') center 0 no-repeat; }

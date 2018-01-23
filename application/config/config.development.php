@@ -49,7 +49,7 @@ return array(
     /**
      * Configuration for: Default controller and action
      */
-    'DEFAULT_CONTROLLER' => 'index',
+    'DEFAULT_CONTROLLER' => 'home',
     'DEFAULT_ACTION' => 'index',
     /**
      * Configuration for: Database

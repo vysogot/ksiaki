@@ -1,4 +1,4 @@
-<div class="container">
+<div class="wrapper">
     <h1>Edit your avatar</h1>
 
     <!-- echo out the system feedback (error and success messages) -->

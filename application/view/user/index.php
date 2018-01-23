@@ -1,4 +1,5 @@
-<div class="container">
+<div class="wrapper">
+  
     <h1>UserController/showProfile</h1>
 
     <div class="box">

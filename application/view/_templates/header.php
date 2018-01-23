@@ -25,22 +25,26 @@
         <ul class="bare left">
             <li>
                 <a href="<?php echo Config::get('URL'); ?>" id="menu-home"<?php if (View::checkForActiveController($filename, "index")) { echo ' class="active"'; } ?>>Home</a>
+              <br/><a class="admin" href="/adminHome/index">Admin</a>
             </li>
             <li>
               <a href="<?php echo Config::get('URL'); ?>contest/index" id="menu-contests"<?php if (View::checkForActiveController($filename, "contest")) { echo ' class="active"'; } ?>>Konkursy</a>
+               <br/><a class="admin" href="/adminContest/index">Admin</a>
             </li>
             <li>
               <a href="<?php echo Config::get('URL'); ?>ranking/index" id="menu-ranking"<?php if (View::checkForActiveController($filename, "ranking")) { echo ' class="active"'; } ?>>Ranking</a>
+              <br/><a class="admin" href="/adminRanking/index">Admin</a>
             </li>
             <li>
               <a href="<?php echo Config::get('URL'); ?>download/index" id="menu-download"<?php if (View::checkForActiveController($filename, "download")) { echo ' class="active"'; } ?>>Pobierz</a>
+                <br/><a class="admin" href="/adminDownload/index">Admin</a>
             </li>
             <?php if (Session::userIsLoggedIn()) { ?>
                 <li>
-                    <a href="<?php echo Config::get('URL'); ?>dashboard/index"<?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active"'; } ?>>Dashboard</a>
-                </li>
-                <li>
-                    <a href="<?php echo Config::get('URL'); ?>note/index"<?php if (View::checkForActiveController($filename, "note")) { echo ' class="active"'; } ?>>My Notes</a>
+                    <a href="<?php echo Config::get('URL'); ?>dashboard/index" id="menu-login"<?php if (View::checkForActiveController($filename, "dashboard")) { echo ' class="active"'; } ?>>Dashboard</a>
+                      <?php if (Session::get("user_account_type") == 7) : ?>
+                          <br/><a class="admin" href="<?php echo Config::get('URL'); ?>admin/">Admin</a>
+                      <?php endif; ?>
                 </li>
             <?php } else { ?>
                 <li>
@@ -48,41 +52,6 @@
                 </li>
             <?php } ?>
           </ul>
-
-          <?php if (Session::userIsLoggedIn()) : ?>
-          <ul class="bare right">
-            <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
-                <a href="<?php echo Config::get('URL'); ?>user/index">My Account</a>
-                <ul class="navigation-submenu">
-                    <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
-                        <a href="<?php echo Config::get('URL'); ?>user/changeUserRole">Change account type</a>
-                    </li>
-                    <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
-                        <a href="<?php echo Config::get('URL'); ?>user/editAvatar">Edit your avatar</a>
-                    </li>
-                    <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
-                        <a href="<?php echo Config::get('URL'); ?>user/editusername">Edit my username</a>
-                    </li>
-                    <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
-                        <a href="<?php echo Config::get('URL'); ?>user/edituseremail">Edit my email</a>
-                    </li>
-                    <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
-                        <a href="<?php echo Config::get('URL'); ?>user/changePassword">Change Password</a>
-                    </li>
-                    <li<?php if (View::checkForActiveController($filename, "login")) { echo ' class="active"'; } ?>>
-                        <a href="<?php echo Config::get('URL'); ?>login/logout">Logout</a>
-                    </li>
-                </ul>
-              </li>
-              <?php if (Session::get("user_account_type") == 7) : ?>
-                  <li<?php if (View::checkForActiveController($filename, "admin")) {
-                      echo ' class="active"';
-                  } ?>>
-                      <a href="<?php echo Config::get('URL'); ?>admin/">Admin</a>
-                  </li>
-              <?php endif; ?>
-            </ul>
-          <?php endif; ?>
         </nav>
       </div>
     </header>

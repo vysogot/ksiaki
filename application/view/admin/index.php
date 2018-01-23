@@ -1,4 +1,4 @@
-<div class="container">
+<div class="wrapper">
     <h1>Admin/index</h1>
 
     <div class="box">

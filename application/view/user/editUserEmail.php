@@ -1,4 +1,4 @@
-<div class="container">
+<div class="wrapper">
     <h1>UserController/editUserEmail</h1>
 
     <!-- echo out the system feedback (error and success messages) -->

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="wrapper">
     <h1>NoteController/edit/:note_id</h1>
 
     <div class="box">
