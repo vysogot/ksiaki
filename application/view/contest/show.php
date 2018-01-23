@@ -6,7 +6,7 @@
   </div>
 
   <div class="wrapper">
-    <h2 class="center"><a href="contest/play">Graj</a></h2>
+    <h2 class="center"><a href="/contest/preroll">Graj</a></h2>
     <div class="left-sidebar">
       <div class="month-rank">
         <h2>Ranking miesięczny</h2>

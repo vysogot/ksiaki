@@ -23,4 +23,14 @@ class ContestController extends Controller
     {
         $this->View->render('contest/show');
     }
+
+    public function preroll()
+    {
+        $this->View->render('contest/preroll');
+    }
+
+    public function play()
+    {
+        $this->View->render('contest/play');
+    }
 }
