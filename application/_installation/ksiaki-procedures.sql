@@ -151,6 +151,18 @@ END//
 DELIMITER ;
 
 
+-- Zrzut struktury procedura ksiaki.sp_getUserIdByUsername
+DELIMITER //
+CREATE PROCEDURE `sp_getUserIdByUsername`(IN `p_user_name` VARCHAR(50), IN `p_provider_type` VARCHAR(50))
+BEGIN
+SELECT user_id FROM users 
+WHERE (user_name = p_user_name) 
+AND (user_provider_type = p_provider_type) 
+LIMIT 1;
+END//
+DELIMITER ;
+
+
 -- Zrzut struktury procedura ksiaki.sp_isConcurrentSessionExists
 DELIMITER //
 CREATE PROCEDURE `sp_isConcurrentSessionExists`(IN `p_user_id` INT)
