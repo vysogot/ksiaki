@@ -3,7 +3,7 @@
   <p><a href="/adminContest/new">Dodaj konkurs</a></p>
   <table>
     <tr>
-      <td>Konkurs 1 <a href="/adminContest/edit">Edytuj</a> | <a href="/adminContest/remove">Usuń</a></td>
+      <td>Konkurs 1 <a href="/adminContest/edit">Edytuj</a> | <a href="/adminContest/destroy">Usuń</a></td>
     </tr>
     <tr>
       <td>Konkurs 2 Edytuj | Usuń</td>

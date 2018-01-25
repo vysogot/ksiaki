@@ -18,4 +18,9 @@ class HomeController extends Controller
     {
         $this->View->render('home/index');
     }
+
+    public function adstest()
+    {
+        $this->View->renderWithoutHeaderAndFooter('home/adstest');
+    }
 }

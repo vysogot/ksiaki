@@ -24,7 +24,7 @@
       <nav>
         <ul class="bare left">
             <li>
-                <a href="<?php echo Config::get('URL'); ?>" id="menu-home"<?php if (View::checkForActiveController($filename, "index")) { echo ' class="active"'; } ?>>Home</a>
+                <a href="<?php echo Config::get('URL'); ?>" id="menu-home"<?php if (View::checkForActiveController($filename, "home")) { echo ' class="active"'; } ?>>Home</a>
               <br/><a class="admin" href="/adminHome/index">Admin</a>
             </li>
             <li>

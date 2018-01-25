@@ -71,6 +71,12 @@ class View
         require Config::get('PATH_VIEW') . $filename . '.php';
     }
 
+    /* Alias */
+    public function renderPartial(...$params)
+    {
+      return $this->renderWithoutHeaderAndFooter(...$params);
+    }
+
     /**
      * Renders pure JSON to the browser, useful for API construction
      * @param $data
