@@ -13,7 +13,7 @@
     <div class="wrapper">
 
       <div id="logo">
-        <img src="/images/logo.png" />
+        <a href="/"><img src="/images/logo.png" /></a>
       </div>
 
       <div id="banner" class="slider">
@@ -25,19 +25,15 @@
         <ul class="bare left">
             <li>
                 <a href="<?php echo Config::get('URL'); ?>" id="menu-home"<?php if (View::checkForActiveController($filename, "home")) { echo ' class="active"'; } ?>>Home</a>
-              <br/><a class="admin" href="/adminHome/index">Admin</a>
             </li>
             <li>
               <a href="<?php echo Config::get('URL'); ?>contest/index" id="menu-contests"<?php if (View::checkForActiveController($filename, "contest")) { echo ' class="active"'; } ?>>Konkursy</a>
-               <br/><a class="admin" href="/adminContest/index">Admin</a>
             </li>
             <li>
               <a href="<?php echo Config::get('URL'); ?>ranking/index" id="menu-ranking"<?php if (View::checkForActiveController($filename, "ranking")) { echo ' class="active"'; } ?>>Ranking</a>
-              <br/><a class="admin" href="/adminRanking/index">Admin</a>
             </li>
             <li>
               <a href="<?php echo Config::get('URL'); ?>download/index" id="menu-download"<?php if (View::checkForActiveController($filename, "download")) { echo ' class="active"'; } ?>>Pobierz</a>
-                <br/><a class="admin" href="/adminDownload/index">Admin</a>
             </li>
             <?php if (Session::userIsLoggedIn()) { ?>
                 <li>

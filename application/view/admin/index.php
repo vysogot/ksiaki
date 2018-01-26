@@ -1,6 +1,14 @@
 <div class="wrapper">
     <h1>Admin/index</h1>
 
+    <ul>
+      <li><a href="/adminHome/index">Ustawienia strony głównej</a></li>
+      <li><a href="/adminContest/index">Ustawienia konkursów</a></li>
+      <li><a href="/adminHeroes/index">Ustawienia bohaterów</a></li>
+      <li><a href="/adminRanking/index">Ustawienia rankingów</a></li>
+      <li><a href="/adminDownload/index">Ustawienia pobrań</a></li>
+    </ul>
+
     <div class="box">
 
         <!-- echo out the system feedback (error and success messages) -->

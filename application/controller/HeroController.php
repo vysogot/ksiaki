@@ -1,6 +1,6 @@
 <?php
 
-class AdminHomeController extends Controller
+class HeroController extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
@@ -11,16 +11,16 @@ class AdminHomeController extends Controller
     }
 
     /**
-     * Handles what happens when user moves to URL/contest/index - or - as this is the default controller, also
+     * Handles what happens when user moves to URL/hero/index - or - as this is the default controller, also
      * when user moves to /index or enter your application at base level
      */
     public function index()
     {
-        $this->View->render('admin/home/index');
+        $this->View->render('hero/index');
     }
 
-    public function update()
+    public function show()
     {
-        $this->View->render('admin/home/index');
+        $this->View->render('hero/show');
     }
 }

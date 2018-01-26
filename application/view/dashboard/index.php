@@ -1,5 +1,4 @@
 <div class="wrapper">
-  <div class="wrapper">
         <?php if (Session::userIsLoggedIn()) : ?>
         <ul>
           <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
@@ -30,7 +29,7 @@
             </li>
 
           </ul>
-        <?php endif; ?></div>
+        <?php endif; ?>
     <h1>DashboardController/index</h1>
     <div class="box">
 
