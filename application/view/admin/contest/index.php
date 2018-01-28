@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h2>Ustawienia konkursów</h2>
-  <p><a href="/adminContest/new">Dodaj konkurs</a></p>
+  <p><a href="/adminContest/prepare">Dodaj konkurs</a></p>
   <table>
     <tr>
       <td>Konkurs 1 <a href="/adminContest/edit">Edytuj</a> | <a href="/adminContest/destroy">Usuń</a></td>

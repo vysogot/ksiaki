@@ -19,9 +19,9 @@ class AdminContestController extends Controller
         $this->View->render('admin/contest/index');
     }
 
-    public function new()
+    public function prepare()
     {
-        $this->View->render('admin/contest/new');
+        $this->View->render('admin/contest/prepare');
     }
 
     public function create()

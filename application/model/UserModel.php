@@ -268,10 +268,11 @@ class UserModel
         // DEFAULT is the marker for "normal" accounts (that have a password etc.)
         // There are other types of accounts that don't have passwords etc. (FACEBOOK)
         // return one row (we only have one result or nothing)
-        return DatabaseFactory::getFactory()->queryExecute('call sp_getUserIdByUsername(:p_user_name, :p_provider_type);', array(
+        $ret = DatabaseFactory::getFactory()->queryExecute('call sp_getUserIdByUsername(:p_user_name, :p_provider_type);', array(
           array('p_user_name', $user_name, PDO::PARAM_STR)
           , array('p_provider_type', 'DEFAULT', PDO::PARAM_STR)
         ));
+        return $ret->user_id;
     }
 
     /**
