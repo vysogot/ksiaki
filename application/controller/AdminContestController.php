@@ -8,6 +8,7 @@ class AdminContestController extends Controller
     public function __construct()
     {
         parent::__construct();
+        Auth::checkAuthentication();
     }
 
     /**
@@ -21,7 +22,8 @@ class AdminContestController extends Controller
 
     public function prepare()
     {
-        $this->View->render('admin/contest/prepare');
+        $this->View->render('admin/contest/prepare', array(
+            'contest' => ContestModel::getContest(0)));
     }
 
     public function create()
@@ -36,7 +38,19 @@ class AdminContestController extends Controller
 
     public function update()
     {
-        $this->View->render('admin/contest/show');
+        ContestModel::updateContest(Request::post('contest_id')
+        , Request::post('contest_game_id')
+        , Request::post('contest_contest_type_id')
+        , Request::post('contest_name')
+        , Request::post('contest_description')
+        , Request::post('contest_banner_url')
+        , Request::post('contest_begins_at')
+        , Request::post('contest_ends_at')
+        );
+        Redirect::to('adminContest');
+        
+        //$this->View->render('admin/contest/show');
+        
     }
 
     public function destroy()

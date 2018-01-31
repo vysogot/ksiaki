@@ -8,6 +8,7 @@ class ContestController extends Controller
     public function __construct()
     {
         parent::__construct();
+        Auth::checkAuthentication();
     }
 
     /**
