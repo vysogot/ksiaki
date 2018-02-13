@@ -2,15 +2,14 @@
   <h2>Ustawienia konkursów</h2>
   <p><a href="/adminContest/prepare">Dodaj konkurs</a></p>
   <table>
-    <tr>
-      <td>Konkurs 1 <a href="/adminContest/edit">Edytuj</a> | <a href="/adminContest/destroy">Usuń</a></td>
-    </tr>
-    <tr>
-      <td>Konkurs 2 Edytuj | Usuń</td>
-    </tr>
-    <tr>
-      <td>Konkurs 3 Edytuj | Usuń</td>
-    </tr>
+    <?php foreach($this->contests as $key => $contest) { ?>
+      <tr>
+        <td><?php echo $contest->name; ?></td>
+        <td><a href="/adminContest/show/<?php echo $contest->id ?>">Pokaż</a></td>
+        <td><a href="/adminContest/edit/<?php echo $contest->id ?>">Edytuj</a></td>
+        <td><a href="/adminContest/destroy/<?php echo $contest->id ?>">Usuń</a></td>
+      </tr>
+    <?php } ?>
   </table>
   <h3>Ustawienia tapet</h3>
   <form action="updateBackgrounds" method="post" id="updateBackgrounds">

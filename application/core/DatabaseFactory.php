@@ -63,21 +63,34 @@ class DatabaseFactory
         }
         return $this->database;
     }
-    
+
     public function queryExecute($sql, $fields, $all=false)  {
       $query = self::getConnection()->prepare($sql);
 
       foreach ($fields as $field) {
         $query->bindParam(':' . $field[0], $field[1], $field[2]);
       }
-      
+
       try {
-      			$query->execute();
-      		} catch(PDOException $e) {
-            //$this->logger->lwrite($e->getMessage());
-            exit('Error execute query');
-      		} 
-      $ret = $query->fetchAll();                
-      return $all ? $ret : $ret[0];
+  			$query->execute();
+  		} catch(PDOException $e) {
+        exit('Error execute query');
+  		}
+
+      $ret = $query->fetchAll();
+
+      if ($all) {
+        return $ret;
+      } else {
+        try {
+          if (empty($ret)) {
+            return $ret;
+          } else {
+            return $ret[0];
+          }
+        } catch(PDOException $e) {
+          exit('Error execute query');
+    		}
+      }
     }
 }

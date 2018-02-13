@@ -11,50 +11,61 @@ class AdminContestController extends Controller
         Auth::checkAuthentication();
     }
 
-    /**
-     * Handles what happens when user moves to URL/contest/index - or - as this is the default controller, also
-     * when user moves to /index or enter your application at base level
-     */
     public function index()
     {
-        $this->View->render('admin/contest/index');
+      $contests = ContestModel::all();
+      $this->View->render('admin/contest/index', array('contests' => $contests));
+    }
+
+    public function show($contest_id)
+    {
+      $contest = ContestModel::find($contest_id);
+      $this->View->render('admin/contest/show', array('contest' => $contest));
     }
 
     public function prepare()
     {
-        $this->View->render('admin/contest/prepare', array(
-            'contest' => ContestModel::getContest(0)));
+      $contest = new ContestModel;
+      $this->View->render('admin/contest/prepare', array('contest' => $contest));
     }
 
     public function create()
     {
-        $this->View->render('admin/contest/show');
+      $contest = ContestModel::create($_POST);
+
+      if ($contest) {
+        Redirect::to('adminContest/show/' . $contest->id);
+      } else {
+        echo 'nie udało się utworzyć';
+      }
     }
 
-    public function edit()
+    public function edit($contest_id)
     {
-        $this->View->render('admin/contest/edit');
+      $contest = ContestModel::find($contest_id);
+
+      if ($contest) {
+        $this->View->render('admin/contest/edit', array('contest' => $contest));
+      } else {
+        echo 'nie znaleziono';
+      }
     }
 
-    public function update()
+    public function update($contest_id)
     {
-        ContestModel::updateContest(Request::post('contest_id')
-        , Request::post('contest_game_id')
-        , Request::post('contest_contest_type_id')
-        , Request::post('contest_name')
-        , Request::post('contest_description')
-        , Request::post('contest_banner_url')
-        , Request::post('contest_begins_at')
-        , Request::post('contest_ends_at')
-        );
-        Redirect::to('adminContest');
-        
-        //$this->View->render('admin/contest/show');
-        
+      $contest = ContestModel::update($_POST);
+
+      if ($contest) {
+        Redirect::to('adminContest/show/' . $contest->id);
+      } else {
+        echo 'nie zaktualizowano';
+      }
     }
 
-    public function destroy()
+    public function destroy($contest_id)
     {
-        $this->View->render('admin/contest/index');
+      ContestModel::destroy($contest_id);
+      Redirect::to('adminContest/index');
     }
+
 }
