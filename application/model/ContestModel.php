@@ -40,36 +40,22 @@ class ContestModel
     $params['begins_at'] = new DateTime($params['begins_at']);
     $params['ends_at'] = new DateTime($params['ends_at']);
 
-    $sql = 'call sp_createContest(
-      :p_game_id, :p_contest_type_id, :p_name, :p_description,
-      :p_banner_url, :p_begins_at, :p_ends_at, :p_display_ad, @LAST_INSERT_ID);';
-
-    $dbc = DatabaseFactory::getFactory()->getConnection();
-    $query = $dbc->prepare($sql);
-
-    $fields = array(
-      array('p_game_id', $params['game_id'], PDO::PARAM_INT)
-      , array('p_contest_type_id', $params['contest_type_id'], PDO::PARAM_INT)
-      , array('p_name', $params['name'], PDO::PARAM_STR)
-      , array('p_description', $params['description'], PDO::PARAM_STR)
-      , array('p_banner_url', $params['banner_url'], PDO::PARAM_STR)
-      , array('p_begins_at', $params['begins_at']->format('Y-m-d H:i:s'), PDO::PARAM_STR)
-      , array('p_ends_at', $params['ends_at']->format('Y-m-d H:i:s'), PDO::PARAM_STR)
-      , array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL)
-    );
-
-    foreach ($fields as $field) {
-      $query->bindParam(':' . $field[0], $field[1], $field[2]);
-    }
-
-    $query->execute();
-    $query->fetchAll();
-    $lid = $dbc->lastInsertId();
-
-
+    $query = DatabaseFactory::getFactory()->queryExecute('call sp_updateContest(
+      :p_id, :p_game_id, :p_contest_type_id, :p_name, :p_description,
+      :p_banner_url, :p_begins_at, :p_ends_at, :p_display_ad);', array(
+          array('p_id', 0, PDO::PARAM_INT)
+          , array('p_game_id', $params['game_id'], PDO::PARAM_INT)
+          , array('p_contest_type_id', $params['contest_type_id'], PDO::PARAM_INT)
+          , array('p_name', $params['name'], PDO::PARAM_STR)
+          , array('p_description', $params['description'], PDO::PARAM_STR)
+          , array('p_banner_url', $params['banner_url'], PDO::PARAM_STR)
+          , array('p_begins_at', $params['begins_at']->format('Y-m-d H:i:s'), PDO::PARAM_STR)
+          , array('p_ends_at', $params['ends_at']->format('Y-m-d H:i:s'), PDO::PARAM_STR)
+          , array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL)
+          ));
 
     if ($query->rowCount == 1) {
-        return self::find($row->id);
+        return self::find($query->lastInsertId);
     }
 
     Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_EDITING_FAILED'));

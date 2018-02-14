@@ -2,11 +2,11 @@
     <h1>Admin/index</h1>
 
     <ul>
-      <li><a href="/adminHome/index">Ustawienia strony głównej</a></li>
-      <li><a href="/adminContest/index">Ustawienia konkursów</a></li>
-      <li><a href="/adminHeroes/index">Ustawienia bohaterów</a></li>
-      <li><a href="/adminRanking/index">Ustawienia rankingów</a></li>
-      <li><a href="/adminDownload/index">Ustawienia pobrań</a></li>
+      <li><a href="/adminHome/index">Strona główna</a></li>
+      <li><a href="/adminContest/index">Konkursy</a></li>
+      <li><a href="/adminHeroes/index">Bohaterowie</a></li>
+      <li><a href="/adminRanking/index">Rankingi</a></li>
+      <li><a href="/adminDownload/index">Pobrania</a></li>
     </ul>
 
     <div class="box">

@@ -7,7 +7,7 @@
         <td><?php echo $contest->name; ?></td>
         <td><a href="/adminContest/show/<?php echo $contest->id ?>">Pokaż</a></td>
         <td><a href="/adminContest/edit/<?php echo $contest->id ?>">Edytuj</a></td>
-        <td><a href="/adminContest/destroy/<?php echo $contest->id ?>">Usuń</a></td>
+        <td><a href="/adminContest/destroy/<?php echo $contest->id ?>" class="confirmation">Usuń</a></td>
       </tr>
     <?php } ?>
   </table>
