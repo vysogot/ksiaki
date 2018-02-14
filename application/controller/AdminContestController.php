@@ -2,9 +2,6 @@
 
 class AdminContestController extends Controller
 {
-    /**
-     * Construct this object by extending the basic Controller class
-     */
     public function __construct()
     {
         parent::__construct();
@@ -36,7 +33,8 @@ class AdminContestController extends Controller
       if ($contest) {
         Redirect::to('adminContest/show/' . $contest->id);
       } else {
-        echo 'nie udało się utworzyć';
+        $this->View->render('admin/contest/prepare',
+          array('contest' => $contest, 'error' => $contest->errors));
       }
     }
 
@@ -47,7 +45,7 @@ class AdminContestController extends Controller
       if ($contest) {
         $this->View->render('admin/contest/edit', array('contest' => $contest));
       } else {
-        echo 'nie znaleziono';
+        Redirect::to('adminContest/index/');
       }
     }
 
@@ -58,7 +56,8 @@ class AdminContestController extends Controller
       if ($contest) {
         Redirect::to('adminContest/show/' . $contest->id);
       } else {
-        echo 'nie zaktualizowano';
+        $this->View->render('admin/contest/edit', 
+          array('contest' => $contest, 'error' => $contest->errors));
       }
     }
 
@@ -67,5 +66,4 @@ class AdminContestController extends Controller
       ContestModel::destroy($contest_id);
       Redirect::to('adminContest/index');
     }
-
 }
