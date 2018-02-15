@@ -5,4 +5,4 @@
 /vendor/
 # don't commit files
 /application/config/config.development.php
-
+/.DS_Store
