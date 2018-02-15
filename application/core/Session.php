@@ -75,11 +75,11 @@ class Session
      * @param  string $sessionId
      */
     public static function updateSessionId($user_id, $session_id = null)
-    {                
+    {
         DatabaseFactory::getFactory()->queryExecute('call sp_updateSessionId(:p_user_id, :p_session_id);', array(
           array('p_user_id', $user_id, PDO::PARAM_INT)
           , array('p_session_id', $session_id, PDO::PARAM_STR)
-        ));        
+        ));
     }
 
     /**
@@ -118,7 +118,7 @@ class Session
             */
             $result = DatabaseFactory::getFactory()->queryExecute('call sp_isConcurrentSessionExists(:p_user_id);'
                     , array(array('p_user_id', $user_id, PDO::PARAM_INT)));
-            
+
             $userSessionId = !empty($result)? $result->session_id: null;
 
             return $session_id !== $userSessionId;

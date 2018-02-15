@@ -27,7 +27,7 @@
     <input type="radio" name="contest_type_id" value="2" <?php if ($this->contest->contest_type_id == 2) echo "checked";?> >
   </label><br>
   <label>Wyświetl reklamę przed</label>
-  <input type="checkbox" name="display_ad" value="true" <?php if ($this->contest->display_ad == 1) echo "checked";?> >
   <input type="hidden" name="display_ad" value="0">
+  <input type="checkbox" name="display_ad" value="1" <?php if ($this->contest->display_ad == 1) echo "checked";?> >
 </form>
 <button type="submit" form="createContest" value="Wyślij">Wyślij</button>

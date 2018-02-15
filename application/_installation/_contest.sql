@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
   `banner_url` varchar(255) DEFAULT NULL,
   `begins_at` datetime DEFAULT NULL,
   `ends_at` datetime DEFAULT NULL,
-  `display_ad` tinyint(4) DEFAULT '0',
+  `display_ad` tinyint(1) DEFAULT '0'
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Konkursy';
 

@@ -138,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `ksiaki`.`_contests` (
  `banner_url` varchar(255) DEFAULT NULL,
  `begins_at` varchar(255) DEFAULT NULL,
  `ends_at` varchar(255) DEFAULT NULL,
+ `display_ad` tinyint(4) DEFAULT '0'
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konkursy';
 

@@ -37,30 +37,7 @@ class ContestModel
 
   public static function create($params)
   {
-    $params['begins_at'] = new DateTime($params['begins_at']);
-    $params['ends_at'] = new DateTime($params['ends_at']);
-
-    $query = DatabaseFactory::getFactory()->queryExecute('call sp_updateContest(
-      :p_id, :p_game_id, :p_contest_type_id, :p_name, :p_description,
-      :p_banner_url, :p_begins_at, :p_ends_at, :p_display_ad);', array(
-          array('p_id', 0, PDO::PARAM_INT)
-          , array('p_game_id', $params['game_id'], PDO::PARAM_INT)
-          , array('p_contest_type_id', $params['contest_type_id'], PDO::PARAM_INT)
-          , array('p_name', $params['name'], PDO::PARAM_STR)
-          , array('p_description', $params['description'], PDO::PARAM_STR)
-          , array('p_banner_url', $params['banner_url'], PDO::PARAM_STR)
-          , array('p_begins_at', $params['begins_at']->format('Y-m-d H:i:s'), PDO::PARAM_STR)
-          , array('p_ends_at', $params['ends_at']->format('Y-m-d H:i:s'), PDO::PARAM_STR)
-          , array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL)
-          ));
-
-    if ($query->rowCount == 1) {
-        return self::find($query->lastInsertId);
-    }
-
-    Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_EDITING_FAILED'));
-
-    return false;
+    $this->update($params);
   }
 
   public static function update($params)
@@ -83,13 +60,12 @@ class ContestModel
               , array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL)
               ));
 
-        if ($query->rowCount == 1) {
-            return self::find($params['id']);
+        if ($query->rowCount == 0) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_EDITING_FAILED'));
         }
 
-        Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_EDITING_FAILED'));
+          return self::find($params['id']);
 
-        return false;
     }
 
     public static function destroy($id)
