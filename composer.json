@@ -6,12 +6,17 @@
     "homepage": "https://github.com/panique/huge",
     "license": "MIT",
     "require-dev": {
-        "php": ">=5.5.0",
+        "php": "7.0.27",
         "phpmailer/phpmailer": "~5.2",
         "gregwar/captcha": "~1.1",
         "phpunit/phpunit": "4.8.*|5.7.*"
     },
     "autoload": {
-        "psr-4": { "": ["application/core/", "application/model/"] }
+        "psr-4": {
+          "Core\\" : "core/",
+          "App\\" : "app/",
+          "App\\Controller\\" : "app/controller",
+          "App\\Controller\\Admin\\" : "app/controller/admin"
+          }
     }
 }
