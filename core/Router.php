@@ -5,12 +5,17 @@ namespace Core;
 class Router
 {
 
-    public function __construct($url)
+    const rootNamespace = "App\\Controllers";
+    const customNamespaces = ['admin'];
+
+    public function __construct()
     {
+
+        $url = Request::get('url');
 
         list($namespace, $controller, $action, $parameters) = $this->splitUrl($url);
 
-        $controller = "App\\Controller\\$namespace" . $controller;
+        $controller = self::rootNamespace . "\\$namespace" . $controller;
         $controller = new $controller;
 
         if (method_exists($controller, $action)) {
@@ -24,38 +29,38 @@ class Router
 
     private function splitUrl($url)
     {
-        if ($url) {
+      if (empty($url)) {
+        $url = '/';
+      }
 
-            $namespace = $controller = $action = "";
+      $namespace = $controller = $action = "";
 
-            $url = trim($url, '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = array_filter(explode('/', $url));
+      $url = trim($url, '/');
+      $url = filter_var($url, FILTER_SANITIZE_URL);
+      $url = array_filter(explode('/', $url));
 
-            // check for known namespaces
-            if (!empty($url) && ($url[0] == 'admin')) {
-              $namespace = array_shift($url) . '\\';
-              $controller = Config::get('DEFAULT_ADMIN_CONTROLLER');
-              $action = Config::get('DEFAULT_ADMIN_ACTION');
-            }
+      if (!empty($url) && (in_array($url[0], self::customNamespaces))) {
+        $namespace = array_shift($url) . '\\';
+        $controller = Config::get('DEFAULT_ADMIN_CONTROLLER');
+        $action = Config::get('DEFAULT_ADMIN_ACTION');
+      }
 
-            switch (count($url)) {
-              case 0:
-                !empty($controller)?: $controller = Config::get('DEFAULT_CONTROLLER');
-                !empty($action)?: $action = Config::get('DEFAULT_ACTION');
-                break;
-              case 1:
-                $controller = array_shift($url);
-                !empty($action)?: $action = Config::get('DEFAULT_ACTION');
-                break;
-              default:
-                $controller = array_shift($url);
-                $action = array_shift($url);
-                break;
-            }
+      switch (count($url)) {
+        case 0:
+          !empty($controller)?: $controller = Config::get('DEFAULT_CONTROLLER');
+          !empty($action)?: $action = Config::get('DEFAULT_ACTION');
+          break;
+        case 1:
+          $controller = array_shift($url);
+          !empty($action)?: $action = Config::get('DEFAULT_ACTION');
+          break;
+        default:
+          $controller = array_shift($url);
+          $action = array_shift($url);
+          break;
+      }
 
-            $parameters = array_values($url);
-            return [ucfirst($namespace), ucfirst($controller), $action, $parameters];
-        }
+      $parameters = array_values($url);
+      return [ucfirst($namespace), ucfirst($controller), $action, $parameters];
     }
 }

@@ -12,8 +12,8 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_deleteAvatar`(IN `p_user_id` INT)
 BEGIN
-UPDATE users 
-SET user_has_avatar = 0 
+UPDATE users
+SET user_has_avatar = 0
 WHERE (user_id = p_user_id)
 LIMIT 1;
 SELECT ROW_COUNT() AS rowCount;
@@ -25,9 +25,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_deleteNote`(IN `p_note_id` INT, IN `p_user_id` INT)
 BEGIN
-DELETE FROM notes 
-WHERE (note_id = p_note_id) 
-AND (user_id = p_user_id) 
+DELETE FROM notes
+WHERE (note_id = p_note_id)
+AND (user_id = p_user_id)
 LIMIT 1;
 SELECT ROW_COUNT() AS rowCount;
 END//
@@ -40,8 +40,8 @@ CREATE PROCEDURE `sp_getAllNotes`(IN `p_user_id` INT)
 BEGIN
 SELECT user_id
 , note_id
-, note_text 
-FROM notes 
+, note_text
+FROM notes
 WHERE (user_id = p_user_id);
 END//
 DELIMITER ;
@@ -53,10 +53,10 @@ CREATE PROCEDURE `sp_getNote`(IN `p_user_id` INT, IN `p_note_id` INT)
 BEGIN
 SELECT user_id
 , note_id
-, note_text 
-FROM notes 
+, note_text
+FROM notes
 WHERE (user_id = p_user_id)
-AND (note_id = p_note_id) 
+AND (note_id = p_note_id)
 LIMIT 1;
 END//
 DELIMITER ;
@@ -72,7 +72,7 @@ SELECT user_id
 , user_active
 , user_has_avatar
 , user_deleted
-FROM users 
+FROM users
 WHERE (user_id = p_user_id)
 LIMIT 1;
 END//
@@ -88,7 +88,7 @@ SELECT user_id
 , user_email
 , user_active
 , user_has_avatar
-, user_deleted 
+, user_deleted
 FROM users;
 END//
 DELIMITER ;
@@ -98,8 +98,8 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_getPublicUserAvatarFilePathByUserId`(IN `p_user_id` INT)
 BEGIN
-SELECT user_has_avatar 
-FROM users 
+SELECT user_has_avatar
+FROM users
 WHERE (user_id = p_user_id)
 LIMIT 1;
 END//
@@ -155,9 +155,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_getUserIdByUsername`(IN `p_user_name` VARCHAR(50), IN `p_provider_type` VARCHAR(50))
 BEGIN
-SELECT user_id FROM users 
-WHERE (user_name = p_user_name) 
-AND (user_provider_type = p_provider_type) 
+SELECT user_id FROM users
+WHERE (user_name = p_user_name)
+AND (user_provider_type = p_provider_type)
 LIMIT 1;
 END//
 DELIMITER ;
@@ -167,9 +167,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_isConcurrentSessionExists`(IN `p_user_id` INT)
 BEGIN
-SELECT session_id 
-FROM users 
-WHERE (user_id = p_user_id) 
+SELECT session_id
+FROM users
+WHERE (user_id = p_user_id)
 LIMIT 1;
 END//
 DELIMITER ;
@@ -192,10 +192,10 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_updateNote`(IN `p_note_id` INT, IN `p_user_id` INT, IN `p_note_text` TEXT)
 BEGIN
-UPDATE notes 
-SET note_text = p_note_text 
-WHERE (note_id = p_note_id) 
-AND (user_id = p_user_id) 
+UPDATE notes
+SET note_text = p_note_text
+WHERE (note_id = p_note_id)
+AND (user_id = p_user_id)
 LIMIT 1;
 SELECT ROW_COUNT() AS rowCount;
 END//
@@ -206,9 +206,10 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_updateSessionId`(IN `p_user_id` INT, IN `p_session_id` VARCHAR(50))
 BEGIN
-UPDATE users 
-SET session_id = p_session_id 
+UPDATE users
+SET session_id = p_session_id
 WHERE (user_id = p_user_id);
+SELECT ROW_COUNT() AS rowCount;
 END//
 DELIMITER ;
 
@@ -217,9 +218,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_writeAvatarToDatabase`(IN `p_user_id` INT)
 BEGIN
-UPDATE users 
-SET user_has_avatar = TRUE 
-WHERE user_id = p_user_id 
+UPDATE users
+SET user_has_avatar = TRUE
+WHERE user_id = p_user_id
 LIMIT 1;
 SELECT ROW_COUNT() AS rowCount;
 END//
