@@ -6,13 +6,10 @@ use App\Models\User;
 
 class Profile extends Front
 {
-    /**
-     * Construct this object by extending the basic Controller class
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+  public function __construct($action)
+  {
+    parent::__construct(self::class, $action);
+  }
 
     /**
      * This method controls what happens when you move to /overview/index in your app.
@@ -20,7 +17,7 @@ class Profile extends Front
      */
     public function index()
     {
-        $this->View->render('profile/index', array(
+        $this->view->render('profile/index', array(
             'users' => User::getPublicProfilesOfAllUsers())
         );
     }
@@ -33,7 +30,7 @@ class Profile extends Front
     public function showProfile($user_id)
     {
         if (isset($user_id)) {
-            $this->View->render('profile/showProfile', array(
+            $this->view->render('profile/showProfile', array(
                 'user' => User::getPublicProfileOfUser($user_id))
             );
         } else {

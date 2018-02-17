@@ -2,4 +2,5 @@
 
 require '../vendor/autoload.php';
 
-new Core\Router;
+$app = new Core\App($_GET['url']);
+$app->dispatch();

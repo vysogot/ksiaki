@@ -11,14 +11,14 @@ use App\Models\User;
 class Dashboard extends Front
 {
 
-    public function __construct()
+    public function __construct($action)
     {
-        parent::__construct();
+      parent::__construct(self::class, $action);
     }
 
     public function index()
     {
-        $this->View->render('admin/dashboard/index', array(
+        $this->view->render('admin/dashboard/index', array(
                 'users' => User::getPublicProfilesOfAllUsers())
         );
     }
@@ -26,10 +26,10 @@ class Dashboard extends Front
     public function actionAccountSettings()
     {
         Admin::setAccountSuspensionAndDeletionStatus(
-            Request::post('suspension'), Request::post('softDelete'), Request::post('user_id')
+            $_POST['suspension'), $_POST['softDelete'), $_POST['user_id')
         );
 
-        Redirect::to("admin");
+        $this->redirectTo("admin");
     }
 
 }

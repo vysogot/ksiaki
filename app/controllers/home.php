@@ -4,25 +4,19 @@ namespace App\Controllers;
 
 class Home extends Front
 {
-    /**
-     * Construct this object by extending the basic Controller class
-     */
-    public function __construct()
+
+    public function __construct($action)
     {
-        parent::__construct();
+        parent::__construct(self::class, $action);
     }
 
-    /**
-     * Handles what happens when user moves to URL/index/index - or - as this is the default controller, also
-     * when user moves to /index or enter your application at base level
-     */
     public function index()
     {
-        $this->View->render('home/index');
+        $this->view->render('home/index');
     }
 
     public function adstest()
     {
-        $this->View->renderWithoutHeaderAndFooter('home/adstest');
+        $this->view->renderWithoutHeaderAndFooter('home/adstest');
     }
 }

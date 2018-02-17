@@ -8,27 +8,27 @@ use \App\Models\Contest as Model;
 
 class Contest extends Front
 {
-    public function __construct()
+    public function __construct($action)
     {
-        parent::__construct();
+      parent::__construct(self::class, $action);
     }
 
     public function index()
     {
-      $contests = Model::all();
-      $this->View->render('admin/contest/index', array('contests' => $contests));
+      $contests = Model::all(array('offset' => 0, 'limit' => 50));
+      $this->view->render('admin/contest/index', array('contests' => $contests));
     }
 
     public function show($contest_id)
     {
       $contest = Model::find($contest_id);
-      $this->View->render('admin/contest/show', array('contest' => $contest));
+      $this->view->render('admin/contest/show', array('contest' => $contest));
     }
 
     public function prepare()
     {
       $contest = new Model;
-      $this->View->render('admin/contest/prepare', array('contest' => $contest));
+      $this->view->render('admin/contest/prepare', array('contest' => $contest));
     }
 
     public function create()
@@ -36,9 +36,9 @@ class Contest extends Front
       $contest = Model::create($_POST);
 
       if ($contest) {
-        Redirect::to('admin/contest/show/' . $contest->id);
+        $this->redirectTo('admin/contest/show/' . $contest->id);
       } else {
-        $this->View->render('admin/contest/prepare',
+        $this->view->render('admin/contest/prepare',
           array('contest' => $contest, 'error' => $contest->errors));
       }
     }
@@ -48,9 +48,9 @@ class Contest extends Front
       $contest = Model::find($contest_id);
 
       if ($contest) {
-        $this->View->render('admin/contest/edit', array('contest' => $contest));
+        $this->view->render('admin/contest/edit', array('contest' => $contest));
       } else {
-        Redirect::to('admin/contest/index/');
+        $this->redirectTo('admin/contest/index/');
       }
     }
 
@@ -59,9 +59,9 @@ class Contest extends Front
       $contest = Model::update($_POST);
 
       if ($contest) {
-        Redirect::to('admin/contest/show/' . $contest->id);
+        $this->redirectTo('admin/contest/show/' . $contest->id);
       } else {
-        $this->View->render('admin/contest/edit',
+        $this->view->render('admin/contest/edit',
           array('contest' => $contest, 'error' => $contest->errors));
       }
     }
@@ -69,6 +69,6 @@ class Contest extends Front
     public function destroy($contest_id)
     {
       Model::destroy($contest_id);
-      Redirect::to('admin/contest/index');
+      $this->redirectTo('admin/contest/index');
     }
 }

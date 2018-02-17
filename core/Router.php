@@ -5,24 +5,29 @@ namespace Core;
 class Router
 {
 
-    const rootNamespace = "App\\Controllers";
+    const defaultNamespace = "App\\Controllers";
     const customNamespaces = ['admin'];
 
-    public function __construct()
+    public $controller;
+    public $action;
+    public $parameters;
+
+    public function __construct($url)
     {
 
-        $url = Request::get('url');
+        list($namespace, $controller_name, $action, $parameters) = $this->splitUrl($url);
+        $controller_name = self::defaultNamespace . "\\$namespace" . $controller_name;
 
-        list($namespace, $controller, $action, $parameters) = $this->splitUrl($url);
-
-        $controller = self::rootNamespace . "\\$namespace" . $controller;
-        $controller = new $controller;
+        $controller = new $controller_name($action);
+        $this->parameters = $parameters;
 
         if (method_exists($controller, $action)) {
-          call_user_func_array(array($controller, $action), $parameters);
+          $this->controller = $controller;
+          $this->action = $action;
         } else {
-          $controller = new ErrorController;
-          $controller->error404();
+          $error_controller_name = self::defaultNamespace . '\\Error';
+          $this->action = 'error404';
+          $this->controller = new $error_controller_name($this->action);
         }
 
     }

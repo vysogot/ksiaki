@@ -1,6 +1,6 @@
 <?php namespace Core; ?>
 <div class="wrapper">
-        <?php if (Session::userIsLoggedIn()) : ?>
+        <?php if ($this->session->userIsLoggedIn()) : ?>
         <ul>
           <li<?php if (View::checkForActiveController($filename, "user")) { echo ' class="active"'; } ?>>
               <a href="<?php echo Config::get('URL'); ?>user/index">My Account</a>

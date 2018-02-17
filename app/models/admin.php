@@ -23,8 +23,8 @@ class Admin
 
         // Prevent to suspend or delete own account.
         // If admin suspend or delete own account will not be able to do any action.
-        if ($userId == Session::get('user_id')) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_CANT_DELETE_SUSPEND_OWN'));
+        if ($userId == $this->session->get('user_id')) {
+            $this->session->add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_CANT_DELETE_SUSPEND_OWN'));
             return false;
         }
 
@@ -71,7 +71,7 @@ class Admin
         ));
 
         if ($query->rowCount() == 1) {
-            Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUSPENSION_DELETION_STATUS'));
+            $this->session->add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUSPENSION_DELETION_STATUS'));
             return true;
         }
     }
@@ -94,7 +94,7 @@ class Admin
         ));
 
         if ($query->rowCount() == 1) {
-            Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_USER_SUCCESSFULLY_KICKED'));
+            $this->session->add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_USER_SUCCESSFULLY_KICKED'));
             return true;
         }
     }

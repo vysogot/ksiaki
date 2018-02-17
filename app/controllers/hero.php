@@ -4,25 +4,18 @@ namespace App\Controllers;
 
 class Hero extends Front
 {
-    /**
-     * Construct this object by extending the basic Controller class
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+  public function __construct($action)
+  {
+    parent::__construct(self::class, $action);
+  }
 
-    /**
-     * Handles what happens when user moves to URL/hero/index - or - as this is the default controller, also
-     * when user moves to /index or enter your application at base level
-     */
-    public function index()
-    {
-        $this->View->render('hero/index');
-    }
+  public function index()
+  {
+    $this->view->render('hero/index');
+  }
 
-    public function show()
-    {
-        $this->View->render('hero/show');
-    }
+  public function show()
+  {
+    $this->view->render('hero/show');
+  }
 }

@@ -4,13 +4,10 @@ namespace App\Controllers\Admin;
 
 class Hero extends Front
 {
-    /**
-     * Construct this object by extending the basic Controller class
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+  public function __construct($action)
+  {
+    parent::__construct(self::class, $action);
+  }
 
     /**
      * Handles what happens when user moves to URL/hero/index - or - as this is the default controller, also
@@ -18,31 +15,31 @@ class Hero extends Front
      */
     public function index()
     {
-        $this->View->render('admin/hero/index');
+        $this->view->render('admin/hero/index');
     }
 
     public function new()
     {
-        $this->View->render('admin/hero/new');
+        $this->view->render('admin/hero/new');
     }
 
     public function create()
     {
-        $this->View->render('admin/hero/show');
+        $this->view->render('admin/hero/show');
     }
 
     public function edit()
     {
-        $this->View->render('admin/hero/edit');
+        $this->view->render('admin/hero/edit');
     }
 
     public function update()
     {
-        $this->View->render('admin/hero/show');
+        $this->view->render('admin/hero/show');
     }
 
     public function destroy()
     {
-        $this->View->render('admin/hero/index');
+        $this->view->render('admin/hero/index');
     }
 }
