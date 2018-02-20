@@ -58,7 +58,17 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_contests_update`(IN `p_id` INT, IN `p_game_id` INT, IN `p_contest_type_id` INT, IN `p_name` VARCHAR(50), IN `p_description` VARCHAR(50), IN `p_banner_url` VARCHAR(50), IN `p_begins_at` DATETIME, IN `p_ends_at` DATETIME, IN `p_display_ad` TINYINT(4))
+CREATE PROCEDURE `sp_contests_set`(
+	IN `p_id` INT,
+	IN `p_game_id` INT,
+	IN `p_contest_type_id` INT,
+	IN `p_name` VARCHAR(50),
+	IN `p_description` VARCHAR(50),
+	IN `p_banner_url` VARCHAR(50),
+	IN `p_begins_at` DATETIME,
+	IN `p_ends_at` DATETIME,
+	IN `p_display_ad` TINYINT(4)
+)
 BEGIN
 IF (p_id = 0) THEN
 	INSERT INTO _contests(game_id) VALUES(0);

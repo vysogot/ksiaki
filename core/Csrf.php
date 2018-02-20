@@ -5,19 +5,19 @@ namespace Core;
 class Csrf
 {
 
-  public function makeToken()
+  public function makeToken($session)
   {
       // token is valid for 1 day
       $max_time    = 60 * 60 * 24;
-      $stored_time = $_SESSION['csrf_token_time'];
-      $csrf_token  = $_SESSION['csrf_token'];
+      $stored_time = $session['csrf_token_time'];
+      $csrf_token  = $session['csrf_token'];
 
       if ($max_time + $stored_time <= time() || empty($csrf_token)) {
-          $_SESSION['csrf_token'] = md5(uniqid(rand(), true));
-          $_SESSION['csrf_token_time'] = time();
+          $session['csrf_token'] = md5(uniqid(rand(), true));
+          $session['csrf_token_time'] = time();
       }
 
-      return $_SESSION['csrf_token'];
+      return $session['csrf_token'];
   }
 
   public function isTokenValid()

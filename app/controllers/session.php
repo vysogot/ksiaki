@@ -19,21 +19,21 @@ class Session extends Front
   public function create()
   {
 
-    if ($this->csrf->isTokenValid()) {
+    //if ($this->csrf->isTokenValid()) {
 
       $user = User::find($_POST['name']);
 
-      if (!empty($user) && $user->authenticate($_POST['password'])) {
-          $this->redirectTo('home/index');
+      if ($user && $user->authenticate($_POST['password'])) {
+          $this->redirectTo('/home/index');
       } else {
         $this->view->render('session/index');
       }
-    }
+    //}
   }
 
   public function destroy()
   {
-      User::logout();
+      session_destroy();
       redirectTo('home/index');
   }
 }

@@ -35,12 +35,12 @@
             <li>
               <a href="<?php echo $this->url ?>download/index" id="menu-download"<?php if ($this->helper->isActive('App\\Controllers\\Download')) { echo ' class="active"'; } ?>>Pobierz</a>
             </li>
-            <?php if ($this->session->isUserLoggedIn()) { ?>
+            <?php if (!'$this->current_user') { ?>
                 <li>
                     <a href="<?php echo $this->url ?>dashboard/index" id="menu-login"<?php if ($this->helper->isActive('App\\Controllers\\Dashboard')) { echo ' class="active"'; } ?>>Dashboard</a>
-                      <?php if ($this->session->get("user_account_type") == 7) : ?>
+                      <?php if ('$this->current_user->isAdmin()') { ?>
                           <br/><a class="admin" href="<?php echo $this->url; ?>admin/">Admin</a>
-                      <?php endif; ?>
+                      <?php } ?>
                 </li>
             <?php } else { ?>
                 <li>

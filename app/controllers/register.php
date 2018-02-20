@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class Register extends Front
 {
   public function __construct($action)
@@ -11,36 +13,11 @@ class Register extends Front
 
   public function index()
   {
-      if (Login::isUserLoggedIn()) {
-          Redirect::home();
-      } else {
-          $this->view->render('register/index');
-      }
+    $this->view->render('register/index');
   }
 
-  public function register_action()
+  public function create()
   {
-      $registration_successful = Registration::registerNewUser();
-
-      if ($registration_successful) {
-          $this->redirectTo('login/index');
-      } else {
-          $this->redirectTo('register/index');
-      }
-  }
-
-  public function verify($user_id, $user_activation_verification_code)
-  {
-      if (isset($user_id) && isset($user_activation_verification_code)) {
-          Registration::verifyNewUser($user_id, $user_activation_verification_code);
-          $this->view->render('register/verify');
-      } else {
-          $this->redirectTo('login/index');
-      }
-  }
-
-  public function showCaptcha()
-  {
-      Captcha::generateAndShowCaptcha();
+    User::create($_POST);
   }
 }

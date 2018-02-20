@@ -2,5 +2,7 @@
 
 require '../vendor/autoload.php';
 
-$app = new Core\App($_GET['url']);
-$app->dispatch();
+App\Config::setEnvironment(getenv('APPLICATION_ENV'));
+
+$router = new Core\Router($_GET['url']);
+$router->dispatch();

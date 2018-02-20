@@ -4,30 +4,29 @@ namespace App\Models;
 
 use App\Models\Factories\User as Factory;
 
-class User
+class User extends \Core\Model
 {
 
   public function __construct($result = null)
   {
-    if (empty($result)) {
-      $factory = new Factory();
-      $result = $factory->getNew();
-    }
+      foreach ($result as $key => $value) {
+          $this->{$key} = $value;
+      }
 
-    $this->setObject($result);
+      parent::__construct($this);
   }
 
     public static function find($name_or_email)
     {
       $factory = new Factory();
-      $result = $factory->get($name_or_email);
-      return new self($result);
+      return $factory->get($name_or_email);
     }
 
 
     public static function create($params)
     {
-
+      $params['password_hash'] = password_hash($params['password']);
+      return $factory->set($params);
     }
 
     public function authenticate($password)
@@ -35,12 +34,9 @@ class User
       return password_verify($password, $this->password_hash);
     }
 
-    private function setObject($result)
+    public function isAdmin()
     {
-      $this->id = $result->id;
-      $this->name = $result->name;
-      $this->email = $result->email;
-      $this->password_hash = $result->password_hash;
+      $this->user_account_type != 7;
     }
 
 }

@@ -19,5 +19,8 @@
           "App\\Controllers\\" : "app/controllers/",
           "App\\Controllers\\Admin\\" : "app/controllers/admin/"
           }
+    },
+    "require": {
+        "twig/twig": "^2.4"
     }
 }

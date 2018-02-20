@@ -46,7 +46,7 @@ class Contest extends DatabaseFactory
 
   public function set($params)
   {
-    return $dbc->execute('call sp_contests_update(
+    return $dbc->execute('call sp_contests_set(
       :p_id,
       :p_game_id,
       :p_contest_type_id,

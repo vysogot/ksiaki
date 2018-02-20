@@ -21,7 +21,7 @@ class Text
 
         // load config file (this is only done once per application lifecycle)
         if (!self::$texts) {
-            self::$texts = require('../_config/texts.php');
+            self::$texts = require('../app/_locals/en.php');
         }
 
         // check if array key exists

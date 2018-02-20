@@ -1,4 +1,3 @@
-<?php namespace Core; ?>
   </main>
   <footer>
     <div class="wrapper-full">
@@ -23,9 +22,9 @@
     </div>
   </footer>
 
-  <script src="<?php echo Config::get('URL'); ?>js/jquery-1.11.0.min.js" type="text/javascript"></script>
-  <script src="<?php echo Config::get('URL'); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
-  <script src="<?php echo Config::get('URL'); ?>js/app.js" type="text/javascript" charset="utf-8"></script>
+  <script src="<?php echo $this->url; ?>js/jquery-1.11.0.min.js" type="text/javascript"></script>
+  <script src="<?php echo $this->url; ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script src="<?php echo $this->url; ?>js/app.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

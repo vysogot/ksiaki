@@ -2,9 +2,9 @@
 
 namespace App\Models\Factories;
 
-use Core\DatabaseFactory;
+use App\Models\User as Model;
 
-class User extends DatabaseFactory
+class User extends \Core\DatabaseFactory
 {
 
   public function __construct()
@@ -14,14 +14,21 @@ class User extends DatabaseFactory
 
   public function get($name_or_email)
   {
-    return $this->execute('call sp_users_get(:p_name_or_email);', array(
+    $result = $this->execute('call sp_users_get(:p_name_or_email);', array(
       array('p_name_or_email', $name_or_email, 'str')
     ));
+
+    return empty($result)? null : new Model($result);
   }
 
   public function set($params)
   {
+    $result = $this->execute('call sp_users_set(:p_name, :p_password_hash);', array(
+      array('p_name', $params['name'], 'str'),
+      array('p_password_hash', $params['password_hash'], 'str')
+    ));
 
+    return empty($result)? null : new Model($result);
   }
 
   public function delete($id)

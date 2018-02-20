@@ -2,24 +2,23 @@
 
 namespace Core;
 
+use App\Config;
+
 abstract class Controller
 {
 
-  protected $view;
-  protected $session;
   protected $csrf;
+  protected $session;
+  protected $view;
 
   public function __construct($controller, $action)
   {
-    $url = Config::get('URL');
-    $this->session = new Session;
-    $this->csrf = new Csrf($this->session);
+    $url = Config::url();
 
-    if ($this->session->isUserLoggedIn() && Request::cookie('remember_me')) {
-        header('location: ' . $url . 'login/loginWithCookie');
-    }
-
-    $this->view = new View($url, $this->session, $controller, $action);
+    //$this->session = new Session;
+    //$this->current_user = $this->session->current_user;
+    //$this->csrf = new Csrf($this->session);
+    $this->view = new View($url, $controller, $action);
   }
 
   public function redirectTo($path)
