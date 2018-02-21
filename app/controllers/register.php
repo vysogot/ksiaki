@@ -18,6 +18,12 @@ class Register extends Front
 
   public function create()
   {
-    User::create($_POST);
+    $user = new User($_POST);
+
+    if ($user->save()) {
+      $this->redirect('home/index');
+    } else {
+      $this->view->render('register/index');
+    }
   }
 }

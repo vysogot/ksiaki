@@ -10,21 +10,22 @@ use App\Config;
 class DatabaseFactory
 {
 
-  protected $connection;
+  const pdoParam = [
+    'int' => PDO::PARAM_INT,
+    'str' => PDO::PARAM_STR,
+    'bool' => PDO::PARAM_BOOL
+  ];
 
-  public function __construct()
+  protected static $connection;
+
+  public static function execute($sql, $fields, $all = false)
   {
-
-  }
-
-  public function execute($sql, $fields, $all=false)
-  {
-    $dbc = $this->getConnection();
+    $dbc = self::getConnection();
     $query = $dbc->prepare($sql);
 
     foreach ($fields as $field) {
       list($name, $value, $type) = $field;
-      $query->bindParam(':' . $name, $value, $this->pdoParam($type));
+      $query->bindValue(':' . $name, $value, self::pdoParam[$type]);
     }
 
     try {
@@ -40,19 +41,10 @@ class DatabaseFactory
 
   }
 
-  private function pdoParam($key)
-  {
-    return array(
-      'int' => PDO::PARAM_INT,
-      'str' => PDO::PARAM_STR,
-      'bool' => PDO::PARAM_BOOL
-    )[$key];
-  }
-
-  private function getConnection()
+  private static function getConnection()
   {
 
-    if (!$this->connection) {
+    if (!self::$connection) {
 
       try {
           $options = array(
@@ -61,7 +53,7 @@ class DatabaseFactory
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
           );
 
-          $this->connection = new PDO(
+          self::$connection = new PDO(
             Config::get('DB_TYPE') .
               ':host='    . Config::get('DB_HOST') .
               ';dbname='  . Config::get('DB_NAME') .
@@ -80,6 +72,6 @@ class DatabaseFactory
 
     }
 
-    return $this->connection;
+    return self::$connection;
   }
 }

@@ -21,8 +21,8 @@ abstract class Controller
     $this->view = new View($url, $controller, $action);
   }
 
-  public function redirectTo($path)
+  public function redirect($path)
   {
-    header("location: " . Config::get('URL') . $path);
+    header("location: " . Config::url() . $path);
   }
 }

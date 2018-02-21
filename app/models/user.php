@@ -7,26 +7,25 @@ use App\Models\Factories\User as Factory;
 class User extends \Core\Model
 {
 
-  public function __construct($result = null)
+  public function __construct($params)
   {
-      foreach ($result as $key => $value) {
+      foreach ($params as $key => $value) {
           $this->{$key} = $value;
       }
 
       parent::__construct($this);
   }
 
-    public static function find($name_or_email)
+    public static function find($params)
     {
-      $factory = new Factory();
-      return $factory->get($name_or_email);
+      return Factory::find($params);
     }
 
 
-    public static function create($params)
+    public function save()
     {
-      $params['password_hash'] = password_hash($params['password']);
-      return $factory->set($params);
+      $this->password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+      return Factory::create($this);
     }
 
     public function authenticate($password)

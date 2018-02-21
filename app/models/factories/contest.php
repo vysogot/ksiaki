@@ -12,41 +12,54 @@ class Contest extends DatabaseFactory
     parent::__construct();
   }
 
-  public function get($options = null)
+  public function find($params)
   {
-    if empty($options) {
-
-      return $dbc->execute('call sp_contests_get(
-        :p_id
-      );', array(
-        array('p_id', 0, 'int')
-      ));
-
-    } elseif (array_key_exists('id', $options)) {
-
-      return $dbc->execute('call sp_contests_get(
+      return $dbc->execute('call sp_contests_find(
         :p_id
       );', array(
         array('p_id', $id, 'int')
       ));
-
-    } elseif (array_key_exists('offset', $options) && array_key_exists('limit', $options)) {
-
-      return $dbc->execute('call sp_contests_all(
-        :p_offset,
-        :p_limit
-      );', array(
-        array('p_offset', $offset, 'int'),
-        array('p_limit', $limit, 'int')
-      ),
-      true);
-
     }
   }
 
-  public function set($params)
+  public function findAll($params)
   {
-    return $dbc->execute('call sp_contests_set(
+    return $dbc->execute('call sp_contests_all(
+      :p_offset,
+      :p_limit
+    );', array(
+      array('p_offset', $params['offset'], 'int'),
+      array('p_limit', $params['limit'], 'int')
+    ),
+    true);
+  }
+
+  public function create($params)
+  {
+    return $dbc->execute('call sp_contests_create(
+      :p_game_id,
+      :p_contest_type_id,
+      :p_name,
+      :p_description,
+      :p_banner_url,
+      :p_begins_at,
+      :p_ends_at,
+      :p_display_ad
+    );', array(
+      array('p_game_id', $params['game_id'], 'int'),
+      array('p_contest_type_id', $params['contest_type_id'], 'int'),
+      array('p_name', $params['name'], 'str'),
+      array('p_description', $params['description'], 'str'),
+      array('p_banner_url', $params['banner_url'], 'str'),
+      array('p_begins_at', $params['begins_at']->format('Y-m-d H:i:s'), 'str'),
+      array('p_ends_at', $params['ends_at']->format('Y-m-d H:i:s'), 'str'),
+      array('p_display_ad', $params['display_ad'], 'bool')
+    ));
+  }
+
+  public function update($params)
+  {
+    return $dbc->execute('call sp_contests_update(
       :p_id,
       :p_game_id,
       :p_contest_type_id,
