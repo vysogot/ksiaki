@@ -11,6 +11,6 @@ class Ranking extends Front
 
   public function index()
   {
-      $this->view->render('ranking/index');
+      $this->render('ranking/index');
     }
 }

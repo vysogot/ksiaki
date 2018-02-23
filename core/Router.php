@@ -61,7 +61,7 @@ class Router
       $url = filter_var($url, FILTER_SANITIZE_URL);
       $url = array_filter(explode('/', $url));
 
-      if (!empty($url) && (in_array($url[0], self::custom))) {
+      if (!empty($url) && !empty(self::custom[$url[0]])) {
         $namespace = array_shift($url);
         $controller = self::custom[$namespace]['controller'];
         $action = self::custom[$namespace]['action'];

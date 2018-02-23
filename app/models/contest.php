@@ -2,40 +2,35 @@
 
 namespace App\Models;
 
-use \PDO;
 use \DateTime;
-use Factories\Contest as Factory;
+use App\Models\Factories\Contest as Factory;
 
-class Contest
+class Contest extends \Core\Model
 {
 
-  protected $factory;
-
-  public function __construct($result = null)
+  public function __construct($params = [])
   {
-    if (empty($result)) {
-      $factory = new Factory();
-      $result = $factory->getNew();
+
+    foreach ($params as $key => $value) {
+        $this->{$key} = $value;
     }
 
-    setObject($result);
-  }
-
-  public static function all($options)
-  {
-    return $factory->getAll(
-      $options["offset"], $options["limit"]
-    );
+    parent::__construct($this);
   }
 
   public static function find($id)
   {
-    return self::new($factory->getOne($id));
+    return Factory::find($id);
   }
 
-  public static function create($params)
+  public static function all($params)
   {
-    return $this->update($params);
+    return Factory::all($params);
+  }
+
+  public static function save($params)
+  {
+    return Factory::create($params);
   }
 
   public static function update($params)
@@ -43,26 +38,11 @@ class Contest
     $params['begins_at'] = new DateTime($params['begins_at']);
     $params['ends_at'] = new DateTime($params['ends_at']);
 
-    $factory->set($params);
-
-    return find($params['id']);
+    return Factory::update($params);
   }
 
   public static function destroy($id)
   {
-    return $factory->delete($id);
-  }
-
-  private function setObject($result)
-  {
-    $this->id = $result->id;
-    $this->game_id = $result->game_id;
-    $this->contest_type_id = $result->contest_type_id;
-    $this->name = $result->name;
-    $this->description = $result->description;
-    $this->banner_url = $result->banner_url;
-    $this->display_ad = $result->display_ad;
-    $this->begins_at = $result->begins_at;
-    $this->ends_at = $result->ends_at;
+    return Factory::delete($id);
   }
 }

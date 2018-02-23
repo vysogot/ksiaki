@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+use App\Models\User as Model;
+use Core\View;
 
 class Register extends Front
 {
@@ -13,17 +14,17 @@ class Register extends Front
 
   public function index()
   {
-    $this->view->render('register/index');
+    $this->render('register/index');
   }
 
   public function create()
   {
-    $user = new User($_POST);
+    $user = new Model($_POST);
 
     if ($user->save()) {
       $this->redirect('home/index');
     } else {
-      $this->view->render('register/index');
+      $this->render('register/index');
     }
   }
 }

@@ -21,7 +21,6 @@ class User extends \Core\Model
       return Factory::find($params);
     }
 
-
     public function save()
     {
       $this->password_hash = password_hash($this->password, PASSWORD_DEFAULT);

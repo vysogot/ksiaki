@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Core\View;
+
 class Home extends Front
 {
 
@@ -12,11 +14,11 @@ class Home extends Front
 
     public function index()
     {
-        $this->view->render('home/index');
+        $this->render('home/index');
     }
 
     public function adstest()
     {
-        $this->view->renderWithoutHeaderAndFooter('home/adstest');
+        $this->renderWithoutHeaderAndFooter('home/adstest');
     }
 }

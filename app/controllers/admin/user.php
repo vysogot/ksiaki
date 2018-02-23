@@ -23,7 +23,7 @@ class User extends Front
 
   public function index()
   {
-      $this->view->render('user/index', array(
+      $this->render('user/index', array(
           'user_name' => $this->session->get('user_name'),
           'user_email' => $this->session->get('user_email'),
           'user_gravatar_image_url' => $this->session->get('user_gravatar_image_url'),
@@ -34,7 +34,7 @@ class User extends Front
 
   public function editUsername()
   {
-      $this->view->render('user/editUsername');
+      $this->render('user/editUsername');
   }
 
   /**
@@ -58,7 +58,7 @@ class User extends Front
    */
   public function editUserEmail()
   {
-      $this->view->render('user/editUserEmail');
+      $this->render('user/editUserEmail');
   }
 
   /**
@@ -76,7 +76,7 @@ class User extends Front
    */
   public function editAvatar()
   {
-      $this->view->render('user/editAvatar', array(
+      $this->render('user/editAvatar', array(
           'avatar_file_path' => Avatar::getPublicUserAvatarFilePathByUserId($this->session->get('user_id'))
       ));
   }
@@ -105,7 +105,7 @@ class User extends Front
    */
   public function changeUserRole()
   {
-      $this->view->render('user/changeUserRole');
+      $this->render('user/changeUserRole');
   }
 
   /**
@@ -132,7 +132,7 @@ class User extends Front
    */
   public function changePassword()
   {
-      $this->view->render('user/changePassword');
+      $this->render('user/changePassword');
   }
 
   /**

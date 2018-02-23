@@ -1,11 +1,23 @@
 <div class="wrapper">
-  <h2>Register here</h2>
-  <form action="<?php echo $this->url; ?>register/create" method="post">
-      <input type="text" name="name" placeholder="Username" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" name="password" placeholder="Password" required />
-  </label>
+    <h1>Sign up</h1>
 
-  <input type="submit" class="login-submit-button" value="Log in"/>
-  </form>
+    <form method="post" action="/register/create">
+
+        <div>
+            <label for="inputName">Name</label>
+            <input id="inputName" name="name" placeholder="Name" autofocus />
+        </div>
+        <div>
+            <label for="inputEmail">Email address</label>
+            <input id="inputEmail" name="email" placeholder="email address" />
+        </div>
+        <div>
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" name="password" placeholder="Password" />
+        </div>
+
+        <button type="submit">Sign up</button>
+
+    </form>
+
 </div>

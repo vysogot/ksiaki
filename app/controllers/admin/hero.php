@@ -15,31 +15,31 @@ class Hero extends Front
      */
     public function index()
     {
-        $this->view->render('admin/hero/index');
+        $this->render('admin/hero/index');
     }
 
     public function new()
     {
-        $this->view->render('admin/hero/new');
+        $this->render('admin/hero/new');
     }
 
     public function create()
     {
-        $this->view->render('admin/hero/show');
+        $this->render('admin/hero/show');
     }
 
     public function edit()
     {
-        $this->view->render('admin/hero/edit');
+        $this->render('admin/hero/edit');
     }
 
     public function update()
     {
-        $this->view->render('admin/hero/show');
+        $this->render('admin/hero/show');
     }
 
     public function destroy()
     {
-        $this->view->render('admin/hero/index');
+        $this->render('admin/hero/index');
     }
 }

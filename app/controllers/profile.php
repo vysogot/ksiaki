@@ -17,7 +17,7 @@ class Profile extends Front
      */
     public function index()
     {
-        $this->view->render('profile/index', array(
+        $this->render('profile/index', array(
             'users' => User::getPublicProfilesOfAllUsers())
         );
     }
@@ -30,7 +30,7 @@ class Profile extends Front
     public function showProfile($user_id)
     {
         if (isset($user_id)) {
-            $this->view->render('profile/showProfile', array(
+            $this->render('profile/showProfile', array(
                 'user' => User::getPublicProfileOfUser($user_id))
             );
         } else {

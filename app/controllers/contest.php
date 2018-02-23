@@ -11,21 +11,21 @@ class Contest extends Front
 
   public function index()
   {
-      $this->view->render('contest/index');
+      $this->render('contest/index');
   }
 
   public function show()
   {
-      $this->view->render('contest/show');
+      $this->render('contest/show');
   }
 
   public function preroll()
   {
-      $this->view->render('contest/preroll');
+      $this->render('contest/preroll');
   }
 
   public function play()
   {
-      $this->view->render('contest/play');
+      $this->render('contest/play');
   }
 }

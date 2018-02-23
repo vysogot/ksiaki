@@ -2,8 +2,6 @@
 
 namespace App\Controllers\Admin;
 
-use \Core\Redirect;
-
 use \App\Models\Contest as Model;
 
 class Contest extends Front
@@ -15,31 +13,30 @@ class Contest extends Front
 
     public function index()
     {
-      $contests = Model::all(array('offset' => 0, 'limit' => 50));
-      $this->view->render('admin/contest/index', array('contests' => $contests));
+      $contests = Model::all(['offset' => 0, 'limit' => 50]);
+      $this->render('admin/contest/index', ['contests' => $contests]);
     }
 
     public function show($contest_id)
     {
       $contest = Model::find($contest_id);
-      $this->view->render('admin/contest/show', array('contest' => $contest));
+      $this->render('admin/contest/show', ['contest' => $contest]);
     }
 
     public function prepare()
     {
       $contest = new Model;
-      $this->view->render('admin/contest/prepare', array('contest' => $contest));
+      $this->render('admin/contest/prepare', ['contest' => $contest]);
     }
 
     public function create()
     {
-      $contest = Model::create($_POST);
+      $contest = new Model($_POST);
 
-      if ($contest) {
-        $this->redirectTo('admin/contest/show/' . $contest->id);
+      if ($contest.save()) {
+        $this->redirect('admin/contest/show/' . $contest->id);
       } else {
-        $this->view->render('admin/contest/prepare',
-          array('contest' => $contest, 'error' => $contest->errors));
+        $this->render('admin/contest/prepare', ['contest' => $contest]);
       }
     }
 
@@ -48,27 +45,26 @@ class Contest extends Front
       $contest = Model::find($contest_id);
 
       if ($contest) {
-        $this->view->render('admin/contest/edit', array('contest' => $contest));
+        $this->render('admin/contest/edit', ['contest' => $contest]);
       } else {
-        $this->redirectTo('admin/contest/index/');
+        $this->redirect('admin/contest/index/');
       }
     }
 
-    public function update($contest_id)
+    public function update()
     {
-      $contest = Model::update($_POST);
+      $contest = Model::find($_POST['id']);
 
-      if ($contest) {
-        $this->redirectTo('admin/contest/show/' . $contest->id);
+      if ($contest && $contest->update($_POST)) {
+        $this->redirect('admin/contest/show/' . $contest->id);
       } else {
-        $this->view->render('admin/contest/edit',
-          array('contest' => $contest, 'error' => $contest->errors));
+        $this->render('admin/contest/edit', ['contest' => $contest]);
       }
     }
 
-    public function destroy($contest_id)
+    public function destroy()
     {
-      Model::destroy($contest_id);
-      $this->redirectTo('admin/contest/index');
+      Model::destroy($_POST['id']);
+      $this->redirect('admin/contest/index');
     }
 }

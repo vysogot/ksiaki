@@ -14,6 +14,6 @@ class Dashboard extends Front
 
   public function index()
   {
-      $this->view->render('dashboard/index');
+      $this->render('dashboard/index');
   }
 }

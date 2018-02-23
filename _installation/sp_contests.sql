@@ -1,47 +1,6 @@
 DELIMITER $$
-CREATE PROCEDURE `sp_contests_find_all`(IN `p_offset` INT, IN `p_limit` INT)
+CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
 BEGIN
-SELECT id
-, game_id
-, contest_type_id
-, name
-, description
-, banner_url
-, begins_at
-, ends_at
-, display_ad
-FROM _contests
-LIMIT p_limit
-OFFSET p_offset;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE `sp_contests_delete`(IN `p_id` INT)
-BEGIN
-DELETE FROM _contests
-WHERE (id = p_id)
-LIMIT 1;
-SELECT ROW_COUNT() AS rowCount;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE `sp_contests_find_one_by_id`(IN `p_id` INT)
-BEGIN
-IF (p_id = 0) THEN
-	SELECT p_id AS id
-	, 0 AS game_id
-	, 1 AS contest_type_id
-	, '' AS name
-	, '' AS description
-	, '' AS banner_url
-	, CURRENT_DATE AS begins_at
-	, DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH) AS ends_at
-	, 1 AS display_ad;
-END IF;
-
-IF (p_id != 0) THEN
 SELECT id
 , game_id
 , contest_type_id
@@ -53,7 +12,30 @@ SELECT id
 , display_ad
 FROM _contests
 WHERE (id = p_id);
-END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_all`(IN `p_id` INT
+	, IN `p_name` VARCHAR(50)
+	, IN `p_offset` INT
+	, IN `p_limit` INT
+)
+BEGIN
+SELECT id
+, game_id
+, contest_type_id
+, name
+, description
+, banner_url
+, begins_at
+, ends_at
+, display_ad
+FROM _contests
+WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
+AND name = CASE WHEN p_name IS NULL THEN name ELSE p_name END
+LIMIT p_limit
+OFFSET p_offset;
 END$$
 DELIMITER ;
 
@@ -117,5 +99,15 @@ SET game_id = p_game_id
   , display_ad = p_display_ad
 WHERE (id = p_id);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_delete`(IN `p_id` INT)
+BEGIN
+DELETE FROM _contests
+WHERE (id = p_id)
+LIMIT 1;
+SELECT ROW_COUNT() AS rowCount;
 END$$
 DELIMITER ;

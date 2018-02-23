@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use Core\View;
 
 class Session extends Front
 {
@@ -13,7 +14,7 @@ class Session extends Front
 
   public function index()
   {
-    $this->view->render('session/index');
+    $this->render('session/index');
   }
 
   public function create()
@@ -23,7 +24,7 @@ class Session extends Front
     if ($user && $user->authenticate($_POST['password'])) {
       $this->redirect('/home/index');
     } else {
-      $this->view->render('session/index');
+      $this->render('session/index');
     }
   }
 

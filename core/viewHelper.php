@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class ViewHelper
+class ViewHelper extends View
 {
 
   protected $controller;
@@ -14,9 +14,9 @@ class ViewHelper
     $this->action = $action;
   }
 
-  public function isActive($controller_name)
+  public function activeClass($controller_name)
   {
-    return ($this->controller == $controller_name);
+    if ($this->controller == $controller_name) printf(' class="active"');
   }
 
 }

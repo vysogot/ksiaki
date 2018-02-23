@@ -7,7 +7,7 @@ use \PDOException;
 
 use App\Config;
 
-class DatabaseFactory
+abstract class DatabaseFactory
 {
 
   const pdoParam = [
@@ -39,6 +39,11 @@ class DatabaseFactory
     if ($all || empty($ret)) return $ret;
     return $ret[0];
 
+  }
+
+  protected static function build($class, $params)
+  {
+    return (empty($params)) ? null : new $class($params);
   }
 
   private static function getConnection()

@@ -11,6 +11,6 @@ class Download extends Front
 
   public function index()
   {
-      $this->view->render('download/index');
+      $this->render('download/index');
   }
 }

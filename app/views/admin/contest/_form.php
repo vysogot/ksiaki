@@ -1,15 +1,5 @@
-<?php
-  $actionUrl = \Core\Config::get('URL') . "admin/contest/";
-
-  if ($this->contest->id == 0) {
-    $actionUrl .= "create";
-  } else {
-    $actionUrl .= "update/" . $this->contest->id;
-  }
-?>
-
-<form action="<?php echo $actionUrl; ?>" method="post" id="createContest">
-  <input type="hidden" name="id" value="<?php echo $this->contest->id; ?>" />
+<form id="contest" action="<?= $this->formAction ?>" method="post">
+  <input type="hidden" name="id" value="<?= $this->contest->id; ?>" />
   <input name="name" placeholder="Nazwa konkursu" type="text" value="<?php echo $this->contest->name; ?>"><br />
   <textarea name="description" placeholder="this text will show in the textarea"><?php echo $this->contest->description; ?></textarea> <br />
   <input name="banner_url" placeholder="Plik baneru" type="file"><br />
@@ -30,4 +20,4 @@
   <input type="hidden" name="display_ad" value="0">
   <input type="checkbox" name="display_ad" value="1" <?php if ($this->contest->display_ad == 1) echo "checked";?> >
 </form>
-<button type="submit" form="createContest" value="Wyślij">Wyślij</button>
+<button type="submit" form="contest" value="Wyślij">Wyślij</button>

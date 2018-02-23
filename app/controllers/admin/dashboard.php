@@ -18,7 +18,7 @@ class Dashboard extends Front
 
     public function index()
     {
-        $this->view->render('admin/dashboard/index', array(
+        $this->render('admin/dashboard/index', array(
                 'users' => User::getPublicProfilesOfAllUsers())
         );
     }

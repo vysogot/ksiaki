@@ -4,10 +4,15 @@
   <table>
     <?php foreach($this->contests as $key => $contest) { ?>
       <tr>
-        <td><?php echo $contest->name; ?></td>
-        <td><a href="/admin/contest/show/<?php echo $contest->id ?>">Pokaż</a></td>
-        <td><a href="/admin/contest/edit/<?php echo $contest->id ?>">Edytuj</a></td>
-        <td><a href="/admin/contest/destroy/<?php echo $contest->id ?>" class="confirmation">Usuń</a></td>
+        <td><?= e($contest->name) ?></td>
+        <td><a href="/admin/contest/show/<?= $contest->id ?>">Pokaż</a></td>
+        <td><a href="/admin/contest/edit/<?= $contest->id ?>">Edytuj</a></td>
+        <td>
+          <form id="<?= "contest-$contest->id" ?>" action="/admin/contest/destroy" method="post">
+            <input type="hidden" name="id" value="<?= $contest->id ?>" />
+            <button type="submit" class="confirmation" form="<?= "contest-$contest->id" ?>">Usuń</button>
+          </form>
+        </td>
       </tr>
     <?php } ?>
   </table>

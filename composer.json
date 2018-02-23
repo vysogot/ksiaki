@@ -16,11 +16,9 @@
           "Core\\" : "core/",
           "App\\" : "app/",
           "App\\Models\\" : "app/models/",
+          "App\\Models\\Factories\\" : "app/models/factories",
           "App\\Controllers\\" : "app/controllers/",
           "App\\Controllers\\Admin\\" : "app/controllers/admin/"
           }
-    },
-    "require": {
-        "twig/twig": "^2.4"
     }
 }

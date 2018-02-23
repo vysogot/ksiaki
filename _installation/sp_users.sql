@@ -1,17 +1,17 @@
 DELIMITER $$
-CREATE PROCEDURE `sp_users_find_one_by_name_or_email` (IN `p_name_or_email` VARCHAR(255))
+CREATE PROCEDURE `sp_users_find` (IN `p_id` INT)
 BEGIN
 SELECT * FROM _users
-WHERE (name = p_name_or_email OR email = p_name_or_email)
+WHERE (id = p_id)
 LIMIT 1;
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_users_find_one_by_id` (IN `p_id` INT)
+CREATE PROCEDURE `sp_users_find_by_name_or_email` (IN `p_name_or_email` VARCHAR(255))
 BEGIN
 SELECT * FROM _users
-WHERE (id = p_id)
+WHERE (name = p_name_or_email OR email = p_name_or_email)
 LIMIT 1;
 END$$
 DELIMITER ;

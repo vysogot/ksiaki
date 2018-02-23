@@ -11,11 +11,11 @@ class Home extends Front
 
     public function index()
     {
-        $this->view->render('admin/home/index');
+        $this->render('admin/home/index');
     }
 
     public function update()
     {
-        $this->view->render('admin/home/index');
+        $this->render('admin/home/index');
     }
 }

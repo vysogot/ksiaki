@@ -11,11 +11,11 @@ class Hero extends Front
 
   public function index()
   {
-    $this->view->render('hero/index');
+    $this->render('hero/index');
   }
 
   public function show()
   {
-    $this->view->render('hero/show');
+    $this->render('hero/show');
   }
 }

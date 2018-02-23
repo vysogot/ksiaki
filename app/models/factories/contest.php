@@ -3,40 +3,51 @@
 namespace App\Models\Factories;
 
 use Core\DatabaseFactory;
+use App\Models\Contest as Model;
 
 class Contest extends DatabaseFactory
 {
 
-  public function __construct()
+  public static function find($id)
   {
-    parent::__construct();
+    $result = self::execute('call sp_contests_find(
+      :p_id
+    );', array(
+      array('p_id', $id, 'int')
+    ));
+
+    return Model::build($result);
   }
 
-  public function find($params)
+  public static function all($params)
   {
-      return $dbc->execute('call sp_contests_find(
-        :p_id
-      );', array(
-        array('p_id', $id, 'int')
-      ));
-    }
-  }
+    $defaults = [
+      "id" => null,
+      "name" => null,
+      "offset" => 0,
+      "limit" => 50
+    ];
 
-  public function findAll($params)
-  {
-    return $dbc->execute('call sp_contests_all(
+    $params = array_merge($defaults, $params);
+
+    $result = self::execute('call sp_contests_all(
+      :p_id,
+      :p_name,
       :p_offset,
       :p_limit
     );', array(
+      array('p_id', $params['id'], 'int'),
+      array('p_name', $params['name'], 'str'),
       array('p_offset', $params['offset'], 'int'),
       array('p_limit', $params['limit'], 'int')
-    ),
-    true);
+    ), true);
+
+    return Model::build($result);
   }
 
-  public function create($params)
+  public static function create($params)
   {
-    return $dbc->execute('call sp_contests_create(
+    return self::execute('call sp_contests_create(
       :p_game_id,
       :p_contest_type_id,
       :p_name,
@@ -55,11 +66,13 @@ class Contest extends DatabaseFactory
       array('p_ends_at', $params['ends_at']->format('Y-m-d H:i:s'), 'str'),
       array('p_display_ad', $params['display_ad'], 'bool')
     ));
+
+    return ($result->rowCount == 0) ? null : self::find(['id' => $result->lastInsertId]);
   }
 
-  public function update($params)
+  public static function update($params)
   {
-    return $dbc->execute('call sp_contests_update(
+    return self::execute('call sp_contests_update(
       :p_id,
       :p_game_id,
       :p_contest_type_id,
@@ -80,11 +93,13 @@ class Contest extends DatabaseFactory
       array('p_ends_at', $params['ends_at']->format('Y-m-d H:i:s'), 'str'),
       array('p_display_ad', $params['display_ad'], 'bool')
     ));
+
+    return Model::build($result);
   }
 
-  public function delete($id)
+  public static function delete($id)
   {
-    return $dbc->execute('call sp_contests_delete(
+    return self::execute('call sp_contests_delete(
       :p_id
     );', array(
       array('p_id', $id, 'int')
