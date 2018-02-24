@@ -1,3 +1,10 @@
+DROP PROCEDURE IF EXISTS sp_users_find;
+DROP PROCEDURE IF EXISTS sp_users_find_by_name_or_email;
+DROP PROCEDURE IF EXISTS sp_users_find_all;
+DROP PROCEDURE IF EXISTS sp_users_create;
+DROP PROCEDURE IF EXISTS sp_users_update;
+DROP PROCEDURE IF EXISTS sp_users_delete;
+
 DELIMITER $$
 CREATE PROCEDURE `sp_users_find` (IN `p_id` INT)
 BEGIN
@@ -61,3 +68,5 @@ LIMIT 1;
 SELECT ROW_COUNT() AS rowCount;
 END$$
 DELIMITER ;
+
+SELECT 1;

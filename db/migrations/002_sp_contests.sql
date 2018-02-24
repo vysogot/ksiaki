@@ -1,3 +1,9 @@
+DROP PROCEDURE IF EXISTS sp_contests_find;
+DROP PROCEDURE IF EXISTS sp_contests_all;
+DROP PROCEDURE IF EXISTS sp_contests_create;
+DROP PROCEDURE IF EXISTS sp_contests_update;
+DROP PROCEDURE IF EXISTS sp_contests_delete;
+
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
 BEGIN
@@ -6,7 +12,7 @@ SELECT id
 , contest_type_id
 , name
 , description
-, banner_url
+, header_url
 , begins_at
 , ends_at
 , display_ad
@@ -27,7 +33,7 @@ SELECT id
 , contest_type_id
 , name
 , description
-, banner_url
+, header_url
 , begins_at
 , ends_at
 , display_ad
@@ -46,7 +52,7 @@ CREATE PROCEDURE `sp_contests_create`(
 	IN `p_contest_type_id` INT,
 	IN `p_name` VARCHAR(50),
 	IN `p_description` VARCHAR(50),
-	IN `p_banner_url` VARCHAR(50),
+	IN `p_header_url` VARCHAR(50),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
 	IN `p_display_ad` TINYINT(4)
@@ -57,7 +63,7 @@ BEGIN
 		, contest_type_id
 		, name
 		, description
-		, banner_url
+		, header_url
 		, begins_at
 		, ends_at
 		, display_ad
@@ -66,7 +72,7 @@ BEGIN
 		p_contest_type_id,
 		p_name,
 		p_description,
-		p_banner_url,
+		p_header_url,
 		p_begins_at,
 		p_ends_at,
 		p_display_ad
@@ -82,7 +88,7 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_contest_type_id` INT,
 	IN `p_name` VARCHAR(50),
 	IN `p_description` VARCHAR(50),
-	IN `p_banner_url` VARCHAR(50),
+	IN `p_header_url` VARCHAR(50),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
 	IN `p_display_ad` TINYINT(4)
@@ -93,7 +99,7 @@ SET game_id = p_game_id
 	, contest_type_id = p_contest_type_id
 	, name = p_name
 	, description = p_description
-	, banner_url = p_banner_url
+	, header_url = p_header_url
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at
   , display_ad = p_display_ad
@@ -111,3 +117,5 @@ LIMIT 1;
 SELECT ROW_COUNT() AS rowCount;
 END$$
 DELIMITER ;
+
+SELECT 1;
