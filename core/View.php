@@ -5,13 +5,17 @@ namespace Core;
 class View
 {
 
-  const path = '/../app/views/';
+  const appViewsPath = '/../app/views/';
+  const gamesPath = '/../games/';
 
+  private $path;
+  private $gamesPath;
   protected $helper;
 
   public function __construct($controller, $action)
   {
-    $this->path = realpath(__DIR__ . self::path) . '/';
+    $this->path = realpath(__DIR__ . self::appViewsPath) . '/';
+    $this->gamesPath = realpath(__DIR__ . self::gamesPath) . '/';
     $this->helper = new ViewHelper($controller, $action);
   }
 
@@ -27,6 +31,12 @@ class View
   {
       $this->bind($data);
       require $this->path . $filename . '.php';
+  }
+
+  public function renderGame($name, $data = null)
+  {
+      $this->bind($data);
+      require $this->gamesPath . $name . '/index.html';
   }
 
   public function renderJSON($data)

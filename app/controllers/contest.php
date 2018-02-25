@@ -26,6 +26,6 @@ class Contest extends Front
 
   public function play()
   {
-      $this->render('contest/play');
+      $this->renderGame('sorcerer');
   }
 }

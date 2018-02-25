@@ -33,7 +33,7 @@ class Contest extends Front
     {
       $contest = new Model($_POST);
 
-      if ($contest.save()) {
+      if ($contest->save()) {
         $this->redirect('admin/contest/show/' . $contest->id);
       } else {
         $this->render('admin/contest/prepare', ['contest' => $contest]);

@@ -173,9 +173,9 @@ CREATE TABLE IF NOT EXISTS `score_games` (
  `user_id` int(11) unsigned DEFAULT NULL,
  `contest_id` int(11) unsigned DEFAULT NULL,
  `level` int(11) DEFAULT NULL,
- `level_begins_at` timestamp,
- `level_ends_at` timestamp,
- `points_for_level` int(11) DEFAULT NULL,
+ `begins_at` timestamp,
+ `ends_at` timestamp,
+ `points` int(11) DEFAULT NULL,
  `points_total` int(11) DEFAULT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';

@@ -14,4 +14,4 @@ list($host, $dbname, $user, $pass, $port) = [
   Config::get('DB_PORT')
 ];
 
-exec("mysql -h $host -P $port -u $user --password=$pass -e 'drop database if exists $dbname'");
+exec("mysql -h $host -P $port -u $user --password=$pass -e \"drop database if exists $dbname\"");
