@@ -56,13 +56,15 @@ class Router
     {
 
       $namespace = self::rootNamespace;
-      $controller = $action = '';
+      $controller = self::rootNamespaceDefaults['controller'];
+      $action = self::rootNamespaceDefaults['action'];
+      $potencialNamespace = "";
 
       $url = trim($url, '/');
       $url = filter_var($url, FILTER_SANITIZE_URL);
 
-      $urlElements = explode('/', $url);
-      $potencialNamespace = ucfirst($urlElements[0]) . '\\';
+      $urlElements = array_filter(explode('/', $url));
+      empty($urlElements)?: $potencialNamespace = ucfirst($urlElements[0]) . '\\';
 
       if (isset(self::additionalNamespaces[$potencialNamespace])) {
         $namespace .= $potencialNamespace;
@@ -72,20 +74,8 @@ class Router
         array_shift($urlElements);
       }
 
-      switch (count($urlElements)) {
-        case 0:
-          !empty($controller)?: $controller = self::rootNamespace['controller'];
-          !empty($action)?: $action = self::rootNamespace['action'];
-          break;
-        case 1:
-          $controller = array_shift($urlElements);
-          !empty($action)?: $action = self::rootNamespace['action'];
-          break;
-        default:
-          $controller = array_shift($urlElements);
-          $action = array_shift($urlElements);
-          break;
-      }
+      empty($urlElements)?: $controller = array_shift($urlElements);
+      empty($urlElements)?: $action = array_shift($urlElements);
 
       return [$namespace, ucfirst($controller), $action, $urlElements];
 

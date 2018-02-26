@@ -1,6 +1,6 @@
 <?php
 
-$start = microtime(true);
+//$start = microtime(true);
 
 require '../vendor/autoload.php';
 
@@ -15,6 +15,6 @@ if (!isset($_GET['url'])) $_GET['url'] = '';
 $router = new Core\Router($_GET['url']);
 $router->dispatch();
 
-$end = microtime(true);
-$creationtime = ($end - $start);
+//$end = microtime(true);
+//$creationtime = ($end - $start);
 //printf("Page created in %.6f seconds.", $creationtime);
