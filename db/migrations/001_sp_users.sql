@@ -1,9 +1,26 @@
+DROP PROCEDURE IF EXISTS sp_users_new;
 DROP PROCEDURE IF EXISTS sp_users_find;
 DROP PROCEDURE IF EXISTS sp_users_find_by_name_or_email;
 DROP PROCEDURE IF EXISTS sp_users_find_all;
 DROP PROCEDURE IF EXISTS sp_users_create;
 DROP PROCEDURE IF EXISTS sp_users_update;
 DROP PROCEDURE IF EXISTS sp_users_delete;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_users_new`()
+BEGIN
+SELECT 0 AS id
+, 0 AS role_id
+, '' AS session_id
+, '' AS name
+, '' AS email
+, '' AS password_hash
+, 1 AS active
+, '' AS activation_hash
+, NOW() AS created_at
+, NOW() AS last_login_at;
+END$$
+DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_users_find` (IN `p_id` INT)

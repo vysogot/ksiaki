@@ -12,6 +12,11 @@ class User extends \Core\Model
     parent::__construct($params);
   }
 
+  protected static function new()
+  {
+    return Factory::new();
+  }
+
     public static function find($params)
     {
       return Factory::find($params);

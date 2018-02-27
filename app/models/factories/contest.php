@@ -8,6 +8,11 @@ use App\Models\Contest as Model;
 class Contest extends DatabaseFactory
 {
 
+  public static function new()
+  {
+    return self::execute('call sp_contests_new();', []);
+  }
+
   public static function find($id)
   {
     $result = self::execute('call sp_contests_find(

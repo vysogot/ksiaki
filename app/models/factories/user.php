@@ -7,6 +7,11 @@ use App\Models\User as Model;
 class User extends \Core\DatabaseFactory
 {
 
+  public static function new()
+  {
+    return self::execute('call sp_users_new();', []);
+  }
+
   public static function find($params)
   {
 

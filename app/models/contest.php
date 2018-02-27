@@ -13,6 +13,11 @@ class Contest extends \Core\Model
     parent::__construct($params);
   }
 
+  protected static function new()
+  {
+    return Factory::new();
+  }
+
   public static function find($id)
   {
     return Factory::find($id);

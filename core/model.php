@@ -10,6 +10,10 @@ abstract class Model
   public function __construct($params)
   {
 
+    if (empty($params)) {
+      $params = (array) static::new();
+    }
+
     foreach ($params as $key => $value) {
         $this->{$key} = $value;
     }

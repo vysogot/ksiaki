@@ -1,8 +1,24 @@
+DROP PROCEDURE IF EXISTS sp_contests_new;
 DROP PROCEDURE IF EXISTS sp_contests_find;
 DROP PROCEDURE IF EXISTS sp_contests_all;
 DROP PROCEDURE IF EXISTS sp_contests_create;
 DROP PROCEDURE IF EXISTS sp_contests_update;
 DROP PROCEDURE IF EXISTS sp_contests_delete;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_new`()
+BEGIN
+SELECT 0 AS id
+, 1 AS game_id
+, 0 AS contest_type_id
+, '' AS name
+, '' AS `desc`
+, '' AS header_url
+, NOW() AS begins_at
+, DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at
+, 1 AS display_ad;
+END$$
+DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
