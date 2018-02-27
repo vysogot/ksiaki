@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h2>Ustawienia konkursów</h2>
-  <p><a href="/admin/contest/prepare">Dodaj konkurs</a></p>
+  <p><a href="/admin/contest/new">Dodaj konkurs</a></p>
   <table>
     <?php foreach($this->contests as $key => $contest) { ?>
       <tr>

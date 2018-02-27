@@ -23,10 +23,10 @@ class Contest extends Front
       $this->render('admin/contest/show', ['contest' => $contest]);
     }
 
-    public function prepare()
+    public function new()
     {
       $contest = new Model;
-      $this->render('admin/contest/prepare', ['contest' => $contest]);
+      $this->render('admin/contest/new', ['contest' => $contest]);
     }
 
     public function create()
@@ -36,7 +36,7 @@ class Contest extends Front
       if ($contest->save()) {
         $this->redirect('admin/contest/show/' . $contest->id);
       } else {
-        $this->render('admin/contest/prepare', ['contest' => $contest]);
+        $this->render('admin/contest/new', ['contest' => $contest]);
       }
     }
 
