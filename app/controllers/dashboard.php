@@ -8,7 +8,7 @@ class Dashboard extends Front
 {
   public function __construct($action)
   {
-    parent::__construct(self::class, $action);
+    parent::__construct($this, $action);
     //$this->session->ensureLoggedIn();
   }
 

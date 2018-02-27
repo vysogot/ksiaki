@@ -10,13 +10,16 @@ class View
 
   private $path;
   private $gamesPath;
+
   protected $helper;
+  protected $current_user;
 
   public function __construct($controller, $action)
   {
     $this->path = realpath(__DIR__ . self::appViewsPath) . '/';
     $this->gamesPath = realpath(__DIR__ . self::gamesPath) . '/';
     $this->helper = new ViewHelper($controller, $action);
+    $this->current_user = $controller->current_user;
   }
 
   public function render($filename, $data = null)
@@ -43,11 +46,6 @@ class View
   {
       header("Content-Type: application/json");
       echo json_encode($data);
-  }
-
-  public function e($value)
-  {
-    echo htmlspecialchars($value);
   }
 
   private function bind($data = null)

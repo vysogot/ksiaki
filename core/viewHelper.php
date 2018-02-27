@@ -16,7 +16,7 @@ class ViewHelper extends View
 
   public function activeClass($controller_name)
   {
-    if ($this->controller == $controller_name) printf(' class="active"');
+    if (get_class($this->controller) == $controller_name) printf(' class="active"');
   }
 
 }

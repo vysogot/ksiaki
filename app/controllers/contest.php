@@ -6,7 +6,7 @@ class Contest extends Front
 {
   public function __construct($action)
   {
-    parent::__construct(self::class, $action);
+    parent::__construct($this, $action);
   }
 
   public function index()

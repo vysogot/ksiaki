@@ -3,14 +3,20 @@
 namespace Core;
 
 use App\Config;
+use App\Models\User;
 
 abstract class Controller
 {
 
   private $view;
+  public $current_user;
 
   public function __construct($controller, $action)
   {
+    if (isset($_SESSION['user_id'])) {
+      $this->current_user = User::find($_SESSION['user_id']);
+    }
+
     $this->view = new View($controller, $action);
   }
 

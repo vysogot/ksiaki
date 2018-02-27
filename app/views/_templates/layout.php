@@ -35,17 +35,18 @@
             <li>
               <a href="/download/index" id="menu-download"<?php $this->helper->activeClass('App\\Controllers\\Download') ?>>Pobierz</a>
             </li>
-            <?php if (!'$this->current_user') { ?>
-                <li>
-                    <a href="/dashboard/index" id="menu-login"<?php $this->helper->activeClass('App\\Controllers\\Dashboard') ?>>Dashboard</a>
-                      <?php if ('$this->current_user->isAdmin()') { ?>
-                          <br/><a class="admin" href="/admin/">Admin</a>
-                      <?php } ?>
-                </li>
+            <?php if (isset($this->current_user)) { ?>
+              <li>
+                  <a href="/dashboard/index" id="menu-login"<?php $this->helper->activeClass('App\\Controllers\\Dashboard') ?>>Dashboard</a>
+                  <br/><a href="/session/destroy">Logout</a>
+                    <?php if ('$this->current_user->isAdmin()') { ?>
+                        <br/><a class="admin" href="/admin/">Admin</a>
+                    <?php } ?>
+              </li>
             <?php } else { ?>
-                <li>
-                    <a href="/session/index" id="menu-login"<?php $this->helper->activeClass("App\\Controllers\\Session") ?>>Login</a>
-                </li>
+              <li>
+                  <a href="/session/new" id="menu-login"<?php $this->helper->activeClass("App\\Controllers\\Session") ?>>Login</a>
+              </li>
             <?php } ?>
           </ul>
         </nav>
