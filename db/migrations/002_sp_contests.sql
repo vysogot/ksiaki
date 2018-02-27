@@ -11,7 +11,7 @@ SELECT id
 , game_id
 , contest_type_id
 , name
-, description
+, `desc`
 , header_url
 , begins_at
 , ends_at
@@ -32,7 +32,7 @@ SELECT id
 , game_id
 , contest_type_id
 , name
-, description
+, `desc`
 , header_url
 , begins_at
 , ends_at
@@ -51,7 +51,7 @@ CREATE PROCEDURE `sp_contests_create`(
 	IN `p_game_id` INT,
 	IN `p_contest_type_id` INT,
 	IN `p_name` VARCHAR(50),
-	IN `p_description` VARCHAR(50),
+	IN `p_desc` VARCHAR(50),
 	IN `p_header_url` VARCHAR(50),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
@@ -62,7 +62,7 @@ BEGIN
 		game_id
 		, contest_type_id
 		, name
-		, description
+		, `desc`
 		, header_url
 		, begins_at
 		, ends_at
@@ -71,7 +71,7 @@ BEGIN
 		p_game_id,
 		p_contest_type_id,
 		p_name,
-		p_description,
+		p_desc,
 		p_header_url,
 		p_begins_at,
 		p_ends_at,
@@ -87,7 +87,7 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_game_id` INT,
 	IN `p_contest_type_id` INT,
 	IN `p_name` VARCHAR(50),
-	IN `p_description` VARCHAR(50),
+	IN `p_desc` VARCHAR(50),
 	IN `p_header_url` VARCHAR(50),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
@@ -98,7 +98,7 @@ UPDATE _contests
 SET game_id = p_game_id
 	, contest_type_id = p_contest_type_id
 	, name = p_name
-	, description = p_description
+	, `desc` = p_desc
 	, header_url = p_header_url
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at

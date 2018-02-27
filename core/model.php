@@ -7,25 +7,43 @@ abstract class Model
 
   //protected $errors;
 
-  public function __construct($child)
+  public function __construct($params)
   {
-    $child->newRecord = !isset($child->id);
+
+    foreach ($params as $key => $value) {
+        $this->{$key} = $value;
+    }
+
+    $this->newRecord = !isset($this->id);
+
   }
 
   public static function build($params)
   {
     if (empty($params)) return null;
 
+    if (is_array($params)) {
+      return self::buildMany($params);
+    } else {
+      return self::buildOne($params);
+    }
+  }
+
+  private static function buildOne($params)
+  {
+    return new static($params);
+  }
+
+  private static function buildMany($params)
+  {
+
     $objects = [];
 
-    if (is_array($params)) {
-      foreach($params as $object) {
-        array_push($objects, new static($object));
-      }
-      return $objects;
-    } else {
-      return new static($params);
+    foreach($params as $object) {
+      array_push($objects, new static($object));
     }
+
+    return $objects;
   }
 
 }

@@ -10,12 +10,7 @@ class ScoreGame extends \Core\Model
 
   public function __construct($params = [])
   {
-
-    foreach ($params as $key => $value) {
-        $this->{$key} = $value;
-    }
-
-    parent::__construct($this);
+    parent::__construct($params);
   }
 
   public function save()

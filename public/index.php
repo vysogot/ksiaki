@@ -4,7 +4,7 @@
 
 require '../vendor/autoload.php';
 
-function e(String $value) {
+function e($value) {
   return htmlspecialchars($value);
 }
 
