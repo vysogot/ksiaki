@@ -12,9 +12,10 @@ class Register extends Front
     parent::__construct(self::class, $action);
   }
 
-  public function index()
+  public function new()
   {
-    $this->render('register/index');
+    $user = new Model;
+    $this->render('register/new', ['user' => $user]);
   }
 
   public function create()
@@ -24,7 +25,7 @@ class Register extends Front
     if ($user->save()) {
       $this->redirect('home/index');
     } else {
-      $this->render('register/index');
+      $this->render('register/new', ['user' => $user]);
     }
   }
 }

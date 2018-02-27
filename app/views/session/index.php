@@ -9,7 +9,7 @@
         <input type="submit" class="login-submit-button" value="Log in"/>
         </form>
 
-        <a href="/register/index">Register</a>
+        <a href="/register/new">Register</a>
 
         <?php function addJs() { ?>
           hello world

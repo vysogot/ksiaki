@@ -5,7 +5,7 @@ namespace Core;
 abstract class Model
 {
 
-  //protected $errors;
+  public $errors = [];
 
   public function __construct($params)
   {
