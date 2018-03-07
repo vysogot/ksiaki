@@ -30,6 +30,26 @@ class User extends \Core\DatabaseFactory
     return Model::build($result);
   }
 
+  public static function all($params)
+  {
+    $defaults = [
+      "offset" => 0,
+      "limit" => 50
+    ];
+
+    $params = array_merge($defaults, $params);
+
+    $result = self::execute('call sp_users_find_all(
+      :p_offset,
+      :p_limit
+    );', array(
+      array('p_offset', $params['offset'], 'int'),
+      array('p_limit', $params['limit'], 'int')
+    ), true);
+
+    return Model::build($result);
+  }
+
   public static function create($new)
   {
     $result = self::execute('call sp_users_create(:p_name, :p_email, :p_password_hash);', array(

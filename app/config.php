@@ -5,6 +5,21 @@ namespace App;
 class Config
 {
 
+  const rootNamespace = "App\\Controllers\\";
+  const rootNamespaceDefaults = [
+    'controller' => 'home',
+    'action' => 'index',
+    'notfound_controller' => 'Error',
+    'notfound_action' => 'error404'
+  ];
+
+  const additionalNamespaces = [
+    'Admin\\' => [
+      'controller' => 'dashboard',
+      'action' => 'index'
+    ]
+  ];
+
   const development = array(
 
       'DB_TYPE' => 'mysql',
@@ -19,16 +34,6 @@ class Config
 
       'CAPTCHA_WIDTH' => 359,
       'CAPTCHA_HEIGHT' => 100,
-
-      'COOKIE_RUNTIME' => 1209600,
-      'COOKIE_PATH' => '/',
-      'COOKIE_DOMAIN' => "",
-      'COOKIE_SECURE' => false,
-      'COOKIE_HTTP' => true,
-      'SESSION_RUNTIME' => 604800,
-
-      'ENCRYPTION_KEY' => '6#x0gÊìf^25cL1f$08&',
-      'HMAC_SALT' => '8qk9c^4L6d#15tM8z7n0%',
 
       'EMAIL_USED_MAILER' => 'phpmailer',
       'EMAIL_USE_SMTP' => false,
@@ -71,6 +76,7 @@ class Config
       $env = $env ?: "development";
 
       if ($env == 'development') {
+        session_start();
         error_reporting(E_ALL);
         ini_set("display_errors", 1);
         ini_set('session.cookie_httponly', 1);

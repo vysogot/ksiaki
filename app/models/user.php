@@ -22,6 +22,11 @@ class User extends \Core\Model
       return Factory::find($params);
     }
 
+    public static function all($options = [])
+    {
+      return Factory::all($options);
+    }
+
     public function save()
     {
       if ($this->validate()) {
@@ -37,7 +42,7 @@ class User extends \Core\Model
 
     public function isAdmin()
     {
-      $this->user_account_type != 7;
+      return $this->role_id == 1;
     }
 
     private function validate()

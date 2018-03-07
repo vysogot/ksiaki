@@ -23,9 +23,9 @@ class Contest extends \Core\Model
     return Factory::find($id);
   }
 
-  public static function all($params)
+  public static function all($options = [])
   {
-    return Factory::all($params);
+    return Factory::all($options);
   }
 
   public static function save($params)

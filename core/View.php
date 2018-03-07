@@ -20,6 +20,9 @@ class View
     $this->gamesPath = realpath(__DIR__ . self::gamesPath) . '/';
     $this->helper = new ViewHelper($controller, $action);
     $this->current_user = $controller->current_user;
+
+    $this->flashes = $_SESSION['flashes'] ?? [];
+    unset($_SESSION['flashes']);
   }
 
   public function render($filename, $data = null)

@@ -1,24 +1,10 @@
 <?php
 
 namespace Core;
+use App\Config;
 
 class Router
 {
-
-    const rootNamespace = "App\\Controllers\\";
-    const rootNamespaceDefaults = [
-      'controller' => 'home',
-      'action' => 'index',
-      'notfound_controller' => 'Error',
-      'notfound_action' => 'error404'
-    ];
-
-    const additionalNamespaces = [
-      'Admin\\' => [
-        'controller' => 'home',
-        'action' => 'index'
-      ]
-    ];
 
     public $controller;
     public $action;
@@ -37,8 +23,8 @@ class Router
           $this->controller = $controller;
           $this->action = $action;
         } else {
-          $error_controller_name = self::rootNamespace . self::rootNamespaceDefaults['notfound_controller'];
-          $this->action = self::rootNamespaceDefaults['notfound_action'];
+          $error_controller_name = Config::rootNamespace . Config::rootNamespaceDefaults['notfound_controller'];
+          $this->action = Config::rootNamespaceDefaults['notfound_action'];
           $this->controller = new $error_controller_name($this->action);
         }
 
@@ -46,18 +32,22 @@ class Router
 
     public function dispatch()
     {
+      $this->controller->before();
+
       call_user_func_array(
         array($this->controller, $this->action),
         $this->parameters
       );
+
+      $this->controller->after();
     }
 
     private function splitUrl($url)
     {
 
-      $namespace = self::rootNamespace;
-      $controller = self::rootNamespaceDefaults['controller'];
-      $action = self::rootNamespaceDefaults['action'];
+      $namespace = Config::rootNamespace;
+      $controller = Config::rootNamespaceDefaults['controller'];
+      $action = Config::rootNamespaceDefaults['action'];
       $potencialNamespace = "";
 
       $url = trim($url, '/');
@@ -66,10 +56,10 @@ class Router
       $urlElements = array_filter(explode('/', $url));
       empty($urlElements)?: $potencialNamespace = ucfirst($urlElements[0]) . '\\';
 
-      if (isset(self::additionalNamespaces[$potencialNamespace])) {
+      if (isset(Config::additionalNamespaces[$potencialNamespace])) {
         $namespace .= $potencialNamespace;
-        $controller = self::additionalNamespaces[$potencialNamespace]['controller'];
-        $action = self::additionalNamespaces[$potencialNamespace]['action'];
+        $controller = Config::additionalNamespaces[$potencialNamespace]['controller'];
+        $action = Config::additionalNamespaces[$potencialNamespace]['action'];
 
         array_shift($urlElements);
       }
