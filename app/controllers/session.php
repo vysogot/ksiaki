@@ -25,7 +25,6 @@ class Session extends Front
       $this->notice('login_success');
       $this->redirect('home/index');
     } else {
-      $this->warning('login_failure');
       $this->render('session/new', [
         'name_or_email' => $_POST['name_or_email'],
         'errors' => ["name_or_email" => "authentication_failed"]

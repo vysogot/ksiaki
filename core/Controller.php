@@ -68,17 +68,17 @@ abstract class Controller
        setcookie(session_name(), '', time()-42000, '/');
     }
 
-    unset($this->current_user);
+    $this->current_user = null;
 
     session_destroy();
   }
 
-  public function redirectLoggedOut()
+  public function redirectLoggedOut($path = 'session/new')
   {
     if (isset($_SESSION['user_id'])) {
       return true;
     } else {
-      header("location: " . Config::url() . 'session/new');
+      header("location: " . Config::url() . $path);
     }
   }
 

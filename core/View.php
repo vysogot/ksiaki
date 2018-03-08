@@ -19,7 +19,7 @@ class View
     $this->path = realpath(__DIR__ . self::appViewsPath) . '/';
     $this->gamesPath = realpath(__DIR__ . self::gamesPath) . '/';
     $this->helper = new ViewHelper($controller, $action);
-    $this->current_user = $controller->current_user;
+    $this->current_user =& $controller->current_user;
 
     $this->flashes = $_SESSION['flashes'] ?? [];
     unset($_SESSION['flashes']);

@@ -20,8 +20,7 @@
         <div><img src="/images/banner-1.png" /></div>
         <div><img src="/images/banner-2.png" /></div>
       </div>
-
-      <?php require 'menu.php' ?>
+        <?php require 'menu.php' ?>
       </div>
     </header>
     <main>
