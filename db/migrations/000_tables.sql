@@ -202,4 +202,13 @@ CREATE TABLE IF NOT EXISTS `static_sites` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Strony statyczne';
 
+CREATE TABLE `remembered_logins` (
+ `token_hash` varchar(255) NOT NULL,
+ `user_id` int(11) NOT NULL,
+ `expires_at` datetime NOT NULL,
+ PRIMARY KEY (`token_hash`),
+ KEY `user_id` (`user_id`),
+ CONSTRAINT `remembered_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Zapamiętane loginy';
+
 SELECT 1;

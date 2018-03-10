@@ -15,6 +15,12 @@
               <input id="password" type="password" name="password" placeholder="Password" required />
           </div>
 
+          <div>
+            <label for="remember_me">Remember me</label>
+            <input type="hidden" name="remember_me" value="0" />
+            <input id="remember_me" type="checkbox" value="1" name="remember_me" <?php if ($this->remember_me) echo 'checked="checked"'; ?> />
+          </div>
+
           <input type="submit" class="login-submit-button" value="Log in"/>
 
         </form>

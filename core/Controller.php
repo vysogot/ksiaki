@@ -24,43 +24,43 @@ abstract class Controller
     $this->view = new View($controller, $action);
   }
 
-  public function render($filename, $data = null)
+  protected function render($filename, $data = null)
   {
     $this->view->render($filename, $data);
   }
 
-  public function renderJSON($data = null)
+  protected function renderJSON($data = null)
   {
     $this->view->renderJSON($data);
   }
 
-  public function renderGame($name, $data = null)
+  protected function renderGame($name, $data = null)
   {
     $this->view->renderGame($name, $data);
   }
 
-  public function redirect($path)
+  protected function redirect($path)
   {
     header("location: " . Config::url() . $path);
   }
 
-  public function notice($message)
+  protected function notice($message)
   {
     $this->flash($message, 'notice');
   }
 
-  public function warning($message)
+  protected function warning($message)
   {
     $this->flash($message, 'warning');
   }
 
-  public function login($user)
+  protected function login($user)
   {
     session_regenerate_id(true);
     $_SESSION['user_id'] = $user->id;
   }
 
-  public function logout()
+  protected function logout()
   {
     $_SESSION = array();
 
@@ -73,7 +73,7 @@ abstract class Controller
     session_destroy();
   }
 
-  public function redirectLoggedOut($path = 'session/new')
+  protected function redirectLoggedOut($path = 'session/new')
   {
     if (isset($_SESSION['user_id'])) {
       return true;

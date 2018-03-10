@@ -13,7 +13,7 @@ class Session extends Front
 
   public function new()
   {
-    $this->render('session/new', ['name_or_email' => '']);
+    $this->render('session/new', ['name_or_email' => '', 'remember_me' => false]);
   }
 
   public function create()
@@ -21,12 +21,13 @@ class Session extends Front
     $user = User::find(['name_or_email' => $_POST['name_or_email']]);
 
     if ($user && $user->authenticate($_POST['password'])) {
-      $this->login($user);
+      $this->login($user, $_POST['remember_me']);
       $this->notice('login_success');
       $this->redirect('home/index');
     } else {
       $this->render('session/new', [
         'name_or_email' => $_POST['name_or_email'],
+        'remember_me' => $_POST['remember_me'],
         'errors' => ["name_or_email" => "authentication_failed"]
       ]);
     }
