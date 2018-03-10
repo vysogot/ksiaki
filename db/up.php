@@ -1,20 +1,16 @@
 <?php
 
-require realpath(__DIR__ . '/../vendor/autoload.php');
-
-use App\Config;
+require __DIR__ . '/../app/lib/config.php';
 
 $path = realpath(__DIR__ . "/migrations");
 $files = scandir($path);
 
-Config::setEnvironment(getenv('APPLICATION_ENV'));
-
 list($host, $dbname, $user, $pass, $port) = [
-  Config::get('DB_HOST'),
-  Config::get('DB_NAME'),
-  Config::get('DB_USER'),
-  Config::get('DB_PASS'),
-  Config::get('DB_PORT')
+  $GLOBALS['config']['DB_HOST'],
+  $GLOBALS['config']['DB_NAME'],
+  $GLOBALS['config']['DB_USER'],
+  $GLOBALS['config']['DB_PASS'],
+  $GLOBALS['config']['DB_PORT']
 ];
 
 exec("mysql -h $host -P $port -u $user --password=$pass -e \"create database if not exists $dbname\"");

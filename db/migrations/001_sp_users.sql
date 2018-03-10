@@ -32,10 +32,10 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_users_find_by_name_or_email` (IN `p_name_or_email` VARCHAR(255))
+CREATE PROCEDURE `sp_users_find_by_name_or_email` (IN `p_login` VARCHAR(255))
 BEGIN
 SELECT * FROM _users
-WHERE (name = p_name_or_email OR email = p_name_or_email)
+WHERE (name = p_login OR email = p_login)
 LIMIT 1;
 END$$
 DELIMITER ;

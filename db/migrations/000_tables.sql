@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `def_badges` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `title` varchar(255),
  `subtitle` varchar(255),
- `desc` text,
+ `description` text,
  `image_url` varchar(255),
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Odznaki dla graczy za aktywność';
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `def_ranks` (
 CREATE TABLE IF NOT EXISTS `def_games` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `name` varchar(255),
- `desc` text,
+ `description` text,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Gry do konkursów';
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
  `game_id` int unsigned NOT NULL,
  `contest_type_id` int unsigned NOT NULL,
  `name` varchar(255),
- `desc` text,
+ `description` text,
  `header_url` varchar(255),
  `begins_at` datetime,
  `ends_at` datetime,
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `score_contests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty przyznane za miejsce w konkursie';
 
 /* Punkty zdobyte w danej grze w danym konkursie na danym poziomie */
-CREATE TABLE IF NOT EXISTS `score_games` (
+CREATE TABLE IF NOT EXISTS `game_scores` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `user_id` int unsigned,
  `contest_id` int unsigned,

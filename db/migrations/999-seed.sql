@@ -1,8 +1,10 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 TRUNCATE TABLE `def_games`;
-INSERT INTO `def_games` (`id`, `name`, `desc`)
+INSERT INTO `def_games` (`id`, `name`, `description`)
 VALUES
-(1, 'sorcerer', 'game_sorcerer_desc'),
-(2, 'arkanoid', 'game_arkanoid_desc');
+(1, 'sorcerer', 'game_sorcerer_description'),
+(2, 'arkanoid', 'game_arkanoid_description');
 
 TRUNCATE TABLE `def_contest_types`;
 INSERT INTO `def_contest_types` (`id`, `name`)
@@ -34,13 +36,13 @@ VALUES
 (2, 'DUPLO', 'url-to-duplo.jpg');
 
 TRUNCATE TABLE `def_badges`;
-INSERT INTO `def_badges` (`id`, `title`, `subtitle`, `desc`, `image_url`)
+INSERT INTO `def_badges` (`id`, `title`, `subtitle`, `description`, `image_url`)
 VALUES
-(1, 'badge_champion_title', 'badge_champion_subtitle', 'badge_champion_desc', 'badge-champion-url.jpg'),
-(2, 'badge_fighter_title', 'badge_fighter_subtitle', 'badge_fighter_desc', 'badge-fighter-url.jpg'),
-(3, 'badge_fan_title', 'badge_fan_subtitle', 'badge_fan_desc', 'badge-fan-url.jpg'),
-(4, 'badge_gamer_title', 'badge_gamer_subtitle', 'badge_gamer_desc', 'badge-gamer-url.jpg'),
-(5, 'badge_friend_title', 'badge_friend_subtitle', 'badge_friend_desc', 'badge-friend-url.jpg');
+(1, 'badge_champion_title', 'badge_champion_subtitle', 'badge_champion_description', 'badge-champion-url.jpg'),
+(2, 'badge_fighter_title', 'badge_fighter_subtitle', 'badge_fighter_description', 'badge-fighter-url.jpg'),
+(3, 'badge_fan_title', 'badge_fan_subtitle', 'badge_fan_description', 'badge-fan-url.jpg'),
+(4, 'badge_gamer_title', 'badge_gamer_subtitle', 'badge_gamer_description', 'badge-gamer-url.jpg'),
+(5, 'badge_friend_title', 'badge_friend_subtitle', 'badge_friend_description', 'badge-friend-url.jpg');
 
 TRUNCATE TABLE `def_ranks`;
 INSERT INTO `def_ranks` (`id`, `title`, `points_threshold`, `image_url`)
@@ -51,6 +53,7 @@ VALUES
 (4, 'rank_konkursiak', 5000, 'rank-konkursiaki.jpg');
 
 TRUNCATE TABLE `_users`;
+/*!40000 ALTER TABLE `remembered_logins` DISABLE KEYS */;
 INSERT INTO `_users` (`id`, `role_id`, `session_id`, `name`, `email`, `password_hash`, `active`, `activation_hash`, `created_at`, `last_login_at`)
 VALUES
 (1, 1, NULL, 'demo', 'demo@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', '0', NULL, NULL, NULL),
@@ -58,7 +61,7 @@ VALUES
 
 TRUNCATE TABLE `_contests`;
 /*!40000 ALTER TABLE `_contests` DISABLE KEYS */;
-INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `desc`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
+INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
 VALUES
 (1, 1, 2, 'Jaskiniowiec', 'Niesamowity konkurs', 'contests/1-header.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
 (2, 2, 1, 'Ptaszki i pieski', 'Nowe nagrody!', 'contests/1-header.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
@@ -126,18 +129,20 @@ VALUES
 (1, 1, 1, 2, '2018-01-31 00:00:00'),
 (2, 1, 2, 2, '2018-01-30 00:00:00');
 
-TRUNCATE TABLE `score_games`;
-INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`)
+TRUNCATE TABLE `game_scores`;
+INSERT INTO `game_scores` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`)
 VALUES
 (1, 1, 1, 1, '2018-01-30 00:00:00', '2018-01-30 00:10:00', 500, 500),
 (2, 1, 1, 2, '2018-01-30 00:11:00', '2018-01-30 00:15:00', 600, 1100),
 (3, 2, 1, 1, '2018-01-30 00:05:00', '2018-01-30 00:14:00', 550, 550),
 (4, 2, 1, 2, '2018-01-30 00:16:00', '2018-01-30 00:25:00', 1600, 2150);
 
-TRUNCATE TABLE `score_games`;
+TRUNCATE TABLE `game_scores`;
 INSERT INTO `score_contests` (`id`, `user_id`, `contest_id`, `place`, `points`, `given_at`)
 VALUES
 (1, 1, 1, 2, 99, '2018-02-28 00:00:00'),
 (2, 2, 1, 1, 100, '2018-02-28 00:00:00');
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 SELECT 1;
