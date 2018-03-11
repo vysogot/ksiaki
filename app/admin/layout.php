@@ -10,6 +10,9 @@
     <div class="wrapper">
       <nav>
         <ul class="bare left">
+          <li>
+            <a href="/">Strona główna</a>
+          </li>
             <li>
               <a href="/admin/users.php" <?= activeClass('users') ?>>Użytkownicy</a>
             </li>

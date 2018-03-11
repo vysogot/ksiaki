@@ -4,15 +4,19 @@ function e($value) {
   return htmlspecialchars($value);
 }
 
-function redirect($path)
-{
-  if ($path[0] == '/') {
-    header("location: " . $GLOBALS['url'] . $path);
-  } else {
-    header("location: " . $GLOBALS['base_url'] . $path);
-  }
+function link_to($name, $destination) {
+  echo "<a href=\"" . path_to($destination) . "\">$name</a>";
+}
 
+function redirect($destination)
+{
+  header("location: " . path_to($destination));
   exit();
+}
+
+function path_to($destination) {
+  $root = $destination[0] == '/' ? $GLOBALS['base_url'] : $GLOBALS['url'];
+  return $root . $destination;
 }
 
 function activeClass($link) {

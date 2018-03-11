@@ -47,6 +47,9 @@
       </div>
     </header>
     <main>
+      <?php if (isAdmin()) {
+        link_to('Panel administratora', '/admin/contests.php');
+      } ?>
       <?php require 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>
