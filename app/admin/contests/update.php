@@ -38,10 +38,10 @@ if ($post) {
     ));
 
     if (!empty($result)) {
-      flash('notice', t('contest_creation_success'));
+      flash('notice', t('contest_update_success'));
       redirect("show.php?id=" . $params['id']);
     } else {
-      flash('warning', t('contest_creation_failure'));
+      flash('warning', t('contest_update_failure'));
     }
   }
 
