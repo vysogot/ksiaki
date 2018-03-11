@@ -13,6 +13,7 @@
           <li><?= link_to(t('home_page'), '/') ?></li>
           <li><?= link_to(t('users'), '/admin/users.php') ?></li>
           <li><?= link_to(t('contests'), '/admin/contests.php') ?></li>
+          <li><?= link_to(t('backgrounds'), '/admin/backgrounds.php') ?></li>
           <li><?= link_to(t('rankings'), '/admin/rankings.php') ?></li>
           <li><?= link_to(t('downloads'), '/admin/downloads.php') ?></li>
           <li><?= link_to(t('logout'), '/admin/contests.php') ?></li>

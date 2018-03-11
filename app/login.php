@@ -5,7 +5,6 @@ require 'init.php';
 $params = [
   'login' => null,
   'password' => null,
-  'remember_me' => null,
   'active_link' => 'login'
 ];
 
@@ -58,17 +57,11 @@ function content($params, $data) { ?>
               <input id="password" type="password" name="password" required />
           </div>
 
-          <div>
-            <label for="remember_me"><?= t('remember_me') ?></label>
-            <input type="hidden" name="remember_me" value="0" />
-            <input id="remember_me" type="checkbox" value="1" name="remember_me" <?php if ($params['remember_me']) echo 'checked="checked"'; ?> />
-          </div>
-
-          <input type="submit" class="login-submit-button" value="Log in"/>
+          <input type="submit" class="login-submit-button" value="<?= t('log_in') ?>"/>
 
         </form>
 
-        <a href="/register.php"><?= t('register') ?></a>
+        <?= link_to(t('register'), '/register.php') ?>
 
 </div>
 

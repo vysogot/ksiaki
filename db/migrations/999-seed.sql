@@ -53,14 +53,18 @@ VALUES
 (4, 'rank_konkursiak', 5000, 'rank-konkursiaki.jpg');
 
 TRUNCATE TABLE `_users`;
-/*!40000 ALTER TABLE `remembered_logins` DISABLE KEYS */;
 INSERT INTO `_users` (`id`, `role_id`, `session_id`, `name`, `email`, `password_hash`, `active`, `activation_hash`, `created_at`, `last_login_at`)
 VALUES
 (1, 1, NULL, 'user', 'demo@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', '0', NULL, NULL, NULL),
 (2, 2, NULL, 'admin', 'demo2@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', '0', NULL, NULL, NULL);
 
+TRUNCATE TABLE `_backgrounds`;
+INSERT INTO `_backgrounds` (`id`, `name`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`, `created_at`, `updated_at`)
+VALUES
+(1, 'Mleczna droga', '/assets/images/background-1.jpg', 'http://onet.pl', 1, '2018-01-31 00:00:00', '2028-09-30 00:00:00', '2008-09-30 00:00:00', '2009-09-30 00:00:00'),
+(2, 'Jaskiniowiec', '/assets/images/hero-1.jpg', 'http://wp.pl', 0, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
+
 TRUNCATE TABLE `_contests`;
-/*!40000 ALTER TABLE `_contests` DISABLE KEYS */;
 INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
 VALUES
 (1, 1, 2, 'Jaskiniowiec', 'Niesamowity konkurs', 'contests/1-header.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),

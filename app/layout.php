@@ -6,6 +6,14 @@
     <link rel="icon" href="data:;base64,=">
     <link rel="stylesheet" href="/assets/css/style.css" />
     <?php if (function_exists('meta')) meta(); ?>
+    <style>
+      body {
+        background: url('<?= background_url() ?>');
+        background-repeat: no-repeat;
+        background-color: #fff;
+        background-position: top;
+      }
+    </style>
 </head>
 <body>
   <header>
@@ -31,20 +39,22 @@
               <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-download']) ?>
             </li>
             <li class="right">
-            <?php if (current_user()) { ?>
-              <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
-            <?php } else { ?>
-              <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
-            <?php } ?>
+              <?php if (current_user()) { ?>
+                <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
+              <?php } else { ?>
+                <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
+              <?php } ?>
             </li>
           </ul>
         </nav>
       </div>
     </header>
     <main>
-      <div class="wrapper">
-        <?= !is_admin()?: link_to(t('admin_panel'), '/admin/contests.php'); ?>
-      </div>
+      <?php if (is_admin()) { ?>
+        <div class="wrapper">
+          <?= link_to(t('admin_panel'), '/admin/contests.php') ?>
+        </div>
+      <?php } ?>
       <?php require 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>

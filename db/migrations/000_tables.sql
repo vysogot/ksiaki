@@ -58,6 +58,20 @@ CREATE TABLE IF NOT EXISTS `def_games` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Gry do konkursów';
 
+/* Tła */
+CREATE TABLE IF NOT EXISTS `_backgrounds` (
+ `id` int unsigned NOT NULL AUTO_INCREMENT,
+ `name` varchar(255),
+ `image_url` varchar(255),
+ `link_url` varchar(255),
+ `is_active` tinyint(1),
+ `begins_at` datetime,
+ `ends_at` datetime,
+ `created_at` datetime,
+ `updated_at` datetime,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Tła reklamowe';
+
 /* Bohaterowie */
 CREATE TABLE IF NOT EXISTS `_heroes` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,

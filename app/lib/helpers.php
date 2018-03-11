@@ -51,3 +51,8 @@ function link_to($name, $destination, $options = []) {
 
   return $link . ">$name</a>";
 }
+
+function background_url() {
+  $data = execute('call sp_backgrounds_get();', array());
+  return $data->image_url;
+}
