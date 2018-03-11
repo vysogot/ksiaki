@@ -20,7 +20,7 @@
         <div><img src="/assets/images/banner-2.png" /></div>
       </div>
       <nav>
-        <ul class="bare left">
+        <ul class="bare">
             <li>
                 <?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?>
             </li>
@@ -30,21 +30,21 @@
             <li>
               <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-download']) ?>
             </li>
+            <li class="right">
             <?php if (current_user()) { ?>
-              <li>
-                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
-              </li>
+              <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
             <?php } else { ?>
-              <li>
-                  <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
-              </li>
+              <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
             <?php } ?>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
     <main>
-      <?= !is_admin()?: link_to(t('admin_panel'), '/admin/contests.php'); ?>
+      <div class="wrapper">
+        <?= !is_admin()?: link_to(t('admin_panel'), '/admin/contests.php'); ?>
+      </div>
       <?php require 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>

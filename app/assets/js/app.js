@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 // Custom sliders
 $(document).on('ready', function() {
-  $("#banner, #slider").slick({
+  $("#banner, #slajder").slick({
     dots: false,
     vertical: true,
     centerMode: false,
@@ -18,11 +18,20 @@ $(document).on('ready', function() {
     arrows: false
   });
 
-  $("#heroes").slick({
+  $("#heroes-slider").slick({
     dots: false,
     infinite: true,
     centerMode: true,
     slidesToShow: 5,
+    slidesToScroll: 1,
+    variableWidth: true
+  });
+
+  $("#contests-slider, #movies-slider, #box-banners-slider").slick({
+    dots: false,
+    infinite: true,
+    centerMode: true,
+    slidesToShow: 4,
     slidesToScroll: 1,
     variableWidth: true
   });

@@ -9,39 +9,54 @@ html, body {
 header { margin: 0; padding-top: 40px; min-height: 150px; overflow: visible;
   background: url('/assets/images/bg-clouds.png') center top no-repeat; }
 nav    { height: 120px; margin: 25px auto; }
-header, nav, main, footer { width: 100%; clear: both; }
+header, nav, main, footer, .wrapper-full  { width: 100%; clear: both; }
 
-.wrapper      { width: 930px; }
-.wrapper-full { width: 100%; }
-.wrapper, .wrapper-full { margin: 0 auto; overflow: visible; }
+.wrapper      { width: 960px; }
+/* .wrapper-ears { width: 1440px; } - for the sky banners */
+.wrapper, .wrapper-ears, .wrapper-full { margin: 0 auto; overflow: visible; }
 
 .center { text-align: center; }
+.clear { clear: both; }
+.left { float: left; }
 
 #logo         { width: 130px; height: 130px; }
-#banner       { width: 800px; height: 130px; overflow: hidden; }
-#heroes       { width: 930px; height: 100px; background: black; }
-#slider       { width: 450px; height: 270px; }
-#player       { width: 480px; height: 270px; }
-#contests     { width: 480px; height: 480px; }
-#side-banners { width: 450px; height: 480px; }
+#banner       { width: 830px; height: 130px; overflow: hidden; }
+#heroes       { width: 960px; height: 100px; background: black; }
+
+/* .sky-banner { width: 232px; height: 850px; border: 4px solid red; float: left; } */
+
+#slajder      { width: 480px; height: 289px; }
+#player       { width: 480px; height: 289px; }
+#contests     { width: 960px; height: 300px; }
+#movies       { width: 960px; height: 300px; }
+#box-banners  { width: 960px; height: 300px; margin-bottom: 20px; }
+
 #static-sites { width: 100%;  height: 50px; color: white; background-color: #72c313; }
 #copyright    { width: 100%;  height: 50px; color: #ff5000; background-color: #4d4d4d; }
 
 #logo img { margin-top: 10px;}
 #player video { width: 100%; height: 100%; }
 
-#logo, #banner, nav, #heroes, #slider, #player, #side-banners, #static-sites,
-#contests, #copyright { float: left; text-align: center; }
+#logo, #banner, nav, #slajder, #player, #static-sites,
+#contests, #movies, #box-banners, #copyright { float: left; text-align: center; }
 
 nav ul li      { width: 184px; height: 100px; display: inline-block; vertical-align:bottom;}
 #heroes ul li   { width: 96px; height: 100px; }
-#contests ul li { width: 160px; height: 160px; }
+
+#contests ul li,
+#movies ul li,
+#box-banners ul li  { width: 240px; height: 240px; }
+
+#contests h2,
+#movies h2,
+#box-banners h2 { text-align: left; }
+
 #static-sites ul li { width: 153px; height: 50px; padding-top: 15px; }
-#side-banners ul li { width: 225px; height: 240px; }
-#side-banners ul li.double { width: 450px; height: 240px; }
+
 
 ul.bare { padding: 0; margin: 0; list-style: none; }
-ul.left li { float:left; }
+ul.bare li { float:left; }
+ul.bare li.right { float: right; }
 
 nav ul li a { padding-top: 90px; min-width: 81px; display: inline-block;
   color: white; font-size: 11px; text-decoration: none; text-transform: uppercase; }
