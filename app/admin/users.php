@@ -20,18 +20,14 @@ $data = execute('call sp_users_find_all(
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <h2>Użytkownicy</h2>
+  <h2><?= t('users') ?></h2>
   <table>
     <?php foreach($data as $user) { ?>
       <tr>
         <td><?= e($user->name) ?></td>
-        <td><a href="/admin/users/show.php?id=<?= $user->id ?>">Pokaż</a></td>
-        <td><a href="/admin/users/edit.php?id=<?= $user->id ?>">Edytuj</a></td>
-        <td>
-          <form id="<?= "user-$user->id" ?>" action="/admin/users/delete.php" method="post">
-            <input type="hidden" name="id" value="<?= $user->id ?>" />
-            <button type="submit" class="confirmation" form="<?= "user-$user->id" ?>">Usuń</button>
-          </form>
+        <td><?= link_to(t('show'), "/admin/users/show.php?id=$user->id") ?></td>
+        <td><?= link_to(t('edit'), "/admin/users/edit.php?id=$user->id") ?></td>
+        <td><?= link_to(t('delete'), "/admin/users/delete.php?id=$user->id", ['class' => 'confirmation']) ?>
         </td>
       </tr>
     <?php } ?>

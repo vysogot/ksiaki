@@ -13,7 +13,7 @@ session_destroy();
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <h2>Bezpiecznie wylogowano</h2>
+  <h2><?= t('logged_out_safely') ?></h2>
 </div>
 
 <?php }

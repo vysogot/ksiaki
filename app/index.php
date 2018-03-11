@@ -26,14 +26,14 @@ function content($params, $data) { ?>
   </section>
 
   <section id="player">
-    <video controls poster="https://www.html5rocks.com/en/tutorials/video/basics/poster.png">
+    <!--<video controls poster="https://www.html5rocks.com/en/tutorials/video/basics/poster.png">
     <source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm"
             type='video/webm;codecs="vp8, vorbis"' />
     <source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4"
             type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
     <track src="https://www.html5rocks.com/en/tutorials/video/basics/devstories-en.vtt" label="English subtitles"
            kind="subtitles" srclang="en" default />
-  </video>
+  </video>-->
   </section>
 
   <section id="contests">

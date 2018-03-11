@@ -23,9 +23,9 @@ if ($post) {
     $_SESSION['user_id'] = $result->id;
     $_SESSION['role_id'] = $result->role_id;
 
-    flash('notice', 'login_success');
+    flash('notice', t('login_success'));
 
-    if (isAdmin()) {
+    if (is_admin()) {
       redirect('/admin/contests.php');
     } else {
       redirect('/');
@@ -45,21 +45,21 @@ function content($params, $data) { ?>
 
   <?php require 'partials/errors.php'; ?>
 
-        <h2>Login here</h2>
-        <form action="/login.php" method="post">
+        <h2><?= t('sign_in') ?></h2>
+        <form action="<?= path_to('/login.php') ?>" method="post">
 
           <div>
-              <label for="login">Name or email</label>
-              <input id="login" name="login" placeholder="Name or email" value="<?= $params['login'] ?>" required autofocus />
+              <label for="login"><?= t('name_or_email') ?></label>
+              <input id="login" name="login" value="<?= $params['login'] ?>" required autofocus />
           </div>
 
           <div>
-              <label for="password">Password</label>
-              <input id="password" type="password" name="password" placeholder="Password" required />
+              <label for="password"><?= t('password') ?></label>
+              <input id="password" type="password" name="password" required />
           </div>
 
           <div>
-            <label for="remember_me">Remember me</label>
+            <label for="remember_me"><?= t('remember_me') ?></label>
             <input type="hidden" name="remember_me" value="0" />
             <input id="remember_me" type="checkbox" value="1" name="remember_me" <?php if ($params['remember_me']) echo 'checked="checked"'; ?> />
           </div>
@@ -68,7 +68,7 @@ function content($params, $data) { ?>
 
         </form>
 
-        <a href="/register.php">Register</a>
+        <a href="/register.php"><?= t('register') ?></a>
 
 </div>
 

@@ -26,6 +26,8 @@ function content($params, $data) { ?>
     <button type="submit" form="updateBoxes" value="Wyślij">Wyślij</button>
 
     <h3>Ustawienia tapet</h3>
+
+    <h4>Tapety na SG</h4>
     <form action="updateBackgrounds" method="post" id="updateBackgrounds">
       <label>Tapeta SG</label><br/>
       <input name="home_background[0][url]" placeholder="Tapeta SG" type="file"><br />
@@ -35,6 +37,17 @@ function content($params, $data) { ?>
       <input name="home_background[1][link_url]" placeholder="Link url" type="text"><br />
     </form>
     <button type="submit" form="updateBackgrounds" value="Wyślij">Wyślij</button>
+
+    <h3>Tapety na stronie konkursów</h3>
+    <form action="backgrounds.php" method="post" id="backgrounds">
+      <label>Tapeta Konkursy</label><br/>
+      <input name="background[0][url]" placeholder="Tapeta Konkursy" type="file"><br />
+      <input name="contests_background[0][link_url]" placeholder="Link url" type="text"><br />
+      <label>Tapeta rotacyjna Konkursy</label><br/>
+      <input name="contests_background[1][url]" placeholder="Tapeta rotacyjna Konkursy" type="file"><br />
+      <input name="contests_background[1][link_url]" placeholder="Link url" type="text"><br />
+    </form>
+    <button type="submit" form="backgrounds" value="Wyślij">Wyślij</button>
   </div>
 
 

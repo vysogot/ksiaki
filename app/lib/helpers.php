@@ -4,14 +4,8 @@ function e($value) {
   return htmlspecialchars($value);
 }
 
-function link_to($name, $destination) {
-  echo "<a href=\"" . path_to($destination) . "\">$name</a>";
-}
-
-function redirect($destination)
-{
-  header("location: " . path_to($destination));
-  exit();
+function t($key) {
+  return $GLOBALS['translations'][$key] ?? $key;
 }
 
 function path_to($destination) {
@@ -19,18 +13,21 @@ function path_to($destination) {
   return $root . $destination;
 }
 
-function activeClass($link) {
-    if (isset($GLOBALS['params']['active_link'])) {
-      return $GLOBALS['params']['active_link'] == $link ? 'class="active"' : '';
-    }
+function current_url() {
+  return $_SERVER['PHP_SELF'] == '/index.php' ? '/' : $_SERVER['PHP_SELF'];
 }
 
-function currentUser() {
+function current_user() {
     return isset($_SESSION['user_id']);
 }
 
-function isAdmin() {
+function is_admin() {
     if (isset($_SESSION['role_id'])) return $_SESSION['role_id'] == 2;
+}
+
+function redirect($destination)
+{
+  header("location: " . path_to($destination)); exit();
 }
 
 function flash($type, $message) {
@@ -39,4 +36,18 @@ function flash($type, $message) {
   }
 
   $_SESSION['flashes'][] = ['type' => $type, 'message' => $message];
+}
+
+function link_to($name, $destination, $options = []) {
+  $link = '<a href="' . path_to($destination) . '"';
+
+  foreach($options as $key => $value) {
+    $link .= ' ' . $key . '="' . $value . '"';
+  }
+
+  if (current_url() == $destination) {
+    $link .= ' class="active"';
+  }
+
+  return $link . ">$name</a>";
 }

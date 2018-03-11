@@ -5,9 +5,8 @@ require 'init.php';
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2>Bohaterowie</h2>
+    <h2><?= t('heroes') ?></h2>
   </div>
-
 
 <?php }
 

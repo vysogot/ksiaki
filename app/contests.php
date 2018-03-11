@@ -3,8 +3,25 @@
 require 'init.php';
 
 $params = [
-  'active_link' => 'contests'
+  "id" => null,
+  "name" => null,
+  "offset" => 0,
+  "limit" => 50
 ];
+
+$params = array_merge($params, $_GET);
+
+$data = execute('call sp_contests_all(
+  :p_id,
+  :p_name,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_id', $params['id'], PDO::PARAM_INT),
+  array('p_name', $params['name'], PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
 
 function content($params, $data) { ?>
 
@@ -12,7 +29,7 @@ function content($params, $data) { ?>
   <section id="contests-page">
     <div class="left-sidebar">
       <aside class="month-rank">
-        <h2>Ranking miesięczny</h2>
+        <h2><?= t('monthly_ranking') ?></h2>
         <ol>
           <li>Kawazmlekiem</li>
           <li>Szija26</li>
@@ -28,26 +45,30 @@ function content($params, $data) { ?>
       </aside>
 
       <aside class="quiz">
-        <h2>Quiz</h2>
+        <h2><?= t('quiz') ?></h2>
         <h3>Włoskie miasto, słynne z krzywej wieży to:</h3>
         <ul>
           <li>Odpowiedź 1</li>
           <li>Odpowiedź 1</li>
           <li>Odpowiedź 1</li>
         </ul>
-        <a href="#">Odpowiadam</a>
+        <?= link_to(t('answer'), '#') ?>
       </aside>
     </div>
 
     <div class="main-area">
-      <h2>Graj i wygrywaj</h2>
-      <h3>Już teraz czekają na Ciebie fantastyczne nagrody oraz tytuł Supergracza. Masz nieograniczoną liczbę podejść,
-        każda próba zwiększa Twoje szanse na wygraną. Nie czekaj! Graj!</h3>
-
-        <ul class="bare left contests">
-          <li><div><img src="/assets/images/contest-single.jpg"><a href="/contests/show.php">Fanaberia, do 3 stycznia</a></div></li>
-          <li><div><img src="/assets/images/contest-single.jpg"><a href="/contests/show.php">Energia, do 5 stycznia</a></div></li>
-        </ul>
+      <h2><?= t('play_and_win') ?></h2>
+      <h3><?= t('contests_slogan') ?></h3>
+      <ul class="bare left contests">
+      <?php foreach($data as $contest) { ?>
+        <li>
+          <div>
+            <img src="/assets/images/contest-single.jpg">
+            <?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?>
+          </div>
+        </li>
+      <?php } ?>
+      </ul>
     </div>
 
     <div class="right-sidebar">

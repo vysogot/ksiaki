@@ -5,9 +5,8 @@ require 'init.php';
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2>Pobrania</h2>
+    <h2><?= t('downloads') ?></h2>
   </div>
-
 
 <?php }
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Konkursiaki</title>
+    <title><?= t('title') ?></title>
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
     <link rel="stylesheet" href="/assets/css/style.css" />
@@ -22,24 +22,21 @@
       <nav>
         <ul class="bare left">
             <li>
-                <a href="/" id="menu-home"<?= activeClass('home') ?>>Home</a>
+                <?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?>
             </li>
             <li>
-              <a href="/contests.php" id="menu-contests"<?= activeClass('contests') ?>>Konkursy</a>
+              <?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?>
             </li>
             <li>
-              <a href="/rankings.php" id="menu-ranking"<?= activeClass('ranking') ?>>Ranking</a>
+              <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-download']) ?>
             </li>
-            <li>
-              <a href="/downloads.php" id="menu-download"<?= activeClass('download') ?>>Pobierz</a>
-            </li>
-            <?php if (currentUser()) { ?>
+            <?php if (current_user()) { ?>
               <li>
-                  <a href="/dashboard.php" id="menu-login"<?= activeClass('dashboard') ?>>Dashboard</a>
+                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
               </li>
             <?php } else { ?>
               <li>
-                  <a href="/login.php" id="menu-login"<?= activeClass("login") ?>>Login</a>
+                  <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
               </li>
             <?php } ?>
           </ul>
@@ -47,9 +44,7 @@
       </div>
     </header>
     <main>
-      <?php if (isAdmin()) {
-        link_to('Panel administratora', '/admin/contests.php');
-      } ?>
+      <?= !is_admin()?: link_to(t('admin_panel'), '/admin/contests.php'); ?>
       <?php require 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>
@@ -58,19 +53,19 @@
         <section id="static-sites">
           <div class="wrapper">
             <ul class="bare left">
-              <li><a href="#">O nas</a></li>
-              <li><a href="#">Dla rodziców</a></li>
-              <li><a href="#">Regulamin</a></li>
-              <li><a href="#">Polityka prywatności</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Kontakt</a></li>
+              <li><?= link_to(t('about_us'), '#') ?></li>
+              <li><?= link_to(t('parents_info'), '#') ?></li>
+              <li><?= link_to(t('statute'), '#') ?></li>
+              <li><?= link_to(t('privacy_policy'), '#') ?></li>
+              <li><?= link_to(t('faq'), '#') ?></li>
+              <li><?= link_to(t('contact'), '#') ?></li>
             </ul>
           </div>
         </section>
 
         <section id="copyright">
           <div class="wrapper">
-            <p>© Media Service Zawada sp. z o.o.</p>
+            <p><?= t('copyright') ?></p>
           </div>
         </section>
       </div>

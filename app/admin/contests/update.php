@@ -4,8 +4,7 @@ require '../init.php';
 require '_validation.php';
 
 $params = [
-  'form_action' => 'update.php',
-  'active_link' => 'contests'
+  'form_action' => 'update.php'
 ];
 
 if ($post) {
@@ -39,10 +38,10 @@ if ($post) {
     ));
 
     if (!empty($result)) {
-      flash('notice', 'contest_creation_success');
+      flash('notice', t('contest_creation_success'));
       redirect("show.php?id=" . $params['id']);
     } else {
-      flash('warning', 'contest_creation_failure');
+      flash('warning', t('contest_creation_failure'));
     }
   }
 
@@ -54,8 +53,8 @@ if ($post) {
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2>Edycja konkursu</h2>
-    <a href="/admin/contests.php">Konkursy</a>
+    <h2><?= t('contest_edit') ?></h2>
+    <?= link_to(t('contests'), '/admin/contests.php') ?>
     <?php require '_form.php'; ?>
   </div>
 

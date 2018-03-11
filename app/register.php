@@ -5,8 +5,7 @@ require 'init.php';
 $params = [
   'name' => null,
   'email' => null,
-  'password' => null,
-  'active_link' => 'login'
+  'password' => null
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -55,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ));
 
     if (!empty($result)) {
-      flash('notice', 'registration_success');
+      flash('notice', t('registration_success'));
     } else {
-      flash('warning', 'registration_failure');
+      flash('warning', t('registration_failure'));
     }
 
     redirect('/');
@@ -70,26 +69,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function content($params, $data) { ?>
 
 <div class="wrapper">
-    <h1>Sign up</h1>
+    <h1><?= t('sign_up') ?></h1>
 
     <?php require 'partials/errors.php'; ?>
 
     <form method="post" action="/register.php">
 
         <div>
-            <label for="name">Name</label>
-            <input id="name" name="name" placeholder="Name" value="<?= $params['name'] ?>" required autofocus />
+            <label for="name"><?= t('name') ?></label>
+            <input id="name" name="name" value="<?= $params['name'] ?>" required autofocus />
         </div>
         <div>
-            <label for="email">Email address</label>
-            <input id="email" type="email" name="email" placeholder="email address" value="<?= $params['email'] ?>" required />
+            <label for="email"><?= t('email') ?></label>
+            <input id="email" type="email" name="email" value="<?= $params['email'] ?>" required />
         </div>
         <div>
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" placeholder="Password" />
+            <label for="password"><?= t('password') ?></label>
+            <input id="password" type="password" name="password" />
         </div>
 
-        <button type="submit">Sign up</button>
+        <button type="submit"><?= t('sign_up') ?></button>
 
     </form>
 
