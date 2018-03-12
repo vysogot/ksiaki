@@ -5,10 +5,10 @@ html, body {
     font-size: 14px;
 }
 
-header { margin: 0; padding-top: 40px; min-height: 150px; overflow: visible;
-  background: url('/assets/images/bg-clouds.png') center top no-repeat; }
+header { margin: 0; padding-top: 40px; min-height: 150px; overflow: visible; }
 nav    { height: 120px; margin: 25px auto; }
 header, nav, main, footer, .wrapper-full  { width: 100%; clear: both; }
+main { min-height: 100vh; }
 
 .wrapper      { width: 960px; }
 /* .wrapper-ears { width: 1440px; } - for the sky banners */
