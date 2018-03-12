@@ -3,7 +3,6 @@ html, body {
     font-family: Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
-    background: url('/assets/images/bg-pattern-orange.png') left top repeat;
 }
 
 header { margin: 0; padding-top: 40px; min-height: 150px; overflow: visible;

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
     <?php if (function_exists('meta')) meta(); ?>
     <style>
-      body {
+      html {
         background: url('<?= background_url() ?>');
         background-repeat: no-repeat;
         background-color: #fff;

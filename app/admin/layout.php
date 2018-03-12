@@ -16,7 +16,7 @@
           <li><?= link_to(t('backgrounds'), '/admin/backgrounds.php') ?></li>
           <li><?= link_to(t('rankings'), '/admin/rankings.php') ?></li>
           <li><?= link_to(t('downloads'), '/admin/downloads.php') ?></li>
-          <li><?= link_to(t('logout'), '/admin/contests.php') ?></li>
+          <li><?= link_to(t('logout'), '/logout.php') ?></li>
           </ul>
         </nav>
     </div>
