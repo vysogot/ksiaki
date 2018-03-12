@@ -25,7 +25,7 @@ if (getenv('APPLICATION_ENV') == 'production') {
     'DB_HOST' => '127.0.0.1',
     'DB_NAME' => 'ksiaki',
     'DB_USER' => 'root',
-    'DB_PASS' => 'production',
+    'DB_PASS' => getenv('DB_PASS'),
     'DB_PORT' => '3306',
     'DB_CHARSET' => 'utf8'
   );
