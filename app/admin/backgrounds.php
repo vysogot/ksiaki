@@ -34,6 +34,7 @@ function content($params, $data) { ?>
   <table>
     <?php foreach($data as $background) { ?>
       <tr>
+        <td><img height=75 src="<?= e($background->image_url) ?>" /></td>
         <td><?= e($background->name) ?></td>
         <td><?= e($background->image_url) ?></td>
         <td><?= e($background->link_url) ?></td>

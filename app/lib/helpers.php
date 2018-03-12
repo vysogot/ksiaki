@@ -56,3 +56,15 @@ function background_url() {
   $data = execute('call sp_backgrounds_get();', array());
   return $data->image_url;
 }
+
+function file_upload($file) {
+  $target_dir = __DIR__ . '/../uploads/';
+  $target_file = $target_dir . basename($file["name"]);
+
+  $check = getimagesize($file["tmp_name"]);
+
+  if ($check !== false) {
+      move_uploaded_file($file["tmp_name"], $target_file);
+      return '/uploads/' . basename($file["name"]);
+  }
+}

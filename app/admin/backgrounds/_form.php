@@ -1,6 +1,6 @@
 <?php require '../../partials/errors.php'; ?>
 
-<form id="background" action="<?= $params['form_action'] ?>" method="post">
+<form id="background" action="<?= $params['form_action'] ?>" method="post" enctype="multipart/form-data">
 
   <input type="hidden" name="id" value="<?= $data->id ?>" />
 
@@ -11,12 +11,13 @@
 
   <div>
     <label for="image_url"><?= t('image_url') ?></label>
-    <textarea id="image_url" name="image_url"><?= $data->image_url ?></textarea>
+    <input id="image_url" name="image_url" type="text" value="<?= $data->image_url ?>">
+    <input id="image_file" name="image_file" type="file">
   </div>
 
   <div>
     <label for="link_url"><?= t('link_url') ?></label>
-    <input id="link_url" name="link_url" type="file" value="<?= $data->link_url ?>">
+    <input id="link_url" name="link_url" type="text" value="<?= $data->link_url ?>">
   </div>
 
   <div>

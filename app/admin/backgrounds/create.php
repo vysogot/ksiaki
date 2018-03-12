@@ -15,6 +15,10 @@ if ($post) {
 
   if (empty($errors)) {
 
+    if (!empty($_FILES['image_file']['name'])) {
+      $params['image_url'] = file_upload($_FILES['image_file']);
+    }
+
     $result = execute('call sp_backgrounds_create(
       :p_name,
       :p_image_url,
