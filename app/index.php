@@ -7,6 +7,13 @@ function meta() { ?>
   <link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css" />
 <?php }
 
+function before_body_close() { ?>
+
+<script src="/assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
+<script src="/assets/js/sliders.js" type="text/javascript" charset="utf-8"></script>
+
+<?php }
+
 function content($params, $data) { ?>
 
 <div class="wrapper">
