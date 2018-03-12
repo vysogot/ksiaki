@@ -16,7 +16,7 @@ $data = execute('call sp_contests_find(:p_id);', array(
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2><?= t('contest_edit') ?></h2>
+    <h2><?= t('edit_form') ?></h2>
     <?= link_to(t('contests'), '/admin/contests.php') ?>
     <?php require '_form.php'; ?>
   </div>

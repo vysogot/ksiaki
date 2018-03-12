@@ -36,10 +36,10 @@ if ($post) {
     ));
 
     if (!empty($result)) {
-      flash('notice', t('background_creation_success'));
+      flash('notice', t('create_success'));
       redirect('show.php?id=' . $result->lastInsertId);
     } else {
-      flash('warning', t('background_creation_failure'));
+      flash('warning', t('create_failure'));
     }
   }
 

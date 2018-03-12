@@ -13,9 +13,9 @@ $result = execute('call sp_backgrounds_delete(:p_id);', array(
 ));
 
 if ($result->rowCount == 1) {
-  flash('notice', t('background_delete_success'));
+  flash('notice', t('delete_success'));
   redirect("/admin/backgrounds.php");
 } else {
-  flash('warning', t('background_delete_failure'));
+  flash('warning', t('delete_failure'));
   redirect('show.php?id=' . $result->lastInsertId);
 }

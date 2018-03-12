@@ -18,7 +18,7 @@ function content($params, $data) { ?>
     <h2><?= t('your_profile') ?></h2>
 
     <p><?= t('your_name') ?>: <?= $data->name ?></p>
-    <p><?= t('your_profile') ?>: <?= $data->email ?></p>
+    <p><?= t('your_email') ?>: <?= $data->email ?></p>
     <p><?= t('your_role') ?>: <?= $data->role_id ?></p>
 </div>
 

@@ -13,9 +13,9 @@ $result = execute('call sp_contests_delete(:p_id);', array(
 ));
 
 if ($result->rowCount == 1) {
-  flash('notice', t('contest_delete_success'));
+  flash('notice', t('delete_success'));
   redirect("/admin/contests.php");
 } else {
-  flash('warning', t('contest_delete_failure'));
+  flash('warning', t('delete_failure'));
   redirect('show.php?id=' . $result->lastInsertId);
 }

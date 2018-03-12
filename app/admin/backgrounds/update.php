@@ -38,10 +38,10 @@ if ($post) {
     ));
 
     if (!empty($result)) {
-      flash('notice', t('background_update_success'));
+      flash('notice', t('update_success'));
       redirect("show.php?id=" . $params['id']);
     } else {
-      flash('warning', t('background_update_failure'));
+      flash('warning', t('update_failure'));
     }
   }
 
@@ -53,7 +53,7 @@ if ($post) {
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2><?= t('background_edit') ?></h2>
+    <h2><?= t('edit_form') ?></h2>
     <?= link_to(t('backgrounds'), '/admin/backgrounds.php') ?>
     <?php require '_form.php'; ?>
   </div>

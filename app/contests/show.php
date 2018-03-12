@@ -21,7 +21,7 @@ $data['connected_contests'] = execute('call sp_contests_all(
   :p_offset,
   :p_limit
 );', array(
-  array('p_id', $params['id'], PDO::PARAM_INT),
+  array('p_id', null, PDO::PARAM_INT),
   array('p_name', $params['name'], PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
@@ -71,7 +71,7 @@ function content($params, $data) { ?>
       <h2><?= t('play_and_win') ?></h2>
       <h3><?= t('contests_slogan') ?></h3>
       <ul>
-      <?php foreach($data as $contest) { ?>
+      <?php foreach($data['connected_contests'] as $contest) { ?>
         <li>
           <div>
             <img src="/assets/images/contest-single.jpg">

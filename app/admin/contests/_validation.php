@@ -2,6 +2,6 @@
 
 function validate($params, &$errors) {
   if (empty($params['name'])) {
-    $errors['name'] = t('validate_presence');
+    $errors['name'] = t('has_to_be_present');
   }
 }

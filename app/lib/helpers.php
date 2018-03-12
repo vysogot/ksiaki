@@ -5,7 +5,7 @@ function e($value) {
 }
 
 function t($key) {
-  return $GLOBALS['translations'][$key] ?? $key;
+  return $GLOBALS['translations'][$key] ?? "TRANSLATE!!___$key";
 }
 
 function path_to($destination) {
