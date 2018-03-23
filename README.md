@@ -16,6 +16,5 @@ admin
 
 ## To do
 
-remembered_logins
 mailer
 ...

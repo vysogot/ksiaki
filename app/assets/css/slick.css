@@ -203,6 +203,13 @@
     color: black;
 }
 
+
+
+
+
+
+
+
 .slider {
     width: 50%;
     margin: 0 auto;
@@ -252,11 +259,15 @@
   opacity: 1;
 }
 
-.slick-active {
+#heroes-slider .slick-slide {
+  opacity: 0.5;
+}
+
+.slick-active, #heroes-slider .slick-active {
   opacity: 1;
 }
 
-.slick-current {
+.slick-current, #heroes-slider .slick-current {
   opacity: 1;
 }
 
