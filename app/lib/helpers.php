@@ -52,9 +52,10 @@ function link_to($name, $destination, $options = []) {
   return $link . ">$name</a>";
 }
 
-function background_url() {
-  $data = execute('call sp_backgrounds_get();', array());
-  return $data->image_url;
+function get_background() {
+  $background = execute('call sp_backgrounds_get();', array());
+  if (empty($background)) $background = execute('call sp_backgrounds_new();', array());
+  return $background;
 }
 
 function file_upload($file) {

@@ -16,16 +16,26 @@ $(document).on('ready', function() {
     infinite: true,
     centerMode: true,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 5,
     variableWidth: true
+  })
+  .on('mouseenter', '.slick-slide', function (e) {
+    $(e.currentTarget).addClass('expanded');
+  })
+  .on('mouseleave', '.slick-slide', function(e) {
+    $(e.currentTarget).removeClass('expanded');
   });
 
   $("#contests-slider, #movies-slider, #box-banners-slider").slick({
-    dots: false,
+    variableWidth: true,
     infinite: true,
-    centerMode: true,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    variableWidth: true
+    slidesToScroll: 4
+  })
+  .on('mouseenter', '.slick-slide', function (e) {
+    $(e.currentTarget).addClass('expanded-light');
+  })
+  .on('mouseleave', '.slick-slide', function(e) {
+    $(e.currentTarget).removeClass('expanded-light');
   });
 });

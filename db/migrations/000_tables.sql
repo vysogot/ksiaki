@@ -64,6 +64,8 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
  `name` varchar(255),
  `image_url` varchar(255),
  `link_url` varchar(255),
+ `background_color` varchar(255),
+ `details_color` varchar(255),
  `is_active` tinyint(1),
  `begins_at` datetime,
  `ends_at` datetime,

@@ -21,6 +21,16 @@
   </div>
 
   <div>
+    <label for="background_color"><?= t('background_color') ?></label>
+    <input id="background_color" name="background_color" type="text" value="<?= $data->background_color ?>">
+  </div>
+
+  <div>
+    <label for="details_color"><?= t('details_color') ?></label>
+    <input id="details_color" name="details_color" type="text" value="<?= $data->details_color ?>">
+  </div>
+
+  <div>
     <label for="begins_at"><?= t('begins_at') ?></label>
     <input id="begins_at" name="begins_at" type="datetime-local" value="<?= strftime('%Y-%m-%dT%H:%M:%S',strtotime($data->begins_at)) ?>">
   </div>

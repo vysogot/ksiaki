@@ -6,16 +6,24 @@
     <link rel="icon" href="data:;base64,=">
     <link rel="stylesheet" href="/assets/css/style.css" />
     <?php if (function_exists('meta')) meta(); ?>
+    <?php $background = get_background(); ?>
     <style>
       html {
-        background: url('<?= background_url() ?>');
-        background-repeat: no-repeat;
-        background-color: #fff;
+        background: url('<?= $background->image_url ?>');
+        background-color: <?= $background->background_color ?>;
         background-position: top;
+        background-repeat: no-repeat;
+      }
+
+      .slick-prev:before,
+      .slick-next:before {
+        color: <?= $background->details_color ?>!important;
       }
     </style>
 </head>
 <body>
+  <script>$(document.body).hide(); $(document).on('ready', function() { $(document.body).show(); });</script>
+  <?= link_to('', $background->link_url, ['class' => 'background-link']) ?>
   <header>
     <div class="wrapper">
 
@@ -27,6 +35,7 @@
         <div><img src="/assets/images/banner-1.png" /></div>
         <div><img src="/assets/images/banner-2.png" /></div>
       </div>
+
       <nav>
         <ul class="bare">
             <li>

@@ -56,45 +56,45 @@ function content($params, $data) { ?>
 
     <section id="contests" class="slider">
       <h2><?= t('contests') ?></h2>
-      <div id="contests-slider">
-        <div><img width=240 height=240 src="/assets/images/contest-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-4.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-4.jpg" /></div>
+      <div id="contests-slider" class="boxes">
+        <div><img src="/assets/images/contest-1.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/assets/images/contest-2.jpg" /><p>Świetne nagrody!</p></div>
+        <div><img src="/assets/images/contest-3.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/assets/images/contest-4.jpg" /><p>Świetne nagrody!</p></div>
+        <div><img src="/assets/images/contest-1.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/assets/images/contest-3.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/assets/images/contest-2.jpg" /><p>Świetne nagrody!</p></div>
+        <div><img src="/assets/images/contest-3.jpg" /><p>Cudowny konkurs!</p></div>
       </div>
     </section>
 
 
     <section id="movies">
       <h2><?= t('user_movies') ?></h2>
-      <div id="movies-slider">
-        <div><video width=240 height=240 controls poster="/assets/images/contest-5.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-6.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-7.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-8.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-5.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-6.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-7.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-8.jpg"></video></div>
+      <div id="movies-slider" class="boxes">
+        <div><video controls poster="/assets/images/contest-5.jpg"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls poster="/assets/images/contest-6.jpg"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls poster="/assets/images/contest-7.jpg"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls poster="/assets/images/contest-8.jpg"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls poster="/assets/images/contest-5.jpg"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls poster="/assets/images/contest-7.jpg"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls poster="/assets/images/contest-8.jpg"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls poster="/assets/images/contest-7.jpg"></video><p>Nowy filmik Macieja!</p></div>
       </div>
     </section>
 
 
     <section id="box-banners">
       <h2><?= t('box_banners') ?></h2>
-      <div id="box-banners-slider">
-        <div><img width=240 height=240 src="/assets/images/box-banner-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-4.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-4.jpg" /></div>
+      <div id="box-banners-slider" class="boxes">
+        <div><img src="/assets/images/box-banner-1.jpg" /><p>Super nagrody!</p></div>
+        <div><img src="/assets/images/contest-3.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/assets/images/box-banner-3.jpg" /><p>Super nagrody!</p></div>
+        <div><video controls poster="/assets/images/contest-7.jpg"></video><p>Nowy filmik Oli!</p></div>
+        <div><img src="/assets/images/box-banner-2.jpg" /><p>Super nagrody!</p></div>
+        <div><img src="/assets/images/contest-2.jpg" /><p>Świetne nagrody!</p></div>
+        <div><video controls poster="/assets/images/contest-7.jpg"></video><p>Nowy filmik Macieja!</p></div>
+        <div><img src="/assets/images/box-banner-3.jpg" /><p>Super nagrody!</p></div>
       </div>
     </section>
 
