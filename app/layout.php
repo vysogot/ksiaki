@@ -4,7 +4,8 @@
     <title><?= t('title') ?></title>
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" async />
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css" async />
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
     <style>
@@ -21,8 +22,7 @@
       }
     </style>
 </head>
-<body>
-  <script>$(document.body).hide(); $(document).on('ready', function() { $(document.body).show(); });</script>
+<body style="visibility: hidden;">
   <?= link_to('', $background->link_url, ['class' => 'background-link']) ?>
   <header>
     <div class="wrapper">
@@ -91,7 +91,10 @@
     </footer>
 
     <script src="/assets/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="/assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/js/sliders.js" type="text/javascript" charset="utf-8"></script>
     <script src="/assets/js/app.js" type="text/javascript" charset="utf-8"></script>
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
+    <script>$(document).on('ready', function() { $(document.body).css('visibility', 'visible'); });</script>
   </body>
   </html>
