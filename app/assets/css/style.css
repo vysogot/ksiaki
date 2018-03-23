@@ -6,6 +6,7 @@ html, body {
     z-index: 0;
 }
 
+.invisible { visibility: hidden; }
 .wrapper { position: relative; z-index: 2; }
 
 header { margin-top: 5px; min-height: 150px; overflow: visible; }
