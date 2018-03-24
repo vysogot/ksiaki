@@ -105,7 +105,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 
     <script src="/assets/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="/assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/assets/js/sliders.js" type="text/javascript" charset="utf-8"></script>
     <script src="/assets/js/app.js" type="text/javascript" charset="utf-8"></script>
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
