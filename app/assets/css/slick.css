@@ -245,14 +245,16 @@
 .boxes .slick-slide p { color: black; }
 #heroes .slick-list.draggable, .boxes .slick-list.draggable { padding: 20px 0!important; }
 
-.expanded {
+#heroes .slick-slide.expanded {
   transition: transform .2s; /* Animation */
   transform: scale(1.2);
+  opacity: 1;
 }
 
-.expanded-light {
+.boxes .slick-slide.expanded-light {
   transition: transform .1s; /* Animation */
   transform: scale(1.1);
+  opacity: 1;
 }
 
 .slick-prev:before,
