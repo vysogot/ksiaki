@@ -1,14 +1,15 @@
 // Custom sliders
 $(document).on('ready', function() {
-  $("#banner, #slajder").slick({
+  $("#banner, #slajder, #player").slick({
     dots: false,
-    vertical: true,
+    vertical: false,
     centerMode: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     infinite: true,
-    arrows: false
+    arrows: false,
+    lazyLoad: 'ondemand'
   });
 
   $("#heroes-slider").slick({
@@ -17,7 +18,8 @@ $(document).on('ready', function() {
     centerMode: true,
     slidesToShow: 5,
     slidesToScroll: 5,
-    variableWidth: true
+    variableWidth: true,
+    lazyLoad: 'ondemand'
   })
   .on('mouseenter', '.slick-slide', function (e) {
     $(e.currentTarget).addClass('expanded');
@@ -30,7 +32,8 @@ $(document).on('ready', function() {
     variableWidth: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 4
+    slidesToScroll: 4,
+    lazyLoad: 'ondemand'
   })
   .on('mouseenter', '.slick-slide', function (e) {
     $(e.currentTarget).addClass('expanded-light');

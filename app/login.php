@@ -23,13 +23,8 @@ if ($post) {
     $_SESSION['role_id'] = $result->role_id;
 
     flash('notice', t('login_success'));
-
-    if (is_admin()) {
-      redirect('/admin/contests.php');
-    } else {
-      redirect('/');
-    }
-
+    redirect('/');
+  
   } else {
 
     $params['errors']['login'] = 'login_failure';

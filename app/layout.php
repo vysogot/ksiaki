@@ -18,10 +18,15 @@
       .slick-next:before {
         color: <?= $background->details_color ?>!important;
       }
+
+      nav,
+      #banner, #slajder, #player,
+      #heroes .slick-slide,
+      .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
     </style>
 </head>
 <body class="invisible">
-  <?= link_to('', $background->link_url, ['class' => 'background-link']) ?>
+  <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
   <header>
     <div class="wrapper">
 
@@ -30,8 +35,8 @@
       </div>
 
       <div id="banner" class="slider">
-        <div><img src="/assets/images/banner-1.png" /></div>
-        <div><img src="/assets/images/banner-2.png" /></div>
+        <div><img src="/uploads/banner-1.png" /></div>
+        <div><img src="/uploads/banner-2.png" /></div>
       </div>
 
       <nav>
@@ -45,11 +50,22 @@
             <li>
               <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-download']) ?>
             </li>
-            <li class="right">
               <?php if (current_user()) { ?>
-                <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
+                <li class="right">
+                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
+                </li>
+                <?php if (is_admin()) { ?>
+                  <li class="right">
+                    <?= link_to(t('admin_panel'), '/admin/contests.php') ?>
+                  </li>
+                <?php } ?>
+                <li class="right">
+                  <?= link_to(t('logout'), '/logout.php') ?>
+                </li>
               <?php } else { ?>
-                <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
+                <li class="right">
+                  <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
+                </li>
               <?php } ?>
             </li>
           </ul>
@@ -57,11 +73,6 @@
       </div>
     </header>
     <main>
-      <?php if (is_admin()) { ?>
-        <div class="wrapper">
-          <?= link_to(t('admin_panel'), '/admin/contests.php') ?>
-        </div>
-      <?php } ?>
       <?php require 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>

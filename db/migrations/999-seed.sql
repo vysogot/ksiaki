@@ -62,7 +62,7 @@ TRUNCATE TABLE `_backgrounds`;
 INSERT INTO `_backgrounds` (`id`, `name`, `image_url`, `link_url`, `background_color`, `details_color`, `is_active`, `begins_at`, `ends_at`, `created_at`, `updated_at`)
 VALUES
 (1, 'Mleczna droga', '/uploads/background-1.jpg', 'http://onet.pl', '#fff', '#000', 1, '2018-01-31 00:00:00', '2028-09-30 00:00:00', '2008-09-30 00:00:00', '2009-09-30 00:00:00'),
-(2, 'Jaskiniowiec', '/assets/images/hero-1.png', 'http://wp.pl', 'black', 'white', 0, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
+(2, 'Jaskiniowiec', '/uploads/background-2.jpg', 'http://wp.pl', 'black', 'white', 0, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
 
 TRUNCATE TABLE `_contests`;
 INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
@@ -99,10 +99,17 @@ VALUES
 (2, 1, 2, '2018-02-12 00:00:00');
 
 TRUNCATE TABLE `_heroes`;
-INSERT INTO `_heroes` (`id`, `name`, `is_active`, `avatar_url`, `header_url`, `left_box_url`, `middle_box_url`, `video_url`, `created_at`, `updated_at`)
+INSERT INTO `_heroes` (`id`, `name`, `description`, `avatar_url`, `header_url`, `is_active`, `created_at`, `updated_at`)
 VALUES
-(1, 'Scooby Doo', TRUE, 'heroes/1-avatar.jpg', 'heroes/1-header.jpg', 'heroes/1-left-box.jpg', 'heroes/1-middle-box.jpg', 'heroes/1-video.mp4', '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
-(2, 'LEGO Ninjago', TRUE, 'heroes/2-avatar.jpg', 'heroes/2-header.jpg', 'heroes/2-left-box.jpg', 'heroes/2-middle-box.jpg', 'heroes/2-video.mp4', '2018-01-31 00:00:00', '2018-01-31 00:00:00');
+(1, 'Scooby Doo', 'Opis Scoobiego Doo', '/uploads/heroes-1-avatar.jpg', '/uploads/heroes-1-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(2, 'LEGO Ninjago', 'Opis LEGO Ninjago', '/uploads/heroes-2-avatar.jpg', '/uploads/heroes-2-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(3, 'LEGO Batman', 'Opis LEGO Batmana', '/uploads/heroes-3-avatar.jpg', '/uploads/heroes-3-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(4, 'Dragons', 'Opis Dragons', '/uploads/heroes-4-avatar.jpg', '/uploads/heroes-4-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(5, 'LEGO Elves', 'Opis LEGO Elves', '/uploads/heroes-5-avatar.jpg', '/uploads/heroes-5-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(6, 'LEGO City', 'Opis LEGO City', '/uploads/heroes-6-avatar.jpg', '/uploads/heroes-6-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(7, 'Safiras', 'Opis Safiras', '/uploads/heroes-7-avatar.jpg', '/uploads/heroes-7-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(8, 'Magic Stars', 'Opis Magic Stars', '/uploads/heroes-8-avatar.jpg', '/uploads/heroes-8-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
+(9, 'LEGO Nexo Knights', 'Opis Nexo Knights', '/uploads/heroes-9-avatar.jpg', '/uploads/heroes-9-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00');
 
 TRUNCATE TABLE `_contest_prizes`;
 INSERT INTO `_contest_prizes` (`id`, `contest_id`, `prize_sponsor_id`, `name`, `image_url`)
