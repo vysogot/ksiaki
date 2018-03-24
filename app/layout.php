@@ -8,10 +8,12 @@
     <?php $background = get_background(); ?>
     <style>
       html {
-        background: url('<?= $background->image_url ?>');
-        background-color: <?= $background->background_color ?>;
-        background-position: top;
-        background-repeat: no-repeat;
+        background: white url('/assets/images/loading.gif') center 10% no-repeat;
+      }
+
+      body {
+        visibility: hidden;
+        background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat;
       }
 
       .slick-prev:before,
@@ -25,7 +27,7 @@
       .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
     </style>
 </head>
-<body class="invisible">
+<body>
   <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
   <header>
     <div class="wrapper">
@@ -108,14 +110,14 @@
     <script src="/assets/js/app.js" type="text/javascript" charset="utf-8"></script>
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
 
-    <script>$(document).on('ready', function() { $(document.body).removeClass('invisible'); });</script>
     <noscript>
       <style>
-        .invisible { visibility: visible; }
+        body{ visibility: visible; }
         header, main, footer { display: none; }
       </style>
 
       <h1><?= t('turn_on_javascript') ?></h1>
     </noscript>
+    <script>$(document).on('ready', function() { $(document.body).css('visibility', 'visible'); });</script>
   </body>
   </html>
