@@ -15,8 +15,15 @@
   </div>
 
   <div>
+    <label for="box_url"><?= t('box_url') ?></label>
+    <input id="box_url" name="box_url" type="text" value="<?= $data->box_url ?>">
+    <input id="box_file" name="box_file" type="file">
+  </div>
+
+  <div>
     <label for="header_url"><?= t('header_url') ?></label>
-    <input id="header_url" name="header_url" type="file" value="<?= $data->header_url ?>">
+    <input id="header_url" name="header_url" type="text" value="<?= $data->header_url ?>">
+    <input id="header_file" name="header_file" type="file">
   </div>
 
   <div>

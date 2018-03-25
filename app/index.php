@@ -23,6 +23,10 @@ $data['heroes'] = execute('call sp_heroes_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
+function meta() { ?>
+  <style> main { padding-top: 0!important; } </style>
+<?php }
+
 function content($params, $data) { ?>
 
 <div class="wrapper">

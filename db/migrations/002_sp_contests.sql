@@ -13,6 +13,7 @@ SELECT 0 AS id
 , 0 AS contest_type_id
 , '' AS name
 , '' AS description
+, '' AS box_url
 , '' AS header_url
 , NOW() AS begins_at
 , DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at
@@ -28,6 +29,7 @@ SELECT id
 , contest_type_id
 , name
 , description
+, box_url
 , header_url
 , begins_at
 , ends_at
@@ -39,7 +41,7 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_all`(IN `p_id` INT
-	, IN `p_name` VARCHAR(50)
+	, IN `p_name` VARCHAR(255)
 	, IN `p_offset` INT
 	, IN `p_limit` INT
 )
@@ -49,6 +51,7 @@ SELECT id
 , contest_type_id
 , name
 , description
+, box_url
 , header_url
 , begins_at
 , ends_at
@@ -65,9 +68,10 @@ DELIMITER $$
 CREATE PROCEDURE `sp_contests_create`(
 	IN `p_game_id` INT,
 	IN `p_contest_type_id` INT,
-	IN `p_name` VARCHAR(50),
-	IN `p_description` VARCHAR(50),
-	IN `p_header_url` VARCHAR(50),
+	IN `p_name` VARCHAR(255),
+	IN `p_description` text,
+	IN `p_box_url` VARCHAR(255),
+	IN `p_header_url` VARCHAR(255),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
 	IN `p_display_ad` TINYINT(4)
@@ -78,6 +82,7 @@ BEGIN
 		, contest_type_id
 		, name
 		, description
+		, box_url
 		, header_url
 		, begins_at
 		, ends_at
@@ -87,6 +92,7 @@ BEGIN
 		p_contest_type_id,
 		p_name,
 		p_description,
+		p_box_url,
 		p_header_url,
 		p_begins_at,
 		p_ends_at,
@@ -101,9 +107,10 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_id` INT,
 	IN `p_game_id` INT,
 	IN `p_contest_type_id` INT,
-	IN `p_name` VARCHAR(50),
-	IN `p_description` VARCHAR(50),
-	IN `p_header_url` VARCHAR(50),
+	IN `p_name` VARCHAR(255),
+	IN `p_description` text,
+	IN `p_box_url` VARCHAR(255),
+	IN `p_header_url` VARCHAR(255),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
 	IN `p_display_ad` TINYINT(4)
@@ -113,7 +120,8 @@ UPDATE _contests
 SET game_id = p_game_id
 	, contest_type_id = p_contest_type_id
 	, name = p_name
-	, `description` = p_description
+	, description = p_description
+	, box_url = p_box_url
 	, header_url = p_header_url
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at

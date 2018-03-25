@@ -38,6 +38,7 @@ $translations = [
   'game' => 'Gra',
   'rankings' => 'Rankingi',
   'monthly_ranking' => 'Ranking miesięczny',
+  'yearly_ranking' => 'Ranking roczny',
 
   // downloads
 

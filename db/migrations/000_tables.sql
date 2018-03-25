@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
  `contest_type_id` int unsigned NOT NULL,
  `name` varchar(255),
  `description` text,
+ `box_url` varchar(255),
  `header_url` varchar(255),
  `begins_at` datetime,
  `ends_at` datetime,

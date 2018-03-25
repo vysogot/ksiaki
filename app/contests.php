@@ -26,41 +26,51 @@ $data = execute('call sp_contests_all(
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <div class="left-sidebar">
-    <aside class="month-rank">
-      <h2><?= t('monthly_ranking') ?></h2>
-      <ol>
-        <li>Kawazmlekiem</li>
-        <li>Szija26</li>
-        <li>ilovelego</li>
-        <li>smerfetka</li>
-        <li>Ewelina Ratajczak</li>
-        <li>basiaJ</li>
-        <li>ajanga</li>
-        <li>mario75</li>
-        <li>lottainaczejkar...</li>
-        <li>lusia44</li>
-      </ol>
-    </aside>
+  <h2 class="hidden"><?= t('contests') ?></h2>
+
+  <div class="left-sidebar rankings">
+    <h2><?= t('monthly_ranking') ?></h2>
+    <ol>
+      <li>Kawazmlekiem</li>
+      <li>Szija26</li>
+      <li>ilovelego</li>
+      <li>smerfetka</li>
+      <li>Ewelina Ratajczak</li>
+      <li>basiaJ</li>
+      <li>ajanga</li>
+      <li>mario75</li>
+      <li>lottainaczejkar...</li>
+      <li>lusia44</li>
+    </ol>
+
+    <h2><?= t('yearly_ranking') ?></h2>
+    <ol>
+      <li>Ewelina Ratajczak</li>
+      <li>basiaJ</li>
+      <li>ajanga</li>
+      <li>mario75</li>
+      <li>lottainaczejkar...</li>
+      <li>lusia44</li>
+      <li>Kawazmlekiem</li>
+      <li>Szija26</li>
+      <li>ilovelego</li>
+      <li>smerfetka</li>
+    </ol>
   </div>
 
   <div class="main-area">
-    <h2><?= t('play_and_win') ?></h2>
-    <h3><?= t('contests_slogan') ?></h3>
-    <ul class="bare left contests">
+    <div class="boxes">
     <?php foreach($data as $contest) { ?>
-      <li>
-        <div>
-          <img src="/uploads/contest-single.jpg">
-          <?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?>
-        </div>
-      </li>
+      <div class="left box">
+        <?= link_to("<img src='$contest->box_url'>", "/contests/show.php?id=$contest->id") ?>
+        <p><?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?></p>
+      </div>
     <?php } ?>
-    </ul>
+    </div>
   </div>
 
   <div class="right-sidebar">
-    <img src="/uploads/contest-ad.jpg">
+    <img class="ad" src="/uploads/sky-ad.jpg">
   </div>
 </div>
 
