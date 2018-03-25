@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
 
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (
- `id` int NOT NULL AUTO_INCREMENT,
+ `id` int unsigned NOT NULL AUTO_INCREMENT,
  `role_id` tinyint(1) NOT NULL DEFAULT '1',
  `session_id` varchar(255),
  `name` varchar(255) NOT NULL,
@@ -224,5 +224,26 @@ CREATE TABLE `remembered_logins` (
  KEY `user_id` (`user_id`),
  CONSTRAINT `remembered_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Zapamiętane loginy';
+
+/* Archiwum punktów */
+CREATE TABLE `score_games_archive` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`contest_id` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`level` INT(11) NULL DEFAULT NULL,
+	`begins_at` DATETIME NULL DEFAULT NULL,
+	`ends_at` DATETIME NULL DEFAULT NULL,
+	`points` INT(11) NULL DEFAULT NULL,
+	`points_total` INT(11) NULL DEFAULT NULL,
+	`deleted` TINYINT(4) NULL DEFAULT '0',
+	`inserted` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COMMENT='Archiwum punktów zdobytych w danej grze w danym konkursie na danym poziomie'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=15323
+;
+
 
 SELECT 1;
