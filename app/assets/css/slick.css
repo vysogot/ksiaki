@@ -233,7 +233,8 @@
 .boxes .slick-slide {
   width: 220px;
   height: 260px;
-  margin-right: 21px;
+  margin-left: 9px;
+  margin-right: 10px;
   background: white;
 }
 
@@ -243,7 +244,8 @@
 }
 
 .boxes .slick-slide p { color: black; }
-#heroes .slick-list.draggable, .boxes .slick-list.draggable { padding: 20px 0!important; }
+#heroes .slick-list.draggable { padding: 20px 0!important; }
+.boxes .slick-list.draggable { padding: 20px 10px!important; }
 
 #heroes .slick-slide.expanded {
   transition: transform .2s; /* Animation */

@@ -54,15 +54,15 @@
             </li>
               <?php if (current_user()) { ?>
                 <li class="right">
-                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
+                  <?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?>
                 </li>
                 <?php if (is_admin()) { ?>
                   <li class="right">
-                    <?= link_to(t('admin_panel'), '/admin/contests.php') ?>
+                    <?= link_to(t('admin_panel'), '/admin/contests.php', ['id' => 'menu-admin']) ?>
                   </li>
                 <?php } ?>
                 <li class="right">
-                  <?= link_to(t('logout'), '/logout.php') ?>
+                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
                 </li>
               <?php } else { ?>
                 <li class="right">

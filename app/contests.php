@@ -26,55 +26,42 @@ $data = execute('call sp_contests_all(
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <section id="contests-page">
-    <div class="left-sidebar">
-      <aside class="month-rank">
-        <h2><?= t('monthly_ranking') ?></h2>
-        <ol>
-          <li>Kawazmlekiem</li>
-          <li>Szija26</li>
-          <li>ilovelego</li>
-          <li>smerfetka</li>
-          <li>Ewelina Ratajczak</li>
-          <li>basiaJ</li>
-          <li>ajanga</li>
-          <li>mario75</li>
-          <li>lottainaczejkar...</li>
-          <li>lusia44</li>
-        </ol>
-      </aside>
+  <div class="left-sidebar">
+    <aside class="month-rank">
+      <h2><?= t('monthly_ranking') ?></h2>
+      <ol>
+        <li>Kawazmlekiem</li>
+        <li>Szija26</li>
+        <li>ilovelego</li>
+        <li>smerfetka</li>
+        <li>Ewelina Ratajczak</li>
+        <li>basiaJ</li>
+        <li>ajanga</li>
+        <li>mario75</li>
+        <li>lottainaczejkar...</li>
+        <li>lusia44</li>
+      </ol>
+    </aside>
+  </div>
 
-      <aside class="quiz">
-        <h2><?= t('quiz') ?></h2>
-        <h3>Włoskie miasto, słynne z krzywej wieży to:</h3>
-        <ul>
-          <li>Odpowiedź 1</li>
-          <li>Odpowiedź 1</li>
-          <li>Odpowiedź 1</li>
-        </ul>
-        <?= link_to(t('answer'), '#') ?>
-      </aside>
-    </div>
+  <div class="main-area">
+    <h2><?= t('play_and_win') ?></h2>
+    <h3><?= t('contests_slogan') ?></h3>
+    <ul class="bare left contests">
+    <?php foreach($data as $contest) { ?>
+      <li>
+        <div>
+          <img src="/uploads/contest-single.jpg">
+          <?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?>
+        </div>
+      </li>
+    <?php } ?>
+    </ul>
+  </div>
 
-    <div class="main-area">
-      <h2><?= t('play_and_win') ?></h2>
-      <h3><?= t('contests_slogan') ?></h3>
-      <ul class="bare left contests">
-      <?php foreach($data as $contest) { ?>
-        <li>
-          <div>
-            <img src="/assets/images/contest-single.jpg">
-            <?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?>
-          </div>
-        </li>
-      <?php } ?>
-      </ul>
-    </div>
-
-    <div class="right-sidebar">
-      <img src="/assets/images/contest-ad.jpg">
-    </div>
-  </section>
+  <div class="right-sidebar">
+    <img src="/uploads/contest-ad.jpg">
+  </div>
 </div>
 
 <?php }
