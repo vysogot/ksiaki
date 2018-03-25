@@ -5,4 +5,4 @@
 /vendor/
 # don't commit files
 /composer.lock
-/.DS_Store
+.DS_Store

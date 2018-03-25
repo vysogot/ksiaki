@@ -11,7 +11,7 @@ html, body {
 header { margin-top: 5px; min-height: 150px; overflow: visible; }
 nav    { margin: 15px auto 0px; background: white; opacity: 0.8; }
 header, nav, main, footer, .wrapper-full  { width: 100%; clear: both; }
-main { min-height: 100vh; }
+main { min-height: 100vh; padding-top: 10px; }
 
 .wrapper      { width: 960px; }
 /* .wrapper-ears { width: 1440px; } - for the sky banners */
@@ -66,12 +66,18 @@ ul.bare { padding: 0; margin: 0; list-style: none; }
 ul.bare li { float:left; }
 ul.bare li.right { float: right; }
 
-#menu-home     { background: white url('/assets/images/menu-home.png')     10px 10px no-repeat; }
-#menu-contests { background: white url('/assets/images/menu-contests.png') 10px 10px no-repeat; }
-#menu-download { background: white url('/assets/images/menu-download.png') 10px 10px no-repeat; }
-#menu-login    { background: white url('/assets/images/menu-login.png')    10px 10px no-repeat; }
-#menu-admin    { background: white url('/assets/images/menu-admin.png')    10px no-repeat; }
-#menu-logout   { background: white url('/assets/images/menu-logout.png')   10px 10px no-repeat; }
+#menu-home      { background: white url('/assets/images/menu-home.png')     10px 10px no-repeat; }
+#menu-contests  { background: white url('/assets/images/menu-contests.png') 10px 10px no-repeat; }
+#menu-downloads { background: white url('/assets/images/menu-download.png') 10px 10px no-repeat; }
+#menu-login     { background: white url('/assets/images/menu-login.png')    10px 10px no-repeat; }
+#menu-admin     { background: white url('/assets/images/menu-admin.png')    10px 10px no-repeat; }
+#menu-logout    { background: white url('/assets/images/menu-logout.png')   10px 10px no-repeat; }
+
+#menu-back        { background: white url('/assets/images/menu-back.png')         10px 10px no-repeat; }
+#menu-backgrounds { background: white url('/assets/images/menu-backgrounds.png')  10px 10px no-repeat; }
+#menu-rankings    { background: white url('/assets/images/menu-rankings.png')     10px 10px no-repeat; }
+#menu-users       { background: white url('/assets/images/menu-users.png')        10px 10px no-repeat; }
+#menu-heroes      { background: white url('/assets/images/menu-heroes.png')       10px 10px no-repeat; }
 
 .main-area { width: 610px; }
 .left-sidebar, .right-sidebar { width: 160px; }

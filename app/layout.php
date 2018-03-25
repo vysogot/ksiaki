@@ -50,20 +50,20 @@
               <?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?>
             </li>
             <li>
-              <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-download']) ?>
+              <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-downloads']) ?>
             </li>
               <?php if (current_user()) { ?>
                 <li class="right">
                   <?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?>
+                </li>
+                <li class="right">
+                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
                 </li>
                 <?php if (is_admin()) { ?>
                   <li class="right">
                     <?= link_to(t('admin_panel'), '/admin/contests.php', ['id' => 'menu-admin']) ?>
                   </li>
                 <?php } ?>
-                <li class="right">
-                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
-                </li>
               <?php } else { ?>
                 <li class="right">
                   <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>

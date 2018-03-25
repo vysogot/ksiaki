@@ -24,7 +24,7 @@ if ($post) {
 
     flash('notice', t('login_success'));
     redirect('/');
-  
+
   } else {
 
     $params['errors']['login'] = 'login_failure';
@@ -39,24 +39,24 @@ function content($params, $data) { ?>
 
   <?php require 'partials/errors.php'; ?>
 
-        <h2><?= t('sign_in') ?></h2>
-        <form action="<?= path_to('/login.php') ?>" method="post">
+  <h2><?= t('sign_in') ?></h2>
+  <form action="<?= path_to('/login.php') ?>" method="post">
 
-          <div>
-              <label for="login"><?= t('name_or_email') ?></label>
-              <input id="login" name="login" value="<?= $params['login'] ?>" required autofocus />
-          </div>
+    <div>
+        <label for="login"><?= t('name_or_email') ?></label>
+        <input id="login" name="login" value="<?= $params['login'] ?>" required autofocus />
+    </div>
 
-          <div>
-              <label for="password"><?= t('password') ?></label>
-              <input id="password" type="password" name="password" required />
-          </div>
+    <div>
+        <label for="password"><?= t('password') ?></label>
+        <input id="password" type="password" name="password" required />
+    </div>
 
-          <input type="submit" class="login-submit-button" value="<?= t('log_in') ?>"/>
+    <input type="submit" class="login-submit-button" value="<?= t('log_in') ?>"/>
 
-        </form>
+  </form>
 
-        <?= link_to(t('register'), '/register.php') ?>
+  <?= link_to(t('register'), '/register.php') ?>
 
 </div>
 
