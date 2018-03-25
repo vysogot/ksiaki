@@ -33,7 +33,8 @@ if ($post) {
       :p_header_url,
       :p_begins_at,
       :p_ends_at,
-      :p_display_ad
+      :p_display_ad,
+      :p_is_active
     );', array(
       array('p_id', $params['id'], PDO::PARAM_INT),
       array('p_game_id', $params['game_id'], PDO::PARAM_INT),
@@ -44,7 +45,8 @@ if ($post) {
       array('p_header_url', $params['p_header_url'], PDO::PARAM_STR),
       array('p_begins_at', date('Y-m-d H:i:s', strtotime($params['begins_at'])), PDO::PARAM_STR),
       array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR),
-      array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL)
+      array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL),
+      array('p_is_active', $params['is_active'], PDO::PARAM_BOOL)
     ));
 
     if (!empty($result)) {

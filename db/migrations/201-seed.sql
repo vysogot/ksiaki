@@ -53,10 +53,18 @@ VALUES
 (4, 'rank_konkursiak', 5000, 'rank-konkursiaki.jpg');
 
 TRUNCATE TABLE `_users`;
-INSERT INTO `_users` (`id`, `role_id`, `session_id`, `name`, `email`, `password_hash`, `active`, `activation_hash`, `created_at`, `last_login_at`)
-VALUES
-(1, 1, NULL, 'user', 'demo@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', '0', NULL, NULL, NULL),
-(2, 2, NULL, 'admin', 'demo2@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', '0', NULL, NULL, NULL);
+/* password: 12345678 */
+INSERT INTO `_users` (`id`, `role_id`, `session_id`, `name`, `email`, `password_hash`, `active`, `activation_hash`, `created_at`, `last_login_at`) VALUES
+	(1, 1, NULL, 'user', 	 'demo@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(2, 2, NULL, 'admin',  'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(3, 1, NULL, 'Basia',  'basia@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(4, 1, NULL, 'Stasia', 'stasia@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(5, 1, NULL, 'Krzyś',  'krzys@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(6, 1, NULL, 'Grześ',  'grzes@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(7, 1, NULL, 'Tomek',  'tomek@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(8, 1, NULL, 'Jasia',  'jasia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(9, 1, NULL, 'Zuzia',  'zuzia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(10, 1, NULL, 'Adam',  'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL);
 
 TRUNCATE TABLE `_backgrounds`;
 INSERT INTO `_backgrounds` (`id`, `name`, `image_url`, `link_url`, `background_color`, `details_color`, `is_active`, `begins_at`, `ends_at`, `created_at`, `updated_at`)
@@ -145,18 +153,38 @@ VALUES
 (2, 1, 2, 2, '2018-01-30 00:00:00');
 
 TRUNCATE TABLE `score_games`;
-INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`)
-VALUES
-(1, 1, 1, 1, '2018-01-30 00:00:00', '2018-01-30 00:10:00', 500, 500),
-(2, 1, 1, 2, '2018-01-30 00:11:00', '2018-01-30 00:15:00', 600, 1100),
-(3, 2, 1, 1, '2018-01-30 00:05:00', '2018-01-30 00:14:00', 550, 550),
-(4, 2, 1, 2, '2018-01-30 00:16:00', '2018-01-30 00:25:00', 1600, 2150);
+INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`) VALUES
+	(1, 1, 1,   1, '2012-10-03 19:44:24', '2012-10-03 19:54:24', 5, 5),
+	(2, 1, 1,   2, '2012-09-20 17:06:07', '2012-09-20 17:16:07', 7, 12),
+	(3, 2, 2,   1, '2012-09-12 13:03:53', '2012-09-12 13:13:53', 4, 4),
+	(4, 3, 2,   1, '2012-09-07 13:05:01', '2012-09-07 13:08:01', 8, 8),
+	(5, 3, 1,   1, '2012-09-20 10:52:29', '2012-09-20 10:59:29', 2, 2),
+	(6, 3, 1,   2, '2012-09-20 15:31:22', '2012-09-20 15:36:22', 15, 17),
+	(7, 3, 3,   1, '2012-09-20 15:31:20', '2012-09-20 15:41:20', 6, 6),
+	(8, 4, 3,   1, '2012-09-20 15:39:27', '2012-09-20 15:59:27', 5, 5),
+	(9, 5, 3,   1, '2014-10-01 12:02:06', '2014-10-01 12:06:06', 24, 24),
+	(10, 6, 3,  1, '2012-12-31 16:42:50', '2012-12-31 16:49:50', 1, 1),
+	(11, 6, 1,  1, '2014-10-01 12:03:06', '2014-10-01 12:06:06', 0, 0),
+	(12, 6, 1,  2, '2017-09-30 08:00:39', '2017-09-30 08:10:39', 99, 99),
+	(13, 6, 4,  1, '2014-10-01 12:01:06', '2014-10-01 12:06:06', 11, 11),
+	(14, 7, 4,  1, '2014-10-01 12:03:06', '2014-10-01 12:06:06', 14, 14),
+	(15, 7, 5,  1, '2012-12-31 16:20:29', '2012-12-31 16:50:29', 25, 25),
+	(16, 8, 6,  1, '2015-08-04 15:14:58', '2015-08-04 15:34:58', 44, 44),
+	(17, 9, 6,  1, '2012-12-31 16:10:41', '2012-12-31 16:50:41', 29, 29),
+	(18, 10, 1, 1, '2014-10-01 12:03:06', '2014-10-01 12:06:06', 12, 12),
+	(19, 10, 2, 1, '2014-10-01 12:03:06', '2014-10-01 12:06:06', 11, 11),
+	(20, 10, 3, 1, '2012-12-31 16:21:15', '2012-12-31 16:51:15', 18, 18),
+	(21, 10, 4, 1, '2012-12-31 16:41:36', '2012-12-31 16:51:36', 17, 17),
+	(22, 10, 5, 1, '2017-08-02 18:35:29', '2017-08-02 18:36:29', 22, 22),
+	(23, 10, 6, 1, '2017-08-02 18:34:18', '2017-08-02 18:36:18', 16, 16),
+	(24, 10, 6, 2, '2015-09-21 11:41:46', '2015-09-21 11:42:46', 54, 70),
+	(25, 10, 6, 3, '2014-03-26 13:32:57', '2014-03-26 13:37:57', 30, 100);
 
 TRUNCATE TABLE `score_contests`;
-INSERT INTO `score_contests` (`id`, `user_id`, `contest_id`, `place`, `points`, `given_at`)
+/*INSERT INTO `score_contests` (`id`, `user_id`, `contest_id`, `place`, `points`, `given_at`)
 VALUES
 (1, 1, 1, 2, 99, '2018-02-28 00:00:00'),
-(2, 2, 1, 1, 100, '2018-02-28 00:00:00');
+(2, 2, 1, 1, 100, '2018-02-28 00:00:00');*/
 
 SET FOREIGN_KEY_CHECKS = 1;
 

@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
-TRUNCATE TABLE def_contest_places; 
+
+TRUNCATE TABLE def_contest_places;
 INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `points`) VALUES
 	(232, 1, NULL, 1, 100),
 	(233, 1, NULL, 2, 99),
@@ -301,5 +302,6 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 	(556, 2, NULL, 198, 3),
 	(557, 2, NULL, 199, 2),
 	(558, 2, NULL, 200, 1);
+
 SET FOREIGN_KEY_CHECKS = 1;
 SELECT 1;

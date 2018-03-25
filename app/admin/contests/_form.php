@@ -59,6 +59,12 @@
     <input id="display_ad" type="checkbox" name="display_ad" value="1" <?php if ($data->display_ad == 1) echo "checked" ?> >
   </div>
 
+  <div>
+    <label for="is_active"><?= t('is_active') ?></label>
+    <input type="hidden" name="is_active" value="0">
+    <input id="is_active" type="checkbox" name="is_active" value="1" <?php if ($data->is_active == 1) echo "checked" ?> >
+  </div>
+
 </form>
 
 <button type="submit" form="contest" value="Wyślij">Wyślij</button>

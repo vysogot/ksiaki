@@ -17,7 +17,8 @@ SELECT 0 AS id
 , '' AS header_url
 , NOW() AS begins_at
 , DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at
-, 1 AS display_ad;
+, 1 AS display_ad
+, 1 AS is_active;
 END$$
 DELIMITER ;
 
@@ -34,6 +35,7 @@ SELECT id
 , begins_at
 , ends_at
 , display_ad
+, is_active
 FROM _contests
 WHERE (id = p_id);
 END$$
@@ -56,6 +58,7 @@ SELECT id
 , begins_at
 , ends_at
 , display_ad
+, is_active
 FROM _contests
 WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
 AND name = CASE WHEN p_name IS NULL THEN name ELSE p_name END
@@ -74,7 +77,8 @@ CREATE PROCEDURE `sp_contests_create`(
 	IN `p_header_url` VARCHAR(255),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
-	IN `p_display_ad` TINYINT(4)
+	IN `p_display_ad` TINYINT(1),
+	IN `p_is_active` TINYINT(1)
 )
 BEGIN
 	INSERT INTO _contests(
@@ -87,6 +91,7 @@ BEGIN
 		, begins_at
 		, ends_at
 		, display_ad
+		, is_active
 	) VALUES(
 		p_game_id,
 		p_contest_type_id,
@@ -96,7 +101,8 @@ BEGIN
 		p_header_url,
 		p_begins_at,
 		p_ends_at,
-		p_display_ad
+		p_display_ad,
+		p_is_active
 	);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
@@ -113,7 +119,8 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_header_url` VARCHAR(255),
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
-	IN `p_display_ad` TINYINT(4)
+	IN `p_display_ad` TINYINT(1),
+	IN `p_is_active` TINYINT(1)
 )
 BEGIN
 UPDATE _contests
@@ -126,6 +133,7 @@ SET game_id = p_game_id
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at
   , display_ad = p_display_ad
+	, is_active = p_is_active
 WHERE (id = p_id);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
