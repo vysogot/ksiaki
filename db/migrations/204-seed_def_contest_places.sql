@@ -103,10 +103,6 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 	(102, 1, NULL, 98, 3),
 	(103, 1, NULL, 99, 2),
 	(104, 1, NULL, 100, 1);
-<<<<<<< HEAD
-SET FOREIGN_KEY_CHECKS = 0;
-=======
-SET FOREIGN_KEY_CHECKS = 1;
 
->>>>>>> fix migrations
+SET FOREIGN_KEY_CHECKS = 1;
 SELECT 1;
