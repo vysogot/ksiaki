@@ -302,3 +302,4 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 	(557, 2, NULL, 199, 2),
 	(558, 2, NULL, 200, 1);
 SET FOREIGN_KEY_CHECKS = 1;
+SELECT 1;
