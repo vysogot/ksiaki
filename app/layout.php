@@ -102,7 +102,7 @@
     </footer>
 
     <link rel="stylesheet" type="text/css" href="/assets/css/slick.css?v=<?= filemtime(realpath(__DIR__ . '/assets/css/slick.css')) ?>" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?= filemtime(realpath(__DIR__ . 'assets/css/style.css')) ?>" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?= filemtime(realpath(__DIR__ . '/assets/css/style.css')) ?>" />
 
     <script src="/assets/js/jquery-1.11.0.min.js" type="text/javascript"></script>
     <script src="/assets/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
