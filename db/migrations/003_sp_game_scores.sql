@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS sp_game_scores_create;
+DROP PROCEDURE IF EXISTS sp_score_games_create;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_game_scores_create`(
+CREATE PROCEDURE `sp_score_games_create`(
 	IN `p_user_id` INT,
 	IN `p_contest_id` INT,
 	IN `p_level` INT,
@@ -11,7 +11,7 @@ CREATE PROCEDURE `sp_game_scores_create`(
 	IN `p_points_total` INT
 )
 BEGIN
-	INSERT INTO game_scores(
+	INSERT INTO score_games(
 		user_id,
 		contest_id,
 		level,

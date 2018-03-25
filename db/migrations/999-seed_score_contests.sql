@@ -104,3 +104,5 @@ INSERT INTO `score_contests` (`id`, `user_id`, `contest_id`, `place`, `points`, 
 	(863, 43161, 1, 99, 2, '2018-03-13 16:23:25'),
 	(864, 43440, 1, 100, 1, '2018-03-13 16:23:25');
 SET FOREIGN_KEY_CHECKS = 1;
+
+SELECT 1;

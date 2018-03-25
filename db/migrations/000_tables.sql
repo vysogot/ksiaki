@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `score_contests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty przyznane za miejsce w konkursie';
 
 /* Punkty zdobyte w danej grze w danym konkursie na danym poziomie */
-CREATE TABLE IF NOT EXISTS `game_scores` (
+CREATE TABLE IF NOT EXISTS `score_games` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `user_id` int unsigned,
  `contest_id` int unsigned,
@@ -219,11 +219,9 @@ CREATE TABLE IF NOT EXISTS `static_sites` (
 
 CREATE TABLE `remembered_logins` (
  `token_hash` varchar(255) NOT NULL,
- `user_id` int(11) NOT NULL,
+ `user_id` int(11) unsigned NOT NULL,
  `expires_at` datetime NOT NULL,
- PRIMARY KEY (`token_hash`),
- KEY `user_id` (`user_id`),
- CONSTRAINT `remembered_logins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+ PRIMARY KEY (`token_hash`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Zapamiętane loginy';
 
 /* Archiwum punktów */
@@ -244,6 +242,20 @@ COMMENT='Archiwum punktów zdobytych w danej grze w danym konkursie na danym poz
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=15323
+;
+
+CREATE TABLE `user_badges` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+	`badge_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+	`given_at` DATETIME NULL DEFAULT NULL,
+	`inserted_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COMMENT='Tabela odznak użytkownika'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=33
 ;
 
 

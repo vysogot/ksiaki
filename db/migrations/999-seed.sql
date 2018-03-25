@@ -144,15 +144,15 @@ VALUES
 (1, 1, 1, 2, '2018-01-31 00:00:00'),
 (2, 1, 2, 2, '2018-01-30 00:00:00');
 
-TRUNCATE TABLE `game_scores`;
-INSERT INTO `game_scores` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`)
+TRUNCATE TABLE `score_games`;
+INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`)
 VALUES
 (1, 1, 1, 1, '2018-01-30 00:00:00', '2018-01-30 00:10:00', 500, 500),
 (2, 1, 1, 2, '2018-01-30 00:11:00', '2018-01-30 00:15:00', 600, 1100),
 (3, 2, 1, 1, '2018-01-30 00:05:00', '2018-01-30 00:14:00', 550, 550),
 (4, 2, 1, 2, '2018-01-30 00:16:00', '2018-01-30 00:25:00', 1600, 2150);
 
-TRUNCATE TABLE `game_scores`;
+TRUNCATE TABLE `score_contests`;
 INSERT INTO `score_contests` (`id`, `user_id`, `contest_id`, `place`, `points`, `given_at`)
 VALUES
 (1, 1, 1, 2, 99, '2018-02-28 00:00:00'),

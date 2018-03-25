@@ -12,3 +12,5 @@ ALTER TABLE `score_pointed_activities` ADD CONSTRAINT `FK_score_pointed_activiti
 ALTER TABLE `score_quizes` ADD CONSTRAINT `FK_score_quizes__users` FOREIGN KEY (`user_id`) REFERENCES `_users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `user_badges` ADD CONSTRAINT `FK_user_badges__users` FOREIGN KEY (`user_id`) REFERENCES `_users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `user_badges` ADD CONSTRAINT `FK_user_badges_def_badges` FOREIGN KEY (`badge_id`) REFERENCES `def_badges` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+SELECT 1;
