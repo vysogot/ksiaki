@@ -9,7 +9,7 @@ DROP PROCEDURE IF EXISTS sp_backgrounds_get;
 DELIMITER $$
 CREATE PROCEDURE `sp_backgrounds_get`()
 BEGIN
-SELECT image_url
+SELECT image_url, background_color, details_color, link_url
 FROM _backgrounds
 WHERE is_active
 AND NOW() BETWEEN begins_at AND ends_at;
@@ -21,8 +21,10 @@ CREATE PROCEDURE `sp_backgrounds_new`()
 BEGIN
 SELECT 0 AS id
 , '' AS name
-, '' AS image_url
-, '' AS link_url
+, '/uploads/background-1.jpg' AS image_url
+, 'https://konkursiaki.pl' AS link_url
+, '#ffffff' AS background_color
+, '#000000' details_color
 , 1 AS is_active
 , NOW() AS begins_at
 , DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at;
@@ -36,6 +38,8 @@ SELECT id
 , name
 , image_url
 , link_url
+, background_color
+, details_color
 , is_active
 , begins_at
 , ends_at
@@ -56,6 +60,8 @@ SELECT id
 , name
 , image_url
 , link_url
+, background_color
+, details_color
 , is_active
 , begins_at
 , ends_at
@@ -73,6 +79,8 @@ CREATE PROCEDURE `sp_backgrounds_create`(
   IN `p_name` VARCHAR(255),
 	IN `p_image_url` VARCHAR(255),
 	IN `p_link_url` VARCHAR(255),
+  IN `p_background_color` VARCHAR(255),
+  IN `p_details_color` VARCHAR(255),
 	IN `p_is_active` INT,
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME
@@ -82,6 +90,8 @@ BEGIN
     name
     , image_url
     , link_url
+    , background_color
+    , details_color
     , is_active
     , begins_at
     , ends_at
@@ -89,6 +99,8 @@ BEGIN
 		p_name,
 		p_image_url,
 		p_link_url,
+    p_background_color,
+    p_details_color,
 		p_is_active,
 		p_begins_at,
 		p_ends_at
@@ -103,6 +115,8 @@ CREATE PROCEDURE `sp_backgrounds_update`(
   IN `p_name` VARCHAR(255),
 	IN `p_image_url` VARCHAR(255),
 	IN `p_link_url` VARCHAR(255),
+  IN `p_background_color` VARCHAR(255),
+  IN `p_details_color` VARCHAR(255),
 	IN `p_is_active` INT,
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME
@@ -112,6 +126,8 @@ UPDATE _backgrounds
 SET name = p_name
 	, image_url = p_image_url
 	, link_url = p_link_url
+  , background_color = p_background_color
+	, details_color = p_details_color
 	, is_active = p_is_active
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at

@@ -13,7 +13,9 @@ session_destroy();
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <h2><?= t('logged_out_safely') ?></h2>
+  <div class="main-area">
+    <h2><?= t('logged_out_safely') ?></h2>
+  </div>
 </div>
 
 <?php }

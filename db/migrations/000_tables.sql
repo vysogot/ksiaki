@@ -64,6 +64,8 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
  `name` varchar(255),
  `image_url` varchar(255),
  `link_url` varchar(255),
+ `background_color` varchar(255),
+ `details_color` varchar(255),
  `is_active` tinyint(1),
  `begins_at` datetime,
  `ends_at` datetime,
@@ -76,12 +78,10 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
 CREATE TABLE IF NOT EXISTS `_heroes` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `name` varchar(255),
- `is_active` tinyint(1),
+ `description` text,
  `avatar_url` varchar(255),
  `header_url` varchar(255),
- `left_box_url` varchar(255),
- `middle_box_url` varchar(255),
- `video_url` varchar(255),
+ `is_active` tinyint(1),
  `created_at` datetime,
  `updated_at` datetime,
  PRIMARY KEY (`id`)

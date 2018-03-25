@@ -66,6 +66,7 @@ $translations = [
   'users' => 'Users',
   'background' => 'Background',
   'backgrounds' => 'Backgrounds',
+  'heroes' => 'Heroes',
 
   // data
 

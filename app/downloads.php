@@ -5,7 +5,6 @@ require 'init.php';
 function content($params, $data) { ?>
 
 <div class="wrapper">
-<div id="download-page">
   <div class="left-sidebar">
     <div class="quiz">
       <h2><?= t('quiz') ?></h2>
@@ -39,7 +38,6 @@ function content($params, $data) { ?>
   <div class="right-sidebar">
     <img src="/assets/images/contest-ad.jpg">
   </div>
-</div>
 </div>
 
 

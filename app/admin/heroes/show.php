@@ -1,0 +1,33 @@
+<?php
+
+require '../init.php';
+
+$params = [
+  'id' => null
+];
+
+$params = array_merge($params, $_GET);
+
+$data = execute('call sp_heroes_find(:p_id);', array(
+  array('p_id', $params['id'], PDO::PARAM_INT)
+));
+
+function content($params, $data) { ?>
+
+  <div class="wrapper">
+
+    <h2><?= t('hero') ?></h2>
+
+    <?= link_to(t('heroes'), '/admin/heroes.php') ?>
+
+    <?php foreach($data as $key => $value) { ?>
+      <p><b><?= e($key) ?>:</b> <?= e($value) ?></p>
+    <?php } ?>
+
+    <?= link_to(t('edit'), "/admin/heroes/edit.php?id=$data->id") ?> |
+    <?= link_to(t('delete'), "/admin/heroes/delete.php?id=$data->id", ['class' => 'confirmation']) ?>
+  </div>
+
+<?php }
+
+require '../layout.php';

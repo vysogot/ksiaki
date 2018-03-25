@@ -11,7 +11,7 @@ $translations = [
   'downloads' => 'Pobrania',
   'login' => 'Zaloguj się',
   'dashboard' => 'Twoje konto',
-  'admin_panel' => 'Panel administracyjny',
+  'admin_panel' => 'Admin',
 
   // index
 
@@ -66,6 +66,7 @@ $translations = [
   'users' => 'Użytkownicy',
   'background' => 'Tło',
   'backgrounds' => 'Tła',
+  'heroes' => 'Bohaterowie',
 
   // data
 

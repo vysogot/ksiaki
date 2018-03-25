@@ -2,17 +2,26 @@
 
 require 'init.php';
 
-function meta() { ?>
-  <link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css" />
-<?php }
+$params = [
+  "id" => null,
+  "name" => null,
+  "offset" => 0,
+  "limit" => 50
+];
 
-function before_body_close() { ?>
+$params = array_merge($params, $_GET);
 
-<script src="/assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
-<script src="/assets/js/sliders.js" type="text/javascript" charset="utf-8"></script>
-
-<?php }
+$data['heroes'] = execute('call sp_heroes_all(
+  :p_id,
+  :p_name,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_id', $params['id'], PDO::PARAM_INT),
+  array('p_name', $params['name'], PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
 
 function content($params, $data) { ?>
 
@@ -20,12 +29,13 @@ function content($params, $data) { ?>
   <div class="wrapper">
   <section id="heroes">
     <div id="heroes-slider">
-      <div><img src="/assets/images/hero-1.png"></div>
-      <div><img src="/assets/images/hero-2.png"></div>
-      <div><img src="/assets/images/hero-1.png"></div>
-      <div><img src="/assets/images/hero-2.png"></div>
-      <div><img src="/assets/images/hero-1.png"></div>
-      <div><img src="/assets/images/hero-2.png"></div>
+      <?php foreach($data['heroes'] as $hero) { ?>
+        <li>
+          <div>
+            <?= link_to("<img src='$hero->avatar_url' title='$hero->name'>", "/heroes/show.php?id=$hero->id") ?>
+          </div>
+        </li>
+      <?php } ?>
     </div>
   </section>
   </div>
@@ -38,63 +48,57 @@ function content($params, $data) { ?>
   <!-- <div class="wrapper left"> -->
 
     <section id="slajder" class="slider">
-      <div><img src="/assets/images/slider-1.jpg" /></div>
-      <div><img src="/assets/images/slider-2.jpg" /></div>
-      <div><img src="/assets/images/slider-3.jpg" /></div>
+      <div><img src="/uploads/slider-1.jpg" /></div>
+      <div><img src="/uploads/slider-2.jpg" /></div>
+      <div><img src="/uploads/slider-3.jpg" /></div>
     </section>
 
-    <section id="player">
-      <video controls poster="/assets/images/slider-1.jpg">
-      <!--<source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm"
-              type='video/webm;codecs="vp8, vorbis"' />
-      <source src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4"
-              type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
-      <track src="https://www.html5rocks.com/en/tutorials/video/basics/devstories-en.vtt" label="English subtitles"
-             kind="subtitles" srclang="en" default />-->
-    </video>
+    <section id="player" class="slider">
+      <div><video controls preload="none" poster="/uploads/movie-1.png" src="uploads/movie-1.mp4"></video></div>
+      <div><video controls preload="none" poster="/uploads/movie-2.png" src="uploads/movie-1.mp4"></video></div>
     </section>
 
     <section id="contests" class="slider">
       <h2><?= t('contests') ?></h2>
-      <div id="contests-slider">
-        <div><img width=240 height=240 src="/assets/images/contest-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-4.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/contest-4.jpg" /></div>
+      <div id="contests-slider" class="boxes">
+        <div><img src="/uploads/box-1.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/uploads/box-2.jpg" /><p>Świetne nagrody!</p></div>
+        <div><img src="/uploads/box-3.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/uploads/box-4.jpg" /><p>Świetne nagrody!</p></div>
+        <div><img src="/uploads/box-3.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/uploads/box-2.jpg" /><p>Cudowny konkurs!</p></div>
+        <div><img src="/uploads/box-1.jpg" /><p>Świetne nagrody!</p></div>
+        <div><img src="/uploads/box-4.jpg" /><p>Cudowny konkurs!</p></div>
       </div>
     </section>
 
 
     <section id="movies">
       <h2><?= t('user_movies') ?></h2>
-      <div id="movies-slider">
-        <div><video width=240 height=240 controls poster="/assets/images/contest-5.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-6.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-7.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-8.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-5.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-6.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-7.jpg"></video></div>
-        <div><video width=240 height=240 controls poster="/assets/images/contest-8.jpg"></video></div>
+      <div id="movies-slider" class="boxes">
+        <div><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
       </div>
     </section>
 
 
     <section id="box-banners">
       <h2><?= t('box_banners') ?></h2>
-      <div id="box-banners-slider">
-        <div><img width=240 height=240 src="/assets/images/box-banner-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-4.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-1.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-2.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-3.jpg" /></div>
-        <div><img width=240 height=240 src="/assets/images/box-banner-4.jpg" /></div>
+      <div id="box-banners-slider" class="boxes">
+        <div><img src="/uploads/box-2.jpg" /><p>Super nagrody!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><img src="/uploads/box-1.jpg" /><p>Super nagrody!</p></div>
+        <div><video controls preload="none" poster="/uploads/box-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+        <div><img src="/uploads/box-4.jpg" /><p>Super nagrody!</p></div>
+        <div><img src="/uploads/box-1.jpg" /><p>Świetne nagrody!</p></div>
+        <div><video controls preload="none" poster="/uploads/box-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><img src="/uploads/box-3.jpg" /><p>Super nagrody!</p></div>
       </div>
     </section>
 
