@@ -32,13 +32,14 @@ $translations = [
 
   'quiz' => 'Quiz',
   'answer' => 'Odpowiedz!',
-  'play_and_win' => 'Graj i wygrywaj!',
+  'other_contests' => 'Sprawdź też inne konkursy!',
   'contests_slogan' => 'Już teraz czekają na Ciebie fantastyczne nagrody oraz tytuł Supergracza. Masz nieograniczoną liczbę podejść, każda próba zwiększa Twoje szanse na wygraną. Nie czekaj! Graj!',
   'play' => 'Graj!',
   'game' => 'Gra',
   'rankings' => 'Rankingi',
   'monthly_ranking' => 'Ranking miesięczny',
   'yearly_ranking' => 'Ranking roczny',
+  'contest_ranking' => 'Ranking konkursu',
 
   // downloads
 

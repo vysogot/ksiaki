@@ -28,7 +28,7 @@ function content($params, $data) { ?>
 <div class="wrapper">
   <h2 class="hidden"><?= t('contests') ?></h2>
 
-  <div class="left-sidebar rankings">
+  <div class="side rankings">
     <h2><?= t('monthly_ranking') ?></h2>
     <ol>
       <li>Kawazmlekiem</li>
@@ -58,18 +58,16 @@ function content($params, $data) { ?>
     </ol>
   </div>
 
-  <div class="main-area">
-    <div class="boxes">
+  <div class="main">
     <?php foreach($data as $contest) { ?>
       <div class="left box">
         <?= link_to("<img src='$contest->box_url'>", "/contests/show.php?id=$contest->id") ?>
         <p><?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?></p>
       </div>
     <?php } ?>
-    </div>
   </div>
 
-  <div class="right-sidebar">
+  <div class="side">
     <img class="ad" src="/uploads/sky-ad.jpg">
   </div>
 </div>

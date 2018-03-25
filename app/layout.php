@@ -21,7 +21,7 @@
         color: <?= $background->details_color ?>!important;
       }
 
-      nav, .ad, .rankings h2, .rankings ol, 
+      nav, .ad, .rankings h2, .rankings ol,
       #banner, #slajder, #player,
       .box, #heroes .slick-slide,
       .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }

@@ -32,12 +32,13 @@ $translations = [
 
   'quiz' => 'Quiz',
   'answer' => 'Answer!',
-  'play_and_win' => 'Play and win!',
+  'other_contests' => 'Check out other contests too!',
   'contests_slogan' => 'Win wonderful prizes!',
   'play' => 'Play!',
   'game' => 'Game',
   'rankings' => 'Rankings',
   'monthly_ranking' => 'Monthly ranking',
+  'contest_ranking' => 'Contest ranking',
 
   // downloads
 
