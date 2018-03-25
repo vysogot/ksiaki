@@ -1,4 +1,4 @@
-﻿SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE def_contest_places;
 INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `points`) VALUES
 	(3, 2, 'contest_places_1st_place', 1, 200),
@@ -103,4 +103,5 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 	(102, 1, NULL, 98, 3),
 	(103, 1, NULL, 99, 2),
 	(104, 1, NULL, 100, 1);
-SET FOREIGN_KEY_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS = 0;
+SELECT 1;
