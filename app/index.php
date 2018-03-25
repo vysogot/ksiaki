@@ -70,8 +70,8 @@ function content($params, $data) { ?>
     </section>
 
     <section id="player" class="slider">
-      <div><video controls preload="none" poster="/uploads/movie-1.png" src="/uploads/movie-1.mp4"></video></div>
-      <div><video controls preload="none" poster="/uploads/movie-2.png" src="/uploads/movie-1.mp4"></video></div>
+      <div><video controls preload="none" poster="/uploads/movie-1.jpg" src="/uploads/movie-1.mp4"></video></div>
+      <div><video controls preload="none" poster="/uploads/movie-2.jpg" src="/uploads/movie-1.mp4"></video></div>
     </section>
 
     <section id="contests" class="slider">
