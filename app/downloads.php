@@ -5,38 +5,28 @@ require 'init.php';
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <div class="left-sidebar">
-    <div class="quiz">
-      <h2><?= t('quiz') ?></h2>
-      <h3>Włoskie miasto, słynne z krzywej wieży to:</h3>
-      <ul>
-        <li>Odpowiedź 1</li>
-        <li>Odpowiedź 1</li>
-        <li>Odpowiedź 1</li>
-      </ul>
-      <a href="#"><?= t('answer') ?></a>
-    </div>
+  <div class="side">
+    <img class="ad" src="/uploads/sky-ad-2.jpg">
   </div>
 
-  <div class="main-area">
-    <div class="download-section">
-      <h2><?= t('videos') ?></h2>
-      <ul class="bare left">
-        <li><div><img src="/assets/images/contest-single.jpg"><a href="/filmy/1">Cryptor</a></div></li>
-        <li><div><img src="/assets/images/contest-single.jpg"><a href="/filmy/2">The story of Morro</a></div></li>
-      </ul>
-    </div>
-    <div class="download-section">
-      <h2><?= t('wallpapers') ?></h2>
-      <ul class="bare left">
-        <li><div><img src="/assets/images/contest-single.jpg"><a href="/tapety/1">Fanaberia</a></div></li>
-        <li><div><img src="/assets/images/contest-single.jpg"><a href="/tapety/2">Energizer</a></div></li>
-      </ul>
-    </div>
+  <div class="main">
+
+    <h2><?= t('videos') ?></h2>
+    <div class="left box"><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+    <div class="left box"><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+    <div class="left box"><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+    <div class="left box"><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+
+    <h2><?= t('wallpapers') ?></h2>
+    <div class="left box"><img src="/uploads/box-1.jpg" /><p>Cudowny konkurs!</p></div>
+    <div class="left box"><img src="/uploads/box-2.jpg" /><p>Świetne nagrody!</p></div>
+    <div class="left box"><img src="/uploads/box-3.jpg" /><p>Cudowny konkurs!</p></div>
+    <div class="left box"><img src="/uploads/box-4.jpg" /><p>Świetne nagrody!</p></div>
+
   </div>
 
-  <div class="right-sidebar">
-    <img src="/assets/images/contest-ad.jpg">
+  <div class="side">
+    <img class="ad" src="/uploads/sky-ad-3.jpg">
   </div>
 </div>
 

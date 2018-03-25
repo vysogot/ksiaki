@@ -11,7 +11,10 @@ html, body {
 header { margin-top: 5px; min-height: 150px; overflow: visible; }
 nav    { margin: 15px auto 0px; background: white; opacity: 0.8; }
 header, nav, main, footer, .wrapper-full  { width: 100%; clear: both; }
-main { min-height: 100vh; padding-top: 10px; }
+main { min-height: 100vh; padding-top: 15px; }
+h2 { line-height: 50px; margin: 0 auto; }
+h2, h3, h4, h5, h6 { padding-left: 10px; }
+video { max-width: 100%; }
 
 .wrapper      { width: 960px; }
 /* .wrapper-ears { width: 1440px; } - for the sky banners */
@@ -20,6 +23,7 @@ main { min-height: 100vh; padding-top: 10px; }
 .center { text-align: center; }
 .clear { clear: both; }
 .left { float: left; }
+.hidden { display: none; }
 
 #logo         { width: 130px; height: 130px; }
 #banner       { width: 830px; height: 130px; overflow: hidden; }
@@ -79,10 +83,14 @@ ul.bare li.right { float: right; }
 #menu-users       { background: white url('/assets/images/menu-users.png')        10px 10px no-repeat; }
 #menu-heroes      { background: white url('/assets/images/menu-heroes.png')       10px 10px no-repeat; }
 
-.main-area { width: 610px; }
-.left-sidebar, .right-sidebar { width: 160px; }
-.left-sidebar, .main-area, .right-sidebar { float: left; }
+.main { width: 480px; }
+.side { width: 240px; }
+.main, .side { float: left; }
 
 .background-link {
   height: 100%; width: 100%; position: fixed; z-index: 1;
 }
+
+.rankings h2 { background: #ddd; color: #333; text-align: left; opacity: 0.8; }
+.rankings ol { background: #fff; text-align: left; margin-top: 0; padding-top: 15px; padding-bottom: 15px; opacity: 0.8; }
+.rankings ol li { line-height: 25px; }

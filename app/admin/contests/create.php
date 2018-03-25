@@ -15,12 +15,21 @@ if ($post) {
 
   if (empty($errors)) {
 
+    if (!empty($_FILES['box_file']['name'])) {
+      $params['box_file'] = file_upload($_FILES['box_file']);
+    }
+
+    if (!empty($_FILES['header_file']['name'])) {
+      $params['header_file'] = file_upload($_FILES['header_file']);
+    }
+
     $result = execute('call sp_contests_create(
       :p_game_id,
       :p_contest_type_id,
       :p_name,
       :p_description,
-      :p_banner_url,
+      :p_box_url,
+      :p_header_url,
       :p_begins_at,
       :p_ends_at,
       :p_display_ad
@@ -29,7 +38,8 @@ if ($post) {
       array('p_contest_type_id', $params['contest_type_id'], PDO::PARAM_INT),
       array('p_name', $params['name'], PDO::PARAM_STR),
       array('p_description', $params['description'], PDO::PARAM_STR),
-      array('p_banner_url', $params['banner_url'], PDO::PARAM_STR),
+      array('p_box_url', $params['box_url'], PDO::PARAM_STR),
+      array('p_header_url', $params['header_url'], PDO::PARAM_STR),
       array('p_begins_at', date('Y-m-d H:i:s', strtotime($params['begins_at'])), PDO::PARAM_STR),
       array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR),
       array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL)

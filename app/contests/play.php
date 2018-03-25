@@ -19,8 +19,9 @@ $data = execute('call sp_games_find(:p_id);', array(
 function content($params, $data) { ?>
 
 <div class="wrapper center">
-  <h2><?= t('game') ?></h2>
+  <img class="ad" src="/uploads/wide-banner.jpg" />
   <iframe style="width: 100%; height: 100vh;" src="/games/<?= $data->name ?>/index.html"></iframe>
+  <img class="ad" src="/uploads/wide-banner-2.jpg" />
 </div>
 
 <?php }

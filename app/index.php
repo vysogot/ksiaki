@@ -23,6 +23,22 @@ $data['heroes'] = execute('call sp_heroes_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
+$data['contests'] = execute('call sp_contests_all(
+  :p_id,
+  :p_name,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_id', $params['id'], PDO::PARAM_INT),
+  array('p_name', $params['name'], PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
+
+function meta() { ?>
+  <style> main { padding-top: 0!important; } </style>
+<?php }
+
 function content($params, $data) { ?>
 
 <div class="wrapper">
@@ -54,21 +70,19 @@ function content($params, $data) { ?>
     </section>
 
     <section id="player" class="slider">
-      <div><video controls preload="none" poster="/uploads/movie-1.png" src="uploads/movie-1.mp4"></video></div>
-      <div><video controls preload="none" poster="/uploads/movie-2.png" src="uploads/movie-1.mp4"></video></div>
+      <div><video controls preload="none" poster="/uploads/movie-1.png" src="/uploads/movie-1.mp4"></video></div>
+      <div><video controls preload="none" poster="/uploads/movie-2.png" src="/uploads/movie-1.mp4"></video></div>
     </section>
 
     <section id="contests" class="slider">
       <h2><?= t('contests') ?></h2>
       <div id="contests-slider" class="boxes">
-        <div><img src="/uploads/box-1.jpg" /><p>Cudowny konkurs!</p></div>
-        <div><img src="/uploads/box-2.jpg" /><p>Świetne nagrody!</p></div>
-        <div><img src="/uploads/box-3.jpg" /><p>Cudowny konkurs!</p></div>
-        <div><img src="/uploads/box-4.jpg" /><p>Świetne nagrody!</p></div>
-        <div><img src="/uploads/box-3.jpg" /><p>Cudowny konkurs!</p></div>
-        <div><img src="/uploads/box-2.jpg" /><p>Cudowny konkurs!</p></div>
-        <div><img src="/uploads/box-1.jpg" /><p>Świetne nagrody!</p></div>
-        <div><img src="/uploads/box-4.jpg" /><p>Cudowny konkurs!</p></div>
+        <?php foreach($data['contests'] as $contest) { ?>
+          <div>
+            <?= link_to("<img src='$contest->box_url'>", "/contests/show.php?id=$contest->id") ?>
+            <p><?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?></p>
+          </div>
+        <?php } ?>
       </div>
     </section>
 
