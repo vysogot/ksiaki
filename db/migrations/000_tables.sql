@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
  `begins_at` datetime,
  `ends_at` datetime,
  `display_ad` tinyint(1) DEFAULT 0,
+ `is_active` tinyint(1) DEFAULT 1,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konkursy';
 
