@@ -28,7 +28,7 @@ INNER JOIN _contests ON (score_games.contest_id = _contests.id)
 WHERE (contest_id = p_contest_id)
 GROUP BY user_id
 ORDER BY MAX(points_total) DESC
-LIMIT 100
+LIMIT 200
 ) AS rpt; 
 
 DELETE FROM score_contests WHERE (contest_id = p_contest_id);
