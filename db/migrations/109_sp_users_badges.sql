@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS sp_users_banges_all;
+DROP PROCEDURE IF EXISTS sp_users_badges_all;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_users_banges_all`()
+CREATE PROCEDURE `sp_users_badges_all`()
 	LANGUAGE SQL
 	NOT DETERMINISTIC
 	CONTAINS SQL
