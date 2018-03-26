@@ -7,24 +7,10 @@
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
     <style>
-      html {
-        background: white url('/assets/images/loading.gif') center 10% no-repeat;
-      }
-
-      body {
-        visibility: hidden;
-        background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat;
-      }
-
-      .slick-prev:before,
-      .slick-next:before {
-        color: <?= $background->details_color ?>!important;
-      }
-
-      nav, .ad, .rankings h2, .rankings ol,
-      #banner, #slajder, #player,
-      .box, #heroes .slick-slide,
-      .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
+      html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
+      body { visibility: hidden; background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat; }
+      .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
+      nav, .ad, .rankings h2, .rankings ol, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
     </style>
 </head>
 <body>
@@ -101,23 +87,33 @@
       </div>
     </footer>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css?v=<?= filemtime(realpath(__DIR__ . '/assets/css/slick.css')) ?>" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?= filemtime(realpath(__DIR__ . '/assets/css/style.css')) ?>" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <script src="/assets/js/min.js" type="text/javascript"></script>
 
-    <script src="/assets/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="/assets/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/assets/js/sliders.js?v=<?= filemtime(realpath(__DIR__ . '/assets/js/sliders.js')) ?>" type="text/javascript" charset="utf-8"></script>
-    <script src="/assets/js/app.js?v=<?= filemtime(realpath(__DIR__ . '/assets/js/app.js')) ?>" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    $(document).on('ready', function() {
+      $("#banner").slick({
+        dots: false,
+        vertical: false,
+        centerMode: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        infinite: true,
+        arrows: false,
+        lazyLoad: 'ondemand'
+      });
+    });
+    </script>
+
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
 
     <noscript>
-      <style>
-        body{ visibility: visible; }
-        header, main, footer { display: none; }
-      </style>
-
+      <style>body{ visibility: visible; } header, main, footer { display: none; }</style>
       <h1><?= t('turn_on_javascript') ?></h1>
     </noscript>
+
     <script>$(document).on('ready', function() { $(document.body).css('visibility', 'visible'); });</script>
+
   </body>
   </html>

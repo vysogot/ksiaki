@@ -125,6 +125,11 @@ $translations = [
   'your_profile' => 'Twój profil',
   'your_name' => 'Twój nick',
   'your_email' => 'Twój email',
-  'your_role' => 'Twoja rola'
+  'your_role' => 'Twoja rola',
+
+  // Popup
+
+  'are_you_sure' => 'Czy na pewno?'
+
 
 ];

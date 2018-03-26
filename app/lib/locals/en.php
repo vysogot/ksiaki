@@ -38,6 +38,7 @@ $translations = [
   'game' => 'Game',
   'rankings' => 'Rankings',
   'monthly_ranking' => 'Monthly ranking',
+  'yearly_ranking' => 'Yearly ranking',
   'contest_ranking' => 'Contest ranking',
 
   // downloads
@@ -124,6 +125,10 @@ $translations = [
   'your_profile' => 'Your profile',
   'your_name' => 'Your nick',
   'your_email' => 'Your email',
-  'your_role' => 'Your role'
+  'your_role' => 'Your role',
+
+  // Popup
+
+  'are_you_sure' => 'Are you sure?'
 
 ];
