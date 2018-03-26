@@ -100,7 +100,7 @@ ul.bare li.right { float: right; }
 
 .slick-loading .slick-list
 {
-    background: #fff url('./ajax-loader.gif') center center no-repeat;
+    background: #fff url('../images/ajax-loader.gif') center center no-repeat;
 }
 
 /* Arrows */
