@@ -35,27 +35,7 @@ $data['contests'] = execute('call sp_contests_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
-function meta() { ?>
-  <style> main { padding-top: 0!important; } </style>
-<?php }
-
 function content($params, $data) { ?>
-
-<div class="wrapper">
-  <div class="wrapper">
-  <section id="heroes">
-    <div id="heroes-slider">
-      <?php foreach($data['heroes'] as $hero) { ?>
-        <li>
-          <div>
-            <?= link_to("<img src='$hero->avatar_url' title='$hero->name'>", "/heroes/show.php?id=$hero->id") ?>
-          </div>
-        </li>
-      <?php } ?>
-    </div>
-  </section>
-  </div>
-</div>
 
 <div class="wrapper">
 
@@ -138,22 +118,6 @@ $(document).on('ready', function() {
     infinite: true,
     arrows: false,
     lazyLoad: 'ondemand'
-  });
-
-  $("#heroes-slider").slick({
-    dots: false,
-    infinite: true,
-    centerMode: true,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    variableWidth: true,
-    lazyLoad: 'ondemand'
-  })
-  .on('mouseenter', '.slick-slide', function (e) {
-    $(e.currentTarget).addClass('expanded');
-  })
-  .on('mouseleave', '.slick-slide', function(e) {
-    $(e.currentTarget).removeClass('expanded');
   });
 
   $("#contests-slider, #movies-slider, #box-banners-slider").slick({

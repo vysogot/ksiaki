@@ -11,7 +11,7 @@ html, body {
 header { margin-top: 5px; min-height: 150px; overflow: visible; }
 nav    { margin: 15px auto 0px; background: white; opacity: 0.8; }
 header, nav, main, footer, .wrapper-full  { width: 100%; clear: both; }
-main { min-height: 100vh; padding-top: 15px; }
+main { min-height: 100vh; padding-top: 0; }
 h2 { line-height: 50px; margin: 0 auto; }
 h2, h3, h4, h5, h6 { padding-left: 10px; }
 video { max-width: 100%; }

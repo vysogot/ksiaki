@@ -40,6 +40,7 @@ $translations = [
   'monthly_ranking' => 'Monthly ranking',
   'yearly_ranking' => 'Yearly ranking',
   'contest_ranking' => 'Contest ranking',
+  'back_to_contest' => 'Back to the contest page',
 
   // downloads
 

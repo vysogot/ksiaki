@@ -181,10 +181,9 @@ INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, 
 	(25, 10, 6, 3, '2014-03-26 13:32:57', '2014-03-26 13:37:57', 30, 100);
 
 TRUNCATE TABLE `score_contests`;
-/*INSERT INTO `score_contests` (`id`, `user_id`, `contest_id`, `place`, `points`, `given_at`)
-VALUES
-(1, 1, 1, 2, 99, '2018-02-28 00:00:00'),
-(2, 2, 1, 1, 100, '2018-02-28 00:00:00');*/
+CALL `sp_contests_ending`(1);
+CALL `sp_contests_ending`(2);
+CALL `sp_contests_ending`(3);
 
 SET FOREIGN_KEY_CHECKS = 1;
 

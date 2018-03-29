@@ -4,6 +4,8 @@
     <title><?= t('title') ?></title>
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <script src="/assets/js/min.js" type="text/javascript"></script>
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
     <style>
@@ -18,9 +20,7 @@
   <header>
     <div class="wrapper">
 
-      <div id="logo">
-        <a href="/"><img src="/assets/images/logo.png" /></a>
-      </div>
+      <div id="logo"><a href="/"><img src="/assets/images/logo.png" /></a></div>
 
       <div id="banner" class="slider">
         <div><img src="/uploads/banner-1.png" /></div>
@@ -29,31 +29,17 @@
 
       <nav>
         <ul class="bare">
-            <li>
-                <?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?>
-            </li>
-            <li>
-              <?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?>
-            </li>
-            <li>
-              <?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-downloads']) ?>
-            </li>
+            <li><?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?></li>
+            <li><?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?></li>
+            <li><?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-downloads']) ?></li>
               <?php if (current_user()) { ?>
-                <li class="right">
-                  <?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?>
-                </li>
-                <li class="right">
-                  <?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?>
-                </li>
+                <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
+                <li class="right"><?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?></li>
                 <?php if (is_admin()) { ?>
-                  <li class="right">
-                    <?= link_to(t('admin_panel'), '/admin/contests.php', ['id' => 'menu-admin']) ?>
-                  </li>
+                  <li class="right"><?= link_to(t('admin_panel'), '/admin/contests.php', ['id' => 'menu-admin']) ?></li>
                 <?php } ?>
               <?php } else { ?>
-                <li class="right">
-                  <?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?>
-                </li>
+                <li class="right"><?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?></li>
               <?php } ?>
             </li>
           </ul>
@@ -61,6 +47,7 @@
       </div>
     </header>
     <main>
+      <?php require 'partials/heroes.php'; ?>
       <?php require 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>
@@ -87,8 +74,12 @@
       </div>
     </footer>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-    <script src="/assets/js/min.js" type="text/javascript"></script>
+    <?php if (function_exists('before_body_close')) before_body_close(); ?>
+
+    <noscript>
+      <style>body{ visibility: visible; } header, main, footer { display: none; }</style>
+      <h1><?= t('turn_on_javascript') ?></h1>
+    </noscript>
 
     <script type="text/javascript">
     $(document).on('ready', function() {
@@ -106,14 +97,11 @@
     });
     </script>
 
-    <?php if (function_exists('before_body_close')) before_body_close(); ?>
-
-    <noscript>
-      <style>body{ visibility: visible; } header, main, footer { display: none; }</style>
-      <h1><?= t('turn_on_javascript') ?></h1>
-    </noscript>
-
-    <script>$(document).on('ready', function() { $(document.body).css('visibility', 'visible'); });</script>
+    <script type="text/javascript">
+      $(document).on('ready', function() { $
+        (document.body).css('visibility', 'visible');
+      });
+    </script>
 
   </body>
   </html>
