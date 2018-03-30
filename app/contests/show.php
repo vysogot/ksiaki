@@ -27,6 +27,18 @@ $data['connected_contests'] = execute('call sp_contests_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
+$data['ranking'] = execute('call sp_ranking_score_games(
+  :p_interval,
+  :p_name,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_id', null, PDO::PARAM_INT),
+  array('p_name', $params['name'], PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
+
 function content($params, $data) { ?>
 
 <div id="contests-page">
@@ -38,7 +50,7 @@ function content($params, $data) { ?>
     <h2 class="center"><?= link_to(t('play'), "/contests/preroll.php?id=" . $data['current_contest']->id) ?></h2>
     <div class="side rankings">
       <h2><?= t('contest_ranking') ?></h2>
-      <ol>
+      <ul>
         <li>Kawazmlekiem</li>
         <li>Szija26</li>
         <li>ilovelego</li>
@@ -49,10 +61,10 @@ function content($params, $data) { ?>
         <li>mario75</li>
         <li>lottainaczejkar...</li>
         <li>lusia44</li>
-      </ol>
+      </ul>
 
       <h2><?= t('monthly_ranking') ?></h2>
-      <ol>
+      <ul>
         <li>Kawazmlekiem</li>
         <li>Szija26</li>
         <li>ilovelego</li>
@@ -63,7 +75,7 @@ function content($params, $data) { ?>
         <li>mario75</li>
         <li>lottainaczejkar...</li>
         <li>lusia44</li>
-      </ol>
+      </ul>
     </div>
 
     <div class="main">

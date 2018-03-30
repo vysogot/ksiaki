@@ -41,6 +41,7 @@ $translations = [
   'yearly_ranking' => 'Yearly ranking',
   'contest_ranking' => 'Contest ranking',
   'back_to_contest' => 'Back to the contest page',
+  'points' => 'Points',
 
   // downloads
 
@@ -127,6 +128,10 @@ $translations = [
   'your_name' => 'Your nick',
   'your_email' => 'Your email',
   'your_role' => 'Your role',
+
+  // Profile
+
+  'profile' => 'Profile',
 
   // Popup
 

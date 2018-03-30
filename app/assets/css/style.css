@@ -66,8 +66,8 @@ nav a:hover, .active { filter: invert(100%); -webkit-filter: invert(100%); }
 
 #static-sites ul li { width: 153px; height: 50px; padding-top: 15px; }
 
-
-ul.bare { padding: 0; margin: 0; list-style: none; }
+ul.bare { list-style: none; }
+ul.bare { padding: 0; margin: 0; }
 ul.bare li { float:left; }
 ul.bare li.right { float: right; }
 
@@ -93,8 +93,9 @@ ul.bare li.right { float: right; }
 }
 
 .rankings h2 { background: #ddd; color: #333; text-align: left; opacity: 0.8; }
-.rankings ol { background: #fff; text-align: left; margin-top: 0; padding-top: 15px; padding-bottom: 15px; opacity: 0.8; }
-.rankings ol li { line-height: 25px; }
+.rankings ul { background: #fff; text-align: left; margin-top: 0;
+  padding-top: 15px; padding-bottom: 15px; opacity: 0.8; list-style: none; }
+.rankings ul li { line-height: 25px; }
 
 /* SLICK */
 

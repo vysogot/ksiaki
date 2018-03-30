@@ -69,3 +69,14 @@ function file_upload($file) {
       return '/uploads/' . basename($file["name"]);
   }
 }
+
+function ranking_list($scores) {
+  $html = '<ul>';
+
+  foreach($scores as $score) {
+    $html .= "<li>" . "$score->place. " . link_to($score->name, '/users.php?id=' . $score->user_id) .
+    " – $score->points " . t('points') . "</li>";
+  }
+
+  return $html . '</ul>';
+}
