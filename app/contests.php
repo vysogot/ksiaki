@@ -1,12 +1,15 @@
 <?php
 
 require 'init.php';
+require 'rankings/_queries.php';
 
 $params = [
   "id" => null,
   "name" => null,
   "offset" => 0,
-  "limit" => 50
+  "limit" => 50,
+  "month" => date('Y-m-01'),
+  "year" => date('Y-m-d', strtotime('-1 year'))
 ];
 
 $params = array_merge($params, $_GET);
@@ -23,21 +26,8 @@ $data['contests'] = execute('call sp_contests_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
-$data['monthly_ranking'] = execute('call sp_ranking(
-  :p_interval,
-  :p_date_start
-);', array(
-  array('p_interval', 1, PDO::PARAM_INT),
-  array('p_date_start', date('Y-m-01'), PDO::PARAM_STR)
-), true);
-
-$data['yearly_ranking'] = execute('call sp_ranking(
-  :p_interval,
-  :p_date_start
-);', array(
-  array('p_interval', 12, PDO::PARAM_INT),
-  array('p_date_start', date('2017-m-d'), PDO::PARAM_STR)
-), true);
+$data['monthly_ranking'] = monthly_ranking($params['month']);
+$data['yearly_ranking'] = yearly_ranking($params['year']);
 
 function content($params, $data) { ?>
 
@@ -45,12 +35,28 @@ function content($params, $data) { ?>
   <h2 class="hidden"><?= t('contests') ?></h2>
 
   <div class="side rankings">
-    <h2><?= t('monthly_ranking') ?></h2>
+    <h2><?= link_to(t('monthly_ranking'), '/rankings/show.php?ranking_type=monthly&range=' . $params['month']) ?></h2>
     <?= ranking_list($data['monthly_ranking']) ?>
 
-    <h2><?= t('yearly_ranking') ?></h2>
+    <h2><?= link_to(t('yearly_ranking'), '/rankings/show.php?ranking_type=yearly&range=' . $params['year']) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
   </div>
+
+  <div class="modal"><div class="modal-content"><span class="close">&times;</span><p></p></div></div>
+
+  <script type="text/javascript">
+  $('.rankings h2 a').click(function(event) {
+    event.preventDefault();
+
+    var href = $(this).attr('href');
+    $('.modal-content p').load(href);
+    $('.modal').show();
+  });
+
+  $('.modal .close').click(function() {
+    $('.modal').hide();
+  });
+  </script>
 
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
@@ -64,6 +70,7 @@ function content($params, $data) { ?>
   <div class="side">
     <img class="ad" src="/uploads/sky-ad.jpg">
   </div>
+
 </div>
 
 <?php }
