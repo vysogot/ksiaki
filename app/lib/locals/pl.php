@@ -84,7 +84,7 @@ $translations = [
 
   'login_success' => 'Logowanie powiodło się!',
   'logged_out_safely' => 'Bezpiecznie wylogowano!',
-  'registration_success' => 'Rejestracja zakończona sukcesem!',
+  'registration_success' => 'Rejestracja powiodła się!',
   'registration_failure' => 'Rejestracja nie powiodła się',
   'unauthorized' => 'Brak dostępu',
 

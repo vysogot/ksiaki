@@ -1,7 +1,6 @@
 <?php
 
 require 'init.php';
-require 'rankings/_queries.php';
 
 $params = [
   "id" => null,
@@ -26,8 +25,25 @@ $data['contests'] = execute('call sp_contests_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
-$data['monthly_ranking'] = monthly_ranking($params['month']);
-$data['yearly_ranking'] = yearly_ranking($params['year']);
+$data['monthly_ranking'] = execute('call sp_rankings_monthly(
+  :p_date,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_date', $params['month'], PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
+
+$data['yearly_ranking'] = execute('call sp_rankings_yearly(
+  :p_date,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_date', $params['year'], PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
 
 function content($params, $data) { ?>
 
@@ -35,10 +51,10 @@ function content($params, $data) { ?>
   <h2 class="hidden"><?= t('contests') ?></h2>
 
   <div class="side rankings">
-    <h2><?= link_to(t('monthly_ranking'), '/rankings/show.php?ranking_type=monthly&range=' . $params['month']) ?></h2>
+    <h2><?= link_to(t('monthly_ranking'), '/rankings/monthly.php?month=' . $params['month']) ?></h2>
     <?= ranking_list($data['monthly_ranking']) ?>
 
-    <h2><?= link_to(t('yearly_ranking'), '/rankings/show.php?ranking_type=yearly&range=' . $params['year']) ?></h2>
+    <h2><?= link_to(t('yearly_ranking'), '/rankings/yearly.php?year=' . $params['year']) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
   </div>
 

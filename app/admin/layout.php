@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!doctype html>
 <html>
 <head>
@@ -58,3 +59,7 @@
 
   </body>
 </html>
+<?php
+
+$content = ob_get_clean();
+echo $content;
