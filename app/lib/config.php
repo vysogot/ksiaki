@@ -1,14 +1,11 @@
 <?php
 
-$config = array(
-  'DB_TYPE' => 'mysql',
-  'DB_HOST' => '127.0.0.1',
-  'DB_NAME' => 'ksiaki',
-  'DB_USER' => 'root',
-  'DB_PASS' => '',
-  'DB_PORT' => '3306',
-  'DB_CHARSET' => 'utf8'
-);
+# check db/ksiaki_config.example.php
+# move the config file one folder up from the root folder
+$env = require realpath(__DIR__ . '/../../../ksiaki_config.php');
+
+$env_name = getenv('APPLICATION_ENV');
+$config = empty($env_name) ? $env['development'] : $env[$env_name];
 
 if (isset($_SERVER['HTTP_HOST'])) {
   session_start();
@@ -16,9 +13,4 @@ if (isset($_SERVER['HTTP_HOST'])) {
 
   $base_url = 'http://' . $_SERVER['HTTP_HOST'];
   $url = $base_url . str_replace('public', '', dirname($_SERVER['SCRIPT_NAME']));
-}
-
-if (getenv('APPLICATION_ENV') == 'production' || getenv('APPLICATION_ENV') == 'testing') {
-  $config['DB_NAME'] = getenv('DB_NAME');
-  $config['DB_PASS'] = getenv('DB_PASS');
 }

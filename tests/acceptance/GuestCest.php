@@ -12,7 +12,7 @@ class GuestCest
     {
     }
 
-    public function frontpageWorks(AcceptanceTester $I)
+    public function linksGetDisplayed(AcceptanceTester $I)
     {
         $I->amOnPage('/');
         $I->seeLink('Strona główna');
@@ -35,7 +35,7 @@ class GuestCest
         $I->seeInCurrentUrl('/contests/show');
     }
 
-    public function downloadsWorks(AcceptanceTester $I)
+    public function downloadsWork(AcceptanceTester $I)
     {
         $I->amOnPage('/');
         $I->click('Pobrania');
@@ -43,6 +43,13 @@ class GuestCest
         $I->see('Tapety');
         $I->seeNumberOfElements('.box', 8);
         $I->seeInCurrentUrl('/downloads');
+    }
+
+    public function heroWorks(AcceptanceTester $I)
+    {
+        $I->amOnPage('/');
+        $I->click('a[href="/heroes/show.php?id=1"]');
+        $I->see('Opis Scoobiego Doo');
     }
 
     public function loginWorks(AcceptanceTester $I)
@@ -54,6 +61,8 @@ class GuestCest
             'password' => '12345678'
         ]);
         $I->see('Logowanie powiodło się!');
+        $I->seeLink('Wyloguj');
+        $I->seeLink('Twoje konto');
     }
 
     public function registrationWorks(AcceptanceTester $I)
