@@ -10,11 +10,11 @@ list($host, $dbname, $user, $pass, $port) = [
   $GLOBALS['config']['DB_PORT']
 ];
 
-if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"drop database if exists $dbname\"")) {
+if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"DROP DATABASE IF EXISTS $dbname\"")) {
   echo "\nDatabase '$dbname' dropped if existed\n";
 }
 
-if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"create database $dbname\"")) {
+if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"CREATE DATABASE $dbname CHARACTER SET utf8 COLLATE utf8_general_ci\"")) {
   echo "Database '$dbname' created\n\n";
 }
 
