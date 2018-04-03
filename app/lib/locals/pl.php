@@ -62,6 +62,7 @@ $translations = [
   'name' => 'Nick',
   'email' => 'Email',
   'sign_up' => 'Zarejestruj!',
+  'forgot_password' => 'Hasło wyleciało Ci z głowy?',
 
   // admin
 

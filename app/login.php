@@ -39,24 +39,17 @@ function content($params, $data) { ?>
 
   <?php require 'partials/errors.php'; ?>
 
-  <h2><?= t('sign_in') ?></h2>
-  <form action="<?= path_to('/login.php') ?>" method="post">
+  <form action="<?= path_to('/login.php') ?>" method="post" class="vertical-form">
 
-    <div>
-        <label for="login"><?= t('name_or_email') ?></label>
-        <input id="login" name="login" value="<?= $params['login'] ?>" required autofocus />
-    </div>
+    <legend><h2><?= t('sign_in') ?></h2></legend>
 
-    <div>
-        <label for="password"><?= t('password') ?></label>
-        <input id="password" type="password" name="password" required />
-    </div>
+    <input id="login" type="text" name="login" placeholder="<?= t('name_or_email') ?>" value="<?= $params['login'] ?>" required autofocus />
+    <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
+    <input type="submit" value="<?= t('log_in') ?>"/>
 
-    <input type="submit" class="login-submit-button" value="<?= t('log_in') ?>"/>
+    <p><?= link_to(t('register'), '/register.php') ?></p>
 
   </form>
-
-  <?= link_to(t('register'), '/register.php') ?>
 
 </div>
 

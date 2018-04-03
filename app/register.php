@@ -69,26 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function content($params, $data) { ?>
 
 <div class="wrapper">
-    <h1><?= t('sign_up') ?></h1>
 
     <?php require 'partials/errors.php'; ?>
 
-    <form method="post" action="/register.php">
+    <form method="post" action="/register.php" id="register" class="vertical-form" accept-charset="UTF-8">
 
-        <div>
-            <label for="name"><?= t('name') ?></label>
-            <input id="name" name="name" value="<?= $params['name'] ?>" required autofocus />
-        </div>
-        <div>
-            <label for="email"><?= t('email') ?></label>
-            <input id="email" type="email" name="email" value="<?= $params['email'] ?>" required />
-        </div>
-        <div>
-            <label for="password"><?= t('password') ?></label>
-            <input id="password" type="password" name="password" />
-        </div>
+        <legend><h1><?= t('sign_up') ?></h1></legend>
 
-        <button type="submit"><?= t('sign_up') ?></button>
+        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" required autofocus />
+        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" required />
+        <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" />
+
+        <input type="submit" value="<?= t('sign_up') ?>" />
+
+        <p><a href="/login.php"><?= t('login') ?></a></p>
 
     </form>
 

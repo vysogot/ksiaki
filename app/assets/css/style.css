@@ -97,6 +97,68 @@ ul.bare li.right { float: right; }
   padding-top: 15px; padding-bottom: 15px; opacity: 0.8; list-style: none; }
 .rankings ul li { line-height: 25px; }
 
+.vertical-form {
+  margin: 0 auto;
+  width: 470px;
+  padding: 40px;
+  border-radius: 3px;
+  background: white;
+  opacity: 0.9;
+}
+
+.vertical-form input[type='text'],
+.vertical-form input[type='email'],
+.vertical-form input[type='password'],
+.vertical-form input[type='number'],
+.vertical-form input[type='submit'] {
+    background: #fcfcfc;
+    border: 2px solid #e7e7e7;
+    margin: 20px auto;
+    padding: 15px;
+    width: 436px;
+    display: block;
+    border-radius: 3px;
+    font-size: 18px;
+    transition: opacity 0.4s;
+    text-align: left;
+    height: auto;
+    -webkit-appearance: none;
+}
+
+.vertical-form input[type='submit'] {
+  color: white;
+  background: #15CD72;
+  border: 0;
+  font-weight: 600;
+  width: 100%;
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 0;
+  height: auto;
+  -webkit-appearance: none;
+}
+
+.vertical-form p {
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+  margin-top: 20px;
+  color: #666;
+}
+
+.vertical-form legend {
+  text-align: center;
+  font-weight: 300;
+  color: #444;
+  margin: 0 auto 15px;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 /* MODAL */
 
 /* The Modal (background) */

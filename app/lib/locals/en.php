@@ -62,6 +62,7 @@ $translations = [
   'name' => 'Name',
   'email' => 'Email',
   'sign_up' => 'Sign up',
+  'forgot_password' => 'Forgot password?',
 
   // admin
 
