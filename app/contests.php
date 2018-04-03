@@ -8,7 +8,7 @@ $params = [
   "offset" => 0,
   "limit" => 50,
   "month" => date('Y-m-01'),
-  "year" => date('Y-m-d', strtotime('-1 year'))
+  "year" => date('Y-m-d')
 ];
 
 $params = array_merge($params, $_GET);
