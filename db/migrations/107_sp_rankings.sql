@@ -69,7 +69,8 @@ ORDER BY SUM(points) DESC
 ) AS rnk
 INNER JOIN _users AS usr ON (user_id = usr.id)
 WHERE (place BETWEEN @offset_rows AND @limit_rows)
-HAVING usr.name = CASE WHEN (@name = '') THEN usr.name ELSE @name END;
+HAVING usr.name = CASE WHEN (@name = '') THEN usr.name ELSE @name END
+ORDER BY place ASC;
 END//
 DELIMITER ;
 
@@ -124,7 +125,8 @@ LEFT JOIN (
 ) AS rnk ON (rnk.user_id = usr.id)
 WHERE (rnk.place BETWEEN @offset_rows AND @limit_rows)
 
-HAVING usr.name = CASE WHEN (@name = '') THEN usr.name ELSE @name END;
+HAVING usr.name = CASE WHEN (@name = '') THEN usr.name ELSE @name END
+ORDER BY place ASC;
 END//
 DELIMITER ;
 
