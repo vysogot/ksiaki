@@ -1,4 +1,5 @@
 SET FOREIGN_KEY_CHECKS = 0;
+SET NAMES utf8;
 
 TRUNCATE TABLE `def_games`;
 INSERT INTO `def_games` (`id`, `name`, `description`)
