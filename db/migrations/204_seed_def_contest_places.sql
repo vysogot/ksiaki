@@ -303,5 +303,11 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 	(557, 2, NULL, 199, 2),
 	(558, 2, NULL, 200, 1);
 
+
+TRUNCATE TABLE `score_contests`;
+CALL `sp_contests_ending`(1);
+CALL `sp_contests_ending`(2);
+CALL `sp_contests_ending`(3);
+
 SET FOREIGN_KEY_CHECKS = 1;
 SELECT 1;

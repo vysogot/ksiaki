@@ -180,6 +180,12 @@ INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, 
 	(24, 10, 6, 2, '2015-09-21 11:41:46', '2015-09-21 11:42:46', 54, 70),
 	(25, 10, 6, 3, '2014-03-26 13:32:57', '2014-03-26 13:37:57', 30, 100);
 
+
+TRUNCATE TABLE `score_contests`;
+CALL `sp_contests_ending`(1);
+CALL `sp_contests_ending`(2);
+CALL `sp_contests_ending`(3);
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 SELECT 1;
