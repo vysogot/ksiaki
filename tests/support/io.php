@@ -61,6 +61,7 @@ function output() {
 
 function teardown() {
   unlink(TMP_OUTPUT);
+  unlink(COOKIE_FILE);
 }
 
 function failed_test_output($test) {
