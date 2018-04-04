@@ -48,7 +48,6 @@ if (isset($argv[1])) {
 $time_start = microtime(true);
 $failed_count = 0;
 
-echo "\n";
 foreach ($tests as $test) {
 
   /* seed db */
