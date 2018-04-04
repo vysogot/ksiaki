@@ -11,7 +11,7 @@ modules:
             url: https://ksiaki-test.www.jgodawa
         - \Helper\Acceptance
         - Db:
-            dsn: 'mysql:host=localhost;dbname=ksiaki_test'
+            dsn: 'mysql:host=127.0.0.1;dbname=ksiaki_test'
             user: 'root'
             password:
             cleanup: true # run populator before each test

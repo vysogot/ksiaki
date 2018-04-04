@@ -10,3 +10,12 @@ extensions:
         - Codeception\Extension\RunFailed
 params:
   - tests/_envs/.env.testing
+coverage:
+  enabled: true
+  include:
+    - app/*
+  remote_context_options:
+      https:
+        timeout: 60
+      ssl:
+        verify_peer: false
