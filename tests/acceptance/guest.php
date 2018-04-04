@@ -49,5 +49,5 @@ function test_i_cant_register_with_existing_name() {
     'password' => '12345678'
   ]);
   return i_should_not_see('Rejestracja powiodła się') &&
-    i_should_see('Nazwa jest już zajęta');
+    i_should_see('Jest już zajęte');
 }

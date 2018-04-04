@@ -92,6 +92,7 @@ $translations = [
   // validation
 
   'has_to_be_present' => 'Has to be present',
+  'has_to_be_unique' => 'Has to be unique',
 
 
   // generic

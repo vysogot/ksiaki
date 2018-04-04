@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $params = array_merge($params, $_POST);
 
   if (empty($params['name'])) {
-    $errors['name'] = 'validate_presence';
+    $errors['name'] = t('has_to_be_present');
   } else {
 
     $result = execute('call sp_users_find_by_name_or_email(:p_name_or_email);', array(
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ));
 
     if (!empty($result)) {
-      $errors['name'] = 'validate_uniqueness';
+      $errors['name'] = t('has_to_be_unique');
     }
   }
 
@@ -32,15 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ));
 
     if (!empty($result)) {
-      $errors['email'] = 'validate_uniqueness';
+      $errors['email'] = t('has_to_be_unique');
     }
 
   } else {
-    $errors['email'] = 'validate_email_syntax';
+    $errors['email'] = t('has_to_a_proper_email');
   }
 
   if (strlen($params['password']) < 6) {
-    $errors['password'] = 'validate_password_length';
+    $errors['password'] = t('has_to_be_long_enough');
   }
 
   if (empty($errors)) {
