@@ -16,11 +16,11 @@ if ($post) {
   if (empty($errors)) {
 
     if (!empty($_FILES['box_file']['name'])) {
-      $params['box_file'] = file_upload($_FILES['box_file']);
+      $params['box_url'] = file_upload($_FILES['box_file']);
     }
 
     if (!empty($_FILES['header_file']['name'])) {
-      $params['header_file'] = file_upload($_FILES['header_file']);
+      $params['header_url'] = file_upload($_FILES['header_file']);
     }
 
     $result = execute('call sp_contests_create(

@@ -16,11 +16,11 @@ if ($post) {
   if (empty($errors)) {
 
     if (!empty($_FILES['avatar_file']['name'])) {
-      $params['avatar_file'] = file_upload($_FILES['avatar_file']);
+      $params['avatar_url'] = file_upload($_FILES['avatar_file']);
     }
 
     if (!empty($_FILES['header_file']['name'])) {
-      $params['header_file'] = file_upload($_FILES['header_file']);
+      $params['header_url'] = file_upload($_FILES['header_file']);
     }
 
     $result = execute('call sp_heroes_create(
@@ -31,7 +31,7 @@ if ($post) {
   		:p_is_active
     );', array(
       array('p_name', $params['name'], PDO::PARAM_STR),
-      array('p_description', $params['p_description'], PDO::PARAM_STR),
+      array('p_description', $params['description'], PDO::PARAM_STR),
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
       array('p_header_url', $params['header_url'], PDO::PARAM_STR),
       array('p_is_active', $params['is_active'], PDO::PARAM_INT)

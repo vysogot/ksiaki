@@ -12,6 +12,7 @@ return array(
   ),
 
   'testing' => array(
+    'TESTING_BASE_URL' => 'https://ksiaki-test.www.jgodawa',
     'DB_TYPE' => 'mysql',
     'DB_HOST' => '127.0.0.1',
     'DB_NAME' => 'ksiaki_test',

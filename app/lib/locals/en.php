@@ -110,12 +110,18 @@ $translations = [
   'contest_name' => 'Contest name',
   'description' => 'Description',
   'header_url' => 'Header URL',
+  'box_url' => 'Box URL',
   'begins_at' => 'Begins at',
   'ends_at' => 'Ends at',
   'contest_type' => 'Contest type',
   'normal' => 'Normal',
   'special' => 'Special',
   'display_ad' => 'Display an ad before',
+
+  // heroes form
+
+  'hero' => 'Hero',
+  'avatar_url' => 'Avatar URL',
 
   // backgrounds form
 

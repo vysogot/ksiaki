@@ -12,7 +12,4 @@ $params = [];
 $errors = [];
 $data = [];
 
-$url = '';
-$base_url = '';
-
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';

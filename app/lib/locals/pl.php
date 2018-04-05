@@ -110,12 +110,18 @@ $translations = [
   'contest_name' => 'Nazwa konkursu',
   'description' => 'Opis',
   'header_url' => 'URL banera',
+  'box_url' => 'URL boxu',
   'begins_at' => 'Początek o',
   'ends_at' => 'Koniec o',
   'contest_type' => 'Rodzaj konkursu',
   'normal' => 'Normalny',
   'special' => 'Specjalny',
   'display_ad' => 'Wyświetl reklamę przed',
+
+  // heroes form
+
+  'hero' => 'Bohater',
+  'avatar_url' => 'URL awatara',
 
   // backgrounds form
 

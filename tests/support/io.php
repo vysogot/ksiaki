@@ -3,45 +3,24 @@
 const FAILED_OUTPUT_DIR = 'tests/output/';
 const TMP_OUTPUT = 'tests/output/tmp.html';
 const COOKIE_FILE = 'tests/output/cookie.txt';
-const BASE_URL = 'https://ksiaki-test.www.jgodawa';
 
-function curl_get($path) {
-  $curl_handle = curl_init(BASE_URL . $path);
-  $output_file = fopen(TMP_OUTPUT, "w");
-
-  curl_setopt($curl_handle, CURLOPT_FILE, $output_file);
-  curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-  curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 0);
-  curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
-  curl_setopt($curl_handle, CURLOPT_COOKIEJAR, COOKIE_FILE);
-  curl_setopt($curl_handle, CURLOPT_COOKIEFILE, COOKIE_FILE);
-  curl_setopt($curl_handle, CURLOPT_HTTPHEADER, ['Accept-Language: pl']);
-
-  if (curl_exec($curl_handle) === false) {
-    echo 'Curl error: ' . curl_error($curl_handle) . "\n";
-  }
-
-  curl_close($curl_handle);
-  fclose($output_file);
-}
-
-function curl_post($path, $data) {
-  $curl_handle = curl_init(BASE_URL . $path);
-  $output_file = fopen(TMP_OUTPUT, "w");
-
-  curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-  curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 0);
-  curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
-  curl_setopt($curl_handle, CURLOPT_HTTPHEADER, ['Accept-Language: pl']);
-  curl_setopt($curl_handle, CURLOPT_COOKIEJAR, COOKIE_FILE);
-  curl_setopt($curl_handle, CURLOPT_COOKIEFILE, COOKIE_FILE);
+function basic_curl_handle($path) {
+  $curl_handle = curl_init($GLOBALS['config']['TESTING_BASE_URL'] . $path);
 
   curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($curl_handle, CURLOPT_POST, true);
-  curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $data);
-  curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, true);
+  curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+  curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
+  curl_setopt($curl_handle, CURLOPT_COOKIEJAR, COOKIE_FILE);
+  curl_setopt($curl_handle, CURLOPT_COOKIEFILE, COOKIE_FILE);
+  curl_setopt($curl_handle, CURLOPT_HTTPHEADER, ['Accept-Language: pl']);
 
+  return $curl_handle;
+}
+
+function execute_curl($curl_handle) {
   $response = curl_exec($curl_handle);
+  $output_file = fopen(TMP_OUTPUT, "w");
 
   if ($response === false) {
     echo 'Curl error: ' . curl_error($curl_handle) . "\n";
@@ -53,6 +32,21 @@ function curl_post($path, $data) {
 
   curl_close($curl_handle);
   fclose($output_file);
+}
+
+function curl_get($path) {
+  $curl_handle = basic_curl_handle($path);
+  execute_curl($curl_handle);
+}
+
+function curl_post($path, $data) {
+  $curl_handle = basic_curl_handle($path);
+
+  curl_setopt($curl_handle, CURLOPT_POST, true);
+  curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, true);
+
+  execute_curl($curl_handle);
 }
 
 function output() {

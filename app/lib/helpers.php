@@ -5,7 +5,11 @@ function e($value) {
 }
 
 function t($key) {
-  return $GLOBALS['translations'][$key] ?? "TRANSLATE!!___$key";
+  return $GLOBALS['translations'][$key] ?? "TRANSLATE!!: $key";
+}
+
+function render($name, $params, $data) {
+  require $name;
 }
 
 function path_to($destination) {
