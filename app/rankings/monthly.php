@@ -22,4 +22,4 @@ $data = execute('call sp_rankings_monthly(
 ?>
 
 <h2><?= t('monthly_ranking') ?></h2>
-<?= ranking_list($data) ?>
+<div class="loaded"><?= ranking_list($data) ?></div>

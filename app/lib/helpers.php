@@ -76,7 +76,7 @@ function file_upload($file) {
 }
 
 function ranking_list($scores) {
-  $html = '<ul>';
+  $html = '<ul class="rankings">';
 
   foreach($scores as $score) {
     $html .= "<li>" . "$score->place. " . link_to($score->name, '/users.php?id=' . $score->user_id) .

@@ -22,4 +22,4 @@ $data = execute('call sp_rankings_yearly(
 ?>
 
 <h2><?= t('yearly_ranking') ?></h2>
-<?= ranking_list($data) ?>
+<div class="loaded"><?= ranking_list($data) ?></div>

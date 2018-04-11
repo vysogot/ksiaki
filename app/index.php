@@ -152,7 +152,7 @@ $(document).on('ready', function() {
   // Player
 
   // Run autoplay videos to satisfy Chrome
-  $("#player video[autoplay]").each(function(){ this.play(); });
+  $("#player video[autoplay]").each(function(){ this.muted = true; this.play(); });
 
   // Hide every link so it can be set to display: block in CSS
   $("#player video").each(function(){ $(this).next().next().hide(); });

@@ -52,13 +52,19 @@ function content($params, $data) { ?>
     </div>
 
     <div class="modal"><div class="modal-content"><span class="close">&times;</span><p></p></div></div>
-
     <script type="text/javascript">
-    $('.rankings h2 a').click(function(event) {
+    $('.rankings a').on('click', function(event) {
       event.preventDefault();
 
       var href = $(this).attr('href');
-      $('.modal-content p').load(href);
+      $('.modal-content p').load(href, function() {
+        $('.loaded ul.rankings a').on('click', function(event) {
+          event.preventDefault();
+
+          var href = $(this).attr('href');
+          $('.modal-content p').load(href);
+        });
+      });
       $('.modal').show();
     });
 
