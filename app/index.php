@@ -39,10 +39,6 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-  <!-- <div id="sky-banner-left" class="sky-banner"></div> -->
-
-  <!-- <div class="wrapper left"> -->
-
     <section id="slajder" class="slider">
       <div><img src="/uploads/slider-1.jpg" /></div>
       <div><img src="/uploads/slider-2.jpg" /></div>
@@ -50,8 +46,16 @@ function content($params, $data) { ?>
     </section>
 
     <section id="player" class="slider">
-      <div><video controls preload="none" poster="/uploads/movie-1.jpg" src="/uploads/movie-1.mp4"></video></div>
-      <div><video controls preload="none" poster="/uploads/movie-2.jpg" src="/uploads/movie-1.mp4"></video></div>
+      <div>
+        <video controls autoplay muted poster="/uploads/movie-1.jpg" src="/uploads/movie-1.mov"></video>
+        <div class="mute"></div>
+        <?= link_to('<img src="/uploads/movie-cta.jpg" />', 'http://konkursiaki.pl') ?>
+      </div>
+      <div>
+        <video controls preload="none" muted poster="/uploads/movie-2.jpg" src="/uploads/movie-2.mov"></video>
+        <div class="mute"></div>
+        <?= link_to('<img src="/uploads/movie-cta.jpg" />', 'http://konkursiaki.pl') ?>
+      </div>
     </section>
 
     <section id="contests" class="slider">
@@ -70,14 +74,14 @@ function content($params, $data) { ?>
     <section id="movies">
       <h2><?= t('user_movies') ?></h2>
       <div id="movies-slider" class="boxes">
-        <div><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-2.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-4.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-1.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
       </div>
     </section>
 
@@ -86,19 +90,15 @@ function content($params, $data) { ?>
       <h2><?= t('box_banners') ?></h2>
       <div id="box-banners-slider" class="boxes">
         <div><img src="/uploads/box-2.jpg" /><p>Super nagrody!</p></div>
-        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/user-movies-3.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
         <div><img src="/uploads/box-1.jpg" /><p>Super nagrody!</p></div>
-        <div><video controls preload="none" poster="/uploads/box-3.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Oli!</p></div>
+        <div><video controls preload="none" poster="/uploads/box-3.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Oli!</p></div>
         <div><img src="/uploads/box-4.jpg" /><p>Super nagrody!</p></div>
         <div><img src="/uploads/box-1.jpg" /><p>Świetne nagrody!</p></div>
-        <div><video controls preload="none" poster="/uploads/box-2.jpg" src="uploads/movie-1.mp4"></video><p>Nowy filmik Macieja!</p></div>
+        <div><video controls preload="none" poster="/uploads/box-2.jpg" src="uploads/movie-1.mov"></video><p>Nowy filmik Macieja!</p></div>
         <div><img src="/uploads/box-3.jpg" /><p>Super nagrody!</p></div>
       </div>
     </section>
-
-  <!-- </div> -->
-
-  <!-- <div id="sky-banner-left" class="sky-banner "></div> -->
 
 </div>
 
@@ -107,14 +107,29 @@ function content($params, $data) { ?>
 function before_body_close() { ?>
 
 <script type="text/javascript">
+
 $(document).on('ready', function() {
-  $("#slajder, #player").slick({
+
+  // Slider
+  $("#slajder").slick({
     dots: false,
     vertical: false,
     centerMode: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    infinite: true,
+    arrows: false,
+    lazyLoad: 'ondemand'
+  });
+
+  $("#player").slick({
+    dots: false,
+    vertical: false,
+    centerMode: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
     infinite: true,
     arrows: false,
     lazyLoad: 'ondemand'
@@ -133,6 +148,68 @@ $(document).on('ready', function() {
   .on('mouseleave', '.slick-slide', function(e) {
     $(e.currentTarget).removeClass('expanded-light');
   });
+
+  // Player
+
+  // Run autoplay videos to satisfy Chrome
+  $("#player video[autoplay]").each(function(){ this.play(); });
+
+  // Hide every link so it can be set to display: block in CSS
+  $("#player video").each(function(){ $(this).next().next().hide(); });
+
+  // Every video is muted at the begining with overlay to turn sound on
+  $('#player .mute').click(function () {
+    var mute = $(this);
+    var video = $(this).prev()[0];
+
+    video.muted = false;
+    mute.fadeOut();
+  });
+
+  // When video is clicked it gets muted back
+  $("#player video").click(function () {
+    var mute = $($(this).next());
+    var video = $(this)[0];
+
+    video.muted = true;
+    mute.fadeIn();
+  })
+
+  // When video ended display a call to action link
+  .on('ended', function() {
+    var cta = $($(this).next().next());
+    var mute = $($(this).next());
+    var video = $(this);
+
+    video.hide();
+    mute.hide();
+    cta.show();
+
+    // show another slick slide after a moment
+    setTimeout(function () {
+      $('#player').slick('slickNext');
+      cta.hide();
+    }, 1000);
+  });
+
+  // make sure video and mute are available
+  $('#player').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+    var video = $($(slick.$slides.get(currentSlide)).children('video:first-child')[0]);
+    var mute = $($(video).next()[0]);
+
+    mute.show();
+    video.show();
+  });
+
+  // and play the video silently
+  $('#player').on('afterChange', function(event, slick, currentSlide, nextSlide) {
+    var video = $(slick.$slides.get(currentSlide)).children('video:first-child')[0];
+    var mute = $($(video).next()[0]);
+
+    video.muted = true;
+    video.play();
+  });
+
 });
 </script>
 

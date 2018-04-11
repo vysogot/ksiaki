@@ -13,6 +13,7 @@ function render($name, $params, $data) {
 }
 
 function path_to($destination) {
+  if (substr($destination, 0, 4) == 'http') return $destination;
   $root = $destination[0] == '/' ? $GLOBALS['base_url'] : $GLOBALS['url'];
   return $root . $destination;
 }
