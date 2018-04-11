@@ -1,20 +1,13 @@
-# Konkursiaki
+# Ksiaki
 
 ## Setup
 
-- check app/lib/config.php
-- run `php db/reset.php`
-- point web server at ksiaki/app/
+1. Copy db/config.example.php to ../ksiaki.config.php
+2. Run `php db/reset.php`
+3. Run `php tests/run.php`
+4. Root server to the app/
 
-## login
+## Login
 
-user
-12345678
-
-admin
-12345678
-
-## To do
-
-mailer
-...
+user or admin
+password 12345678

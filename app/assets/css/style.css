@@ -73,7 +73,6 @@ ul.bare li.right { float: right; }
 
 #menu-home      { background: white url('/assets/images/menu-home.png')     10px 10px no-repeat; }
 #menu-contests  { background: white url('/assets/images/menu-contests.png') 10px 10px no-repeat; }
-#menu-downloads { background: white url('/assets/images/menu-download.png') 10px 10px no-repeat; }
 #menu-login     { background: white url('/assets/images/menu-login.png')    10px 10px no-repeat; }
 #menu-admin     { background: white url('/assets/images/menu-admin.png')    10px 10px no-repeat; }
 #menu-logout    { background: white url('/assets/images/menu-logout.png')   10px 10px no-repeat; }

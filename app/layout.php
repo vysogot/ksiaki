@@ -32,7 +32,6 @@
         <ul class="bare">
             <li><?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?></li>
             <li><?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?></li>
-            <li><?= link_to(t('downloads'), '/downloads.php', ['id' => 'menu-downloads']) ?></li>
               <?php if (current_user()) { ?>
                 <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
                 <li class="right"><?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?></li>

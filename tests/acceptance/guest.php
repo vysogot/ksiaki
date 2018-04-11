@@ -10,11 +10,6 @@ function test_contests_page_works() {
   return i_should_see('class="active">Konkursy</a>');
 }
 
-function test_downloads_page_works() {
-  when_i_go_to('/downloads.php');
-  return i_should_see('class="active">Pobrania</a>');
-}
-
 function test_login_page_works() {
   when_i_go_to('/login.php');
   return i_should_see('<h2>Logowanie</h2>');

@@ -8,7 +8,6 @@ $translations = [
 
   'home_page' => 'Strona główna',
   'contests' => 'Konkursy',
-  'downloads' => 'Pobrania',
   'login' => 'Zaloguj się',
   'dashboard' => 'Twoje konto',
   'admin_panel' => 'Admin',
