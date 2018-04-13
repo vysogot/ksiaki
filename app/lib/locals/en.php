@@ -38,7 +38,7 @@ $translations = [
   'rankings' => 'Rankings',
   'monthly_ranking' => 'Monthly ranking',
   'yearly_ranking' => 'Yearly ranking',
-  'contest_ranking' => 'Contest ranking',
+  'contest_ranking' => 'Contest ranking: {{name}}',
   'back_to_contest' => 'Back to the contest page',
   'points' => 'Points',
 

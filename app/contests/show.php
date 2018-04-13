@@ -42,36 +42,16 @@ function content($params, $data) { ?>
 <div id="contests-page">
   <div class="wrapper">
 
-  <img src="<?= $data['contest']->header_url ?>">
+  <h1><?= $data['contest']->name ?></h1>
 
   <div class="wrapper">
     <h2 class="center"><?= link_to(t('play'), "/contests/preroll.php?id=" . $data['contest']->id) ?></h2>
     <div class="side rankings">
-      <h2><?= link_to(t('contest_ranking'), '/rankings/contest.php?id=' . $data['contest']->id) ?></h2>
+      <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/rankings/contest.php?id=' . $data['contest']->id) ?></h2>
       <?= ranking_list($data['contest_ranking']) ?>
     </div>
 
-    <div class="modal"><div class="modal-content"><span class="close">&times;</span><p></p></div></div>
-    <script type="text/javascript">
-    $('.rankings a').on('click', function(event) {
-      event.preventDefault();
-
-      var href = $(this).attr('href');
-      $('.modal-content p').load(href, function() {
-        $('.loaded ul.rankings a').on('click', function(event) {
-          event.preventDefault();
-
-          var href = $(this).attr('href');
-          $('.modal-content p').load(href);
-        });
-      });
-      $('.modal').show();
-    });
-
-    $('.modal .close').click(function() {
-      $('.modal').hide();
-    });
-    </script>
+    <?php include '../partials/modal_ranking.html' ?>
 
     <div class="main">
       <h2><?= t('other_contests') ?></h2>

@@ -4,6 +4,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 SET NAMES utf8;
 
 TRUNCATE TABLE `def_games`;
+INSERT INTO `def_games` (`id`, `name`, `description`)
+VALUES
+(1, 'sorcerer', 'game_sorcerer_description');
+
 TRUNCATE TABLE `def_contest_types`;
 TRUNCATE TABLE `def_contest_places`;
 TRUNCATE TABLE `def_pointed_activities`;
@@ -19,6 +23,10 @@ INSERT INTO `_users` (`id`, `role_id`, `session_id`, `name`, `email`, `password_
 
 TRUNCATE TABLE `_backgrounds`;
 TRUNCATE TABLE `_contests`;
+INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `box_url`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
+VALUES
+(1, 1, 2, 'Jaskiniowiec', 'Niesamowity konkurs!', '/uploads/box-1.jpg', '/uploads/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
+
 TRUNCATE TABLE `_quizes`;
 TRUNCATE TABLE `_quiz_answers`;
 TRUNCATE TABLE `_notifications`;

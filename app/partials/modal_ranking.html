@@ -1,0 +1,20 @@
+<script type="text/javascript">
+$('.rankings a').on('click', function(event) {
+  event.preventDefault();
+
+  var href = $(this).attr('href');
+  $('.modal-content p').load(href, function() {
+    $('.loaded ul.rankings a').on('click', function(event) {
+      event.preventDefault();
+
+      var href = $(this).attr('href');
+      $('.modal-content p').load(href);
+    });
+  });
+  $('.modal').show();
+});
+
+$('.modal .close').click(function() {
+  $('.modal').hide();
+});
+</script>

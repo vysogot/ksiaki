@@ -1,11 +1,14 @@
 <?php
 
+/* time */
+$time_start = microtime(true);
+$memory_use = memory_get_usage();
+
 /* setup environment */
 putenv('APPLICATION_ENV=testing');
 require __DIR__ . '/../app/lib/config.php';
 
 /* support functions */
-require 'support/db.php';
 require 'support/dsl.php';
 require 'support/io.php';
 
@@ -44,14 +47,13 @@ if (isset($argv[1])) {
   $tests = array_filter($tests, function($test) use ($argv) { return preg_match("/$argv[1]/", $test); });
 }
 
-/* time and run */
-$time_start = microtime(true);
+/* run */
 $failed_count = 0;
 
 foreach ($tests as $test) {
 
   /* seed db */
-  seed();
+  prepare();
 
   /* call test: display a dot when passed, F otherwise */
   if (call_user_func($test)) {
@@ -62,7 +64,7 @@ foreach ($tests as $test) {
     failed_test_output($test);
   }
 
-  /* remove tmp output */
+  /* remove tmp output and cookie */
   teardown();
 }
 
@@ -73,3 +75,4 @@ echo "\n";
 echo "Tests: " . count($tests);
 echo $failed_count == 0 ? ", all good.\n" : "\nFailed: $failed_count\n";
 echo "Execution time: " . number_format($execution_time, 3) . "s\n";
+echo "Memory peak usage: " . number_format((memory_get_peak_usage() - $memory_use)/1024, 3) . "Kb\n";

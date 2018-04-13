@@ -4,12 +4,25 @@ function e($value) {
   return htmlspecialchars($value);
 }
 
-function t($key) {
-  return $GLOBALS['translations'][$key] ?? "TRANSLATE!!: $key";
+function interpolate($translation, $interpolations) {
+  foreach ($interpolations as $key => $value) {
+    $translation = preg_replace('/\{\{' . $key . '\}\}/', $interpolations[$key], $translation);
+  }
+  return $translation;
 }
 
-function render($name, $params, $data) {
-  require $name;
+function t($key, $interpolations = []) {
+
+  $translation = $GLOBALS['translations'][$key] ?? '';
+
+  if (empty($translation)) {
+    return "TRANSLATE!!: $key";
+  } elseif (empty($interpolations)) {
+    return $translation;
+  } else {
+    return interpolate($translation, $interpolations);
+  }
+
 }
 
 function path_to($destination) {

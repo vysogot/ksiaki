@@ -18,6 +18,7 @@
 </head>
 <body>
   <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
+  <div class="modal"><div class="modal-content"><span class="close">&times;</span><p></p></div></div>
   <header>
     <div class="wrapper">
 

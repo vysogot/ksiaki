@@ -58,31 +58,7 @@ function content($params, $data) { ?>
     <?= ranking_list($data['yearly_ranking']) ?>
   </div>
 
-  <div class="modal"><div class="modal-content"><span class="close">&times;</span><p></p></div></div>
-  <script type="text/javascript">
-  $('.rankings a').on('click', function(event) {
-    event.preventDefault();
-
-    var href = $(this).attr('href');
-    $('.modal-content p').load(href, function() {
-      $('.loaded ul.rankings a').on('click', function(event) {
-        event.preventDefault();
-
-        var href = $(this).attr('href');
-        $('.modal-content p').load(href);
-      });
-    });
-    $('.modal').show();
-  });
-
-  $('.modal .close').click(function() {
-    $('.modal').hide();
-  });
-  </script>
-
-  <script type="text/javascript">
-
-  </script>
+  <?php include './partials/modal_ranking.html' ?>
 
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
