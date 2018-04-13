@@ -28,7 +28,7 @@
       </div>
     </header>
     <main>
-      <?php require realpath(__DIR__ . '/../partials/flashes.php'); ?>
+      <?php include realpath(__DIR__ . '/../partials/flashes.php'); ?>
       <?php content($params, $data); ?>
     </main>
     <footer>

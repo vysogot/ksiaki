@@ -1,4 +1,4 @@
-<?php require '../../partials/errors.php'; ?>
+<?php include '../../partials/errors.php'; ?>
 
 <form id="hero" action="<?= $params['form_action'] ?>" method="post" enctype="multipart/form-data">
 

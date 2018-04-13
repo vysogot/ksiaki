@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 $data = execute('call sp_users_find(:p_id);', array(
   array('p_id', $_SESSION['user_id'], PDO::PARAM_INT)
@@ -19,4 +19,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';

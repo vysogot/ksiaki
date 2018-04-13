@@ -1,6 +1,6 @@
 <?php
 
-require '../init.php';
+include '../init.php';
 
 $params = [
   'form_action' => 'create.php'
@@ -13,9 +13,9 @@ function content($params, $data) { ?>
 <div class="wrapper">
   <h2><?= t('new_hero') ?></h2>
   <?= link_to(t('heroes'), '/admin/heroes.php') ?>
-  <?php require '_form.php'; ?>
+  <?php include '_form.php'; ?>
 </div>
 
 <?php }
 
-require '../layout.php';
+include '../layout.php';

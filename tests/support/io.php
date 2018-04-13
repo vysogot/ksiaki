@@ -25,9 +25,11 @@ function execute_curl($curl_handle) {
   $GLOBALS['response_body'] = curl_exec($curl_handle);
   $GLOBALS['response_header'] = curl_getinfo($curl_handle);
   $output_file = fopen(TMP_OUTPUT_FILE_PATH, "w");
+  $cookie_file = fopen(COOKIE_FILE_PATH, "w");
 
   curl_close($curl_handle);
   fclose($output_file);
+  fclose($cookie_file);
 }
 
 function curl_get($path) {

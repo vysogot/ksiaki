@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 $params = [
   'login' => null,
@@ -37,14 +37,14 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-  <?php require 'partials/errors.php'; ?>
+  <?php include 'partials/errors.php'; ?>
 
   <form action="<?= path_to('/login.php') ?>" method="post" class="vertical-form">
 
     <legend><h2><?= t('sign_in') ?></h2></legend>
 
-    <input id="login" type="text" name="login" placeholder="<?= t('name_or_email') ?>" value="<?= $params['login'] ?>" required autofocus />
-    <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
+    <input id="login" type="text" name="login" placeholder="<?= t('name_or_email') ?>" value="<?= $params['login'] ?>" included autofocus />
+    <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" included />
     <input type="submit" value="<?= t('log_in') ?>"/>
 
     <p><?= link_to(t('register'), '/register.php') ?></p>
@@ -55,4 +55,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';

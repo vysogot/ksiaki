@@ -2,7 +2,7 @@
 
 $start_time = microtime(TRUE);
 
-require 'init.php';
+include 'init.php';
 
 $params = [
   "id" => null,
@@ -44,7 +44,7 @@ function content($params, $data) { ?>
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';
 
 $end_time = microtime(TRUE);
 echo $end_time - $start_time;

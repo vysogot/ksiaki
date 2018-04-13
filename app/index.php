@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 $params = [
   "id" => null,
@@ -215,4 +215,4 @@ $(document).on('ready', function() {
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';

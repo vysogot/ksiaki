@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 function content($params, $data) { ?>
 
@@ -10,4 +10,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';

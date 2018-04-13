@@ -1,7 +1,7 @@
 <?php
 
-require '../init.php';
-require '_validation.php';
+include '../init.php';
+include '_validation.php';
 
 $params = [
   'form_action' => 'update.php'
@@ -67,9 +67,9 @@ function content($params, $data) { ?>
   <div class="wrapper">
     <h2><?= t('edit_form') ?></h2>
     <?= link_to(t('contests'), '/admin/contests.php') ?>
-    <?php require '_form.php'; ?>
+    <?php include '_form.php'; ?>
   </div>
 
 <?php }
 
-require '../layout.php';
+include '../layout.php';

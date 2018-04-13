@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 if ($post) {
 

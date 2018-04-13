@@ -1,4 +1,4 @@
-<?php require '../../partials/errors.php'; ?>
+<?php include '../../partials/errors.php'; ?>
 
 <form id="contest" action="<?= $params['form_action'] ?>" method="post">
 

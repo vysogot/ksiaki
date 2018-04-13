@@ -1,6 +1,6 @@
 <?php
 
-require '../init.php';
+include '../init.php';
 
 $params = [
   'id' => null
@@ -30,4 +30,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-require '../layout.php';
+include '../layout.php';

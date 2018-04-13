@@ -1,6 +1,6 @@
 <?php
 
-require '../init.php';
+include '../init.php';
 
 $params = [
   "id" => null
@@ -30,4 +30,4 @@ function before_body_close() { ?>
   </script>
 <?php }
 
-require '../layout.php';
+include '../layout.php';

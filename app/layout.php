@@ -48,8 +48,8 @@
       </div>
     </header>
     <main>
-      <?php require 'partials/heroes.php'; ?>
-      <?php require 'partials/flashes.php'; ?>
+      <?php include 'partials/heroes.php'; ?>
+      <?php include 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>
     <footer>

@@ -11,7 +11,7 @@ function exception_handler($exception) {
 
   http_response_code($code);
 
-  require realpath(__DIR__ . "/../$code.php");
+  include realpath(__DIR__ . "/../$code.php");
   exit();
 }
 

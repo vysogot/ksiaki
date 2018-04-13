@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 $_SESSION = array();
 
@@ -20,4 +20,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';

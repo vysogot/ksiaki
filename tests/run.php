@@ -1,12 +1,15 @@
 <?php
 
+const ENV = 'testing';
+
 /* time */
 $time_start = microtime(true);
 $memory_use = memory_get_usage();
 
 /* setup environment */
-putenv('APPLICATION_ENV=testing');
-require __DIR__ . '/../app/lib/config.php';
+putenv('APPLICATION_ENV=' . ENV);
+$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
+$GLOBALS['config'] = $envs[ENV];
 
 /* support functions */
 require 'support/dsl.php';
@@ -48,8 +51,6 @@ if (isset($argv[1])) {
 }
 
 /* run */
-$failed_count = 0;
-
 foreach ($tests as $test) {
 
   /* seed db */
@@ -59,8 +60,8 @@ foreach ($tests as $test) {
   if (call_user_func($test)) {
     echo ".";
   } else {
-    $failed_count += 1;
-    echo "\nF: $test\n";
+    echo "F";
+    $failed_tests[] = $test;
     failed_test_output($test);
   }
 
@@ -73,6 +74,11 @@ $execution_time = (microtime(true) - $time_start);
 /* report */
 echo "\n";
 echo "Tests: " . count($tests);
-echo $failed_count == 0 ? ", all good.\n" : "\nFailed: $failed_count\n";
+if (empty($failed_tests)) {
+  echo ", all good.\n";
+} else {
+  echo "\nFailed: " . count($failed_tests) . "\nTests that failed:\n";
+  foreach($failed_tests as $test) { echo "- $test\n"; }
+}
 echo "Execution time: " . number_format($execution_time, 3) . "s\n";
 echo "Memory peak usage: " . number_format((memory_get_peak_usage() - $memory_use)/1024, 3) . "Kb\n";

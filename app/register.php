@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+include 'init.php';
 
 $params = [
   'name' => null,
@@ -70,14 +70,14 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-    <?php require 'partials/errors.php'; ?>
+    <?php include 'partials/errors.php'; ?>
 
     <form method="post" action="/register.php" id="register" class="vertical-form" accept-charset="UTF-8">
 
         <legend><h2><?= t('register') ?></h2></legend>
 
-        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" required autofocus />
-        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" required />
+        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" included autofocus />
+        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" included />
         <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" />
 
         <input type="submit" value="<?= t('sign_up') ?>" />
@@ -90,4 +90,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-require 'layout.php';
+include 'layout.php';
