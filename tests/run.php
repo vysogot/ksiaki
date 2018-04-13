@@ -1,12 +1,12 @@
 <?php
 
-const ENV = 'testing';
-
 /* time */
 $time_start = microtime(true);
 $memory_use = memory_get_usage();
 
 /* setup environment */
+const ENV = 'testing';
+
 putenv('APPLICATION_ENV=' . ENV);
 $envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
 $GLOBALS['config'] = $envs[ENV];

@@ -1,13 +1,16 @@
 <?php
 
-require __DIR__ . '/../app/lib/config.php';
+$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
+
+$env = getenv('APPLICATION_ENV');
+$config = empty($env) ? $envs['development'] : $envs[$env];
 
 list($host, $dbname, $user, $pass, $port) = [
-  $GLOBALS['config']['DB_HOST'],
-  $GLOBALS['config']['DB_NAME'],
-  $GLOBALS['config']['DB_USER'],
-  $GLOBALS['config']['DB_PASS'],
-  $GLOBALS['config']['DB_PORT']
+  $config['DB_HOST'],
+  $config['DB_NAME'],
+  $config['DB_USER'],
+  $config['DB_PASS'],
+  $config['DB_PORT']
 ];
 
 if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"DROP DATABASE IF EXISTS $dbname\"")) {
