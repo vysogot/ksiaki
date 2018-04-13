@@ -11,7 +11,7 @@ $params = array_merge($params, $_GET);
 function content($params, $data) { ?>
 
 <div class="wrapper center">
-  <video controls autoplay id="preroll" preload="none" poster="/uploads/movie-1.jpg" src="/uploads/movie-1.mp4"></video>
+  <video controls autoplay id="preroll" preload="none" poster="/uploads/movie-1.jpg" src="/uploads/movie-1.mov"></video>
 
   <?php if (getenv('APPLICATION_ENV') != 'production') { ?>
     <h2 class="center"><?= link_to(t('play'), "/contests/play.php?id=" . $params['id']) ?></h2>
