@@ -6,3 +6,4 @@ pipelines:
         deployment: production
         script:
           - APPLICATION_ENV=production php db/reset.php
+          - php tests/run.php
