@@ -4,50 +4,36 @@
 $time_start = microtime(true);
 $memory_use = memory_get_usage();
 
-/* setup environment */
-const ENV = 'testing';
-
-putenv('APPLICATION_ENV=' . ENV);
-$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
-$GLOBALS['config'] = $envs[ENV];
-
-/* support functions */
+require 'support/env.php';
 require 'support/dsl.php';
 require 'support/io.php';
+require 'support/helpers.php';
 
 /* all acceptance test files */
 $dirpath = realpath(__DIR__ . "/acceptance");
-foreach (scandir($dirpath) as $filename) {
-  $path = $dirpath . '/' . $filename;
-  if (is_file($path) && fnmatch('*.php', $path)) {
-    require $path;
+$test_files = get_dir_contents($dirpath);
+foreach ($test_files as $filepath) {
+  if (fnmatch('*.php', $filepath)) {
+    require $filepath;
   }
 }
 
 /* delete any output files */
 $dirpath = realpath(__DIR__ . "/output");
-foreach (scandir($dirpath) as $filename) {
-  $path = $dirpath . '/' . $filename;
-  if (is_file($path) && $filename != '.gitignore') {
-    unlink($path);
+$output_files = get_dir_contents($dirpath);
+foreach ($output_files as $filepath) {
+  if (!fnmatch('*.gitignore', $filepath)) {
+    unlink($filepath);
   }
-}
-
-/* cleanup variables */
-unset($dirpath);
-unset($path);
-unset($filename);
-
-/* get only test functions */
-function is_test($name) {
-  return substr($name, 0, 5) == 'test_';
 }
 
 $tests = array_filter(get_defined_functions()['user'], 'is_test');
 
 /* filter tests by first argument */
 if (isset($argv[1])) {
-  $tests = array_filter($tests, function($test) use ($argv) { return preg_match("/$argv[1]/", $test); });
+    $tests = array_filter($tests, function($test) use ($argv) { 
+        return preg_match("/$argv[1]/", $test); 
+    });
 }
 
 /* run */

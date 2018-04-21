@@ -98,3 +98,7 @@ function ranking_list($scores) {
 
   return $html . '</ul>';
 }
+
+function form_date($date) {
+    return strftime('%Y-%m-%dT%H:%M:%S',strtotime($date));
+}

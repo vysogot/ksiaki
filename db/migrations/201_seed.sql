@@ -55,17 +55,17 @@ VALUES
 
 TRUNCATE TABLE `_users`;
 /* password: 12345678 */
-INSERT INTO `_users` (`id`, `role_id`, `session_id`, `name`, `email`, `password_hash`, `active`, `activation_hash`, `created_at`, `last_login_at`) VALUES
-	(1, 1, NULL, 'user', 	 'demo@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(2, 2, NULL, 'admin',  'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(3, 1, NULL, 'Basia',  'basia@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(4, 1, NULL, 'Stasia', 'stasia@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(5, 1, NULL, 'Krzyś',  'krzys@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(6, 1, NULL, 'Grześ',  'grzes@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(7, 1, NULL, 'Tomek',  'tomek@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(8, 1, NULL, 'Jasia',  'jasia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(9, 1, NULL, 'Zuzia',  'zuzia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(10, 1, NULL, 'Adam',  'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL);
+INSERT INTO `_users` (`id`, `role_id`, `name`, `email`, `password_hash`, `is_active`, `activation_hash`, `created_at`, `last_login_at`) VALUES
+	(1, 1,  'user', 	 'demo@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(2, 2,  'admin',  'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(3, 1,  'Basia',  'basia@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(4, 1,  'Stasia', 'stasia@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(5, 1,  'Krzyś',  'krzys@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(6, 1,  'Grześ',  'grzes@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(7, 1,  'Tomek',  'tomek@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(8, 1,  'Jasia',  'jasia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(9, 1,  'Zuzia',  'zuzia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
+	(10, 1, 'Adam',  'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL);
 
 TRUNCATE TABLE `_backgrounds`;
 INSERT INTO `_backgrounds` (`id`, `name`, `image_url`, `link_url`, `background_color`, `details_color`, `is_active`, `begins_at`, `ends_at`, `created_at`, `updated_at`)

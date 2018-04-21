@@ -28,12 +28,12 @@
 
   <div>
     <label for="begins_at"><?= t('begins_at') ?></label>
-    <input id="begins_at" name="begins_at" type="datetime-local" value="<?= strftime('%Y-%m-%dT%H:%M:%S',strtotime($data->begins_at)) ?>">
+    <input id="begins_at" name="begins_at" type="datetime-local" value="<?= form_date($data->begins_at) ?>">
   </div>
 
   <div>
     <label for="ends_at"><?= t('ends_at') ?></label>
-    <input id="ends_at" name="ends_at" type="datetime-local" value="<?= strftime('%Y-%m-%dT%H:%M:%S',strtotime($data->ends_at)) ?>">
+    <input id="ends_at" name="ends_at" type="datetime-local" value="<?= form_date($data->ends_at) ?>">
   </div>
 
   <div>

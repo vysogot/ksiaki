@@ -10,15 +10,16 @@ DELIMITER $$
 CREATE PROCEDURE `sp_users_new`()
 BEGIN
 SELECT 0 AS id
-, 0 AS role_id
-, '' AS session_id
+, 2 AS role_id
 , '' AS name
 , '' AS email
+, '' AS avatar_url
+, 1 AS is_active
 , '' AS password_hash
-, 1 AS active
 , '' AS activation_hash
+, NOW() AS last_login_at
 , NOW() AS created_at
-, NOW() AS last_login_at;
+, NOW() AS updated_at;
 END$$
 DELIMITER ;
 
@@ -52,7 +53,21 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_create`(
 	IN `p_name` VARCHAR(255),
-  IN `p_email` VARCHAR(255),
+        IN `p_email` VARCHAR(255),
+        IN `p_avatar_url` VARCHAR(255), 
+        IN `p_is_active` VARCHAR(255), 
+        IN `p_password_hash` VARCHAR(255)
+)
+BEGIN
+INSERT INTO _users(name, email, avatar_url, is_active, password_hash) VALUES(p_name, p_email, p_avatar_url, p_is_active, p_password_hash);
+SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_users_register`(
+	IN `p_name` VARCHAR(255),
+        IN `p_email` VARCHAR(255),
 	IN `p_password_hash` VARCHAR(255)
 )
 BEGIN
@@ -61,6 +76,7 @@ SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
 DELIMITER ;
 
+
 DELIMITER $$
 CREATE PROCEDURE `sp_users_update`(
 	IN `p_id` INT,
@@ -68,7 +84,7 @@ CREATE PROCEDURE `sp_users_update`(
 	IN `p_password_hash` VARCHAR(255)
 )
 BEGIN
-UPDATE _users
+UPDATE _users 
 SET name = p_name,
     password_hash = p_password_hash
 WHERE (id = p_id);

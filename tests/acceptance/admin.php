@@ -6,12 +6,6 @@ function test_admin_menu() {
   return i_should_see_many(['Użytkownicy', 'Wyloguj', 'Strona główna', 'Boxy', 'Bohaterowie', 'Tła', 'Rankingi']);
 }
 
-function test_all_users() {
-  when_i_login_as('admin');
-  and_i_go_to('/admin/users.php');
-  return i_should_see('Użytkownicy');
-}
-
 function test_all_contests() {
   when_i_login_as('admin');
   and_i_go_to('/admin/contests.php');

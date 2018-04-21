@@ -66,7 +66,7 @@ $translations = [
   // admin
 
   'contest' => 'Konkurs',
-  'user' => 'Użytkownik',
+  'user' => 'Użytkownik {{name}}',
   'users' => 'Użytkownicy',
   'background' => 'Tło',
   'backgrounds' => 'Tła',
@@ -79,7 +79,7 @@ $translations = [
   'show' => 'Pokaż',
   'edit' => 'Edytuj',
   'delete' => 'Usuń',
-  'edit_form' => 'Edycja',
+  'edit_form' => 'Edycja: {{name}}',
 
   // flashes
 
@@ -98,7 +98,7 @@ $translations = [
   // generic
 
   'update_success' => 'Udało się zaktualizować',
-  'create_success' => 'Udało się stworzyć',
+  'create_success' => 'Udało się utworzyć',
   'delete_success' => 'Udało się usunąć',
   'update_failure' => 'Nie udało się zaktualizować',
   'create_failure' => 'Nie udało się utworzyć',

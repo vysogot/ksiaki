@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
 
-    $result = execute('call sp_users_create(:p_name, :p_email, :p_password_hash);', array(
+    $result = execute('call sp_users_register(:p_name, :p_email, :p_password_hash);', array(
       array('p_name', $params['name'], PDO::PARAM_STR),
       array('p_email', $params['email'], PDO::PARAM_STR),
       array('p_password_hash', $password_hash, PDO::PARAM_STR)
