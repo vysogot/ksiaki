@@ -1,43 +1,53 @@
 <?php
 
 function test_homepage() {
-  return should_give_no_error('/');
+  when_i_go_to('/');
+  return i_should_see_no_error();
 }
 
 function test_contests_page() {
-  return should_give_no_error('/contests.php');
+  when_i_go_to('/contests.php');
+  return i_should_see_no_error();
 }
 
 function test_single_contest_page() {
-  return should_give_no_error('/contests/show.php?id=1');
+  when_i_go_to('/contests/show.php?id=1');
+  return i_should_see_no_error();
 }
 
 function test_contest_preroll() {
-  return should_give_no_error('/contests/preroll.php?id=1');
+  when_i_go_to('/contests/preroll.php?id=1');
+  return i_should_see_no_error();
 }
 
 function test_contest_play() {
-  return should_give_no_error('/contests/play.php?id=1');
+  when_i_go_to('/contests/play.php?id=1');
+  return i_should_see_no_error();
 }
 
 function test_login_page() {
-  return should_give_no_error('/login.php');
+  when_i_go_to('/login.php');
+  return i_should_see_no_error();
 }
 
 function test_registration_page() {
-  return should_give_no_error('/register.php');
+  when_i_go_to('/register.php');
+  return i_should_see_no_error();
 }
 
 function test_monthly_ranking() {
-  return should_give_no_error('/rankings/monthly.php?month=2018-03-01');
+  when_i_go_to('/rankings/monthly.php?month=2018-03-01');
+  return i_should_see_no_error();
 }
 
 function test_yearly_ranking() {
-  return should_give_no_error('/rankings/yearly.php?year=2018-03-01');
+  when_i_go_to('/rankings/yearly.php?year=2018-03-01');
+  return i_should_see_no_error();
 }
 
 function test_contest_ranking() {
-  return should_give_no_error('/rankings/contest.php?id=1');
+  when_i_go_to('/rankings/contest.php?id=1');
+  return i_should_see_no_error();
 }
 
 function test_i_can_register() {

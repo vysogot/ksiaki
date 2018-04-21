@@ -19,7 +19,7 @@ require 'support/io.php';
 $dirpath = realpath(__DIR__ . "/acceptance");
 foreach (scandir($dirpath) as $filename) {
   $path = $dirpath . '/' . $filename;
-  if (is_file($path)) {
+  if (is_file($path) && fnmatch('*.php', $path)) {
     require $path;
   }
 }

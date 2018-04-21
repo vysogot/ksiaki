@@ -25,7 +25,7 @@ $path = realpath(__DIR__ . "/migrations");
 $files = scandir($path);
 
 foreach ($files as $file) {
-    if ($file == '.' || $file == '..') continue;
+    if (!fnmatch('*.sql', $file)) continue;
 
     $realpath = $path . '/' . $file;
     $query = file_get_contents($realpath);

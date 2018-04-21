@@ -13,6 +13,6 @@ function test_i_can_login() {
 
 function test_i_can_logout() {
   when_i_login_as('user');
-  when_i_go_to('/logout.php');
+  and_i_go_to('/logout.php');
   return i_should_see('Bezpiecznie wylogowano');
 }

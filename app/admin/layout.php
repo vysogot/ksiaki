@@ -22,6 +22,7 @@
           <li><?= link_to(t('heroes'), '/admin/heroes.php', ['id' => 'menu-heroes']) ?></li>
           <li><?= link_to(t('backgrounds'), '/admin/backgrounds.php', ['id' => 'menu-backgrounds']) ?></li>
           <li><?= link_to(t('rankings'), '/admin/rankings.php', ['id' => 'menu-rankings']) ?></li>
+          <li><?= link_to(t('boxes'), '/admin/boxes.php', ['id' => 'menu-boxes']) ?></li>
           <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
           </ul>
         </nav>
