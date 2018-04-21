@@ -80,13 +80,17 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_update`(
 	IN `p_id` INT,
-	IN `p_name` VARCHAR(50),
-	IN `p_password_hash` VARCHAR(255)
+	IN `p_name` VARCHAR(255),
+        IN `p_email` VARCHAR(255),
+        IN `p_avatar_url` VARCHAR(255), 
+        IN `p_is_active` VARCHAR(255)
 )
 BEGIN
 UPDATE _users 
 SET name = p_name,
-    password_hash = p_password_hash
+    email = p_email,
+    avatar_url = p_avatar_url,
+    is_active = p_is_active 
 WHERE (id = p_id);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$

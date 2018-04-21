@@ -72,7 +72,7 @@ function teardown() {
   unlink(COOKIE_FILE_PATH);
 }
 
-function failed_test_output($test) {
+function write_failure_to_file($test) {
   $output_file_path = FAILED_OUTPUT_DIR_PATH . $test . '.html';
   $output_file = fopen($output_file_path, "w");
 

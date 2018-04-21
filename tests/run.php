@@ -13,18 +13,18 @@ require 'support/helpers.php';
 $dirpath = realpath(__DIR__ . "/acceptance");
 $test_files = get_dir_contents($dirpath);
 foreach ($test_files as $filepath) {
-  if (fnmatch('*.php', $filepath)) {
-    require $filepath;
-  }
+    if (fnmatch('*.php', $filepath)) {
+        require $filepath;
+    }
 }
 
 /* delete any output files */
 $dirpath = realpath(__DIR__ . "/output");
 $output_files = get_dir_contents($dirpath);
 foreach ($output_files as $filepath) {
-  if (!fnmatch('*.gitignore', $filepath)) {
-    unlink($filepath);
-  }
+    if (!fnmatch('*.gitignore', $filepath)) {
+        unlink($filepath);
+    }
 }
 
 $tests = array_filter(get_defined_functions()['user'], 'is_test');
@@ -36,23 +36,28 @@ if (isset($argv[1])) {
     });
 }
 
+$failed_tests = [];
+
 /* run */
 foreach ($tests as $test) {
 
-  /* seed db */
-  prepare();
+    /* seed db */
+    prepare();
 
-  /* call test: display a dot when passed, F otherwise */
-  if (call_user_func($test)) {
-    echo ".";
-  } else {
-    echo "F";
-    $failed_tests[] = $test;
-    failed_test_output($test);
-  }
+    /* call test: display a dot when passed, F otherwise */
+    if (call_user_func($test)) {
+        echo ".";
+    } else {
+        echo "F";
+        $failed_tests[$test] = strip_tags(
+            explode('<hr/>', 
+            substr(output(), 0, 500)
+        )[0]);
+        write_failure_to_file($test);
+    }
 
-  /* remove tmp output and cookie */
-  teardown();
+    /* remove tmp output and cookie */
+    teardown();
 }
 
 $execution_time = (microtime(true) - $time_start);
@@ -61,10 +66,10 @@ $execution_time = (microtime(true) - $time_start);
 echo "\n";
 echo "Tests: " . count($tests);
 if (empty($failed_tests)) {
-  echo ", all good.\n";
+    echo ", all good.\n";
 } else {
-  echo "\nFailed: " . count($failed_tests) . "\nTests that failed:\n";
-  foreach($failed_tests as $test) { echo "- $test\n"; }
+    echo "\nFailed: " . count($failed_tests) . "\nTests that failed:\n";
+    foreach($failed_tests as $testname => $output) { echo "- $test\n\n$output\n\n"; }
 }
 echo "Execution time: " . number_format($execution_time, 3) . "s\n";
 echo "Memory peak usage: " . number_format((memory_get_peak_usage() - $memory_use)/1024, 3) . "Kb\n";
