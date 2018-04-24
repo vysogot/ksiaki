@@ -16,7 +16,9 @@ if ($post) {
     array('p_name_or_email', $params['login'], PDO::PARAM_STR)
   ));
 
-  if (!empty($result) && password_verify($params['password'], $result->password_hash)) {
+  $found = validate_existance($params, 'login', $result);
+
+  if ($found && password_verify($params['password'], $result->password_hash)) {
 
     session_regenerate_id(true);
     $_SESSION['user_id'] = $result->id;
@@ -26,11 +28,8 @@ if ($post) {
     redirect('/');
 
   } else {
-
-    $params['errors']['login'] = 'login_failure';
-
+      $params['errors']['login'] = t('login_failure');
   }
-
 }
 
 function content($params, $data) { ?>

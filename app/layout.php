@@ -18,7 +18,7 @@
 </head>
 <body>
   <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
-  <div class="modal"><div class="modal-content"><span class="close">&times;</span><p></p></div></div>
+  <div class="modal"><div class="modal-content"><a href="#" class="close">&times;</a><p></p></div></div>
   <header>
     <div class="wrapper">
 
@@ -33,7 +33,7 @@
         <ul class="bare">
             <li><?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?></li>
             <li><?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?></li>
-              <?php if (current_user()) { ?>
+              <?php if (is_logged_in()) { ?>
                 <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
                 <li class="right"><?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?></li>
                 <?php if (is_admin()) { ?>

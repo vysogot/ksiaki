@@ -21,6 +21,7 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h2><?= t('users') ?></h2>
+  <p><?= link_to(t('add_new'), '/admin/users/new.php') ?></p>
   <table>
     <?php foreach($data as $user) { ?>
       <tr>

@@ -11,7 +11,6 @@ $params = [
 if ($post) {
 
     $params = array_merge($params, $_POST);
-    var_dump($params);
 
     if (validate_presence($params, 'name')) {
 

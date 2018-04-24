@@ -79,7 +79,8 @@ $translations = [
   'show' => 'Show',
   'edit' => 'Edit',
   'delete' => 'Delete',
-  'edit_form' => 'Editing',
+  'edit_form' => 'Editing: {{name}}',
+  'new_form' => 'New: {{name}}',
 
   // flashes
 
@@ -143,6 +144,8 @@ $translations = [
 
   // Popup
 
-  'are_you_sure' => 'Are you sure?'
+  'are_you_sure' => 'Are you sure?',
 
+  // Users form
+  'role' => 'Rola',
 ];

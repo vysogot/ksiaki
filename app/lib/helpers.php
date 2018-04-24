@@ -35,7 +35,7 @@ function current_url() {
   return $_SERVER['PHP_SELF'] == '/index.php' ? '/' : $_SERVER['PHP_SELF'];
 }
 
-function current_user() {
+function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 

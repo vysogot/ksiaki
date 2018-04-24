@@ -80,10 +80,12 @@ $translations = [
   'edit' => 'Edytuj',
   'delete' => 'Usuń',
   'edit_form' => 'Edycja: {{name}}',
+  'new' => 'Nowy: {{name}}',
 
   // flashes
 
   'login_success' => 'Logowanie powiodło się!',
+  'login_failure' => 'Logowanie nie powiodło się!',
   'logged_out_safely' => 'Bezpiecznie wylogowano!',
   'registration_success' => 'Rejestracja powiodła się!',
   'registration_failure' => 'Rejestracja nie powiodła się',
@@ -107,7 +109,6 @@ $translations = [
 
   // contest form
 
-  'new_contest' => 'Nowy konkurs',
   'contest_name' => 'Nazwa konkursu',
   'description' => 'Opis',
   'header_url' => 'URL banera',
@@ -126,7 +127,6 @@ $translations = [
 
   // backgrounds form
 
-  'new_background' => 'Nowe tło',
   'image_url' => 'URL obrazka',
   'link_url' => 'Linkowanie',
   'is_active' => 'Aktywny',
@@ -144,7 +144,9 @@ $translations = [
 
   // Popup
 
-  'are_you_sure' => 'Czy na pewno?'
+  'are_you_sure' => 'Czy na pewno?',
 
+  // Users form
+  'role' => 'Rola',
 
 ];

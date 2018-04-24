@@ -9,6 +9,15 @@ function validate_presence(&$params, $key) {
     }
 }
 
+function validate_existance(&$params, $key, $result) {
+    if (!empty($result)) {
+        return true;
+    } else {
+        $params['errors'][$key] = t('not_found');
+        return false;
+    }
+}
+
 function validate_email(&$params, $key) {
     if (filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
         return true;

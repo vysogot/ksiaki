@@ -69,3 +69,11 @@ function test_guest_cant_register_with_existing_name() {
     return i_should_not_see('Rejestracja powiodła się') &&
         i_should_see('Jest już zajęte');
 }
+
+function test_guest_unknown_fails_to_login() {
+  when_i_submit('/login.php', [
+        'name' => 'unknownuser',
+        'password' => '12345678'
+    ]);
+  return i_should_see('Logowanie nie powiodło się');
+}

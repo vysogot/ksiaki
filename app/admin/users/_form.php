@@ -19,7 +19,7 @@
 
   <div>
     <label for="email"><?= t('email') ?></label>
-    <input type="email" id="email" name="email"><?= $data->email ?></textarea>
+    <input type="email" id="email" name="email" value="<?= $data->email ?>">
   </div>
 
   <div>

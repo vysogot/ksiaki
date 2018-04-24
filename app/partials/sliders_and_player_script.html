@@ -1,0 +1,107 @@
+<script type="text/javascript">
+
+    $(document).on('ready', function() {
+
+        // Slider
+        $("#slajder").slick({
+            dots: false,
+            vertical: false,
+            centerMode: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            infinite: true,
+            arrows: false,
+            lazyLoad: 'ondemand'
+        });
+
+        $("#player").slick({
+            dots: false,
+            vertical: false,
+            centerMode: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: false,
+            infinite: true,
+            arrows: false,
+            lazyLoad: 'ondemand'
+        });
+
+        $("#contests-slider, #movies-slider, #box-banners-slider").slick({
+            variableWidth: true,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            lazyLoad: 'ondemand'
+        })
+            .on('mouseenter', '.slick-slide', function (e) {
+                $(e.currentTarget).addClass('expanded-light');
+            })
+            .on('mouseleave', '.slick-slide', function(e) {
+                $(e.currentTarget).removeClass('expanded-light');
+            });
+
+        // Player
+
+        // Run autoplay videos to satisfy Chrome
+        $("#player video[autoplay]").each(function(){ this.muted = true; this.play(); });
+
+        // Hide every link so it can be set to display: block in CSS
+        $("#player video").each(function(){ $(this).next().next().hide(); });
+
+        // Every video is muted at the begining with overlay to turn sound on
+        $('#player .mute').click(function () {
+            var mute = $(this);
+            var video = $(this).prev()[0];
+
+            video.muted = false;
+            mute.fadeOut();
+        });
+
+        // When video is clicked it gets muted back
+        $("#player video").click(function () {
+            var mute = $($(this).next());
+            var video = $(this)[0];
+
+            video.muted = true;
+            mute.fadeIn();
+        })
+
+        // When video ended display a call to action link
+            .on('ended', function() {
+                var cta = $($(this).next().next());
+                var mute = $($(this).next());
+                var video = $(this);
+
+                video.hide();
+                mute.hide();
+                cta.show();
+
+                // show another slick slide after a moment
+                setTimeout(function () {
+                    $('#player').slick('slickNext');
+                    cta.hide();
+                }, 1000);
+            });
+
+        // make sure video and mute are available
+        $('#player').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+            var video = $($(slick.$slides.get(currentSlide)).children('video:first-child')[0]);
+            var mute = $($(video).next()[0]);
+
+            mute.show();
+            video.show();
+        });
+
+        // and play the video silently
+        $('#player').on('afterChange', function(event, slick, currentSlide, nextSlide) {
+            var video = $(slick.$slides.get(currentSlide)).children('video:first-child')[0];
+            var mute = $($(video).next()[0]);
+
+            video.muted = true;
+            video.play();
+        });
+
+    });
+
+</script>
