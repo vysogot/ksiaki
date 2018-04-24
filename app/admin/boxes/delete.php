@@ -11,5 +11,5 @@ if ($result->rowCount == 1) {
   redirect("/admin/boxes.php");
 } else {
   flash('warning', t('delete_failure'));
-  redirect('show.php?id=' . $result->lastInsertId);
+  redirect('show.php?id=' . $_GET['id']);
 }

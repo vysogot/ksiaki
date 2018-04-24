@@ -20,7 +20,7 @@ $data = execute('call sp_users_find_all(
 function content($params, $data) { ?>
 
 <div class="wrapper">
-  <h2><?= t('users') ?></h2>
+  <h1><?= t('users') ?></h1>
   <p><?= link_to(t('add_new'), '/admin/users/new.php') ?></p>
   <table>
     <?php foreach($data as $user) { ?>

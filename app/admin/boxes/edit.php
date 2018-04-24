@@ -16,7 +16,7 @@ $data = execute('call sp_boxes_find(:p_id);', array(
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2><?= t('edit_form') ?></h2>
+    <h2><?= t('edit_form', ['name' => t('box')]) ?></h2>
     <?= link_to(t('boxes'), '/admin/boxes.php') ?>
     <?php include '_form.php'; ?>
   </div>

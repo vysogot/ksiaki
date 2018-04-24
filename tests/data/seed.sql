@@ -22,6 +22,8 @@ INSERT INTO `_users` (`id`, `role_id`, `name`, `email`, `password_hash`, `is_act
 	(2, 2, 'admin',  'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL);
 
 TRUNCATE TABLE `_backgrounds`;
+TRUNCATE TABLE `_boxes`;
+INSERT INTO `_boxes` (`id`, `name`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) VALUES (1, 'Box 1', '/uploads/box-1.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00');
 TRUNCATE TABLE `_contests`;
 INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `box_url`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
 VALUES

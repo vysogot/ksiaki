@@ -51,7 +51,7 @@ if ($post) {
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2><?= t('new_box') ?></h2>
+    <h1><?= t('new_box') ?></h1>
     <?= link_to(t('boxes'), '/admin/boxes.php') ?>
     <?php include '_form.php'; ?>
   </div>

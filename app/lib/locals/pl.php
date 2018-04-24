@@ -125,6 +125,9 @@ $translations = [
   'hero' => 'Bohater',
   'avatar_url' => 'URL awatara',
 
+  // boxes form
+  'box' => 'Box',
+
   // backgrounds form
 
   'image_url' => 'URL obrazka',
