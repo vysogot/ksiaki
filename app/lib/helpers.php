@@ -70,6 +70,16 @@ function link_to($name, $destination, $options = []) {
   return $link . ">$name</a>";
 }
 
+function image($src, $options = []) {
+    $image = '<img src="' . $src . '"';
+
+    foreach($options as $key => $value) {
+        $image .= ' ' . $key . '="' . $value . '"';
+    }
+
+    return $image . ">";
+}
+
 function get_background() {
   $background = execute('call sp_backgrounds_get();', array());
   if (empty($background)) $background = execute('call sp_backgrounds_new();', array());
