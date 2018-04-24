@@ -46,8 +46,8 @@ function test_admin_updates_box() {
         'begins_at' => '2018-02-02',
         'ends_at' => '2018-02-19',
     ]);
-    and_i_go_to('/admin/boxes/show.php?id=1');
     return i_should_see_no_error() &&
+        i_should_see('Udało się zaktualizować') &&
         i_should_see('/uploads/box-2.jpg');
 }
 

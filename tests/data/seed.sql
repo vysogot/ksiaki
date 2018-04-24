@@ -29,6 +29,9 @@ INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `descriptio
 VALUES
 (1, 1, 2, 'Jaskiniowiec', 'Niesamowity konkurs!', '/uploads/box-1.jpg', '/uploads/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
 
+TRUNCATE TABLE `_user_movies`;
+INSERT INTO `_user_movies` (`id`, `user_id`, `name`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
+VALUES (1, 1, 'User video 1', '/uploads/user_movie-1.mp4', '/uploads/user_movie-1.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00');
 TRUNCATE TABLE `_quizes`;
 TRUNCATE TABLE `_quiz_answers`;
 TRUNCATE TABLE `_notifications`;

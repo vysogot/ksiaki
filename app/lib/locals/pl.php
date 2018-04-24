@@ -128,6 +128,9 @@ $translations = [
   // boxes form
   'box' => 'Box',
 
+  // user movie form
+  'user_movie' => 'Film użytkownika',
+
   // backgrounds form
 
   'image_url' => 'URL obrazka',
