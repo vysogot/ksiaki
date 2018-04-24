@@ -72,6 +72,8 @@ $translations = [
   'backgrounds' => 'Tła',
   'heroes' => 'Bohaterowie',
   'boxes' => 'Boxy',
+  'slides' => 'Slajdy',
+  'user_movies' => 'Filmy użytkowników',
 
   // data
 
@@ -127,6 +129,9 @@ $translations = [
 
   // boxes form
   'box' => 'Box',
+
+  // slides form
+  'slide' => 'Slajd',
 
   // user movie form
   'user_movie' => 'Film użytkownika',

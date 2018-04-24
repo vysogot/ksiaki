@@ -88,6 +88,20 @@ CREATE TABLE IF NOT EXISTS `_boxes` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Boxy';
 
+/* Slajdy */
+CREATE TABLE IF NOT EXISTS `_slides` (
+ `id` int unsigned NOT NULL AUTO_INCREMENT,
+ `name` varchar(255),
+ `image_url` varchar(255),
+ `link_url` varchar(255),
+ `is_active` tinyint(1),
+ `begins_at` datetime,
+ `ends_at` datetime,
+ `created_at` datetime,
+ `updated_at` datetime,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Slajdy';
+
 /* Filmy użytkowników */
 CREATE TABLE IF NOT EXISTS `_user_movies` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,

@@ -33,6 +33,21 @@ $data['contests'] = execute('call sp_contests_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
+$data['slides'] = execute('call sp_slides_all(
+  :p_id,
+  :p_name,
+  :p_link_url,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_id', NULL, PDO::PARAM_INT),
+  array('p_name', NULL, PDO::PARAM_STR),
+  array('p_link_url', NULL, PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
+
+
 $data['boxes'] = execute('call sp_boxes_all(
   :p_id,
   :p_name,
@@ -66,9 +81,12 @@ function content($params, $data) { ?>
 <div class="wrapper">
 
     <section id="slajder" class="slider">
-      <div><img src="/uploads/slider-1.jpg" /></div>
-      <div><img src="/uploads/slider-2.jpg" /></div>
-      <div><img src="/uploads/slider-3.jpg" /></div>
+        <?php foreach($data['slides'] as $slide) { ?>
+          <div>
+            <?= link_to(image($slide->image_url), $slide->link_url) ?>
+            <p><?= link_to($slide->name, $slide->link_url) ?></p>
+          </div>
+        <?php } ?>
     </section>
 
     <section id="player" class="slider">
