@@ -52,6 +52,7 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_users_create`(
+        IN `p_role_id` INT,
 	IN `p_name` VARCHAR(255),
         IN `p_email` VARCHAR(255),
         IN `p_avatar_url` VARCHAR(255), 
@@ -59,7 +60,8 @@ CREATE PROCEDURE `sp_users_create`(
         IN `p_password_hash` VARCHAR(255)
 )
 BEGIN
-INSERT INTO _users(name, email, avatar_url, is_active, password_hash) VALUES(p_name, p_email, p_avatar_url, p_is_active, p_password_hash);
+INSERT INTO _users(role_id, name, email, avatar_url, is_active, password_hash) 
+VALUES(p_role_id, p_name, p_email, p_avatar_url, p_is_active, p_password_hash);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
 DELIMITER ;

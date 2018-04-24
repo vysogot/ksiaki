@@ -20,5 +20,3 @@ function get_dir_contents($dir, &$results = array()){
 function is_test($name) {
   return substr($name, 0, 5) == 'test_';
 }
-
-

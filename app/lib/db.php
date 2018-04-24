@@ -2,7 +2,7 @@
 
 function execute($sql, $fields, $all = false)
 {
-  $dbc = getConnection();
+  $dbc = get_connection();
   $query = $dbc->prepare($sql);
 
   foreach ($fields as $field) {
@@ -23,7 +23,7 @@ function execute($sql, $fields, $all = false)
 
 }
 
-function getConnection()
+function get_connection()
 {
 
   if (!isset($GLOBALS['db_connection'])) {

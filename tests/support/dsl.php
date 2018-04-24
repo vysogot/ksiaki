@@ -42,6 +42,12 @@ function i_should_see_many($texts) {
     return !empty($texts);
 }
 
+function i_should_see_exactly($number, $text) {
+    return $number == preg_match_all(
+        '/' . preg_quote($text, '/') . '/', output()
+    );
+}
+
 function i_should_not_see($text) {
   return !i_should_see($text);
 }

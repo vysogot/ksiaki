@@ -93,6 +93,7 @@ $translations = [
 
   'has_to_be_present' => 'Musi być podany',
   'has_to_be_unique' => 'Jest już zajęte',
+  'has_to_be_long_enough' => 'Musi zawierać co najmniej {{length}} znaków',
 
 
   // generic

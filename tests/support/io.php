@@ -17,6 +17,7 @@ function basic_curl_handle($path) {
   curl_setopt($curl_handle, CURLOPT_COOKIEJAR, COOKIE_FILE_PATH);
   curl_setopt($curl_handle, CURLOPT_COOKIEFILE, COOKIE_FILE_PATH);
   curl_setopt($curl_handle, CURLOPT_HTTPHEADER, ['Accept-Language: pl']);
+  curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, true);
 
   return $curl_handle;
 }
@@ -26,6 +27,10 @@ function execute_curl($curl_handle) {
   $GLOBALS['response_header'] = curl_getinfo($curl_handle);
   $output_file = fopen(TMP_OUTPUT_FILE_PATH, "w");
   $cookie_file = fopen(COOKIE_FILE_PATH, "w");
+
+  if (fwrite($output_file, output()) === false) {
+    echo "Error writing to file: $output_file_path";
+  }
 
   curl_close($curl_handle);
   fclose($output_file);
@@ -42,29 +47,12 @@ function curl_post($path, $data) {
 
   curl_setopt($curl_handle, CURLOPT_POST, true);
   curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $data);
-  curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, true);
 
   execute_curl($curl_handle);
 }
 
 function output($key = 'response_body') {
   return $GLOBALS[$key];
-}
-
-function seed() {
-  list($host, $dbname, $user, $pass, $port) = [
-    $GLOBALS['config']['DB_HOST'],
-    $GLOBALS['config']['DB_NAME'],
-    $GLOBALS['config']['DB_USER'],
-    $GLOBALS['config']['DB_PASS'],
-    $GLOBALS['config']['DB_PORT']
-  ];
-
-  exec("mysql -h $host -P $port -u $user --password=$pass $dbname < " . SQL_SEED_FILE_PATH);
-}
-
-function prepare() {
-  seed();
 }
 
 function teardown() {

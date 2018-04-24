@@ -3,66 +3,63 @@
 include 'init.php';
 
 $params = [
-  'name' => null,
-  'email' => null,
-  'password' => null
+    'name' => null,
+    'email' => null,
+    'password' => null
 ];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($post) {
 
-  $params = array_merge($params, $_POST);
+    $params = array_merge($params, $_POST);
+    var_dump($params);
 
-  if (empty($params['name'])) {
-    $errors['name'] = t('has_to_be_present');
-  } else {
+    if (validate_presence($params, 'name')) {
 
-    $result = execute('call sp_users_find_by_name_or_email(:p_name_or_email);', array(
-      array('p_name_or_email', $params['name'], PDO::PARAM_STR)
-    ));
+        $result = execute('call sp_users_find_by_name_or_email(
+            :p_name_or_email
+        );', array(
+            array('p_name_or_email', $params['name'], PDO::PARAM_STR)
+        ));
 
-    if (!empty($result)) {
-      $errors['name'] = t('has_to_be_unique');
-    }
-  }
-
-  if (filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
-
-    $result = execute('call sp_users_find_by_name_or_email(:p_name_or_email);', array(
-      array('p_name_or_email', $params['email'], PDO::PARAM_STR)
-    ));
-
-    if (!empty($result)) {
-      $errors['email'] = t('has_to_be_unique');
+        validate_uniqueness($params, 'name', $result);
     }
 
-  } else {
-    $errors['email'] = t('has_to_a_proper_email');
-  }
+    if (validate_email($params, 'email')) {
 
-  if (strlen($params['password']) < 6) {
-    $errors['password'] = t('has_to_be_long_enough');
-  }
+        $result = execute('call sp_users_find_by_name_or_email(
+            :p_name_or_email
+        );', array(
+            array('p_name_or_email', $params['email'], PDO::PARAM_STR)
+        ));
 
-  if (empty($errors)) {
-
-    $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
-
-    $result = execute('call sp_users_register(:p_name, :p_email, :p_password_hash);', array(
-      array('p_name', $params['name'], PDO::PARAM_STR),
-      array('p_email', $params['email'], PDO::PARAM_STR),
-      array('p_password_hash', $password_hash, PDO::PARAM_STR)
-    ));
-
-    if (!empty($result)) {
-      flash('notice', t('registration_success'));
-    } else {
-      flash('warning', t('registration_failure'));
+        validate_uniqueness($params, 'email', $result);
     }
 
-    redirect('/');
-  }
+    validate_not_shorter_than($params, 'password', 6);
 
-  $params['errors'] = $errors;
+
+    if (empty($params['errors'])) {
+
+        $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
+
+        $result = execute('call sp_users_register(
+            :p_name, 
+            :p_email, 
+            :p_password_hash
+        );', array(
+            array('p_name', $params['name'], PDO::PARAM_STR),
+            array('p_email', $params['email'], PDO::PARAM_STR),
+            array('p_password_hash', $password_hash, PDO::PARAM_STR)
+        ));
+
+        if (!empty($result)) {
+            flash('notice', t('registration_success'));
+        } else {
+            flash('warning', t('registration_failure'));
+        }
+
+        redirect('/');
+    }
 
 }
 

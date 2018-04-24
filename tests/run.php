@@ -5,8 +5,9 @@ $time_start = microtime(true);
 $memory_use = memory_get_usage();
 
 require 'support/env.php';
-require 'support/dsl.php';
+require 'support/db.php';
 require 'support/io.php';
+require 'support/dsl.php';
 require 'support/helpers.php';
 
 /* all acceptance test files */
@@ -41,18 +42,17 @@ $failed_tests = [];
 /* run */
 foreach ($tests as $test) {
 
-    /* seed db */
-    prepare();
+    db_seed();
 
     /* call test: display a dot when passed, F otherwise */
     if (call_user_func($test)) {
         echo ".";
     } else {
         echo "F";
-        $failed_tests[$test] = strip_tags(
-            explode('<hr/>', 
-            substr(output(), 0, 500)
-        )[0]);
+        $failed_tests[$test] = substr(
+            preg_replace("/[\r\n]+\s+/", "\n", strip_tags(output())), 
+            0, 800
+        );
         write_failure_to_file($test);
     }
 
@@ -69,7 +69,11 @@ if (empty($failed_tests)) {
     echo ", all good.\n";
 } else {
     echo "\nFailed: " . count($failed_tests) . "\nTests that failed:\n";
-    foreach($failed_tests as $testname => $output) { echo "- $test\n\n$output\n\n"; }
+
+    foreach($failed_tests as $testname => $output) { 
+        echo "- $testname\n\n$output\n\n"; 
+    }
 }
 echo "Execution time: " . number_format($execution_time, 3) . "s\n";
-echo "Memory peak usage: " . number_format((memory_get_peak_usage() - $memory_use)/1024, 3) . "Kb\n";
+echo "Memory peak usage: " . 
+    number_format((memory_get_peak_usage() - $memory_use)/1024, 3) . "Kb\n";
