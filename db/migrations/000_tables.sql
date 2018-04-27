@@ -118,6 +118,22 @@ CREATE TABLE IF NOT EXISTS `_user_movies` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Filmy użytkowników';
 
+
+/* Reklamy video */
+CREATE TABLE IF NOT EXISTS `_video_ads` (
+ `id` int unsigned NOT NULL AUTO_INCREMENT,
+ `name` varchar(255),
+ `video_url` varchar(255),
+ `image_url` varchar(255),
+ `link_url` varchar(255),
+ `is_active` tinyint(1),
+ `begins_at` datetime,
+ `ends_at` datetime,
+ `created_at` datetime,
+ `updated_at` datetime,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Reklamy video';
+
 /* Bohaterowie */
 CREATE TABLE IF NOT EXISTS `_heroes` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,

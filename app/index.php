@@ -76,6 +76,20 @@ $data['user_movies'] = execute('call sp_user_movies_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
+$data['video_ads'] = execute('call sp_video_ads_all(
+  :p_id,
+  :p_name,
+  :p_link_url,
+  :p_offset,
+  :p_limit
+);', array(
+  array('p_id', NULL, PDO::PARAM_INT),
+  array('p_name', NULL, PDO::PARAM_STR),
+  array('p_link_url', NULL, PDO::PARAM_STR),
+  array('p_offset', $params['offset'], PDO::PARAM_INT),
+  array('p_limit', $params['limit'], PDO::PARAM_INT)
+), true);
+
 function content($params, $data) { ?>
 
 <div class="wrapper">
@@ -90,16 +104,15 @@ function content($params, $data) { ?>
     </section>
 
     <section id="player" class="slider">
-      <div>
-        <video controls autoplay muted poster="/uploads/movie-1.jpg" src="/uploads/movie-1.mov"></video>
-        <div class="mute"></div>
-        <?= link_to(image("/uploads/movie-cta.jpg"), 'http://konkursiaki.pl') ?>
-      </div>
-      <div>
-        <video controls preload="none" muted poster="/uploads/movie-2.jpg" src="/uploads/movie-2.mov"></video>
-        <div class="mute"></div>
-        <?= link_to('<img src="/uploads/movie-cta.jpg" />', 'http://konkursiaki.pl') ?>
-      </div>
+    <?php reset($data['video_ads']); $first = key($data['video_ads']); 
+        foreach($data['video_ads'] as $key => $video_ad) { ?>
+            <?php $options = ($key == $first) ? 'autoplay' : 'muted preload="none"' ?>
+            <div>
+            <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>"></video>
+                <div class="mute"></div>
+                <?= link_to(image($video_ad->image_url), 'http://konkursiaki.pl') ?>
+            </div>
+    <?php } ?>
     </section>
 
     <section id="contests" class="slider">

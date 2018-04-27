@@ -14,7 +14,6 @@ $translations = [
 
   // index
 
-  'user_movies' => 'User movies',
   'box_banners' => 'Box banners',
 
   // footer
@@ -72,6 +71,9 @@ $translations = [
   'backgrounds' => 'Backgrounds',
   'heroes' => 'Heroes',
   'boxes' => 'Boxes',
+  'slides' => 'Slides',
+  'user_movies' => 'Filmy użytkowników',
+  'video_ads' => 'Video ads',
 
   // data
 
@@ -123,6 +125,19 @@ $translations = [
 
   'hero' => 'Hero',
   'avatar_url' => 'Avatar URL',
+
+  // boxes form
+  'box' => 'Box',
+
+  // slides form
+  'slide' => 'Slide',
+
+  // user movie form
+  'user_movie' => 'User movie',
+
+  // user movie form
+  'video_ad' => 'Video ad',
+  'video_url' => 'Video URL',
 
   // backgrounds form
 

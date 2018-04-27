@@ -44,7 +44,7 @@ video { max-width: 100%; }
 #copyright    { width: 100%;  height: 50px; color: white; background-color: #777; opacity: 0.9; font-weight: bold; }
 
 #logo img { margin-top: 10px;}
-#player video { width: 100%; height: 290px; background: white; object-fit: fill; }
+#player video, #player img { width: 100%; height: 290px; background: white; object-fit: fill; }
 #player a { display: block; object-fit: fill; }
 
 #logo, #banner, #slajder, #player, #static-sites,

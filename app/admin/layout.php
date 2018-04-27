@@ -25,6 +25,7 @@
           <li><?= link_to(t('boxes'), '/admin/boxes.php', ['id' => 'menu-boxes']) ?></li>
           <li><?= link_to(t('user_movies'), '/admin/user_movies.php', ['id' => 'menu-user-movies']) ?></li>
           <li><?= link_to(t('slides'), '/admin/slides.php', ['id' => 'menu-slides']) ?></li>
+          <li><?= link_to(t('video_ads'), '/admin/video_ads.php', ['id' => 'menu-video-ads']) ?></li>
           <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
           </ul>
         </nav>

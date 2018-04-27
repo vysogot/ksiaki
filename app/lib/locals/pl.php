@@ -74,6 +74,7 @@ $translations = [
   'boxes' => 'Boxy',
   'slides' => 'Slajdy',
   'user_movies' => 'Filmy użytkowników',
+  'video_ads' => 'Reklamy video',
 
   // data
 
@@ -82,7 +83,7 @@ $translations = [
   'edit' => 'Edytuj',
   'delete' => 'Usuń',
   'edit_form' => 'Edycja: {{name}}',
-  'new' => 'Nowy: {{name}}',
+  'new_form' => 'Nowy: {{name}}',
 
   // flashes
 
@@ -135,6 +136,10 @@ $translations = [
 
   // user movie form
   'user_movie' => 'Film użytkownika',
+
+  // user movie form
+  'video_ad' => 'Reklama video',
+  'video_url' => 'URL video',
 
   // backgrounds form
 

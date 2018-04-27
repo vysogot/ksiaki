@@ -67,7 +67,7 @@
             mute.fadeIn();
         })
 
-        // When video ended display a call to action link
+        // When video ended, display a call to action link
             .on('ended', function() {
                 var cta = $($(this).next().next());
                 var mute = $($(this).next());
@@ -77,11 +77,13 @@
                 mute.hide();
                 cta.show();
 
-                // show another slick slide after a moment
-                setTimeout(function () {
-                    $('#player').slick('slickNext');
-                    cta.hide();
-                }, 1000);
+                // show another slick slide after a moment unless there is just one video
+                if ($("#player video").size() > 1) {
+                    setTimeout(function () {
+                        $('#player').slick('slickNext');
+                        cta.hide();
+                    }, 1000);
+                }
             });
 
         // make sure video and mute are available
