@@ -1,7 +1,5 @@
 <?php
 
-$start_time = microtime(TRUE);
-
 include 'init.php';
 
 $params = [
@@ -45,6 +43,3 @@ function content($params, $data) { ?>
 <?php }
 
 include 'layout.php';
-
-$end_time = microtime(TRUE);
-echo $end_time - $start_time;

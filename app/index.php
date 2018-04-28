@@ -120,8 +120,8 @@ function content($params, $data) { ?>
       <div id="contests-slider" class="boxes">
         <?php foreach($data['contests'] as $contest) { ?>
           <div>
-            <?= link_to(image($contest->box_url), "/contests/show.php?id=$contest->id") ?>
-            <p><?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?></p>
+            <?= link_to(image($contest->box_url), "/contest.php?id=$contest->id") ?>
+            <p><?= link_to($contest->name, "/contest.php?id=$contest->id") ?></p>
           </div>
         <?php } ?>
       </div>
@@ -132,8 +132,8 @@ function content($params, $data) { ?>
       <div id="movies-slider" class="boxes">
         <?php foreach($data['user_movies'] as $user_movie) { ?>
           <div>
-              <?= link_to(image($user_movie->image_url), '/user_movies/show.php?id=' . $user_movie->id) ?>
-              <p><?= link_to($user_movie->name, '/user_movies/show.php?id=' . $user_movie->id) ?></p>
+              <?= link_to(image($user_movie->image_url), '/user_movie.php?id=' . $user_movie->id) ?>
+              <p><?= link_to($user_movie->name, '/user_movie.php?id=' . $user_movie->id) ?></p>
           </div>
         <?php } ?> 
      </div>

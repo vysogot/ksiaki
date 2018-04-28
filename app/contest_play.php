@@ -1,6 +1,6 @@
 <?php
 
-include '../init.php';
+include 'init.php';
 
 $params = [
   "id" => null
@@ -20,11 +20,11 @@ function content($params, $data) { ?>
 
 <div class="wrapper center">
   <img class="ad" src="/uploads/wide-banner.jpg" />
-  <h2><?= link_to(t('back_to_contest'), "/contests/show.php?id=" . $data['contest']->id) ?></h2>
+  <h2><?= link_to(t('back_to_contest'), "/contest.php?id=" . $data['contest']->id) ?></h2>
   <iframe style="width: 100%; height: 100vh;" src="/games/<?= $data['game']->name ?>/index.html"></iframe>
   <img class="ad" src="/uploads/wide-banner-2.jpg" />
 </div>
 
 <?php }
 
-include '../layout.php';
+include 'layout.php';

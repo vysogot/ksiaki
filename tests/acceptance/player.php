@@ -2,7 +2,7 @@
 
 function test_player_profile() {
   when_i_login_as('user');
-  and_i_go_to('/users.php?id=1');
+  and_i_go_to('/profile.php?id=1');
   return i_should_see('Nick: user');
 }
 

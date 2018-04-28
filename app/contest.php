@@ -1,6 +1,6 @@
 <?php
 
-include '../init.php';
+include 'init.php';
 
 $params = [
   "id" => null,
@@ -45,20 +45,20 @@ function content($params, $data) { ?>
   <h1><?= $data['contest']->name ?></h1>
 
   <div class="wrapper">
-    <h2 class="center"><?= link_to(t('play'), "/contests/preroll.php?id=" . $data['contest']->id) ?></h2>
+    <h2 class="center"><?= link_to(t('play'), "/contest_preroll.php?id=" . $data['contest']->id) ?></h2>
     <div class="side rankings">
-      <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/rankings/contest.php?id=' . $data['contest']->id) ?></h2>
+      <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/ranking.php?type=contest&id=' . $data['contest']->id) ?></h2>
       <?= ranking_list($data['contest_ranking']) ?>
     </div>
 
-    <?php include '../partials/modal_ranking.html' ?>
+    <?php include './partials/modal_ranking.html' ?>
 
     <div class="main">
       <h2><?= t('other_contests') ?></h2>
       <?php foreach($data['connected_contests'] as $contest) { ?>
         <div class="left box">
-          <?= link_to("<img src='$contest->box_url'>", "/contests/show.php?id=$contest->id") ?>
-          <p><?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?></p>
+          <?= link_to("<img src='$contest->box_url'>", "/contest.php?id=$contest->id") ?>
+          <p><?= link_to($contest->name, "/contest.php?id=$contest->id") ?></p>
         </div>
       <?php } ?>
     </div>
@@ -72,4 +72,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include '../layout.php';
+include 'layout.php';

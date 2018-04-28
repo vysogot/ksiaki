@@ -51,10 +51,10 @@ function content($params, $data) { ?>
   <h2 class="hidden"><?= t('contests') ?></h2>
 
   <div class="side rankings">
-    <h2><?= link_to(t('monthly_ranking'), '/rankings/monthly.php?month=' . $params['month']) ?></h2>
+    <h2><?= link_to(t('monthly_ranking'), '/ranking.php?type=monthly&month=' . $params['month']) ?></h2>
     <?= ranking_list($data['monthly_ranking']) ?>
 
-    <h2><?= link_to(t('yearly_ranking'), '/rankings/yearly.php?year=' . $params['year']) ?></h2>
+    <h2><?= link_to(t('yearly_ranking'), '/ranking.php?type=yearly&year=' . $params['year']) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
   </div>
 
@@ -63,8 +63,8 @@ function content($params, $data) { ?>
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
       <div class="left box">
-        <?= link_to("<img src='$contest->box_url'>", "/contests/show.php?id=$contest->id") ?>
-        <p><?= link_to($contest->name, "/contests/show.php?id=$contest->id") ?></p>
+        <?= link_to("<img src='$contest->box_url'>", "/contest.php?id=$contest->id") ?>
+        <p><?= link_to($contest->name, "/contest.php?id=$contest->id") ?></p>
       </div>
     <?php } ?>
   </div>

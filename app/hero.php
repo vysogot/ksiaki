@@ -1,6 +1,6 @@
 <?php
 
-include '../init.php';
+include 'init.php';
 
 $params = [
   "id" => null,
@@ -26,4 +26,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include '../layout.php';
+include 'layout.php';
