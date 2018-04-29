@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include '../init.php';
 
 $params = [
   "offset" => 0,
@@ -21,14 +21,14 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h1><?= t('users') ?></h1>
-  <p><?= link_to(t('add_new'), '/admin/users/new.php') ?></p>
+  <p><?= link_to(t('add_new'), 'new.php') ?></p>
   <table>
     <?php foreach($data as $user) { ?>
       <tr>
         <td><?= e($user->name) ?></td>
-        <td><?= link_to(t('show'), "/admin/users/show.php?id=$user->id") ?></td>
-        <td><?= link_to(t('edit'), "/admin/users/edit.php?id=$user->id") ?></td>
-        <td><?= link_to(t('delete'), "/admin/users/delete.php?id=$user->id", ['class' => 'confirmation']) ?>
+        <td><?= link_to(t('show'), "show.php?id=$user->id") ?></td>
+        <td><?= link_to(t('edit'), "edit.php?id=$user->id") ?></td>
+        <td><?= link_to(t('delete'), "delete.php?id=$user->id", ['class' => 'confirmation']) ?>
         </td>
       </tr>
     <?php } ?>
@@ -37,4 +37,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include 'layout.php';
+include '../layout.php';

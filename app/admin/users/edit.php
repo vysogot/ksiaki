@@ -17,7 +17,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h2><?= t('edit_form', ['name' => $data->name]) ?></h2>
-    <?= link_to(t('users'), '/admin/users.php') ?>
+    <?= link_to(t('users'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>
 

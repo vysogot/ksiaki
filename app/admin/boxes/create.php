@@ -52,7 +52,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h1><?= t('new_box') ?></h1>
-    <?= link_to(t('boxes'), '/admin/boxes.php') ?>
+    <?= link_to(t('boxes'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>
 

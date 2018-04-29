@@ -57,7 +57,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h2><?= t('new_user_movie') ?></h2>
-    <?= link_to(t('user_movies'), '/admin/user_movies.php') ?>
+    <?= link_to(t('user_movies'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>
 

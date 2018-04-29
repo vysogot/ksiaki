@@ -58,4 +58,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include '../layout.php';
+include 'layout.php';

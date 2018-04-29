@@ -8,7 +8,7 @@ $result = execute('call sp_slides_delete(:p_id);', array(
 
 if ($result->rowCount == 1) {
   flash('notice', t('delete_success'));
-  redirect("/admin/slides.php");
+  redirect("index.php");
 } else {
   flash('warning', t('delete_failure'));
   redirect('show.php?id=' . $_GET['id']);

@@ -8,7 +8,7 @@ $result = execute('call sp_contests_delete(:p_id);', array(
 
 if ($result->rowCount == 1) {
   flash('notice', t('delete_success'));
-  redirect("/admin/contests.php");
+  redirect("index.php");
 } else {
   flash('warning', t('delete_failure'));
   redirect('show.php?id=' . $result->lastInsertId);

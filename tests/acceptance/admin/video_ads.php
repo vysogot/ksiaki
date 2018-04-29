@@ -2,7 +2,7 @@
 
 function test_admin_lists_all_video_ads() {
     when_i_login_as('admin');
-    and_i_go_to('/admin/video_ads.php');
+    and_i_go_to('/admin/video_ads/index.php');
     return i_should_see('Dodaj nowy');
 }
 

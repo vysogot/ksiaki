@@ -2,7 +2,7 @@
 
 function test_admin_lists_all_users() {
     when_i_login_as('admin');
-    and_i_go_to('/admin/users.php');
+    and_i_go_to('/admin/users/index.php');
     return i_should_see('Użytkownicy');
 }
 

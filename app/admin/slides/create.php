@@ -52,7 +52,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h1><?= t('new_slide') ?></h1>
-    <?= link_to(t('slide'), '/admin/slides.php') ?>
+    <?= link_to(t('slide'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include '../init.php';
 
 $params = [
   "id" => null,
@@ -30,7 +30,7 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h2><?= t('backgrounds') ?></h2>
-  <p><?= link_to(t('add_new'), '/admin/backgrounds/new.php') ?></p>
+  <p><?= link_to(t('add_new'), 'new.php') ?></p>
   <table>
     <?php foreach($data as $background) { ?>
       <tr>
@@ -41,9 +41,9 @@ function content($params, $data) { ?>
         <td><?= e($background->begins_at) ?></td>
         <td><?= e($background->ends_at) ?></td>
         <td><?= e($background->is_active) ?></td>
-        <td><?= link_to(t('show'), "/admin/backgrounds/show.php?id=$background->id") ?></td>
-        <td><?= link_to(t('edit'), "/admin/backgrounds/edit.php?id=$background->id") ?></td>
-        <td><?= link_to(t('delete'), "/admin/backgrounds/delete.php?id=$background->id", ['class' => 'confirmation']) ?></td>
+        <td><?= link_to(t('show'), "show.php?id=$background->id") ?></td>
+        <td><?= link_to(t('edit'), "edit.php?id=$background->id") ?></td>
+        <td><?= link_to(t('delete'), "delete.php?id=$background->id", ['class' => 'confirmation']) ?></td>
       </tr>
     <?php } ?>
   </table>
@@ -51,4 +51,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include 'layout.php';
+include '../layout.php';

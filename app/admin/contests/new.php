@@ -12,7 +12,7 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h2><?= t('new_form', ['name' => t('contest')]) ?></h2>
-  <?= link_to(t('contests'), '/admin/contests.php') ?>
+  <?= link_to(t('contests'), 'index.php') ?>
   <?php include '_form.php'; ?>
 </div>
 

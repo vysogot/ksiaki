@@ -37,7 +37,7 @@
                 <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
                 <li class="right"><?= link_to(t('dashboard'), '/dashboard.php', ['id' => 'menu-login']) ?></li>
                 <?php if (is_admin()) { ?>
-                  <li class="right"><?= link_to(t('admin_panel'), '/admin/contests.php', ['id' => 'menu-admin']) ?></li>
+                  <li class="right"><?= link_to(t('admin_panel'), '/admin', ['id' => 'menu-admin']) ?></li>
                 <?php } ?>
               <?php } else { ?>
                 <li class="right"><?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?></li>

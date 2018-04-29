@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include '../init.php';
 
 $params = [
   "id" => null,
@@ -30,7 +30,7 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h2><?= t('video_ads') ?></h2>
-  <p><?= link_to(t('add_new'), '/admin/video_ads/new.php') ?></p>
+  <p><?= link_to(t('add_new'), 'new.php') ?></p>
   <table>
     <?php foreach($data as $video_ad) { ?>
       <tr>
@@ -41,9 +41,9 @@ function content($params, $data) { ?>
         <td><?= e($video_ad->begins_at) ?></td>
         <td><?= e($video_ad->ends_at) ?></td>
         <td><?= e($video_ad->is_active) ?></td>
-        <td><?= link_to(t('show'), "/admin/video_ads/show.php?id=$video_ad->id") ?></td>
-        <td><?= link_to(t('edit'), "/admin/video_ads/edit.php?id=$video_ad->id") ?></td>
-        <td><?= link_to(t('delete'), "/admin/video_ads/delete.php?id=$video_ad->id", ['class' => 'confirmation']) ?></td>
+        <td><?= link_to(t('show'), "show.php?id=$video_ad->id") ?></td>
+        <td><?= link_to(t('edit'), "edit.php?id=$video_ad->id") ?></td>
+        <td><?= link_to(t('delete'), "delete.php?id=$video_ad->id", ['class' => 'confirmation']) ?></td>
       </tr>
     <?php } ?>
   </table>
@@ -51,4 +51,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include 'layout.php';
+include '../layout.php';

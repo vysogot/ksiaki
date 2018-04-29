@@ -17,16 +17,15 @@
       <nav>
         <ul class="bare">
           <li><?= link_to(t('home_page'), '/', ['id' => 'menu-back']) ?></li>
-          <li><?= link_to(t('users'), '/admin/users.php', ['id' => 'menu-users']) ?></li>
-          <li><?= link_to(t('contests'), '/admin/contests.php', ['id' => 'menu-contests']) ?></li>
-          <li><?= link_to(t('heroes'), '/admin/heroes.php', ['id' => 'menu-heroes']) ?></li>
-          <li><?= link_to(t('rankings'), '/admin/rankings.php', ['id' => 'menu-rankings']) ?></li>
-          <li><?= link_to(t('backgrounds'), '/admin/backgrounds.php', ['id' => 'menu-backgrounds']) ?></li>
-          <li><?= link_to(t('slides'), '/admin/slides.php', ['id' => 'menu-slides']) ?></li>
-          <li><?= link_to(t('video_ads'), '/admin/video_ads.php', ['id' => 'menu-video-ads']) ?></li>
-          <li><?= link_to(t('boxes'), '/admin/boxes.php', ['id' => 'menu-boxes']) ?></li>
-          <li><?= link_to(t('user_movies'), '/admin/user_movies.php', ['id' => 'menu-user-movies']) ?></li>
-          <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
+          <li><?= link_to(t('users'), '/admin/users/', ['id' => 'menu-users']) ?></li>
+          <li><?= link_to(t('contests'), '/admin/contests/', ['id' => 'menu-contests']) ?></li>
+          <li><?= link_to(t('heroes'), '/admin/heroes/', ['id' => 'menu-heroes']) ?></li>
+          <li><?= link_to(t('backgrounds'), '/admin/backgrounds/', ['id' => 'menu-backgrounds']) ?></li>
+          <li><?= link_to(t('slides'), '/admin/slides/', ['id' => 'menu-slides']) ?></li>
+          <li><?= link_to(t('video_ads'), '/admin/video_ads/', ['id' => 'menu-video-ads']) ?></li>
+          <li><?= link_to(t('boxes'), '/admin/boxes/', ['id' => 'menu-boxes']) ?></li>
+          <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['id' => 'menu-user-movies']) ?></li>
+          <li class="right"><?= link_to(t('logout'), '/logout/', ['id' => 'menu-logout']) ?></li>
           </ul>
         </nav>
       </div>

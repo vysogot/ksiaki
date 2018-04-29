@@ -2,7 +2,7 @@
 
 function test_admin_lists_all_boxes() {
     when_i_login_as('admin');
-    and_i_go_to('/admin/boxes.php');
+    and_i_go_to('/admin/boxes/index.php');
     return i_should_see('Dodaj nowy');
 }
 

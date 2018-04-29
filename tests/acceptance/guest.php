@@ -26,6 +26,11 @@ function test_guest_can_play_contest() {
     return i_should_see_no_error();
 }
 
+function test_guest_sees_user_movie() {
+    when_i_go_to('/user_movie.php?id=1');
+    return i_should_see_no_error();
+}
+
 function test_guest_sees_login_page() {
     when_i_go_to('/login.php');
     return i_should_see_no_error();

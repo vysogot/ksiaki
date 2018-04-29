@@ -56,7 +56,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h2><?= t('new_background') ?></h2>
-    <?= link_to(t('backgrounds'), '/admin/backgrounds.php') ?>
+    <?= link_to(t('backgrounds'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>
 

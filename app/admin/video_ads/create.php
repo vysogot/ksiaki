@@ -55,7 +55,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h2><?= t('new_video_ad') ?></h2>
-    <?= link_to(t('video_ads'), '/admin/video_ads.php') ?>
+    <?= link_to(t('video_ads'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>
 

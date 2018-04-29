@@ -17,8 +17,8 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
     <h2><?= t('edit_form') ?></h2>
-    <?= link_to(t('contests'), '/admin/contests.php') ?>
-    <?= render('_form.php', $params, $data); ?>
+    <?= link_to(t('contests'), 'index.php') ?>
+    <?= include '_form.php' ?>
   </div>
 
 <?php }

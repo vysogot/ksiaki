@@ -2,7 +2,7 @@
 
 function test_admin_lists_all_user_movies() {
     when_i_login_as('admin');
-    and_i_go_to('/admin/user_movies.php');
+    and_i_go_to('/admin/user_movies/index.php');
     return i_should_see('Dodaj nowy');
 }
 

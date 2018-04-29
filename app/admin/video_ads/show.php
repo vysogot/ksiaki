@@ -18,14 +18,14 @@ function content($params, $data) { ?>
 
     <h2><?= t('video_ad') ?></h2>
 
-    <?= link_to(t('video_ads'), '/admin/video_ads.php') ?>
+    <?= link_to(t('video_ads'), 'index.php') ?>
 
     <?php foreach($data as $key => $value) { ?>
       <p><b><?= e($key) ?>:</b> <?= e($value) ?></p>
     <?php } ?>
 
-    <?= link_to(t('edit'), "/admin/video_ads/edit.php?id=$data->id") ?> |
-    <?= link_to(t('delete'), "/admin/video_ads/delete.php?id=$data->id", ['class' => 'confirmation']) ?>
+    <?= link_to(t('edit'), "edit.php?id=$data->id") ?> |
+    <?= link_to(t('delete'), "delete.php?id=$data->id", ['class' => 'confirmation']) ?>
   </div>
 
 <?php }

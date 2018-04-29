@@ -18,14 +18,14 @@ function content($params, $data) { ?>
 
     <h2><?= t('contest') ?></h2>
 
-    <?= link_to(t('contests'), '/admin/contests.php') ?>
+    <?= link_to(t('contests'), 'index.php') ?>
 
     <?php foreach($data as $key => $value) { ?>
       <p><b><?= e($key) ?>:</b> <?= e($value) ?></p>
     <?php } ?>
 
-    <?= link_to(t('edit'), "/admin/contests/edit.php?id=$data->id") ?> |
-    <?= link_to(t('delete'), "/admin/contests/delete.php?id=$data->id", ['class' => 'confirmation']) ?>
+    <?= link_to(t('edit'), "edit.php?id=$data->id") ?> |
+    <?= link_to(t('delete'), "delete.php?id=$data->id", ['class' => 'confirmation']) ?>
   </div>
 
 <?php }

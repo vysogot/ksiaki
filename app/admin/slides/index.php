@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include '../init.php';
 
 $params = [
   "id" => null,
@@ -30,7 +30,7 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h2><?= t('slides') ?></h2>
-  <p><?= link_to(t('add_new'), '/admin/slides/new.php') ?></p>
+  <p><?= link_to(t('add_new'), 'new.php') ?></p>
   <table>
     <?php foreach($data as $slide) { ?>
       <tr>
@@ -41,9 +41,9 @@ function content($params, $data) { ?>
         <td><?= e($slide->begins_at) ?></td>
         <td><?= e($slide->ends_at) ?></td>
         <td><?= e($slide->is_active) ?></td>
-        <td><?= link_to(t('show'), "/admin/slides/show.php?id=$slide->id") ?></td>
-        <td><?= link_to(t('edit'), "/admin/slides/edit.php?id=$slide->id") ?></td>
-        <td><?= link_to(t('delete'), "/admin/slides/delete.php?id=$slide->id", ['class' => 'confirmation']) ?></td>
+        <td><?= link_to(t('show'), "show.php?id=$slide->id") ?></td>
+        <td><?= link_to(t('edit'), "edit.php?id=$slide->id") ?></td>
+        <td><?= link_to(t('delete'), "delete.php?id=$slide->id", ['class' => 'confirmation']) ?></td>
       </tr>
     <?php } ?>
   </table>
@@ -51,4 +51,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include 'layout.php';
+include '../layout.php';

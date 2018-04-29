@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include '../init.php';
 
 $params = [
   "id" => null,
@@ -27,14 +27,14 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
   <h2><?= t('contests') ?></h2>
-  <p><?= link_to(t('add_new'), '/admin/contests/new.php') ?></p>
+  <p><?= link_to(t('add_new'), 'new.php') ?></p>
   <table>
     <?php foreach($data as $contest) { ?>
       <tr>
         <td><?= e($contest->name) ?></td>
-        <td><?= link_to(t('show'), "/admin/contests/show.php?id=$contest->id") ?></td>
-        <td><?= link_to(t('edit'), "/admin/contests/edit.php?id=$contest->id") ?></td>
-        <td><?= link_to(t('delete'), "/admin/contests/delete.php?id=$contest->id", ['class' => 'confirmation']) ?></td>
+        <td><?= link_to(t('show'), "show.php?id=$contest->id") ?></td>
+        <td><?= link_to(t('edit'), "edit.php?id=$contest->id") ?></td>
+        <td><?= link_to(t('delete'), "delete.php?id=$contest->id", ['class' => 'confirmation']) ?></td>
       </tr>
     <?php } ?>
   </table>
@@ -42,4 +42,4 @@ function content($params, $data) { ?>
 
 <?php }
 
-include 'layout.php';
+include '../layout.php';
