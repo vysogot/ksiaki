@@ -44,7 +44,17 @@ TRUNCATE TABLE `_notifications`;
 TRUNCATE TABLE `_notification_statuses`;
 TRUNCATE TABLE `_heroes`;
 TRUNCATE TABLE `_contest_prizes`;
-TRUNCATE TABLE `static_sites`;
+TRUNCATE TABLE `_static_sites`;
+INSERT INTO `_static_sites` (`id`, `title`, `slug`, `content`, `is_active`)
+VALUES
+(1, 'O nas', 'o-nas', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(2, 'Dla rodziców', 'dla-rodzicow', 'Informacje dla rodziców...', 1),
+(3, 'Regulamin', 'regulamin', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(4, 'Polityka prywatności', 'polityka-prywatnosci', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(5, 'FAQ', 'faq', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(6, 'Kontakt', 'kontakt', 'Tutaj długi tekst o tym kim jesteśmy...', 1);
+
+
 TRUNCATE TABLE `score_pointed_activities`;
 TRUNCATE TABLE `score_quizes`;
 TRUNCATE TABLE `score_games`;

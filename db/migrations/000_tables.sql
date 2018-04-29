@@ -268,13 +268,12 @@ CREATE TABLE IF NOT EXISTS `score_quizes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty zdobyte w quizach';
 
 /* Strony statyczne */
-CREATE TABLE IF NOT EXISTS `static_sites` (
+CREATE TABLE IF NOT EXISTS `_static_sites` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `title` varchar(255),
  `slug` varchar(255),
  `content` text,
- `created_at` datetime,
- `updated_at` datetime,
+ `is_active` tinyint(1),
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Strony statyczne';
 

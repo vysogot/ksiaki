@@ -138,11 +138,15 @@ VALUES
 (3, 2, 1, 'Pudełko klocków LEGO', 'contest-prizes/2-3.jpg'),
 (4, 2, 1, 'Pudełko klocków LEGO', 'contest-prizes/2-4.jpg');
 
-TRUNCATE TABLE `static_sites`;
-INSERT INTO `static_sites` (`id`, `title`, `slug`, `content`, `created_at`, `updated_at`)
+TRUNCATE TABLE `_static_sites`;
+INSERT INTO `_static_sites` (`id`, `title`, `slug`, `content`, `is_active`)
 VALUES
-(1, 'O nas', 'o-nas', 'Tutaj długi tekst o tym kim jesteśmy...', '2018-01-31 00:00:00', '2018-02-21 00:00:00'),
-(2, 'Dla rodziców', 'dla-rodzicow', 'Informacje dla rodziców...', '2018-01-11 00:00:00', '2018-02-11 00:00:00');
+(1, 'O nas', 'o-nas', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(2, 'Dla rodziców', 'dla-rodzicow', 'Informacje dla rodziców...', 1),
+(3, 'Regulamin', 'regulamin', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(4, 'Polityka prywatności', 'polityka-prywatnosci', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(5, 'FAQ', 'faq', 'Tutaj długi tekst o tym kim jesteśmy...', 1),
+(6, 'Kontakt', 'kontakt', 'Tutaj długi tekst o tym kim jesteśmy...', 1);
 
 TRUNCATE TABLE `score_pointed_activities`;
 INSERT INTO `score_pointed_activities` (`id`, `user_id`, `activity_id`, `points`, `given_at`)

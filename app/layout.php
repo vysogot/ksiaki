@@ -54,18 +54,7 @@
     </main>
     <footer>
       <div class="wrapper-full">
-        <section id="static-sites">
-          <div class="wrapper">
-            <ul class="bare left">
-              <li><?= link_to(t('about_us'), '#') ?></li>
-              <li><?= link_to(t('parents_info'), '#') ?></li>
-              <li><?= link_to(t('statute'), '#') ?></li>
-              <li><?= link_to(t('privacy_policy'), '#') ?></li>
-              <li><?= link_to(t('faq'), '#') ?></li>
-              <li><?= link_to(t('contact'), '#') ?></li>
-            </ul>
-          </div>
-        </section>
+        <?php include 'partials/static_sites.php' ?>
 
         <section id="copyright">
           <div class="wrapper">
