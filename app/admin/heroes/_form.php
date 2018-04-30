@@ -10,6 +10,11 @@
   </div>
 
   <div>
+    <label for="slug"><?= t('slug') ?></label>
+    <input id="slug" name="slug" type="text" value="<?= $data->slug ?>">
+  </div>
+
+  <div>
     <label for="description"><?= t('description') ?></label>
     <textarea id="description" name="description"><?= $data->description ?></textarea>
   </div>

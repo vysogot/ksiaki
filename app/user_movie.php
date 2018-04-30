@@ -37,7 +37,7 @@ function content($params, $data) { ?>
 
     <section id="main-user-movie">
         <?php if (!empty($data['user_movie'])) { ?>
-            <video autoplay src=<?= $data['user_movie']->video_url ?> poster=<?= $data['user_movie']->image_url ?>></video>
+            <video autoplay controls src=<?= $data['user_movie']->video_url ?> poster=<?= $data['user_movie']->image_url ?>></video>
             <p><?= $data['user_movie']->name ?></p>
         <?php } ?>
     </section>
@@ -47,8 +47,8 @@ function content($params, $data) { ?>
         <div>
           <?php foreach($data['other_movies'] as $user_movie) { ?>
             <div class="left box">
-              <?= link_to(image($user_movie->image_url), '/user_movies/show.php?id=' . $user_movie->id) ?>
-              <p><?= link_to($user_movie->name, '/user_movies/show.php?id=' . $user_movie->id) ?></p>
+              <?= link_to(image($user_movie->image_url), '/user_movie.php?id=' . $user_movie->id) ?>
+              <p><?= link_to($user_movie->name, '/user_movie.php?id=' . $user_movie->id) ?></p>
             </div>
           <?php } ?> 
         </div>

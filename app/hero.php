@@ -3,16 +3,15 @@
 include 'init.php';
 
 $params = [
-  "id" => null,
-  "name" => null,
+  "slug" => null,
   "offset" => 0,
   "limit" => 50
 ];
 
 $params = array_merge($params, $_GET);
 
-$data = execute('call sp_heroes_find(:p_id);', array(
-  array('p_id', $params['id'], PDO::PARAM_INT)
+$data = execute('call sp_heroes_find_by_slug(:p_slug);', array(
+  array('p_slug', $params['slug'], PDO::PARAM_STR)
 ));
 
 function content($params, $data) { ?>

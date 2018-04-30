@@ -72,8 +72,9 @@ $translations = [
   'heroes' => 'Heroes',
   'boxes' => 'Boxes',
   'slides' => 'Slides',
-  'user_movies' => 'Filmy użytkowników',
+  'user_movies' => 'User movies',
   'video_ads' => 'Video ads',
+  'static_sites' => 'Static sites',
 
   // data
 
@@ -163,4 +164,8 @@ $translations = [
 
   // Users form
   'role' => 'Rola',
+
+  // slugs - be careful; it requires change in nginx too
+  
+  'hero_slug' => '/hero/{{slug}}',
 ];

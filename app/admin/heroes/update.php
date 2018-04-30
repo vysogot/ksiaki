@@ -26,6 +26,7 @@ if ($post) {
     $result = execute('call sp_heroes_update(
       :p_id,
       :p_name,
+      :p_slug,
   		:p_description,
   		:p_avatar_url,
       :p_header_url,
@@ -33,6 +34,7 @@ if ($post) {
     );', array(
       array('p_id', $params['id'], PDO::PARAM_INT),
       array('p_name', $params['name'], PDO::PARAM_STR),
+      array('p_slug', $params['slug'], PDO::PARAM_STR),
       array('p_description', $params['description'], PDO::PARAM_STR),
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
       array('p_header_url', $params['header_url'], PDO::PARAM_STR),

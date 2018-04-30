@@ -10,8 +10,8 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data['static_site'] = execute('call sp_static_sites_find(:p_slug);', array(
-    array('p_slug', $params['slug'], PDO::PARAM_INT)
+$data['static_site'] = execute('call sp_static_sites_find_by_slug(:p_slug);', array(
+    array('p_slug', $params['slug'], PDO::PARAM_STR)
 ));
 
 function content($params, $data) { ?>

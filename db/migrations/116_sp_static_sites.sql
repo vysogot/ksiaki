@@ -30,7 +30,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_static_sites_find_by_slug`(IN `p_slug` INT)
+CREATE PROCEDURE `sp_static_sites_find_by_slug`(IN `p_slug` VARCHAR(255))
 BEGIN
     SELECT id
     , title

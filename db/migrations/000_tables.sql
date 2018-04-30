@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `_video_ads` (
 CREATE TABLE IF NOT EXISTS `_heroes` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `name` varchar(255),
+ `slug` varchar(255),
  `description` text,
  `avatar_url` varchar(255),
  `header_url` varchar(255),
