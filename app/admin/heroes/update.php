@@ -3,9 +3,8 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'update.php'
-];
+$result = ['rowCount' => -1, 'lastInsertId' => 0];
+
 
 if ($post) {
 
@@ -41,27 +40,9 @@ if ($post) {
       array('p_is_active', $params['is_active'], PDO::PARAM_INT)
     ));
 
-    if (!empty($result)) {
-      flash('notice', t('update_success'));
-      redirect("show.php?id=" . $params['id']);
-    } else {
-      flash('warning', t('update_failure'));
-    }
   }
-
-  $data = (object) $params;
-  $params['errors'] = $errors;
 
 }
 
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h2><?= t('edit_form') ?></h2>
-    <?= link_to(t('heroes'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';
+header('Content-type: application/json');
+print json_encode(array($result));

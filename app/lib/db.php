@@ -1,8 +1,8 @@
 <?php
 
-function execute($sql, $fields, $all = false)
+function execute($sql, $fields, $all = false, $num = false)
 {
-  $dbc = get_connection();
+  $dbc = get_connection($num);
   $query = $dbc->prepare($sql);
 
   foreach ($fields as $field) {
@@ -23,14 +23,14 @@ function execute($sql, $fields, $all = false)
 
 }
 
-function get_connection()
+function get_connection($num = false)
 {
 
   if (!isset($GLOBALS['db_connection'])) {
 
     try {
         $options = array(
-          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+          PDO::ATTR_DEFAULT_FETCH_MODE => (($num == true)?PDO::FETCH_NUM:PDO::FETCH_OBJ),
           PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
           PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
         );

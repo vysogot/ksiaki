@@ -128,6 +128,7 @@ $translations = [
 
   'hero' => 'Bohater',
   'avatar_url' => 'URL awatara',
+  'slug' => 'Uproszczona nazwa',
 
   // boxes form
   'box' => 'Box',

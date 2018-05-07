@@ -4,11 +4,25 @@
 <head>
     <title><?= t('title') ?></title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="icon" href="data:;base64,=">
     <?php if (function_exists('meta')) meta(); ?>
     <style>
       html { background-color: #eee; margin: 0; }
       nav { box-shadow: 2px 2px 5px #666; }
+      .fas {padding-left: 10px;color:#979797;font-size: 2em;}
+      .none {display:none;}
+      .vertical-form input[type='text'] {width: 100% !important;}
+      .vertical-form textarea {margin: 20px auto; width: 500px; height: 60px !important;}
+      .div-left {float:left; width:40%;}
+      .div-right {float:right; width:40%;}
+      .modal {z-index: 100 !important;}
+      .modal-content {min-height: 520px;}
     </style>
 </head>
 <body>
@@ -46,7 +60,8 @@
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 
-    <script src="/assets/js/min.js" type="text/javascript"></script>
+
+    <!--<script src="/assets/js/min.js" type="text/javascript"></script>-->
 
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
 
@@ -56,6 +71,9 @@
         $('.confirmation').on('click', function () {
             return confirm('<?= t('are_you_sure') ?>');
         });
+
+        $( document ).tooltip();
+
       });
 
     </script>

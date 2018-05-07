@@ -56,6 +56,7 @@ CREATE PROCEDURE `sp_heroes_all`(IN `p_id` INT
 )
 BEGIN
     SELECT id
+    , avatar_url as image
     , name
     , slug
     , description
