@@ -36,7 +36,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_user_movies_find`(IN `p_id` INT)
 BEGIN
     SELECT id
-    , user_id
+    , _user_movies.user_id
     , name
     , description 
     , video_url
@@ -45,7 +45,9 @@ BEGIN
     , is_active
     , begins_at
     , ends_at
+    , COUNT(_user_movies_likes.user_movie_id) as likes_count
     FROM _user_movies
+    LEFT JOIN _user_movies_likes ON _user_movies.id = _user_movies_likes.user_movie_id
     WHERE (id = p_id);
 END$$
 DELIMITER ;

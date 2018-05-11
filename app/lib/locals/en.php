@@ -135,10 +135,9 @@ $translations = [
 
   // user movie form
   'user_movie' => 'User movie',
-
-  // user movie form
   'video_ad' => 'Video ad',
   'video_url' => 'Video URL',
+  'likes_number' => 'Likes: {{count}}',
 
   // backgrounds form
 

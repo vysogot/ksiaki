@@ -43,6 +43,21 @@ function content($params, $data) { ?>
             <div class="left">
                 <h3><?= $data['user_movie']->name ?></h3>
                 <h4><?= $data['user_movie']->description ?></h4>
+                <h5><?= t('likes_number', ['count' => $data['user_movie']->likes_count]) ?></h5>
+                <p id="like-button-container-<?= $data['user_movie']->id ?>"></p>
+                <script>
+                var user_movie_id = <?= $data['user_movie']->id ?>; 
+                $.ajax({
+                    url: '/check_like.php?user_movie_id=' + user_movie_id
+                }).done(function(result) {
+                    var container = $('#like-button-container-' + user_movie_id);
+                    if (result['data'][0] == 0) {
+                        container.html('<?= link_to(t('like'), '/like.php?user_movie_id=' . $data['user_movie']->id) ?>');
+                    } else {
+                        container.html('<?= link_to(t('unlike'), '/unlike.php?user_movie_id=' . $data['user_movie']->id) ?>');
+                    }
+                });
+                </script>
             </div>
         <?php } ?>
     </section>

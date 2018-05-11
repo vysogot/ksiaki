@@ -8,3 +8,4 @@ URL: <?= $_SERVER['PHP_SELF'] ?><br /><br />
 GET: <?= var_dump($_GET) ?>
 POST: <?= var_dump($_POST) ?>
 DATA: <?= var_dump($GLOBALS['data']) ?>
+SESSION: <?= var_dump($_SESSION) ?>

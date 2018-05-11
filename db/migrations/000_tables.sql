@@ -119,6 +119,14 @@ CREATE TABLE IF NOT EXISTS `_user_movies` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Filmy użytkowników';
 
+/* Polubienia filmów użytkowników */
+CREATE TABLE IF NOT EXISTS `_user_movies_likes` (
+ `user_id` int unsigned NOT NULL,
+ `user_movie_id` int unsigned NOT NULL,
+ `given_at` datetime,
+ PRIMARY KEY (`user_id`, `user_movie_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Polubienia filmów użytkowników';
+
 /* Reklamy video */
 CREATE TABLE IF NOT EXISTS `_video_ads` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
