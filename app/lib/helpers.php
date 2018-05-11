@@ -43,6 +43,10 @@ function is_admin() {
     if (isset($_SESSION['role_id'])) return $_SESSION['role_id'] == 2;
 }
 
+function get_user_id() {
+    return isset($_SESSION['user_id'])?$_SESSION['user_id']:0;
+}
+
 function redirect($destination)
 {
   header("location: " . path_to($destination)); exit();

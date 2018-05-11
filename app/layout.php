@@ -5,15 +5,22 @@
     <title><?= t('title') ?></title>
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    
     <script src="/assets/js/min.js" type="text/javascript"></script>
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
     <style>
       html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
       body { visibility: hidden; background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat; }
       .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
       nav, .ad, .rankings h2, .rankings ul, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
+      main { display: block;}
     </style>
 </head>
 <body>
@@ -42,7 +49,6 @@
               <?php } else { ?>
                 <li class="right"><?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?></li>
               <?php } ?>
-            </li>
           </ul>
         </nav>
       </div>

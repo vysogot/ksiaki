@@ -1,12 +1,9 @@
-<?php include '../../partials/errors.php'; ?>
-<?php include '../../lib/locals.php'; ?>
-<?php include '../../lib/helpers.php'; ?>
-
 <div class="wrapper">
 <h2><?= t('edit_form') ?></h2>
 <form id="hero-form"  action="#" onsubmit="return submitForm();" method="POST" enctype="multipart/form-data" class="vertical-form">
 
   <input type="hidden" name="id" value="" />
+  <input type="hidden" name="row_index" value="" />
 
   <div class="div-left">
     <label for="name"><?= t('name') ?></label>

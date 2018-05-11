@@ -129,6 +129,7 @@ $translations = [
   'hero' => 'Bohater',
   'avatar_url' => 'URL awatara',
   'slug' => 'Uproszczona nazwa',
+  'avatar' => 'Awatar',
 
   // boxes form
   'box' => 'Box',
@@ -166,9 +167,9 @@ $translations = [
 
   // Users form
   'role' => 'Rola',
-  
+
   // slugs - be careful; it requires change in nginx too
-  
+
   'hero_slug' => '/bohater/{{slug}}',
 
 ];

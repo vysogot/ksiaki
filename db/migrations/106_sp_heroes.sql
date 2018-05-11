@@ -10,7 +10,7 @@ CREATE PROCEDURE `sp_heroes_new`()
 BEGIN
     SELECT 0 AS id
     , '' AS name
-    , '' AS slug 
+    , '' AS slug
     , '' AS description
     , '/uploads/hero-1-avatar.jpg' AS avatar_url
     , '/uploads/hero-1-header.jpg' AS header_url
@@ -64,8 +64,7 @@ BEGIN
     , header_url
     , is_active
     FROM _heroes
-    WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-    AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
+    WHERE (deleted = 0)
     LIMIT p_limit
     OFFSET p_offset;
 END$$
@@ -78,7 +77,8 @@ CREATE PROCEDURE `sp_heroes_create`(
     IN `p_description` VARCHAR(255),
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
-    IN `p_is_active` INT
+    IN `p_is_active` INT,
+    IN `p_user_id` INT
 )
 BEGIN
     INSERT INTO _heroes(name
@@ -87,13 +87,15 @@ BEGIN
         , avatar_url
         , header_url
         , is_active
+        , user_id
         ) VALUES(
         p_name,
         p_slug,
         p_description,
         p_avatar_url,
         p_header_url,
-        p_is_active
+        p_is_active,
+        p_user_id
     );
     SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
@@ -107,7 +109,8 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_description` VARCHAR(255),
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
-    IN `p_is_active` INT
+    IN `p_is_active` INT,
+    IN `p_user_id` INT
 )
 BEGIN
     UPDATE _heroes
@@ -117,15 +120,32 @@ BEGIN
     , avatar_url = p_avatar_url
     , header_url = p_header_url
     , is_active = p_is_active
+    , user_id = p_user_id
+    , updated_at = NOW()
     WHERE (id = p_id);
-    SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+    SELECT id
+    , avatar_url as image
+    , name
+    , slug
+    , description
+    , avatar_url
+    , header_url
+    , is_active
+    FROM _heroes
+    WHERE (id = p_id);
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_heroes_delete`(IN `p_id` INT)
+CREATE PROCEDURE `sp_heroes_delete`(
+  IN `p_id` INT,
+  IN `p_user_id` INT
+)
 BEGIN
-    DELETE FROM _heroes
+    UPDATE _heroes
+    SET deleted = 1
+    , user_id = p_user_id
+    , deleted_at = NOW()
     WHERE (id = p_id)
     LIMIT 1;
     SELECT ROW_COUNT() AS rowCount;

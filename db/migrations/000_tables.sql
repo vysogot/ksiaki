@@ -135,17 +135,43 @@ CREATE TABLE IF NOT EXISTS `_video_ads` (
 
 /* Bohaterowie */
 CREATE TABLE IF NOT EXISTS `_heroes` (
- `id` int unsigned NOT NULL AUTO_INCREMENT,
- `name` varchar(255),
- `slug` varchar(255),
- `description` text,
- `avatar_url` varchar(255),
- `header_url` varchar(255),
- `is_active` tinyint(1),
- `created_at` datetime,
- `updated_at` datetime,
- PRIMARY KEY (`id`)
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NULL DEFAULT NULL,
+	`slug` VARCHAR(255) NULL DEFAULT NULL,
+	`description` TEXT NULL,
+	`avatar_url` VARCHAR(255) NULL DEFAULT NULL,
+	`header_url` VARCHAR(255) NULL DEFAULT NULL,
+	`is_active` TINYINT(1) NULL DEFAULT NULL,
+	`user_id` INT(11) NULL DEFAULT '0',
+	`deleted` TINYINT(1) NULL DEFAULT '0',
+	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME NULL DEFAULT NULL,
+	`deleted_at` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Bohaterowie';
+
+/* Bohaterowie historia zmian */
+CREATE TABLE IF NOT EXISTS `_heroes_audit` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`heroe_id` INT(10) UNSIGNED NULL DEFAULT NULL,
+	`name` VARCHAR(255) NULL DEFAULT NULL,
+	`slug` VARCHAR(255) NULL DEFAULT NULL,
+	`description` TEXT NULL,
+	`avatar_url` VARCHAR(255) NULL DEFAULT NULL,
+	`header_url` VARCHAR(255) NULL DEFAULT NULL,
+	`is_active` TINYINT(1) NULL DEFAULT NULL,
+	`user_id` INT(11) NULL DEFAULT '0',
+	`deleted` TINYINT(1) NULL DEFAULT '0',
+	`created_at` DATETIME NULL DEFAULT NULL,
+	`updated_at` DATETIME NULL DEFAULT NULL,
+	`deleted_at` DATETIME NULL DEFAULT NULL,
+	`session_id` CHAR(32) NULL DEFAULT NULL,
+	`update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`update_user_id` INT(11) NULL DEFAULT NULL,
+	`update_action_id` TINYINT(4) NULL DEFAULT NULL,
+	`update_row_type_id` TINYINT(4) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Bohaterowie historia zmian';
 
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (

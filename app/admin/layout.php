@@ -52,16 +52,12 @@
     <footer>
         <section id="copyright">
           <div class="wrapper">
-            <p><?= t('copyright') ?></p>
+            <h3><?= t('copyright') ?></h3>
           </div>
         </section>
-      </div>
     </footer>
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-
-
-    <!--<script src="/assets/js/min.js" type="text/javascript"></script>-->
 
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
 
