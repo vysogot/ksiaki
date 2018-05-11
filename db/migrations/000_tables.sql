@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `_user_movies` (
  `id` int unsigned NOT NULL AUTO_INCREMENT,
  `user_id` int unsigned NOT NULL,
  `name` varchar(255),
+ `description` text,
  `video_url` varchar(255),
  `image_url` varchar(255),
  `link_url` varchar(255),

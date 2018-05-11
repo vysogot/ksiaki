@@ -15,7 +15,6 @@ if (isset($_SERVER['HTTP_HOST'])) {
   ini_set('session.cookie_httponly', 1);
 
   $GLOBALS['base_url'] = 'https://' . $_SERVER['HTTP_HOST'];
-  //$GLOBALS['base_url'] = 'http://' . $_SERVER['HTTP_HOST'];
   $GLOBALS['url'] = $GLOBALS['base_url'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
 }
 

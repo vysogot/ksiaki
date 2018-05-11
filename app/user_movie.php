@@ -37,8 +37,13 @@ function content($params, $data) { ?>
 
     <section id="main-user-movie">
         <?php if (!empty($data['user_movie'])) { ?>
-            <video autoplay controls src=<?= $data['user_movie']->video_url ?> poster=<?= $data['user_movie']->image_url ?>></video>
-            <p><?= $data['user_movie']->name ?></p>
+            <div class="left">
+                <video autoplay controls src=<?= $data['user_movie']->video_url ?> poster=<?= $data['user_movie']->image_url ?>></video>
+            </div>
+            <div class="left">
+                <h3><?= $data['user_movie']->name ?></h3>
+                <h4><?= $data['user_movie']->description ?></h4>
+            </div>
         <?php } ?>
     </section>
     

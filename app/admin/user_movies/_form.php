@@ -15,6 +15,11 @@
   </div>
 
   <div>
+    <label for="description"><?= t('description') ?></label>
+    <textarea id="description" name="description"><?= $data->description ?></textarea>
+  </div>
+
+  <div>
     <label for="video_url"><?= t('video_url') ?></label>
     <input id="video_url" name="video_url" type="text" value="<?= $data->video_url ?>">
     <input id="video_file" name="video_file" type="file">

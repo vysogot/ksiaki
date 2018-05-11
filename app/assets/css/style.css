@@ -14,7 +14,7 @@ header, nav, main, footer, .wrapper-full  { width: 100%; clear: both; }
 main { min-height: 100vh; padding-top: 0; }
 h2 { line-height: 50px; margin: 0 auto; }
 h2, h3, h4, h5, h6 { padding-left: 10px; }
-video { max-width: 100%; }
+video { max-width: 100%; background: white; }
 
 .wrapper      { width: 960px; }
 /* .wrapper-ears { width: 1440px; } - for the sky banners */

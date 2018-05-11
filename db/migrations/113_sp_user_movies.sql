@@ -22,6 +22,7 @@ BEGIN
     SELECT 0 AS id
     , 0 AS user_id 
     , '' AS name
+    , '' AS description 
     , '/uploads/user_movie-1.mp4' AS video_url
     , '/uploads/user_movie-1.jpg' AS image_url
     , 'https://konkursiaki.pl' AS link_url
@@ -37,6 +38,7 @@ BEGIN
     SELECT id
     , user_id
     , name
+    , description 
     , video_url
     , image_url
     , link_url
@@ -59,6 +61,7 @@ BEGIN
     SELECT id
     , user_id
     , name
+    , description
     , video_url
     , image_url
     , link_url
@@ -78,6 +81,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_user_movies_create`(
     IN `p_user_id` INT,
     IN `p_name` VARCHAR(255),
+    IN `p_description` VARCHAR(255),
     IN `p_video_url` VARCHAR(255),
     IN `p_image_url` VARCHAR(255),
     IN `p_link_url` VARCHAR(255),
@@ -89,6 +93,7 @@ BEGIN
     INSERT INTO _user_movies(
         user_id
         , name
+        , description 
         , video_url
         , image_url
         , link_url
@@ -98,6 +103,7 @@ BEGIN
         ) VALUES(
         p_user_id,
         p_name,
+        p_description,
         p_video_url,
         p_image_url,
         p_link_url,
@@ -114,6 +120,7 @@ CREATE PROCEDURE `sp_user_movies_update`(
     IN `p_id` INT,
     IN `p_user_id` INT,
     IN `p_name` VARCHAR(255),
+    IN `p_description` VARCHAR(255),
     IN `p_video_url` VARCHAR(255),
     IN `p_image_url` VARCHAR(255),
     IN `p_link_url` VARCHAR(255),
@@ -125,6 +132,7 @@ BEGIN
     UPDATE _user_movies
     SET user_id = p_user_id
     , name = p_name
+    , description = p_description
     , video_url = p_video_url
     , image_url = p_image_url
     , link_url = p_link_url

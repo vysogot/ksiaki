@@ -24,6 +24,7 @@ if ($post) {
         $result = execute('call sp_user_movies_create(
             :p_user_id,
             :p_name,
+            :p_description,
             :p_video_url,
             :p_image_url,
             :p_link_url,
@@ -33,6 +34,7 @@ if ($post) {
         );', array(
             array('p_user_id', $params['user_id'], PDO::PARAM_INT),
             array('p_name', $params['name'], PDO::PARAM_STR),
+            array('p_description', $params['description'], PDO::PARAM_STR),
             array('p_video_url', $params['video_url'], PDO::PARAM_STR),
             array('p_image_url', $params['image_url'], PDO::PARAM_STR),
             array('p_link_url', $params['link_url'], PDO::PARAM_STR),

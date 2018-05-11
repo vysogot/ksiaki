@@ -18,6 +18,7 @@ function test_admin_creates_user_movie() {
     when_i_submit('/admin/user_movies/create.php', [
         'user_id' => 1,
         'name' => 'new_user_movie',
+        'description' => 'new_user_movie',
         'video_url' => '/uploads/user_movie-1.mp4',
         'image_url' => '/uploads/user_movie-1.jpg',
         'link_url' => 'http://konkursiaki.pl',
@@ -43,6 +44,7 @@ function test_admin_updates_user_movie() {
         'id' => 1,
         'user_id' => 1,
         'name' => 'new_user_movie',
+        'description' => 'new_user_movie',
         'video_url' => '/uploads/user_movie-1.mp4',
         'image_url' => '/uploads/user_movie-2.jpg',
         'link_url' => 'http://konkursiaki.pl',
