@@ -16,6 +16,8 @@
       html { background-color: #eee; margin: 0; }
       nav { box-shadow: 2px 2px 5px #666; }
       .fas {padding-left: 10px;color:#979797;font-size: 2em;}
+      .fa-times {color:red;}
+      .fa-check {color:blue;}
       .none {display:none;}
       .vertical-form input[type='text'] {width: 100% !important;}
       .vertical-form textarea {margin: 20px auto; width: 500px; height: 60px !important;}
@@ -23,6 +25,7 @@
       .div-right {float:right; width:40%;}
       .modal {z-index: 100 !important;}
       .modal-content {min-height: 520px;}
+
     </style>
 </head>
 <body>

@@ -1,7 +1,7 @@
 <script type="text/javascript">
 var oHeroesTable;
 $(document).ready(function() {
-  let aActive = ['<i class="fa fa-times" style="color:red;"></i>', '<i class="fa fa-check" style="color:blue;"></i>'];
+  let aActive = ['<i class="fa fa-times"></i>', '<i class="fa fa-check"></i>'];
   oHeroesTable = $('#table-heroes').DataTable({
     "stateSave": true,
     "stateSaveParams": function (oSettings, oData) {
