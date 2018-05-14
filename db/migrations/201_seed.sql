@@ -90,6 +90,10 @@ VALUES
 (5, 2, 'User video 5', 'description', '/uploads/movie-1.mov', '/uploads/user_movie-3.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (6, 1, 'User video 6', 'description', '/uploads/movie-2.mov', '/uploads/user_movie-2.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00');
 
+TRUNCATE TABLE `_user_movies_likes`;
+INSERT INTO `_user_movies_likes` (`user_id`, `user_movie_id`)
+VALUES (1, 4), (2, 4), (1, 3), (2, 1);
+
 TRUNCATE TABLE `_video_ads`;
 INSERT INTO `_video_ads` (`id`, `name`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
 VALUES 
