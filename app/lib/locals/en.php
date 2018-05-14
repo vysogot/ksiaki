@@ -137,7 +137,11 @@ $translations = [
   'user_movie' => 'User movie',
   'video_ad' => 'Video ad',
   'video_url' => 'Video URL',
-  'likes_number' => 'Likes: {{count}}',
+  'likes' => 'Likes',
+  'like' => 'Like',
+  'unlike' => 'Unlike',
+  'like_done' => 'Thanks for your like!',
+  'unlike_done' => 'We got your unlike!',
 
   // backgrounds form
 

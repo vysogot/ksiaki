@@ -143,7 +143,11 @@ $translations = [
   // user movie form
   'video_ad' => 'Reklama video',
   'video_url' => 'URL video',
-  'likes_number' => 'Polubień: {{count}}',
+  'likes' => 'Polubienia',
+  'like' => 'Polub',
+  'unlike' => 'Usuń polubienie',
+  'like_done' => 'Dziękujemy za Twoje polubienie!',
+  'unlike_done' => 'Twoje polubienie zostało usunięte!',
 
   // backgrounds form
 

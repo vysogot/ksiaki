@@ -43,19 +43,48 @@ function content($params, $data) { ?>
             <div class="left">
                 <h3><?= $data['user_movie']->name ?></h3>
                 <h4><?= $data['user_movie']->description ?></h4>
-                <h5><?= t('likes_number', ['count' => $data['user_movie']->likes_count]) ?></h5>
-                <p id="like-button-container-<?= $data['user_movie']->id ?>"></p>
+                <h5><?= t('likes') ?>: <span id="likes-number"><?= $data['user_movie']->likes_count ?></span></h5>
+                <p id="like-button-container"></p>
                 <script>
                 var user_movie_id = <?= $data['user_movie']->id ?>; 
+
                 $.ajax({
                     url: '/check_like.php?user_movie_id=' + user_movie_id
                 }).done(function(result) {
-                    var container = $('#like-button-container-' + user_movie_id);
+                    var container = $("#like-button-container");
+                    var like_link = '<?= link_to(t('like'), '/like.php?user_movie_id=' . $data['user_movie']->id, ['class' => 'like']) ?>';
+                    var unlike_link = '<?= link_to(t('unlike'), '/unlike.php?user_movie_id=' . $data['user_movie']->id, ['class' => 'unlike']) ?>';
+
                     if (result['data'][0] == 0) {
-                        container.html('<?= link_to(t('like'), '/like.php?user_movie_id=' . $data['user_movie']->id) ?>');
+                        container.html(like_link);
                     } else {
-                        container.html('<?= link_to(t('unlike'), '/unlike.php?user_movie_id=' . $data['user_movie']->id) ?>');
+                        container.html(unlike_link);
                     }
+
+                    var likesNumber = parseInt($('#likes-number').text());
+
+                    $('.like').on('click', function() {
+
+                        event.preventDefault();
+
+                        $.ajax({
+                            url: this.href
+                        }).done(function() {
+                            $('#likes-number').text(likesNumber + 1);
+                            container.html('<?= t('like_done') ?>');
+                        });
+                    });
+
+                    $('.unlike').on('click', function() {
+                        event.preventDefault();
+
+                        $.ajax({
+                            url: this.href
+                        }).done(function() {
+                            $('#likes-number').text(likesNumber - 1);
+                            container.html('<?= t('unlike_done') ?>');
+                        });
+                    });    
                 });
                 </script>
             </div>
