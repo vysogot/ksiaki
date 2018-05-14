@@ -5,6 +5,7 @@ DROP PROCEDURE IF EXISTS sp_user_movies_create;
 DROP PROCEDURE IF EXISTS sp_user_movies_update;
 DROP PROCEDURE IF EXISTS sp_user_movies_delete;
 DROP PROCEDURE IF EXISTS sp_user_movies_get;
+DROP PROCEDURE IF EXISTS sp_user_movies_sorted_by_likes;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_user_movies_get`()
@@ -78,6 +79,32 @@ BEGIN
     OFFSET p_offset;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_user_movies_sorted_by_likes`(IN `p_offset` INT
+    , IN `p_limit` INT
+)
+BEGIN
+    SELECT id
+    , user_id
+    , name
+    , description
+    , video_url
+    , image_url
+    , link_url
+    , IFNULL(movies_likes.likes, 0) AS likes
+    FROM _user_movies AS movies
+    LEFT JOIN (
+        SELECT user_movie_id, SUM(1) AS likes
+        FROM _user_movies_likes
+        GROUP BY user_movie_id
+    ) AS movies_likes ON (movies.id = movies_likes.user_movie_id)
+    ORDER BY IFNULL(movies_likes.likes, 0) DESC
+    LIMIT p_limit
+    OFFSET p_offset;
+END$$
+DELIMITER ;
+
 
 DELIMITER $$
 CREATE PROCEDURE `sp_user_movies_create`(

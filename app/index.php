@@ -4,7 +4,7 @@ include 'init.php';
 
 $params = [
   "offset" => 0,
-  "limit" => 50
+  "limit" => 20
 ];
 
 $params = array_merge($params, $_GET);
@@ -62,16 +62,10 @@ $data['boxes'] = execute('call sp_boxes_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
-$data['user_movies'] = execute('call sp_user_movies_all(
-  :p_id,
-  :p_name,
-  :p_link_url,
+$data['user_movies'] = execute('call sp_user_movies_sorted_by_likes(
   :p_offset,
   :p_limit
 );', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_link_url', NULL, PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
