@@ -23,7 +23,7 @@ video { max-width: 100%; background: white; }
 .center { text-align: center; }
 .clear { clear: both; }
 .left { float: left; }
-.hidden { display: none; }
+.hidden { display: none!important; }
 
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
@@ -107,6 +107,7 @@ ul.bare li.right { float: right; }
 }
 
 .vertical-form input[type='text'],
+.vertical-form input[type='date'],
 .vertical-form input[type='email'],
 .vertical-form input[type='password'],
 .vertical-form input[type='number'],

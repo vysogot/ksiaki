@@ -7,6 +7,7 @@
     <link rel="icon" href="data:;base64,=">
     
     <script src="/assets/js/min.js" type="text/javascript"></script>
+    
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
     
@@ -90,7 +91,8 @@
         arrows: false,
         lazyLoad: 'ondemand'
       });
-    });
+
+   });
     </script>
 
     <script type="text/javascript">
