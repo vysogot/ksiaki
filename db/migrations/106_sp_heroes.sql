@@ -64,7 +64,7 @@ BEGIN
     , header_url
     , is_active
     FROM _heroes
-    WHERE (deleted = 0)
+    WHERE (is_active = 1)
     LIMIT p_limit
     OFFSET p_offset;
 END$$
@@ -143,9 +143,10 @@ CREATE PROCEDURE `sp_heroes_delete`(
 )
 BEGIN
     UPDATE _heroes
-    SET deleted = 1
+    SET is_to_be_deleted = 1
+    , is_active = 0
     , user_id = p_user_id
-    , deleted_at = NOW()
+    , marked_as_deleted_at = NOW()
     WHERE (id = p_id)
     LIMIT 1;
     SELECT ROW_COUNT() AS rowCount;

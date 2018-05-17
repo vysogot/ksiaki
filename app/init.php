@@ -2,12 +2,13 @@
 
 ini_set('output_buffering', 1);
 
-// the only 'require' is used here as for proper error handling
+// the only 'require' is used here. Using include allows own error handling
 require realpath(__DIR__ . '/lib/error_handler.php');
 
 // set config.example.php and move it one folder up from the root folder
 $envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
 $env = getenv('APPLICATION_ENV');
+
 $GLOBALS['config'] = empty($env) ? $envs['development'] : $envs[$env];
 
 if (isset($_SERVER['HTTP_HOST'])) {
@@ -24,7 +25,6 @@ include realpath(__DIR__ . '/lib/locals.php');
 include realpath(__DIR__ . '/lib/validators.php');
 
 $params = [];
-$errors = [];
 $data = [];
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';

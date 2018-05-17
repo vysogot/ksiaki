@@ -9,6 +9,15 @@ function validate_presence(&$params, $key) {
     }
 }
 
+function validate_not_null(&$params, $key) {
+    if ($params[$key] != null) {
+        return true;
+    } else {
+        $params['errors'][$key] = t('has_to_be_present');
+        return false;
+    }
+}
+
 function validate_existance(&$params, $key, $result) {
     if (!empty($result)) {
         return true;

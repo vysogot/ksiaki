@@ -40,7 +40,7 @@ function is_logged_in() {
 }
 
 function is_admin() {
-    if (isset($_SESSION['role_id'])) return $_SESSION['role_id'] == 2;
+    if (isset($_SESSION['role_id'])) return $_SESSION['role_id'] == 1;
 }
 
 function get_user_id() {

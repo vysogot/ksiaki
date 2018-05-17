@@ -30,12 +30,6 @@ VALUES
 (4, 'contest_participation', 5),
 (5, 'personal_best_score_update', 1);
 
-TRUNCATE TABLE `def_sponsors`;
-INSERT INTO `def_sponsors` (`id`, `name`, `image_url`)
-VALUES
-(1, 'LEGO', 'url-to-lego.jpg'),
-(2, 'DUPLO', 'url-to-duplo.jpg');
-
 TRUNCATE TABLE `def_badges`;
 INSERT INTO `def_badges` (`id`, `title`, `subtitle`, `description`, `image_url`)
 VALUES
@@ -55,17 +49,17 @@ VALUES
 
 TRUNCATE TABLE `_users`;
 /* password: 12345678 */
-INSERT INTO `_users` (`id`, `role_id`, `name`, `email`, `password_hash`, `is_active`, `activation_hash`, `created_at`, `last_login_at`) VALUES
-	(1, 1,  'user', 	 'demo@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(2, 2,  'admin',  'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(3, 1,  'Basia',  'basia@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(4, 1,  'Stasia', 'stasia@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(5, 1,  'Krzyś',  'krzys@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(6, 1,  'Grześ',  'grzes@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(7, 1,  'Tomek',  'tomek@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(8, 1,  'Jasia',  'jasia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(9, 1,  'Zuzia',  'zuzia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(10, 1, 'Adam',  'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL);
+INSERT INTO `_users` (`id`, `role_id`, `nick`, `name`, `surname`, `email`, `password_hash`, `is_active`) VALUES
+	(1, 2,  'user', 'Piotr', 'Gracz',  'demo@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(2, 1,  'admin', 'Tomasz', 'Admin', 'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(3, 2,  'basia99', 'Basia', 'Grymas', 'basia@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(4, 2,  'sta13', 'Stasia', 'Hejsiup', 'stasia@demo.com', '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(5, 2,  'kkmaster', 'Krzyś', 'Kowal', 'krzys@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(6, 2,  'grzechu', 'Grześ', 'Stawo', 'grzes@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(7, 2,  'tomo', 'Tomek', 'Dynda', 'tomek@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(8, 2,  'banzai11', 'Jasia', 'Dżem', 'jasia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(9, 2,  'zuzu', 'Zuzia', 'Kapusta', 'zuzia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(10, 2, 'aaaappp11', 'Adam', 'Ginger', 'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1);
 
 TRUNCATE TABLE `_backgrounds`;
 INSERT INTO `_backgrounds` (`id`, `name`, `image_url`, `link_url`, `background_color`, `details_color`, `is_active`, `begins_at`, `ends_at`, `created_at`, `updated_at`)
@@ -120,22 +114,6 @@ VALUES
 (5, 1, 2, 'Kulki Fulki', 'Ekstra zabawa!', '/uploads/box-2.jpg', '/uploads/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
 (6, 1, 1, 'Paramemnon', 'Moc!', '/uploads/box-1.jpg', '/uploads/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
 
-TRUNCATE TABLE `_quizes`;
-INSERT INTO `_quizes` (`id`, `question`)
-VALUES
-(1, 'quiz_animals_one'),
-(2, 'quiz_hobby');
-
-TRUNCATE TABLE `_quiz_answers`;
-INSERT INTO `_quiz_answers` (`id`, `quiz_id`, `answer`, `is_correct`)
-VALUES
-(1, 1, 'quiz_answer_animals_one_1', FALSE),
-(2, 1, 'quiz_answer_animals_one_2', TRUE),
-(3, 1, 'quiz_answer_animals_one_3', FALSE),
-(4, 2, 'quiz_answer_hobby_1', TRUE),
-(5, 2, 'quiz_answer_hobby_2', FALSE),
-(6, 2, 'quiz_answer_hobby_3', FALSE);
-
 TRUNCATE TABLE `_notifications`;
 INSERT INTO `_notifications` (`id`, `title`, `content`)
 VALUES
@@ -162,12 +140,12 @@ VALUES
 (9, 'LEGO Nexo Knights', 'lego-nexo-knights', 'Opis Nexo Knights', '/uploads/heroes-9-avatar.jpg', '/uploads/heroes-9-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00');
 
 TRUNCATE TABLE `_contest_prizes`;
-INSERT INTO `_contest_prizes` (`id`, `contest_id`, `prize_sponsor_id`, `name`, `image_url`)
+INSERT INTO `_contest_prizes` (`id`, `contest_id`, `name`, `description`, `image_url`)
 VALUES
-(1, 1, 1, 'Pudełko klocków LEGO', 'contest-prizes/1-1.jpg'),
-(2, 1, 1, 'Pudełko klocków LEGO', 'contest-prizes/1-2.jpg'),
-(3, 2, 1, 'Pudełko klocków LEGO', 'contest-prizes/2-3.jpg'),
-(4, 2, 1, 'Pudełko klocków LEGO', 'contest-prizes/2-4.jpg');
+(1, 1, 'Pudełko klocków LEGO', 'Opis', 'contest-prizes/1-1.jpg'),
+(2, 1, 'Pudełko klocków LEGO', 'Opis', 'contest-prizes/1-2.jpg'),
+(3, 2, 'Pudełko klocków LEGO', 'Opis', 'contest-prizes/2-3.jpg'),
+(4, 2, 'Pudełko klocków LEGO', 'Opis', 'contest-prizes/2-4.jpg');
 
 TRUNCATE TABLE `_static_sites`;
 INSERT INTO `_static_sites` (`id`, `title`, `slug`, `content`, `is_active`)
@@ -187,12 +165,6 @@ VALUES
 (3, 2, 3, 5, '2018-01-31 00:00:00'),
 (4, 2, 4, 5, '2018-01-31 00:00:00'),
 (5, 2, 5, 1, '2018-01-31 00:00:00');
-
-TRUNCATE TABLE `score_quizes`;
-INSERT INTO `score_quizes` (`id`, `user_id`, `quiz_id`, `points`, `given_at`)
-VALUES
-(1, 1, 1, 2, '2018-01-31 00:00:00'),
-(2, 1, 2, 2, '2018-01-30 00:00:00');
 
 TRUNCATE TABLE `score_games`;
 INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`) VALUES

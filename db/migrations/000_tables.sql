@@ -23,14 +23,6 @@ CREATE TABLE IF NOT EXISTS `def_contest_places` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punktacja przyznawana za dane miejsce w zależności od rodzaju konkursu';
 
-/* Sponsorzy nagród w konkursach */
-CREATE TABLE IF NOT EXISTS `def_sponsors` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `name` varchar(255),
-    `image_url` varchar(255),
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Sponsorzy nagród w konkursach';
-
 /* Odznaki dla graczy za aktywność */
 CREATE TABLE IF NOT EXISTS `def_badges` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -150,20 +142,47 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
     `description` TEXT NULL,
     `avatar_url` VARCHAR(255) NULL DEFAULT NULL,
     `header_url` VARCHAR(255) NULL DEFAULT NULL,
+    `cover_image_url` VARCHAR(255) NULL DEFAULT NULL,
+    `tv_spot_url` VARCHAR(255) NULL DEFAULT NULL,
+    `product_image_url` VARCHAR(255) NULL DEFAULT NULL,
+    `footer_image_url` VARCHAR(255) NULL DEFAULT NULL,
+    `license_description` TEXT NULL,
     `is_active` TINYINT(1) NULL DEFAULT NULL,
+    `is_to_be_deleted` TINYINT(1) NULL DEFAULT NULL,
     `user_id` INT(11) NULL DEFAULT '0',
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NULL DEFAULT NULL,
+    `marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Bohaterowie';
+
+/* Pobrania bohaterów */
+CREATE TABLE IF NOT EXISTS `_hero_downloads` (
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `hero_id` INT(10) UNSIGNED NOT NULL,
+    `name` VARCHAR(255) NULL DEFAULT NULL,
+    `description` TEXT NULL,
+    `file_url` VARCHAR(255) NULL DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Pliki bohaterów';
+
+/* Role */
+CREATE TABLE IF NOT EXISTS `_roles` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Role';
 
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `role_id` tinyint(1) NOT NULL DEFAULT '1',
-    `name` varchar(255) NOT NULL,
+    `role_id` int NOT NULL DEFAULT '1',
+    `nick` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
-    `avatar_url` varchar(255),
+    `name` varchar(255) NOT NULL,
+    `surname` varchar(255) NOT NULL,
     `is_active` tinyint(1) NOT NULL DEFAULT '0',
     `password_hash` varchar(255) NOT NULL,
     `activation_hash` varchar(255),
@@ -173,7 +192,33 @@ CREATE TABLE IF NOT EXISTS `_users` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`),
     UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Użytkownicy';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Użytkownicy';
+
+/* Konta użytkowników */
+CREATE TABLE IF NOT EXISTS `_accounts` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int unsigned NOT NULL,
+    `gender` tinyint(1) NOT NULL,
+    `birthday` date,
+    `address` varchar(255),
+    `postcode` varchar(255),
+    `city` varchar(255),
+    `contest_agreement` tinyint(1),
+    `marketing_agreement` tinyint(1),
+    `notifications_agreement` tinyint(1),
+    `statute_agreement` tinyint(1),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konta użytkowników';
+
+/* Rodzice użytkowników */
+CREATE TABLE IF NOT EXISTS `_caretakers` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int unsigned NOT NULL,
+    `name` varchar(255),
+    `surname` varchar(255),
+    `email` varchar(255),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Rodzice użytkowników';
 
 /* Konkursy */
 CREATE TABLE IF NOT EXISTS `_contests` (
@@ -195,8 +240,8 @@ CREATE TABLE IF NOT EXISTS `_contests` (
 CREATE TABLE IF NOT EXISTS `_contest_prizes` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `contest_id` int unsigned NOT NULL,
-    `prize_sponsor_id` int unsigned NOT NULL,
     `name` varchar(255),
+    `description` varchar(255),
     `image_url` varchar(255),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Nagrody w konkursach';
@@ -217,22 +262,6 @@ CREATE TABLE IF NOT EXISTS `_notification_statuses` (
     `confirmed_at` datetime,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Status powiadomień dla użytkowników';
-
-/* Quizy */
-CREATE TABLE IF NOT EXISTS `_quizes` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `question` varchar(255),
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Quizy';
-
-/* Odpowiedzi na quizy */
-CREATE TABLE IF NOT EXISTS `_quiz_answers` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `quiz_id` int unsigned NOT NULL,
-    `answer` varchar(255),
-    `is_correct` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'is this answer correct',
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Odpowiedzi na quizy';
 
 /* Punkty przyznane za punktowane aktywności */
 CREATE TABLE IF NOT EXISTS `score_pointed_activities` (
@@ -268,16 +297,6 @@ CREATE TABLE IF NOT EXISTS `score_games` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';
 
-/* Punkty zdobyte w quizach */
-CREATE TABLE IF NOT EXISTS `score_quizes` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `user_id` int unsigned,
-    `quiz_id` int unsigned,
-    `points` int,
-    `given_at` datetime,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty zdobyte w quizach';
-
 /* Strony statyczne */
 CREATE TABLE IF NOT EXISTS `_static_sites` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -287,13 +306,6 @@ CREATE TABLE IF NOT EXISTS `_static_sites` (
     `is_active` tinyint(1),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Strony statyczne';
-
-CREATE TABLE `remembered_logins` (
-    `token_hash` varchar(255) NOT NULL,
-    `user_id` int(11) unsigned NOT NULL,
-    `expires_at` datetime NOT NULL,
-    PRIMARY KEY (`token_hash`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Zapamiętane loginy';
 
 /* Archiwum punktów */
 CREATE TABLE `score_games_archive` (
@@ -312,7 +324,6 @@ CREATE TABLE `score_games_archive` (
 COMMENT='Archiwum punktów zdobytych w danej grze w danym konkursie na danym poziomie'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=15323
 ;
 
 CREATE TABLE `user_badges` (
@@ -326,7 +337,6 @@ CREATE TABLE `user_badges` (
 COMMENT='Tabela odznak użytkownika'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=33
 ;
 
 

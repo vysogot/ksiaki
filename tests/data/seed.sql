@@ -17,9 +17,9 @@ TRUNCATE TABLE `def_ranks`;
 
 TRUNCATE TABLE `_users`;
 /* password: 12345678 */
-INSERT INTO `_users` (`id`, `role_id`, `name`, `email`, `password_hash`, `is_active`, `activation_hash`, `created_at`, `last_login_at`) VALUES
-	(1, 1, 'user', 	 'demo@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL),
-	(2, 2, 'admin',  'demo2@demo.com', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 0, NULL, NULL, NULL);
+INSERT INTO `_users` (`id`, `role_id`, `nick`, `name`, `surname`, `email`, `password_hash`, `is_active`) VALUES
+	(1, 1, 'admin', 'Tomasz', 'Admin', 'admin@ksiaki.pl', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(2, 2, 'user', 'Piotr', 'Gracz' 'user@ksiaki.pl', 	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1);
 
 TRUNCATE TABLE `_backgrounds`;
 TRUNCATE TABLE `_boxes`;

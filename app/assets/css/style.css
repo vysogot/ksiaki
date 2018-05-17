@@ -106,6 +106,7 @@ ul.bare li.right { float: right; }
   opacity: 0.9;
 }
 
+
 .vertical-form input[type='text'],
 .vertical-form input[type='date'],
 .vertical-form input[type='email'],
@@ -158,6 +159,30 @@ ul.bare li.right { float: right; }
   line-height: 19px;
   text-transform: none;
   letter-spacing: 0;
+}
+
+.vertical-form input[required] {
+    background-image: radial-gradient(#F66 25%, transparent 16%), radial-gradient(#F66 25%, transparent 16%);
+    background-size: 1em 1em;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.vertical-form .required:after {
+  content:"*";
+  color:#F66;
+}
+
+.vertical-form .agreement {
+    margin-bottom: 15px;
+}
+
+.vertical-form .info {
+    display:block;
+}
+
+.vertical-form .agreement label {
+    color: #999; 
 }
 
 /* MODAL */

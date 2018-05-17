@@ -61,6 +61,28 @@ $translations = [
   'email' => 'Email',
   'sign_up' => 'Sign up',
   'forgot_password' => 'Forgot password?',
+  'birthday' => 'Birthday',
+  'caretaker_name' => 'Name of your parent or caretaker',
+  'caretaker_surname' => 'Surname of your parent or caretaker',
+  'caretaker_email' => 'Email of your parent or caretaker',
+  'nick' => 'Nick',
+  'gender' => 'Gender',
+  'male' => 'Male',
+  'female' => 'Female',
+  'surname' => 'Surname',
+  'address' => 'Address',
+  'postcode' => 'Postcode',
+  'city' => 'City',
+
+  'contest_agreement' => 'Zgoda na przetwarzanie danych osobowych w celu realizacji konkursu:',
+  'contest_agreement_description' => 'Tak, wyrażam zgodę na przetwarzanie danych osobowych moich lub mojego dziecka przekazanych w celu związanym z przeprowadzeniem konkursów i gier na stronie www.konkursiaki.pl, przez Media Service Zawada Sp. z o.o.; 04-028 Warszawa, al. Stanów Zjednoczonych 51 (KRS - 000027679, NIP 113-00-94-477), zgodnie z ustawą z 29 sierpnia 1997 r. o ochronie danych osobowych. W tym celu udostępniam także swój adres poczty elektronicznej. Mam świadomość, że przysługuje mi prawo dostępu do moich danych osobowych i ich poprawiania, podanie danych osobowych jest dobrowolne. Zgoda może zostać odwołana w każdym czasie.',
+  'marketing_agreement' => 'Zgoda na przetwarzanie danych osobowych w celach marketingowych:',
+  'marketing_agreement_description' => 'Tak, wyrażam zgodę na przetwarzanie danych osobowych moich lub mojego dziecka przez Media Service Zawada Sp. z o. o.; 04-028 Warszawa, al. Stanów Zjednoczonych 51 (KRS - 000027679, NIP 113-00-94-477) w celach marketingowych produktów stron trzecich w tym za pomocą środków komunikacji elektronicznej (e-mail) lub wykorzystanie telekomunikacyjnych urządzeń końcowych i automatycznych systemów wywołujących. Jestem świadomy, iż przysługuje mi prawo do odwołania tej zgody w prosty sposób i bez dodatkowych opłat. Mam świadomość, że przysługuje mi prawo dostępu do moich danych osobowych i ich poprawiania, zgoda na ich przetwarzanie może zostać odwołana w każdym czasie, a podanie danych osobowych jest dobrowolne.',
+  'notifications_agreement' => 'Zgoda na przetwarzanie danych osobowych w celu otrzymywania powiadomień:',
+  'notifications_agreement_description' => 'Tak, przekazując mój adres poczty elektronicznej, wyrażam zgodę na przesyłanie mi przez Media Service Zawada Sp. z o.o.; 04-028 Warszawa, al. Stanów Zjednoczonych 51 (KRS - 000027679, NIP 113-00-94-477) informacji o nowych konkursach, grach lub innych produktach wydawanych przez Media Service Zawada Sp. z o. o. za pomocą środków komunikacji elektronicznej (e-mail) lub przy wykorzystaniu telekomunikacyjnych urządzeń końcowych i automatycznych systemów wywołujących. Jestem świadomy, iż przysługuje mi prawo do odwołania tej zgody w prosty sposób i bez dodatkowych opłat.',
+  'statute_agreement' => 'Uprzejmie informujemy, że w dniu 18.05.2018 r. zmianie uległy zapisy w Regulaminie serwisu. Prosimy o zapoznanie się z nimi.',
+  'statute_agreement_description' => 'Tak, akceptuję regulamin portalu Konkursiaki.pl',
+  'cancellation_conditions' => 'Zasady odwołania zgody zawarte są w Regulaminie i Polityce prywatności na stronie www.konkursiaki.pl',
 
   // admin
 

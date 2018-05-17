@@ -3,12 +3,24 @@
 include 'init.php';
 
 $params = [
-    'name' => null,
-    'email' => null,
     'birthday' => null,
+    'caretaker_name' => null,
+    'caretaker_surname' => null,
     'caretaker_email' => null,
-    'terms_and_conditions' => null,
-    'password' => null
+    'nick' => null,
+    'email' => null,
+    'gender' => null,
+    'name' => null, 
+    'surname' => null,
+    'address' => null,
+    'postcode' => null,
+    'city' => null,
+    'contest_agreement' => null,
+    'marketing_agreement' => null,
+    'notifications_agreement' => null,
+    'statute_agreement' => null,
+    'email' => null, 
+    'password_hash' => null
 ];
 
 if ($post) {
@@ -38,6 +50,7 @@ if ($post) {
     }
 
     validate_not_shorter_than($params, 'password', 6);
+    validate_not_null($params, 'gender');
 
 
     if (empty($params['errors'])) {
@@ -45,12 +58,40 @@ if ($post) {
         $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
 
         $result = execute('call sp_users_register(
+            :p_birthday,
+            :p_caretaker_name,
+            :p_caretaker_surname,
+            :p_caretaker_email,
+            :p_nick,
+            :p_email,
+            :p_gender,
             :p_name, 
-            :p_email, 
+            :p_surname,
+            :p_address,
+            :p_postcode,
+            :p_city,
+            :p_contest_agreement,
+            :p_marketing_agreement,
+            :p_notifications_agreement,
+            :p_statute_agreement,
             :p_password_hash
         );', array(
-            array('p_name', $params['name'], PDO::PARAM_STR),
+            array('p_birthday', date('Y-m-d H:i:s', strtotime($params['birthday'])), PDO::PARAM_STR),
+            array('p_caretaker_name', $params['caretaker_name'], PDO::PARAM_STR),
+            array('p_caretaker_surname', $params['caretaker_surname'], PDO::PARAM_STR),
+            array('p_caretaker_email', $params['caretaker_email'], PDO::PARAM_STR),
+            array('p_nick', $params['nick'], PDO::PARAM_STR),
             array('p_email', $params['email'], PDO::PARAM_STR),
+            array('p_gender', $params['gender'], PDO::PARAM_INT),
+            array('p_name', $params['name'], PDO::PARAM_STR),
+            array('p_surname', $params['surname'], PDO::PARAM_STR),
+            array('p_address', $params['address'], PDO::PARAM_STR),
+            array('p_postcode', $params['postcode'], PDO::PARAM_STR),
+            array('p_city', $params['city'], PDO::PARAM_STR),
+            array('p_contest_agreement', $params['contest_agreement'], PDO::PARAM_INT),
+            array('p_marketing_agreement', $params['marketing_agreement'], PDO::PARAM_INT),
+            array('p_notifications_agreement', $params['notifications_agreement'], PDO::PARAM_INT),
+            array('p_statute_agreement', $params['statute_agreement'], PDO::PARAM_INT),
             array('p_password_hash', $password_hash, PDO::PARAM_STR)
         ));
 
@@ -71,27 +112,67 @@ function content($params, $data) { ?>
 
     <?php include 'partials/errors.php'; ?>
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
     <script src="/assets/js/calendar-pl.js"></script>
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
-
+    <link rel="stylesheet" href="/assets/css/jquery-ui.css">
 
     <form method="post" action="/register.php" id="register" class="vertical-form" accept-charset="UTF-8">
 
         <legend><h2><?= t('register') ?></h2></legend>
 
-        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" required autofocus />
-        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" required />
         <input id="birthday" type="text" placeholder="<?= t('birthday') ?>" name="birthday" value="<?= $params['birthday'] ?>" required />
-        <input class="hidden" id="caretaker_email" type="email" placeholder="<?= t('caretaker_email') ?>" name="caretaker_email" value="<?= $params['caretaker_email'] ?>" />
+
+        <div class="hidden" id="caretaker_fields">
+            <input id="caretaker_name" type="text" placeholder="<?= t('caretaker_name') ?>" name="caretaker_name" value="<?= $params['caretaker_name'] ?>" />
+            <input id="caretaker_surname" type="text" placeholder="<?= t('caretaker_surname') ?>" name="caretaker_surname" value="<?= $params['caretaker_surname'] ?>" />
+            <input id="caretaker_email" type="email" placeholder="<?= t('caretaker_email') ?>" name="caretaker_email" value="<?= $params['caretaker_email'] ?>" />
+        </div>
+
+        <input id="nick" type="text" name="nick" placeholder="<?= t('nick') ?>" value="<?= $params['nick'] ?>" required />
+        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" required />
+        <div class="center">
+        <label class="required"><?= t('gender') ?></label>
+        <input type="radio" name="gender" id="gender_male" value="1" required/>
+        <label for="gender_male"><?= t('male') ?></label>
+        <input type="radio" name="gender" id="gender_female" value="0"/>
+        <label for="gender_female"><?= t('female') ?></label>
+        </div>
+        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" required  />
+        <input id="surname" type="text" name="surname" placeholder="<?= t('surname') ?>" value="<?= $params['surname'] ?>" required  />
+        <input id="address" type="text" name="address" placeholder="<?= t('address') ?>" value="<?= $params['address'] ?>" required  />
+        <input id="postcode" type="text" name="postcode" placeholder="<?= t('postcode') ?>" value="<?= $params['postcode'] ?>" required  />
+        <input id="city" type="text" name="city" placeholder="<?= t('city') ?>" value="<?= $params['city'] ?>" required  />
         <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
-<div>
-    <input id="terms_and_conditions" type="checkbox" name="terms_and_conditions" value="1" <?php if ($params['terms_and_conditions'] == 1) echo "checked" ?> required />
-    <label for="terms_and_conditions"><?= t('terms_and_conditions') ?></label>
-    <input type="hidden" name="terms_and_conditions" value="0">
-  </div>
+       
+         <div class="agreement">
+            <span class="info"><strong class="required"><?= t('contest_agreement') ?></strong></span><br />
+            <input type="hidden" name="contest_agreement" value="0">
+            <input id="contest_agreement" type="checkbox" name="contest_agreement" value="1" <?php if ($params['contest_agreement'] == 1) echo "checked" ?> required />
+            <label for="contest_agreement"><?= t('contest_agreement_description') ?></label>
+        </div>
+<div class="agreement">
+            <span class="info"><strong class="required"><?= t('marketing_agreement') ?></strong></span><br />
+            <input type="hidden" name="marketing_agreement" value="0">
+            <input id="marketing_agreement" type="checkbox" name="marketing_agreement" value="1" <?php if ($params['marketing_agreement'] == 1) echo "checked" ?> />
+            <label for="marketing_agreement"><?= t('marketing_agreement_description') ?></label>
+        </div>
+
+        <div class="agreement">
+            <strong><span class="info"><?= t('notifications_agreement') ?></strong></span><br />
+            <input type="hidden" name="notifications_agreement" value="0">
+            <input id="notifications_agreement" type="checkbox" name="notifications_agreement" value="1" <?php if ($params['notifications_agreement'] == 1) echo "checked" ?> />
+            <label for="notifications_agreement"><?= t('notifications_agreement_description') ?></label>
+        </div>
+
+        <div class="agreement">
+            <span class="info"><strong class="required"><?= t('statute_agreement') ?></strong></span><br />
+            <input type="hidden" name="statute_agreement" value="0">
+            <input id="statute_agreement" type="checkbox" name="statute_agreement" value="1" <?php if ($params['statute_agreement'] == 1) echo "checked" ?> required />
+            <label for="statute_agreement"><?= t('statute_agreement_description') ?></label>
+        </div>
+        
+        <span class="info"><strong><?= t('cancellation_conditions') ?></strong></span>
 
         <input type="submit" value="<?= t('sign_up') ?>" />
 
@@ -101,7 +182,7 @@ function content($params, $data) { ?>
 
     <script>
     $(document).on('ready', function() {
-        function caretaker() {
+        function toggle_caretaker_fields() {
             birthday_string = $('#birthday').val();
             if (/\d{2}\.\d{2}.\d{4}/.test(birthday_string)) {
                 var parts = birthday_string.split('.');
@@ -109,16 +190,20 @@ function content($params, $data) { ?>
                 var today = new Date();
                 var back18years = today.setFullYear(today.getFullYear() - 18);
                 if (birthday > back18years) {
-                    $('#caretaker_email').removeClass('hidden'); 
+                    $('#caretaker_fields').removeClass('hidden'); 
+                    $("#caretaker_name").prop('required', true);
+                    $("#caretaker_surname").prop('required', true);
                     $("#caretaker_email").prop('required', true);
                 } else {
-                    $('#caretaker_email').addClass('hidden'); 
+                    $('#caretaker_fields').addClass('hidden'); 
+                    $("#caretaker_name").prop('required', false);
+                    $("#caretaker_surname").prop('required', false);
                     $("#caretaker_email").prop('required', false);
                 }
             }
         }
 
-        caretaker();
+        toggle_caretaker_fields();
 
         $("#birthday").datepicker({
         changeMonth: true,
@@ -128,11 +213,11 @@ function content($params, $data) { ?>
         });
 
 
-        $( "#birthday" ).on('change', function() {
-            caretaker(); 
+        $("#birthday").on('change', function() {
+            toggle_caretaker_fields(); 
         }); 
     });
-    </script>
+</script>
 
 </div>
 
