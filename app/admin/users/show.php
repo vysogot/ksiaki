@@ -16,7 +16,7 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
 
-    <h2><?= t('hero') ?></h2>
+    <h2><?= t('user') ?></h2>
 
     <?= link_to(t('users'), 'index.php') ?>
 

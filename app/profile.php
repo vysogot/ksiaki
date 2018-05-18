@@ -15,6 +15,6 @@ $data = execute('call sp_users_find(:p_id);', array(
 ?>
 
 <h2><?= t('profile') ?></h2>
-<p><?= t('name') ?>: <?= $data->name ?></p>
+<p><?= t('nick') ?>: <?= $data->nick ?></p>
 <p><?= t('email') ?>: <?= $data->email ?></p>
 <p><?= t('points') ?>: </p>

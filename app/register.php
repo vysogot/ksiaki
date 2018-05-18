@@ -29,10 +29,10 @@ if ($post) {
 
     if (validate_presence($params, 'name')) {
 
-        $result = execute('call sp_users_find_by_name_or_email(
-            :p_name_or_email
+        $result = execute('call sp_users_find_by_nick_or_email(
+            :p_nick_or_email
         );', array(
-            array('p_name_or_email', $params['name'], PDO::PARAM_STR)
+            array('p_nick_or_email', $params['nick'], PDO::PARAM_STR)
         ));
 
         validate_uniqueness($params, 'name', $result);
@@ -40,10 +40,10 @@ if ($post) {
 
     if (validate_email($params, 'email')) {
 
-        $result = execute('call sp_users_find_by_name_or_email(
-            :p_name_or_email
+        $result = execute('call sp_users_find_by_nick_or_email(
+            :p_nick_or_email
         );', array(
-            array('p_name_or_email', $params['email'], PDO::PARAM_STR)
+            array('p_nick_or_email', $params['email'], PDO::PARAM_STR)
         ));
 
         validate_uniqueness($params, 'email', $result);
@@ -56,6 +56,7 @@ if ($post) {
     if (empty($params['errors'])) {
 
         $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
+        $activation_hash = bin2hex(random_bytes(32));
 
         $result = execute('call sp_users_register(
             :p_birthday,
@@ -74,7 +75,8 @@ if ($post) {
             :p_marketing_agreement,
             :p_notifications_agreement,
             :p_statute_agreement,
-            :p_password_hash
+            :p_password_hash,
+            :p_activation_hash
         );', array(
             array('p_birthday', date('Y-m-d H:i:s', strtotime($params['birthday'])), PDO::PARAM_STR),
             array('p_caretaker_name', $params['caretaker_name'], PDO::PARAM_STR),
@@ -92,11 +94,17 @@ if ($post) {
             array('p_marketing_agreement', $params['marketing_agreement'], PDO::PARAM_INT),
             array('p_notifications_agreement', $params['notifications_agreement'], PDO::PARAM_INT),
             array('p_statute_agreement', $params['statute_agreement'], PDO::PARAM_INT),
-            array('p_password_hash', $password_hash, PDO::PARAM_STR)
+            array('p_password_hash', $password_hash, PDO::PARAM_STR),
+            array('p_activation_hash', $activation_hash, PDO::PARAM_STR)
         ));
 
         if (!empty($result)) {
             flash('notice', t('registration_success'));
+            send_email($params['email'], [ 
+                'subject' => t('email_subject_registration'), 
+                'body' => link_to('Click', '/activate.php?key=' . $result->activation_hash),
+                'name' => $params['name'] . ' ' . $params['surname']
+            ]);
         } else {
             flash('warning', t('registration_failure'));
         }
@@ -144,7 +152,7 @@ function content($params, $data) { ?>
         <input id="postcode" type="text" name="postcode" placeholder="<?= t('postcode') ?>" value="<?= $params['postcode'] ?>" required  />
         <input id="city" type="text" name="city" placeholder="<?= t('city') ?>" value="<?= $params['city'] ?>" required  />
         <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
-       
+
          <div class="agreement">
             <span class="info"><strong class="required"><?= t('contest_agreement') ?></strong></span><br />
             <input type="hidden" name="contest_agreement" value="0">
@@ -171,7 +179,7 @@ function content($params, $data) { ?>
             <input id="statute_agreement" type="checkbox" name="statute_agreement" value="1" <?php if ($params['statute_agreement'] == 1) echo "checked" ?> required />
             <label for="statute_agreement"><?= t('statute_agreement_description') ?></label>
         </div>
-        
+
         <span class="info"><strong><?= t('cancellation_conditions') ?></strong></span>
 
         <input type="submit" value="<?= t('sign_up') ?>" />

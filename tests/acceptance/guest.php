@@ -58,17 +58,39 @@ function test_guest_sees_contest_ranking() {
 
 function test_guest_can_register() {
     when_i_submit('/register.php', [
-        'name' => 'new_user',
+        'birthday' => '16.01.1998',
+        'nick' => 'Newky',
         'email' => 'new_email@test.com',
+        'gender' => '1',
+        'name' => 'new_user',
+        'surname' => 'newsurname',
+        'address' => 'Avenue',
+        'postcode' => '12-1222',
+        'city' => 'New York',
+        'contest_agreement' => '1',
+        'marketing_agreement' => '1',
+        'notifications_agreement' => '1',
+        'statute_agreement' => '1',
         'password' => '12345678'
     ]);
     return i_should_see('Rejestracja powiodła się');
 }
 
-function test_guest_cant_register_with_existing_name() {
+function test_guest_cant_register_with_existing_nick() {
     when_i_submit('/register.php', [
-        'name' => 'user',
+        'birthday' => '16.01.1998',
+        'nick' => 'user',
         'email' => 'new_email@test.com',
+        'gender' => '1',
+        'name' => 'new_user',
+        'surname' => 'newsurname',
+        'address' => 'Avenue',
+        'postcode' => '12-1222',
+        'city' => 'New York',
+        'contest_agreement' => '1',
+        'marketing_agreement' => '1',
+        'notifications_agreement' => '1',
+        'statute_agreement' => '1',
         'password' => '12345678'
     ]);
     return i_should_not_see('Rejestracja powiodła się') &&

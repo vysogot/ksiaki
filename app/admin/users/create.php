@@ -22,6 +22,7 @@ if ($post) {
 
     $result = execute('call sp_users_create(
       :p_role_id,
+      :p_nick,
       :p_name,
       :p_email,
       :p_avatar_url,
@@ -29,6 +30,7 @@ if ($post) {
       :p_password_hash
     );', array(
       array('p_role_id', $params['role_id'], PDO::PARAM_INT),
+      array('p_nick', $params['name'], PDO::PARAM_STR),
       array('p_name', $params['name'], PDO::PARAM_STR),
       array('p_email', $params['email'], PDO::PARAM_STR),
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
@@ -51,7 +53,7 @@ if ($post) {
 function content($params, $data) { ?>
 
   <div class="wrapper">
-    <h2><?= t('new_hero') ?></h2>
+    <h2><?= t('new_form', ['name' => t('user')]) ?></h2>
     <?= link_to(t('users'), 'index.php') ?>
     <?php include '_form.php'; ?>
   </div>

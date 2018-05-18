@@ -32,7 +32,7 @@ function test_admin_edits_user() {
     when_i_login_as('admin');
     and_i_go_to('/admin/users/edit.php?id=1');
     return i_should_see_no_error() &&
-        i_should_see('Edycja: user');
+        i_should_see('Edycja: Piotr');
 }
 
 function test_admin_updates_user() {
@@ -53,7 +53,7 @@ function test_admin_updates_user() {
 
 function test_admin_deletes_user() {
     when_i_login_as('admin');
-    and_i_go_to('/admin/users/delete.php?id=1');
+    and_i_go_to('/admin/users/delete.php?id=3');
     return i_should_see_no_error() &&
-        i_should_not_see('/admin/users/delete.php?id=1');
+        i_should_not_see('/admin/users/delete.php?id=3');
 } 

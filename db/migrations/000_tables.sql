@@ -183,6 +183,7 @@ CREATE TABLE IF NOT EXISTS `_users` (
     `email` varchar(255) NOT NULL,
     `name` varchar(255) NOT NULL,
     `surname` varchar(255) NOT NULL,
+    `avatar_url` varchar(255),
     `is_active` tinyint(1) NOT NULL DEFAULT '0',
     `password_hash` varchar(255) NOT NULL,
     `activation_hash` varchar(255),

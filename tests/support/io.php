@@ -3,7 +3,6 @@
 const FAILED_OUTPUT_DIR_PATH = 'tests/output/';
 const TMP_OUTPUT_FILE_PATH = 'tests/output/tmp.html';
 const COOKIE_FILE_PATH = 'tests/output/cookie.txt';
-const SQL_SEED_FILE_PATH = 'tests/data/seed.sql';
 
 function basic_curl_handle($path) {
   $curl_handle = curl_init($GLOBALS['config']['TESTING_BASE_URL'] . $path);

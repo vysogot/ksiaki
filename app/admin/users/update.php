@@ -19,10 +19,6 @@ if ($post) {
       $params['avatar_url'] = file_upload($_FILES['avatar_file']);
     }
 
-    if (!empty($_FILES['header_file']['name'])) {
-      $params['header_url'] = file_upload($_FILES['header_file']);
-    }
-
     $result = execute('call sp_users_update(
       :p_id,
       :p_name,

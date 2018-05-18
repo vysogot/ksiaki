@@ -50,7 +50,7 @@ $translations = [
   // login
 
   'sign_in' => 'Logowanie',
-  'name_or_email' => 'Nick lub email',
+  'nick_or_email' => 'Nick lub email',
   'password' => 'Hasło',
   'log_in' => 'Zaloguj się',
   'register' => 'Zarejestruj się',

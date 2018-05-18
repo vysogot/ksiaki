@@ -12,8 +12,8 @@ if ($post) {
 
   $params = array_merge($params, $_POST);
 
-  $result = execute('call sp_users_find_by_name_or_email(:p_name_or_email);', array(
-    array('p_name_or_email', $params['login'], PDO::PARAM_STR)
+  $result = execute('call sp_users_find_by_nick_or_email(:p_nick_or_email);', array(
+    array('p_nick_or_email', $params['login'], PDO::PARAM_STR)
   ));
 
   $found = validate_existance($params, 'login', $result);
@@ -42,7 +42,7 @@ function content($params, $data) { ?>
 
     <legend><h2><?= t('sign_in') ?></h2></legend>
 
-    <input id="login" type="text" name="login" placeholder="<?= t('name_or_email') ?>" value="<?= $params['login'] ?>" included autofocus />
+    <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" included autofocus />
     <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" included />
     <input type="submit" value="<?= t('log_in') ?>"/>
 

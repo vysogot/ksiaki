@@ -2,6 +2,8 @@
 
 require realpath(__DIR__ . '/../../app/lib/db.php');
 
+const SQL_SEED_FILE_PATH = 'db/migrations/201_seed.sql';
+
 function last_inserted_in($tablename) {
     return execute("SELECT * FROM $tablename ORDER BY id DESC LIMIT 1", []);
 }

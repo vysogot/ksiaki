@@ -9,34 +9,50 @@ include realpath(__DIR__ . '/phpmailer/smtp.php');
 
 function send_email($to, $options = []) {
 
-    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+    if (getenv('APPLICATION_ENV') != 'testing') {
 
-    try {
-        //Server settings
-        $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'user@example.com';                 // SMTP username
-        $mail->Password = 'secret';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+        $defaults = [
+            'name' => 'Recipient',
+            'subject' => 'A message from our service',
+            'body' => 'We wish you all the best!'
+        ];
 
-        //Recipients
-        $mail->setFrom('from@example.com', 'Mailer');
-        $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-        $mail->addReplyTo('info@example.com', 'Information');
+        $options = array_merge($defaults, $options);
 
-        //Content
-        $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail = new PHPMailer(true);
 
-        $mail->send();
-        echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        try {
+            $mail->SMTPDebug = 1;
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+
+            $mail->Host         = $GLOBALS['config']['smtp_host'];
+            $mail->Username     = $GLOBALS['config']['smtp_username'];
+            $mail->Password     = $GLOBALS['config']['smtp_password'];
+            $mail->SMTPSecure   = $GLOBALS['config']['smtp_protocol'];
+            $mail->Port         = $GLOBALS['config']['smtp_port'];
+
+            $mail->setFrom(
+                $GLOBALS['config']['smtp_from_email'],
+                $GLOBALS['config']['smtp_from_name']
+            );
+            $mail->addAddress($to, $options['name']);
+            $mail->addReplyTo(
+                $GLOBALS['config']['smtp_reply_to_email'], 
+                $GLOBALS['config']['smtp_reply_to_name']
+            );
+
+            $mail->isHTML(true);
+            $mail->Subject = $options['subject'];
+            $mail->Body    = $options['body'];
+
+            $mail->send();
+
+            return true;
+        } catch (Exception $e) {
+            throw new Exception("Message could not be sent. Mailer Error: $mail->ErrorInfo");
+        }
+
     }
 
 }

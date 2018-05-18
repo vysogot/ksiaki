@@ -23,6 +23,7 @@ include realpath(__DIR__ . '/lib/helpers.php');
 include realpath(__DIR__ . '/lib/db.php');
 include realpath(__DIR__ . '/lib/locals.php');
 include realpath(__DIR__ . '/lib/validators.php');
+include realpath(__DIR__ . '/lib/mailer.php'); 
 
 $params = [];
 $data = [];

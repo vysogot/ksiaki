@@ -10,7 +10,7 @@ function test_admin_shows_video_ad() {
     when_i_login_as('admin');
     and_i_go_to('/admin/video_ads/show.php?id=1');
     return i_should_see_no_error() &&
-        i_should_see('/uploads/video_ad-1.jpg');
+        i_should_see('/uploads/movie-1.mov');
 }
 
 function test_admin_creates_video_ad() {

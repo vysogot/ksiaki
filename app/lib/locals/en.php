@@ -49,7 +49,7 @@ $translations = [
   // login
 
   'sign_in' => 'Sign in',
-  'name_or_email' => 'Name or email',
+  'nick_or_email' => 'Name or email',
   'password' => 'Password',
   'log_in' => 'Log in',
   'register' => 'Register',
@@ -132,7 +132,6 @@ $translations = [
 
   // contest form
 
-  'new_contest' => 'New contest',
   'contest_name' => 'Contest name',
   'description' => 'Description',
   'header_url' => 'Header URL',
@@ -167,7 +166,6 @@ $translations = [
 
   // backgrounds form
 
-  'new_background' => 'New background',
   'image_url' => 'Image URL',
   'link_url' => 'Link URL',
   'is_active' => 'Is active',

@@ -1,11 +1,12 @@
 DROP PROCEDURE IF EXISTS sp_users_new;
 DROP PROCEDURE IF EXISTS sp_users_find;
-DROP PROCEDURE IF EXISTS sp_users_find_by_name_or_email;
+DROP PROCEDURE IF EXISTS sp_users_find_by_nick_or_email;
 DROP PROCEDURE IF EXISTS sp_users_find_all;
 DROP PROCEDURE IF EXISTS sp_users_create;
 DROP PROCEDURE IF EXISTS sp_users_update;
 DROP PROCEDURE IF EXISTS sp_users_delete;
 DROP PROCEDURE IF EXISTS sp_users_register;
+DROP PROCEDURE IF EXISTS sp_users_activate;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_users_new`()
@@ -34,10 +35,10 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_users_find_by_name_or_email` (IN `p_login` VARCHAR(255))
+CREATE PROCEDURE `sp_users_find_by_nick_or_email` (IN `p_login` VARCHAR(255))
 BEGIN
     SELECT * FROM _users
-    WHERE (name = p_login OR email = p_login)
+    WHERE (nick = p_login OR email = p_login)
     LIMIT 1;
 END$$
 DELIMITER ;
@@ -85,7 +86,8 @@ CREATE PROCEDURE `sp_users_register`(
     IN `p_marketing_agreement` tinyint(1),
     IN `p_notifications_agreement` tinyint(1),
     IN `p_statute_agreement` tinyint(1),
-    IN `p_password_hash` VARCHAR(255)
+    IN `p_password_hash` VARCHAR(255),
+    IN `p_activation_hash` VARCHAR(255)
 )
 
 BEGIN
@@ -96,12 +98,14 @@ BEGIN
         , name
         , surname
         , password_hash
+        , activation_hash
     ) VALUES (
         p_nick
         , p_email
         , p_name
         , p_surname
         , p_password_hash
+        , p_activation_hash
     );
 
     SET @last_insert_user_id = (
@@ -146,8 +150,21 @@ BEGIN
         );
     END IF;
 
-    SELECT @last_insert_user_id AS lastInsertId;
+    SELECT @last_insert_user_id AS lastInsertId, p_activation_hash AS activation_hash;
 
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_users_activate` (IN `p_activation_hash` VARCHAR(255))
+BEGIN
+    UPDATE _users 
+    SET is_active = 1,
+    updated_at = NOW()
+    WHERE (activation_hash = p_activation_hash)
+    AND (is_active = 0);
+
+    SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
 DELIMITER ;
 
