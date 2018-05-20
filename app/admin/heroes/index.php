@@ -4,33 +4,55 @@ include '../init.php';
 
 
 function content() { ?>
-<div class="modal"><div class="modal-content"><a href="#" class="close">&times;</a>
-  <div id="content"><?php include '_form.php'; ?></div>
-</div></div>
-<div class="wrapper" style="display:none">
-  <h2><?= t('heroes') ?></h2>
-  <p><?= link_to('<i class="fas fa-user-plus"></i>', '#', ['title'=>t('add_new'), 'data-target' => 'new.php', 'data-index' => '0', 'class' => 'new_hero']) ?></p>
-  <table id="table-heroes" class="display">
-    <thead>
-      <tr>
-        <th></th>
-        <th><?= t('avatar') ?></th>
-        <th><?= t('name') ?></th>
-        <th></th>
-        <th><?= t('description') ?></th>
-        <th><?= t('avatar_url') ?></th>
-        <th><?= t('header_url') ?></th>
-        <th><?= t('is_active') ?></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+<!-- Modal -->
+<div id="heroModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="false">
+  <div class="modal-dialog modal-hero" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="gridSystemModalLabel"></h2>
+      </div>
+      <div class="row"><?php include '_form.php'; ?></div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center"><h2><?= t('heroes') ?></h2></div>
+          <div id="heroes-panel" class="panel-body" style="display:none">
+            <p><?= link_to('<i class="fas fa-user-plus"></i>', '#', ['title'=>t('add_new'), 'data-target' => 'new.php', 'data-index' => '0', 'id' => 'new_hero', 'data-id' => '0']) ?></p>
+            <br /><br />
+            <table id="table-heroes" class="table table-striped table-vcenter">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><?= t('avatar') ?></th>
+                  <th><?= t('name') ?></th>
+                  <th></th>
+                  <th><?= t('description') ?></th>
+                  <th><?= t('avatar_url') ?></th>
+                  <th><?= t('header_url') ?></th>
+                  <th><?= t('is_active') ?></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<?php include "js/index.js"; ?>
+<script type="text/javascript">
+<?php include "datatable.js"; ?>
+<?php include "actions.js"; ?>
+</script>
 <?php }
 
 include '../layout.php';

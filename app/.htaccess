@@ -1,0 +1,9 @@
+Options FollowSymLinks
+RewriteEngine on
+RewriteRule ^info/regulamin$ show_pdf.php?fileName=RODO-Regulamin-serwisu.pdf [L,NC]
+RewriteRule ^info/polityka-prywatnosci$ show_pdf.php?fileName=RODO-Polityka-prywatnosci.pdf [L,NC]
+
+
+
+
+

@@ -190,6 +190,8 @@ $translations = [
   // Popup
 
   'are_you_sure' => 'Czy na pewno?',
+  'save' => 'Zapisz',
+  'close' => 'Zamknij',
 
   // Users form
   'role' => 'Rola',

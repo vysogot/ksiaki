@@ -21,7 +21,7 @@ $data = execute('call sp_heroes_all(
   array('p_name', $params['name'], PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true, true);
+), true, false);
 
 header('Content-type: application/json');
 print json_encode(array('data' => $data));
