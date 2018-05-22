@@ -97,7 +97,7 @@ ul.bare li.right { float: right; }
 .main, .side { float: left; }
 
 .row.hero { float:left; width: 688px; }
-.hero { background: #fff; opacity: 0.8; padding: 20px; }
+.hero { background: #fff; opacity: 0.95; padding: 20px; }
 .hero video { margin-top: 50px; width: 100%; }
 .row:after { content: ""; display: table; clear: both; }
 .column-13 { width: 33.33%; float: left; }
