@@ -3,33 +3,36 @@
 include 'init.php';
 
 $params = [
-  'login' => null,
-  'password' => null,
-  'active_link' => 'login'
+    'login' => null,
+    'password' => null,
+    'active_link' => 'login'
 ];
 
 if ($post) {
 
-  $params = array_merge($params, $_POST);
+    $params = array_merge($params, $_POST);
 
-  $result = execute('call sp_users_find_by_nick_or_email(:p_nick_or_email);', array(
-    array('p_nick_or_email', $params['login'], PDO::PARAM_STR)
-  ));
+    $result = execute('call sp_users_find_by_nick_or_email(:p_nick_or_email);', array(
+        array('p_nick_or_email', $params['login'], PDO::PARAM_STR)
+    ));
 
-  $found = validate_existance($params, 'login', $result);
+    if (validate_existance($params, 'login', $result) && password_verify($params['password'], $result->password_hash)) {
 
-  if ($found && password_verify($params['password'], $result->password_hash)) {
+        if ($result->is_active) {
+            session_regenerate_id(true);
+            $_SESSION['user_id'] = $result->id;
+            $_SESSION['role_id'] = $result->role_id;
 
-    session_regenerate_id(true);
-    $_SESSION['user_id'] = $result->id;
-    $_SESSION['role_id'] = $result->role_id;
+            flash('notice', t('login_success'));
+        } else {
+            flash('warning', t('login_activation_needed'));
+        }
 
-    flash('notice', t('login_success'));
-    redirect('/');
+        redirect('/');
 
-  } else {
-      $params['errors']['login'] = t('login_failure');
-  }
+    } else {
+        $params['errors']['login'] = t('login_failure');
+    }
 }
 
 function content($params, $data) { ?>

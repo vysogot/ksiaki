@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `_roles` (
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `role_id` int NOT NULL DEFAULT '1',
+    `role_id` int NOT NULL DEFAULT '2',
     `nick` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
     `name` varchar(255) NOT NULL,

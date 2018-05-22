@@ -111,6 +111,7 @@ $translations = [
 
   'login_success' => 'Logowanie powiodło się!',
   'login_failure' => 'Logowanie nie powiodło się!',
+  'login_activation_needed' => 'Twoje konto wymaga aktywacji! Sprawdź maila :)',
   'logged_out_safely' => 'Bezpiecznie wylogowano!',
   'registration_success' => 'Rejestracja powiodła się!',
   'registration_failure' => 'Rejestracja nie powiodła się',

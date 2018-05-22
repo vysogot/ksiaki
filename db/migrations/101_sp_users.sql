@@ -12,7 +12,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_users_new`()
 BEGIN
     SELECT 0 AS id
-    , 2 AS role_id
+    , 1 AS role_id
     , '' AS name
     , '' AS email
     , '' AS avatar_url
