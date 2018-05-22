@@ -137,8 +137,8 @@ $translations = [
 
   'contest_name' => 'Nazwa konkursu',
   'description' => 'Opis',
-  'header_url' => 'URL banera',
-  'box_url' => 'URL boxu',
+  'header_url' => 'Baner',
+  'box_url' => 'Box',
   'begins_at' => 'Początek o',
   'ends_at' => 'Koniec o',
   'contest_type' => 'Rodzaj konkursu',
@@ -149,9 +149,13 @@ $translations = [
   // heroes form
 
   'hero' => 'Bohater',
-  'avatar_url' => 'URL awatara',
+  'avatar_url' => 'Awatar',
   'slug' => 'Uproszczona nazwa',
   'avatar' => 'Awatar',
+  'cover_url' => 'Okładka',
+  'gadget_url' => 'Gadżet',
+  'footer_url' => 'Grafika stopki',
+  'license_description' => 'Opis w stopce - licencja',
 
   // boxes form
   'box' => 'Box',
@@ -164,7 +168,7 @@ $translations = [
 
   // user movie form
   'video_ad' => 'Reklama video',
-  'video_url' => 'URL video',
+  'video_url' => 'Video',
   'likes' => 'Polubienia',
   'like' => 'Polub',
   'unlike' => 'Usuń polubienie',
@@ -173,7 +177,7 @@ $translations = [
 
   // backgrounds form
 
-  'image_url' => 'URL obrazka',
+  'image_url' => 'Obrazek',
   'link_url' => 'Linkowanie',
   'is_active' => 'Aktywny',
 

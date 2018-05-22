@@ -127,9 +127,12 @@ VALUES
 (2, 1, 2, '2018-02-12 00:00:00');
 
 TRUNCATE TABLE `_heroes`;
+INSERT INTO `_heroes` (`id`, `name`, `slug`, `description`, `avatar_url`, `header_url`, `cover_url`, `video_url`, `gadget_url`, `footer_url`, `license_description`, `is_active`, `created_at`, `updated_at`)
+VALUES
+(1, 'Scooby Doo', 'scooby-doo', 'Tajemnicza Spółka musi zmierzyć się z dinozaurami, które zakłócają spokój mieszkańcom Dreszczykowa. Ale przecież nie tylko Velma wie, że te prehistoryczne gady wyginęły dawno temu… Ktoś się, zatem pod nie podszywa! W jakim celu? To już musisz wyjaśnić wspólnie z detektywami!', '/uploads/heroes-1-avatar.jpg', '/uploads/heroes-1-header.jpg', '/uploads/heroes-1-cover.jpg', '/uploads/movie-1.mov', '/uploads/heroes-1-gadget.png', '/uploads/heroes-1-footer.jpg', 'Opis licencji na Scooby Doo 2018', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00');
+
 INSERT INTO `_heroes` (`id`, `name`, `slug`, `description`, `avatar_url`, `header_url`, `is_active`, `created_at`, `updated_at`)
 VALUES
-(1, 'Scooby Doo', 'scooby-doo', 'Opis Scoobiego Doo', '/uploads/heroes-1-avatar.jpg', '/uploads/heroes-1-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (2, 'LEGO Ninjago', 'lego-ninjago', 'Opis LEGO Ninjago', '/uploads/heroes-2-avatar.jpg', '/uploads/heroes-2-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (3, 'LEGO Batman', 'lego-batman', 'Opis LEGO Batmana', '/uploads/heroes-3-avatar.jpg', '/uploads/heroes-3-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (4, 'Dragons', 'dragons', 'Opis Dragons', '/uploads/heroes-4-avatar.jpg', '/uploads/heroes-4-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),

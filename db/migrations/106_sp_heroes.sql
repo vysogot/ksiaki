@@ -12,8 +12,8 @@ BEGIN
     , '' AS name
     , '' AS slug
     , '' AS description
-    , '/uploads/hero-1-avatar.jpg' AS avatar_url
-    , '/uploads/hero-1-header.jpg' AS header_url
+    , '' AS avatar_url
+    , '' AS header_url
     , 1 AS is_active;
 END$$
 DELIMITER ;
@@ -36,14 +36,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_heroes_find_by_slug`(IN `p_slug` VARCHAR(255))
 BEGIN
-    SELECT id
-    , name
-    , slug
-    , description
-    , avatar_url
-    , header_url
-    , is_active
-    FROM _heroes
+    SELECT * FROM _heroes
     WHERE (slug = p_slug);
 END$$
 DELIMITER ;
@@ -58,8 +51,8 @@ BEGIN
     SELECT id
     , avatar_url as image
     , name
-    , slug
     , description
+    , slug
     , avatar_url
     , header_url
     , is_active
@@ -77,27 +70,45 @@ CREATE PROCEDURE `sp_heroes_create`(
     IN `p_description` VARCHAR(255),
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
+    IN `p_cover_url` VARCHAR(255),
+    IN `p_video_url` VARCHAR(255),
+    IN `p_gadget_url` VARCHAR(255),
+    IN `p_footer_url` VARCHAR(255),
+    IN `p_license_description` text,
     IN `p_is_active` INT,
     IN `p_user_id` INT
 )
 BEGIN
-    INSERT INTO _heroes(name
+    INSERT INTO _heroes(
+        name
         , slug
         , description
         , avatar_url
         , header_url
+        , cover_url
+        , video_url
+        , gadget_url
+        , footer_url
+        , license_description
         , is_active
         , user_id
         ) VALUES(
-        p_name,
-        p_slug,
-        p_description,
-        p_avatar_url,
-        p_header_url,
-        p_is_active,
-        p_user_id
+        p_name
+        , p_slug
+        , p_description
+        , p_avatar_url
+        , p_header_url
+        , p_cover_url
+        , p_video_url
+        , p_gadget_url
+        , p_footer_url
+        , p_license_description
+        , p_is_active
+        , p_user_id
     );
+
     SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+
 END$$
 DELIMITER ;
 
@@ -109,8 +120,12 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_description` VARCHAR(255),
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
-    IN `p_is_active` INT,
-    IN `p_user_id` INT
+    IN `p_cover_url` VARCHAR(255),
+    IN `p_video_url` VARCHAR(255),
+    IN `p_gadget_url` VARCHAR(255),
+    IN `p_footer_url` VARCHAR(255),
+    IN `p_license_description` text,
+    IN `p_is_active` INT
 )
 BEGIN
     UPDATE _heroes
@@ -119,20 +134,25 @@ BEGIN
     , description = p_description
     , avatar_url = p_avatar_url
     , header_url = p_header_url
+    , cover_url = p_cover_url
+    , video_url = p_video_url
+    , gadget_url = p_gadget_url
+    , footer_url = p_footer_url
+    , license_description = p_license_description
     , is_active = p_is_active
     , user_id = p_user_id
     , updated_at = NOW()
     WHERE (id = p_id);
+
     SELECT id
     , avatar_url as image
     , name
     , slug
     , description
-    , avatar_url
-    , header_url
     , is_active
     FROM _heroes
     WHERE (id = p_id);
+
 END$$
 DELIMITER ;
 
@@ -143,7 +163,7 @@ CREATE PROCEDURE `sp_heroes_delete`(
 )
 BEGIN
     UPDATE _heroes
-    SET is_to_be_deleted = 1
+    SET is_marked_as_deleted = 1
     , is_active = 0
     , user_id = p_user_id
     , marked_as_deleted_at = NOW()
