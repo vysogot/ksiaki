@@ -66,7 +66,7 @@ nav a { text-decoration: none; text-transform: uppercase; text-align: right;
 }
 nav a:hover, .active { filter: invert(100%); -webkit-filter: invert(100%); }
 
-.notice .warning { padding: 10px 10px 10px 10px; background: #fff; margin: 0px 0 15px 0; opacity: 0.8; text-align: center; }
+.notice, .warning { padding: 10px 10px 10px 10px; background: #fff; margin: 0px 0 15px 0; opacity: 0.8; text-align: center; }
 .warning { background: yellow; }
 
 #contests h2,

@@ -15,7 +15,8 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
+
     <style>
       html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
       body { visibility: hidden; background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat; }
