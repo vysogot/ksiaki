@@ -24,7 +24,7 @@ $static_sites = execute('call sp_static_sites_all(
   <div class="wrapper">
     <ul class="bare left">
         <?php foreach($static_sites as $static_site) { ?>
-            <li><?= link_to($static_site->title, '/info/' . $static_site->slug, ['target' => '_blank']) ?></li>
+            <li><?= link_to($static_site->title, '/info/' . $static_site->slug) ?></li>
         <?php } ?>
     </ul>
   </div>
