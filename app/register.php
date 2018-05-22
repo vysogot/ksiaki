@@ -27,7 +27,7 @@ if ($post) {
 
     $params = array_merge($params, $_POST);
 
-    if (validate_presence($params, 'name')) {
+    if (validate_presence($params, 'nick')) {
 
         $result = execute('call sp_users_find_by_nick_or_email(
             :p_nick_or_email
@@ -35,7 +35,7 @@ if ($post) {
             array('p_nick_or_email', $params['nick'], PDO::PARAM_STR)
         ));
 
-        validate_uniqueness($params, 'name', $result);
+        validate_uniqueness($params, 'nick', $result);
     }
 
     if (validate_email($params, 'email')) {
@@ -118,7 +118,6 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-    <?php include 'partials/errors.php'; ?>
 
     <script src="/assets/js/jquery-ui.js"></script>
     <script src="/assets/js/calendar-pl.js"></script>
@@ -128,6 +127,8 @@ function content($params, $data) { ?>
     <form method="post" action="/register.php" id="register" class="vertical-form" accept-charset="UTF-8">
 
         <legend><h2><?= t('register') ?></h2></legend>
+        
+        <?php include 'partials/errors.php'; ?>
 
         <input id="birthday" type="text" placeholder="<?= t('birthday') ?>" name="birthday" value="<?= $params['birthday'] ?>" required />
 
@@ -141,9 +142,9 @@ function content($params, $data) { ?>
         <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" required />
         <div class="center">
         <label class="required"><?= t('gender') ?></label>
-        <input type="radio" name="gender" id="gender_male" value="1" required/>
+        <input type="radio" name="gender" id="gender_male" value="1" <?php if ($params['gender'] === '1') echo "checked" ?> required/>
         <label for="gender_male"><?= t('male') ?></label>
-        <input type="radio" name="gender" id="gender_female" value="0"/>
+        <input type="radio" name="gender" id="gender_female" value="0" <?php if ($params['gender'] === '0') echo "checked" ?>/>
         <label for="gender_female"><?= t('female') ?></label>
         </div>
         <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" required  />
