@@ -19,7 +19,7 @@
 
     <style>
       html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
-      body { visibility: hidden; background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat; }
+      body { visibility: hidden; background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat; background-attachment: fixed;}
       .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
       nav, .ad, .rankings h2, .rankings ul, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
       main { display: block;}
