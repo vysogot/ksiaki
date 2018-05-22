@@ -150,30 +150,24 @@ VALUES
 TRUNCATE TABLE `_static_sites`;
 INSERT INTO `_static_sites` (`id`, `title`, `slug`, `content`, `is_active`)
 VALUES
-(1, 'O nas', 'o-nas', '<h1>O nas</h1><h2>Czy wiesz, że od ponad 18 lat wydajemy magazyny i książki dla dzieci?</h2>
+(1, 'O nas', 'o-nas', '<h1>O nas</h1><strong>Czy wiesz, że od ponad 18 lat wydajemy magazyny i książki dla dzieci?</strong>
 <p>Na pewno znasz takie magazyny jak Scooby-Doo!, Cartoon Netwoork, Winx Club, które pochodzą z naszego portfolio. Postanowiliśmy pójść krok dalej i rozszerzyć naszą działalność. Właśnie oddajemy w Twoje ręce portal Konkursiaki.pl.</p>
-<img alt="" src="/sites/default/files/imce/media-service-zawada.png" />
+<p class="center" style="margin: 50px 0;"><img src="/assets/images/media-service-zawada.png" /></p>
 <h2>Zatem:</h2>
 <ul>
 	<li>Lubisz bezpiecznie surfować w internecie, bawić się</li>
 	<li>i zdobywać nagrody? Twoi ulubieni bohaterowie to postacie znane z telewizyjnych kreskówek?</li>
 </ul>
 <h2>W takim razie Konkursiaki.pl są w sam raz dla Ciebie!</h2>
-<p>Na naszej stronie znajdziesz wiele informacji o bohaterach, znanych z najpopularniejszych kanałów telewizyjnych. Poznasz ich z innej strony i dowiesz się, co u nich słychać.</p>
-<p>Ale przede wszystkim damy Ci okazję do wspaniałej zabawy.</p>
-<h2>Co dwa tygodnie znajdziesz tu nowy konkurs.</h2>
-<h2>Zagraj o wspaniałe nagrody z twoimi ulubionymi bohaterami.</h2>
-<p>Możesz próbować tyle razy, ile chcesz – poprawiać swoje wyniki i rywalizować z kolegami. Im aktywniej uczestniczysz w konkursach, tym więcej punktów i – przyznawanych za nie – odznak masz na koncie.</p>
-<h2>Zostań supergraczem!</h2> <p><img alt="" src="/sites/default/files/imce/okladki.JPG" /></p>', 1),
+<p>Na naszej stronie znajdziesz wiele informacji o bohaterach, znanych z najpopularniejszych kanałów telewizyjnych. Poznasz ich z innej strony i dowiesz się, co u nich słychać. Ale przede wszystkim damy Ci okazję do wspaniałej zabawy!</p>
+<h2>Zagraj o wspaniałe nagrody z twoimi ulubionymi bohaterami!</h2>
+<p>Co dwa tygodnie znajdziesz tu nowy konkurs! Możesz próbować tyle razy, ile chcesz – poprawiać swoje wyniki i rywalizować z kolegami. Im aktywniej uczestniczysz w konkursach, tym więcej punktów i – przyznawanych za nie – odznak masz na koncie.</p>
+<h2>Zostań supergraczem!</h2> <p class="center"><img src="/assets/images/okladki.jpg" /></p>', 1),
 
 (2, 'Dla rodziców', 'dla-rodzicow', '<h1>Dla rodziców</h1><h2>Specjalnie dla Waszych dzieci przygotowaliśmy serwis Konkursiaki.pl.</h2>
 <p>Miłośnicy gier i kreskówek znajdą tu informacje o ulubionych bohaterach oraz porcję dobrej – a przede wszystkim bezpiecznej zabawy. Serwis przeznaczony jest dla dzieci od lat sześciu, ale rejestracja może się odbyć jedynie za zgodą rodziców. Dlatego w chwili, gdy Wasze dziecko dokonuje rejestracji, musi podać e-mail rodzica lub opiekuna, żeby otrzymał on stosowną informację.</p>
 <h2>Cały czas dbamy o to, by na naszych stronach pojawiały się bezpieczne treści.</h2>
-<p><img alt="" src="/sites/default/files/imce/Certyfikat%20SSL-01.jpg" /></p> <p>Nad serwisem czuwają specjaliści odpowiedzialni między innymi za redagowanie tematów w wydawanych przez nas magazynach dla najmłodszych.</p>
-<p>Starannie dobieramy też nagrody dla zwycięzców konkursów – prezenty mają certyfikaty bezpieczeństwa i są dopasowane do wieku dziecka.</p>
-<p>Oczywiście, równie starannie dobieramy reklamy pojawiające się na naszych stronach. Zarówno użytkownikom serwisu, jak</p>
-<p>i ich rodzicom polecamy jedynie artykuły dozwolone dla dzieci i dla nich przeznaczone.</p>
-<div>
+<p class="center"><img src="/assets/images/certyfikat-ssl.jpg" /></p><p>Nad serwisem czuwają specjaliści odpowiedzialni między innymi za redagowanie tematów w wydawanych przez nas magazynach dla najmłodszych. Starannie dobieramy też nagrody dla zwycięzców konkursów – prezenty mają certyfikaty bezpieczeństwa i są dopasowane do wieku dziecka.  Oczywiście, równie starannie dobieramy reklamy pojawiające się na naszych stronach. Zarówno użytkownikom serwisu, jak i ich rodzicom polecamy jedynie artykuły dozwolone dla dzieci i dla nich przeznaczone.</p>
 <h2>Mamy nadzieję, że zaufają Państwo nam i naszemu serwisowi.</h2> <p>Zespół Konkursiaków.pl</p>', 1),
 
 (3, 'Regulamin', 'regulamin', '<h1>Regulamin</h1><p>

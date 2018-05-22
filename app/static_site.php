@@ -16,7 +16,7 @@ $data['static_site'] = execute('call sp_static_sites_find_by_slug(:p_slug);', ar
 
 function content($params, $data) { ?>
 
-<div class="wrapper">
+<div class="wrapper static-site">
     <h1 class="hidden"><?= $data['static_site']->title ?></h1>
 
     <p><?= $data['static_site']->content ?></p> 
