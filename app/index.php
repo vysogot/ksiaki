@@ -104,13 +104,13 @@ function content($params, $data) { ?>
             <div>
             <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>"></video>
                 <div class="mute"></div>
-                <?= link_to(image($video_ad->image_url), 'http://konkursiaki.pl') ?>
+                <?= link_to(image($video_ad->image_url), $video_ad->link_url) ?>
             </div>
     <?php } ?>
     </section>
 
     <aside>
-        <div class="sky-banner">
+        <div class="sky-banner" id="index">
             <img class="ad" src="/uploads/sky-ad-3-narrow.jpg">
         </div>
     </aside>

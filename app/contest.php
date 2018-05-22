@@ -63,9 +63,11 @@ function content($params, $data) { ?>
       <?php } ?>
     </div>
 
+    <aside>
     <div class="side">
-      <img class="ad" src="/uploads/sky-ad-3.jpg">
+      <img class="ad" src="/uploads/sky-ad-3-narrow.jpg">
     </div>
+    </aside>
 
   </div>
 </div>
