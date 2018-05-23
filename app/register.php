@@ -181,7 +181,10 @@ function content($params, $data) { ?>
             <label for="statute_agreement"><?= t('statute_agreement_description') ?></label>
         </div>
 
-        <span class="info"><strong><?= t('cancellation_conditions') ?></strong></span>
+        <div class="agreement">
+            <span class="info"><strong><?= t('cancellation_conditions') ?></strong></span>
+            <label class="info last-info"><?= t('registration_info') ?></label>
+        </div>
 
         <input type="submit" value="<?= t('sign_up') ?>" />
 

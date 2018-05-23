@@ -197,6 +197,10 @@ ul.bare li.right { float: right; }
     display:block;
 }
 
+.vertical-form .last-info {
+    margin-top: 10px; display:inline-block;
+}
+
 .vertical-form .agreement label {
     color: #999; 
 }
