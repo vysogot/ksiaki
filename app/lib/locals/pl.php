@@ -85,6 +85,7 @@ $translations = [
   'statute_agreement' => 'Uprzejmie informujemy, że w dniu 18.05.2018 r. zmianie uległy zapisy w Regulaminie serwisu. Prosimy o zapoznanie się z nimi.',
   'statute_agreement_description' => 'Tak, akceptuję regulamin portalu Konkursiaki.pl',
   'cancellation_conditions' => 'Zasady odwołania zgody zawarte są w Regulaminie i Polityce prywatności na stronie www.konkursiaki.pl',
+  'registration_info' => 'Drodzy uczestnicy, przed wzięciem udziału w konkursie prosimy zapoznać się z informacjami zawartymi w Polityce prywatności oraz Regulaminie konkursu. W Polityce prywatności, w części Polityka informacyjna, zawarte są niezbędne informacje, określające zasady postępowania z danymi osobowymi, a także ważne uprawniania, jakie przysługują osobom, których dane dotyczą. Informacje podawane są bez jakichkolwiek opłat. Polityka prywatności dostępna jest na stronie www.konkursiaki.pl. Powyższe prawa i informacje mają także zastosowanie do tych osób, które już uczestniczyły w konkursach i przekazały swoje dane osobowe.',
 
   // admin
 
