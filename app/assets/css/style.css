@@ -36,6 +36,7 @@ video { max-width: 100%; background: white; }
 
 .sky-banner { display:inline-block; width: 232px; height: 600px; float: left;  text-align: center; }
 .sky-banner#index { padding-top: 70px; }
+.sky-banner img { margin-bottom: 10px; } 
 
 #slajder      { width: 474px; height: 289px; margin-right: 12px; overflow-y: hidden; }
 #player       { width: 474px; height: 289px; }
@@ -96,12 +97,13 @@ ul.bare li.right { float: right; }
 .side { width: 240px; }
 .main, .side { float: left; }
 
-.row.hero { float:left; width: 688px; }
+.row.hero { float:right; width: 688px; }
 .hero { background: #fff; opacity: 0.95; padding: 20px; }
-.hero video { margin-top: 50px; width: 100%; }
+.hero video { width: 100%; }
 .row:after { content: ""; display: table; clear: both; }
 .column-13 { width: 33.33%; float: left; }
 .column-23 { width: 66.66%; float: left; }
+.column-33 { width: 100%; float: left; }
 
 .background-link {
   height: 100%; width: 100%; position: fixed; z-index: 1;

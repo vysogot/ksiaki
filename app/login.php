@@ -49,7 +49,7 @@ function content($params, $data) { ?>
     <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" included />
     <input type="submit" value="<?= t('log_in') ?>"/>
 
-    <p><?= link_to(t('register'), '/register.php') ?></p>
+    <p><?= t('no_account_yet') ?> <?= link_to(t('register'), '/register.php') ?></p>
 
   </form>
 

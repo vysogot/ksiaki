@@ -52,9 +52,11 @@ $translations = [
   'sign_in' => 'Logowanie',
   'nick_or_email' => 'Nick lub email',
   'password' => 'Hasło',
-  'log_in' => 'Zaloguj się',
-  'register' => 'Zarejestruj się',
+  'log_in' => 'Zaloguj się!',
+  'register' => 'Zarejestruj się!',
   'logout' => 'Wyloguj',
+  'no_account_yet' => 'Nie masz jeszcze konta?',
+  'already_have_account' => 'Posiadasz już konto?',
 
   // register
 
@@ -156,6 +158,9 @@ $translations = [
   'gadget_url' => 'Gadżet',
   'footer_url' => 'Grafika stopki',
   'license_description' => 'Opis w stopce - licencja',
+  'in_current_edition' => 'W aktualnym numerze',
+  'to_download' => 'Do pobrania',
+  'tv_spot' => 'Spot telewizyjny',
 
   // boxes form
   'box' => 'Box',

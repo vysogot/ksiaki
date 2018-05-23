@@ -5,6 +5,7 @@
     <title><?= t('title') ?></title>
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
     
     <script src="/assets/js/min.js" type="text/javascript"></script>
     
