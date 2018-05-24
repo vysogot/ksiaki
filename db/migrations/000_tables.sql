@@ -61,8 +61,11 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
     `is_active` tinyint(1),
     `begins_at` datetime,
     `ends_at` datetime,
-    `created_at` datetime,
-    `updated_at` datetime,
+    `is_to_be_deleted` TINYINT(1) NULL DEFAULT '0',
+	  `user_id` INT(11) NULL DEFAULT '0',
+	  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	  `updated_at` DATETIME NULL DEFAULT NULL,
+	  `marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Tła reklamowe';
 
@@ -147,8 +150,8 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
     `gadget_url` VARCHAR(255) NULL DEFAULT NULL,
     `footer_url` VARCHAR(255) NULL DEFAULT NULL,
     `license_description` TEXT NULL,
-    `is_active` TINYINT(1) NULL DEFAULT NULL,
-    `is_marked_as_deleted` TINYINT(1) NULL DEFAULT NULL,
+    `is_active` TINYINT(1) NULL DEFAULT 1,
+    `is_marked_as_deleted` TINYINT(1) NULL DEFAULT 0,
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NULL DEFAULT NULL,
     `marked_as_deleted_at` DATETIME NULL DEFAULT NULL,

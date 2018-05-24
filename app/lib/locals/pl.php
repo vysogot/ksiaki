@@ -175,7 +175,6 @@ $translations = [
   'in_current_edition' => 'W aktualnym numerze',
   'to_download' => 'Do pobrania',
   'tv_spot' => 'Spot telewizyjny',
-  'hero_delete' => 'Usunąć bohatera',
 
   // boxes form
   'box' => 'Box',
@@ -202,7 +201,6 @@ $translations = [
   'is_active' => 'Aktywny',
   'details_color' => 'Kolor detali',
   'background_name' => 'Nazwa',
-  'background_delete' => 'Usunąć tło ',
   'background_color' => 'Kolor tła',
 
   // Your account

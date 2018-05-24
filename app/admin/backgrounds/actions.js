@@ -1,5 +1,5 @@
 function fDelete(myObj) {
-  let title = '<?=t("background_delete")?>';
+  let title = '<?= t("delete") ?>';
   let ret = confirm(title + $(myObj).data('name') + '?');
   if (ret == true) {
     $.post("delete.php?id=" + $(myObj).data('id'),
@@ -10,19 +10,19 @@ function fDelete(myObj) {
 }
 
 function fShow(myObj) {
-  let url = '<?=t("background_slug")?>';
+  let url = '<?= t("slug") ?>';
   url = url.substring(0, url.lastIndexOf('/')+1) + $(myObj).data('slug');
   window.location.assign(url);
 }
 
 function fEdit(myObj) {
-  let title = '<?=t("edit_form", ["name" => t("background")])?>';
+  let title = '<?= t("edit_form", ["name" => t("background")]) ?>';
   $('.modal-title').text(title);
   get_data(myObj);
 }
 
 $('#new').click(function(e) {
-  let title = '<?=t("new_form", ["name" => t("background")])?>';
+  let title = '<?= t("new_form", ["name" => t("background")]) ?>';
   $('.modal-title').text(title);
   get_data(this);
 });
