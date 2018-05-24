@@ -59,7 +59,8 @@ INSERT INTO `_users` (`id`, `role_id`, `nick`, `name`, `surname`, `email`, `pass
 	(7, 2,  'tomo', 'Tomek', 'Dynda', 'tomek@demo.com',	'$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
 	(8, 2,  'banzai11', 'Jasia', 'Dżem', 'jasia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
 	(9, 2,  'zuzu', 'Zuzia', 'Kapusta', 'zuzia@demo.com',  '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
-	(10, 2, 'aaaappp11', 'Adam', 'Ginger', 'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1);
+	(10, 2, 'aaaappp11', 'Adam', 'Ginger', 'adam@demo.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1),
+	(11, 2, 'vysogot', 'Jakub', 'Godawa', 'jakub.godawa@gmail.com',   '$2y$10$EwF6/cRU8hVn8b7j.WswyeLmie6oYOI83ljS3WvWW9uu4GOzevOOy', 1);
 
 TRUNCATE TABLE `_backgrounds`;
 INSERT INTO `_backgrounds` (`id`, `name`, `image_url`, `link_url`, `background_color`, `details_color`, `is_active`, `begins_at`, `ends_at`, `created_at`, `updated_at`)

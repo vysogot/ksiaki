@@ -39,16 +39,16 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-  <?php include 'partials/errors.php'; ?>
-
   <form action="<?= path_to('/login.php') ?>" method="post" class="vertical-form">
 
     <legend><h2><?= t('sign_in') ?></h2></legend>
+    <?php include 'partials/errors.php'; ?>
 
     <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" included autofocus />
     <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" included />
     <input type="submit" value="<?= t('log_in') ?>"/>
 
+    <p><?= link_to(t('forgot_password'), '/password_reset_request.php') ?></p>
     <p><?= t('no_account_yet') ?> <?= link_to(t('register'), '/register.php') ?></p>
 
   </form>

@@ -59,6 +59,18 @@ $translations = [
   'forgot_password' => 'Hasło wyleciało Ci z głowy?',
   'already_have_account' => 'Posiadasz już konto?',
 
+  // password reset
+  
+  'restore_password' => 'Zakładanie nowego hasła',
+  'password_restoration_email_sent' => 'Wysłaliśmy do Ciebie email z linkiem do zakładania nowego hasła!',
+  'submit' => 'Wyślij',
+  'email_subject_password_reset_request' => 'Chcesz założyć nowe hasło?',
+  'password_reset' => 'Załóż nowe hasło',
+  'password_reset_successful' => 'Super! Masz już nowe hasło! Zaloguj się!',
+  'account_inactive_please_contact' => 'Twoje konto jest nieaktywne. Skontaktuj się z nami mailowo.',
+  'password_reset_failed' => 'Nie udało się założyć nowego hasła. Spróbuj później.',
+  'put_your_email' => 'Podaj swojego maila',
+
   // register
 
   'name' => 'Imię',

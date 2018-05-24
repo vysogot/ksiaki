@@ -29,3 +29,4 @@ $params = [];
 $data = [];
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
+$get  = $_SERVER['REQUEST_METHOD'] === 'GET';
