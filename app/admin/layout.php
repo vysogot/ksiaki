@@ -15,42 +15,68 @@
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <link rel="icon" href="data:;base64,=">
     <?php if (function_exists('meta')) meta(); ?>
     <style>
       html { background-color: #eee; margin: 0; }
-      nav { box-shadow: 2px 2px 5px #666; }
+      header {min-height: 110px !important;}
+      nav    { opacity: 1!important; }
+      nav a {background: transparent !important;}
+      nav a:hover, .active {filter: invert(100%); -webkit-filter: none!important; }
+      .navbar {padding-left: 10px;padding-right: 10px;min-height: 32px !important;z-index: 1!important;}
+      .navbar-brand {height: 100% !important;}
+      .navbar-fixed-top .navbar-brand {padding: 15px 0;}
+      .navbar-fixed-top .nav {padding-left: 15px;padding-top: 15px;}
+      .nav>li>a {padding: 20px 5px !important;}
+      .panel-body {padding-bottom: 0px;}
       .fas {padding-left: 10px;color:#979797;font-size: 2em;}
       .fa-times {color:red;}
       .fa-check {color:blue;}
       .none {display:none;}
-      .table-vcenter td { vertical-align: middle!important;}
+      .dataTables_wrapper .dataTables_length {padding-left: 10px;}
+      .table-vcenter td { vertical-align: middle !important;}
       .wrapper h4 {margin-top: 15px;}
-      .modal-hero {width: 70%;}
+      .modal {padding-top: 10px !important;}
+      .modal-dialog {width: 70%;}
       #is_active_check {margin: 13px 0 0;}
     </style>
 </head>
 <body>
-  <header>
-    <div class="wrapper-full">
-      <nav>
-        <ul class="bare">
-          <li><?= link_to(t('home_page'), '/', ['id' => 'menu-back']) ?></li>
-          <li><?= link_to(t('users'), '/admin/users/', ['id' => 'menu-users']) ?></li>
-          <li><?= link_to(t('contests'), '/admin/contests/', ['id' => 'menu-contests']) ?></li>
-          <li><?= link_to(t('heroes'), '/admin/heroes/', ['id' => 'menu-heroes']) ?></li>
-          <li><?= link_to(t('backgrounds'), '/admin/backgrounds/', ['id' => 'menu-backgrounds']) ?></li>
-          <li><?= link_to(t('slides'), '/admin/slides/', ['id' => 'menu-slides']) ?></li>
-          <li><?= link_to(t('video_ads'), '/admin/video_ads/', ['id' => 'menu-video-ads']) ?></li>
-          <li><?= link_to(t('boxes'), '/admin/boxes/', ['id' => 'menu-boxes']) ?></li>
-          <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['id' => 'menu-user-movies']) ?></li>
-          <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['id' => 'menu-static-sites']) ?></li>
-          <li class="right"><?= link_to(t('logout'), '/logout/', ['id' => 'menu-logout']) ?></li>
-          </ul>
-        </nav>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="//konkursiaki.pl">
+          <img height=75 src="/assets/images/logo.png" alt="logo">
+        </a>
       </div>
+      <div>
+        <ul  class="nav navbar-nav">
+          <li><?= link_to(t('home_page'), '/') ?></li>
+          <li><?= link_to(t('users'), '/admin/users/') ?></li>
+          <li><?= link_to(t('contests'), '/admin/contests/') ?></li>
+          <li><?= link_to(t('heroes'), '/admin/heroes/') ?></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <?= t('admin_menu_other_items') ?>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><?= link_to(t('backgrounds'), '/admin/backgrounds/') ?></li>
+              <li><?= link_to(t('slides'), '/admin/slides/') ?></li>
+              <li><?= link_to(t('video_ads'), '/admin/video_ads/') ?></li>
+              <li><?= link_to(t('boxes'), '/admin/boxes/') ?></li>
+              <li><?= link_to(t('user_movies'), '/admin/user_movies/') ?></li>
+              <li><?= link_to(t('static_sites'), '/admin/static_sites/') ?></li>
+            </ul>
+          </li>
+          <li class="right"><?= link_to(t('logout'), '/logout.php') ?></li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main>
       <?php include realpath(__DIR__ . '/../partials/flashes.php'); ?>

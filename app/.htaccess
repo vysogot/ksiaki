@@ -1,9 +1,5 @@
 Options FollowSymLinks
 RewriteEngine on
-RewriteRule ^info/regulamin$ show_pdf.php?fileName=RODO-Regulamin-serwisu.pdf [L,NC]
-RewriteRule ^info/polityka-prywatnosci$ show_pdf.php?fileName=RODO-Polityka-prywatnosci.pdf [L,NC]
-
-
-
-
-
+RewriteRule ^info/([a-z0-9A-Z_-]+)$ static_site.php?slug=$1 [L,NC]
+RewriteRule ^hero/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]
+RewriteRule ^bohater/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]

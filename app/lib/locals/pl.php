@@ -60,7 +60,7 @@ $translations = [
   'already_have_account' => 'Posiadasz już konto?',
 
   // password reset
-  
+
   'restore_password' => 'Zakładanie nowego hasła',
   'password_restoration_email_sent' => 'Wysłaliśmy do Ciebie email z linkiem do zakładania nowego hasła!',
   'submit' => 'Wyślij',
@@ -112,6 +112,7 @@ $translations = [
   'user_movies' => 'Filmy użytkowników',
   'video_ads' => 'Reklamy video',
   'static_sites' => 'Strony statyczne',
+  'admin_menu_other_items' => 'Pozostałe',
 
   // data
 
@@ -174,6 +175,7 @@ $translations = [
   'in_current_edition' => 'W aktualnym numerze',
   'to_download' => 'Do pobrania',
   'tv_spot' => 'Spot telewizyjny',
+  'hero_delete' => 'Usunąć bohatera',
 
   // boxes form
   'box' => 'Box',
@@ -198,6 +200,10 @@ $translations = [
   'image_url' => 'Obrazek',
   'link_url' => 'Linkowanie',
   'is_active' => 'Aktywny',
+  'details_color' => 'Kolor detali',
+  'background_name' => 'Nazwa',
+  'background_delete' => 'Usunąć tło ',
+  'background_color' => 'Kolor tła',
 
   // Your account
 

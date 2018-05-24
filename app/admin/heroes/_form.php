@@ -1,4 +1,4 @@
-<form id="hero-form" class="form-horizontal" action="#" onsubmit="return submitForm();" method="POST" enctype="multipart/form-data">
+<form id="form" class="form-horizontal" action="#" onsubmit="return submitForm();" method="POST" enctype="multipart/form-data">
 
   <input type="hidden" name="id" value="">
   <input type="hidden" name="row_index" value="">
@@ -6,28 +6,58 @@
 
   <div class="col-sm-12">
     <div class="modal-body">
+
       <div class='form-group'>
           <label class="control-label col-sm-4" for="name"><?= t('name') ?></label>
-          <input class="col-sm-8" id="name" name="name" type="text">
+          <div class="col-sm-8">
+            <div class='input-group'>
+              <input class="form-control" id="name" name="name" type="text">
+              <div class='input-group-addon'><i class='glyphicon glyphicon-asterisk'></i></div>
+            </div>
+          </div>
       </div>
+
+
       <div class='form-group'>
           <label class="control-label col-sm-4" for="slug"><?= t('slug') ?></label>
-          <input class="col-sm-8" id="slug" name="slug" type="text">
+          <div class="col-sm-8">
+            <div class='input-group'>
+              <input class="form-control" id="slug" name="slug" type="text">
+              <div class='input-group-addon'><i class='glyphicon glyphicon-pushpin'></i></div>
+            </div>
+          </div>
       </div>
+
       <div class='form-group'>
           <label class="control-label col-sm-4" for="description"><?= t('description') ?></label>
           <textarea id="description" class="col-sm-8" name="description" rows="3"></textarea>
       </div>
       <div class='form-group'>
           <label class="control-label col-sm-4" for="avatar_url"><?= t('avatar_url') ?></label>
-          <input class="col-sm-8" id="avatar_url" name="avatar_url" type="text">
-          <input id="avatar_file" name="avatar_file" type="file" class="form-control-file">
+          <div class="col-sm-8">
+            <div class='input-group'>
+              <input class="form-control" id="avatar_url" name="avatar_url" type="text">
+              <div class='input-group-addon'><i class='glyphicon glyphicon-upload'></i></div>
+            </div>
+            <input id="avatar_file" name="avatar_file" type="file" class="form-control-file">
+          </div>
       </div>
+
+
+
       <div class='form-group'>
           <label class="control-label col-sm-4" for="header_url"><?= t('header_url') ?></label>
-          <input class="col-sm-8" id="header_url" name="header_url" type="text">
-          <input id="header_file" name="header_file" type="file" class="form-control-file">
+          <div class="col-sm-8">
+            <div class='input-group'>
+              <input class="form-control" id="header_url" name="header_url" type="text">
+              <div class='input-group-addon'><i class='glyphicon glyphicon-upload'></i></div>
+            </div>
+            <input id="header_file" name="header_file" type="file" class="form-control-file">
+          </div>
       </div>
+
+
+
       <div class='form-group'>
           <label class="control-label col-sm-4" for="cover_url"><?= t('cover_url') ?></label>
           <input class="col-sm-8" id="cover_url" name="cover_url" type="text">

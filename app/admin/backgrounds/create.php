@@ -3,9 +3,7 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'create.php'
-];
+$result = ['rowCount' => -1, 'lastInsertId' => 0];
 
 if ($post) {
 
@@ -27,7 +25,8 @@ if ($post) {
       :p_details_color,
       :p_is_active,
       :p_begins_at,
-      :p_ends_at
+      :p_ends_at,
+      :p_user_id
     );', array(
       array('p_name', $params['name'], PDO::PARAM_STR),
       array('p_image_url', $params['image_url'], PDO::PARAM_STR),
@@ -36,30 +35,13 @@ if ($post) {
       array('p_details_color', $params['details_color'], PDO::PARAM_STR),
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
       array('p_begins_at', date('Y-m-d H:i:s', strtotime($params['begins_at'])), PDO::PARAM_STR),
-      array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR)
+      array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR),
+      array('p_user_id', get_user_id(), PDO::PARAM_INT)
     ));
 
-    if (!empty($result)) {
-      flash('notice', t('create_success'));
-      redirect('show.php?id=' . $result->lastInsertId);
-    } else {
-      flash('warning', t('create_failure'));
-    }
   }
-
-  $data = (object) $params;
-  $params['errors'] = $errors;
 
 }
 
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h2><?= t('new_background') ?></h2>
-    <?= link_to(t('backgrounds'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';
+header('Content-type: application/json');
+print json_encode(array($result));
