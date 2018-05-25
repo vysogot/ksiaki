@@ -66,7 +66,7 @@ SELECT id
 , DATE_FORMAT(begins_at,'%Y-%m-%d %H:%i') AS begins_at
 , DATE_FORMAT(ends_at,'%Y-%m-%d %H:%i') AS ends_at
 FROM _backgrounds
-WHERE (is_to_be_deleted = 0)
+WHERE (marked_as_deleted_at IS NULL)
 AND id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
 AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
 AND link_url LIKE CASE WHEN p_link_url IS NULL THEN link_url ELSE '%p_link_url%' END

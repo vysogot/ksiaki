@@ -71,7 +71,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_users_find_all` (
+CREATE PROCEDURE `sp_users_all` (
     IN `p_offset` INT
     , IN `p_limit` INT
 )
@@ -101,7 +101,7 @@ BEGIN
         , is_active
         , password_hash
         , created_by
-    ) 
+    )
     VALUES (
         p_role_id
         , p_name
@@ -191,7 +191,7 @@ BEGIN
             , name
             , surname
             , email
-            , activation_hash 
+            , activation_hash
         ) VALUES (
             @last_insert_user_id
             , p_caretaker_name
@@ -201,7 +201,7 @@ BEGIN
         );
     END IF;
 
-    SELECT @last_insert_user_id AS lastInsertId, 
+    SELECT @last_insert_user_id AS lastInsertId,
     p_activation_hash AS activation_hash,
     p_caretaker_activation_hash AS caretaker_activation_hash;
 
@@ -214,7 +214,7 @@ CREATE PROCEDURE `sp_users_activate` (
 )
 BEGIN
 
-    UPDATE _users 
+    UPDATE _users
     SET is_active = 1
     , activation_hash = NULL
     , activated_at = NOW()
@@ -229,10 +229,10 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_caretaker_activate` (
     IN `p_activation_hash` VARCHAR(255)
-) 
+)
 BEGIN
 
-    UPDATE _caretakers 
+    UPDATE _caretakers
     SET is_active = 1
     , activation_hash = NULL
     , activated_at = NOW()
@@ -251,7 +251,7 @@ CREATE PROCEDURE `sp_users_password_reset_request` (
 )
 BEGIN
 
-    UPDATE _users 
+    UPDATE _users
     SET password_reset_hash = p_password_reset_hash
     , password_reset_expires_at = DATE_ADD(NOW(), INTERVAL 3 DAY)
     WHERE (email = p_email);
@@ -268,12 +268,12 @@ CREATE PROCEDURE `sp_users_password_reset_execute` (
 )
 BEGIN
 
-    UPDATE _users 
+    UPDATE _users
     SET password_reset_hash = NULL
     , password_reset_expires_at = NULL
     , password_hash = p_new_password_hash
     WHERE (password_reset_hash = p_password_reset_hash)
-    AND (password_reset_expires_at > NOW()); 
+    AND (password_reset_expires_at > NOW());
 
     SELECT ROW_COUNT() AS rowCount;
 
@@ -285,17 +285,17 @@ CREATE PROCEDURE `sp_users_update`(
     IN `p_id` INT
     , IN `p_name` VARCHAR(255)
     , IN `p_email` VARCHAR(255)
-    , IN `p_avatar_url` VARCHAR(255) 
+    , IN `p_avatar_url` VARCHAR(255)
     , IN `p_is_active` VARCHAR(255)
     , IN `p_updated_by` INT
 )
 BEGIN
-    UPDATE _users 
+    UPDATE _users
     SET name = p_name
     , email = p_email
     , avatar_url = p_avatar_url
     , is_active = p_is_active
-    , updated_at = NOW() 
+    , updated_at = NOW()
     , updated_by = p_updated_by
 
     WHERE (id = p_id);
