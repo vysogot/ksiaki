@@ -27,7 +27,8 @@ if ($post) {
       :p_email,
       :p_avatar_url,
       :p_is_active,
-      :p_password_hash
+      :p_password_hash,
+      :p_created_by
     );', array(
       array('p_role_id', $params['role_id'], PDO::PARAM_INT),
       array('p_nick', $params['name'], PDO::PARAM_STR),
@@ -35,7 +36,8 @@ if ($post) {
       array('p_email', $params['email'], PDO::PARAM_STR),
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
-      array('p_password_hash', $password_hash, PDO::PARAM_STR)
+      array('p_password_hash', $password_hash, PDO::PARAM_STR),
+      array('p_created_by', $_SESSION['user_id'], PDO::PARAM_STR)
     ));
 
     if (!empty($result)) {

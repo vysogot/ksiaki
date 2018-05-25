@@ -58,6 +58,11 @@ if ($post) {
         $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
         $activation_hash = bin2hex(random_bytes(32));
 
+        $caretaker_activation_hash = '';
+        if (is_adult(strtotime($params['birthday']))) {
+          $caretaker_activation_hash = bin2hex(random_bytes(32));
+        }
+
         $result = execute('call sp_users_register(
             :p_birthday,
             :p_caretaker_name,
@@ -76,7 +81,8 @@ if ($post) {
             :p_notifications_agreement,
             :p_statute_agreement,
             :p_password_hash,
-            :p_activation_hash
+            :p_activation_hash,
+            :p_caretaker_activation_hash
         );', array(
             array('p_birthday', date('Y-m-d H:i:s', strtotime($params['birthday'])), PDO::PARAM_STR),
             array('p_caretaker_name', $params['caretaker_name'], PDO::PARAM_STR),
@@ -95,18 +101,34 @@ if ($post) {
             array('p_notifications_agreement', $params['notifications_agreement'], PDO::PARAM_INT),
             array('p_statute_agreement', $params['statute_agreement'], PDO::PARAM_INT),
             array('p_password_hash', $password_hash, PDO::PARAM_STR),
-            array('p_activation_hash', $activation_hash, PDO::PARAM_STR)
+            array('p_activation_hash', $activation_hash, PDO::PARAM_STR),
+            array('p_caretaker_activation_hash', $caretaker_activation_hash, PDO::PARAM_STR)
         ));
 
         if (!empty($result)) {
+
             flash('notice', t('registration_success'));
+
             send_email($params['email'], [ 
                 'subject' => t('email_subject_registration'), 
                 'body' => link_to('Click', '/activate.php?key=' . $result->activation_hash),
                 'name' => $params['name'] . ' ' . $params['surname']
             ]);
+
+            if ($params['caretaker_email']) {
+
+                send_email($params['caretaker_email'], [ 
+                    'subject' => t('email_subject_caretaker_registration'), 
+                    'body' => link_to('Click', '/caretaker_activate.php?key=' . $result->caretaker_activation_hash),
+                    'name' => $params['caretaker_name'] . ' ' . $params['caretaker_surname']
+                ]);
+
+            }
+
         } else {
+
             flash('warning', t('registration_failure'));
+
         }
 
         redirect('/');
@@ -127,7 +149,7 @@ function content($params, $data) { ?>
     <form method="post" action="/register.php" id="register" class="vertical-form" accept-charset="UTF-8">
 
         <legend><h2><?= t('register') ?></h2></legend>
-        
+
         <?php include 'partials/errors.php'; ?>
 
         <input id="birthday" type="text" placeholder="<?= t('birthday') ?>" name="birthday" value="<?= $params['birthday'] ?>" required />

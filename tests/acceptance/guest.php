@@ -2,8 +2,7 @@
 
 function test_guest_sees_homepage() {
     when_i_go_to('/');
-    return i_should_see_no_error() &&
-        i_should_see_exactly('3', 'class="boxes"');
+    return i_should_see_no_error();
 }
 
 function test_guest_sees_contests_page() {

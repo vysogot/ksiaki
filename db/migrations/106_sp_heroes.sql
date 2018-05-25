@@ -91,7 +91,7 @@ BEGIN
         , footer_url
         , license_description
         , is_active
-        , user_id
+        , created_by 
         ) VALUES(
         p_name
         , p_slug
@@ -140,7 +140,7 @@ BEGIN
     , footer_url = p_footer_url
     , license_description = p_license_description
     , is_active = p_is_active
-    , user_id = p_user_id
+    , updated_by = p_user_id
     , updated_at = NOW()
     WHERE (id = p_id);
 
@@ -163,10 +163,9 @@ CREATE PROCEDURE `sp_heroes_delete`(
 )
 BEGIN
     UPDATE _heroes
-    SET is_marked_as_deleted = 1
-    , is_active = 0
-    , user_id = p_user_id
+    SET is_active = 0
     , marked_as_deleted_at = NOW()
+    , marked_as_deleted_by = user_id
     WHERE (id = p_id)
     LIMIT 1;
     SELECT ROW_COUNT() AS rowCount;

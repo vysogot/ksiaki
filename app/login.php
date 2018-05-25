@@ -19,19 +19,33 @@ if ($post) {
     if (validate_existance($params, 'login', $result) && password_verify($params['password'], $result->password_hash)) {
 
         if ($result->is_active) {
-            session_regenerate_id(true);
-            $_SESSION['user_id'] = $result->id;
-            $_SESSION['role_id'] = $result->role_id;
 
-            flash('notice', t('login_success'));
+            if ($result->caretaker_check) {
+
+                session_regenerate_id(true);
+                $_SESSION['user_id'] = $result->id;
+                $_SESSION['role_id'] = $result->role_id;
+
+                flash('notice', t('login_success'));
+
+            } else {
+
+                flash('warning', t('caretaker_acceptance_needed'));
+
+            }
+
         } else {
+
             flash('warning', t('login_activation_needed'));
+
         }
 
         redirect('/');
 
     } else {
+
         $params['errors']['login'] = t('login_failure');
+
     }
 }
 

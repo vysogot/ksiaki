@@ -64,12 +64,17 @@ $translations = [
   'restore_password' => 'Zakładanie nowego hasła',
   'password_restoration_email_sent' => 'Wysłaliśmy do Ciebie email z linkiem do zakładania nowego hasła!',
   'submit' => 'Wyślij',
-  'email_subject_password_reset_request' => 'Chcesz założyć nowe hasło?',
   'password_reset' => 'Załóż nowe hasło',
   'password_reset_successful' => 'Super! Masz już nowe hasło! Zaloguj się!',
   'account_inactive_please_contact' => 'Twoje konto jest nieaktywne. Skontaktuj się z nami mailowo.',
   'password_reset_failed' => 'Nie udało się założyć nowego hasła. Spróbuj później.',
   'put_your_email' => 'Podaj swojego maila',
+
+  // email
+  
+  'email_subject_password_reset_request' => 'Chcesz założyć nowe hasło?',
+  'email_subject_caretaker_registration' => 'Potwierdzenie konta Twojego podopiecznego',
+  'email_subject_registration' => 'Potwierdź swój adres email!',
 
   // register
 
@@ -129,9 +134,13 @@ $translations = [
   'login_failure' => 'Logowanie nie powiodło się!',
   'login_activation_needed' => 'Twoje konto wymaga aktywacji! Sprawdź maila :)',
   'logged_out_safely' => 'Bezpiecznie wylogowano!',
-  'registration_success' => 'Rejestracja powiodła się!',
+  'registration_success' => 'Rejestracja powiodła się! Aktywuj swoje konto klikając w link przesłany mailem!',
   'registration_failure' => 'Rejestracja nie powiodła się',
   'unauthorized' => 'Brak dostępu',
+  'caretaker_activation_success' => 'Twoja zgoda na konto podopiecznego została przyjęta! Może się już zalogować.',
+  'caretaker_activation_failure' => 'Niestety, ale coś poszło nie tak. Najlepiej skontaktuj się z nami mailowo.',
+  'caretaker_acceptance_needed' => 'Czemy na zgodę Twojego opiekuna. Poproś, aby sprawdził podanego przez Ciebie maila.',
+  'activation_success' => 'Twoje konto zostało aktywowane.',
 
   // validation
 
