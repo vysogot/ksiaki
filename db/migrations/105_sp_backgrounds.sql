@@ -136,7 +136,7 @@ SET name = p_name
 	, is_active = p_is_active
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at
-  , user_id = p_user_id
+  , updated_by = p_user_id
 	, updated_at = NOW()
 WHERE (id = p_id);
 SELECT id
@@ -160,9 +160,8 @@ CREATE PROCEDURE `sp_backgrounds_delete`(
 )
 BEGIN
     UPDATE _backgrounds
-    SET is_to_be_deleted = 1
-    , is_active = 0
-    , user_id = p_user_id
+    SET is_active = 0
+    , marked_as_deleted_by = p_user_id
     , marked_as_deleted_at = NOW()
     WHERE (id = p_id);
 SELECT ROW_COUNT() AS rowCount;
