@@ -1,8 +1,10 @@
-<?php include '../../partials/errors.php'; ?>
+<form id="form" class="form-horizontal" action="#" onsubmit="return submitForm();" method="POST" enctype="multipart/form-data">
 
-<form id="hero" action="<?= $params['form_action'] ?>" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="">
+  <input type="hidden" name="is_active">
 
-  <input type="hidden" name="id" value="<?= $data->id ?>" />
+  <div class="col-sm-12">
+    <div class="modal-body">
 
   <div>
     <label for="role_id"><?= t('role') ?></label>
@@ -14,28 +16,34 @@
 
   <div>
     <label for="name"><?= t('name') ?></label>
-    <input id="name" name="name" type="text" value="<?= $data->name ?>">
+    <input id="name" name="name" type="text">
   </div>
 
   <div>
     <label for="email"><?= t('email') ?></label>
-    <input type="email" id="email" name="email" value="<?= $data->email ?>">
+    <input type="email" id="email" name="email">
   </div>
 
   <div>
     <label for="avatar_url"><?= t('avatar_url') ?></label>
-    <input id="avatar_url" name="avatar_url" type="text" value="<?= $data->avatar_url ?>">
+    <input id="avatar_url" name="avatar_url" type="text">
     <input id="avatar_file" name="avatar_file" type="file">
   </div>
 
   <div>
-    <label for="is_active"><?= t('is_active') ?></label>
-    <input type="hidden" name="is_active" value="0">
-    <input id="is_active" type="checkbox" name="is_active" value="1" <?php if ($data->is_active == 1) echo "checked" ?> >
+    <label for="is_active_check"><?= t('is_active') ?></label>
+    <input id="is_active_check" type="checkbox" name="is_active_check" >
   </div>
 
   <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" />
 
-</form>
+</div>
+<div style="clear:both;"></div>
 
-<button type="submit" form="hero" value="Wyślij">Wyślij</button>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal"><?= t('close') ?></button>
+  <button type="submit" class="btn btn-primary"><?= t('save') ?></button>
+</div>
+</div>
+
+</form>

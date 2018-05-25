@@ -23,14 +23,14 @@
     <?php if (function_exists('meta')) meta(); ?>
     <style>
       html { background-color: #eee; margin: 0; }
-      header {min-height: 110px !important;}
+      _header {min-height: 110px !important;}
       nav    { opacity: 1!important; }
       nav a {background: transparent !important;}
       nav a:hover, .active {filter: invert(100%); -webkit-filter: none!important; }
       .navbar {padding-left: 10px;padding-right: 10px;min-height: 32px !important;z-index: 1!important;}
       .navbar-brand {height: 100% !important;}
       .navbar-fixed-top .navbar-brand {padding: 15px 0;}
-      .navbar-fixed-top .nav {padding-left: 15px;padding-top: 15px;}
+      .navbar-fixed-top .nav {padding-left: 15px;padding-top: 25px;}
       .nav>li>a {padding: 20px 5px !important;}
       .panel-body {padding-bottom: 0px;}
       .fas {padding-left: 10px;color:#979797;font-size: 2em;}

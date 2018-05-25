@@ -12,7 +12,7 @@
         <div class="col-sm-8">
           <div class='input-group'>
             <input class="form-control" id="name" name="name" type="text" required>
-            <div class='input-group-addon'><i class='glyphicon glyphicon-asterisk'></i></div>
+            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
         <div class="col-sm-8">
           <div class='input-group'>
             <input class="form-control" id="image_url" name="image_url" type="text" required>
-            <div class='input-group-addon'><i class='glyphicon glyphicon-upload'></i></div>
+            <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
           </div>
           <input id="image_file" name="image_file" type="file">
         </div>
@@ -43,7 +43,7 @@
         <div class="col-sm-8">
           <div class='input-group'>
             <input class="form-control" id="background_color" name="background_color" type="text" required>
-            <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
+            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
         <div class="col-sm-8">
           <div class='input-group'>
             <input class="form-control" id="details_color" name="details_color" type="text" required>
-            <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
+            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
           </div>
         </div>
       </div>

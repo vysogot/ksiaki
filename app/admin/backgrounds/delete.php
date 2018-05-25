@@ -7,5 +7,4 @@ $result = execute('call sp_backgrounds_delete(:p_id, :p_user_id);', array(
   array('p_user_id', get_user_id(), PDO::PARAM_INT)
 ));
 
-header('Content-type: application/json');
-print json_encode(array($result));
+push_result2json($result);

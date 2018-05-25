@@ -125,7 +125,8 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
-    IN `p_is_active` INT
+    IN `p_is_active` INT,
+    IN `p_user_id` INT
 )
 BEGIN
     UPDATE _heroes
@@ -149,6 +150,8 @@ BEGIN
     , name
     , slug
     , description
+    , avatar_url
+    , header_url
     , is_active
     FROM _heroes
     WHERE (id = p_id);

@@ -2,7 +2,7 @@ function submitForm() {
   $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
   let row_index = $('input[name="row_index"]').val();
   let form_data = new FormData(document.getElementById("form"));
-  console.log(...form_data);
+  //console.log(...form_data);
   $.ajax({
      url: ((form_data.get('id')==0)?'create.php':'update.php'),
      type: "POST",

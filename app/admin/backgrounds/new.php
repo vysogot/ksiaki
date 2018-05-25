@@ -2,7 +2,6 @@
 
 include '../init.php';
 
-$data = execute('call sp_backgrounds_new();', []);
+$result = execute('call sp_backgrounds_new();', []);
 
-header('Content-type: application/json');
-print json_encode(array($data));
+push_result2json($result);

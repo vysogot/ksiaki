@@ -43,5 +43,4 @@ if ($post) {
 
 }
 
-header('Content-type: application/json');
-print json_encode(array($result));
+push_result2json($result);

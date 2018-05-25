@@ -231,6 +231,7 @@ $translations = [
 
   // Users form
   'role' => 'Rola',
+  'last_login_at' => 'Ostatnie logowanie',
 
   // slugs - be careful; it requires change in nginx too
 

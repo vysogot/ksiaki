@@ -123,7 +123,8 @@ CREATE PROCEDURE `sp_backgrounds_update`(
   IN `p_details_color` VARCHAR(255),
 	IN `p_is_active` INT,
 	IN `p_begins_at` DATETIME,
-	IN `p_ends_at` DATETIME
+	IN `p_ends_at` DATETIME,
+  IN `p_user_id` INT
 )
 BEGIN
 UPDATE _backgrounds
@@ -135,8 +136,20 @@ SET name = p_name
 	, is_active = p_is_active
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at
+  , user_id = p_user_id
+	, updated_at = NOW()
 WHERE (id = p_id);
-SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+SELECT id
+, name
+, image_url
+, link_url
+, background_color
+, details_color
+, is_active
+, DATE_FORMAT(begins_at,'%Y-%m-%dT%H:%i') AS begins_at
+, DATE_FORMAT(ends_at,'%Y-%m-%dT%H:%i') AS ends_at
+FROM _backgrounds
+WHERE (id = p_id);
 END$$
 DELIMITER ;
 

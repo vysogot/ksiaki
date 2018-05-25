@@ -119,3 +119,8 @@ function ranking_list($scores) {
 function form_date($date) {
     return strftime('%Y-%m-%dT%H:%M:%S',strtotime($date));
 }
+
+function push_result2json($result) {
+  header('Content-type: application/json');
+  print json_encode(array($result));
+}

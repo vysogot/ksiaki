@@ -10,22 +10,22 @@ function fDelete(myObj) {
 }
 
 function fShow(myObj) {
-  let row_index = $(myObj).data('index');
-  let row = oTable.row(row_index).data();
-
-  $('#imagemodal .modal-title').text(row.name);
-  $('#imagepreview').attr('src', row.image_url);
-  $('#imagemodal').modal('show');
+  let url = '<?= t("hero_slug") ?>';
+  url = url.substring(0, url.lastIndexOf('/')+1) + $(myObj).data('slug');
+  window.location.assign(url);
 }
 
 function fEdit(myObj) {
-  let title = '<?= t("edit_form", ["name" => t("background")]) ?>';
+  let row_index = $(myObj).data('index');
+  let row = oTable.row(row_index).data();
+  let title = '<?= t("edit_form", ["name" => t("user")]) ?>';
+  title = title.substring(0, title.lastIndexOf('/')+1) + row.name + ' ' + row.surname;
   $('.modal-title').text(title);
   get_data(myObj);
 }
 
 $('#new').click(function(e) {
-  let title = '<?= t("new_form", ["name" => t("background")]) ?>';
+  let title = '<?= t("new_form", ["name" => t("hero")]) ?>';
   $('.modal-title').text(title);
   get_data(this);
 });
