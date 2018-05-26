@@ -146,8 +146,8 @@ SELECT id
 , background_color
 , details_color
 , is_active
-, DATE_FORMAT(begins_at,'%Y-%m-%dT%H:%i') AS begins_at
-, DATE_FORMAT(ends_at,'%Y-%m-%dT%H:%i') AS ends_at
+, DATE_FORMAT(begins_at,'%Y-%m-%d %H:%i') AS begins_at
+, DATE_FORMAT(ends_at,'%Y-%m-%d %H:%i') AS ends_at
 FROM _backgrounds
 WHERE (id = p_id);
 END$$

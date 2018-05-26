@@ -236,6 +236,16 @@ CREATE TABLE IF NOT EXISTS `_users` (
     UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Użytkownicy';
 
+/* Rejestracja logowania i wylogowania użytkowników */
+CREATE TABLE IF NOT EXISTS `_user_logins` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NULL DEFAULT '0',
+	`session_id` CHAR(32) NULL DEFAULT NULL,
+	`login_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	`logout_at` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='ejestracja logowania i wylogowania użytkowników';
+
 /* Konta użytkowników */
 CREATE TABLE IF NOT EXISTS `_accounts` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
