@@ -24,3 +24,5 @@ $data = execute('call sp_user_profile(:p_nick);', array(
 <p><?= t('badges') ?>: <?= $data->badge_title ?></p>
 <p><?= t('contests') ?>: <?= $data->list_contest_id ?></p>
 <p><?= t('contests') ?>: <?= $data->list_contest_name ?></p>
+<p><?= t('range') ?>: <?= $data->range_image_url ?></p>
+<p><?= t('range') ?>: <?= $data->range_title ?></p>
