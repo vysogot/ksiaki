@@ -222,6 +222,7 @@ $translations = [
   // Profile
 
   'profile' => 'Profil',
+  'badges' => 'Odznaki',
 
   // Popup
 
