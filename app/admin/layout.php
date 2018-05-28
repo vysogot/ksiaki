@@ -23,8 +23,9 @@
     <?php if (function_exists('meta')) meta(); ?>
     <style>
       html { background-color: #eee; margin: 0; }
-      _header {min-height: 110px !important;}
-      nav    { opacity: 1!important; }
+      header {min-height: 125px !important;}
+      nav    { opacity: 1!important; margin:0!important;}
+      nav ul { margin-top: 25px!important; margin-left: 25px!important; }
       nav a {background: transparent !important;}
       nav a:hover, .active {filter: invert(100%); -webkit-filter: none!important; }
       .navbar {padding-left: 10px;padding-right: 10px;min-height: 32px !important;z-index: 1!important;}
@@ -47,7 +48,7 @@
 </head>
 <body>
     <header>
-      <nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-default center">
       <div class="navbar-header">
         <a class="navbar-brand" href="//konkursiaki.pl">
           <img height=75 src="/assets/images/logo.png" alt="logo">

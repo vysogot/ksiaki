@@ -21,7 +21,7 @@ function content($params, $data) { ?>
 <div class="wrapper center">
   <img class="ad" src="/uploads/wide-banner.jpg" />
   <h2><?= link_to(t('back_to_contest'), "/contest.php?id=" . $data['contest']->id) ?></h2>
-  <iframe style="border: 0; width: 100%; height: 80vh;" src="/games/<?= $data['game']->name ?>/index.html"></iframe>
+  <iframe onload="this.contentWindow.focus()" style="border: 0; width: 100%; height: 80vh;" src="/games/<?= $data['game']->name ?>/index.html"></iframe>
   <img class="ad" src="/uploads/wide-banner-2.jpg" />
 </div>
 
