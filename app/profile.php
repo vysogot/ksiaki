@@ -3,13 +3,13 @@
 include 'init.php';
 
 $params = [
-  "id" => null
+  "nick" => null
 ];
 
 $params = array_merge($params, $_GET);
 
-$data = execute('call sp_user_profile(:p_id);', array(
-  array('p_id', $params['id'], PDO::PARAM_INT)
+$data = execute('call sp_user_profile(:p_nick);', array(
+  array('p_nick', $params['nick'], PDO::PARAM_INT)
 ));
 
 ?>
@@ -20,4 +20,7 @@ $data = execute('call sp_user_profile(:p_id);', array(
 <p><?= t('email') ?>: <?= $data->email ?></p>
 <p><?= t('points') ?>: <?= $data->points ?></p>
 <p><?= t('badges') ?>: <?= $data->list_badge_id ?></p>
+<p><?= t('badges') ?>: <?= $data->badge_image_url ?></p>
+<p><?= t('badges') ?>: <?= $data->badge_title ?></p>
 <p><?= t('contests') ?>: <?= $data->list_contest_id ?></p>
+<p><?= t('contests') ?>: <?= $data->list_contest_name ?></p>

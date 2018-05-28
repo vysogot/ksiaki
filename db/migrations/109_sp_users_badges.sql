@@ -34,7 +34,7 @@ SELECT user_id
 , badge_id
 , SUM(1) AS badge_count
 , CAST(MAX(given_at) AS DATE) AS last_given_at
-FROM user_badges
+FROM _user_badges
 GROUP BY user_id, badge_id
 ) AS usb
 LEFT JOIN def_badges ON (usb.badge_id = def_badges.id)

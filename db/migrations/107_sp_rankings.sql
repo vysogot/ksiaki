@@ -1,14 +1,14 @@
 DROP PROCEDURE IF EXISTS `sp_rankings_contest`;
-DROP PROCEDURE IF EXISTS `sp_rankings_contest_find_by_userid`;
+DROP PROCEDURE IF EXISTS `sp_rankings_contest_find_by_usernick`;
 DROP PROCEDURE IF EXISTS `sp_rankings_monthly`;
-DROP PROCEDURE IF EXISTS `sp_rankings_monthly_find_by_userid`;
+DROP PROCEDURE IF EXISTS `sp_rankings_monthly_find_by_usernick`;
 DROP PROCEDURE IF EXISTS `sp_rankings_periodic`;
 DROP PROCEDURE IF EXISTS `sp_rankings_score_games`;
 DROP PROCEDURE IF EXISTS `sp_rankings_yearly`;
-DROP PROCEDURE IF EXISTS `sp_rankings_yearly_find_by_userid`;
+DROP PROCEDURE IF EXISTS `sp_rankings_yearly_find_by_usernick`;
 
 DELIMITER //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_rankings_contest`(IN `p_contest_id` INT, IN `p_offset` INT, IN `p_limit` INT)
+CREATE PROCEDURE `sp_rankings_contest`(IN `p_contest_id` INT, IN `p_offset` INT, IN `p_limit` INT)
 BEGIN
 CALL sp_rankings_score_games('0', NULL, p_contest_id, 0, p_offset, p_limit);
 END//
@@ -17,9 +17,12 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE `sp_rankings_contest_find_by_userid`(IN `p_contest_id` INT, IN `p_id` INT)
+CREATE PROCEDURE `sp_rankings_contest_find_by_usernick`(IN `p_contest_id` INT, IN `p_nick` VARCHAR(50))
 BEGIN
-CALL sp_rankings_score_games('1', '', p_contest_id, p_id, 0, 10);
+SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
+IF (@id != 0) THEN
+	CALL sp_rankings_score_games('1', '', p_contest_id, @id, 0, 10);
+END IF;
 END//
 DELIMITER ;
 
@@ -30,13 +33,14 @@ CREATE PROCEDURE `sp_rankings_monthly`(IN `p_date` DATE, IN `p_offset` INT, IN `
 BEGIN
 CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
 , user_id INT
+, nick VARCHAR(50)
 , name VARCHAR(50)
 , points INT
 );
 
 CALL sp_rankings_periodic('1', p_date, 0, p_offset, p_limit);
 
-SELECT place, user_id, name, points FROM tmp_ranking;
+SELECT place, user_id, nick, name, points FROM tmp_ranking;
 
 DROP TEMPORARY TABLE tmp_ranking;
 END//
@@ -45,19 +49,24 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE `sp_rankings_monthly_find_by_userid`(IN `p_date` DATE, IN `p_id` INT)
+CREATE PROCEDURE `sp_rankings_monthly_find_by_usernick`(IN `p_date` DATE, IN `p_nick` VARCHAR(50))
 BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
-, user_id INT
-, name VARCHAR(50)
-, points INT
-);
+SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
+IF (@id != 0) THEN
+	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+	, user_id INT
+	, nick VARCHAR(50)
+	, name VARCHAR(50)
+	, points INT
+	);
+	
+	CALL sp_rankings_periodic('1', p_date, @id, 0, 10);
+	
+	SELECT place, user_id, nick, name, points FROM tmp_ranking;
+	
+	DROP TEMPORARY TABLE tmp_ranking;
 
-CALL sp_rankings_periodic('1', p_date, p_id, 0, 10);
-
-SELECT place, user_id, name, points FROM tmp_ranking;
-
-DROP TEMPORARY TABLE tmp_ranking;
+END IF;
 END//
 DELIMITER ;
 
@@ -77,6 +86,7 @@ SET @row_number = 0;
 INSERT INTO tmp_ranking
 SELECT rnk.place
 , rnk.user_id
+, usr.nick
 , usr.name
 , rnk.points
 FROM (
@@ -166,13 +176,14 @@ CREATE PROCEDURE `sp_rankings_yearly`(IN `p_date` DATE, IN `p_offset` INT, IN `p
 BEGIN
 CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
 , user_id INT
+, nick VARCHAR(50)
 , name VARCHAR(50)
 , points INT
 );
 
 CALL sp_rankings_periodic('12', p_date, 0, 0, 10);
 
-SELECT place, user_id, name, points FROM tmp_ranking;
+SELECT place, user_id, nick, name, points FROM tmp_ranking;
 
 DROP TEMPORARY TABLE tmp_ranking;
 
@@ -182,20 +193,25 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE `sp_rankings_yearly_find_by_userid`(IN `p_date` DATE, IN `p_id` VARCHAR(50))
+CREATE PROCEDURE `sp_rankings_yearly_find_by_usernick`(IN `p_date` DATE, IN `p_nick` VARCHAR(50))
 BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
-, user_id INT
-, name VARCHAR(50)
-, points INT
-);
+SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
+IF (@id != 0) THEN
 
-CALL sp_rankings_periodic('12', p_date, p_id, 0, 10);
+	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+	, user_id INT
+	, nick VARCHAR(50)
+	, name VARCHAR(50)
+	, points INT
+	);
+	
+	CALL sp_rankings_periodic('12', p_date, @id, 0, 10);
+	
+	SELECT place, user_id, nick, name, points FROM tmp_ranking;
+	
+	DROP TEMPORARY TABLE tmp_ranking;
 
-SELECT place, user_id, name, points FROM tmp_ranking;
-
-DROP TEMPORARY TABLE tmp_ranking;
-
+END IF;
 END//
 DELIMITER ;
 

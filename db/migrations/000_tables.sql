@@ -209,31 +209,29 @@ CREATE TABLE IF NOT EXISTS `_roles` (
 
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `role_id` int NOT NULL DEFAULT '2',
-    `nick` varchar(255) NOT NULL,
-    `email` varchar(255) NOT NULL,
-    `name` varchar(255) NOT NULL,
-    `surname` varchar(255) NOT NULL,
-    `avatar_url` varchar(255),
-    `is_active` tinyint(1) NOT NULL DEFAULT '0',
-    `password_hash` varchar(255),
-    `activation_hash` varchar(255),
-    `activated_at` datetime,
-    `password_reset_hash` varchar(255),
-    `password_reset_expires_at` datetime,
-    `last_login_at` datetime,
-
-    `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by` INT(10) NULL DEFAULT 0,
-    `updated_at` DATETIME NULL DEFAULT NULL,
-    `updated_by` INT(10) NULL DEFAULT 0,
-    `marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
-    `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
-
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `name` (`name`),
-    UNIQUE KEY `email` (`email`)
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`role_id` INT(11) NOT NULL DEFAULT '2',
+	`nick` VARCHAR(255) NULL DEFAULT NULL,
+	`email` VARCHAR(255) NULL DEFAULT NULL,
+	`name` VARCHAR(255) NULL DEFAULT NULL,
+	`surname` VARCHAR(255) NULL DEFAULT NULL,
+	`avatar_url` VARCHAR(255) NULL DEFAULT NULL,
+	`is_active` TINYINT(1) NOT NULL DEFAULT '1',
+	`password_hash` VARCHAR(255) NULL DEFAULT NULL,
+	`activation_hash` VARCHAR(255) NULL DEFAULT NULL,
+	`activated_at` DATETIME NULL DEFAULT NULL,
+	`password_reset_hash` VARCHAR(255) NULL DEFAULT NULL,
+	`password_reset_expires_at` DATETIME NULL DEFAULT NULL,
+	`last_login_at` DATETIME NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	`created_by` INT(11) NULL DEFAULT '0',
+	`updated_at` DATETIME NULL DEFAULT NULL,
+	`updated_by` INT(11) NULL DEFAULT '0',
+	`marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
+	`marked_as_deleted_by` INT(10) NULL DEFAULT '0',
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `name` (`name`),
+	UNIQUE INDEX `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Użytkownicy';
 
 /* Rejestracja logowania i wylogowania użytkowników */
