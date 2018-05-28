@@ -15,6 +15,10 @@ $data['contest'] = execute('call sp_contests_find(:p_id);', array(
   array('p_id', $params['id'], PDO::PARAM_INT)
 ));
 
+$data['game'] = execute('call sp_games_find(:p_id);', array(
+  array('p_id', $data['contest']->game_id, PDO::PARAM_INT)
+));
+
 $data['connected_contests'] = execute('call sp_contests_all(
   :p_id,
   :p_name,
@@ -42,7 +46,8 @@ function content($params, $data) { ?>
 <div id="contests-page">
   <div class="wrapper">
 
-  <h1><?= $data['contest']->name ?></h1>
+  <h1 class="center"><?= $data['contest']->name ?></h1>
+  <p class="center"><?= t($data['game']->description) ?></p>
 
   <div class="wrapper">
     <h2 class="center"><?= link_to(t('play'), "/contest_preroll.php?id=" . $data['contest']->id) ?></h2>
@@ -54,7 +59,7 @@ function content($params, $data) { ?>
     <?php include './partials/modal_ranking.html' ?>
 
     <div class="main">
-      <h2><?= t('other_contests') ?></h2>
+      <h2 class="center"><?= t('other_contests') ?></h2>
       <?php foreach($data['connected_contests'] as $contest) { ?>
         <div class="left box">
           <?= link_to("<img src='$contest->box_url'>", "/contest.php?id=$contest->id") ?>

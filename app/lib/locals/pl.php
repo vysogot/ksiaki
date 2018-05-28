@@ -116,6 +116,7 @@ $translations = [
   'slides' => 'Slajdy',
   'user_movies' => 'Filmy użytkowników',
   'video_ads' => 'Reklamy video',
+  'static_site' => 'Strona statyczna',
   'static_sites' => 'Strony statyczne',
   'admin_menu_other_items' => 'Pozostałe',
 
@@ -212,6 +213,11 @@ $translations = [
   'background_name' => 'Nazwa',
   'background_color' => 'Kolor tła',
 
+  // static sites form
+
+  'static_site_title' => 'Tytuł',
+  'content' => 'Treść',
+
   // Your account
 
   'your_profile' => 'Twój profil',
@@ -237,5 +243,10 @@ $translations = [
   // slugs - be careful; it requires change in nginx too
 
   'hero_slug' => '/bohater/{{slug}}',
+
+  // games
+
+  'game_sorcerer_description' => 'Rzucaj w kulki tego samego koloru i zdobywaj punkty. Uważaj, jeśli wpadną do dziury to koniec gry!!',
+  'game_pacman_description' => 'Zjadaj kulki i uważaj na duchy!',
 
 ];

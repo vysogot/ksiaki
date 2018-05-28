@@ -69,7 +69,7 @@
               <li><?= link_to(t('slides'), '/admin/slides/') ?></li>
               <li><?= link_to(t('video_ads'), '/admin/video_ads/') ?></li>
               <li><?= link_to(t('boxes'), '/admin/boxes/') ?></li>
-              <li><?= link_to(t('user_movies'), '/admin/user_movies/') ?></li>
+              <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/') ?></li> -->
               <li><?= link_to(t('static_sites'), '/admin/static_sites/') ?></li>
             </ul>
           </li>
