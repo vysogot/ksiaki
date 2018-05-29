@@ -5,7 +5,7 @@ SELECT t.uid
 FROM userpoints_total AS t
 INNER JOIN users AS u ON (t.uid = u.uid)
 WHERE (u.status = 1) 
-INTO OUTFILE 'e:/xampp/htdocs/ksiaki/export-import/importfiles/userpoints_total-tmp.txt'
+INTO OUTFILE 'e:/xampp/htdocs/ksiaki/export_import/import_files/userpoints_total-tmp.txt'
 CHARACTER SET UTF8
 FIELDS TERMINATED BY '|'
 ENCLOSED BY '"'

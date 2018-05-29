@@ -2,7 +2,7 @@
 
 $envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
 
-$env = getenv('APPLICATION_ENV');
+$env = 'old_konkursiaki';
 $config = empty($env) ? $envs['development'] : $envs[$env];
 
 list($host, $dbname, $user, $pass, $port) = [
