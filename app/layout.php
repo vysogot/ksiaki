@@ -25,6 +25,21 @@
       nav, .ad, .rankings h2, .rankings ul, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
       main { display: block;}
     </style>
+
+    <!-- Google Tag Manager -->
+    <script>
+
+      var dataLayer = [];
+
+           dataLayer.push({"page": "home"});
+
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PRZYKLAD');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
   <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
@@ -34,9 +49,7 @@
 
       <div id="logo"><a href="/"><img src="/assets/images/logo.png" /></a></div>
 
-      <div id="banner" class="slider">
-        <div><img src="/uploads/banner-1.png" /></div>
-        <div><img src="/uploads/banner-2.png" /></div>
+      <div id='stroer_topbanner'>
       </div>
 
       <nav>

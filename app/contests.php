@@ -63,17 +63,13 @@ function content($params, $data) { ?>
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
       <div class="left box">
-        <?= link_to("<img src='$contest->box_url'>", "/contest.php?id=$contest->id") ?>
+        <?= link_to(image($contest->box_url), "/contest.php?id=$contest->id") ?>
         <p><?= link_to($contest->name, "/contest.php?id=$contest->id") ?></p>
       </div>
     <?php } ?>
   </div>
 
-  <aside>
-  <div class="sky-banner">
-    <img class="ad" src="/uploads/sky-ad-3-narrow.jpg">
-  </div>
-  </aside>
+  <?php include './partials/stroer_sky.html' ?>
 
 </div>
 

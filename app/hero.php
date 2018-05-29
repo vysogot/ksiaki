@@ -35,13 +35,7 @@ function content($params, $data) { ?>
   <div class="wrapper">
     <div class="center"><img src="<?= $data['hero']->header_url ?>"></div>
 
-    <aside>
-        <div class="sky-banner">
-            <img class="ad" src="/uploads/sky-ad-1-narrow.jpg">
-            <img class="ad" src="/uploads/sky-ad-2-narrow.jpg">
-            <img class="ad" src="/uploads/sky-ad-3-narrow.jpg">
-        </div>
-    </aside>
+    <?php include './partials/stroer_sky.html' ?>
 
     <div class="row hero">
         <h2><?= e($data['hero']->name) ?></h2>

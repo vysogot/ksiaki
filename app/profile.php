@@ -20,7 +20,7 @@ $badge_titles = explode(', ', $data->badge_titles);
 <h2><?= $data->nick ?></h2>
 <p><?= t('points_total') ?>: <?= $data->points ?></p>
 <p><?= t('contests') ?>: <?= $data->contest_names ?></p>
-<?= image('/uploads/ranks/' . $data->rank_image_url, ["title" => $data->rank_title]) ?>
+<?= image($data->rank_image_url, ["title" => $data->rank_title]) ?>
 <?php foreach($badge_image_urls as $index => $url) { ?>
-    <?= image('/uploads/badges/' . $url, ["title" => t($badge_titles[$index])]) ?>
+    <?= image($url, ["title" => t($badge_titles[$index])]) ?>
 <?php } ?>

@@ -32,7 +32,7 @@ video { max-width: 100%; background: white; }
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
 #heroes       { width: 960px; height: 140px; overflow: visible; }
-#banner, #banner img { width: 830px; height: 130px; overflow: hidden; }
+#stroer_topbanner, #stroer_topbanner img { width: 830px; height: 130px; overflow: hidden; }
 
 .sky-banner { display:inline-block; width: 232px; height: 600px; float: left;  text-align: center; }
 .sky-banner#index { padding-top: 70px; }

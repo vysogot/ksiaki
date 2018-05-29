@@ -68,11 +68,7 @@ function content($params, $data) { ?>
       <?php } ?>
     </div>
 
-    <aside>
-    <div class="side">
-      <img class="ad" src="/uploads/sky-ad-3-narrow.jpg">
-    </div>
-    </aside>
+    <?php include './partials/stroer_sky.html' ?>
 
   </div>
 </div>

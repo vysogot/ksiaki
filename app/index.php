@@ -109,11 +109,7 @@ function content($params, $data) { ?>
     <?php } ?>
     </section>
 
-    <aside>
-        <div class="sky-banner" id="index">
-            <img class="ad" src="/uploads/sky-ad-3-narrow.jpg">
-        </div>
-    </aside>
+    <?php include './partials/stroer_sky.html' ?>
 
     <section id="contests" class="slider">
       <h2><?= t('contests') ?></h2>
