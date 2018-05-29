@@ -1,17 +1,35 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
-TRUNCATE TABLE _users;
+TRUNCATE TABLE _accounts;
 
 LOAD DATA LOCAL INFILE 'e:/xampp/htdocs/ksiaki/export_import/import_files/users-tmp.csv'
-INTO TABLE _users
+INTO TABLE _accounts
 CHARACTER SET UTF8
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
+LINES TERMINATED BY '\r\n'
 IGNORE 2 LINES
-(id, nick, email, created_at);
+(user_id
+, @dummy
+, @dummy
+, @dummy
+, @dummy
+, @dummy
+, @dummy
+, @dummy
+, gender
+, birthday
+, address
+, postcode
+, city
+, @dummy
+, @dummy
+, @dummy
+, @dummy
 
-SET @max := (SELECT MAX(id)+ 1 FROM _users); 
+);
+
+SET @max := (SELECT MAX(id)+ 1 FROM _accounts); 
 SET @s = CONCAT('ALTER TABLE _users AUTO_INCREMENT=', @max);
 PREPARE stmt FROM @s;
 EXECUTE stmt;

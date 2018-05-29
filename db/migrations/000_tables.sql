@@ -230,7 +230,6 @@ CREATE TABLE IF NOT EXISTS `_users` (
 	`marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
 	`marked_as_deleted_by` INT(10) NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
-	UNIQUE INDEX `name` (`name`),
 	UNIQUE INDEX `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Użytkownicy';
 
