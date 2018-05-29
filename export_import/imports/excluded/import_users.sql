@@ -2,7 +2,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 TRUNCATE TABLE _users;
 
-LOAD DATA LOCAL INFILE 'export_import/import_files/users_tmp.txt'
+LOAD DATA LOCAL INFILE 'e:/xampp/htdocs/ksiaki/export-import/importfiles/users-tmp.txt'
 INTO TABLE _users
 CHARACTER SET UTF8
 FIELDS TERMINATED BY '|'

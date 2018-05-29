@@ -1,0 +1,21 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE old_contests;
+
+LOAD DATA LOCAL INFILE 'e:/xampp/htdocs/ksiaki/export-import/importfiles/contests-tmp.txt'
+INTO TABLE old_contests
+CHARACTER SET UTF8
+FIELDS TERMINATED BY '|'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+(cid, type, title, start, expire, game_mode, top_score);
+
+SET @max := (SELECT MAX(id)+ 1 FROM old_contests); 
+SET @s = CONCAT('ALTER TABLE _users AUTO_INCREMENT=', @max);
+PREPARE stmt FROM @s;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+SELECT 1;

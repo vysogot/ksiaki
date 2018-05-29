@@ -1,0 +1,25 @@
+/* Punkty ze starych konkursiakow */
+CREATE TABLE `old_score_total` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` INT(10) UNSIGNED NULL DEFAULT '0',
+	`points` INT(11) NULL DEFAULT '0',
+	`max_points` INT(11) NULL DEFAULT '0',
+	`given_at` DATETIME NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty ze starych konkursiakow';
+
+CREATE TABLE `old_contests` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`cid` INT(10) UNSIGNED NULL DEFAULT '0',
+	`type` CHAR(32) NULL DEFAULT NULL,
+	`title` VARCHAR(255) NULL DEFAULT NULL,
+	`start` DATETIME NULL DEFAULT NULL,
+	`expire` DATETIME NULL DEFAULT NULL,
+	`game_mode` SMALLINT(5) UNSIGNED NULL DEFAULT NULL,
+	`top_score` VARCHAR(50) NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konkursy ze starych konkursiaków';
+
+
