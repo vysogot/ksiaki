@@ -2,8 +2,8 @@
 
 function test_player_profile() {
   when_i_login_as('user');
-  and_i_go_to('/profile.php?id=1');
-  return i_should_see('Nick: user');
+  and_i_go_to('/profile.php?nick=user');
+  return i_should_see('user');
 }
 
 function test_player_can_login() {

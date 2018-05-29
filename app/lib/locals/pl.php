@@ -41,6 +41,7 @@ $translations = [
   'contest_ranking' => 'Ranking konkursu',
   'back_to_contest' => 'Powrót do strony konkursu',
   'points' => 'Punkty',
+  'points_total' => 'Punkty w tym roku',
 
   // downloads
 

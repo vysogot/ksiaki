@@ -12,17 +12,15 @@ $data = execute('call sp_user_profile(:p_nick);', array(
   array('p_nick', $params['nick'], PDO::PARAM_INT)
 ));
 
+$badge_image_urls = explode(', ', $data->badge_image_urls);
+$badge_titles = explode(', ', $data->badge_titles);
+
 ?>
 
-<h2><?= t('profile') ?></h2>
-<p><?= t('name') ?>: <?= $data->name ?></p>
-<p><?= t('nick') ?>: <?= $data->nick ?></p>
-<p><?= t('email') ?>: <?= $data->email ?></p>
-<p><?= t('points') ?>: <?= $data->points ?></p>
-<p><?= t('badges') ?>: <?= $data->list_badge_id ?></p>
-<p><?= t('badges') ?>: <?= $data->badge_image_url ?></p>
-<p><?= t('badges') ?>: <?= $data->badge_title ?></p>
-<p><?= t('contests') ?>: <?= $data->list_contest_id ?></p>
-<p><?= t('contests') ?>: <?= $data->list_contest_name ?></p>
-<p><?= t('range') ?>: <?= $data->range_image_url ?></p>
-<p><?= t('range') ?>: <?= $data->range_title ?></p>
+<h2><?= $data->nick ?></h2>
+<p><?= t('points_total') ?>: <?= $data->points ?></p>
+<p><?= t('contests') ?>: <?= $data->contest_names ?></p>
+<?= image('/uploads/ranks/' . $data->rank_image_url, ["title" => $data->rank_title]) ?>
+<?php foreach($badge_image_urls as $index => $url) { ?>
+    <?= image('/uploads/badges/' . $url, ["title" => t($badge_titles[$index])]) ?>
+<?php } ?>

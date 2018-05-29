@@ -42,10 +42,10 @@ VALUES
 TRUNCATE TABLE `def_ranks`;
 INSERT INTO `def_ranks` (`id`, `title`, `points_threshold`, `image_url`)
 VALUES
-(1, 'rank_player', 5, 'rank-player.jpg'),
-(2, 'rank_star_player', 500, 'rank-star-player.jpg'),
-(3, 'rank_top_player', 1000, 'rank-top-player.jpg'),
-(4, 'rank_konkursiak', 5000, 'rank-konkursiaki.jpg');
+(1, 'rank_player', 5, 'player.png'),
+(2, 'rank_star_player', 500, 'star-player.png'),
+(3, 'rank_top_player', 1000, 'top-player.png'),
+(4, 'rank_konkursiak', 5000, 'konkursiak.png');
 
 TRUNCATE TABLE `_users`;
 /* password: 12345678 */

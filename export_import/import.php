@@ -1,11 +1,17 @@
 <?php
 
-$host = '127.0.0.1';
-$dbname = 'ksiaki';
-$user = 'root';
-$pass = 'r1798G!2#';
-$port = '3306';
+$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
 
+$env = getenv('APPLICATION_ENV');
+$config = empty($env) ? $envs['development'] : $envs[$env];
+
+list($host, $dbname, $user, $pass, $port) = [
+  $config['DB_HOST'],
+  $config['DB_NAME'],
+  $config['DB_USER'],
+  $config['DB_PASS'],
+  $config['DB_PORT']
+];
 
 $path = realpath(__DIR__ . "/imports");
 $files = scandir($path);
