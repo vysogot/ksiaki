@@ -12,8 +12,8 @@ $data = execute('call sp_user_profile(:p_nick);', array(
   array('p_nick', $params['nick'], PDO::PARAM_INT)
 ));
 
-$badge_image_urls = explode(', ', $data->badge_image_urls);
-$badge_titles = explode(', ', $data->badge_titles);
+$badge_image_urls = array_filter(explode(', ', $data->badge_image_urls));
+$badge_titles = array_filter(explode(', ', $data->badge_titles));
 
 ?>
 
