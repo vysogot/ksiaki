@@ -6,17 +6,18 @@ $params = [
   "nick" => null
 ];
 
+
 $params = array_merge($params, $_GET);
 
+
 $data = execute('call sp_user_profile(:p_nick);', array(
-  array('p_nick', $params['nick'], PDO::PARAM_INT)
+  array('p_nick', $params['nick'], PDO::PARAM_STR)
 ));
 
 $badge_image_urls = array_filter(explode(', ', $data->badge_image_urls));
 $badge_titles = array_filter(explode(', ', $data->badge_titles));
 
 ?>
-
 <h2><?= $data->nick ?></h2>
 <p><?= t('points_total') ?>: <?= $data->points ?></p>
 <p><?= t('contests') ?>: <?= $data->contest_names ?></p>

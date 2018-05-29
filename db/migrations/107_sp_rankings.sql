@@ -97,6 +97,8 @@ SELECT user_id
 		SELECT 1 AS point_type, user_id, points FROM score_contests WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
 		UNION ALL
 		SELECT 2 AS point_type, user_id, points FROM score_pointed_activities WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
+    UNION ALL
+    SELECT 3 AS point_type, user_id, CASE WHEN p_interval = 12 THEN max_points ELSE 0 END FROM old_score_total
 	) AS rzm
 GROUP BY user_id
 ORDER BY SUM(points) DESC

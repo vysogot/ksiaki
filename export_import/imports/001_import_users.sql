@@ -26,6 +26,7 @@ IGNORE 2 LINES
 ,@dummy
 ,@dummy
 ,@dummy
+,last_login_at
 );
 
 SET @max := (SELECT MAX(id)+ 1 FROM _users); 

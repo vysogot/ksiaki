@@ -10,8 +10,8 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 (cid, type, title, start, expire, game_mode, top_score);
 
-SET @max := (SELECT MAX(id)+ 1 FROM old_contests); 
-SET @s = CONCAT('ALTER TABLE _users AUTO_INCREMENT=', @max);
+SET @max := (SELECT MAX(id)+ 1 FROM old_contests);
+SET @s = CONCAT('ALTER TABLE old_contests AUTO_INCREMENT=', @max);
 PREPARE stmt FROM @s;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;

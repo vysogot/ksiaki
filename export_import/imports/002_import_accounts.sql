@@ -26,7 +26,7 @@ IGNORE 2 LINES
 , @dummy
 , @dummy
 , @dummy
-
+, @dummy
 );
 
 SET @max := (SELECT MAX(id)+ 1 FROM _accounts); 
