@@ -22,4 +22,14 @@ CREATE TABLE `old_contests` (
 	PRIMARY KEY (`id`)
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konkursy ze starych konkursiaków';
 
+CREATE TABLE `old_user_contests` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`contests_list` VARCHAR(6000) NULL DEFAULT NULL,
+	`contests_count` INT(10) UNSIGNED NULL DEFAULT '0',
+	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci  COMMENT='Uczestnictwo w konkursach';
+
+
 SELECT 1;
