@@ -4,8 +4,9 @@ include '../init.php';
 
 $data['title'] = 'backgrounds';
 $data['column_names'] = [
-    'background',
-    'background_name',
+    'id',
+    'image_url',
+    'name',
     'link_url',
     'background_color',
     'details_color',

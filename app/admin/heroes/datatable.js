@@ -12,7 +12,10 @@ $(document).ready(function() {
             },
             { "data": "name" },
             { "data": "slug" },
-            { "data": "is_active", "render": 
+            { 
+                "data": "is_active", 
+                "className": "center",
+                "render": 
                 function (data) {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
@@ -28,6 +31,7 @@ $(document).ready(function() {
             "targets": -1,
             "data": null,
             "orderable": false,
+            "className": "links",
             "render": function (data, type, row, meta) { 
                 return set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', "") +
                     set_button("fEdit(this)", meta.row, row, t_edit, 'fa-edit', "") +

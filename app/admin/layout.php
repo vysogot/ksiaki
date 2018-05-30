@@ -39,6 +39,9 @@
       .fa-check {color:blue;}
       .none {display:none;}
       .dataTables_wrapper .dataTables_length {padding-left: 10px;}
+      #dataTable .active { text-align: center; }
+      #dataTable .links { white-space: nowrap; text-align: center; }
+      #dataTable .links a { margin-right: 15px; }
       .table-vcenter td { vertical-align: middle !important;}
       .wrapper h4 {margin-top: 15px;}
       .modal {padding-top: 10px !important;}
