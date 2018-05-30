@@ -16,11 +16,8 @@ IGNORE 2 LINES
 , given_at
 );
 
-DELETE FROM _caretakers
-WHERE (name = '') AND (surname = '') AND (email = '');
-
 SET @max := (SELECT MAX(id)+ 1 FROM old_score_total); 
-SET @s = CONCAT('ALTER TABLE _users AUTO_INCREMENT=', @max);
+SET @s = CONCAT('ALTER TABLE old_score_total AUTO_INCREMENT=', @max);
 PREPARE stmt FROM @s;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;

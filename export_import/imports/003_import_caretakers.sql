@@ -34,7 +34,7 @@ DELETE FROM _caretakers
 WHERE (name = '') AND (surname = '') AND (email = '');
 
 SET @max := (SELECT MAX(id)+ 1 FROM _caretakers); 
-SET @s = CONCAT('ALTER TABLE _users AUTO_INCREMENT=', @max);
+SET @s = CONCAT('ALTER TABLE _caretakers AUTO_INCREMENT=', @max);
 PREPARE stmt FROM @s;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
