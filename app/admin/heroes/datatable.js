@@ -1,40 +1,44 @@
 $(document).ready(function() {
-  const TableName = 'DataTables_heroesTable';
-  oTable = $('#dataTable').DataTable({
-    "stateSave": true,
-    "stateSaveParams": function (oSettings, oData) {
-      localStorage.setItem( TableName+window.location.pathname, JSON.stringify(oData) );
-    },
-    "stateLoadParams": function (oSettings) {
-      return JSON.parse( localStorage.getItem(TableName+window.location.pathname) );
-    },
-    "responsive": true,
-    "bPaginate": true,
-    "pageLength": 5,
-    "lengthMenu": [ 5, 10, 25, 50 ],
-    "language": { "url": "/assets/json/dataTables.polish.json" },
-    "initComplete": function() { $('.panel-body').show(); },
-    "bAutoWidth": false,
-    "ajax": { "url": "datatable.php" },
-    "columnDefs": [
-     { "data": "id", "targets": 0, "className": "none" },
-     { "data": "image", "targets": 1, "sWidth": "10%", "className": "dt-center", "bSortable": false,
-       "render": function ( data ) {return '<img height=75px src="' + data + '" title="' + data.substr(data.lastIndexOf('/')+1) + '">';}},
-     { "data": "name", "targets": 2, "sWidth": "10%", "className": "dt-center" },
-     { "data": "slug", "targets": 3, "className": "none" },
-     { "data": "description", "targets": 4, "sWidth": "15%", "className": "dt-center" },
-     { "data": "avatar_url", "targets": 5, "className": "none" },
-     { "data": "header_url", "targets": 6, "className": "none" },
-     { "data": "is_active", "targets": 7, "sWidth": "10%",  "className": "dt-center", "render": function ( data ) {return '<i class="' + aActive[data] + '"></i>';}},
+    $('#dataTable').DataTable({
+        "ajax": { "url": "datatable.php" },
+        "columns": [
+            { "data": "id" },
+            { 
+                "data": "avatar_url", 
+                "render": function (data) {
+                    return '<img height=75px src="' + data + '" title="' + data.substr(data.lastIndexOf('/')+1) + '">';
+                },
+                "orderable": false
+            },
+            { "data": "name" },
+            { "data": "slug" },
+            { "data": "is_active", "render": 
+                function (data) {
+                    return '<i class="' + aActive[data] + '"></i>';
+                }
+            },
+            { "data": null }
+        ],
 
-     { "targets": -3, "bSortable": false, "className": "dt-center", "width": "5%",
-       "render": function (data, type, row, meta) { return set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', ""); }},
-     { "targets": -2, "bSortable": false, "className": "dt-center", "width": "5%",
-       "render": function (data, type, row, meta) { return set_button("fEdit(this)", meta.row, row, t_edit, "fa-edit",""); }},
-     { "targets": -1, "bSortable": false, "className": "dt-center", "width": "5%",
-       "render": function (data, type, row, meta) { return set_button("fDelete(this)", meta.row, row, t_delete, "fa-trash-alt",""); }}
-   ],
-    "order": [2, 'asc']
-  }); // end of function dataTable
+        "initComplete": function() { $('.panel-body').show(); },
+        "bAutoWidth": false,
+        "language": { "url": "/assets/json/dataTables.polish.json" },
 
-}); // end ready
+        "columnDefs": [ {
+            "targets": -1,
+            "data": null,
+            "orderable": false,
+            "render": function (data, type, row, meta) { 
+                return set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', "") +
+                    set_button("fEdit(this)", meta.row, row, t_edit, 'fa-edit', "") +
+                    set_button("fDelete(this)", meta.row, row, t_delete, 'fa-trash-alt', ""); 
+            }
+        }],
+
+        "order": [2, 'desc'],
+
+        "stateSave": true,
+        "stateSaveParams": function (oSettings, oData) { localStorage.setItem( window.location.pathname, JSON.stringify(oData) ); },
+        "stateLoadParams": function (oSettings) { return JSON.parse( localStorage.getItem(window.location.pathname) ); },
+    });
+});

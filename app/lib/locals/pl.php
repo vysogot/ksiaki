@@ -3,6 +3,7 @@
 $translations = [
 
   'title' => 'Konkursiaki',
+  'id' => 'ID',
 
   // menu
 
