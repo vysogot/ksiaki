@@ -30,10 +30,7 @@
 
 
                 $(oMain).on("start_session", function(evt) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeStartSession();
                         console.log("start_session");
-                    }
 
                     //...ADD YOUR CODE HERE EVENTUALLY
 
@@ -52,54 +49,35 @@
                 });
 
                 $(oMain).on("end_session", function(evt) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeEndSession();
                         console.log("end_session");
-                    }
                     //...ADD YOUR CODE HERE EVENTUALLY
                 });
 
                 $(oMain).on("save_score", function(evt,iScore) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeSaveScore({score:iScore});
                         console.log("save_score: "+iScore);
-                    }
                     //...ADD YOUR CODE HERE EVENTUALLY
                 });
 
                 $(oMain).on("start_level", function(evt, iLevel) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeStartLevel({level:iLevel});
                         console.log("start_level "+iLevel);
-                    }
+                        console.log("start_level score "+this.getScoreTillLevel(iLevel));
                     //...ADD YOUR CODE HERE EVENTUALLY
                 });
 
                 $(oMain).on("end_level", function(evt, iLevel) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeEndLevel({level:iLevel});
                         console.log("end_level "+iLevel);
-                    }
+
+                        console.log("score "+this.getScoreTillLevel(iLevel+1));
                     //...ADD YOUR CODE HERE EVENTUALLY
                 });
 
                 $(oMain).on("show_interlevel_ad", function(evt) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeShowInterlevelAD();
                         console.log("show_interlevel_ad ");
-                    }
                     //...ADD YOUR CODE HERE EVENTUALLY
                 });
 
                 $(oMain).on("share_event", function(evt, iScore) {
-                    if(getParamValue('ctl-arcade') === "true"){
-                        parent.__ctlArcadeShareEvent({   img: TEXT_SHARE_IMAGE,
-                            title: TEXT_SHARE_TITLE,
-                            msg: TEXT_SHARE_MSG1 + iScore + TEXT_SHARE_MSG2,
-                            msg_share: TEXT_SHARE_SHARE1 + iScore + TEXT_SHARE_SHARE1
-                        });
                         console.log("share_event "+iScore);
-                    }
                     //...ADD YOUR CODE HERE EVENTUALLY
                 });
 
