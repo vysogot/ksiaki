@@ -245,6 +245,7 @@ $translations = [
   // slugs - be careful; it requires change in nginx too
 
   'hero_slug' => '/bohater/{{slug}}',
+  'user_slug' => '/gracz/{{slug}}',
 
   // games
 

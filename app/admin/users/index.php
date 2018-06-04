@@ -20,7 +20,6 @@ function content($params, $data) { ?>
 
     <script type="text/javascript">
     <?php include "../assets/js/definitions.js"; ?>
-    <?php include "../assets/js/helpers.js"; ?>
     <?php include "../assets/js/formdata.js"; ?>
     <?php include "datatable.js"; ?>
     <?php include "actions.js"; ?>

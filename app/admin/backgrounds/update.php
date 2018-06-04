@@ -52,4 +52,4 @@ if ($post) {
 
 }
 
-push_result2json($result);
+send_json($result);

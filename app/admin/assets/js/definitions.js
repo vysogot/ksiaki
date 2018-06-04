@@ -1,4 +1,4 @@
-var oTable = null;
+var oTable = $('#dataTable');
 
 const t_show = '<?= t("show") ?>';
 const t_edit = '<?= t("edit") ?>';

@@ -120,7 +120,7 @@ function form_date($date) {
     return strftime('%Y-%m-%dT%H:%M:%S',strtotime($date));
 }
 
-function push_result2json($result) {
+function send_json($result) {
   header('Content-type: application/json');
   print json_encode(array($result));
 }

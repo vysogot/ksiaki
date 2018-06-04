@@ -168,7 +168,7 @@ BEGIN
     UPDATE _heroes
     SET is_active = 0
     , marked_as_deleted_at = NOW()
-    , marked_as_deleted_by = user_id
+    , marked_as_deleted_by = p_user_id
     WHERE (id = p_id)
     LIMIT 1;
     SELECT ROW_COUNT() AS rowCount;

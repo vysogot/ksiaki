@@ -49,4 +49,5 @@ $(document).ready(function() {
         "stateSaveParams": function (oSettings, oData) { localStorage.setItem( window.location.pathname, JSON.stringify(oData) ); },
         "stateLoadParams": function (oSettings) { return JSON.parse( localStorage.getItem(window.location.pathname) ); },
     });
+    console.log(oTable);
 });

@@ -27,6 +27,7 @@ function content($params, $data) { ?>
     <?php include "../assets/js/formdata.js"; ?>
     <?php include "datatable.js"; ?>
     <?php include "actions.js"; ?>
+$(document).ready(function() { console.log(oTable); });
     </script>
 
 <?php }
