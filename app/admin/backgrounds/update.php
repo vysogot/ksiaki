@@ -3,16 +3,14 @@
 include '../init.php';
 include '_validation.php';
 
-$result = ['rowCount' => -1, 'lastInsertId' => 0];
-
-
 if ($post) {
 
   $params = array_merge($params, $_POST);
+  validate($params);
 
-  validate($params, $errors);
+  $result = [];
 
-  if (empty($errors)) {
+  if (empty($params['errors'])) {
 
     if (!empty($_FILES['avatar_file']['name'])) {
       $params['avatar_url'] = file_upload($_FILES['avatar_file']);
@@ -43,10 +41,12 @@ if ($post) {
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
       array('p_begins_at', $params['begins_at'], PDO::PARAM_STR),
       array('p_ends_at', $params['ends_at'], PDO::PARAM_STR),
-      //array('p_begins_at', date('Y-m-d H:i:s', strtotime($params['begins_at'])), PDO::PARAM_STR),
-      //array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR),
       array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT)
     ), false, false);
+
+  } else {
+
+      $result = ['rowCount' => -1, 'lastInsertId' => 0];
 
   }
 

@@ -3,15 +3,14 @@
 include '../init.php';
 include '_validation.php';
 
-$result = ['rowCount' => -1, 'lastInsertId' => 0];
-
 if ($post) {
 
   $params = array_merge($params, $_POST);
+  $result = [];
 
-  validate($params, $errors);
+  validate($params);
 
-  if (empty($errors)) {
+  if (empty($params['errors'])) {
 
     if (!empty($_FILES['image_file']['name'])) {
       $params['image_url'] = file_upload($_FILES['image_file']);
@@ -39,8 +38,14 @@ if ($post) {
       array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT)
     ));
 
+  } else {
+
+      $result = ['rowCount' => -1, 'lastInsertId' => 0,
+          'errors' => $params['errors']
+      ];
+
   }
 
-}
+  send_json($result);
 
-send_json($result);
+}

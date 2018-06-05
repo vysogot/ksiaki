@@ -73,7 +73,7 @@ $translations = [
   'put_your_email' => 'Podaj swojego maila',
 
   // email
-  
+
   'email_subject_password_reset_request' => 'Chcesz założyć nowe hasło?',
   'email_subject_caretaker_registration' => 'Potwierdzenie konta Twojego podopiecznego',
   'email_subject_registration' => 'Potwierdź swój adres email!',
@@ -109,7 +109,7 @@ $translations = [
   // admin
 
   'contest' => 'Konkurs',
-  'user' => 'Użytkownik {{name}}',
+  'user' => 'Użytkownik',
   'users' => 'Użytkownicy',
   'background' => 'Tło',
   'backgrounds' => 'Tła',

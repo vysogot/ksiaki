@@ -3,17 +3,14 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'create.php'
-];
-
 if ($post) {
 
   $params = array_merge($params, $_POST);
+  $result = [];
 
-  validate($params, $errors);
+  validate($params);
 
-  if (empty($errors)) {
+  if (empty($params['errors'])) {
 
     if (!empty($_FILES['image_file']['name'])) {
       $params['image_url'] = file_upload($_FILES['image_file']);
@@ -35,27 +32,12 @@ if ($post) {
       array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR)
     ));
 
-    if (!empty($result)) {
-      flash('notice', t('create_success'));
-      redirect('show.php?id=' . $result->lastInsertId);
-    } else {
-      flash('warning', t('create_failure'));
-    }
+  } else {
+
+    $result = ['rowCount' => -1, 'lastInsertId' => 0];
+
   }
 
-  $data = (object) $params;
-  $params['errors'] = $errors;
+  send_json($result);
 
 }
-
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h1><?= t('new_box') ?></h1>
-    <?= link_to(t('boxes'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';

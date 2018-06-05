@@ -3,15 +3,12 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'update.php'
-];
-
 if ($post) {
 
   $params = array_merge($params, $_POST);
+  validate($params);
 
-  validate($params, $errors);
+  $result = [];
 
   if (empty($errors)) {
 
@@ -37,27 +34,12 @@ if ($post) {
       array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR)
     ));
 
-    if (!empty($result)) {
-      flash('notice', t('update_success'));
-      redirect("show.php?id=" . $params['id']);
-    } else {
-      flash('warning', t('update_failure'));
-    }
-  }
+  } else {
 
-  $data = (object) $params;
-  $params['errors'] = $errors;
+      $result = ['rowCount' => -1, 'lastInsertId' => 0];
+
+  }
 
 }
 
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h2><?= t('edit_form') ?></h2>
-    <?= link_to(t('boxes'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';
+send_json($result);
