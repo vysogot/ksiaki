@@ -74,10 +74,19 @@ DELIMITER $$
 CREATE PROCEDURE `sp_users_all` (
     IN `p_offset` INT
     , IN `p_limit` INT
+    , IN `p_search` VARCHAR(50)
 )
 BEGIN
+	  SET @search = CONCAT('%', UPPER(p_search), '%');
     SELECT * FROM _users
     WHERE (marked_as_deleted_by = 0)
+    AND (
+		 (UPPER(nick) LIKE @search)
+		 OR (UPPER(email) LIKE @search)
+		 OR (UPPER(name) LIKE @search)
+		 OR (UPPER(surname) LIKE @search)
+    )
+    ORDER BY UPPER(nick)
     LIMIT p_limit
     OFFSET p_offset;
 END$$
