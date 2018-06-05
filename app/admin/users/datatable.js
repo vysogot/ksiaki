@@ -1,5 +1,8 @@
 $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
+        "mark": true,
+        "processing": true,
+        "serverSide": true,
         "ajax": { "url": "datatable.php" },
         "columns": [
             { "data": "id" },
@@ -35,7 +38,7 @@ $(document).ready(function() {
             }
         }],
 
-        "order": [1, 'desc'],
+        //"order": [1, 'desc'],
 
         "stateSave": true,
         "stateSaveParams": function (oSettings, oData) { localStorage.setItem( window.location.pathname, JSON.stringify(oData) ); },
