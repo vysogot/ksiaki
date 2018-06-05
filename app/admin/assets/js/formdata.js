@@ -1,9 +1,9 @@
 function submitForm() {
 
     $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
-    
+
     let row_index = $('input[name="row_index"]').val();
-    let form_data = new FormData($("form"));
+    let form_data = new FormData(document.getElementById("form"));
 
     $.ajax({
 
@@ -13,7 +13,7 @@ function submitForm() {
         processData: false,
         contentType: false,
         cache: false
-        
+
     }).done(function(data) {
 
         $(".modal .close").click();

@@ -36,7 +36,7 @@ if ($post) {
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
       array('p_begins_at', date('Y-m-d H:i:s', strtotime($params['begins_at'])), PDO::PARAM_STR),
       array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR),
-      array('p_user_id', get_user_id(), PDO::PARAM_INT)
+      array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT)
     ));
 
   }

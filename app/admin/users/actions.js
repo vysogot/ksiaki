@@ -15,7 +15,7 @@ function fDelete(myObj) {
     if (ret == true) {
         $.post("delete.php?id=" + $(myObj).data('id'),
             function(data, status){
-                if (data[0].rowCount == 1) $("#dataTable").ajax.reload(null, false);
+                if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
             });
     }
 }

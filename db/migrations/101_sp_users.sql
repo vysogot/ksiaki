@@ -77,6 +77,7 @@ CREATE PROCEDURE `sp_users_all` (
 )
 BEGIN
     SELECT * FROM _users
+    WHERE (marked_as_deleted_by = 0)
     LIMIT p_limit
     OFFSET p_offset;
 END$$
@@ -300,7 +301,15 @@ BEGIN
 
     WHERE (id = p_id);
 
-    SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+    SELECT id
+    , nick
+    , name
+    , surname
+    , email
+    , last_login_at
+    , is_active
+    FROM _users
+    WHERE (id = p_id);
 END$$
 DELIMITER ;
 

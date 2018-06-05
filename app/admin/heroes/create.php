@@ -36,7 +36,7 @@ if ($post) {
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
       array('p_header_url', $params['header_url'], PDO::PARAM_STR),
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
-      array('p_user_id', get_user_id(), PDO::PARAM_INT)
+      array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT)
     ));
 
   }

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var oTable = $('#dataTable').DataTable({
+    oTable = $('#dataTable').DataTable({
         "ajax": { "url": "datatable.php" },
         "columns": [
             { "data": "id" },

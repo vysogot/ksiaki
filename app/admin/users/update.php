@@ -3,10 +3,6 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'update.php'
-];
-
 if ($post) {
 
   $params = array_merge($params, $_POST);
@@ -24,36 +20,19 @@ if ($post) {
       :p_name,
       :p_email,
       :p_avatar_url,
-      :p_is_active
+      :p_is_active,
+      :p_updated_by
     );', array(
       array('p_id', $params['id'], PDO::PARAM_INT),
       array('p_name', $params['name'], PDO::PARAM_STR),
       array('p_email', $params['email'], PDO::PARAM_STR),
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
-      array('p_is_active', $params['is_active'], PDO::PARAM_INT)
-    ));
+      array('p_is_active', $params['is_active'], PDO::PARAM_INT),
+      array('p_updated_by', $_SESSION['user_id'], PDO::PARAM_INT)
+    ), false, false);
 
-    if (!empty($result)) {
-      flash('notice', t('update_success'));
-      redirect("show.php?id=" . $params['id']);
-    } else {
-      flash('warning', t('update_failure'));
-    }
   }
-
-  $data = (object) $params;
-  $params['errors'] = $errors;
 
 }
 
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h2><?= t('edit_form') ?></h2>
-    <?= link_to(t('users'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';
+send_json($result);

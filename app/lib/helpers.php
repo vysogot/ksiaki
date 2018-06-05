@@ -47,10 +47,6 @@ function is_adult($birthday) {
     return ((time() - $birthday) < 18*(60*60*24*365));
 }
 
-function get_user_id() {
-    return isset($_SESSION['user_id'])?$_SESSION['user_id']:0;
-}
-
 function redirect($destination)
 {
     header("location: " . path_to($destination)); exit();

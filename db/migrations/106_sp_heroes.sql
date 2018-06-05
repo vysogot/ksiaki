@@ -57,7 +57,7 @@ BEGIN
     , header_url
     , is_active
     FROM _heroes
-    WHERE (is_active = 1)
+    WHERE (marked_as_deleted_by = 0)
     LIMIT p_limit
     OFFSET p_offset;
 END$$
