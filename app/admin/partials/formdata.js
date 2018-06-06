@@ -23,6 +23,7 @@ function submitForm() {
 
     }).done(function(response) {
 
+        console.log(response);
 
         if ('errors' in response) {
 
@@ -37,13 +38,14 @@ function submitForm() {
 
         } else {
 
-          $(".modal .close").click();
-
           if (row_index == 0) {
               oTable.ajax.reload(null, false);
           } else {
-              oTable.row(row_index).data(response);
+              oTable.row(row_index).data(response[0]);
           }
+
+          $(".modal .close").click();
+
         }
     });
 
