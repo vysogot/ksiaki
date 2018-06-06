@@ -34,7 +34,9 @@ if ($post) {
 
   } else {
 
-    $result = ['rowCount' => -1, 'lastInsertId' => 0];
+      $result = ['rowCount' => -1, 'lastInsertId' => 0,
+          'errors' => $params['errors']
+      ];
 
   }
 
