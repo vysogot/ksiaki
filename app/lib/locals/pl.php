@@ -128,8 +128,8 @@ $translations = [
   'show' => 'Pokaż',
   'edit' => 'Edytuj',
   'delete' => 'Usuń',
-  'edit_form' => 'Edycja: {{name}}',
-  'new_form' => 'Nowy: {{name}}',
+  'edit_form' => 'Edycja',
+  'new_form' => 'Nowy',
 
   // flashes
 

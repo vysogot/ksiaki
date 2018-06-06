@@ -6,7 +6,11 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h2 class="modal-title" id="gridSystemModalLabel"></h2>
       </div>
-      <div class="row"><?php include '_form.php'; ?></div>
+      <div class="row">
+        <ul class="errorList hidden"></ul>
+        <?php include '_form.php'; ?>
+      </div>
+      <script>$("#form").submit(function () { return submitForm(); });</script>
     </div>
   </div>
 </div>

@@ -3,7 +3,8 @@ function set_button(myFunc, myIndex, myRow, myTitle, myIcon, myDisable) {
         ' data-index="' + myIndex + '"' +
         ' data-id="' + myRow.id + '"' +
         ' data-name="' + myRow.name + '"' +
-        ' data-slug="' + myRow.nick + '"' +
+        ' data-surname="' + myRow.surname + '"' +
+        ' data-nick="' + myRow.nick + '"' +
         ' data-image_url="' + myRow.image_url + '"' +
         ' title="' + myTitle + '"' + myDisable +
         '><i class="fas ' + myIcon + '"></i>'  + '</a>';
@@ -20,17 +21,10 @@ function fDelete(myObj) {
     }
 }
 
-function fShow(myObj) {
-    let url = '<?= t("user_slug") ?>';
-
-    url = url.substring(0, url.lastIndexOf('/')+1) + $(myObj).data('slug');
-    window.location.assign(url);
-}
-
 function fEdit(myObj) {
     let row = $(myObj).data();
-    let title = '<?= t("edit_form", ["name" => t("user")]) ?>';
-    title = title.substring(0, title.lastIndexOf('/')+1) + row.name + ' ' + row.surname;
+    let title = '<?= t("edit_form") ?>';
+    title = title + ': ' + row.name + ' ' + row.surname + ;
     $('input[name=row_index]').val(row.index);
     $('.modal-title').text(title);
     get_data(myObj);

@@ -118,5 +118,7 @@ function form_date($date) {
 
 function send_json($result) {
   header('Content-type: application/json');
-  print json_encode(array($result));
+
+  $result = is_array($result) ? $result : array($result);
+  print json_encode($result);
 }

@@ -1,4 +1,4 @@
-<form id="form" class="form-horizontal" action="#" onsubmit="return submitForm();" method="POST" enctype="multipart/form-data">
+<form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
   <input type="hidden" name="id" value="">
   <input type="hidden" name="row_index" value="">

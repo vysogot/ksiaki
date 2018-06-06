@@ -11,7 +11,7 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data = execute('call sp_heroes_all(
+$result = execute('call sp_heroes_all(
   :p_id,
   :p_name,
   :p_offset,
@@ -23,5 +23,4 @@ $data = execute('call sp_heroes_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true, false);
 
-header('Content-type: application/json');
-print json_encode(array('data' => $data));
+send_json(['data' => $result]);

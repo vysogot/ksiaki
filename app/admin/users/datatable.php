@@ -35,11 +35,9 @@ $data = execute('call sp_users_all(
   array('p_orderdir', $columnOrd, PDO::PARAM_STR)
 ), true, false);
 
-header('Content-type: application/json');
-print json_encode(array(
+send_json([
   'draw' => $params['draw'],
   'recordsTotal' => $count->recordsTotal,
   'recordsFiltered' => $count->recordsFiltered,
   'data' => $data
-));
-
+]);

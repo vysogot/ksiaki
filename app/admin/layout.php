@@ -51,6 +51,7 @@
       .modal {padding-top: 10px !important;}
       .modal-dialog {width: 70%;}
       #is_active_check {margin: 13px 0 0;}
+      input.error { background: #FDD; }
 
       mark {
           background: orange;

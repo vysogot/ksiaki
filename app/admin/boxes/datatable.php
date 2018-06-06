@@ -13,7 +13,7 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data = execute('call sp_boxes_all(
+$result = execute('call sp_boxes_all(
   :p_id,
   :p_name,
   :p_link_url,
@@ -27,5 +27,4 @@ $data = execute('call sp_boxes_all(
   array('p_limit', $params['limit'], PDO::PARAM_INT)
 ), true);
 
-header('Content-type: application/json');
-print json_encode(array('data' => $data));
+send_json(['data' => $result]);

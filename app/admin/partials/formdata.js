@@ -21,20 +21,29 @@ function submitForm() {
         contentType: false,
         cache: false
 
-    }).done(function(data) {
+    }).done(function(response) {
 
-        let ret = data[0];
 
-        if (ret.errors) {
-          console.log(ret.errors);  
+        if ('errors' in response) {
+
+            let error_list = $(".modal .errorList");
+
+            $.each(response.errors, function(field, message) {
+              $("input[name=" + field + "]").addClass('error');
+              error_list.append($("<li>").text(field + ": " + message));
+            });
+
+            error_list.removeClass('hidden');
+
         } else {
+
           $(".modal .close").click();
-        }
 
-        if (row_index == 0) {
-            oTable.ajax.reload(null, false);
-        } else {
-            oTable.row(row_index).data( ret );
+          if (row_index == 0) {
+              oTable.ajax.reload(null, false);
+          } else {
+              oTable.row(row_index).data(response);
+          }
         }
     });
 
@@ -70,4 +79,7 @@ function get_data(myObj) {
 
 $('#modal').on('hidden.bs.modal', function (e) {
     $("#form")[0].reset();
+    $("input").removeClass('error');
+    $(".modal .errorList").addClass('hidden');
+    $(".modal .errorList").empty();
 });
