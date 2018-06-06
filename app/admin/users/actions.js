@@ -31,6 +31,7 @@ function fEdit(myObj) {
     let row = $(myObj).data();
     let title = '<?= t("edit_form", ["name" => t("user")]) ?>';
     title = title.substring(0, title.lastIndexOf('/')+1) + row.name + ' ' + row.surname;
+    $('input[name=row_index]').val(row.index);
     $('.modal-title').text(title);
     get_data(myObj);
 }

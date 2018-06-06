@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS sp_users_all_count;
 DROP PROCEDURE IF EXISTS sp_users_new;
 DROP PROCEDURE IF EXISTS sp_users_find;
 DROP PROCEDURE IF EXISTS sp_users_find_by_nick_or_email;
@@ -12,6 +13,7 @@ DROP PROCEDURE IF EXISTS sp_users_activate;
 DROP PROCEDURE IF EXISTS sp_users_caretaker_activate;
 DROP PROCEDURE IF EXISTS sp_users_password_reset_request;
 DROP PROCEDURE IF EXISTS sp_users_password_reset_execute;
+
 
 DELIMITER $$
 CREATE PROCEDURE `sp_users_new`()
@@ -75,26 +77,88 @@ CREATE PROCEDURE `sp_users_all` (
     IN `p_offset` INT
     , IN `p_limit` INT
     , IN `p_search` VARCHAR(50)
+    , in `p_ordercolumn` VARCHAR(50)
+    , in `p_orderdir` VARCHAR(50)
 )
 BEGIN
-	  SET @search = CONCAT('%', UPPER(p_search), '%');
-    SELECT * FROM _users
-    WHERE (marked_as_deleted_by = 0)
-    AND (
+	 SET @search =
+	 	CASE WHEN LOCATE('%', p_search) = 0 THEN CONCAT('%', UPPER(p_search), '%')
+		ELSE UPPER(p_search) END;
+
+    SELECT id
+	 , nick
+	 , name
+	 , surname
+	 , email
+	 , last_login_at
+	 , is_active
+	 FROM _users
+   WHERE (marked_as_deleted_by = 0)
+   AND (
 		 (UPPER(nick) LIKE @search)
+     OR (id = p_search)
 		 OR (UPPER(email) LIKE @search)
 		 OR (UPPER(name) LIKE @search)
 		 OR (UPPER(surname) LIKE @search)
     )
-    ORDER BY UPPER(nick)
-    LIMIT p_limit
-    OFFSET p_offset;
+
+	 ORDER BY
+
+	 CASE WHEN p_ordercolumn = 'id' AND p_orderdir = 'desc' THEN id END DESC,
+   CASE WHEN p_ordercolumn = 'id' THEN id END,
+
+   CASE	WHEN p_ordercolumn = 'nick' AND p_orderdir = 'desc' THEN UPPER(nick) END DESC,
+   CASE	WHEN p_ordercolumn = 'nick' THEN UPPER(nick) END,
+
+   CASE	WHEN p_ordercolumn = 'name' AND p_orderdir = 'desc' THEN UPPER(name) END DESC,
+   CASE	WHEN p_ordercolumn = 'name' THEN UPPER(name) END,
+
+   CASE	WHEN p_ordercolumn = 'surname' AND p_orderdir = 'desc' THEN UPPER(surname) END DESC,
+   CASE	WHEN p_ordercolumn = 'surname' THEN UPPER(surname) END,
+
+   CASE	WHEN p_ordercolumn = 'email' AND p_orderdir = 'desc' THEN UPPER(email) END DESC,
+   CASE	WHEN p_ordercolumn = 'email' THEN UPPER(email) END,
+
+   CASE	WHEN p_ordercolumn = 'last_login_at' AND p_orderdir = 'desc' THEN last_login_at END DESC,
+   CASE	WHEN p_ordercolumn = 'last_login_at' THEN last_login_at END,
+
+   CASE	WHEN p_ordercolumn = 'is_active' AND p_orderdir = 'desc' THEN is_active END DESC,
+   CASE	WHEN p_ordercolumn = 'is_active' THEN is_active END,
+
+
+   CASE WHEN p_ordercolumn = '' THEN UPPER(nick) END
+
+   LIMIT p_limit
+   OFFSET p_offset;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_users_all_count`(IN `p_search` VARCHAR(50))
+BEGIN
+	SET @search =
+	 	CASE WHEN LOCATE('%', p_search) = 0 THEN CONCAT('%', UPPER(p_search), '%')
+		ELSE UPPER(p_search) END;
+
+	SET @recordsTotal = (SELECT SUM(1) FROM _users WHERE (marked_as_deleted_by = 0));
+
+	SELECT @recordsTotal AS recordsTotal
+	, SUM(1) AS recordsFiltered
+	FROM _users
+	WHERE (marked_as_deleted_by = 0)
+   AND (
+		(UPPER(nick) LIKE @search)
+		 OR (UPPER(email) LIKE @search)
+		 OR (UPPER(name) LIKE @search)
+		 OR (UPPER(surname) LIKE @search)
+    );
 END$$
 DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_users_create`(
     IN `p_role_id` INT
+    , IN `p_nick` VARCHAR(255)
     , IN `p_name` VARCHAR(255)
     , IN `p_email` VARCHAR(255)
     , IN `p_avatar_url` VARCHAR(255)
@@ -105,6 +169,7 @@ CREATE PROCEDURE `sp_users_create`(
 BEGIN
     INSERT INTO _users(
         role_id
+        , nick
         , name
         , email
         , avatar_url
@@ -114,6 +179,7 @@ BEGIN
     )
     VALUES (
         p_role_id
+        , p_nick
         , p_name
         , p_email
         , p_avatar_url
@@ -293,6 +359,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_update`(
     IN `p_id` INT
+    , IN `p_nick` VARCHAR(255)
     , IN `p_name` VARCHAR(255)
     , IN `p_email` VARCHAR(255)
     , IN `p_avatar_url` VARCHAR(255)
@@ -302,6 +369,7 @@ CREATE PROCEDURE `sp_users_update`(
 BEGIN
     UPDATE _users
     SET name = p_name
+    , nick = p_nick
     , email = p_email
     , avatar_url = p_avatar_url
     , is_active = p_is_active

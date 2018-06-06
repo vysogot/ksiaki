@@ -17,7 +17,7 @@ if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"DROP DATABASE 
   echo "\nDatabase '$dbname' dropped if existed\n";
 }
 
-if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"CREATE DATABASE $dbname CHARACTER SET utf8 COLLATE utf8_general_ci\"")) {
+if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"CREATE DATABASE $dbname CHARACTER SET utf8 COLLATE utf8_polish_ci\"")) {
   echo "Database '$dbname' created\n\n";
 }
 

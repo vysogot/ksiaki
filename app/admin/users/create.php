@@ -1,16 +1,14 @@
 <?php
 
 include '../init.php';
-
-$params = [
-  'form_action' => 'create.php'
-];
+include '_validation.php';
 
 if ($post) {
 
-  $params = array_merge($params, $_POST);
+  $result = [];
 
-  validate_presence($params, 'name');
+  $params = array_merge($params, $_POST);
+  validate($params);
 
   if (empty($params['errors'])) {
 
@@ -46,20 +44,15 @@ if ($post) {
     } else {
       flash('warning', t('create_failure'));
     }
+
+  } else {
+
+      $result = ['rowCount' => -1, 'lastInsertId' => 0,
+          'errors' => $params['errors']
+      ];
+
   }
 
-  $data = (object) $params;
+  send_json($result);
 
 }
-
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h2><?= t('new_form', ['name' => t('user')]) ?></h2>
-    <?= link_to(t('users'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';

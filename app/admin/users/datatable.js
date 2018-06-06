@@ -3,6 +3,8 @@ $(document).ready(function() {
         "mark": true,
         "processing": true,
         "serverSide": true,
+        "deferRender": true,
+        "searchDelay": 1000,
         "ajax": { "url": "datatable.php" },
         "columns": [
             { "data": "id" },

@@ -10,9 +10,7 @@ function submitForm() {
     $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
 
     let row_index = $('input[name="row_index"]').val();
-    let form_data = new FormData($("#form"));
-
-    console.log(form_data.get('id'));
+    let form_data = new FormData(document.getElementById("form"));
 
     $.ajax({
 
@@ -25,9 +23,13 @@ function submitForm() {
 
     }).done(function(data) {
 
-        $(".modal .close").click();
-
         let ret = data[0];
+
+        if (ret.errors) {
+          console.log(ret.errors);  
+        } else {
+          $(".modal .close").click();
+        }
 
         if (row_index == 0) {
             oTable.ajax.reload(null, false);

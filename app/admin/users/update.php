@@ -5,11 +5,12 @@ include '_validation.php';
 
 if ($post) {
 
+  $result = [];
+
   $params = array_merge($params, $_POST);
+  validate($params);
 
-  validate($params, $errors);
-
-  if (empty($errors)) {
+  if (empty($params['errors'])) {
 
     if (!empty($_FILES['avatar_file']['name'])) {
       $params['avatar_url'] = file_upload($_FILES['avatar_file']);
@@ -30,6 +31,12 @@ if ($post) {
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
       array('p_updated_by', $_SESSION['user_id'], PDO::PARAM_INT)
     ), false, false);
+
+  } else {
+
+    $result = ['rowCount' => -1, 'lastInsertId' => 0,
+        'errors' => $params['errors']
+    ];
 
   }
 
