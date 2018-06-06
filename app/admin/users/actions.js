@@ -24,7 +24,7 @@ function fDelete(myObj) {
 function fEdit(myObj) {
     let row = $(myObj).data();
     let title = '<?= t("edit_form") ?>';
-    title = title + ': ' + row.name + ' ' + row.surname + ;
+    title = title + ': ' + row.name + ' ' + row.surname + ' (' + row.nick + ')';
     $('input[name=row_index]').val(row.index);
     $('.modal-title').text(title);
     get_data(myObj);
