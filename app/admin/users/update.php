@@ -18,6 +18,7 @@ if ($post) {
 
     $result = execute('call sp_users_update(
       :p_id,
+      :p_nick,
       :p_name,
       :p_email,
       :p_avatar_url,
@@ -25,6 +26,7 @@ if ($post) {
       :p_updated_by
     );', array(
       array('p_id', $params['id'], PDO::PARAM_INT),
+      array('p_nick', $params['nick'], PDO::PARAM_STR),
       array('p_name', $params['name'], PDO::PARAM_STR),
       array('p_email', $params['email'], PDO::PARAM_STR),
       array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
@@ -40,6 +42,6 @@ if ($post) {
 
   }
 
-}
+  send_json($result);
 
-send_json($result);
+}

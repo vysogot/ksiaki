@@ -18,6 +18,16 @@
               </div>
             </div>
         </div>
+
+        <div class='form-group'>
+            <label class="control-label col-sm-4" for="nick"><?= t('nick') ?></label>
+            <div class="col-sm-8">
+              <div class='input-group'>
+                <input class="form-control" id="nick" name="nick" type="text">
+                <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+              </div>
+            </div>
+        </div>
       </div>
 
 
