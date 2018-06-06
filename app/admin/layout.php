@@ -15,7 +15,7 @@
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+
     <script src="//cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.16/features/mark.js/datatables.mark.min.js"></script>
 
@@ -46,11 +46,12 @@
       #dataTable .links { white-space: nowrap; text-align: center; }
       #dataTable .links a { margin-right: 15px; }
       .table-vcenter td { vertical-align: middle !important;}
+      .wrapper { z-index: unset!important; }
       .wrapper h4 {margin-top: 15px;}
       .modal {padding-top: 10px !important;}
       .modal-dialog {width: 70%;}
       #is_active_check {margin: 13px 0 0;}
-      
+
       mark {
           background: orange;
           color: black;

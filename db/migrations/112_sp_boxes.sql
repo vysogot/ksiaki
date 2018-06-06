@@ -60,7 +60,8 @@ BEGIN
     , begins_at
     , ends_at
     FROM _boxes
-    WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
+    WHERE (marked_as_deleted_by = 0)
+    AND id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
     AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
     AND link_url LIKE CASE WHEN p_link_url IS NULL THEN link_url ELSE '%p_link_url%' END
     LIMIT p_limit
@@ -121,12 +122,19 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_boxes_delete`(IN `p_id` INT)
+CREATE PROCEDURE `sp_boxes_delete`(
+    IN `p_id` INT
+    , IN `p_user_id` INT
+)
 BEGIN
-    DELETE FROM _boxes
-    WHERE (id = p_id)
-    LIMIT 1;
+
+    UPDATE _boxes
+    SET marked_as_deleted_at = NOW()
+    , marked_as_deleted_by = p_user_id
+    WHERE (id = p_id);
+
     SELECT ROW_COUNT() AS rowCount;
+
 END$$
 DELIMITER ;
 
