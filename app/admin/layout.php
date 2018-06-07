@@ -64,7 +64,7 @@
     <header>
       <nav class="navbar navbar-default center">
       <div class="navbar-header">
-        <a class="navbar-brand" href="//konkursiaki.pl">
+        <a class="navbar-brand" href="/">
           <img height=75 src="/assets/images/logo.png" alt="logo">
         </a>
       </div>
