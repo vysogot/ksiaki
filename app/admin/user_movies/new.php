@@ -2,20 +2,6 @@
 
 include '../init.php';
 
-$params = [
-  'form_action' => 'create.php'
-];
+$result = execute('call sp_user_movies_new();', []);
 
-$data = execute('call sp_user_movies_new();', []);
-
-function content($params, $data) { ?>
-
-<div class="wrapper">
-  <h2><?= t('new_form', ['name' => t('user_movie')]) ?></h2>
-  <?= link_to(t('user_movies'), 'index.php') ?>
-  <?php include '_form.php'; ?>
-</div>
-
-<?php }
-
-include '../layout.php';
+send_json($result);

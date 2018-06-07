@@ -42,6 +42,6 @@ if ($post) {
 
   }
 
-}
+  send_json($result);
 
-send_json($result);
+}

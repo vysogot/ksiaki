@@ -2,7 +2,11 @@
 
 $translations = [
 
-  'title' => 'Konkursiaki',
+  'website_title' => 'Konkursiaki',
+
+  // general fields
+
+  'the_name' => 'Nazwa',
   'id' => 'ID',
 
   // menu
@@ -123,6 +127,7 @@ $translations = [
   'static_site' => 'Strona statyczna',
   'static_sites' => 'Strony statyczne',
   'admin_menu_other_items' => 'Pozostałe',
+  'back_to_home_page' => 'Powrót do strony głównej',
 
   // data
 

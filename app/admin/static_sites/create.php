@@ -3,51 +3,42 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'create.php'
-];
-
 if ($post) {
 
-  $params = array_merge($params, $_POST);
+    $params = array_merge($params, $_POST);
+    validate($params);
 
-  validate($params, $errors);
+    $result = [];
 
-  if (empty($errors)) {
+    if (empty($params['errors'])) {
 
-    $result = execute('call sp_static_sites_create(
-      :p_title,
-      :p_slug,
-      :p_content,
-      :p_is_active
-    );', array(
-      array('p_title', $params['title'], PDO::PARAM_STR),
-      array('p_slug', $params['slug'], PDO::PARAM_STR),
-      array('p_content', $params['content'], PDO::PARAM_STR),
-      array('p_is_active', $params['is_active'], PDO::PARAM_INT),
-    ));
+        if (!empty($_FILES['avatar_file']['name'])) {
+            $params['avatar_url'] = file_upload($_FILES['avatar_file']);
+        }
 
-    if (!empty($result)) {
-      flash('notice', t('create_success'));
-      redirect('show.php?id=' . $result->lastInsertId);
+        if (!empty($_FILES['header_file']['name'])) {
+            $params['header_url'] = file_upload($_FILES['header_file']);
+        }
+
+        $result = execute('call sp_static_sites_create(
+            :p_title,
+            :p_slug,
+            :p_content,
+            :p_is_active
+        );', array(
+            array('p_title', $params['title'], PDO::PARAM_STR),
+            array('p_slug', $params['slug'], PDO::PARAM_STR),
+            array('p_content', $params['content'], PDO::PARAM_STR),
+            array('p_is_active', $params['is_active'], PDO::PARAM_INT)
+        ));
+
     } else {
-      flash('warning', t('create_failure'));
+
+        $result = ['rowCount' => -1, 'lastInsertId' => 0,
+            'errors' => $params['errors']
+        ];
+
     }
-  }
 
-  $data = (object) $params;
-  $params['errors'] = $errors;
-
+    send_json($result);
 }
-
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h1><?= t('new_static_site') ?></h1>
-    <?= link_to(t('static_sites'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';
