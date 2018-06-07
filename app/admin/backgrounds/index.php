@@ -18,7 +18,7 @@ $data['column_names'] = [
 function content($params, $data) { ?>
 
 <?php include '../partials/modal_form.php'; ?>
-<?php include '../partials/modal_image.html'; ?>
+<?php include '../partials/modal_image.php'; ?>
 <?php include '../partials/datatable_view.php'; ?>
 
     <script type="text/javascript">

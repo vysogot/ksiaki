@@ -6,7 +6,7 @@
                 <h2 class="modal-title" id="myModalLabel"></h2>
             </div>
             <div class="modal-body">
-                <img src="" id="imagepreview" style="width:100%;" >
+                <img src="" id="imagepreview" style="width:100%;">
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><?= t('close') ?></button>
