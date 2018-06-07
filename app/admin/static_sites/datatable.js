@@ -1,6 +1,6 @@
 $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
-        "ajax": { "url": "datatable.php" },
+        "ajax": { "url": "/admin/static_sites/datatable.php" },
         "columns": [
             { "data": "id" },
             { "data": "title" },

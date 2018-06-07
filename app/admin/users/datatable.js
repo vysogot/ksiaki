@@ -5,7 +5,7 @@ $(document).ready(function() {
         "serverSide": true,
         "deferRender": true,
         "searchDelay": 1000,
-        "ajax": { "url": "datatable.php" },
+        "ajax": { "url": "/admin/users/datatable.php" },
         "columns": [
             { "data": "id" },
             { "data": "nick" },

@@ -75,7 +75,7 @@ CREATE PROCEDURE `sp_backgrounds_create`(
 	IN `p_is_active` INT,
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
-  IN `user_id` INT
+  IN `p_user_id` INT
 )
 BEGIN
 	INSERT INTO _backgrounds(
@@ -87,7 +87,8 @@ BEGIN
     , is_active
     , begins_at
     , ends_at
-    , user_id
+    , created_by
+    , created_at
 	) VALUES(
 		p_name,
 		p_image_url,
@@ -97,7 +98,8 @@ BEGIN
 		p_is_active,
 		p_begins_at,
 		p_ends_at,
-    p_user_id
+    p_user_id,
+    NOW()
 	);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$

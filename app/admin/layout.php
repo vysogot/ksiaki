@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title><?= t('title') ?></title>
+    <title><?= t('website_title') ?></title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
 
@@ -69,22 +69,22 @@
         </a>
       </div>
       <div>
-        <ul  class="nav navbar-nav">
-          <li><?= link_to(t('users'), '/admin/users/') ?></li>
-          <li><?= link_to(t('contests'), '/admin/contests/') ?></li>
-          <li><?= link_to(t('heroes'), '/admin/heroes/') ?></li>
-          <li><?= link_to(t('backgrounds'), '/admin/backgrounds/') ?></li>
-          <li><?= link_to(t('boxes'), '/admin/boxes/') ?></li>
-          <li><?= link_to(t('slides'), '/admin/slides/') ?></li>
-          <li><?= link_to(t('video_ads'), '/admin/video_ads/') ?></li>
+        <ul class="nav navbar-nav">
+          <li><?= link_to(t('users'), '/admin/users/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('contests'), '/admin/contests/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('heroes'), '/admin/heroes/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('backgrounds'), '/admin/backgrounds/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('boxes'), '/admin/boxes/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('slides'), '/admin/slides/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('video_ads'), '/admin/video_ads/', ['class' => 'remote']) ?></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               <?= t('admin_menu_other_items') ?>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/') ?></li> -->
-              <li><?= link_to(t('static_sites'), '/admin/static_sites/') ?></li>
+              <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['class' => 'remote']) ?></li> -->
+              <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('back_to_home_page'), '/') ?></li>
             </ul>
           </li>
@@ -119,6 +119,17 @@
         $( document ).tooltip();
 
       });
+
+    </script>
+
+    <script>
+
+    $('a.remote').click(function(event) {
+        event.preventDefault();
+
+        $('main').load($(this).attr('href'));
+        window.history.pushState($(this).attr('href'), $(this).attr('href'), $(this).attr('href'));
+    });
 
     </script>
 
