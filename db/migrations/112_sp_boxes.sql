@@ -45,12 +45,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_boxes_all`(IN `p_id` INT
-    , IN `p_name` VARCHAR(255)
-    , IN `p_link_url` VARCHAR(50)
-    , IN `p_offset` INT
-    , IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_boxes_all`()
 BEGIN
     SELECT id
     , name
@@ -60,12 +55,7 @@ BEGIN
     , begins_at
     , ends_at
     FROM _boxes
-    WHERE (marked_as_deleted_by = 0)
-    AND id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-    AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
-    AND link_url LIKE CASE WHEN p_link_url IS NULL THEN link_url ELSE '%p_link_url%' END
-    LIMIT p_limit
-    OFFSET p_offset;
+    WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -117,7 +107,9 @@ BEGIN
     , begins_at = p_begins_at
     , ends_at = p_ends_at
     WHERE (id = p_id);
-    SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+
+    CALL `sp_boxes_find`(p_id);
+
 END$$
 DELIMITER ;
 

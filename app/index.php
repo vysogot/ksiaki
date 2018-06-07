@@ -2,87 +2,12 @@
 
 include 'init.php';
 
-$params = [
-  "offset" => 0,
-  "limit" => 20
-];
+$data['slides'] = execute('call sp_slides_all();', [], true);
+$data['video_ads'] = execute('call sp_video_ads_all();', [], true);
+$data['contests'] = execute('call sp_contests_all();', [], true);
+$data['boxes'] = execute('call sp_boxes_all();', [], true);
 
-$params = array_merge($params, $_GET);
-
-$data['heroes'] = execute('call sp_heroes_all(
-  :p_id,
-  :p_name,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
-
-$data['contests'] = execute('call sp_contests_all(
-  :p_id,
-  :p_name,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
-
-$data['slides'] = execute('call sp_slides_all(
-  :p_id,
-  :p_name,
-  :p_link_url,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_link_url', NULL, PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
-
-
-$data['boxes'] = execute('call sp_boxes_all(
-  :p_id,
-  :p_name,
-  :p_link_url,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_link_url', NULL, PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
-
-$data['user_movies'] = execute('call sp_user_movies_sorted_by_likes(
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
-
-$data['video_ads'] = execute('call sp_video_ads_all(
-  :p_id,
-  :p_name,
-  :p_link_url,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_link_url', NULL, PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+// $data['user_movies'] = execute('call sp_user_movies_sorted_by_likes();', [], true);
 
 function content($params, $data) { ?>
 
@@ -98,7 +23,7 @@ function content($params, $data) { ?>
     </section>
 
     <section id="player" class="slider">
-    <?php reset($data['video_ads']); $first = key($data['video_ads']); 
+    <?php reset($data['video_ads']); $first = key($data['video_ads']);
         foreach($data['video_ads'] as $key => $video_ad) { ?>
             <?php $options = ($key == $first) ? 'autoplay' : 'muted preload="none"' ?>
             <div>

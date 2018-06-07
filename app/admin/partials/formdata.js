@@ -24,8 +24,6 @@ function submitForm() {
 
     }).done(function(response) {
 
-        console.log(response);
-
         if ('errors' in response) {
 
             let error_list = $(".modal .errorList");
@@ -48,9 +46,11 @@ function submitForm() {
           $(".modal .close").click();
 
         }
+
     });
 
     return false;
+
 }
 
 function get_data(myObj) {

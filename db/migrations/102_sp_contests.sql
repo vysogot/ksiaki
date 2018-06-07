@@ -26,9 +26,22 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
 BEGIN
-SELECT _contests.*
+SELECT _contests.id
+, _contests.name
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
+, box_url
+, header_url
+, begins_at
+, ends_at
+, display_ad
+, is_active
 FROM _contests
-WHERE (id = p_id);
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (_contests.id = p_id);
 END$$
 DELIMITER ;
 
@@ -43,12 +56,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_contests_all`(
-    IN `p_id` INT
-	, IN `p_name` VARCHAR(255)
-	, IN `p_offset` INT
-	, IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_contests_all`()
 BEGIN
 SELECT _contests.id
 , _contests.name
@@ -65,11 +73,7 @@ SELECT _contests.id
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
-WHERE _contests.id = CASE WHEN p_id IS NULL THEN _contests.id ELSE p_id END
-AND _contests.name = CASE WHEN p_name IS NULL THEN _contests.name ELSE p_name END
-AND (marked_as_deleted_by = 0)
-LIMIT p_limit
-OFFSET p_offset;
+WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -147,22 +151,7 @@ SET game_id = p_game_id
 	, is_active = p_is_active
 WHERE (id = p_id);
 
-SELECT _contests.id
-, _contests.name
-, def_games.name AS game_name
-, def_contest_types.name AS contest_type_name
-, _contests.description
-, slug
-, box_url
-, header_url
-, begins_at
-, ends_at
-, display_ad
-, is_active
-FROM _contests
-LEFT JOIN def_games ON game_id = def_games.id
-LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
-WHERE _contests.id = p_id;
+CALL `sp_contests_find`(p_id);
 
 END$$
 DELIMITER ;

@@ -42,11 +42,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_heroes_all`(IN `p_id` INT
-    , IN `p_name` VARCHAR(255)
-    , IN `p_offset` INT
-    , IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_heroes_all`()
 BEGIN
     SELECT id
     , avatar_url as image
@@ -57,9 +53,7 @@ BEGIN
     , header_url
     , is_active
     FROM _heroes
-    WHERE (marked_as_deleted_by = 0)
-    LIMIT p_limit
-    OFFSET p_offset;
+    WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -91,7 +85,7 @@ BEGIN
         , footer_url
         , license_description
         , is_active
-        , created_by 
+        , created_by
         ) VALUES(
         p_name
         , p_slug
@@ -145,16 +139,7 @@ BEGIN
     , updated_at = NOW()
     WHERE (id = p_id);
 
-    SELECT id
-    , avatar_url as image
-    , name
-    , slug
-    , description
-    , avatar_url
-    , header_url
-    , is_active
-    FROM _heroes
-    WHERE (id = p_id);
+    CALL `sp_heroes_find`(p_id);
 
 END$$
 DELIMITER ;

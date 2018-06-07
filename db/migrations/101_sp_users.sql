@@ -367,6 +367,7 @@ CREATE PROCEDURE `sp_users_update`(
     , IN `p_updated_by` INT
 )
 BEGIN
+
     UPDATE _users
     SET name = p_name
     , nick = p_nick
@@ -375,18 +376,10 @@ BEGIN
     , is_active = p_is_active
     , updated_at = NOW()
     , updated_by = p_updated_by
-
     WHERE (id = p_id);
 
-    SELECT id
-    , nick
-    , name
-    , surname
-    , email
-    , last_login_at
-    , is_active
-    FROM _users
-    WHERE (id = p_id);
+    CALL `sp_users_find`(p_id);
+
 END$$
 DELIMITER ;
 
