@@ -23,10 +23,12 @@ include realpath(__DIR__ . '/lib/helpers.php');
 include realpath(__DIR__ . '/lib/db.php');
 include realpath(__DIR__ . '/lib/locals.php');
 include realpath(__DIR__ . '/lib/validators.php');
-include realpath(__DIR__ . '/lib/mailer.php'); 
+include realpath(__DIR__ . '/lib/mailer.php');
 
 $params = [];
 $data = [];
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 $get  = $_SERVER['REQUEST_METHOD'] === 'GET';
+$xhr  = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+  strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
