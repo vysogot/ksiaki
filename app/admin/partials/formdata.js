@@ -8,6 +8,7 @@ const aActive = ['fa fa-times', 'fa fa-check'];
 function submitForm() {
 
     $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
+    $('input[name="display_ad"]').val($('#display_ad_check').prop('checked') ? '1' : '0');
 
     let row_index = $('input[name="row_index"]').val();
     let form_data = new FormData(document.getElementById("form"));
@@ -73,6 +74,7 @@ function get_data(myObj) {
 
         $('textarea[name="description"]').val(ret.description);
         $('#is_active_check').prop("checked", ($('input[name="is_active"]').val() == '1'));
+        $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
         $('input[name="row_index"]').val($(myObj).data('index'));
         $('#modal').modal('show');
 

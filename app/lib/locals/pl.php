@@ -36,6 +36,8 @@ $translations = [
   'contests_slogan' => 'Już teraz czekają na Ciebie fantastyczne nagrody oraz tytuł Supergracza. Masz nieograniczoną liczbę podejść, każda próba zwiększa Twoje szanse na wygraną. Nie czekaj! Graj!',
   'play' => 'Graj!',
   'game' => 'Gra',
+  'game_name' => 'Nazwa gry',
+  'contest_type_name' => 'Rodzaj konkursu',
   'rankings' => 'Rankingi',
   'monthly_ranking' => 'Ranking miesięczny',
   'yearly_ranking' => 'Ranking roczny',
@@ -172,7 +174,7 @@ $translations = [
   'contest_type' => 'Rodzaj konkursu',
   'normal' => 'Normalny',
   'special' => 'Specjalny',
-  'display_ad' => 'Wyświetl reklamę przed',
+  'display_ad' => 'Preroll',
 
   // heroes form
 
@@ -246,6 +248,7 @@ $translations = [
 
   'hero_slug' => '/bohater/{{slug}}',
   'user_slug' => '/gracz/{{slug}}',
+  'contest_slug' => '/konkurs/{{slug}}',
 
   // games
 

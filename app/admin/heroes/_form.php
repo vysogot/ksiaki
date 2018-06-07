@@ -117,7 +117,7 @@
                         <?= t('description') ?>
                     </label>
                     <div class="col-sm-8">
-                        <textarea id="description" name="description" rows="5" style="margin: auto;width: 100%;"></textarea>
+                        <textarea id="description" name="description"></textarea>
                     </div>
                 </div>
 
@@ -126,7 +126,7 @@
                         <?= t('license_description') ?>
                     </label>
                     <div class="col-sm-8">
-                        <textarea id="license_description" name="license_description" rows="5" style="margin: auto;width: 100%;"></textarea>
+                        <textarea id="license_description" name="license_description"></textarea>
                     </div>
                 </div>
 

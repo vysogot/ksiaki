@@ -1,70 +1,163 @@
-<?php include '../../partials/errors.php'; ?>
+<form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
-<form id="contest" action="<?= $params['form_action'] ?>" method="post">
+    <input type="hidden" name="id">
+    <input type="hidden" name="row_index" value="">
+    <input type="hidden" name="is_active">
+    <input type="hidden" name="display_ad">
 
-  <input type="hidden" name="id" value="<?= $data->id ?>" />
+    <div class="col-sm-12">
+        <div class="modal-body">
 
-  <div>
-    <label for="name"><?= t('contest_name') ?></label>
-    <input id="name" name="name" type="text" value="<?= $data->name ?>">
-  </div>
+            <div class="col-sm-6">
 
-  <div>
-    <label for="description"><?= t('description') ?></label>
-    <textarea id="description" name="description"><?= $data->description ?></textarea>
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="name">
+                        <?= t('contest_name') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="name" name="name" type="text" required>
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
 
-  <div>
-    <label for="box_url"><?= t('box_url') ?></label>
-    <input id="box_url" name="box_url" type="text" value="<?= $data->box_url ?>">
-    <input id="box_file" name="box_file" type="file">
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="slug">
+                        <?= t('slug') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="slug" name="slug" type="text" required>
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
 
-  <div>
-    <label for="header_url"><?= t('header_url') ?></label>
-    <input id="header_url" name="header_url" type="text" value="<?= $data->header_url ?>">
-    <input id="header_file" name="header_file" type="file">
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="box_url">
+                        <?= t('box_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="box_url" name="box_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
+                        </div>
+                        <input id="box_file" name="box_file" type="file">
+                    </div>
+                </div>
 
-  <div>
-    <label for="begins_at"><?= t('begins_at') ?></label>
-    <input id="begins_at" name="begins_at" type="datetime-local" value="<?= form_date($data->begins_at) ?>">
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="header_url">
+                        <?= t('header_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="header_url" name="header_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
+                        </div>
+                        <input id="header_file" name="header_file" type="file">
+                    </div>
+                </div>
 
-  <div>
-    <label for="ends_at"><?= t('ends_at') ?></label>
-    <input id="ends_at" name="ends_at" type="datetime-local" value="<?= form_date($data->ends_at) ?>">
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="begins_at">
+                        <?= t('begins_at') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="begins_at" name="begins_at" type="datetime-local">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
+                        </div>
+                    </div>
+                </div>
 
-  <div>
-    <label for="game_id"><?= t('game') ?></label>
-    <select id="game_id" name="game_id">
-      <option value="1">Gra 1</option>
-      <option value="2">Gra 2</option>
-    </select>
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="ends_at">
+                        <?= t('ends_at') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="ends_at" name="ends_at" type="datetime-local">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
+                        </div>
+                    </div>
+                </div>
 
-  <div>
-    <label><?= t('contest_type') ?></label>
-    <input type="hidden" name="contest_type_id" value="0">
-    <label><?= t('normal') ?></label>
-    <input type="radio" name="contest_type_id" value="1" <?php if ($data->contest_type_id == 1) echo "checked" ?> >
-    <label><?= t('special') ?></label>
-    <input type="radio" name="contest_type_id" value="2" <?php if ($data->contest_type_id == 2) echo "checked" ?> >
-  </div>
+            </div>
 
-  <div>
-    <label for="display_ad"><?= t('display_ad') ?></label>
-    <input type="hidden" name="display_ad" value="0">
-    <input id="display_ad" type="checkbox" name="display_ad" value="1" <?php if ($data->display_ad == 1) echo "checked" ?> >
-  </div>
+            <div class="col-sm-6">
 
-  <div>
-    <label for="is_active"><?= t('is_active') ?></label>
-    <input type="hidden" name="is_active" value="0">
-    <input id="is_active" type="checkbox" name="is_active" value="1" <?php if ($data->is_active == 1) echo "checked" ?> >
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="description">
+                        <?= t('description') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                </div>
 
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="game_id">
+                        <?= t('game') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <select id="game_id" name="game_id">
+                                <option value="1">Sorcerer</option>
+                                <option value="2">Pacman</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="contest_type_id">
+                        <?= t('contest_type') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <select id="contest_type_id" name="contest_type_id">
+                                <option value="1">Normalny</option>
+                                <option value="2">Specjalny</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="display_ad">
+                        <?= t('display_ad') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input id="display_ad_check" class="form-check-input" type="checkbox">
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="is_active">
+                        <?= t('is_active') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input id="is_active_check" class="form-check-input" type="checkbox">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-footer clear">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                <?= t('close') ?>
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <?= t('save') ?>
+            </button>
+        </div>
+
+    </div>
 </form>
-
-<button type="submit" form="contest" value="Wyślij">Wyślij</button>

@@ -11,8 +11,8 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data['contest'] = execute('call sp_contests_find(:p_id);', array(
-  array('p_id', $params['id'], PDO::PARAM_INT)
+$data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(
+  array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
 $data['game'] = execute('call sp_games_find(:p_id);', array(

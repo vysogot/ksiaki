@@ -52,6 +52,7 @@
       .modal-dialog {width: 70%;}
       #is_active_check {margin: 13px 0 0;}
       input.error { background: #FDD; }
+      textarea { margin: auto; width: 100%; height: 10em; }
 
       mark {
           background: orange;
