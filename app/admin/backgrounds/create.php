@@ -6,9 +6,9 @@ include '_validation.php';
 if ($post) {
 
   $params = array_merge($params, $_POST);
-  $result = [];
-
   validate($params);
+
+  $result = [];
 
   if (empty($params['errors'])) {
 

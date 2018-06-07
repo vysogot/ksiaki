@@ -6,9 +6,9 @@ include '_validation.php';
 if ($post) {
 
     $params = array_merge($params, $_POST);
-    $result = [];
-
     validate($params);
+
+    $result = [];
 
     if (empty($params['errors'])) {
 
@@ -42,7 +42,7 @@ if ($post) {
         $result = ['rowCount' => -1, 'lastInsertId' => 0,
             'errors' => $params['errors']
         ];
-        
+
     }
 
     send_json($result);
