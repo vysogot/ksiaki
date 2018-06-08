@@ -106,14 +106,14 @@ VALUES
 (6, 'Szósty box', '/uploads/boxes/box-2.jpg', 'http://wp.pl', 1, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
 
 TRUNCATE TABLE `_contests`;
-INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `box_url`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
+INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `slug`, `description`, `box_url`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
 VALUES
-(1, 1, 2, 'Jaskiniowiec', 'Niesamowity konkurs!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(2, 2, 1, 'Ptaszki i pieski', 'Nowe nagrody!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(3, 1, 2, 'Mistrz Pola', 'Zgarnij klocki LEGO!', '/uploads/contests/box-3.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(4, 2, 1, 'Faraon Kontratakuje', 'Szał piórników!', '/uploads/contests/box-4.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(5, 1, 2, 'Kulki Fulki', 'Ekstra zabawa!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(6, 2, 1, 'Paramemnon', 'Moc!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
+(1, 1, 2, 'Jaskiniowiec', 'jaskiniowiec', 'Niesamowity konkurs!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(2, 2, 1, 'Ptaszki i pieski', 'ptaszki-i-pieski', 'Nowe nagrody!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(3, 1, 2, 'Mistrz Pola', 'mistrz-pola', 'Zgarnij klocki LEGO!', '/uploads/contests/box-3.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(4, 2, 1, 'Faraon Kontratakuje', 'faraon-kontratakuje', 'Szał piórników!', '/uploads/contests/box-4.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(5, 1, 2, 'Kulki Fulki', 'kluki-fulki', 'Ekstra zabawa!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(6, 2, 1, 'Paramemnon', 'paramemnon', 'Moc!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
 
 TRUNCATE TABLE `_notifications`;
 INSERT INTO `_notifications` (`id`, `title`, `content`)

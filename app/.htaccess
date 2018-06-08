@@ -3,3 +3,4 @@ RewriteEngine on
 RewriteRule ^info/([a-z0-9A-Z_-]+)$ static_site.php?slug=$1 [L,NC]
 RewriteRule ^hero/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]
 RewriteRule ^bohater/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]
+RewriteRule ^konkurs/([a-z0-9A-Z_-]+)$ contest.php?slug=$1  [L,NC]

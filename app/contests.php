@@ -51,8 +51,8 @@ function content($params, $data) { ?>
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
       <div class="left box">
-        <?= link_to(image($contest->box_url), "/contest.php?id=$contest->id") ?>
-        <p><?= link_to($contest->name, "/contest.php?id=$contest->id") ?></p>
+        <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
+        <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
       </div>
     <?php } ?>
   </div>
