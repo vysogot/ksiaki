@@ -39,8 +39,8 @@
                     <div class="col-sm-8">
                         <div class='input-group'>
                             <select class="form-control" id="role_id" name="role_id">
-                                <option value="1">Gracz</option>
-                                <option value="2">Admin</option>
+                                <option value="2">Gracz</option>
+                                <option value="1">Admin</option>
                             </select>
                             <div class='input-group-addon'><i class='glyphicon glyphicon-list'></i></div>
                         </div>
