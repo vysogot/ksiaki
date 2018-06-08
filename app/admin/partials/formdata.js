@@ -3,6 +3,7 @@ var oTable = null;
 const t_show = '<?= t("show") ?>';
 const t_edit = '<?= t("edit") ?>';
 const t_delete = '<?= t("delete") ?>';
+const t_ended = '<?= t("contest_end") ?>';
 const aActive = ['fa fa-times', 'fa fa-check'];
 
 function submitForm() {
@@ -76,6 +77,10 @@ function get_data(myObj) {
         $('textarea[name="content"]').val(ret.content);
         $('#is_active_check').prop("checked", ($('input[name="is_active"]').val() == '1'));
         $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
+
+        $("#role_id option").removeAttr('selected');
+        $('#role_id ').find('option').filter(function(index) { return $(this).val() == ret.role_id; }).prop('selected', true);
+
         $('input[name="row_index"]').val($(myObj).data('index'));
         $('#modal').modal('show');
 

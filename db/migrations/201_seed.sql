@@ -69,15 +69,15 @@ VALUES
 (2, 'Jaskiniowiec', '/uploads/backgrounds/background-2.jpg', 'http://wp.pl', 'black', 'white', 0, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
 
 TRUNCATE TABLE `_slides`;
-INSERT INTO `_slides` (`id`, `name`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
-VALUES 
+INSERT INTO `_slides` (`id`, `name`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`)
+VALUES
 (1, 'Slajd 1', '/uploads/slides/slide-1.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-09-20 00:00:00'),
 (2, 'Slajd 2', '/uploads/slides/slide-2.jpg', 'http://konkursiaki.pl', 1, '2028-02-02 00:00:00', '2028-09-20 00:00:00'),
 (3, 'Slajd 3', '/uploads/slides/slide-3.jpg', 'http://konkursiaki.pl', 1, '2038-02-02 00:00:00', '2038-09-20 00:00:00');
 
 TRUNCATE TABLE `_user_movies`;
-INSERT INTO `_user_movies` (`id`, `user_id`, `name`, `description`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
-VALUES 
+INSERT INTO `_user_movies` (`id`, `user_id`, `name`, `description`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`)
+VALUES
 (1, 1, 'User video 1', 'description', '/uploads/user_movies/user_movies/movie-1.mov', '/uploads/user_movie-1.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (2, 2, 'User video 2', 'description', '/uploads/user_movies/user_movies/movie-2.mov', '/uploads/user_movie-2.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (3, 2, 'User video 3', 'description', '/uploads/user_movies/user_movies/movie-1.mov', '/uploads/user_movie-3.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
@@ -90,8 +90,8 @@ INSERT INTO `_user_movies_likes` (`user_id`, `user_movie_id`)
 VALUES (1, 4), (2, 4), (1, 3), (2, 1);
 
 TRUNCATE TABLE `_video_ads`;
-INSERT INTO `_video_ads` (`id`, `name`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
-VALUES 
+INSERT INTO `_video_ads` (`id`, `name`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`)
+VALUES
 (1, 'Video ad 1', '/uploads/videos/movie-1.mov', '/uploads/videos/movie-cta.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (2, 'Video ad 2', '/uploads/videos/movie-2.mov', '/uploads/videos/movie-cta.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00');
 
@@ -975,9 +975,11 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 
 
 TRUNCATE TABLE `score_contests`;
-CALL `sp_contests_ending`(1);
-CALL `sp_contests_ending`(2);
-CALL `sp_contests_ending`(3);
+/*
+CALL `sp_contests_ending`(1,1);
+CALL `sp_contests_ending`(2,1);
+CALL `sp_contests_ending`(3,1);
+*/
 
 TRUNCATE TABLE _user_badges;
 INSERT INTO `_user_badges` (`id`, `user_id`, `badge_id`, `given_at`) VALUES

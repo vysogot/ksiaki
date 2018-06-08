@@ -49,6 +49,7 @@ $translations = [
   'back_to_contest' => 'Powrót do strony konkursu',
   'points' => 'Punkty',
   'points_total' => 'Punkty w tym roku',
+  'contest_end' => 'Zakończ',
 
   // downloads
 

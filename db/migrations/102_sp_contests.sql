@@ -38,6 +38,7 @@ SELECT _contests.id
 , ends_at
 , display_ad
 , is_active
+, is_ended
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
@@ -70,6 +71,7 @@ SELECT _contests.id
 , ends_at
 , display_ad
 , is_active
+, is_ended
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id

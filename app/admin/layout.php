@@ -53,11 +53,9 @@
       #is_active_check {margin: 13px 0 0;}
       input.error { background: #FDD; }
       textarea { margin: auto; width: 100%; height: 10em; }
-
-      mark {
-          background: orange;
-          color: black;
-      }
+      mark {background: orange;color: black;}
+      a[disabled="disabled"] {pointer-events: none;}
+      a[disabled="disabled"] > .fas {opacity: 0.5;}
     </style>
 </head>
 <body>

@@ -359,6 +359,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_update`(
     IN `p_id` INT
+    , IN `p_role_id` INT
     , IN `p_nick` VARCHAR(255)
     , IN `p_name` VARCHAR(255)
     , IN `p_email` VARCHAR(255)
@@ -370,6 +371,7 @@ BEGIN
 
     UPDATE _users
     SET name = p_name
+    , role_id = p_role_id
     , nick = p_nick
     , email = p_email
     , avatar_url = p_avatar_url

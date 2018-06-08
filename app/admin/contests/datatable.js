@@ -23,6 +23,7 @@ $(document).ready(function() {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
             },
+            { "data": "is_ended", "className": "none" },
             { "data": null }
         ],
 
@@ -36,7 +37,8 @@ $(document).ready(function() {
             "orderable": false,
             "className": "links",
             "render": function (data, type, row, meta) {
-                return set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', "") +
+                return set_button("fEnd(this)", meta.row, row,  t_ended, 'fa-calendar-check', ((row.is_ended==0)?'':' disabled="disabled"')) +
+                    set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', "") +
                     set_button("fEdit(this)", meta.row, row, t_edit, 'fa-edit', "") +
                     set_button("fDelete(this)", meta.row, row, t_delete, 'fa-trash-alt', "");
             }

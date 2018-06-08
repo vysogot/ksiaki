@@ -22,6 +22,7 @@ if ($post) {
             :p_name,
             :p_email,
             :p_avatar_url,
+            :p_role_id,
             :p_is_active,
             :p_updated_by
         );', array(
@@ -30,6 +31,7 @@ if ($post) {
             array('p_name', $params['name'], PDO::PARAM_STR),
             array('p_email', $params['email'], PDO::PARAM_STR),
             array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
+            array('p_role_id', $params['role_id'], PDO::PARAM_INT),
             array('p_is_active', $params['is_active'], PDO::PARAM_INT),
             array('p_updated_by', $_SESSION['user_id'], PDO::PARAM_INT)
         ), false, false);

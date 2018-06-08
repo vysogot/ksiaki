@@ -11,7 +11,8 @@ $data['column_names'] = [
     'contest_type_name',
     'begins_at',
     'ends_at',
-    'is_active'
+    'is_active',
+    'is_ended'
 ];
 
 ?>

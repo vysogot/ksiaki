@@ -223,12 +223,14 @@ CREATE TABLE IF NOT EXISTS `_users` (
 	`password_reset_hash` VARCHAR(255) NULL DEFAULT NULL,
 	`password_reset_expires_at` DATETIME NULL DEFAULT NULL,
 	`last_login_at` DATETIME NULL DEFAULT NULL,
+
 	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	`created_by` INT(11) NULL DEFAULT '0',
 	`updated_at` DATETIME NULL DEFAULT NULL,
 	`updated_by` INT(11) NULL DEFAULT '0',
 	`marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
 	`marked_as_deleted_by` INT(10) NULL DEFAULT '0',
+
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Użytkownicy';
@@ -302,6 +304,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
     `ends_at` datetime,
     `display_ad` tinyint(1) DEFAULT 0,
     `is_active` tinyint(1) DEFAULT 1,
+    `is_ended` tinyint(1) DEFAULT 0,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,

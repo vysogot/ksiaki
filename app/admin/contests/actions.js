@@ -32,6 +32,22 @@ function fEdit(myObj) {
     get_data(myObj);
 }
 
+function fEnd(myObj) {
+    let oRow = $(myObj);
+    let title = '<?= t("contest_end") ?>';    
+    let ret = confirm(title + ' ' + oRow.data('name') + '?');
+
+    if (ret == true) {
+        $.post("end.php?id=" + oRow.data('id'),
+            function(data, status){
+                if (status == 'success') {
+                  let row_index = oRow.data('index');
+                  oTable.row(row_index).data(data[0]);
+                }
+            });
+    }
+}
+
 $('#new').click(function(e) {
     let title = '<?= t("new_form", ["name" => t("background")]) ?>';
     $('.modal-title').text(title);
