@@ -1,6 +1,7 @@
 DROP PROCEDURE IF EXISTS sp_contests_new;
 DROP PROCEDURE IF EXISTS sp_contests_find;
 DROP PROCEDURE IF EXISTS sp_contests_all;
+DROP PROCEDURE IF EXISTS sp_contests_all_but_one;
 DROP PROCEDURE IF EXISTS sp_contests_create;
 DROP PROCEDURE IF EXISTS sp_contests_update;
 DROP PROCEDURE IF EXISTS sp_contests_delete;
@@ -28,6 +29,7 @@ CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
 BEGIN
 SELECT _contests.id
 , _contests.name
+, game_id
 , def_games.name AS game_name
 , def_contest_types.name AS contest_type_name
 , _contests.description
@@ -49,10 +51,24 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_find_by_slug`(IN `p_slug` VARCHAR(255))
 BEGIN
-SELECT _contests.*
+SELECT _contests.id
+, _contests.name
+, game_id
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
+, box_url
+, header_url
+, begins_at
+, ends_at
+, display_ad
+, is_active
+, is_ended
 FROM _contests
-WHERE (slug = p_slug)
-LIMIT 1;
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (_contests.slug = p_slug);
 END$$
 DELIMITER ;
 
@@ -61,6 +77,7 @@ CREATE PROCEDURE `sp_contests_all`()
 BEGIN
 SELECT _contests.id
 , _contests.name
+, game_id
 , def_games.name AS game_name
 , def_contest_types.name AS contest_type_name
 , _contests.description
@@ -76,6 +93,33 @@ FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
 WHERE (marked_as_deleted_by = 0);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_all_but_one`(
+    IN p_id INT
+)
+BEGIN
+SELECT _contests.id
+, _contests.name
+, game_id
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
+, box_url
+, header_url
+, begins_at
+, ends_at
+, display_ad
+, is_active
+, is_ended
+FROM _contests
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (marked_as_deleted_by = 0)
+AND (_contests.id != p_id);
 END$$
 DELIMITER ;
 

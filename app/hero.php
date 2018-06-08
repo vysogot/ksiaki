@@ -12,6 +12,8 @@ $data['hero'] = execute('call sp_heroes_find_by_slug(:p_slug);', array(
   array('p_slug', $params['slug'], PDO::PARAM_STR)
 ));
 
+if (empty($data['hero'])) redirect('/404.php');
+
 $data['boxes'] = execute('call sp_boxes_all();', [], true);
 
 function content($params, $data) { ?>
@@ -37,7 +39,7 @@ function content($params, $data) { ?>
     <div class="row hero">
         <h3><?= t('tv_spot') ?></h3>
         <div class="column-33">
-            <video controls muted preload="none" src="<?= $data['hero']->video_url ?>" poster="/uploads/movie-1.jpg"></video>
+            <video controls muted preload="none" src="<?= $data['hero']->video_url ?>" poster="<?= $data['hero']->video_cover_url ?>"></video>
         </div>
     </div>
     <div class="row hero">

@@ -255,6 +255,8 @@ $translations = [
   'hero_slug' => '/bohater/{{slug}}',
   'user_slug' => '/gracz/{{slug}}',
   'contest_slug' => '/konkurs/{{slug}}',
+  'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
+  'contest_play_slug' => '/konkurs/{{slug}}/graj',
 
   // games
 

@@ -66,6 +66,7 @@ CREATE PROCEDURE `sp_heroes_create`(
     IN `p_header_url` VARCHAR(255),
     IN `p_cover_url` VARCHAR(255),
     IN `p_video_url` VARCHAR(255),
+    IN `p_video_cover_url` VARCHAR(255),
     IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
@@ -81,6 +82,7 @@ BEGIN
         , header_url
         , cover_url
         , video_url
+        , video_cover_url
         , gadget_url
         , footer_url
         , license_description
@@ -94,6 +96,7 @@ BEGIN
         , p_header_url
         , p_cover_url
         , p_video_url
+        , p_video_cover_url
         , p_gadget_url
         , p_footer_url
         , p_license_description
@@ -116,6 +119,7 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_header_url` VARCHAR(255),
     IN `p_cover_url` VARCHAR(255),
     IN `p_video_url` VARCHAR(255),
+    IN `p_video_cover_url` VARCHAR(255),
     IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
@@ -131,6 +135,7 @@ BEGIN
     , header_url = p_header_url
     , cover_url = p_cover_url
     , video_url = p_video_url
+    , video_cover_url = p_video_cover_url
     , gadget_url = p_gadget_url
     , footer_url = p_footer_url
     , license_description = p_license_description

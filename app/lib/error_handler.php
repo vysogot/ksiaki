@@ -9,7 +9,7 @@ if ($env == 'development') {
     $log = new Logger('info');
     $formatter = new LineFormatter(null, null, false, true);
 
-    $infoHandler = new StreamHandler('../log/info.log', Logger::DEBUG);
+    $infoHandler = new StreamHandler(realpath(__DIR__ . '/../../log/info.log'), Logger::DEBUG);
     $infoHandler->setFormatter($formatter);
 
     $log->pushHandler($infoHandler);
@@ -29,7 +29,7 @@ function exception_handler($exception) {
         $log = new Logger('error');
 
         // Error level handler
-        $errorHandler = new StreamHandler('../log/error.log', Logger::ERROR);
+        $errorHandler = new StreamHandler(realpath(__DIR__ . '/../../log/error.log'), Logger::ERROR);
         $errorHandler->setFormatter($formatter);
 
         // This will have only ERROR messages
@@ -42,7 +42,12 @@ function exception_handler($exception) {
 
     http_response_code($code);
 
-    include realpath(__DIR__ . "/../$code.php");
+    if ($GLOBALS['env'] != 'production') {
+        include realpath(__DIR__ . "/../500.php");
+    } else {
+        redirect('/404.php');
+    }
+
     exit();
 }
 
@@ -62,6 +67,8 @@ if ($env == 'production') {
     Raven_Autoloader::register();
 
     $client = new Raven_Client($GLOBALS['config']['sentry_key']);
-    $client->install();
+
+    $error_handler = new Raven_ErrorHandler($client);
+    $error_handler->registerExceptionHandler();
 
 }

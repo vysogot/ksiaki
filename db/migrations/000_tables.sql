@@ -167,6 +167,7 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
     `header_url` VARCHAR(255) NULL DEFAULT NULL,
     `cover_url` VARCHAR(255) NULL DEFAULT NULL,
     `video_url` VARCHAR(255) NULL DEFAULT NULL,
+    `video_cover_url` VARCHAR(255) NULL DEFAULT NULL,
     `gadget_url` VARCHAR(255) NULL DEFAULT NULL,
     `footer_url` VARCHAR(255) NULL DEFAULT NULL,
     `license_description` TEXT NULL,

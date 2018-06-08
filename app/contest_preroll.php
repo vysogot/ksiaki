@@ -18,12 +18,12 @@ function content($params, $data) { ?>
 </div>
 
   <?php if (getenv('APPLICATION_ENV') != 'production') { ?>
-    <h2 class="center"><?= link_to(t('play'), "/contest_play.php?id=" . $params['id']) ?></h2>
+    <h2><?= link_to(t('play'), t('contest_play_slug', ['slug' => $params['slug']])) ?></h2>
   <?php } ?>
 </div>
 
 <!-- VAST player -->
- <script src="//cdn.stroerdigital.pl/data/js/engine/sdmplayer/player.js" type="text/javascript"></script> 
+ <script src="//cdn.stroerdigital.pl/data/js/engine/sdmplayer/player.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!-- konfiguracja -->
 (new StroerVideo()).setParams({
@@ -45,7 +45,7 @@ function content($params, $data) { ?>
     onBeforeEnd: function() {
     },
     onAfterEnd: function() {
-        location.href = '<?= "/contest_play.php?id=" . $_GET['id'] ?>';
+        location.href = '<?= t('contest_play_slug', ['slug' => $params['slug']]) ?>';
     }
     }
 </script>
