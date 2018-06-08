@@ -65,6 +65,8 @@ return array(
     'smtp_from_email' => 'production@email.com',
     'smtp_from_name' => 'Production',
     'smtp_reply_to_email' => 'production@email.com',
-    'smtp_reply_to_name' => 'Production'
+    'smtp_reply_to_name' => 'Production',
+
+    'sentry_key' => 'https://key@sentry.io/id'
   )
 );

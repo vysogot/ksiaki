@@ -1,0 +1,14 @@
+{
+    "name": "jgodawa/ksiaki",
+    "type": "project",
+    "require": {
+        "sentry/sentry": "^1.9",
+        "monolog/monolog": "^1.23"
+    },
+    "authors": [
+        {
+            "name": "Jakub Godawa",
+            "email": "jakub.godawa@gmail.com"
+        }
+    ]
+}

@@ -1,15 +1,16 @@
 <?php
 
+require realpath(__DIR__ . '/../vendor/autoload.php');
+
 ini_set('output_buffering', 1);
 
-// the only 'require' is used here. Using include allows own error handling
-require realpath(__DIR__ . '/lib/error_handler.php');
-
 // set config.example.php and move it one folder up from the root folder
-$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
+$envs = require realpath(__DIR__ . '/../../ksiaki_config.php');
 $env = getenv('APPLICATION_ENV');
+if (!$env) $env = 'development';
+$GLOBALS['config'] = $envs[$env];
 
-$GLOBALS['config'] = empty($env) ? $envs['development'] : $envs[$env];
+require realpath(__DIR__ . '/lib/error_handler.php');
 
 if (isset($_SERVER['HTTP_HOST'])) {
   session_start();
@@ -19,6 +20,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
   $GLOBALS['url'] = $GLOBALS['base_url'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
 }
 
+// use include for custom error handling
 include realpath(__DIR__ . '/lib/helpers.php');
 include realpath(__DIR__ . '/lib/db.php');
 include realpath(__DIR__ . '/lib/locals.php');
