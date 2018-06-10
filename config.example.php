@@ -11,6 +11,7 @@ return array(
     'DB_CHARSET' => 'utf8',
 
     'protocol' => 'https://',
+    'domain' => 'www.ksiaki.jgodawa',
 
     'smtp_host' => 'smtp.gmail.com',
     'smtp_username' => 'jakub.godawa@gmail.com',
@@ -34,6 +35,7 @@ return array(
     'DB_CHARSET' => 'utf8',
 
     'protocol' => 'https://',
+    'domain' => 'www.ksiaki.jgodawa',
 
     'smtp_host' => 'smtp.testing.com',
     'smtp_username' => 'testing@email.com',
@@ -56,6 +58,7 @@ return array(
     'DB_CHARSET' => 'utf8',
 
     'protocol' => 'https://',
+    'domain' => 'www.ksiaki.jgodawa',
 
     'smtp_host' => 'smtp.production.com',
     'smtp_username' => 'production@email.com',

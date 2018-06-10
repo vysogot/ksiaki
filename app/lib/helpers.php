@@ -122,3 +122,7 @@ function send_json($result) {
   $result = is_array($result) ? $result : array($result);
   print json_encode($result);
 }
+
+function csrf_field() {
+    return '<input type="hidden" name="token" value="' . $_SESSION['token'] . '" />';
+}

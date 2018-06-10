@@ -27,8 +27,8 @@ if ($post) {
 
             flash('notice', t('password_restoration_email_sent'));
 
-            send_email($params['email'], [ 
-                'subject' => t('email_subject_password_reset_request'), 
+            send_email($params['email'], [
+                'subject' => t('email_subject_password_reset_request'),
                 'body' => link_to('Click', '/password_reset_form.php?key=' . $reset_request_result->password_reset_hash),
                 'name' => $result->name . ' ' . $result->surname
             ]);
@@ -54,6 +54,9 @@ function content($params, $data) { ?>
     <legend><h2><?= t('restore_password') ?></h2></legend>
 
     <?php include 'partials/errors.php'; ?>
+
+    <?= csrf_field() ?>
+
     <input id="email" type="text" name="email" placeholder="<?= t('put_your_email') ?>" value="<?= $params['email'] ?>" autofocus required />
     <input type="submit" value="<?= t('submit') ?>"/>
 

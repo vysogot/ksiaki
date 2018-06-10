@@ -58,6 +58,7 @@ function content($params, $data) { ?>
     <legend><h2><?= t('sign_in') ?></h2></legend>
     <?php include 'partials/errors.php'; ?>
 
+    <?= csrf_field() ?>
     <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" included autofocus />
     <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" included />
     <input type="submit" value="<?= t('log_in') ?>"/>

@@ -273,4 +273,8 @@ $translations = [
   'game_sorcerer_description' => 'Rzucaj w kulki tego samego koloru i zdobywaj punkty. Uważaj, jeśli wpadną do dziury to koniec gry!!',
   'game_pacman_description' => 'Zjadaj kulki i uważaj na duchy!',
 
+  // security
+
+  'invalid_token' => 'Formularz wygasł. Spróbuj jeszcze raz.'
+
 ];
