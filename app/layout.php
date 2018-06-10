@@ -12,10 +12,6 @@
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
 
     <style>
