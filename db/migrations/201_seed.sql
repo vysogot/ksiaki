@@ -21,6 +21,12 @@ VALUES
 (3, 2, 'contest_places_1st_place', 1, 200),
 (4, 2, 'contest_places_2nd_place', 2, 199);
 
+TRUNCATE TABLE `def_hero_file_types`;
+INSERT INTO `def_hero_file_types` (`id`, `name`)
+VALUES
+(1, 'hero_file_type_magazine'),
+(2, 'hero_file_type_wallpaper');
+
 TRUNCATE TABLE `def_pointed_activities`;
 INSERT INTO `def_pointed_activities` (`id`, `name`, `points`)
 VALUES
@@ -142,6 +148,16 @@ VALUES
 (7, 'Safiras', 'safiras', 'Opis Safiras', '/uploads/heroes/heroes-7-avatar.jpg', '/uploads/heroes/heroes-7-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (8, 'Magic Stars', 'magic-safiras', 'Opis Magic Stars', '/uploads/heroes/heroes-8-avatar.jpg', '/uploads/heroes/heroes-8-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (9, 'LEGO Nexo Knights', 'lego-nexo-knights', 'Opis Nexo Knights', '/uploads/heroes/heroes-9-avatar.jpg', '/uploads/heroes/heroes-9-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00');
+
+TRUNCATE TABLE `_hero_files`;
+INSERT INTO `_hero_files` (`id`, `hero_id`, `hero_file_type_id`, `name`, `file_url`)
+VALUES
+(1, 1, 1, 'Tunele z lokatorami', '/uploads/heroes/magazines/scooby-doo-1.jpg'),
+(2, 1, 1, 'Niedzielna wycieczka', '/uploads/heroes/magazines/scooby-doo-2.jpg'),
+(3, 1, 1, 'Afera w archiwum', '/uploads/heroes/magazines/scooby-doo-3.jpg'),
+(4, 1, 2, 'Tapeta 1 1280x1024', '/uploads/heroes/wallpapers/scooby-doo-4.jpg'),
+(5, 1, 2, 'Tapeta 2 1280x1024', '/uploads/heroes/magazines/scooby-doo-5.jpg'),
+(6, 1, 2, 'Tapeta 3 1280x1024', '/uploads/heroes/magazines/scooby-doo-6.jpg');
 
 TRUNCATE TABLE `_contest_prizes`;
 INSERT INTO `_contest_prizes` (`id`, `contest_id`, `name`, `description`, `image_url`)

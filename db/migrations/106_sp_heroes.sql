@@ -36,7 +36,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_heroes_find_by_slug`(IN `p_slug` VARCHAR(255))
 BEGIN
-    SELECT * FROM _heroes
+    SELECT _heroes.* FROM _heroes
     WHERE (slug = p_slug);
 END$$
 DELIMITER ;

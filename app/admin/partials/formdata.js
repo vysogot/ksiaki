@@ -81,6 +81,12 @@ function get_data(myObj) {
         $("#role_id option").removeAttr('selected');
         $('#role_id ').find('option').filter(function(index) { return $(this).val() == ret.role_id; }).prop('selected', true);
 
+        $("#hero_file_type_id option").removeAttr('selected');
+        $('#hero_file_type_id ').find('option').filter(function(index) { return $(this).val() == ret.hero_file_type_id; }).prop('selected', true);
+
+        $("#hero_id option").removeAttr('selected');
+        $('#hero_id ').find('option').filter(function(index) { return $(this).val() == ret.hero_id; }).prop('selected', true);
+
         $('input[name="row_index"]').val($(myObj).data('index'));
         $('#modal').modal('show');
 

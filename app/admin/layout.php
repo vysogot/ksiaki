@@ -82,6 +82,7 @@
             </a>
             <ul class="dropdown-menu">
               <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['class' => 'remote']) ?></li> -->
+              <li><?= link_to(t('hero_files'), '/admin/hero_files/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('back_to_home_page'), '/') ?></li>
             </ul>

@@ -23,6 +23,13 @@ CREATE TABLE IF NOT EXISTS `def_contest_places` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punktacja przyznawana za dane miejsce w zależności od rodzaju konkursu';
 
+/* Hero download types */
+CREATE TABLE IF NOT EXISTS `def_hero_file_types` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Typy plików bohaterów';
+
 /* Odznaki dla graczy za aktywność */
 CREATE TABLE IF NOT EXISTS `def_badges` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -50,6 +57,13 @@ CREATE TABLE IF NOT EXISTS `def_games` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Gry do konkursów';
 
+/* Role użytkowników */
+CREATE TABLE IF NOT EXISTS `def_roles` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Role użytkowników';
+
 /* Tła */
 CREATE TABLE IF NOT EXISTS `_backgrounds` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -58,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
     `link_url` varchar(255),
     `background_color` varchar(255),
     `details_color` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -78,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `_boxes` (
     `name` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -99,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `_slides` (
     `name` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -122,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `_user_movies` (
     `video_url` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -143,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `_video_ads` (
     `video_url` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -171,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
     `gadget_url` VARCHAR(255) NULL DEFAULT NULL,
     `footer_url` VARCHAR(255) NULL DEFAULT NULL,
     `license_description` TEXT NULL,
-    `is_active` TINYINT(1) NULL DEFAULT NULL,
+    `is_active` TINYINT(1) NULL DEFAULT 1,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,
@@ -184,12 +198,14 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Bohaterowie';
 
 /* Pobrania bohaterów */
-CREATE TABLE IF NOT EXISTS `_hero_downloads` (
+CREATE TABLE IF NOT EXISTS `_hero_files` (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `hero_id` INT(10) UNSIGNED NOT NULL,
+    `hero_file_type_id` INT(10) UNSIGNED NOT NULL,
     `name` VARCHAR(255) NULL DEFAULT NULL,
     `description` TEXT NULL,
     `file_url` VARCHAR(255) NULL DEFAULT NULL,
+    `is_active` TINYINT(1) NULL DEFAULT 1,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,
@@ -200,13 +216,6 @@ CREATE TABLE IF NOT EXISTS `_hero_downloads` (
 
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Pliki bohaterów';
-
-/* Role */
-CREATE TABLE IF NOT EXISTS `_roles` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) NOT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Role';
 
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (
@@ -304,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
     `begins_at` datetime,
     `ends_at` datetime,
     `display_ad` tinyint(1) DEFAULT 0,
-    `is_active` tinyint(1) DEFAULT 1,
+    `is_active` tinyint(1) DEFAULT 0,
     `is_ended` tinyint(1) DEFAULT 0,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -374,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `_static_sites` (
     `title` varchar(255),
     `slug` varchar(255),
     `content` text,
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 0,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,

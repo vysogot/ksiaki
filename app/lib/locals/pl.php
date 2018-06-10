@@ -196,6 +196,16 @@ $translations = [
   'to_download' => 'Do pobrania',
   'tv_spot' => 'Spot telewizyjny',
 
+  // hero files
+
+  'hero_files' => 'Pliki bohaterów',
+  'hero_file' => 'Plik bohatera',
+  'file_url' => 'Plik',
+  'hero_name' => 'Nazwa bohatera',
+  'hero_file_type' => 'Rodzaj pliku',
+  'hero_file_type_wallpaper' => 'Tapeta',
+  'hero_file_type_magazine' => 'Aktualności',
+
   // boxes form
   'box' => 'Box',
 
@@ -231,7 +241,7 @@ $translations = [
   // Your account
 
   'your_profile' => 'Twój profil',
-  'your_name' => 'Twój nick',
+  'your_nick' => 'Twój nick',
   'your_email' => 'Twój email',
   'your_role' => 'Twoja rola',
 

@@ -44,6 +44,11 @@
 <body>
   <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
   <div class="modal"><div class="modal-content"><a href="#" class="close">&times;</a><p></p></div></div>
+  <script>
+      $('.modal .close').click(function() {
+        $('.modal').hide();
+      });
+  </script>
   <header>
     <div class="wrapper">
 
