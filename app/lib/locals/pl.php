@@ -50,6 +50,7 @@ $translations = [
   'points' => 'Punkty',
   'points_total' => 'Punkty w tym roku',
   'contest_end' => 'Zakończ',
+  'place' => 'Miejsce',
 
   // downloads
 

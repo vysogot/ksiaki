@@ -3,20 +3,20 @@ DROP PROCEDURE IF EXISTS sp_user_profile;
 DELIMITER //
 CREATE PROCEDURE `sp_user_profile`(IN `p_nick` VARCHAR(50))
 BEGIN
-SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
+SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick) );
 IF (@id != 0) THEN
 
 	DROP TEMPORARY TABLE IF EXISTS tmp_ranking;
-	
-	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+
+	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
 	, user_id INT , nick VARCHAR(50)
 	, points INT
 	);
-	
+
 	CALL sp_rankings_periodic('12', NOW(), @id, 0, 10);
-	
+
 	SET @ranks_id = (SELECT MAX(id) FROM def_ranks WHERE (SELECT points FROM tmp_ranking) >= points_threshold);
-	
+
 	SELECT usr.id
 	, usr.nick
 	, usr.email
@@ -51,13 +51,13 @@ IF (@id != 0) THEN
 	INNER JOIN _contests AS c ON (s.contest_id = c.id)
 	GROUP BY user_id
 	) AS con ON (usr.id = con.user_id)
-	LEFT JOIN 
+	LEFT JOIN
 	(
-	SELECT image_url, title FROM def_ranks WHERE (id = @ranks_id)  
+	SELECT image_url, title FROM def_ranks WHERE (id = @ranks_id)
 	) AS rang ON (1=1)
-	
+
 	WHERE usr.id = @id;
-	
+
 	DROP TEMPORARY TABLE tmp_ranking;
 
 END IF;

@@ -46,7 +46,7 @@ function content($params, $data) { ?>
         <h2 class="center"><?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <?php } ?>
     <div class="side rankings">
-      <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/ranking.php?type=contest&id=' . $data['contest']->id) ?></h2>
+      <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), $GLOBALS['base_url'].'/rankings/index.php?type=contest&date=' . $data['contest']->id) ?></h2>
       <?= ranking_list($data['contest_ranking']) ?>
     </div>
 

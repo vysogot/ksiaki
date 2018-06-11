@@ -106,7 +106,7 @@ function ranking_list($scores) {
 
     foreach($scores as $score) {
         $html .= "<li>" . "$score->place. " . link_to($score->nick, '/profile.php?nick=' . urlencode($score->nick)) .
-            " – $score->points " . t('points') . "</li>";
+            " – $score->points " . "</li>";
     }
 
     return $html . '</ul>';

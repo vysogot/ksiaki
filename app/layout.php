@@ -7,7 +7,13 @@
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
 
-    <script src="/assets/js/min.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--<script src="/assets/js/min.js" type="text/javascript"></script>-->
 
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
@@ -16,7 +22,15 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+
+    <!--<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+
+
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
+
+
 
     <style>
       html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
@@ -24,6 +38,7 @@
       .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
       nav, .ad, .rankings h2, .rankings ul, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
       main { display: block;}
+      .modal {padding-top: 10px !important;}
     </style>
 
     <!-- Google Tag Manager -->
@@ -49,6 +64,7 @@
         $('.modal').hide();
       });
   </script>
+  <div id="modal-ranking"></div>
   <header>
     <div class="wrapper">
 

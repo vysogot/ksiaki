@@ -10,7 +10,17 @@ DROP PROCEDURE IF EXISTS `sp_rankings_yearly_find_by_nick`;
 DELIMITER //
 CREATE PROCEDURE `sp_rankings_contest`(IN `p_contest_id` INT, IN `p_offset` INT, IN `p_limit` INT)
 BEGIN
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
+, user_id INT
+, nick VARCHAR(50)
+, points INT
+);
+
 CALL sp_rankings_score_games('0', NULL, p_contest_id, 0, p_offset, p_limit);
+
+SELECT place, nick, points FROM tmp_ranking;
+
+DROP TEMPORARY TABLE tmp_ranking;
 END//
 DELIMITER ;
 
@@ -21,7 +31,18 @@ CREATE PROCEDURE `sp_rankings_contest_find_by_nick`(IN `p_contest_id` INT, IN `p
 BEGIN
 SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
 IF (@id != 0) THEN
+	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
+	, user_id INT
+	, nick VARCHAR(50)
+	, points INT
+	);
+
 	CALL sp_rankings_score_games('1', '', p_contest_id, @id, 0, 10);
+
+	SELECT place, nick, points FROM tmp_ranking;
+
+	DROP TEMPORARY TABLE tmp_ranking;
+
 END IF;
 END//
 DELIMITER ;
@@ -31,7 +52,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_rankings_monthly`(IN `p_date` DATE, IN `p_offset` INT, IN `p_limit` INT)
 BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
 , user_id INT
 , nick VARCHAR(50)
 , points INT
@@ -39,7 +60,7 @@ CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
 
 CALL sp_rankings_periodic('1', p_date, 0, p_offset, p_limit);
 
-SELECT place, user_id, nick, points FROM tmp_ranking;
+SELECT place, nick, points FROM tmp_ranking;
 
 DROP TEMPORARY TABLE tmp_ranking;
 END//
@@ -52,16 +73,16 @@ CREATE PROCEDURE `sp_rankings_monthly_find_by_nick`(IN `p_date` DATE, IN `p_nick
 BEGIN
 SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
 IF (@id != 0) THEN
-	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
 	, user_id INT
 	, nick VARCHAR(50)
 	, points INT
 	);
-	
+
 	CALL sp_rankings_periodic('1', p_date, @id, 0, 10);
-	
-	SELECT place, user_id, nick, points FROM tmp_ranking;
-	
+
+	SELECT place, nick, points FROM tmp_ranking;
+
 	DROP TEMPORARY TABLE tmp_ranking;
 
 END IF;
@@ -76,7 +97,7 @@ BEGIN
 SET @inter_val:= p_interval;
 SET @date_start = p_date;
 SET @offset_rows:= p_offset + 1;
-SET @limit_rows:= CASE WHEN (@name = '') THEN (p_limit + p_offset) ELSE 2000000 END;
+SET @limit_rows:= CASE WHEN (p_id = 0) THEN (p_limit + p_offset) ELSE 2000000 END;
 SET @date_start = CASE WHEN (@inter_val=12) THEN DATE_ADD(DATE_ADD(MAKEDATE(YEAR(@date_start)-1, 1), INTERVAL 9 MONTH), INTERVAL (1)-1 DAY) ELSE @date_start END;
 SET @date_end = LAST_DAY(DATE_ADD(@date_start, INTERVAL @inter_val-1 MONTH));
 SET @row_number = 0;
@@ -136,6 +157,7 @@ SET @date_end =
 	END;
 SET @row_number = 0;
 
+INSERT INTO tmp_ranking
 SELECT rnk.place
 , rnk.user_id
 , usr.nick
@@ -173,15 +195,15 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `sp_rankings_yearly`(IN `p_date` DATE, IN `p_offset` INT, IN `p_limit` INT)
 BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
 , user_id INT
 , nick VARCHAR(50)
 , points INT
 );
 
-CALL sp_rankings_periodic('12', p_date, 0, 0, 10);
+CALL sp_rankings_periodic('12', p_date, 0, p_offset, p_limit);
 
-SELECT place, user_id, nick, points FROM tmp_ranking;
+SELECT place, nick, points FROM tmp_ranking;
 
 DROP TEMPORARY TABLE tmp_ranking;
 
@@ -196,16 +218,16 @@ BEGIN
 SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
 IF (@id != 0) THEN
 
-	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT 
+	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
 	, user_id INT
 	, nick VARCHAR(50)
 	, points INT
 	);
-	
+
 	CALL sp_rankings_periodic('12', p_date, @id, 0, 10);
-	
-	SELECT place, user_id, nick, points FROM tmp_ranking;
-	
+
+	SELECT place, nick, points FROM tmp_ranking;
+
 	DROP TEMPORARY TABLE tmp_ranking;
 
 END IF;

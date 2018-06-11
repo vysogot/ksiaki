@@ -36,7 +36,7 @@ video { max-width: 100%; background: white; }
 
 .sky-banner { display:inline-block; width: 232px; height: 600px; float: left;  text-align: center; }
 .sky-banner#index { padding-top: 70px; }
-.sky-banner img { margin-bottom: 10px; } 
+.sky-banner img { margin-bottom: 10px; }
 
 #slajder      { width: 474px; height: 289px; margin-right: 12px; overflow-y: hidden; }
 #player       { width: 474px; height: 289px; }
@@ -133,7 +133,7 @@ ul.bare li.right { float: right; }
     border: 2px solid #e7e7e7;
     margin: 20px auto;
     padding: 15px;
-    width: 436px;
+    width: 390px;
     display: block;
     border-radius: 3px;
     font-size: 18px;
@@ -202,7 +202,7 @@ ul.bare li.right { float: right; }
 }
 
 .vertical-form .agreement label {
-    color: #999; 
+    color: #999;
 }
 
 /* MODAL */

@@ -652,11 +652,11 @@ Fax.: +48 22 870 75 51</p>
 TRUNCATE TABLE `score_pointed_activities`;
 INSERT INTO `score_pointed_activities` (`id`, `user_id`, `activity_id`, `points`, `given_at`)
 VALUES
-(1, 1, 1, 5, '2018-01-31 00:00:00'),
-(2, 1, 2, 1, '2018-02-01 00:00:00'),
-(3, 2, 3, 5, '2018-01-31 00:00:00'),
-(4, 2, 4, 5, '2018-01-31 00:00:00'),
-(5, 2, 5, 1, '2018-01-31 00:00:00');
+(1, 1, 1, 5, '2018-06-01 00:00:00'),
+(2, 1, 2, 1, '2018-06-01 00:00:00'),
+(3, 2, 3, 5, '2018-06-30 00:00:00'),
+(4, 2, 4, 5, '2018-06-30 00:00:00'),
+(5, 2, 5, 1, '2018-06-30 00:00:00');
 
 TRUNCATE TABLE `score_games`;
 INSERT INTO `score_games` (`id`, `user_id`, `contest_id`, `level`, `begins_at`, `ends_at`, `points`, `points_total`) VALUES
