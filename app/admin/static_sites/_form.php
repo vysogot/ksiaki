@@ -1,30 +1,68 @@
-<?php include '../../partials/errors.php'; ?>
+<form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
-<form id="static_site" action="<?= $params['form_action'] ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="">
+    <input type="hidden" name="row_index" value="">
+    <input type="hidden" name="is_active">
 
-  <input type="hidden" name="id" value="<?= $data->id ?>" />
+    <div class="col-sm-12">
+        <div class="modal-body">
 
-  <div>
-    <label for="title"><?= t('static_site_title') ?></label>
-    <input id="title" name="title" type="text" value="<?= $data->title ?>">
-  </div>
+            <div class="col-sm-6">
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="title">
+                        <?= t('title') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="title" name="title" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
 
-  <div>
-    <label for="slug"><?= t('slug') ?></label>
-    <input id="slug" name="slug" type="text" value="<?= $data->slug ?>">
-  </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="slug">
+                        <?= t('slug') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="slug" name="slug" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
 
-  <div>
-    <label for="content"><?= t('content') ?></label>
-    <textarea id="content" name="content" type="text"><?= $data->content ?>"</textarea>
-  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="is_active_check">
+                        <?= t('is_active') ?>
+                    </label>
+                    <input id="is_active_check" class="form-check-input" type="checkbox">
+                </div>
 
-  <div>
-    <label for="is_active"><?= t('is_active') ?></label>
-    <input type="hidden" name="is_active" value="0">
-    <input id="is_active" type="checkstatic_site" name="is_active" value="1" <?php if ($data->is_active == 1) echo "checked" ?> >
-  </div>
+            </div>
 
+            <div class="col-sm-12">
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-2" for="content">
+                        <?= t('content') ?>
+                    </label>
+                    <div class="col-sm-10">
+                        <textarea id="content" name="content" style="width:100%; height: 300px;"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer clear">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                <?= t('close') ?>
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <?= t('save') ?>
+            </button>
+        </div>
+    </div>
 </form>
-
-<button type="submit" form="static_site" value="Wyślij">Wyślij</button>

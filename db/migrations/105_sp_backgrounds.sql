@@ -49,12 +49,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_backgrounds_all`(IN `p_id` INT
-  , IN `p_name` VARCHAR(255)
-	, IN `p_link_url` VARCHAR(50)
-	, IN `p_offset` INT
-	, IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_backgrounds_all`()
 BEGIN
 SELECT id
 , name
@@ -66,12 +61,7 @@ SELECT id
 , DATE_FORMAT(begins_at,'%Y-%m-%d %H:%i') AS begins_at
 , DATE_FORMAT(ends_at,'%Y-%m-%d %H:%i') AS ends_at
 FROM _backgrounds
-WHERE (marked_as_deleted_at IS NULL)
-AND id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
-AND link_url LIKE CASE WHEN p_link_url IS NULL THEN link_url ELSE '%p_link_url%' END
-LIMIT p_limit
-OFFSET p_offset;
+WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -85,7 +75,7 @@ CREATE PROCEDURE `sp_backgrounds_create`(
 	IN `p_is_active` INT,
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
-  IN `user_id` INT
+  IN `p_user_id` INT
 )
 BEGIN
 	INSERT INTO _backgrounds(
@@ -97,7 +87,8 @@ BEGIN
     , is_active
     , begins_at
     , ends_at
-    , user_id
+    , created_by
+    , created_at
 	) VALUES(
 		p_name,
 		p_image_url,
@@ -107,7 +98,8 @@ BEGIN
 		p_is_active,
 		p_begins_at,
 		p_ends_at,
-    p_user_id
+    p_user_id,
+    NOW()
 	);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END$$
@@ -139,17 +131,9 @@ SET name = p_name
   , updated_by = p_user_id
 	, updated_at = NOW()
 WHERE (id = p_id);
-SELECT id
-, name
-, image_url
-, link_url
-, background_color
-, details_color
-, is_active
-, DATE_FORMAT(begins_at,'%Y-%m-%d %H:%i') AS begins_at
-, DATE_FORMAT(ends_at,'%Y-%m-%d %H:%i') AS ends_at
-FROM _backgrounds
-WHERE (id = p_id);
+
+CALL `sp_backgrounds_find`(p_id);
+
 END$$
 DELIMITER ;
 

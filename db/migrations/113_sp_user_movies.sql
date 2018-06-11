@@ -21,9 +21,9 @@ DELIMITER $$
 CREATE PROCEDURE `sp_user_movies_new`()
 BEGIN
     SELECT 0 AS id
-    , 0 AS user_id 
+    , 0 AS user_id
     , '' AS name
-    , '' AS description 
+    , '' AS description
     , '/uploads/user_movie-1.mp4' AS video_url
     , '/uploads/user_movie-1.jpg' AS image_url
     , 'https://konkursiaki.pl' AS link_url
@@ -39,7 +39,7 @@ BEGIN
     SELECT id
     , _user_movies.user_id
     , name
-    , description 
+    , description
     , video_url
     , image_url
     , link_url
@@ -54,12 +54,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_user_movies_all`(IN `p_id` INT
-    , IN `p_name` VARCHAR(255)
-    , IN `p_link_url` VARCHAR(50)
-    , IN `p_offset` INT
-    , IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_user_movies_all`()
 BEGIN
     SELECT id
     , user_id
@@ -72,18 +67,12 @@ BEGIN
     , begins_at
     , ends_at
     FROM _user_movies
-    WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-    AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
-    AND link_url LIKE CASE WHEN p_link_url IS NULL THEN link_url ELSE '%p_link_url%' END
-    LIMIT p_limit
-    OFFSET p_offset;
+    WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_user_movies_sorted_by_likes`(IN `p_offset` INT
-    , IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_user_movies_sorted_by_likes`()
 BEGIN
     SELECT id
     , user_id
@@ -99,9 +88,7 @@ BEGIN
         FROM _user_movies_likes
         GROUP BY user_movie_id
     ) AS movies_likes ON (movies.id = movies_likes.user_movie_id)
-    ORDER BY IFNULL(movies_likes.likes, 0) DESC
-    LIMIT p_limit
-    OFFSET p_offset;
+    ORDER BY IFNULL(movies_likes.likes, 0) DESC;
 END$$
 DELIMITER ;
 
@@ -122,7 +109,7 @@ BEGIN
     INSERT INTO _user_movies(
         user_id
         , name
-        , description 
+        , description
         , video_url
         , image_url
         , link_url
@@ -169,17 +156,26 @@ BEGIN
     , begins_at = p_begins_at
     , ends_at = p_ends_at
     WHERE (id = p_id);
-    SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+
+    CALL `sp_user_movies_find`(p_id);
+
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_user_movies_delete`(IN `p_id` INT)
+CREATE PROCEDURE `sp_user_movies_delete`(
+    IN `p_id` INT
+    , IN `p_user_id` INT
+)
 BEGIN
-    DELETE FROM _user_movies
-    WHERE (id = p_id)
-    LIMIT 1;
+
+    UPDATE _user_movies
+    SET marked_as_deleted_at = NOW()
+    , marked_as_deleted_by = p_user_id
+    WHERE (id = p_id);
+
     SELECT ROW_COUNT() AS rowCount;
+
 END$$
 DELIMITER ;
 

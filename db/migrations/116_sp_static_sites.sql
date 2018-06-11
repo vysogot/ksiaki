@@ -9,7 +9,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_static_sites_new`()
 BEGIN
     SELECT 0 AS id
-    , '' AS title 
+    , '' AS title
     , '/uploads/static_site-1.jpg' AS slug
     , 'https://konkursiaki.pl' AS content
     , 1 AS is_active;
@@ -43,14 +43,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_static_sites_all`(IN `p_id` INT
-    , IN `p_title` VARCHAR(255)
-    , IN `p_slug` VARCHAR(255)
-    , IN `p_content` VARCHAR(50)
-    , IN `p_is_active` INT
-    , IN `p_offset` INT
-    , IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_static_sites_all`()
 BEGIN
     SELECT id
     , title
@@ -58,12 +51,7 @@ BEGIN
     , content
     , is_active
     FROM _static_sites
-    WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-    AND title LIKE CASE WHEN p_title IS NULL THEN title ELSE '%title%' END
-    AND content LIKE CASE WHEN p_content IS NULL THEN content ELSE '%p_content%' END
-    AND is_active LIKE CASE WHEN p_is_active IS NULL THEN is_active ELSE p_is_active END
-    LIMIT p_limit
-    OFFSET p_offset;
+    WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -105,17 +93,26 @@ BEGIN
     , content = p_content
     , is_active = p_is_active
     WHERE (id = p_id);
-    SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+
+    CALL `sp_static_sites_find`(p_id);
+
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_static_sites_delete`(IN `p_id` INT)
+CREATE PROCEDURE `sp_static_sites_delete`(
+    IN `p_id` INT
+    , IN `p_user_id` INT
+)
 BEGIN
-    DELETE FROM _static_sites
-    WHERE (id = p_id)
-    LIMIT 1;
+
+    UPDATE _static_sites
+    SET marked_as_deleted_at = NOW()
+    , marked_as_deleted_by = p_user_id
+    WHERE (id = p_id);
+
     SELECT ROW_COUNT() AS rowCount;
+
 END$$
 DELIMITER ;
 

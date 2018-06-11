@@ -2,6 +2,6 @@
 
 include '../init.php';
 
-$data = execute('call sp_heroes_new();', []);
+$result = execute('call sp_heroes_new();', []);
 
-send_json($data);
+send_json($result);

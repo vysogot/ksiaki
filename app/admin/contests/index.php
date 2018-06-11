@@ -2,44 +2,36 @@
 
 include '../init.php';
 
-$params = [
-  "id" => null,
-  "name" => null,
-  "offset" => 0,
-  "limit" => 50
+$data['title'] = 'contests';
+$data['column_names'] = [
+    'id',
+    'box_url',
+    'name',
+    'game_name',
+    'contest_type_name',
+    'begins_at',
+    'ends_at',
+    'is_active',
+    'is_ended'
 ];
 
-$params = array_merge($params, $_GET);
+?>
 
-$data = execute('call sp_contests_all(
-  :p_id,
-  :p_name,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', $params['id'], PDO::PARAM_INT),
-  array('p_name', $params['name'], PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+<?php function content($params, $data) { ?>
 
-function content($params, $data) { ?>
+  <?php include '../partials/modal_form.php'; ?>
+  <?php include '../partials/datatable_view.php'; ?>
 
-<div class="wrapper">
-  <h2><?= t('contests') ?></h2>
-  <p><?= link_to(t('add_new'), 'new.php') ?></p>
-  <table>
-    <?php foreach($data as $contest) { ?>
-      <tr>
-        <td><?= e($contest->name) ?></td>
-        <td><?= link_to(t('show'), "show.php?id=$contest->id") ?></td>
-        <td><?= link_to(t('edit'), "edit.php?id=$contest->id") ?></td>
-        <td><?= link_to(t('delete'), "delete.php?id=$contest->id", ['class' => 'confirmation']) ?></td>
-      </tr>
-    <?php } ?>
-  </table>
-</div>
+  <script type="text/javascript">
+  <?php include "../partials/formdata.js"; ?>
+  <?php include "datatable.js"; ?>
+  <?php include "actions.js"; ?>
+  </script>
 
 <?php }
 
-include '../layout.php';
+if ($xhr) {
+  content($params, $data);
+} else {
+  include '../layout.php';
+} ?>

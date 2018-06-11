@@ -10,7 +10,7 @@ $params = [
     'nick' => null,
     'email' => null,
     'gender' => null,
-    'name' => null, 
+    'name' => null,
     'surname' => null,
     'address' => null,
     'postcode' => null,
@@ -19,7 +19,7 @@ $params = [
     'marketing_agreement' => null,
     'notifications_agreement' => null,
     'statute_agreement' => null,
-    'email' => null, 
+    'email' => null,
     'password_hash' => null
 ];
 
@@ -71,7 +71,7 @@ if ($post) {
             :p_nick,
             :p_email,
             :p_gender,
-            :p_name, 
+            :p_name,
             :p_surname,
             :p_address,
             :p_postcode,
@@ -109,16 +109,16 @@ if ($post) {
 
             flash('notice', t('registration_success'));
 
-            send_email($params['email'], [ 
-                'subject' => t('email_subject_registration'), 
+            send_email($params['email'], [
+                'subject' => t('email_subject_registration'),
                 'body' => link_to('Click', '/activate.php?key=' . $result->activation_hash),
                 'name' => $params['name'] . ' ' . $params['surname']
             ]);
 
             if ($params['caretaker_email']) {
 
-                send_email($params['caretaker_email'], [ 
-                    'subject' => t('email_subject_caretaker_registration'), 
+                send_email($params['caretaker_email'], [
+                    'subject' => t('email_subject_caretaker_registration'),
                     'body' => link_to('Click', '/caretaker_activate.php?key=' . $result->caretaker_activation_hash),
                     'name' => $params['caretaker_name'] . ' ' . $params['caretaker_surname']
                 ]);
@@ -151,6 +151,8 @@ function content($params, $data) { ?>
         <legend><h2><?= t('register') ?></h2></legend>
 
         <?php include 'partials/errors.php'; ?>
+
+        <?= csrf_field() ?>
 
         <input id="birthday" type="text" placeholder="<?= t('birthday') ?>" name="birthday" value="<?= $params['birthday'] ?>" required />
 
@@ -224,12 +226,12 @@ function content($params, $data) { ?>
                 var today = new Date();
                 var back18years = today.setFullYear(today.getFullYear() - 18);
                 if (birthday > back18years) {
-                    $('#caretaker_fields').removeClass('hidden'); 
+                    $('#caretaker_fields').removeClass('hidden');
                     $("#caretaker_name").prop('required', true);
                     $("#caretaker_surname").prop('required', true);
                     $("#caretaker_email").prop('required', true);
                 } else {
-                    $('#caretaker_fields').addClass('hidden'); 
+                    $('#caretaker_fields').addClass('hidden');
                     $("#caretaker_name").prop('required', false);
                     $("#caretaker_surname").prop('required', false);
                     $("#caretaker_email").prop('required', false);
@@ -248,8 +250,8 @@ function content($params, $data) { ?>
 
 
         $("#birthday").on('change', function() {
-            toggle_caretaker_fields(); 
-        }); 
+            toggle_caretaker_fields();
+        });
     });
 </script>
 

@@ -2,20 +2,16 @@
 <!doctype html>
 <html>
 <head>
-    <title><?= t('title') ?></title>
+    <title><?= t('website_title') ?></title>
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
-    
+
     <script src="/assets/js/min.js" type="text/javascript"></script>
-    
+
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
-    
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
+
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
 
     <style>
@@ -44,6 +40,11 @@
 <body>
   <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
   <div class="modal"><div class="modal-content"><a href="#" class="close">&times;</a><p></p></div></div>
+  <script>
+      $('.modal .close').click(function() {
+        $('.modal').hide();
+      });
+  </script>
   <header>
     <div class="wrapper">
 

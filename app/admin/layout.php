@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title><?= t('title') ?></title>
+    <title><?= t('website_title') ?></title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
 
@@ -15,6 +15,9 @@
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.16/features/mark.js/datatables.mark.min.js"></script>
 
 
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -43,38 +46,45 @@
       #dataTable .links { white-space: nowrap; text-align: center; }
       #dataTable .links a { margin-right: 15px; }
       .table-vcenter td { vertical-align: middle !important;}
+      .wrapper { z-index: unset!important; }
       .wrapper h4 {margin-top: 15px;}
       .modal {padding-top: 10px !important;}
       .modal-dialog {width: 70%;}
       #is_active_check {margin: 13px 0 0;}
+      input.error { background: #FDD; }
+      textarea { margin: auto; width: 100%; height: 10em; }
+      mark {background: orange;color: black;}
+      a[disabled="disabled"] {pointer-events: none;}
+      a[disabled="disabled"] > .fas {opacity: 0.5;}
     </style>
 </head>
 <body>
     <header>
       <nav class="navbar navbar-default center">
       <div class="navbar-header">
-        <a class="navbar-brand" href="//konkursiaki.pl">
+        <a class="navbar-brand" href="/">
           <img height=75 src="/assets/images/logo.png" alt="logo">
         </a>
       </div>
       <div>
-        <ul  class="nav navbar-nav">
-          <li><?= link_to(t('home_page'), '/') ?></li>
-          <li><?= link_to(t('users'), '/admin/users/') ?></li>
-          <li><?= link_to(t('contests'), '/admin/contests/') ?></li>
-          <li><?= link_to(t('heroes'), '/admin/heroes/') ?></li>
+        <ul class="nav navbar-nav">
+          <li><?= link_to(t('users'), '/admin/users/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('contests'), '/admin/contests/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('heroes'), '/admin/heroes/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('backgrounds'), '/admin/backgrounds/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('boxes'), '/admin/boxes/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('slides'), '/admin/slides/', ['class' => 'remote']) ?></li>
+          <li><?= link_to(t('video_ads'), '/admin/video_ads/', ['class' => 'remote']) ?></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               <?= t('admin_menu_other_items') ?>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><?= link_to(t('backgrounds'), '/admin/backgrounds/') ?></li>
-              <li><?= link_to(t('slides'), '/admin/slides/') ?></li>
-              <li><?= link_to(t('video_ads'), '/admin/video_ads/') ?></li>
-              <li><?= link_to(t('boxes'), '/admin/boxes/') ?></li>
-              <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/') ?></li> -->
-              <li><?= link_to(t('static_sites'), '/admin/static_sites/') ?></li>
+              <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['class' => 'remote']) ?></li> -->
+              <li><?= link_to(t('hero_files'), '/admin/hero_files/', ['class' => 'remote']) ?></li>
+              <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['class' => 'remote']) ?></li>
+              <li><?= link_to(t('back_to_home_page'), '/') ?></li>
             </ul>
           </li>
           <li class="right"><?= link_to(t('logout'), '/logout.php') ?></li>
@@ -108,6 +118,17 @@
         $( document ).tooltip();
 
       });
+
+    </script>
+
+    <script>
+
+    $('a.remote').click(function(event) {
+        event.preventDefault();
+
+        $('main').load($(this).attr('href'));
+        window.history.pushState($(this).attr('href'), $(this).attr('href'), $(this).attr('href'));
+    });
 
     </script>
 

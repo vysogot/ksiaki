@@ -2,6 +2,6 @@
 
 include '../init.php';
 
-$data = execute('call sp_users_new();', []);
+$result = execute('call sp_users_new();', []);
 
-send_json($data);
+send_json($result);

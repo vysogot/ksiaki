@@ -21,6 +21,12 @@ VALUES
 (3, 2, 'contest_places_1st_place', 1, 200),
 (4, 2, 'contest_places_2nd_place', 2, 199);
 
+TRUNCATE TABLE `def_hero_file_types`;
+INSERT INTO `def_hero_file_types` (`id`, `name`)
+VALUES
+(1, 'hero_file_type_magazine'),
+(2, 'hero_file_type_wallpaper');
+
 TRUNCATE TABLE `def_pointed_activities`;
 INSERT INTO `def_pointed_activities` (`id`, `name`, `points`)
 VALUES
@@ -69,15 +75,15 @@ VALUES
 (2, 'Jaskiniowiec', '/uploads/backgrounds/background-2.jpg', 'http://wp.pl', 'black', 'white', 0, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
 
 TRUNCATE TABLE `_slides`;
-INSERT INTO `_slides` (`id`, `name`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
-VALUES 
+INSERT INTO `_slides` (`id`, `name`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`)
+VALUES
 (1, 'Slajd 1', '/uploads/slides/slide-1.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-09-20 00:00:00'),
 (2, 'Slajd 2', '/uploads/slides/slide-2.jpg', 'http://konkursiaki.pl', 1, '2028-02-02 00:00:00', '2028-09-20 00:00:00'),
 (3, 'Slajd 3', '/uploads/slides/slide-3.jpg', 'http://konkursiaki.pl', 1, '2038-02-02 00:00:00', '2038-09-20 00:00:00');
 
 TRUNCATE TABLE `_user_movies`;
-INSERT INTO `_user_movies` (`id`, `user_id`, `name`, `description`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
-VALUES 
+INSERT INTO `_user_movies` (`id`, `user_id`, `name`, `description`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`)
+VALUES
 (1, 1, 'User video 1', 'description', '/uploads/user_movies/user_movies/movie-1.mov', '/uploads/user_movie-1.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (2, 2, 'User video 2', 'description', '/uploads/user_movies/user_movies/movie-2.mov', '/uploads/user_movie-2.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (3, 2, 'User video 3', 'description', '/uploads/user_movies/user_movies/movie-1.mov', '/uploads/user_movie-3.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
@@ -90,8 +96,8 @@ INSERT INTO `_user_movies_likes` (`user_id`, `user_movie_id`)
 VALUES (1, 4), (2, 4), (1, 3), (2, 1);
 
 TRUNCATE TABLE `_video_ads`;
-INSERT INTO `_video_ads` (`id`, `name`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`) 
-VALUES 
+INSERT INTO `_video_ads` (`id`, `name`, `video_url`, `image_url`, `link_url`, `is_active`, `begins_at`, `ends_at`)
+VALUES
 (1, 'Video ad 1', '/uploads/videos/movie-1.mov', '/uploads/videos/movie-cta.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00'),
 (2, 'Video ad 2', '/uploads/videos/movie-2.mov', '/uploads/videos/movie-cta.jpg', 'http://konkursiaki.pl', 1, '2018-02-02 00:00:00', '2018-02-20 00:00:00');
 
@@ -106,14 +112,14 @@ VALUES
 (6, 'Szósty box', '/uploads/boxes/box-2.jpg', 'http://wp.pl', 1, '2018-09-30 00:00:00', '2019-09-30 00:00:00', '2006-09-30 00:00:00', '2008-09-30 00:00:00');
 
 TRUNCATE TABLE `_contests`;
-INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `description`, `box_url`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
+INSERT INTO `_contests` (`id`, `game_id`, `contest_type_id`, `name`, `slug`, `description`, `box_url`, `header_url`, `begins_at`, `ends_at`, `display_ad`)
 VALUES
-(1, 1, 2, 'Jaskiniowiec', 'Niesamowity konkurs!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(2, 2, 1, 'Ptaszki i pieski', 'Nowe nagrody!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(3, 1, 2, 'Mistrz Pola', 'Zgarnij klocki LEGO!', '/uploads/contests/box-3.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(4, 2, 1, 'Faraon Kontratakuje', 'Szał piórników!', '/uploads/contests/box-4.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(5, 1, 2, 'Kulki Fulki', 'Ekstra zabawa!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
-(6, 2, 1, 'Paramemnon', 'Moc!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
+(1, 1, 2, 'Jaskiniowiec', 'jaskiniowiec', 'Niesamowity konkurs!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(2, 2, 1, 'Ptaszki i pieski', 'ptaszki-i-pieski', 'Nowe nagrody!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(3, 1, 2, 'Mistrz Pola', 'mistrz-pola', 'Zgarnij klocki LEGO!', '/uploads/contests/box-3.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(4, 2, 1, 'Faraon Kontratakuje', 'faraon-kontratakuje', 'Szał piórników!', '/uploads/contests/box-4.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(5, 1, 2, 'Kulki Fulki', 'kluki-fulki', 'Ekstra zabawa!', '/uploads/contests/box-2.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0),
+(6, 2, 1, 'Paramemnon', 'paramemnon', 'Moc!', '/uploads/contests/box-1.jpg', '/uploads/contests/contest-banner.jpg', '2018-01-31 00:00:00', '2018-02-28 00:00:00', 0);
 
 TRUNCATE TABLE `_notifications`;
 INSERT INTO `_notifications` (`id`, `title`, `content`)
@@ -142,6 +148,16 @@ VALUES
 (7, 'Safiras', 'safiras', 'Opis Safiras', '/uploads/heroes/heroes-7-avatar.jpg', '/uploads/heroes/heroes-7-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (8, 'Magic Stars', 'magic-safiras', 'Opis Magic Stars', '/uploads/heroes/heroes-8-avatar.jpg', '/uploads/heroes/heroes-8-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00'),
 (9, 'LEGO Nexo Knights', 'lego-nexo-knights', 'Opis Nexo Knights', '/uploads/heroes/heroes-9-avatar.jpg', '/uploads/heroes/heroes-9-header.jpg', TRUE, '2018-01-31 00:00:00', '2018-01-31 00:00:00');
+
+TRUNCATE TABLE `_hero_files`;
+INSERT INTO `_hero_files` (`id`, `hero_id`, `hero_file_type_id`, `name`, `file_url`)
+VALUES
+(1, 1, 1, 'Tunele z lokatorami', '/uploads/heroes/magazines/scooby-doo-1.jpg'),
+(2, 1, 1, 'Niedzielna wycieczka', '/uploads/heroes/magazines/scooby-doo-2.jpg'),
+(3, 1, 1, 'Afera w archiwum', '/uploads/heroes/magazines/scooby-doo-3.jpg'),
+(4, 1, 2, 'Tapeta 1 1280x1024', '/uploads/heroes/wallpapers/scooby-doo-4.jpg'),
+(5, 1, 2, 'Tapeta 2 1280x1024', '/uploads/heroes/magazines/scooby-doo-5.jpg'),
+(6, 1, 2, 'Tapeta 3 1280x1024', '/uploads/heroes/magazines/scooby-doo-6.jpg');
 
 TRUNCATE TABLE `_contest_prizes`;
 INSERT INTO `_contest_prizes` (`id`, `contest_id`, `name`, `description`, `image_url`)
@@ -975,9 +991,11 @@ INSERT INTO `def_contest_places` (`id`, `contest_type_id`, `name`, `place`, `poi
 
 
 TRUNCATE TABLE `score_contests`;
-CALL `sp_contests_ending`(1);
-CALL `sp_contests_ending`(2);
-CALL `sp_contests_ending`(3);
+/*
+CALL `sp_contests_ending`(1,1);
+CALL `sp_contests_ending`(2,1);
+CALL `sp_contests_ending`(3,1);
+*/
 
 TRUNCATE TABLE _user_badges;
 INSERT INTO `_user_badges` (`id`, `user_id`, `badge_id`, `given_at`) VALUES

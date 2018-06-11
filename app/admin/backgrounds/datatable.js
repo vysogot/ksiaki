@@ -1,10 +1,10 @@
 $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
-        "ajax": { "url": "datatable.php" },
+        "ajax": { "url": "/admin/backgrounds/datatable.php" },
         "columns": [
             { "data": "id" },
-            { 
-                "data": "image_url", 
+            {
+                "data": "image_url",
                 "render": function (data) {
                     return '<img height=75px src="' + data + '" title="' + data.substr(data.lastIndexOf('/')+1) + '">';
                 },
@@ -16,10 +16,10 @@ $(document).ready(function() {
             { "data": "details_color" },
             { "data": "begins_at" },
             { "data": "ends_at" },
-            { 
-                "data": "is_active", 
+            {
+                "data": "is_active",
                 "className": "center",
-                "render": 
+                "render":
                 function (data) {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
@@ -36,18 +36,22 @@ $(document).ready(function() {
             "data": null,
             "orderable": false,
             "className": "links",
-            "render": function (data, type, row, meta) { 
+            "render": function (data, type, row, meta) {
                 return set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', "") +
                     set_button("fEdit(this)", meta.row, row, t_edit, 'fa-edit', "") +
-                    set_button("fDelete(this)", meta.row, row, t_delete, 'fa-trash-alt', ""); 
+                    set_button("fDelete(this)", meta.row, row, t_delete, 'fa-trash-alt', "");
             }
         }],
 
         "order": [1, 'desc'],
 
         "stateSave": true,
-        "stateSaveParams": function (oSettings, oData) { localStorage.setItem( window.location.pathname, JSON.stringify(oData) ); },
-        "stateLoadParams": function (oSettings) { return JSON.parse( localStorage.getItem(window.location.pathname) ); },
+        "stateSaveParams": function (oSettings, oData) {
+            localStorage.setItem( window.location.pathname, JSON.stringify(oData) );
+        },
+        "stateLoadParams": function (oSettings) {
+            return JSON.parse( localStorage.getItem(window.location.pathname) );
+        },
     });
-    console.log(oTable);
+
 });

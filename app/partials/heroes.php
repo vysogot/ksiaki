@@ -1,16 +1,6 @@
 <?php
 
-$heroes = execute('call sp_heroes_all(
-  :p_id,
-  :p_name,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', NULL, PDO::PARAM_INT),
-  array('p_name', NULL, PDO::PARAM_STR),
-  array('p_offset', 0, PDO::PARAM_INT),
-  array('p_limit', 50, PDO::PARAM_INT)
-), true);
+$heroes = execute('call sp_heroes_all();', [], true);
 
 ?>
 

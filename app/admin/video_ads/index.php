@@ -2,53 +2,35 @@
 
 include '../init.php';
 
-$params = [
-  "id" => null,
-  "name" => null,
-  "link_url" => null,
-  "offset" => 0,
-  "limit" => 50
+$data['title'] = 'video_ads';
+$data['column_names'] = [
+    'id',
+    'image_url',
+    'name',
+    'link_url',
+    'begins_at',
+    'ends_at',
+    'is_active'
 ];
 
-$params = array_merge($params, $_GET);
+?>
 
-$data = execute('call sp_video_ads_all(
-  :p_id,
-  :p_name,
-  :p_link_url,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', $params['id'], PDO::PARAM_INT),
-  array('p_name', $params['name'], PDO::PARAM_STR),
-  array('p_link_url', $params['link_url'], PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+<?php function content($params, $data) { ?>
 
-function content($params, $data) { ?>
+  <?php include '../partials/modal_form.php'; ?>
+  <?php include '../partials/modal_image.php'; ?>
+  <?php include '../partials/datatable_view.php'; ?>
 
-<div class="wrapper">
-  <h2><?= t('video_ads') ?></h2>
-  <p><?= link_to(t('add_new'), 'new.php') ?></p>
-  <table>
-    <?php foreach($data as $video_ad) { ?>
-      <tr>
-        <td><img height=75 src="<?= e($video_ad->image_url) ?>" /></td>
-        <td><?= e($video_ad->name) ?></td>
-        <td><?= e($video_ad->image_url) ?></td>
-        <td><?= e($video_ad->link_url) ?></td>
-        <td><?= e($video_ad->begins_at) ?></td>
-        <td><?= e($video_ad->ends_at) ?></td>
-        <td><?= e($video_ad->is_active) ?></td>
-        <td><?= link_to(t('show'), "show.php?id=$video_ad->id") ?></td>
-        <td><?= link_to(t('edit'), "edit.php?id=$video_ad->id") ?></td>
-        <td><?= link_to(t('delete'), "delete.php?id=$video_ad->id", ['class' => 'confirmation']) ?></td>
-      </tr>
-    <?php } ?>
-  </table>
-</div>
+  <script type="text/javascript">
+  <?php include "../partials/formdata.js"; ?>
+  <?php include "datatable.js"; ?>
+  <?php include "actions.js"; ?>
+  </script>
 
 <?php }
 
-include '../layout.php';
+if ($xhr) {
+  content($params, $data);
+} else {
+  include '../layout.php';
+} ?>

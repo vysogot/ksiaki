@@ -3,8 +3,6 @@
 include 'init.php';
 
 $params = [
-  "id" => null,
-  "name" => null,
   "offset" => 0,
   "limit" => 50,
   "month" => date('Y-m-01'),
@@ -13,17 +11,7 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data['contests'] = execute('call sp_contests_all(
-  :p_id,
-  :p_name,
-  :p_offset,
-  :p_limit
-);', array(
-  array('p_id', $params['id'], PDO::PARAM_INT),
-  array('p_name', $params['name'], PDO::PARAM_STR),
-  array('p_offset', $params['offset'], PDO::PARAM_INT),
-  array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+$data['contests'] = execute('call sp_contests_all();', [], true);
 
 $data['monthly_ranking'] = execute('call sp_rankings_monthly(
   :p_date,
@@ -63,8 +51,8 @@ function content($params, $data) { ?>
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
       <div class="left box">
-        <?= link_to(image($contest->box_url), "/contest.php?id=$contest->id") ?>
-        <p><?= link_to($contest->name, "/contest.php?id=$contest->id") ?></p>
+        <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
+        <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
       </div>
     <?php } ?>
   </div>

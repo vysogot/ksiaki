@@ -2,7 +2,11 @@
 
 $translations = [
 
-  'title' => 'Konkursiaki',
+  'website_title' => 'Konkursiaki',
+
+  // general fields
+
+  'the_name' => 'Nazwa',
   'id' => 'ID',
 
   // menu
@@ -36,6 +40,8 @@ $translations = [
   'contests_slogan' => 'Już teraz czekają na Ciebie fantastyczne nagrody oraz tytuł Supergracza. Masz nieograniczoną liczbę podejść, każda próba zwiększa Twoje szanse na wygraną. Nie czekaj! Graj!',
   'play' => 'Graj!',
   'game' => 'Gra',
+  'game_name' => 'Nazwa gry',
+  'contest_type_name' => 'Rodzaj konkursu',
   'rankings' => 'Rankingi',
   'monthly_ranking' => 'Ranking miesięczny',
   'yearly_ranking' => 'Ranking roczny',
@@ -43,6 +49,7 @@ $translations = [
   'back_to_contest' => 'Powrót do strony konkursu',
   'points' => 'Punkty',
   'points_total' => 'Punkty w tym roku',
+  'contest_end' => 'Zakończ',
 
   // downloads
 
@@ -73,7 +80,7 @@ $translations = [
   'put_your_email' => 'Podaj swojego maila',
 
   // email
-  
+
   'email_subject_password_reset_request' => 'Chcesz założyć nowe hasło?',
   'email_subject_caretaker_registration' => 'Potwierdzenie konta Twojego podopiecznego',
   'email_subject_registration' => 'Potwierdź swój adres email!',
@@ -109,7 +116,7 @@ $translations = [
   // admin
 
   'contest' => 'Konkurs',
-  'user' => 'Użytkownik {{name}}',
+  'user' => 'Użytkownik',
   'users' => 'Użytkownicy',
   'background' => 'Tło',
   'backgrounds' => 'Tła',
@@ -121,6 +128,7 @@ $translations = [
   'static_site' => 'Strona statyczna',
   'static_sites' => 'Strony statyczne',
   'admin_menu_other_items' => 'Pozostałe',
+  'back_to_home_page' => 'Powrót do strony głównej',
 
   // data
 
@@ -128,8 +136,8 @@ $translations = [
   'show' => 'Pokaż',
   'edit' => 'Edytuj',
   'delete' => 'Usuń',
-  'edit_form' => 'Edycja: {{name}}',
-  'new_form' => 'Nowy: {{name}}',
+  'edit_form' => 'Edycja',
+  'new_form' => 'Nowy',
 
   // flashes
 
@@ -172,7 +180,7 @@ $translations = [
   'contest_type' => 'Rodzaj konkursu',
   'normal' => 'Normalny',
   'special' => 'Specjalny',
-  'display_ad' => 'Wyświetl reklamę przed',
+  'display_ad' => 'Preroll',
 
   // heroes form
 
@@ -187,6 +195,16 @@ $translations = [
   'in_current_edition' => 'W aktualnym numerze',
   'to_download' => 'Do pobrania',
   'tv_spot' => 'Spot telewizyjny',
+
+  // hero files
+
+  'hero_files' => 'Pliki bohaterów',
+  'hero_file' => 'Plik bohatera',
+  'file_url' => 'Plik',
+  'hero_name' => 'Nazwa bohatera',
+  'hero_file_type' => 'Rodzaj pliku',
+  'hero_file_type_wallpaper' => 'Tapeta',
+  'hero_file_type_magazine' => 'Aktualności',
 
   // boxes form
   'box' => 'Box',
@@ -223,7 +241,7 @@ $translations = [
   // Your account
 
   'your_profile' => 'Twój profil',
-  'your_name' => 'Twój nick',
+  'your_nick' => 'Twój nick',
   'your_email' => 'Twój email',
   'your_role' => 'Twoja rola',
 
@@ -246,10 +264,17 @@ $translations = [
 
   'hero_slug' => '/bohater/{{slug}}',
   'user_slug' => '/gracz/{{slug}}',
+  'contest_slug' => '/konkurs/{{slug}}',
+  'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
+  'contest_play_slug' => '/konkurs/{{slug}}/graj',
 
   // games
 
   'game_sorcerer_description' => 'Rzucaj w kulki tego samego koloru i zdobywaj punkty. Uważaj, jeśli wpadną do dziury to koniec gry!!',
   'game_pacman_description' => 'Zjadaj kulki i uważaj na duchy!',
+
+  // security
+
+  'invalid_token' => 'Formularz wygasł. Spróbuj jeszcze raz.'
 
 ];

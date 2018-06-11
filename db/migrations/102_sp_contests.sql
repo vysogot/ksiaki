@@ -1,6 +1,7 @@
 DROP PROCEDURE IF EXISTS sp_contests_new;
 DROP PROCEDURE IF EXISTS sp_contests_find;
 DROP PROCEDURE IF EXISTS sp_contests_all;
+DROP PROCEDURE IF EXISTS sp_contests_all_but_one;
 DROP PROCEDURE IF EXISTS sp_contests_create;
 DROP PROCEDURE IF EXISTS sp_contests_update;
 DROP PROCEDURE IF EXISTS sp_contests_delete;
@@ -12,6 +13,7 @@ SELECT 0 AS id
 , 1 AS game_id
 , 0 AS contest_type_id
 , '' AS name
+, '' AS slug
 , '' AS description
 , '' AS box_url
 , '' AS header_url
@@ -25,45 +27,99 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
 BEGIN
-SELECT id
+SELECT _contests.id
+, _contests.name
 , game_id
-, contest_type_id
-, name
-, description
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
 , box_url
 , header_url
 , begins_at
 , ends_at
 , display_ad
 , is_active
+, is_ended
 FROM _contests
-WHERE (id = p_id);
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (_contests.id = p_id);
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_contests_all`(IN `p_id` INT
-	, IN `p_name` VARCHAR(255)
-	, IN `p_offset` INT
-	, IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_contests_find_by_slug`(IN `p_slug` VARCHAR(255))
 BEGIN
-SELECT id
+SELECT _contests.id
+, _contests.name
 , game_id
-, contest_type_id
-, name
-, description
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
 , box_url
 , header_url
 , begins_at
 , ends_at
 , display_ad
 , is_active
+, is_ended
 FROM _contests
-WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-AND name = CASE WHEN p_name IS NULL THEN name ELSE p_name END
-LIMIT p_limit
-OFFSET p_offset;
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (_contests.slug = p_slug);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_all`()
+BEGIN
+SELECT _contests.id
+, _contests.name
+, game_id
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
+, box_url
+, header_url
+, begins_at
+, ends_at
+, display_ad
+, is_active
+, is_ended
+FROM _contests
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (marked_as_deleted_by = 0);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_all_but_one`(
+    IN p_id INT
+)
+BEGIN
+SELECT _contests.id
+, _contests.name
+, game_id
+, def_games.name AS game_name
+, def_contest_types.name AS contest_type_name
+, _contests.description
+, slug
+, box_url
+, header_url
+, begins_at
+, ends_at
+, display_ad
+, is_active
+, is_ended
+FROM _contests
+LEFT JOIN def_games ON game_id = def_games.id
+LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+WHERE (marked_as_deleted_by = 0)
+AND (_contests.id != p_id);
 END$$
 DELIMITER ;
 
@@ -72,6 +128,7 @@ CREATE PROCEDURE `sp_contests_create`(
 	IN `p_game_id` INT,
 	IN `p_contest_type_id` INT,
 	IN `p_name` VARCHAR(255),
+    IN `p_slug` VARCHAR(255),
 	IN `p_description` text,
 	IN `p_box_url` VARCHAR(255),
 	IN `p_header_url` VARCHAR(255),
@@ -85,6 +142,7 @@ BEGIN
 		game_id
 		, contest_type_id
 		, name
+        , slug
 		, description
 		, box_url
 		, header_url
@@ -96,6 +154,7 @@ BEGIN
 		p_game_id,
 		p_contest_type_id,
 		p_name,
+        p_slug,
 		p_description,
 		p_box_url,
 		p_header_url,
@@ -114,6 +173,7 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_game_id` INT,
 	IN `p_contest_type_id` INT,
 	IN `p_name` VARCHAR(255),
+    IN `p_slug` VARCHAR(255),
 	IN `p_description` text,
 	IN `p_box_url` VARCHAR(255),
 	IN `p_header_url` VARCHAR(255),
@@ -127,6 +187,7 @@ UPDATE _contests
 SET game_id = p_game_id
 	, contest_type_id = p_contest_type_id
 	, name = p_name
+    , slug = p_slug
 	, description = p_description
 	, box_url = p_box_url
 	, header_url = p_header_url
@@ -135,17 +196,26 @@ SET game_id = p_game_id
   , display_ad = p_display_ad
 	, is_active = p_is_active
 WHERE (id = p_id);
-SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+
+CALL `sp_contests_find`(p_id);
+
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_contests_delete`(IN `p_id` INT)
+CREATE PROCEDURE `sp_contests_delete`(
+    IN `p_id` INT
+    , IN `p_user_id` INT
+)
 BEGIN
-DELETE FROM _contests
-WHERE (id = p_id)
-LIMIT 1;
-SELECT ROW_COUNT() AS rowCount;
+
+    UPDATE _contests
+    SET marked_as_deleted_at = NOW()
+    , marked_as_deleted_by = p_user_id
+    WHERE (id = p_id);
+
+    SELECT ROW_COUNT() AS rowCount;
+
 END$$
 DELIMITER ;
 

@@ -4,14 +4,14 @@ CREATE TABLE IF NOT EXISTS `def_pointed_activities` (
     `name` varchar(255),
     `points` int,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Aktywności uczestników w serwisie, które są punktowane';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Aktywności uczestników w serwisie, które są punktowane';
 
 /* Rodzaje konkursów, np. normalny lub specjalny */
 CREATE TABLE IF NOT EXISTS `def_contest_types` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255),
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Rodzaje konkursów, np. normalny lub specjalny';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Rodzaje konkursów, np. normalny lub specjalny';
 
 /* Punktacja przyznawana za dane miejsce w zależności od rodzaju konkursu */
 CREATE TABLE IF NOT EXISTS `def_contest_places` (
@@ -21,7 +21,14 @@ CREATE TABLE IF NOT EXISTS `def_contest_places` (
     `place` int,
     `points` int,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punktacja przyznawana za dane miejsce w zależności od rodzaju konkursu';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punktacja przyznawana za dane miejsce w zależności od rodzaju konkursu';
+
+/* Hero download types */
+CREATE TABLE IF NOT EXISTS `def_hero_file_types` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Typy plików bohaterów';
 
 /* Odznaki dla graczy za aktywność */
 CREATE TABLE IF NOT EXISTS `def_badges` (
@@ -31,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `def_badges` (
     `description` text,
     `image_url` varchar(255),
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Odznaki dla graczy za aktywność';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Odznaki dla graczy za aktywność';
 
 /* Rangi graczy z racji zdobytych punktów i wykonanych zadań */
 CREATE TABLE IF NOT EXISTS `def_ranks` (
@@ -40,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `def_ranks` (
     `points_threshold` varchar(255),
     `image_url` varchar(255),
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Rangi graczy z racji zdobytych punktów i wykonanych zadań';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Rangi graczy z racji zdobytych punktów i wykonanych zadań';
 
 /* Gry do konkursów */
 CREATE TABLE IF NOT EXISTS `def_games` (
@@ -48,7 +55,14 @@ CREATE TABLE IF NOT EXISTS `def_games` (
     `name` varchar(255),
     `description` text,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Gry do konkursów';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Gry do konkursów';
+
+/* Role użytkowników */
+CREATE TABLE IF NOT EXISTS `def_roles` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Role użytkowników';
 
 /* Tła */
 CREATE TABLE IF NOT EXISTS `_backgrounds` (
@@ -58,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
     `link_url` varchar(255),
     `background_color` varchar(255),
     `details_color` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -70,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `_backgrounds` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Tła reklamowe';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Tła reklamowe';
 
 /* Boxy */
 CREATE TABLE IF NOT EXISTS `_boxes` (
@@ -78,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `_boxes` (
     `name` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -91,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `_boxes` (
 
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Boxy';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Boxy';
 
 /* Slajdy */
 CREATE TABLE IF NOT EXISTS `_slides` (
@@ -99,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `_slides` (
     `name` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -111,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `_slides` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Slajdy';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Slajdy';
 
 /* Filmy użytkowników */
 CREATE TABLE IF NOT EXISTS `_user_movies` (
@@ -122,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `_user_movies` (
     `video_url` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -134,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `_user_movies` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Filmy użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Filmy użytkowników';
 
 /* Reklamy video */
 CREATE TABLE IF NOT EXISTS `_video_ads` (
@@ -143,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `_video_ads` (
     `video_url` varchar(255),
     `image_url` varchar(255),
     `link_url` varchar(255),
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 1,
     `begins_at` datetime,
     `ends_at` datetime,
 
@@ -155,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `_video_ads` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Reklamy video';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Reklamy video';
 
 /* Bohaterowie */
 CREATE TABLE IF NOT EXISTS `_heroes` (
@@ -167,10 +181,11 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
     `header_url` VARCHAR(255) NULL DEFAULT NULL,
     `cover_url` VARCHAR(255) NULL DEFAULT NULL,
     `video_url` VARCHAR(255) NULL DEFAULT NULL,
+    `video_cover_url` VARCHAR(255) NULL DEFAULT NULL,
     `gadget_url` VARCHAR(255) NULL DEFAULT NULL,
     `footer_url` VARCHAR(255) NULL DEFAULT NULL,
     `license_description` TEXT NULL,
-    `is_active` TINYINT(1) NULL DEFAULT NULL,
+    `is_active` TINYINT(1) NULL DEFAULT 1,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,
@@ -180,15 +195,17 @@ CREATE TABLE IF NOT EXISTS `_heroes` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Bohaterowie';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Bohaterowie';
 
 /* Pobrania bohaterów */
-CREATE TABLE IF NOT EXISTS `_hero_downloads` (
+CREATE TABLE IF NOT EXISTS `_hero_files` (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `hero_id` INT(10) UNSIGNED NOT NULL,
+    `hero_file_type_id` INT(10) UNSIGNED NOT NULL,
     `name` VARCHAR(255) NULL DEFAULT NULL,
     `description` TEXT NULL,
     `file_url` VARCHAR(255) NULL DEFAULT NULL,
+    `is_active` TINYINT(1) NULL DEFAULT 1,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,
@@ -198,14 +215,7 @@ CREATE TABLE IF NOT EXISTS `_hero_downloads` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Pliki bohaterów';
-
-/* Role */
-CREATE TABLE IF NOT EXISTS `_roles` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) NOT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Role';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Pliki bohaterów';
 
 /* Użytkownicy */
 CREATE TABLE IF NOT EXISTS `_users` (
@@ -223,15 +233,17 @@ CREATE TABLE IF NOT EXISTS `_users` (
 	`password_reset_hash` VARCHAR(255) NULL DEFAULT NULL,
 	`password_reset_expires_at` DATETIME NULL DEFAULT NULL,
 	`last_login_at` DATETIME NULL DEFAULT NULL,
+
 	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	`created_by` INT(11) NULL DEFAULT '0',
 	`updated_at` DATETIME NULL DEFAULT NULL,
 	`updated_by` INT(11) NULL DEFAULT '0',
 	`marked_as_deleted_at` DATETIME NULL DEFAULT NULL,
 	`marked_as_deleted_by` INT(10) NULL DEFAULT '0',
+
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Użytkownicy';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Użytkownicy';
 
 /* Rejestracja logowania i wylogowania użytkowników */
 CREATE TABLE IF NOT EXISTS `_user_logins` (
@@ -241,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `_user_logins` (
 	`login_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	`logout_at` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='ejestracja logowania i wylogowania użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Rejestracja logowania i wylogowania użytkowników';
 
 /* Konta użytkowników */
 CREATE TABLE IF NOT EXISTS `_accounts` (
@@ -265,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `_accounts` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konta użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Konta użytkowników';
 
 /* Rodzice użytkowników */
 CREATE TABLE IF NOT EXISTS `_caretakers` (
@@ -286,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `_caretakers` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Rodzice użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Rodzice użytkowników';
 
 /* Konkursy */
 CREATE TABLE IF NOT EXISTS `_contests` (
@@ -294,13 +306,15 @@ CREATE TABLE IF NOT EXISTS `_contests` (
     `game_id` int unsigned NOT NULL,
     `contest_type_id` int unsigned NOT NULL,
     `name` varchar(255),
+    `slug` varchar(255),
     `description` text,
     `box_url` varchar(255),
     `header_url` varchar(255),
     `begins_at` datetime,
     `ends_at` datetime,
     `display_ad` tinyint(1) DEFAULT 0,
-    `is_active` tinyint(1) DEFAULT 1,
+    `is_active` tinyint(1) DEFAULT 0,
+    `is_ended` tinyint(1) DEFAULT 0,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,
@@ -310,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `_contests` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Konkursy';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Konkursy';
 
 /* Nagrody w konkursach */
 CREATE TABLE IF NOT EXISTS `_contest_prizes` (
@@ -328,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `_contest_prizes` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Nagrody w konkursach';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Nagrody w konkursach';
 
 /* Powiadomienia dla użytkowników */
 CREATE TABLE IF NOT EXISTS `_notifications` (
@@ -344,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `_notifications` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Powiadomienia dla użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Powiadomienia dla użytkowników';
 
 /* Status powiadomień dla użytkowników */
 CREATE TABLE IF NOT EXISTS `_notification_statuses` (
@@ -361,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `_notification_statuses` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Status powiadomień dla użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Status powiadomień dla użytkowników';
 
 /* Strony statyczne */
 CREATE TABLE IF NOT EXISTS `_static_sites` (
@@ -369,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `_static_sites` (
     `title` varchar(255),
     `slug` varchar(255),
     `content` text,
-    `is_active` tinyint(1),
+    `is_active` tinyint(1) default 0,
 
     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` INT(10) NULL DEFAULT 0,
@@ -379,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `_static_sites` (
     `marked_as_deleted_by` INT(10) NULL DEFAULT 0,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Strony statyczne';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Strony statyczne';
 
 /* Polubienia filmów użytkowników */
 CREATE TABLE IF NOT EXISTS `_user_movies_likes` (
@@ -388,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `_user_movies_likes` (
     `given_at` datetime,
 
     PRIMARY KEY (`user_id`, `user_movie_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Polubienia filmów użytkowników';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Polubienia filmów użytkowników';
 
 /* Punkty przyznane za punktowane aktywności */
 CREATE TABLE IF NOT EXISTS `score_pointed_activities` (
@@ -399,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `score_pointed_activities` (
     `given_at` datetime,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty przyznane za punktowane aktywności';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty przyznane za punktowane aktywności';
 
 /* Punkty przyznane za miejsce w konkursie */
 CREATE TABLE IF NOT EXISTS `score_contests` (
@@ -411,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `score_contests` (
     `given_at` datetime,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty przyznane za miejsce w konkursie';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty przyznane za miejsce w konkursie';
 
 /* Odznaki użytkowników */
 CREATE TABLE `_user_badges` (
@@ -421,7 +435,7 @@ CREATE TABLE `_user_badges` (
     `given_at` DATETIME NULL DEFAULT NULL,
 
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB COLLATE='utf8_general_ci' COMMENT='Tabela odznak użytkownika';
+) ENGINE=InnoDB COLLATE='utf8_polish_ci' COMMENT='Tabela odznak użytkownika';
 
 /* Punkty zdobyte w danej grze w danym konkursie na danym poziomie */
 CREATE TABLE IF NOT EXISTS `score_games` (
@@ -434,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `score_games` (
     `points` int,
     `points_total` int,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';
 
 /* Archiwum punktów */
 CREATE TABLE `score_games_archive` (
@@ -449,6 +463,6 @@ CREATE TABLE `score_games_archive` (
     `deleted` TINYINT(4) NULL DEFAULT '0',
     `inserted` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB COLLATE='utf8_general_ci' COMMENT='Archiwum punktów zdobytych w danej grze w danym konkursie na danym poziomie';
+) ENGINE=InnoDB COLLATE='utf8_polish_ci' COMMENT='Archiwum punktów zdobytych w danej grze w danym konkursie na danym poziomie';
 
 SELECT 1;

@@ -15,21 +15,24 @@ $data['column_names'] = [
     'is_active'
 ];
 
-function content($params, $data) { ?>
+?>
 
-<?php include '../partials/modal_form.php'; ?>
-<?php include '../partials/modal_image.html'; ?>
-<?php include '../partials/datatable_view.php'; ?>
+<?php function content($params, $data) { ?>
 
-    <script type="text/javascript">
-    <?php include "../assets/js/definitions.js"; ?>
-    <?php include "../assets/js/helpers.js"; ?>
-    <?php include "../assets/js/formdata.js"; ?>
-    <?php include "datatable.js"; ?>
-    <?php include "actions.js"; ?>
-$(document).ready(function() { console.log(oTable); });
-    </script>
+  <?php include '../partials/modal_form.php'; ?>
+  <?php include '../partials/modal_image.php'; ?>
+  <?php include '../partials/datatable_view.php'; ?>
+
+  <script type="text/javascript">
+  <?php include "../partials/formdata.js"; ?>
+  <?php include "datatable.js"; ?>
+  <?php include "actions.js"; ?>
+  </script>
 
 <?php }
 
-include '../layout.php';
+if ($xhr) {
+  content($params, $data);
+} else {
+  include '../layout.php';
+} ?>

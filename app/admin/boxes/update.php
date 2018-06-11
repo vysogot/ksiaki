@@ -3,17 +3,14 @@
 include '../init.php';
 include '_validation.php';
 
-$params = [
-  'form_action' => 'update.php'
-];
-
 if ($post) {
 
   $params = array_merge($params, $_POST);
+  validate($params);
 
-  validate($params, $errors);
+  $result = [];
 
-  if (empty($errors)) {
+  if (empty($params['errors'])) {
 
     if (!empty($_FILES['image_file']['name'])) {
       $params['image_url'] = file_upload($_FILES['image_file']);
@@ -35,29 +32,16 @@ if ($post) {
       array('p_is_active', $params['is_active'], PDO::PARAM_INT),
       array('p_begins_at', date('Y-m-d H:i:s', strtotime($params['begins_at'])), PDO::PARAM_STR),
       array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR)
-    ));
+    ), false, false);
 
-    if (!empty($result)) {
-      flash('notice', t('update_success'));
-      redirect("show.php?id=" . $params['id']);
-    } else {
-      flash('warning', t('update_failure'));
-    }
+  } else {
+
+      $result = ['rowCount' => -1, 'lastInsertId' => 0,
+          'errors' => $params['errors']
+      ];
+
   }
 
-  $data = (object) $params;
-  $params['errors'] = $errors;
+  send_json($result);
 
 }
-
-function content($params, $data) { ?>
-
-  <div class="wrapper">
-    <h2><?= t('edit_form') ?></h2>
-    <?= link_to(t('boxes'), 'index.php') ?>
-    <?php include '_form.php'; ?>
-  </div>
-
-<?php }
-
-include '../layout.php';

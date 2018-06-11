@@ -45,12 +45,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_slides_all`(IN `p_id` INT
-  , IN `p_name` VARCHAR(255)
-	, IN `p_link_url` VARCHAR(50)
-	, IN `p_offset` INT
-	, IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_slides_all`()
 BEGIN
 SELECT id
 , name
@@ -60,11 +55,7 @@ SELECT id
 , begins_at
 , ends_at
 FROM _slides
-WHERE id = CASE WHEN p_id IS NULL THEN id ELSE p_id END
-AND name LIKE CASE WHEN p_name IS NULL THEN name ELSE '%name%' END
-AND link_url LIKE CASE WHEN p_link_url IS NULL THEN link_url ELSE '%p_link_url%' END
-LIMIT p_limit
-OFFSET p_offset;
+WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -100,7 +91,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_slides_update`(
 	IN `p_id` INT,
-  IN `p_name` VARCHAR(255),
+    IN `p_name` VARCHAR(255),
 	IN `p_image_url` VARCHAR(255),
 	IN `p_link_url` VARCHAR(255),
 	IN `p_is_active` INT,
@@ -116,17 +107,26 @@ SET name = p_name
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at
 WHERE (id = p_id);
-SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
+
+CALL `sp_slides_find`(p_id);
+
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_slides_delete`(IN `p_id` INT)
+CREATE PROCEDURE `sp_slides_delete`(
+    IN `p_id` INT
+    , IN `p_user_id` INT
+)
 BEGIN
-DELETE FROM _slides
-WHERE (id = p_id)
-LIMIT 1;
-SELECT ROW_COUNT() AS rowCount;
+
+    UPDATE _slides
+    SET marked_as_deleted_at = NOW()
+    , marked_as_deleted_by = p_user_id
+    WHERE (id = p_id);
+
+    SELECT ROW_COUNT() AS rowCount;
+
 END$$
 DELIMITER ;
 

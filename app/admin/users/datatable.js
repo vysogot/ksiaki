@@ -1,6 +1,11 @@
 $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
-        "ajax": { "url": "datatable.php" },
+        "mark": true,
+        "processing": true,
+        "serverSide": true,
+        "deferRender": true,
+        "searchDelay": 1000,
+        "ajax": { "url": "/admin/users/datatable.php" },
         "columns": [
             { "data": "id" },
             { "data": "nick" },
@@ -8,10 +13,10 @@ $(document).ready(function() {
             { "data": "surname" },
             { "data": "email" },
             { "data": "last_login_at" },
-            { 
-                "data": "is_active", 
+            {
+                "data": "is_active",
                 "className": "center",
-                "render": 
+                "render":
                 function (data) {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
@@ -28,14 +33,13 @@ $(document).ready(function() {
             "data": null,
             "orderable": false,
             "className": "links",
-            "render": function (data, type, row, meta) { 
-                return set_button("fShow(this)", meta.row, row, t_show, 'fa-eye', "") +
-                    set_button("fEdit(this)", meta.row, row, t_edit, 'fa-edit', "") +
-                    set_button("fDelete(this)", meta.row, row, t_delete, 'fa-trash-alt', ""); 
+            "render": function (data, type, row, meta) {
+                return set_button("fEdit(this)", meta.row, row, t_edit, 'fa-edit', "") +
+                    set_button("fDelete(this)", meta.row, row, t_delete, 'fa-trash-alt', "");
             }
         }],
 
-        "order": [1, 'desc'],
+        //"order": [1, 'desc'],
 
         "stateSave": true,
         "stateSaveParams": function (oSettings, oData) { localStorage.setItem( window.location.pathname, JSON.stringify(oData) ); },

@@ -36,17 +36,13 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_heroes_find_by_slug`(IN `p_slug` VARCHAR(255))
 BEGIN
-    SELECT * FROM _heroes
+    SELECT _heroes.* FROM _heroes
     WHERE (slug = p_slug);
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_heroes_all`(IN `p_id` INT
-    , IN `p_name` VARCHAR(255)
-    , IN `p_offset` INT
-    , IN `p_limit` INT
-)
+CREATE PROCEDURE `sp_heroes_all`()
 BEGIN
     SELECT id
     , avatar_url as image
@@ -57,9 +53,7 @@ BEGIN
     , header_url
     , is_active
     FROM _heroes
-    WHERE (marked_as_deleted_by = 0)
-    LIMIT p_limit
-    OFFSET p_offset;
+    WHERE (marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
@@ -72,6 +66,7 @@ CREATE PROCEDURE `sp_heroes_create`(
     IN `p_header_url` VARCHAR(255),
     IN `p_cover_url` VARCHAR(255),
     IN `p_video_url` VARCHAR(255),
+    IN `p_video_cover_url` VARCHAR(255),
     IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
@@ -87,11 +82,12 @@ BEGIN
         , header_url
         , cover_url
         , video_url
+        , video_cover_url
         , gadget_url
         , footer_url
         , license_description
         , is_active
-        , created_by 
+        , created_by
         ) VALUES(
         p_name
         , p_slug
@@ -100,6 +96,7 @@ BEGIN
         , p_header_url
         , p_cover_url
         , p_video_url
+        , p_video_cover_url
         , p_gadget_url
         , p_footer_url
         , p_license_description
@@ -122,6 +119,7 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_header_url` VARCHAR(255),
     IN `p_cover_url` VARCHAR(255),
     IN `p_video_url` VARCHAR(255),
+    IN `p_video_cover_url` VARCHAR(255),
     IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
@@ -137,6 +135,7 @@ BEGIN
     , header_url = p_header_url
     , cover_url = p_cover_url
     , video_url = p_video_url
+    , video_cover_url = p_video_cover_url
     , gadget_url = p_gadget_url
     , footer_url = p_footer_url
     , license_description = p_license_description
@@ -145,16 +144,7 @@ BEGIN
     , updated_at = NOW()
     WHERE (id = p_id);
 
-    SELECT id
-    , avatar_url as image
-    , name
-    , slug
-    , description
-    , avatar_url
-    , header_url
-    , is_active
-    FROM _heroes
-    WHERE (id = p_id);
+    CALL `sp_heroes_find`(p_id);
 
 END$$
 DELIMITER ;
