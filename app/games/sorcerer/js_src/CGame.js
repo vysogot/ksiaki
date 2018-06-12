@@ -3,6 +3,7 @@ function CGame(oData,iLevel,iScore){
     var _bCanShoot;
     var _bCheckPushCollision;
     var _bAttractBall;
+    var _iLastLevel;
     var _iTotScore;
     var _iCurLevelScore;
     var _iMultiplierCombo;
@@ -16,12 +17,14 @@ function CGame(oData,iLevel,iScore){
     var _iBallColors;
     var _iTimeElaps;
     var _iCurLevel;
+    var _sMainBallColor;
+    var _sBlackColor = "000000";
     var _aBalls;
     var _aCurveMapData;
     var _aBallShooted;
     var _aBallCrushed;
     var _aBallAttracted = null;
-    
+
     var _oCurve = null;
     var _oEndSprite = null;
     var _oHero;
@@ -31,41 +34,42 @@ function CGame(oData,iLevel,iScore){
     var _oCurveAttach;
     var _oExtraScoreAttach;
     var _oBgAttach;
-    
+
     this._init = function(iLevel,iScore){
         _iCurLevel = iLevel;
+        _iLastLevel = iLevel;
         _iTotScore = iScore;
         s_oBezier = new CBezier();
-        
+
 	_oBgAttach = new createjs.Container();
         _oBg = createBitmap(s_oSpriteLibrary.getSprite(s_oLevelSettings.getBgForLevel(_iCurLevel)) );
         _oBgAttach.addChild(_oBg);
 	s_oStage.addChild(_oBgAttach);
 	_oBg.cache(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-		
+
         _oHero = new CHero();
-        	
+
         _oCurveAttach = new createjs.Container();
         _oBallAttach = new createjs.Container();
         _oExtraScoreAttach = new createjs.Container();
-		
-        
-		
+
+
+
         s_oStage.addChild(_oCurveAttach);
         s_oStage.addChild(_oBallAttach);
 	s_oStage.addChild(_oExtraScoreAttach);
 
         _oInterface = new CInterface(_iTotScore);
         this.reset();
-        
+
         if(s_bMobile === false){
             var oParent = this;
             s_oStage.addEventListener("stagemousemove", function(evt){oParent._onMouseMove(evt.stageX,evt.stageY)});
         }
-        
+
         _bUpdate = true;
     };
-    
+
     this.unload = function(){
         _bUpdate = false;
         clearInterval(_iIntervalID);
@@ -74,17 +78,17 @@ function CGame(oData,iLevel,iScore){
         _oHero.unload();
         s_oStage.removeAllChildren();
     };
-    
+
     this.reset = function(){
         _bCanShoot = true;
         _bCheckPushCollision = false;
         _bAttractBall = false;
-    
+
         _iBallSpeed = s_oLevelSettings.getBallSpeedForLevel(_iCurLevel);
         _iTotalBall = s_oLevelSettings.getBallNumberForLevel(_iCurLevel );
         _iBallColors = s_oLevelSettings.getBallColorsForLevel(_iCurLevel);
         BALL_ROLLING_IN = Math.floor(_iTotalBall * 0.33);
-        
+
         _iCurCombos = 0;
         _iMaxCombos = 1;
         _iMultiplierCombo = 1;
@@ -98,15 +102,15 @@ function CGame(oData,iLevel,iScore){
         }
         this._initCurve();
         this._initBall();
-        
+
         _oInterface.refreshLevel(_iCurLevel);
         $(s_oMain).trigger("start_level",_iCurLevel);
     };
-	
+
     this._normalize = function(v){
             var len = this._length(v);
             if (len > 0 ){
-                    return { x : (v.x/len), y : (v.y/len) }; 
+                    return { x : (v.x/len), y : (v.y/len) };
             }
             return v;
     };
@@ -126,27 +130,27 @@ function CGame(oData,iLevel,iScore){
             }else{
                     return iAngle;
             }
-    };		
+    };
 
     this._rot90CW = function(v){
             return { x: v.y, y : -v.x};
     };
     this._rot90CCW = function(v){
             return { x: -v.y, y : v.x};
-    };	
+    };
 
-    this._rotateVector2D = function( iAngle, v ) {		
+    this._rotateVector2D = function( iAngle, v ) {
                     var iX = v.x *   Math.cos( iAngle )  + v.y * Math.sin( iAngle );
-                    var iY = v.x * (-Math.sin( iAngle )) + v.y * Math.cos( iAngle );		
+                    var iY = v.x * (-Math.sin( iAngle )) + v.y * Math.cos( iAngle );
                     return { x:iX, y:iY };
     };
-	
+
     this._initCurve = function(){
         var _aCurve = s_oLevelSettings.getCurveForLevel(_iCurLevel);
-        
+
         var oCurveGfx = new createjs.Graphics();
 	_aCurveMapData = new Array();
-        
+
 
 		for(var j = 0;j<_aCurve.length - 2;++j){
                 var oPoint0 = (j === 0)?new createjs.Point(_aCurve[0][0],_aCurve[0][1]):new createjs.Point((_aCurve[j][0]+_aCurve[j+1][0])/2,
@@ -160,7 +164,7 @@ function CGame(oData,iLevel,iScore){
                     _aCurveMapData.push(data);
                 }
         }
-		
+
         var iStrength = 15;
         var oPoint;
         var h;
@@ -192,7 +196,7 @@ function CGame(oData,iLevel,iScore){
                 oPoint.x *= iStrength;
                 oPoint.y *= iStrength;
                 oPoint.x += _aCurveMapData[h][0];
-                oPoint.y += _aCurveMapData[h][1];			
+                oPoint.y += _aCurveMapData[h][1];
                 oCurveGfx.lineTo(oPoint.x,oPoint.y);
         }
 
@@ -219,9 +223,9 @@ function CGame(oData,iLevel,iScore){
                 oPoint.x *= iStrength;
                 oPoint.y *= iStrength;
                 oPoint.x += _aCurveMapData[h][0];
-                oPoint.y += _aCurveMapData[h][1];			
+                oPoint.y += _aCurveMapData[h][1];
                 oCurveGfx.lineTo(oPoint.x,oPoint.y);
-        }		
+        }
 
         oCurveGfx.lineTo(oFirstPoint.x, oFirstPoint.y);
 
@@ -229,7 +233,7 @@ function CGame(oData,iLevel,iScore){
 
         _oCurve = new createjs.Shape(oCurveGfx);
         _oCurveAttach.addChild(_oCurve);
-        
+
         var iLen = _aCurveMapData.length;
         var oSprite = s_oSpriteLibrary.getSprite('end_path');
         _oEndSprite = createBitmap(oSprite);
@@ -238,10 +242,10 @@ function CGame(oData,iLevel,iScore){
         _oEndSprite.regX = oSprite.width/2;
         _oEndSprite.regY = oSprite.height/2;
         _oCurveAttach.addChild(_oEndSprite);
-		
+
 	_oCurveAttach.cache(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     };
-    
+
     this._initBall = function(){
         _aBalls = new Array( );
         var oBall = this.getRandomBall();
@@ -250,7 +254,7 @@ function CGame(oData,iLevel,iScore){
         oBall.setPos(16,_aCurveMapData);
        _iGameState = STATE_GAME_ROLL_IN;
     };
-    
+
     this.getRandomBall = function(){
         _iTotalBall--;
         var iRandomNum = Math.floor(Math.random() * _iBallColors);
@@ -289,14 +293,14 @@ function CGame(oData,iLevel,iScore){
                 _bCheckPushCollision = false;
                 _bAttractBall = false;
                 _iMultiplierCombo = 1;
-                
+
                 _aBalls[_aBalls.length - 1].unload();
-               
+
                 _aBalls.splice(_aBalls.length-1,1);
                 _iGameState = STATE_GAME_ROLL_OUT;
         }
     };
-    
+
     this.onIntroduceBall = function(){
         if(_aBalls.length !== 0){
             s_oGame._pushNextBall(0,1);
@@ -304,16 +308,16 @@ function CGame(oData,iLevel,iScore){
             if(_aBalls[0].getFotogram() === 32 && _iTotalBall !== 0){
                 var oBall = s_oGame.getRandomBall();
                 _aBalls.unshift(oBall);
-                
+
                 oBall.setPos(16,_aCurveMapData);
             }
         }
     };
-    
+
     this.shoot = function(){
         playSound("shot",1,false);
-        
-        
+
+
         var iRadian = (_oHero.getRotation() + 90) * Math.PI/180;
         var oBall = _oHero.getCurrentBall();
         oBall.changePos(_oHero.getX() + 60 * Math.cos(iRadian),_oHero.getY() + 60 * Math.sin(iRadian) );
@@ -323,12 +327,12 @@ function CGame(oData,iLevel,iScore){
 
         _iGameState = STATE_GAME_SHOOTING;
     };
-    
+
     this._checkCollision = function(aArrayToCheck){
         var oBall = aArrayToCheck[0];
 
         for(var j = 0;j<_aBalls.length;++j){
-            var iDist = (_aBalls[j].getX() - oBall.getX())*(_aBalls[j].getX() - oBall.getX()) + 
+            var iDist = (_aBalls[j].getX() - oBall.getX())*(_aBalls[j].getX() - oBall.getX()) +
                                                 (_aBalls[j].getY() - oBall.getY())*(_aBalls[j].getY() - oBall.getY());
             if(iDist <= BALL_DIAMETER_SQUARE){
                 return j;
@@ -336,7 +340,7 @@ function CGame(oData,iLevel,iScore){
         }
         return -1;
     };
-    
+
     this._insertBall = function(oBall,iIndex,szLabel){
         var iPosX;
         var iPosY;
@@ -347,13 +351,13 @@ function CGame(oData,iLevel,iScore){
 
             if(_aBalls[iIndex + 1] && (_aBalls[iIndex + 1].getFotogram() - _aBalls[iIndex].getFotogram()) < 32 ){
                 _aBallCrushed.push(new Array(oBall,_aBalls[iIndex + 1]));
-                _bCheckPushCollision = true; 
+                _bCheckPushCollision = true;
             }
         }else{
             if(_aBalls[iIndex - 1] && (_aBalls[iIndex].getFotogram() - _aBalls[iIndex - 1].getFotogram()) < 32){
-                iInsertPos = _aBalls[iIndex - 1].getFotogram() + 16; 
+                iInsertPos = _aBalls[iIndex - 1].getFotogram() + 16;
                 _aBallCrushed.push(new Array(oBall,_aBalls[iIndex]));
-                _bCheckPushCollision = true; 
+                _bCheckPushCollision = true;
             }else {
                 iInsertPos = _aBalls[iIndex].getFotogram() - 16;
             }
@@ -363,9 +367,9 @@ function CGame(oData,iLevel,iScore){
         iPosY = _aCurveMapData[iInsertPos][1];
 
         var oParent = this;
-        createjs.Tween.get(oBall.getSprite()).to({x:iPosX,y:iPosY}, 200).call(function(){oParent.motionFinished(oBall,iInsertPos)});   
+        createjs.Tween.get(oBall.getSprite()).to({x:iPosX,y:iPosY}, 200).call(function(){oParent.motionFinished(oBall,iInsertPos)});
     };
-    
+
     this.motionFinished = function(oBall,iInsertPos){
         var iIndex;
 
@@ -386,17 +390,17 @@ function CGame(oData,iLevel,iScore){
 
         if(_aBalls[iIndex - 1] && _aBalls[iIndex - 1].getIndex() === _aBalls[iIndex].getIndex() &&
                                                     (_aBalls[iIndex].getFotogram() - _aBalls[iIndex - 1].getFotogram()) > 17){
-                                                
+
             this._addToBallAttracted(_aBalls[iIndex]);
         }
-        if(_aBalls[iIndex + 1] && _aBalls[iIndex + 1].getIndex() === _aBalls[iIndex].getIndex() 
+        if(_aBalls[iIndex + 1] && _aBalls[iIndex + 1].getIndex() === _aBalls[iIndex].getIndex()
                                     && (_aBalls[iIndex + 1].getFotogram() - _aBalls[iIndex].getFotogram()) > 17){
                 this._addToBallAttracted(_aBalls[iIndex + 1]);
         }
 
         this._clearCheck(iIndex,true);
     };
-    
+
     this._addToBallAttracted = function(oBall){
         if(_aBallAttracted === null){
             _aBallAttracted = new Array();
@@ -406,7 +410,7 @@ function CGame(oData,iLevel,iScore){
         }
         setTimeout(function(){_bAttractBall = true;},400);
     };
-    
+
     this._clearCheck = function(iIndex,bClear){
         var aTemp = new Array();
         aTemp.push(_aBalls[iIndex]);
@@ -416,7 +420,7 @@ function CGame(oData,iLevel,iScore){
         while(_aBalls[i]){
 
             if(_aBalls[i].getIndex() === iColorIndex){
-                
+
                 if(_aBalls[i].getFotogram() - _aBalls[i - 1].getFotogram() <= 17){
                     aTemp.push(_aBalls[i]);
                     ++i;
@@ -428,7 +432,7 @@ function CGame(oData,iLevel,iScore){
                 break;
             }
         }
-      
+
         var j = iIndex - 1;
         while(_aBalls[j]){
             if(_aBalls[j].getIndex() === iColorIndex){
@@ -452,7 +456,7 @@ function CGame(oData,iLevel,iScore){
         }
         return aTemp.length;
     };
-    
+
     this._attract = function(){
         if(_aBallAttracted.length !== 0){
             for(var i = 0;i<_aBallAttracted.length;++i){
@@ -467,7 +471,7 @@ function CGame(oData,iLevel,iScore){
                                 _iMultiplierCombo++;
                                 _aBallAttracted.splice(i,1);
 
-                                
+
                                 this._clearCheck(iIndex-1,true);
                                 if(_aBallAttracted.length === 0){
                                     _bAttractBall = false;
@@ -488,20 +492,20 @@ function CGame(oData,iLevel,iScore){
             _iMultiplierCombo = 1;
         }
     };
-    
+
     this._checkPushCollision = function(){
         if(_aBallCrushed.length !== 0){
             for(var i = 0; i < _aBallCrushed.length; ++i){
 		var iDis = (_aBallCrushed[i][0].getX() - _aBallCrushed[i][1].getX())*
-                                        (_aBallCrushed[i][0].getX() - _aBallCrushed[i][1].getX()) + 
+                                        (_aBallCrushed[i][0].getX() - _aBallCrushed[i][1].getX()) +
                                         (_aBallCrushed[i][0].getY() - _aBallCrushed[i][1].getY())*
                                         (_aBallCrushed[i][0].getY() - _aBallCrushed[i][1].getY());
 		var isCollision = iDis < BALL_DIAMETER_SQUARE?true:false;
 		var iMoveStep = 0;
 		while(isCollision){
                     ++iMoveStep;
-                    iDis = (_aBallCrushed[i][0].getX() - _aCurveMapData[_aBallCrushed[i][1].getFotogram() + 
-                                    iMoveStep][0])*(_aBallCrushed[i][0].getX() - _aCurveMapData[_aBallCrushed[i][1].getFotogram() + 
+                    iDis = (_aBallCrushed[i][0].getX() - _aCurveMapData[_aBallCrushed[i][1].getFotogram() +
+                                    iMoveStep][0])*(_aBallCrushed[i][0].getX() - _aCurveMapData[_aBallCrushed[i][1].getFotogram() +
                                     iMoveStep][0])+(_aBallCrushed[i][0].getY() - _aCurveMapData[_aBallCrushed[i][1].getFotogram() + iMoveStep][1])
                                     *(_aBallCrushed[i][0].getY() - _aCurveMapData[_aBallCrushed[i][1].getFotogram() + iMoveStep][1]);
                     isCollision = iDis < BALL_DIAMETER_SQUARE?true:false;
@@ -517,12 +521,12 @@ function CGame(oData,iLevel,iScore){
             _bCheckPushCollision = false;
         }
     };
-    
+
     this._clearBall = function(iIndex,aTmpArray){
         ++_iCurCombos;
 
         playSound("combo",1,false);
-        
+
         var iTmpScore = 0;
         for(var i = 0; i < aTmpArray.length; ++i){
             aTmpArray[i].explode();
@@ -531,14 +535,14 @@ function CGame(oData,iLevel,iScore){
         iTmpScore *= _iMultiplierCombo;
         _iTotScore += iTmpScore;
         _iCurLevelScore+= iTmpScore;
-        
+
         _oInterface.refreshScore(_iTotScore );
 
         if(_aBalls.length === aTmpArray.length){
             _bCanShoot = false;
             _iLastId = _aBalls[_aBalls.length - 1].getFotogram();
             setTimeout(this._gamePass,600);
-            
+
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
                 s_aSounds["soundtrack"].pause();
                 var oSound = playSound("win",1,false);
@@ -567,40 +571,42 @@ function CGame(oData,iLevel,iScore){
             _iCurCombos = 0;
         }
     };
-    
+
     this._gamePass = function(){
         _iIntervalID = setInterval(s_oGame._extraScore,_iBallSpeed);
     };
-    
+
     this._extraScore = function(){
         if( (_iLastId + 16) < (_aCurveMapData.length - 17) ){
             _iLastId += 16;
             new CExtraScore(_aCurveMapData[_iLastId][0],_aCurveMapData[_iLastId][1],_oExtraScoreAttach);
             _iTotScore += EXTRA_SCORE;
             _iCurLevelScore += EXTRA_SCORE;
-            
+
             _oInterface.refreshScore(_iTotScore);
         }else{
-            $(s_oMain).trigger("end_level",_iCurLevel);
+            s_oMain.setLocalStorageScore(_iCurLevelScore,_iTotScore,_iCurLevel);
+
+            _sMainBallColor = (_sBlackColor + _iTotScore.toString(16)).substr(-6,6);
+
+            $(s_oMain).trigger("end_level", [_iCurLevel, _iCurLevelScore, _iTotScore, _sMainBallColor]);
             clearInterval(_iIntervalID);
             s_oStage.removeEventListener("stagemousemove");
             _bCanShoot = false;
-            
-            s_oMain.setLocalStorageScore(_iCurLevelScore,_iTotScore,_iCurLevel);
-            
+
             _iCurLevel++;
-            
+
             if(_iCurLevel > s_oLevelSettings.getNumLevels()){
                 _iCurLevel--;
-                _oInterface.win(_iTotScore);
+                _oInterface.win(_iTotScore, _iLastLevel, _sMainBallColor);
             }else{
                 s_oMain.setLocalStorageLevel(_iCurLevel);
-                _oInterface.nextLevel(_iCurLevel,_iTotScore);		
+                _oInterface.nextLevel(_iCurLevel,_iTotScore);
             }
-            
+
         }
     };
-    
+
     this._checkColor = function(iColor){
         for(var i = 0;i<_aBalls.length;++i){
                 if(_aBalls[i].getIndex() === iColor) return;
@@ -611,16 +617,16 @@ function CGame(oData,iLevel,iScore){
         }
         _oHero.colorCleared(iColor);
     };
-    
+
     this.nextLevel = function(){
         _oBgAttach.removeChild(_oBg);
         _oBg = createBitmap(s_oSpriteLibrary.getSprite(s_oLevelSettings.getBgForLevel(_iCurLevel)));
         _oBgAttach.addChild(_oBg);
-		
+
         this.reset();
         _bUpdate = true;
     };
-    
+
     this.onShot = function(iX,iY){
         if(_bCanShoot && _oHero.canShoot() ){
             if(s_bMobile){
@@ -632,26 +638,26 @@ function CGame(oData,iLevel,iScore){
             this.shoot();
         }
     };
-    
+
     this._onMouseMove = function(iXMouse,iYMouse){
         var dx = iXMouse - (_oHero.getX()*s_iScaleFactor);
         var dy = iYMouse - (_oHero.getY()*s_iScaleFactor);
         var iRadians = Math.atan2(dy,dx);
         _oHero.rotate(iRadians * 180 / Math.PI - 90);
     };
-    
+
     this.onExit = function(){
-        
+
         this.unload();
         s_oMain.gotoMenu();
         $(s_oMain).trigger("end_session");
         $(s_oMain).trigger("share_event",_iTotScore);
     };
-    
+
     this._onSoundGameOverComplete = function(){
         playSound("soundtrack",1,true);
     };
-    
+
     this._updateMove = function(){
         _iTimeElaps += s_iTimeElaps;
         if(_iTimeElaps > _iBallSpeed){
@@ -659,7 +665,7 @@ function CGame(oData,iLevel,iScore){
             this.onIntroduceBall();
         }
     };
-    
+
     this._updateRollOut = function(){
         for(var i = _aBalls.length-1;i>=0;--i){
             if(_aBalls[i].getFotogram() > (_aCurveMapData.length - 17)){
@@ -667,14 +673,15 @@ function CGame(oData,iLevel,iScore){
                 _aBalls.splice(i,1);
                 if(_aBalls.length === 0){
                     _iGameState = -1;
-                     _oInterface.gameOver(_iTotScore);
+                    _sMainBallColor = (_sBlackColor + _iTotScore.toString(16)).substr(-6,6);
+                     _oInterface.gameOver(_iTotScore, _iLastLevel, _sMainBallColor);
                 }
             }else{
                 _aBalls[i].increasePos(8,_aCurveMapData);
             }
         }
     };
-    
+
     this._updateRollIn = function(){
         if(_aBalls.length < BALL_ROLLING_IN){
             for(var i = 0;i < _aBalls.length;++i){
@@ -687,34 +694,34 @@ function CGame(oData,iLevel,iScore){
                 oBall.setPos(16,_aCurveMapData);
             }
         }else{
-		
+
             _iGameState = -1;
 
             _aBallShooted = new Array();
             _aBallCrushed = new Array();
             _oHero.start();
-            
+
             _iGameState = STATE_GAME_BALL_MOVE;
         }
     };
-    
+
     this._updateShooting = function(){
         if(_aBallShooted.length !== 0){
             for(var i = 0;i<_aBallShooted.length;++i){
-                if(_aBallShooted[i][0].getX() > 0 && _aBallShooted[i][0].getX() < CANVAS_WIDTH && 
+                if(_aBallShooted[i][0].getX() > 0 && _aBallShooted[i][0].getX() < CANVAS_WIDTH &&
                                                     _aBallShooted[i][0].getY() > 0 && _aBallShooted[i][0].getY() < CANVAS_HEIGHT){
-                                                
+
                     //CHECK COLLISION
                     var iFlag = this._checkCollision(_aBallShooted[i]);
                     if(iFlag === -1){
                         _aBallShooted[i][0].increasePosWithNumbers(Math.cos(_aBallShooted[i][1]) * BALL_SHOOTED_SPEED,
                                                                 Math.sin(_aBallShooted[i][1]) * BALL_SHOOTED_SPEED);
-                        
+
                     }else{
                         var oBall = _aBallShooted[i][0];
                         var iRadians = _aBallShooted[i][1];
-                        
-                        var iDis = Math.sqrt((_aBalls[iFlag].getX() - oBall.getX())*(_aBalls[iFlag].getX() - oBall.getX()) + 
+
+                        var iDis = Math.sqrt((_aBalls[iFlag].getX() - oBall.getX())*(_aBalls[iFlag].getX() - oBall.getX()) +
                                                                   (_aBalls[iFlag].getY() - oBall.getY() )*(_aBalls[iFlag].getY() - oBall.getY()) );
                         _aBallShooted[i][0].decreasePos( (BALL_DIAMETER - iDis) * Math.cos(iRadians),(BALL_DIAMETER - iDis) * Math.sin(iRadians) );
 
@@ -738,7 +745,7 @@ function CGame(oData,iLevel,iScore){
             _iGameState = -1;
         }
     };
-    
+
     this.update = function(){
         if(_bUpdate === false){
             return;
@@ -768,21 +775,21 @@ function CGame(oData,iLevel,iScore){
                     break;
             }
             default:{
-                   this._updateMove(); 
+                   this._updateMove();
             }
         }
-        
-	
+
+
     };
-    
+
     s_oGame = this;
-    
+
     COMBO_VALUE = oData.combo_value;
     EXTRA_SCORE = oData.extra_score;
-    
-	
-       
-        
+
+
+
+
     this._init(iLevel,iScore);
 }
 
