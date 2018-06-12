@@ -46,6 +46,7 @@ if ($post) {
             :p_header_url,
             :p_cover_url,
             :p_video_url,
+            :p_video_cover_url,
             :p_gadget_url,
             :p_footer_url,
             :p_license_description,
@@ -60,6 +61,7 @@ if ($post) {
             array('p_header_url', $params['header_url'], PDO::PARAM_STR),
             array('p_cover_url', $params['cover_url'], PDO::PARAM_STR),
             array('p_video_url', $params['video_url'], PDO::PARAM_STR),
+            array('p_video_cover_url', $params['video_cover_url'], PDO::PARAM_STR),
             array('p_gadget_url', $params['gadget_url'], PDO::PARAM_STR),
             array('p_footer_url', $params['footer_url'], PDO::PARAM_STR),
             array('p_license_description', $params['license_description'], PDO::PARAM_STR),
@@ -70,7 +72,8 @@ if ($post) {
     } else {
 
         $result = ['rowCount' => -1, 'lastInsertId' => 0,
-            'errors' => $params['errors']
+            'errors' => $params['errors'],
+            'token' => get_csrf_token()
         ];
 
     }

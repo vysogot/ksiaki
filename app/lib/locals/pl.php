@@ -190,6 +190,7 @@ $translations = [
   'slug' => 'Uproszczona nazwa',
   'avatar' => 'Awatar',
   'cover_url' => 'Okładka',
+  'video_cover_url' => 'Kadr video',
   'gadget_url' => 'Gadżet',
   'footer_url' => 'Grafika stopki',
   'license_description' => 'Opis w stopce - licencja',
@@ -236,7 +237,7 @@ $translations = [
 
   // static sites form
 
-  'static_site_title' => 'Tytuł',
+  'title' => 'Tytuł',
   'content' => 'Treść',
 
   // Your account
@@ -268,6 +269,7 @@ $translations = [
   'contest_slug' => '/konkurs/{{slug}}',
   'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
   'contest_play_slug' => '/konkurs/{{slug}}/graj',
+  'static_site_slug' => '/info/{{slug}}',
 
   // games
 

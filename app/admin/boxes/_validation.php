@@ -1,5 +1,5 @@
 <?php
 
-function validate($params) {
+function validate(&$params) {
     validate_presence($params, 'name');
 }

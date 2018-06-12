@@ -1,6 +1,6 @@
 $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
-        "ajax": { "url": base_url + "/rankings/datatable.php?type=" + type + "&date=" + date,
+        "ajax": { "url": "/rankings/datatable.php?type=" + type + "&date=" + date,
                   "dataSrc": function ( json ) {
                     $('.panel-heading h2').text(json.title);
                     return json.data;

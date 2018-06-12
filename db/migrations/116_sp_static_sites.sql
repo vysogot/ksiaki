@@ -59,7 +59,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_static_sites_create`(
     IN `p_title` VARCHAR(255),
     IN `p_slug` VARCHAR(255),
-    IN `p_content` VARCHAR(255),
+    IN `p_content` text,
     IN `p_is_active` INT
 )
 BEGIN
@@ -83,7 +83,7 @@ CREATE PROCEDURE `sp_static_sites_update`(
     IN `p_id` INT,
     IN `p_title` VARCHAR(255),
     IN `p_slug` VARCHAR(255),
-    IN `p_content` VARCHAR(255),
+    IN `p_content` text,
     IN `p_is_active` INT
 )
 BEGIN

@@ -1,3 +1,5 @@
+<?php include '../init.php'; ?>
+
 <form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
     <?= csrf_field() ?>
@@ -83,6 +85,19 @@
                             <div class='input-group-addon'><i class='glyphicon glyphicon-facetime-video'></i></div>
                         </div>
                         <input id="video_file" name="video_file" type="file" class="form-control-file">
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="video_cover_url">
+                        <?= t('video_cover_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="video_cover_url" name="video_cover_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-facetime-video'></i></div>
+                        </div>
+                        <input id="video_cover_file" name="video_cover_file" type="file" class="form-control-file">
                     </div>
                 </div>
 

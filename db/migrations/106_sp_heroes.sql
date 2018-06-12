@@ -61,7 +61,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_heroes_create`(
     IN `p_name` VARCHAR(255),
     IN `p_slug` VARCHAR(255),
-    IN `p_description` VARCHAR(255),
+    IN `p_description` text,
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
     IN `p_cover_url` VARCHAR(255),
@@ -114,7 +114,7 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_id` INT,
     IN `p_name` VARCHAR(255),
     IN `p_slug` VARCHAR(255),
-    IN `p_description` VARCHAR(255),
+    IN `p_description` text,
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
     IN `p_cover_url` VARCHAR(255),

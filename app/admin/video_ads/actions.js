@@ -29,8 +29,15 @@ function fShow(myObj) {
 
 function fEdit(myObj) {
     let title = '<?= t("edit_form", ["name" => t("background")]) ?>';
-    $('.modal-title').text(title);
-    get_data(myObj);
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('.modal-title').text(title);
+        get_data(myObj);
+    });
 }
 
 $('#new').click(function(e) {

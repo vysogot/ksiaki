@@ -1,5 +1,7 @@
 <?php
 
+    include '../init.php';
+
     $heroes = execute('call sp_heroes_all();', [], true);
     $hero_file_types = execute('call sp_hero_file_types_all();', [], true);
 

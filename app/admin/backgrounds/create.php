@@ -41,7 +41,8 @@ if ($post) {
   } else {
 
       $result = ['rowCount' => -1, 'lastInsertId' => 0,
-          'errors' => $params['errors']
+          'errors' => $params['errors'],
+          'token' => get_csrf_token()
       ];
 
   }

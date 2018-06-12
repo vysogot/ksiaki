@@ -28,13 +28,20 @@ function fShow(myObj) {
 
 function fEdit(myObj) {
     let title = '<?= t("edit_form", ["name" => t("background")]) ?>';
-    $('.modal-title').text(title);
-    get_data(myObj);
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('.modal-title').text(title);
+        get_data(myObj);
+    });
 }
 
 function fEnd(myObj) {
     let oRow = $(myObj);
-    let title = '<?= t("contest_end") ?>';    
+    let title = '<?= t("contest_end") ?>';
     let ret = confirm(title + ' ' + oRow.data('name') + '?');
 
     if (ret == true) {

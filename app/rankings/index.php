@@ -16,7 +16,6 @@ $data['column_names'] = [
 
 $params = array_merge($params, $_GET);
 
-
 content($params, $data);
 
 ?>
@@ -27,20 +26,18 @@ content($params, $data);
 
   <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
   <script type="text/javascript">
-  
+
   var oTable = null;
-  var type = <?php echo '"' . $params['type'] . '"' ?>;
-  var date = <?php echo '"' . $params['date'] . '"' ?>;
-  var base_url =  <?php echo '"' . $GLOBALS['base_url'] . '"' ?>;
-  
+  var type = <?= '"' . e($params['type']) . '"' ?>;
+  var date = <?= '"' . e($params['date']) . '"' ?>;
+
   <?php include "datatable.js"; ?>
-  
+
   $('#show-ranking').on('hidden.bs.modal', function (e) {
       $('#show-ranking').remove();
   });
   </script>
- 
+
 <?php }
-?>

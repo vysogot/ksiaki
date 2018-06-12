@@ -25,9 +25,16 @@ function fEdit(myObj) {
     let row = $(myObj).data();
     let title = '<?= t("edit_form") ?>';
     title = title + ': ' + row.name + ' ' + row.surname + ' (' + row.nick + ')';
-    $('input[name=row_index]').val(row.index);
-    $('.modal-title').text(title);
-    get_data(myObj);
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('input[name=row_index]').val(row.index);
+        $('.modal-title').text(title);
+        get_data(myObj);
+    });
 }
 
 $('#new').click(function(e) {

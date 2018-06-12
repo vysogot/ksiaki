@@ -34,6 +34,8 @@ function submitForm() {
               error_list.append($("<li>").text(field + ": " + message));
             });
 
+            $("input[name=token]").val(response['token']);
+
             error_list.removeClass('hidden');
 
         } else {
