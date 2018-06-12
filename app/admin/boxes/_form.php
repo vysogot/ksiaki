@@ -1,5 +1,7 @@
 <form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
+    <?= csrf_field() ?>
+
     <input type="hidden" name="id">
     <input type="hidden" name="row_index" value="">
     <input type="hidden" name="is_active">
@@ -91,6 +93,6 @@
                 <?= t('save') ?>
             </button>
         </div>
-        
+
     </div>
 </form>
