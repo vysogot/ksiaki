@@ -447,6 +447,8 @@ CREATE TABLE IF NOT EXISTS `score_games` (
     `ends_at` datetime,
     `points` int,
     `points_total` int,
+    `checknumber_client` VARCHAR(255),
+    `checknumber_server` VARCHAR(255),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';
 

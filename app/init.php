@@ -44,15 +44,11 @@ $get  = $_SERVER['REQUEST_METHOD'] === 'GET';
 $xhr  = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
-if (empty($_SESSION['token'])) {
-  $_SESSION['token'] = bin2hex(random_bytes(32));
-}
-
 if ($post) {
-  if (!(isset($_POST['token']) && hash_equals($_SESSION['token'], $_POST['token']))) {
+  if (!(isset($_POST['token']) && hash_equals(get_csrf_token(), $_POST['token']))) {
         flash('warning', t('invalid_token'));
         redirect('/');
     } else {
-        $_SESSION['token'] = bin2hex(random_bytes(32));
+        set_csrf_token();
     }
 }
