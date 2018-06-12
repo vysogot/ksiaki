@@ -445,6 +445,7 @@ CREATE TABLE IF NOT EXISTS `score_games` (
     `level` int,
     `begins_at` datetime,
     `ends_at` datetime,
+    `win` tinyint(1),
     `points` int,
     `points_total` int,
     `checknumber_client` VARCHAR(255),

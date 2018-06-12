@@ -41,7 +41,8 @@
                     begins_at: levelStartTimestamp,
                     points: iScore - this.getScoreTillLevel(iLevel),
                     points_total: iScore,
-                    main_ball_color: sMainBallColor
+                    main_ball_color: sMainBallColor,
+                    win: 0
                 });
             });
 
@@ -63,7 +64,8 @@
                     begins_at: levelStartTimestamp,
                     points: iLevelScore,
                     points_total: iTotalScore,
-                    main_ball_color: sMainBallColor
+                    main_ball_color: sMainBallColor,
+                    win: 1
                 });
             });
 
