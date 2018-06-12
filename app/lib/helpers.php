@@ -123,6 +123,19 @@ function send_json($result) {
   print json_encode($result);
 }
 
+
+function set_csrf_token() {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+
+function get_csrf_token() {
+    if (!isset($_SESSION['token'])) {
+      set_csrf_token();
+    }
+
+    return $_SESSION['token'];
+}
+
 function csrf_field() {
-    return '<input type="hidden" name="token" value="' . $_SESSION['token'] . '" />';
+    return '<input type="hidden" name="token" value="' . get_csrf_token() . '" />';
 }

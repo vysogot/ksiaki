@@ -1,7 +1,7 @@
 [
   { "ball_speed":50,
-     "ball_number":3,
-     "num_colors":1,
+     "ball_number":60,
+     "num_colors":4,
      "hero_pos":{"x":450,"y":270},
      "bg_image":"bg_game_1",
       "curve_point":[   {"x":-25.2,"y":262.4},{"x":24.8,"y":221.4},{"x":64.8,"y":191.4},{"x":105.1,"y":167.25},{"x":152.1,"y":144.4},{"x":181.65,"y":131},{"x":213.9,"y":118.45},
@@ -24,8 +24,8 @@
                         ] },
 
 { "ball_speed":40,
-     "ball_number":1,
-     "num_colors":1,
+     "ball_number":80,
+     "num_colors":5,
      "hero_pos":{"x":450,"y":280},
      "bg_image":"bg_game_2",
       "curve_point":[   {"x":271.65,"y":-62.1},
