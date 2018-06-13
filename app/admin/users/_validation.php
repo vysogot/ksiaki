@@ -12,6 +12,8 @@ function validate(&$params) {
             array('p_nick_or_email', $params['nick'], PDO::PARAM_STR)
         ));
 
-        validate_uniqueness($params, 'nick', $result);
+        if (!empty($result) && $params['id'] != $result->id) {
+            validate_uniqueness($params, 'nick', $result);
+        }
     }
 }

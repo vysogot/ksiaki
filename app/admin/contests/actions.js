@@ -26,19 +26,6 @@ function fShow(myObj) {
     window.location.assign(url);
 }
 
-function fEdit(myObj) {
-    let title = '<?= t("edit_form", ["name" => t("background")]) ?>';
-
-    $('.modal-content .form-content').load('_form.php', function() {
-        $("#form").on('submit', function () {
-            return submitForm();
-        });
-
-        $('.modal-title').text(title);
-        get_data(myObj);
-    });
-}
-
 function fEnd(myObj) {
     let oRow = $(myObj);
     let title = '<?= t("contest_end") ?>';
@@ -54,9 +41,3 @@ function fEnd(myObj) {
             });
     }
 }
-
-$('#new').click(function(e) {
-    let title = '<?= t("new_form", ["name" => t("background")]) ?>';
-    $('.modal-title').text(title);
-    get_data(this);
-});

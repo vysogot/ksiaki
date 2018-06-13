@@ -60,6 +60,7 @@ function submitForm() {
 
 function get_data(myObj) {
 
+    console.log('myobj', myObj);
     let id = $(myObj).data('id');
 
     $.ajax({
@@ -99,9 +100,38 @@ function get_data(myObj) {
     });
 }
 
+function fEdit(myObj) {
+    let title = '<?= t("edit_form") ?>';
+    let row = $(myObj).data();
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('input[name=row_index]').val(row.index);
+        $('.modal-title').text(title);
+        get_data(myObj);
+    });
+}
+
 $('#modal').on('hidden.bs.modal', function (e) {
     $("#form")[0].reset();
     $("input").removeClass('error');
     $(".modal .errorList").addClass('hidden');
     $(".modal .errorList").empty();
+});
+
+$('#new').click(function(e) {
+    let title = '<?= t("new_form") ?>';
+    let object = this;
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('.modal-title').text(title);
+        get_data(object);
+    });
 });

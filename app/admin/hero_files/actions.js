@@ -26,22 +26,3 @@ function fShow(myObj) {
     $('#imagepreview').attr('src', row.file_url);
     $('#imagemodal').modal('show');
 }
-
-function fEdit(myObj) {
-    let title = '<?= t("edit_form") ?>: ' + $(myObj).data().name;
-
-    $('.modal-content .form-content').load('_form.php', function() {
-        $("#form").on('submit', function () {
-            return submitForm();
-        });
-
-        $('.modal-title').text(title);
-        get_data(myObj);
-    });
-}
-
-$('#new').click(function(e) {
-    let title = '<?= t("new_form") ?>: <?= t("hero_file") ?>';
-    $('.modal-title').text(title);
-    get_data(this);
-});

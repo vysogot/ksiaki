@@ -93,7 +93,8 @@ function get_background() {
 function file_upload($file, $options = []) {
 
     $filename = basename($file["name"]);
-    if ($options['filename']) {
+    
+    if (isset($options['filename'])) {
         $ext = pathinfo(basename($file["name"]), PATHINFO_EXTENSION);
         $filename = $options['filename'] . ".$ext";
     }
