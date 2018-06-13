@@ -26,18 +26,29 @@ function content($params, $data) { ?>
 
 <div id="heroes-page">
   <div class="wrapper">
-    <div class="center"><img src="<?= $data['hero']->header_url ?>"></div>
+
+    <?php if (!empty($data['hero']->header_url)) { ?>
+        <div class="center">
+            <?= image($data['hero']->header_url) ?>
+        </div>
+    <?php } ?>
 
     <?php include './partials/stroer_sky.html' ?>
 
     <div class="row hero">
         <h2><?= e($data['hero']->name) ?></h2>
 
-        <div class="column-13">
-            <?= image($data['hero']->cover_url) ?>
+
+        <div class="column-13 hero-cover">
+            <?php if (!empty($data['hero']->cover_url)) { ?>
+                <?= image($data['hero']->cover_url) ?>
+            <?php } ?>
         </div>
-        <div class="column-23"><?= $data['hero']->description ?>
-            <div class="center" style="margin-top: 30px;">
+
+
+        <div class="column-23">
+            <p><?= $data['hero']->description ?></p>
+            <div class="center hero-gadget">
                 <?= image($data['hero']->gadget_url) ?>
             </div>
         </div>
@@ -88,10 +99,22 @@ function content($params, $data) { ?>
                 </section>
             </div>
         </div>
-      </div>
-    </div>
 
     <?php } ?>
+
+    <?php if (!empty($data['hero']->footer_url)) { ?>
+        <div class="row">
+            <div class="column-33">
+                <section class="hero-footer">
+                  <?= image($data['hero']->footer_url) ?>
+                  <p><?= $data['hero']->license_description ?></p>
+                </section>
+            </div>
+        </div>
+    <?php } ?>
+
+      </div>
+    </div>
 
     <script>
 

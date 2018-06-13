@@ -21,13 +21,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_heroes_find`(IN `p_id` INT)
 BEGIN
-    SELECT id
-    , name
-    , slug
-    , description
-    , avatar_url
-    , header_url
-    , is_active
+    SELECT *
     FROM _heroes
     WHERE (id = p_id);
 END$$

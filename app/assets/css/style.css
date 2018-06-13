@@ -34,7 +34,7 @@ video { max-width: 100%; background: white; }
 #heroes       { width: 960px; height: 140px; overflow: visible; }
 #stroer_topbanner, #stroer_topbanner img { width: 830px; height: 130px; overflow: hidden; }
 
-.sky-banner { display:inline-block; width: 232px; height: 600px; float: left;  text-align: center; }
+.sky-banner { display:inline-block; width: 232px; height: 600px; float: left;  text-align: center; padding-top: 10px; }
 .sky-banner#index { padding-top: 70px; }
 .sky-banner img { margin-bottom: 10px; }
 
@@ -98,7 +98,9 @@ ul.bare li.right { float: right; }
 .main, .side { float: left; }
 
 .row.hero { float:right; width: 688px; }
-.hero { background: #fff; opacity: 0.95; padding: 20px; }
+.hero, .hero-footer { background: #fff; opacity: 0.95; padding: 20px; }
+.hero-footer { font-size: 12px; text-align: justify; }
+.hero-footer p { margin-top: 10px; padding: 0 8px; }
 .hero video { width: 100%; }
 .row:after { content: ""; display: table; clear: both; }
 .column-13 { width: 33.33%; float: left; }
@@ -122,6 +124,9 @@ footer p {
 .hero .boxes .slick-slide img  { width: 192px; height: 192px; }
 .hero .boxes .slick-prev  { margin-left: 10px; }
 .hero .boxes .slick-next:before  { margin-left: -25px; }
+
+.hero-cover img { max-width: 200px; max-height: 266px; }
+.hero-gadget img { max-width: 400px; max-height: 150px; margin-top: 30px; }
 
 .vertical-form {
   margin: 0 auto;

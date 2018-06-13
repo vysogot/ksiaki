@@ -12,12 +12,12 @@ if ($post) {
 
   if (empty($params['errors'])) {
 
-      if (!empty($_FILES['video_file']['name'])) {
-          $params['video_url'] = file_upload($_FILES['video_file']);
+      if (!empty($_FILES['image_file']['name'])) {
+          $params['image_url'] = file_upload($_FILES['image_file'], ['subdir' => 'video_ads']);
       }
 
-      if (!empty($_FILES['image_file']['name'])) {
-          $params['image_url'] = file_upload($_FILES['image_file']);
+      if (!empty($_FILES['video_file']['name'])) {
+          $params['video_url'] = file_upload($_FILES['video_file'], ['subdir' => 'video_ads']);
       }
 
       $result = execute('call sp_video_ads_update(

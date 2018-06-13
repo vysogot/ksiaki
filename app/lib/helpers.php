@@ -90,14 +90,25 @@ function get_background() {
     return $background;
 }
 
-function file_upload($file) {
-    $target_dir = __DIR__ . '/../uploads/';
-    $target_file = $target_dir . basename($file["name"]);
+function file_upload($file, $options = []) {
+
+    $filename = basename($file["name"]);
+    if ($options['filename']) {
+        $ext = pathinfo(basename($file["name"]), PATHINFO_EXTENSION);
+        $filename = $options['filename'] . ".$ext";
+    }
+
+    $subdir = $options['subdir'] ?? '';
+
+    $relative_dir = '/uploads/' . $subdir . '/';
+    $relative_filepath = str_replace('//', '/', $relative_dir) . $filename;
+    $physical_dir = __DIR__ . '/..';
+    $physical_file = $physical_dir . $relative_filepath;
 
     // hard limit to 100mb
     if ($file['size'] < 100000000) {
-        move_uploaded_file($file["tmp_name"], $target_file);
-        return '/uploads/' . basename($file["name"]);
+        move_uploaded_file($file["tmp_name"], $physical_file);
+        return $relative_filepath;
     }
 }
 

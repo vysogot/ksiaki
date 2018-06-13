@@ -12,12 +12,14 @@ if ($post) {
 
   if (empty($params['errors'])) {
 
+      $slug = $params['slug'];
+
       if (!empty($_FILES['box_file']['name'])) {
-        $params['box_url'] = file_upload($_FILES['box_file']);
+        $params['box_url'] = file_upload($_FILES['box_file'], ['subdir' => 'contests', 'filename' => "$slug-box"]);
       }
 
       if (!empty($_FILES['header_file']['name'])) {
-        $params['header_url'] = file_upload($_FILES['header_file']);
+        $params['header_url'] = file_upload($_FILES['header_file'], ['subdir' => 'contests', 'filename' => "$slug-header"]);
       }
 
       $result = execute('call sp_contests_update(
