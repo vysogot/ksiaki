@@ -57,7 +57,7 @@ function content($params, $data) { ?>
     <div class="row hero">
         <h3><?= t('in_current_edition') ?></h3>
         <div class="column-33">
-            <section id="box-banners">
+            <section>
               <div id="box-banners-slider" class="boxes">
                 <?php foreach($data['hero_magazines'] as $box) { ?>
                   <div>
@@ -76,7 +76,7 @@ function content($params, $data) { ?>
         <div class="row hero">
             <h3><?= t('to_download') ?></h3>
             <div class="column-33">
-                <section id="box-banners-2">
+                <section>
                   <div id="box-banners-slider" class="boxes">
                     <?php foreach($data['hero_wallpapers'] as $box) { ?>
                       <div>

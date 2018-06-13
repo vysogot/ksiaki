@@ -37,7 +37,6 @@ function content($params, $data) { ?>
     <?php include './partials/stroer_sky.html' ?>
 
     <section id="contests" class="slider">
-      <h2><?= t('contests') ?></h2>
       <div id="contests-slider" class="boxes">
         <?php foreach($data['contests'] as $contest) { ?>
           <div>
@@ -51,7 +50,6 @@ function content($params, $data) { ?>
     <?php // include 'partials/user_movies_list.php'; ?>
 
     <section id="box-banners">
-      <h2><?= t('box_banners') ?></h2>
       <div id="box-banners-slider" class="boxes">
         <?php foreach($data['boxes'] as $box) { ?>
           <div>
