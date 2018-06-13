@@ -6,6 +6,8 @@ BEGIN
 SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick) );
 IF (@id != 0) THEN
 
+    SET @dat = NOW();
+
 	DROP TEMPORARY TABLE IF EXISTS tmp_ranking;
 
 	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
@@ -13,7 +15,7 @@ IF (@id != 0) THEN
 	, points INT
 	);
 
-	CALL sp_rankings_periodic('12', NOW(), @id, 0, 10);
+	CALL sp_rankings_periodic('12', @dat, @id, 0, 10);
 
 	SET @ranks_id = (SELECT MAX(id) FROM def_ranks WHERE (SELECT points FROM tmp_ranking) >= points_threshold);
 
