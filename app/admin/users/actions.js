@@ -14,7 +14,7 @@ function fDelete(myObj) {
     let title = '<?= t("delete") ?>';
     let ret = confirm(title + ' ' + $(myObj).data('name') + '?');
     if (ret == true) {
-        $.post("delete.php?id=" + $(myObj).data('id'),
+        $.get("delete.php?id=" + $(myObj).data('id'),
             function(data, status){
                 if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
             });

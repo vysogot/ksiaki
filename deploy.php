@@ -13,7 +13,7 @@ set('repository', 'git@bitbucket.org:rgodawa/ksiaki.git');
 set('git_tty', false);
 
 // Shared files/dirs between deploys
-set('shared_files', []);
+set('shared_files', ['../ksiaki_config.php']);
 set('shared_dirs', []);
 
 // Writable dirs by web server
