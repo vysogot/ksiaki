@@ -278,6 +278,7 @@ $translations = [
 
   // security
 
-  'invalid_token' => 'Formularz wygasł. Spróbuj jeszcze raz.'
+  'invalid_token' => 'Formularz wygasł. Odśwież go i spróbuj ponownie.',
+  'form_error' => 'Błąd formularza'
 
 ];

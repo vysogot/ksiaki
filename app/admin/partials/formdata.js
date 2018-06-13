@@ -29,8 +29,10 @@ function submitForm() {
 
             let error_list = $(".modal .errorList");
 
+            $(".modal .errorList").empty();
+
             $.each(response.errors, function(field, message) {
-              $("input[name=" + field + "]").addClass('error');
+              $("input[name='" + field + "']").addClass('error');
               error_list.append($("<li>").text(field + ": " + message));
             });
 

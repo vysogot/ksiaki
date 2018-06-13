@@ -45,9 +45,13 @@ $xhr  = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
 if ($post) {
-  if (!(isset($_POST['token']) && hash_equals(get_csrf_token(), $_POST['token']))) {
-        flash('warning', t('invalid_token'));
-        redirect('/');
+    if (!(isset($_POST['token']) && hash_equals(get_csrf_token(), $_POST['token']))) {
+        if ($env == 'development') {
+            send_json(['errors' => [t('form_error') => t('invalid_token')]]); exit();
+        } else {
+            flash('warning', t('invalid_token'));
+            redirect('/');
+        }
     } else {
         set_csrf_token();
     }
