@@ -115,6 +115,18 @@ function fEdit(myObj) {
     });
 }
 
+function fDelete(myObj) {
+    let title = '<?= t("are_you_sure") ?>';
+    let ret = confirm(title);
+
+    if (ret == true) {
+        $.get("delete.php?id=" + $(myObj).data('id'),
+            function(data, status){
+                if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
+            });
+    }
+}
+
 $('#modal').on('hidden.bs.modal', function (e) {
     $("#form")[0].reset();
     $("input").removeClass('error');
