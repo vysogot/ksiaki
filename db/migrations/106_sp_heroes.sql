@@ -4,6 +4,7 @@ DROP PROCEDURE IF EXISTS sp_heroes_all;
 DROP PROCEDURE IF EXISTS sp_heroes_create;
 DROP PROCEDURE IF EXISTS sp_heroes_update;
 DROP PROCEDURE IF EXISTS sp_heroes_delete;
+DROP PROCEDURE IF EXISTS sp_heroes_find_by_slug;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_heroes_new`()

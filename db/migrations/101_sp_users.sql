@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS sp_users_all;
 DROP PROCEDURE IF EXISTS sp_users_all_count;
 DROP PROCEDURE IF EXISTS sp_users_new;
 DROP PROCEDURE IF EXISTS sp_users_find;

@@ -5,6 +5,7 @@ DROP PROCEDURE IF EXISTS sp_contests_all_but_one;
 DROP PROCEDURE IF EXISTS sp_contests_create;
 DROP PROCEDURE IF EXISTS sp_contests_update;
 DROP PROCEDURE IF EXISTS sp_contests_delete;
+DROP PROCEDURE IF EXISTS sp_contests_find_by_slug;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_new`()

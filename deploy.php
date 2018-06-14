@@ -53,7 +53,7 @@ task('deploy:restart', function () {
     run('service nginx restart');
 });
 
-task('db:reset', function () {
+task('db:update', function () {
     cd('{{release_path}}');
     run('APPLICATION_ENV={{stage}} php db/reset.php');
 });

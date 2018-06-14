@@ -4,6 +4,7 @@ DROP PROCEDURE IF EXISTS sp_static_sites_all;
 DROP PROCEDURE IF EXISTS sp_static_sites_create;
 DROP PROCEDURE IF EXISTS sp_static_sites_update;
 DROP PROCEDURE IF EXISTS sp_static_sites_delete;
+DROP PROCEDURE IF EXISTS sp_static_sites_find_by_slug;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_static_sites_new`()
