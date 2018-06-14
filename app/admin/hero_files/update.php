@@ -13,7 +13,7 @@ if ($post) {
   if (empty($params['errors'])) {
 
       if (!empty($_FILES['actual_file']['name'])) {
-          $params['file_url'] = file_upload($_FILES['actual_file'], ['subdir' => 'heroes/additional']);
+          $params['file_url'] = file_upload($_FILES['actual_file'], ['subdir' => 'heroes/additional', 'thumbnail' => true]);
       }
 
       $result = execute('call sp_hero_files_update(

@@ -128,6 +128,8 @@ footer p {
 .hero-cover img { max-width: 200px; max-height: 266px; }
 .hero-gadget img { max-width: 400px; max-height: 150px; margin-top: 30px; }
 
+.shrink img { max-width: 100%; }
+
 .vertical-form {
   margin: 0 auto;
   width: 470px;

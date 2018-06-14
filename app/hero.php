@@ -72,7 +72,7 @@ function content($params, $data) { ?>
               <div id="box-banners-slider" class="boxes">
                 <?php foreach($data['hero_magazines'] as $box) { ?>
                   <div>
-                      <?= link_to(image($box->file_url), $box->file_url, ['class' => 'modal-image']) ?>
+                      <?= link_to(image(thumbnail_name($box->file_url)), $box->file_url, ['class' => 'modal-image']) ?>
                       <p><?= link_to($box->name, "$box->file_url", ['class' => 'modal-image']) ?></p>
                   </div>
                 <?php } ?>
@@ -91,7 +91,7 @@ function content($params, $data) { ?>
                   <div id="box-banners-slider" class="boxes">
                     <?php foreach($data['hero_wallpapers'] as $box) { ?>
                       <div>
-                        <?= link_to(image($box->file_url), $box->file_url, ['class' => 'modal-image']) ?>
+                        <?= link_to(image(thumbnail_name($box->file_url)), $box->file_url, ['class' => 'modal-image']) ?>
                         <p><?= link_to($box->name, "$box->file_url", ['class' => 'modal-image']) ?></p>
                       </div>
                     <?php } ?>
@@ -135,7 +135,8 @@ function content($params, $data) { ?>
         $('a.modal-image').on('click', function(event) {
           event.preventDefault();
 
-          $('.modal-content p').append('<div class="center"><img src="' + $(this).attr('href') + '"/></div>');
+          $('.modal-content p').empty();
+          $('.modal-content p').append('<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>');
           $('.modal').show();
         });
     </script>

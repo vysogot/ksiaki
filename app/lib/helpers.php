@@ -93,9 +93,9 @@ function get_background() {
 function file_upload($file, $options = []) {
 
     $filename = basename($file["name"]);
+    $ext = file_extension($filename);
 
     if (isset($options['filename'])) {
-        $ext = pathinfo(basename($file["name"]), PATHINFO_EXTENSION);
         $filename = $options['filename'] . ".$ext";
     }
 
@@ -112,8 +112,39 @@ function file_upload($file, $options = []) {
             $relative_filepath = '/uploads/' . $relative_filepath;
         }
 
+        if (isset($options['thumbnail']) && $options['thumbnail'] == true) {
+            create_thumbnail($physical_filepath, $ext);
+        }
+
         return cdn_url($relative_filepath);
     }
+}
+
+function create_thumbnail($physical_filepath, $ext) {
+
+    if (in_array($ext, ['jpg', 'jpeg', 'gif', 'png'])) {
+        $image = new Imagick($physical_filepath);
+        $image->resizeImage(300, 300, Imagick::FILTER_CATROM, 0, true);
+
+        $output_file_path = thumbnail_name($physical_filepath);
+        $output_file = fopen($output_file_path, "w");
+
+        if (fwrite($output_file, $image->getImageBlob()) === false) {
+          throw new Exception("Error writing to file: $output_file_path");
+        }
+
+        fclose($output_file);
+    }
+
+}
+
+function file_extension($filename) {
+    return pathinfo($filename, PATHINFO_EXTENSION);
+}
+
+function thumbnail_name($filename) {
+    $ext = file_extension($filename);
+    return str_replace(".$ext", "-thumb.$ext", $filename);
 }
 
 function cdn_url($src) {
