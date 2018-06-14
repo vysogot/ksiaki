@@ -26,6 +26,9 @@ ini_set('session.cookie_secure', 1);
 session_start();
 ini_set('session.cookie_httponly', 1);
 
+// Set max uploads
+ini_set('upload_max_filesize', '50M');
+
 $GLOBALS['base_url'] = $GLOBALS['config']['protocol'] . $GLOBALS['config']['domain'];
 $GLOBALS['url'] = $GLOBALS['base_url'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
 
