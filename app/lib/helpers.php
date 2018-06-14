@@ -119,7 +119,7 @@ function file_upload($file, $options = []) {
 function cdn_url($src) {
     if (substr($src, 0, 4) == 'http') return $src;
 
-    return str_replace('//', '/', $GLOBALS['config']['cdn'] . $src);
+    return $GLOBALS['config']['cdn'] . $src;
 }
 
 function ranking_list($scores) {
