@@ -74,14 +74,14 @@ function link_to($name, $destination, $options = []) {
     return $link . ">$name</a>";
 }
 
-function asset_url($src) {
+function cdn_url($src) {
     if (substr($src, 0, 4) == 'http') return $src;
 
     return $GLOBALS['config']['cdn'] . $src;
 }
 
 function image($src, $options = []) {
-    $image = '<img src="' . asset_url($src) . '"';
+    $image = '<img src="' . cdn_url($src) . '"';
 
     foreach($options as $key => $value) {
         $image .= ' ' . $key . '="' . $value . '"';
