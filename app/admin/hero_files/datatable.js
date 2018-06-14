@@ -8,7 +8,7 @@ $(document).ready(function() {
                 "render": function (data) {
                     var ext = data.substr(data.lastIndexOf('.'));
                     var name = data.substr(0, data.lastIndexOf('.')) + '_thumb' + ext;
-                    return '<img height=75px src="' + data + '">';
+                    return '<img height=75px src="' + name + '">';
                 },
                 "orderable": false
             },

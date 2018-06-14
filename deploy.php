@@ -47,6 +47,11 @@ task('deploy', [
     'success'
 ]);
 
+task('deploy:restart', function () {
+    run('service php7.0-fpm restart');
+    run('service nginx restart');
+});
+
 task('db:reset', function () {
     cd('{{release_path}}');
     run('APPLICATION_ENV={{stage}} php db/reset.php');
