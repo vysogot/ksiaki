@@ -101,7 +101,7 @@ function file_upload($file, $options = []) {
 
     $subdir = $options['subdir'] ?? '';
 
-    $relative_filepath =  '/' . $subdir . '/' . $filename;
+    $relative_filepath =  '/' . $subdir . '/' . time() . '-' . $filename;
     $physical_filepath = str_replace('//', '/', $GLOBALS['config']['uploads_dir'] . $relative_filepath);
 
     // hard limit to 100mb

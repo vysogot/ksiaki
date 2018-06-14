@@ -28,7 +28,7 @@ function content($params, $data) { ?>
   <div class="wrapper">
 
     <?php if (!empty($data['hero']->header_url)) { ?>
-        <div class="center">
+        <div class="center hero-header">
             <?= image($data['hero']->header_url) ?>
         </div>
     <?php } ?>
@@ -41,7 +41,7 @@ function content($params, $data) { ?>
 
         <div class="column-13 hero-cover">
             <?php if (!empty($data['hero']->cover_url)) { ?>
-                <?= image($data['hero']->cover_url) ?>
+                <?= link_to(image(thumbnail_name($data['hero']->cover_url)), $data['hero']->cover_url, ['class' => 'modal-image']) ?>
             <?php } ?>
         </div>
 

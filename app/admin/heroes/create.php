@@ -31,7 +31,7 @@ if ($post) {
         }
 
         if (!empty($_FILES['cover_file']['name'])) {
-            $params['cover_url'] = file_upload($_FILES['cover_file'], ['subdir' => 'heroes', 'filename' => "$slug-cover"]);
+            $params['cover_url'] = file_upload($_FILES['cover_file'], ['subdir' => 'heroes', 'filename' => "$slug-cover", 'thumbnail' => true]);
         }
 
         if (!empty($_FILES['video_file']['name'])) {
