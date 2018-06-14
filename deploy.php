@@ -10,11 +10,11 @@ set('application', 'konkursiaki');
 set('repository', 'git@bitbucket.org:rgodawa/ksiaki.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', false);
+set('git_tty', true);
 
 // Shared files/dirs between deploys
-set('shared_files', ['../ksiaki_config.php']);
-set('shared_dirs', []);
+set('shared_files', []);
+set('shared_dirs', ['log']);
 
 // Writable dirs by web server
 set('writable_dirs', []);
@@ -24,6 +24,7 @@ set('writable_dirs', []);
 
 host('ksiaki')
     ->stage('production')
+    ->forwardAgent(false)
     ->set('deploy_path', '/var/www/{{application}}');
 
 
@@ -46,9 +47,9 @@ task('deploy', [
     'success'
 ]);
 
-task('pwd', function () {
-    $result = run('pwd');
-    writeln("Current dir: $result");
+task('db:reset', function () {
+    cd('{{release_path}}');
+    run('APPLICATION_ENV={{stage}} php db/reset.php');
 });
 
 // [Optional] If deploy fails automatically unlock.
