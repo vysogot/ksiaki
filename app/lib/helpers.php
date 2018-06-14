@@ -74,8 +74,14 @@ function link_to($name, $destination, $options = []) {
     return $link . ">$name</a>";
 }
 
+function asset_url($src) {
+    if (substr($src, 0, 4) == 'http') return $src;
+
+    return $GLOBALS['config']['cdn'] . $src;
+}
+
 function image($src, $options = []) {
-    $image = '<img src="' . $src . '"';
+    $image = '<img src="' . asset_url($src) . '"';
 
     foreach($options as $key => $value) {
         $image .= ' ' . $key . '="' . $value . '"';
@@ -93,7 +99,7 @@ function get_background() {
 function file_upload($file, $options = []) {
 
     $filename = basename($file["name"]);
-    
+
     if (isset($options['filename'])) {
         $ext = pathinfo(basename($file["name"]), PATHINFO_EXTENSION);
         $filename = $options['filename'] . ".$ext";
@@ -101,14 +107,17 @@ function file_upload($file, $options = []) {
 
     $subdir = $options['subdir'] ?? '';
 
-    $relative_dir = '/uploads/' . $subdir . '/';
-    $relative_filepath = str_replace('//', '/', $relative_dir) . $filename;
-    $physical_dir = __DIR__ . '/..';
-    $physical_file = $physical_dir . $relative_filepath;
+    $relative_filepath =  '/' . $subdir . '/' . $filename;
+    $physical_filepath = str_replace('//', '/', $GLOBALS['config']['uploads_dir'] . $relative_filepath);
 
     // hard limit to 100mb
     if ($file['size'] < 100000000) {
-        move_uploaded_file($file["tmp_name"], $physical_file);
+        move_uploaded_file($file["tmp_name"], $physical_filepath);
+
+        if ($GLOBALS['env'] == 'development') {
+            $relative_filepath = '/uploads/' . $relative_filepath;
+        }
+
         return $relative_filepath;
     }
 }
