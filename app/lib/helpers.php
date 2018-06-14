@@ -144,7 +144,7 @@ function file_extension($filename) {
 
 function thumbnail_name($filename) {
     $ext = file_extension($filename);
-    return str_replace(".$ext", "-thumb.$ext", $filename);
+    return str_replace(".$ext", "_thumb.$ext", $filename);
 }
 
 function cdn_url($src) {

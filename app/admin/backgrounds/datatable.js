@@ -7,7 +7,7 @@ $(document).ready(function() {
                 "data": "image_url",
                 "render": function (data) {
                     var ext = data.substr(data.lastIndexOf('.'));
-                    var name = data.substr(0, data.lastIndexOf('.')) + '-thumb' + ext;
+                    var name = data.substr(0, data.lastIndexOf('.')) + '_thumb' + ext;
                     return '<img height=75px src="' + name + '" title="' + data.substr(data.lastIndexOf('/')+1) + '">';
                 },
                 "orderable": false
