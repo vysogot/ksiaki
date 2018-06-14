@@ -35,7 +35,7 @@ if ($post) {
         }
 
         if (!empty($_FILES['video_file']['name'])) {
-            $params['video_url'] = file_upload($_FILES['video_file'], ['subdir' => 'heroes/videos', 'filename' => "$slug-video"]);
+            $params['video_url'] = file_upload($_FILES['video_file'], ['subdir' => 'heroes', 'filename' => "$slug-video"]);
         }
 
         if (!empty($_FILES['video_cover_file']['name'])) {

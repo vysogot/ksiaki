@@ -24,7 +24,7 @@ set('writable_dirs', []);
 
 host('ksiaki')
     ->stage('production')
-    ->forwardAgent(false)
+    ->forwardAgent(true)
     ->set('deploy_path', '/var/www/{{application}}');
 
 
