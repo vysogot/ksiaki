@@ -74,14 +74,8 @@ function link_to($name, $destination, $options = []) {
     return $link . ">$name</a>";
 }
 
-function cdn_url($src) {
-    if (substr($src, 0, 4) == 'http') return $src;
-
-    return $GLOBALS['config']['cdn'] . $src;
-}
-
 function image($src, $options = []) {
-    $image = '<img src="' . cdn_url($src) . '"';
+    $image = '<img src="' . $src . '"';
 
     foreach($options as $key => $value) {
         $image .= ' ' . $key . '="' . $value . '"';
@@ -118,8 +112,14 @@ function file_upload($file, $options = []) {
             $relative_filepath = '/uploads/' . $relative_filepath;
         }
 
-        return $relative_filepath;
+        return cdn_url($relative_filepath);
     }
+}
+
+function cdn_url($src) {
+    if (substr($src, 0, 4) == 'http') return $src;
+
+    return str_replace('//', '/', $GLOBALS['config']['cdn'] . $src);
 }
 
 function ranking_list($scores) {
