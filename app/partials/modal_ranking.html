@@ -10,18 +10,18 @@ $('.rankings h2 > a').on('click', function(event) {
       $('#show-ranking').modal('show');
     if(statusTxt == "error")
       alert("Error: " + xhr.status + ": " + xhr.statusText);
-  });  
+  });
 });
 
 $('.rankings li > a').on('click', function(event) {
   event.preventDefault();
+
   var href = $(this).attr('href');
-  $('.modal-content p').load(href, function(responseTxt, statusTxt, xhr) {
-    if(statusTxt == "success")
-      $('.modal').show();
-    if(statusTxt == "error")
-      alert("Error: " + xhr.status + ": " + xhr.statusText);
-  });
+  $.get(href, function(response) {
+      vex.open({
+          unsafeContent: response
+      })
+  })
 });
 
 $('.modal .close').click(function() {

@@ -12,8 +12,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">
           <?= t('close') ?>
         </button>
-      </div>  
+      </div>
     </div>
   </div>
 </div>
-

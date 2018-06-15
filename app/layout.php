@@ -123,11 +123,30 @@
    });
     </script>
 
+
     <script type="text/javascript">
       $(document).on('ready', function() { $
         (document.body).css('visibility', 'visible');
       });
+
+      $('a.modal-image').on('click', function(event) {
+        event.preventDefault();
+        vex.dialog.alert({
+            unsafeMessage: '<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>'
+        })
+      });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
+	<script>vex.defaultOptions.className = 'vex-theme-os'</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-os.min.css" />
+
+    <style>
+    .vex.vex-theme-os { padding-top: 50px; padding-bottom: 50px; }
+    .vex.vex-theme-os .vex-content { width: unset; max-width: 80%; }
+    .vex.vex-theme-os .vex-content p { margin-bottom: 30px; }
+    </style>
 
   </body>
   </html>

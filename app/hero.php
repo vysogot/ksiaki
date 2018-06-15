@@ -132,13 +132,6 @@ function content($params, $data) { ?>
                 $(e.currentTarget).removeClass('expanded-light');
             });
 
-        $('a.modal-image').on('click', function(event) {
-          event.preventDefault();
-
-          $('.modal-content p').empty();
-          $('.modal-content p').append('<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>');
-          $('.modal').show();
-        });
     </script>
 
 <?php }

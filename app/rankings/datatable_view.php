@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading text-center"><h2></h2></div>
-                <div class="panel-body" style="display:none">
+                <div class="panel-body">
                     <table id="dataTable" class="table table-striped table-vcenter">
                         <thead>
                             <tr>
