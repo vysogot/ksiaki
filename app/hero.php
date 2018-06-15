@@ -36,22 +36,34 @@ function content($params, $data) { ?>
     <?php include './partials/stroer_sky.html' ?>
 
     <div class="row hero">
-        <h2><?= e($data['hero']->name) ?></h2>
-
-
-        <div class="column-13 hero-cover">
-            <?php if (!empty($data['hero']->cover_url)) { ?>
-                <?= link_to(image(thumbnail_name($data['hero']->cover_url)), $data['hero']->cover_url, ['class' => 'modal-image']) ?>
+        <h2>
+            <?= e($data['hero']->name) ?>
+            <?php if (is_admin()) { ?>
+                <?= link_to(t('edit_form'), '/admin/heroes') ?>
             <?php } ?>
-        </div>
+        </h2>
 
+        <?php if (!empty($data['hero']->cover_url)) { ?>
 
-        <div class="column-23">
-            <p><?= $data['hero']->description ?></p>
-            <div class="center hero-gadget">
-                <?= link_to(image(thumbnail_name($data['hero']->gadget_url)), $data['hero']->gadget_url, ['class' => 'modal-image']) ?>
+            <div class="column-13 hero-cover">
+                <?php if (!empty($data['hero']->cover_url)) { ?>
+                    <?= link_to(image(thumbnail_name($data['hero']->cover_url)), $data['hero']->cover_url, ['class' => 'modal-image']) ?>
+                <?php } ?>
             </div>
-        </div>
+
+        <?php } ?>
+
+        <?php if (!empty($data['hero']->gadget_url)) { ?>
+
+            <div class="column-23">
+                <p><?= $data['hero']->description ?></p>
+                <div class="center hero-gadget">
+                    <?= link_to(image(thumbnail_name($data['hero']->gadget_url)), $data['hero']->gadget_url, ['class' => 'modal-image']) ?>
+                </div>
+            </div>
+
+        <?php } ?>
+
     </div>
 
     <?php if (!empty($data['hero']->video_url)) { ?>
@@ -102,19 +114,19 @@ function content($params, $data) { ?>
 
     <?php } ?>
 
-    <?php if (!empty($data['hero']->footer_url)) { ?>
-        <div class="row">
-            <div class="column-33">
-                <section class="hero-footer">
-                  <?= image($data['hero']->footer_url) ?>
-                  <p><?= $data['hero']->license_description ?></p>
-                </section>
+        <?php if (!empty($data['hero']->footer_url)) { ?>
+            <div class="row">
+                <div class="column-33">
+                    <section class="hero-footer">
+                      <?= image($data['hero']->footer_url) ?>
+                      <p><?= $data['hero']->license_description ?></p>
+                    </section>
+                </div>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
 
-      </div>
-    </div>
+  </div>
+</div>
 
     <script>
 

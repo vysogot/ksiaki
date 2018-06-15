@@ -14,6 +14,8 @@ function submitForm() {
     let row_index = $('input[name="row_index"]').val();
     let form_data = new FormData(document.getElementById("form"));
 
+    $("input[type=submit]").attr('disabled','disabled');
+
     $.ajax({
 
         url: (form_data.get('id') == 0) ? 'create.php' : 'update.php',
@@ -75,7 +77,12 @@ function get_data(myObj) {
         let ret = data[0];
 
         for (var key in ret) {
-            $('input[name="' + key + '"]').val(ret[key]);
+            var field = $('input[name="' + key + '"]');
+            field.val(ret[key]);
+
+            if (key.endsWith('_url')) {
+                field.prop('readonly', true);
+            }
         }
 
         $('textarea[name="license_description"]').val(ret.license_description);
