@@ -122,8 +122,10 @@ footer p {
 }
 
 .hero #box-banners  { width: 640px; min-height: 300px; }
-.hero .boxes .slick-slide  { width: 192px; height: 234px; margin-left: 12px; }
-.hero .boxes .slick-slide img  { width: 192px; height: 192px; }
+.hero .boxes .slick-slide { width: 192px; height: 234px; margin-left: 12px;}
+.hero .boxes .slick-slide a { height: 192px; }
+.hero .boxes .slick-slide p a { height: 32px; background: white;  }
+.hero .boxes .slick-slide img  { width: 192px; }
 .hero .boxes .slick-prev  { margin-left: 10px; }
 .hero .boxes .slick-next:before  { margin-left: -25px; }
 
@@ -483,13 +485,6 @@ footer p {
     color: black;
 }
 
-
-
-
-
-
-
-
 .slider {
     width: 50%;
     margin: 0 auto;
@@ -521,17 +516,20 @@ footer p {
 
 .box img, .box video, .boxes .slick-slide img, .boxes .slick-slide video {
   width:220px;
-  height: 220px;
 }
 
-.box a, .box p,
-.boxes .slick-slide a,
-.boxes .slick-slide p {
+.box a, .boxes .slick-slide a {
   color: black;
-  text-align:
-  center; margin: 10px 0;
+  text-align: center;
   text-decoration: none;
+  display: block;
+  height: 220px;
+  overflow-y: hidden;
+  background: #eee;
 }
+
+.box p, .boxes .slick-slide p { margin: 0; }
+.box p a, .boxes .slick-slide p a { height: 40px; padding-top: 10px; background: white; }
 
 #heroes .slick-list.draggable { padding: 20px 0!important; }
 .boxes .slick-list.draggable { padding: 20px 10px!important; }
