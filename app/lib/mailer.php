@@ -38,13 +38,16 @@ function send_email($to, $options = []) {
             );
             $mail->addAddress($to, $options['name']);
             $mail->addReplyTo(
-                $GLOBALS['config']['smtp_reply_to_email'], 
+                $GLOBALS['config']['smtp_reply_to_email'],
                 $GLOBALS['config']['smtp_reply_to_name']
             );
 
-            $mail->isHTML(true);
-            $mail->Subject = $options['subject'];
-            $mail->Body    = $options['body'];
+            $mail->isHtml(true);
+
+            $mail->CharSet = "UTF-8";
+            $mail->Encoding = "base64";
+            $mail->Subject = htmlentities(trim($options['subject']), ENT_NOQUOTES, 'utf-8');
+            $mail->Body = htmlentities(trim($options['body']), ENT_NOQUOTES, 'utf-8');
 
             $mail->send();
 
