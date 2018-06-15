@@ -42,12 +42,12 @@ function send_email($to, $options = []) {
                 $GLOBALS['config']['smtp_reply_to_name']
             );
 
-            $mail->isHtml(true);
+            $mail->isHTML(true);
 
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
             $mail->Subject = htmlentities(trim($options['subject']), ENT_NOQUOTES, 'utf-8');
-            $mail->Body = htmlentities(trim($options['body']), ENT_NOQUOTES, 'utf-8');
+            $mail->Body = trim($options['body']);
 
             $mail->send();
 
