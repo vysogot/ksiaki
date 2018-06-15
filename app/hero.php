@@ -49,7 +49,7 @@ function content($params, $data) { ?>
         <div class="column-23">
             <p><?= $data['hero']->description ?></p>
             <div class="center hero-gadget">
-                <?= image($data['hero']->gadget_url) ?>
+                <?= link_to(image(thumbnail_name($data['hero']->gadget_url)), $data['hero']->gadget_url, ['class' => 'modal-image']) ?>
             </div>
         </div>
     </div>
