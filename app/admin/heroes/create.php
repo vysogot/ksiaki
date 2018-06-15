@@ -23,7 +23,7 @@ if ($post) {
         }
 
         if (!empty($_FILES['gadget_file']['name'])) {
-            $params['gadget_url'] = file_upload($_FILES['gadget_file'], ['subdir' => 'heroes', 'filename' => "$slug-gadget"]);
+            $params['gadget_url'] = file_upload($_FILES['gadget_file'], ['subdir' => 'heroes', 'filename' => "$slug-gadget", 'thumbnail' => true]);
         }
 
         if (!empty($_FILES['footer_file']['name'])) {
