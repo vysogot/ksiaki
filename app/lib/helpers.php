@@ -191,3 +191,15 @@ function get_csrf_token() {
 function csrf_field() {
     return '<input type="hidden" name="token" value="' . get_csrf_token() . '" />';
 }
+
+function slugify($str, $max_length = 50) {
+    $polish = array('/ą/', '/ż/', '/ź/', '/ę/', '/ć/', '/ń/', '/ó/', '/ł/', '/ś/', '/Ą/', '/Ż/', '/Ź/', '/Ę/', '/Ć/', '/Ń/', '/Ó/', '/Ł/', '/Ś/');
+    $ascii = array('a', 'z', 'z', 'e', 'c', 'n', 'o', 'l', 's', 'A', 'Z', 'Z', 'E', 'C', 'N', 'O', 'L', 'S');
+    $str = preg_replace($polish, $ascii, $str);
+    $str = strtolower(trim($str));
+    $str = preg_replace('/\?/', '', $str);
+    $str = preg_replace('/[^a-z0-9-]/', '-', $str);
+    $str = preg_replace('/-+/', "-", $str);
+    $str = substr($str, 0, $max_length);
+    return $str;
+}

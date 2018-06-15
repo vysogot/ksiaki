@@ -82,6 +82,9 @@ function get_data(myObj) {
         $('textarea[name="description"]').val(ret.description);
         $('textarea[name="content"]').val(ret.content);
 
+        $('input[name="begins_at"]').val(ret.begins_at.replace(' ', 'T'));
+        $('input[name="ends_at"]').val(ret.ends_at.replace(' ', 'T'));
+
         $('#is_active_check').prop("checked", ($('input[name="is_active"]').val() == '1'));
         $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
 
