@@ -468,4 +468,10 @@ CREATE TABLE `score_games_archive` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_polish_ci' COMMENT='Archiwum punktów zdobytych w danej grze w danym konkursie na danym poziomie';
 
+CREATE TABLE `schema_version` (
+ `last_migration_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Wersjonowanie migracji';
+
+INSERT INTO `schema_version` (`last_migration_at`) VALUES ('2018-06-01 00:00:00');
+
 SELECT 1;

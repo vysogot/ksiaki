@@ -43,6 +43,7 @@ function send_email($to, $options = []) {
             );
 
             $mail->isHTML(true);
+            $mail->WordWrap = 80;  
 
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";

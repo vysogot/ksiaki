@@ -1,20 +1,14 @@
 <?php
 
-$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
-
-$env = getenv('APPLICATION_ENV');
-if (!$env) $env = 'development';
-$GLOBALS['config'] = $envs[$env];
+require 'init.php';
 
 list($host, $dbname, $user, $pass, $port) = [
-  $config['DB_HOST'],
-  $config['DB_NAME'],
-  $config['DB_USER'],
-  $config['DB_PASS'],
-  $config['DB_PORT']
+  $GLOBALS['config']['DB_HOST'],
+  $GLOBALS['config']['DB_NAME'],
+  $GLOBALS['config']['DB_USER'],
+  $GLOBALS['config']['DB_PASS'],
+  $GLOBALS['config']['DB_PORT']
 ];
-
-$match = '*.sql';
 
 if (in_array($env, ['development', 'testing'])) {
 
@@ -26,24 +20,15 @@ if (in_array($env, ['development', 'testing'])) {
       echo "Database '$dbname' created\n\n";
     }
 
+    run_scripts_in_folder('installs');
+    run_scripts_in_folder('procedures');
+    run_scripts_in_folder('migrations');
+    run_scripts_in_folder('seeds');
+
+    echo "\nReset db '$dbname' completed\n\n";
+
 } else {
-    echo "\nRunning in '$env' – SAFE MODE schema and data unchanged\n\n";
-    $match = '1*sp*.sql';
+
+    echo "\nCan't run in '$env', do it manually or use 'db/migrate.php'\n\n";
+
 }
-
-$path = realpath(__DIR__ . "/migrations");
-$files = scandir($path);
-
-foreach ($files as $file) {
-    if (!fnmatch($match, $file)) continue;
-
-    $realpath = $path . '/' . $file;
-    $query = file_get_contents($realpath);
-
-    if (exec("mysql -h $host -P $port -u $user --password=$pass $dbname < $realpath"))
-         echo "$file => Success\n";
-    else
-         echo "$file => Fail\n";
-}
-
-echo "\nCompleted\n";

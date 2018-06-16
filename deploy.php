@@ -4,7 +4,7 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'konkursiaki');
+set('application', 'ksiaki');
 
 // Project repository
 set('repository', 'git@bitbucket.org:rgodawa/ksiaki.git');
@@ -25,7 +25,9 @@ set('writable_dirs', []);
 host('ksiaki')
     ->stage('production')
     ->forwardAgent(true)
-    ->set('deploy_path', '/var/www/{{application}}');
+    ->set('deploy_path', '/var/www/{{application}}')
+    ->set('db_user', 'ksiaki_production')
+    ->set('db_name', 'ksiaki');
 
 
 // Tasks
@@ -43,14 +45,29 @@ task('deploy', [
     'deploy:clear_paths',
     'deploy:symlink',
     'deploy:unlock',
-    'deploy:restart',
+    'deploy:nginx_restart',
+    'deploy:phpfpm_restart',
     'cleanup',
     'success'
 ]);
 
-task('deploy:restart', function () {
-    run('service php7.0-fpm restart');
+task('deploy:nginx_restart', function () {
     run('service nginx restart');
+});
+
+task('deploy:phpfpm_restart', function () {
+    run('service php7.0-fpm restart');
+});
+
+task('db:backup', function () {
+    // still not working
+
+    $timestamp = date('Ymd_His', time());
+
+    // requires .ssh/environment MYSQL_PWD set on remote
+    // check /etc/ssh/sshd_config for PermitUserEnvironment yes
+    run('mysqldump -u{{db_user}} --databases {{db_name}} --events --routines --single-transaction >> /var/www/{{application}}-backups/' . $timestamp . '-{{application}}-backup.sql');
+    // run('php /var/www/backup-ksiaki.php');
 });
 
 task('db:update', function () {
