@@ -23,6 +23,10 @@ $data['other_contests'] = execute('call sp_contests_all_but_one(:p_id);', array(
     array('p_id', $data['contest']->id, PDO::PARAM_INT)
 ), true);
 
+$data['contest_prizes'] = execute('call sp_contest_prizes_by_contest_id(:p_id);', array(
+    array('p_id', $data['contest']->id, PDO::PARAM_INT)
+), true);
+
 $data['monthly_ranking'] = execute('call sp_rankings_monthly(
   :p_date,
   :p_offset,
@@ -82,10 +86,18 @@ function content($params, $data) { ?>
     <?php include './partials/modal_ranking.html' ?>
 
     <div class="main">
+        <h2 class="center"><?= t('prizes_in_this_contest') ?></h2>
+        <?php foreach($data['contest_prizes'] as $prize) { ?>
+          <div class="left box">
+            <?= link_to(image($prize->image_url), t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'prize']) ?>
+            <p><?= link_to($prize->name, t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'prize']) ?></p>
+          </div>
+        <?php } ?>
+
       <h2 class="center"><?= t('other_contests') ?></h2>
       <?php foreach($data['other_contests'] as $contest) { ?>
         <div class="left box">
-          <?= link_to("<img src='$contest->box_url'>", t('contest_slug', ['slug' => $contest->slug])) ?>
+          <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
           <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
         </div>
       <?php } ?>

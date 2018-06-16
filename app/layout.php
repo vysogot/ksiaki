@@ -135,12 +135,26 @@
             unsafeMessage: '<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>'
         })
       });
+
+      $('a.modal-remote').on('click', function(event) {
+        event.preventDefault();
+
+        var href = $(this).attr('href');
+        var className = $(this).data('modal-class');
+
+        $.get(href, function(response) {
+            vex.open({
+                unsafeContent: response,
+                contentClassName: className
+            })
+        })
+      });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
-	<script>vex.defaultOptions.className = 'vex-theme-os'</script>
+	<script>vex.defaultOptions.className = 'vex-theme-flat-attack'</script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-os.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-flat-attack.min.css" />
 
     <style>
     .vex.vex-theme-os { padding-top: 50px; padding-bottom: 50px; }

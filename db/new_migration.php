@@ -22,12 +22,14 @@ SET @migration_timestamp = TIMESTAMP('$db_timestamp');
 
 IF (@last_migration_at < @migration_timestamp) THEN
 
+    /*** BEGINING OF MIGRATION ***/
 
     -- Put your SQL here
 
+    /*** END OF MIGRATION ***/
 
     /***
-        leave the below unchanged, it bumbs the schema version
+        Leave the below unchanged, it bumbs the schema version
     ***/
 
     UPDATE schema_version

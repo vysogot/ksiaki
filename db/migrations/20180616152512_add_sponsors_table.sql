@@ -5,6 +5,8 @@ SET @migration_timestamp = TIMESTAMP('2018-06-16 15:25:12');
 
 IF (@last_migration_at < @migration_timestamp) THEN
 
+    /*** BEGINING OF MIGRATION ***/
+
     /* Nagrody konkursów */
     CREATE TABLE IF NOT EXISTS `_sponsors` (
         `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -23,9 +25,10 @@ IF (@last_migration_at < @migration_timestamp) THEN
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Sponsorzy np. nagród konkursów';
 
+    /*** END OF MIGRATION ***/
 
     /***
-        leave the below unchanged, it bumbs the schema version
+        Leave the below unchanged, it bumbs the schema version
     ***/
 
     UPDATE schema_version

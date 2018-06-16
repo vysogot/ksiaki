@@ -130,6 +130,11 @@ $translations = [
   'static_sites' => 'Strony statyczne',
   'admin_menu_other_items' => 'Pozostałe',
   'back_to_home_page' => 'Powrót do strony głównej',
+  'contest_prize' => 'Nagroda w konkursie',
+  'contest_prizes' => 'Nagrody konkursów',
+  'sponsor_name' => 'Sponsor',
+  'sponsors' => 'Sponsorzy',
+  'sponsor' => 'Sponsor',
 
   // data
 
@@ -270,6 +275,7 @@ $translations = [
   'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
   'contest_play_slug' => '/konkurs/{{slug}}/graj',
   'static_site_slug' => '/info/{{slug}}',
+  'contest_prize_slug' => '/nagroda/{{slug}}',
 
   // games
 
@@ -279,6 +285,9 @@ $translations = [
   // security
 
   'invalid_token' => 'Formularz wygasł. Odśwież go i spróbuj ponownie.',
-  'form_error' => 'Błąd formularza'
+  'form_error' => 'Błąd formularza',
+
+  // contest prizes
+  'prizes_in_this_contest' => 'Nagrody w tym konkursie',
 
 ];
