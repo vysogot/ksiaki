@@ -27,7 +27,13 @@ function run_scripts_in_folder($folder) {
         $realpath = $path . '/' . $file;
         $query = file_get_contents($realpath);
 
-        $result = exec("mysql -h $host -P $port -u $user --password=$pass $dbname < $realpath");
+        $result = '';
+
+        if ($GLOBALS['env'] == 'development') {
+            $result = exec("mysql -h $host -P $port -u $user --password=$pass $dbname < $realpath");
+        } else {
+            $result = exec("mysql -h $host -P $port -u $user $dbname < $realpath");
+        }
 
         if ($result == '1')
              echo "$file => Success\n";
