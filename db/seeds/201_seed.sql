@@ -39,19 +39,19 @@ VALUES
 TRUNCATE TABLE `def_badges`;
 INSERT INTO `def_badges` (`id`, `title`, `subtitle`, `description`, `image_url`)
 VALUES
-(1, 'badge_champion_title', 'badge_champion_subtitle', 'badge_champion_description', '/uploads/badges/champion.png'),
-(2, 'badge_fighter_title', 'badge_fighter_subtitle', 'badge_fighter_description', '/uploads/badges/fighter.png'),
-(3, 'badge_fan_title', 'badge_fan_subtitle', 'badge_fan_description', '/uploads/badges/fan.png'),
-(4, 'badge_friend_title', 'badge_friend_subtitle', 'badge_friend_description', '/uploads/badges/friend.png'),
-(5, 'badge_gamer_title', 'badge_gamer_subtitle', 'badge_gamer_description', '/uploads/badges/gamer.png');
+(1, 'badge_champion_title', 'badge_champion_subtitle', 'badge_champion_description', '/assets/images/badges/champion.png'),
+(2, 'badge_fighter_title', 'badge_fighter_subtitle', 'badge_fighter_description', '/assets/images/badges/fighter.png'),
+(3, 'badge_fan_title', 'badge_fan_subtitle', 'badge_fan_description', '/assets/images/badges/fan.png'),
+(4, 'badge_friend_title', 'badge_friend_subtitle', 'badge_friend_description', '/assets/images/badges/friend.png'),
+(5, 'badge_gamer_title', 'badge_gamer_subtitle', 'badge_gamer_description', '/assets/images/badges/gamer.png');
 
 TRUNCATE TABLE `def_ranks`;
 INSERT INTO `def_ranks` (`id`, `title`, `points_threshold`, `image_url`)
 VALUES
 (1, 'rank_player', 5, '/uploads/ranks/player.png'),
-(2, 'rank_star_player', 500, '/uploads/ranks/star-player.png'),
-(3, 'rank_top_player', 1000, '/uploads/ranks/top-player.png'),
-(4, 'rank_konkursiak', 5000, '/uploads/ranks/konkursiak.png');
+(2, 'rank_star_player', 500, '/assets/images/ranks/star-player.png'),
+(3, 'rank_top_player', 1000, '/assets/images/ranks/top-player.png'),
+(4, 'rank_konkursiak', 5000, '/assets/images/ranks/konkursiak.png');
 
 TRUNCATE TABLE `_users`;
 /* password: 12345678 */

@@ -1,5 +1,12 @@
 DELIMITER $$
 
+DROP PROCEDURE IF EXISTS add_sponsors_table $$
+
+-- Create the stored procedure to perform the migration
+CREATE PROCEDURE add_sponsors_table()
+
+BEGIN
+
 SET @last_migration_at = (SELECT last_migration_at FROM schema_version);
 SET @migration_timestamp = TIMESTAMP('2018-06-16 15:25:12');
 
@@ -43,5 +50,12 @@ ELSE
 
 END IF;
 
-$$
+END $$
+
+-- Execute the stored procedure
+CALL add_sponsors_table() $$
+
+-- Don't forget to drop the stored procedure when you're done!
+DROP PROCEDURE IF EXISTS add_sponsors_table $$
+
 DELIMITER ;

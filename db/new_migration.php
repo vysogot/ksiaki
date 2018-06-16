@@ -6,8 +6,12 @@ $migrations_dir = "db/migrations/";
 $file_timestamp = date('YmdHis', time());
 $db_timestamp = date('Y-m-d H:i:s', time());
 
+$filename = '';
+$procedure_name = '';
+
 if (isset($argv[1])) {
-    $filename = $migrations_dir . $file_timestamp . '_' . $argv[1] . '.sql';
+    $procedure_name = $argv[1];
+    $filename = $migrations_dir . $file_timestamp . '_' . $procedure_name . '.sql';
 } else {
     echo "\nusage example: php db/new_migration.php adding_color_column_to_users\n\n";
     exit();
@@ -16,6 +20,13 @@ if (isset($argv[1])) {
 
 $template = <<<EOF
 DELIMITER $$
+
+DROP PROCEDURE IF EXISTS $procedure_name $$
+
+-- Create the stored procedure to perform the migration
+CREATE PROCEDURE $procedure_name()
+
+BEGIN
 
 SET @last_migration_at = (SELECT last_migration_at FROM schema_version);
 SET @migration_timestamp = TIMESTAMP('$db_timestamp');
@@ -44,7 +55,14 @@ ELSE
 
 END IF;
 
-$$
+END $$
+
+-- Execute the stored procedure
+CALL $procedure_name() $$
+
+-- Don't forget to drop the stored procedure when you're done!
+DROP PROCEDURE IF EXISTS $procedure_name $$
+
 DELIMITER ;
 EOF;
 
