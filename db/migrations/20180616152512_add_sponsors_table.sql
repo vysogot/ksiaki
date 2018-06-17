@@ -41,8 +41,6 @@ IF (@last_migration_at < @migration_timestamp) THEN
     UPDATE schema_version
     SET last_migration_at = @migration_timestamp;
 
-    SELECT 1;
-
 ELSE
 
     /* skipping file */

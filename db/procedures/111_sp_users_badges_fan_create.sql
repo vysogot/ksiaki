@@ -68,5 +68,3 @@ SELECT CASE WHEN @row_number >= @gap_diff THEN 1 ELSE 0 END AS result
 , ROW_COUNT() AS rowCount;
 END$$
 DELIMITER ;
-
-SELECT 1;

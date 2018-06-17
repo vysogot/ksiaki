@@ -42,5 +42,3 @@ GROUP BY usb.user_id
 ) AS rpt ON (usr.id = rpt.user_id);
 END$$
 DELIMITER ;
-
-SELECT 1;

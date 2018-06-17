@@ -233,5 +233,3 @@ IF (@id != 0) THEN
 END IF;
 END//
 DELIMITER ;
-
-SELECT 1;

@@ -25,5 +25,3 @@ CREATE PROCEDURE `sp_user_logout`(
     LIMIT 1;
   END$$
 DELIMITER ;
-
-SELECT 1;

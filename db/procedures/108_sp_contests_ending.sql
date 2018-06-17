@@ -56,5 +56,3 @@ CALL sp_contests_find(p_contest_id);
 
 END$$
 DELIMITER ;
-
-SELECT 1;

@@ -18,7 +18,7 @@ BEGIN
         , NOW()
     );
     SELECT ROW_COUNT() AS rowCount;
-END$$ 
+END$$
 DELIMITER ;
 
 DELIMITER $$
@@ -48,5 +48,3 @@ BEGIN
     SELECT ROW_COUNT() AS rowCount;
 END$$
 DELIMITER ;
-
-SELECT 1;

@@ -10,5 +10,3 @@ FROM def_games
 WHERE (id = p_id);
 END$$
 DELIMITER ;
-
-SELECT 1;

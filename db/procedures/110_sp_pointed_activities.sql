@@ -62,5 +62,3 @@ BEGIN
 CALL sp_pointed_activities_create(p_user_id,1);
 END//
 DELIMITER ;
-
-SELECT 1;
