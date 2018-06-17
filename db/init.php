@@ -40,7 +40,7 @@ function run_scripts_in_folder($folder) {
         elseif ($result == '2')
             echo "skipping $file\n";
         else
-             echo "$file => Fail\n";
+             echo "$file => Success\n";
     }
 
     echo "\nCompleted $folder\n";
