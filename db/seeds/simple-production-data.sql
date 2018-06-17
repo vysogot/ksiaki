@@ -308,16 +308,6 @@ LOCK TABLES `old_user_contests` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `schema_version`
---
-
-LOCK TABLES `schema_version` WRITE;
-/*!40000 ALTER TABLE `schema_version` DISABLE KEYS */;
-INSERT INTO `schema_version` VALUES ('2018-06-16 18:48:37');
-/*!40000 ALTER TABLE `schema_version` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `score_contests`
 --
 

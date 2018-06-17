@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `ksiaki`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ksiaki` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci */;
-
-USE `ksiaki`;
-
---
 -- Table structure for table `_accounts`
 --
 
@@ -76,7 +68,7 @@ CREATE TABLE `_backgrounds` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Tła reklamowe';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Tła reklamowe';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +93,7 @@ CREATE TABLE `_boxes` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Boxy';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Boxy';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +175,7 @@ CREATE TABLE `_contests` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Konkursy';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Konkursy';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,7 +200,7 @@ CREATE TABLE `_hero_files` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Pliki bohaterów';
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Pliki bohaterów';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +231,7 @@ CREATE TABLE `_heroes` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Bohaterowie';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Bohaterowie';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +299,7 @@ CREATE TABLE `_slides` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Slajdy';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Slajdy';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,7 +480,7 @@ CREATE TABLE `_video_ads` (
   `marked_as_deleted_at` datetime DEFAULT NULL,
   `marked_as_deleted_by` int(10) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Reklamy video';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Reklamy video';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +711,7 @@ CREATE TABLE `score_games` (
   `checknumber_client` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `checknumber_server` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty zdobyte w danej grze w danym konkursie na danym poziomie';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -770,4 +762,4 @@ CREATE TABLE `score_pointed_activities` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-17 12:34:41
+-- Dump completed on 2018-06-17 14:38:00

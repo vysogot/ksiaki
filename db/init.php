@@ -35,10 +35,8 @@ function run_scripts_in_folder($folder) {
             $result = exec("mysql -h $host -P $port -u $user $dbname < $realpath");
         }
 
-        if ($result == '1')
-             echo "$file => Success\n";
-        elseif ($result == '2')
-            echo "skipping $file\n";
+        if ($result == '2')
+             echo "$file => Skipping\n";
         else
              echo "$file => Success\n";
     }

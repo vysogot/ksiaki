@@ -2,7 +2,7 @@
 
 date_default_timezone_set('Europe/Warsaw');
 
-$migrations_dir = "db/migrations/";
+$migrations_dir = realpath(__DIR__ . '/../db/migrations');
 $file_timestamp = date('YmdHis', time());
 $db_timestamp = date('Y-m-d H:i:s', time());
 
@@ -11,9 +11,9 @@ $procedure_name = '';
 
 if (isset($argv[1])) {
     $procedure_name = $argv[1];
-    $filename = $migrations_dir . $file_timestamp . '_' . $procedure_name . '.sql';
+    $filename = $migrations_dir . '/' . $file_timestamp . '_' . $procedure_name . '.sql';
 } else {
-    echo "\nusage example: php db/new_migration.php adding_color_column_to_users\n\n";
+    echo "\nusage example: php generate/migration.php adding_color_column_to_users\n\n";
     exit();
 }
 
