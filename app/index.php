@@ -36,6 +36,8 @@ function content($params, $data) { ?>
 
     <?php include './partials/stroer_sky.html' ?>
 
+<?php if (!empty($data['contests'])) { ?>
+
     <section id="contests" class="slider">
       <div id="contests-slider" class="boxes">
         <?php foreach($data['contests'] as $contest) { ?>
@@ -47,8 +49,11 @@ function content($params, $data) { ?>
       </div>
     </section>
 
+<?php } ?>
+
     <?php // include 'partials/user_movies_list.php'; ?>
 
+<?php if (!empty($data['boxes'])) { ?>
     <section id="box-banners">
       <div id="box-banners-slider" class="boxes">
         <?php foreach($data['boxes'] as $box) { ?>
@@ -59,6 +64,7 @@ function content($params, $data) { ?>
         <?php } ?>
       </div>
     </section>
+<?php } ?>
 
 </div>
 

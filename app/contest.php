@@ -86,6 +86,8 @@ function content($params, $data) { ?>
     <?php include './partials/modal_ranking.html' ?>
 
     <div class="main">
+
+    <?php if (!empty($data['contest_prizes'])) { ?>
         <h2 class="center"><?= t('prizes_in_this_contest') ?></h2>
         <?php foreach($data['contest_prizes'] as $prize) { ?>
           <div class="left box">
@@ -93,6 +95,10 @@ function content($params, $data) { ?>
             <p><?= link_to($prize->name, t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'prize']) ?></p>
           </div>
         <?php } ?>
+      <?php } ?>
+
+
+    <?php if (!empty($data['other_contests'])) { ?>
 
       <h2 class="center"><?= t('other_contests') ?></h2>
       <?php foreach($data['other_contests'] as $contest) { ?>
@@ -100,6 +106,7 @@ function content($params, $data) { ?>
           <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
           <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
         </div>
+      <?php } ?>
       <?php } ?>
     </div>
 
