@@ -131,6 +131,7 @@ BEGIN
     UPDATE _video_ads
     SET marked_as_deleted_at = NOW()
     , marked_as_deleted_by = p_user_id
+    , is_active = 0
     WHERE (id = p_id);
 
     SELECT ROW_COUNT() AS rowCount;

@@ -95,9 +95,9 @@ CREATE PROCEDURE `sp_sponsors_delete`(
 )
 BEGIN
     UPDATE _sponsors
-    SET is_active = 0
-    , marked_as_deleted_at = NOW()
+    SET marked_as_deleted_at = NOW()
     , marked_as_deleted_by = p_user_id
+    , is_active = 0
     WHERE (id = p_id)
     LIMIT 1;
     SELECT ROW_COUNT() AS rowCount;

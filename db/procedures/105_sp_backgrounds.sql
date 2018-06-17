@@ -144,9 +144,9 @@ CREATE PROCEDURE `sp_backgrounds_delete`(
 )
 BEGIN
     UPDATE _backgrounds
-    SET is_active = 0
-    , marked_as_deleted_by = p_user_id
+    SET marked_as_deleted_by = p_user_id
     , marked_as_deleted_at = NOW()
+    , is_active = 0
     WHERE (id = p_id);
 SELECT ROW_COUNT() AS rowCount;
 END$$
