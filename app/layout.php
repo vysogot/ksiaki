@@ -76,7 +76,7 @@
                   <li class="right"><?= link_to(t('admin_panel'), '/admin', ['id' => 'menu-admin']) ?></li>
                 <?php } ?>
               <?php } else { ?>
-                <li class="right"><?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?></li>
+                <li class="right"><?= link_to(t('log_in'), '/login.php', ['id' => 'menu-login']) ?></li>
               <?php } ?>
           </ul>
         </nav>

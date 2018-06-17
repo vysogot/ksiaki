@@ -16,37 +16,67 @@ if ($post) {
         array('p_nick_or_email', $params['login'], PDO::PARAM_STR)
     ));
 
-    if (validate_existance($params, 'login', $result) && password_verify($params['password'], $result->password_hash)) {
+    if (validate_existance($params, 'login', $result)) {
 
-        if ($result->is_active) {
+        if (empty($result->password_hash)) {
 
-            if ($result->caretaker_check) {
+            if ($result->is_active) {
 
-                session_regenerate_id(true);
-                $_SESSION['user_id'] = $result->id;
-                $_SESSION['role_id'] = $result->role_id;
+                $password_reset_hash = bin2hex(random_bytes(32));
 
-                flash('notice', t('login_success'));
+                $reset_request_result = execute('call sp_users_password_reset_request(:p_email, :p_password_reset_hash);', array(
+                    array('p_email', $result->email, PDO::PARAM_STR),
+                    array('p_password_reset_hash', $password_reset_hash, PDO::PARAM_STR)
+                ));
+
+                flash('warning', t('known_user_password_reset'));
+
+                send_email($result->email, [
+                    'subject' => t('email_subject_password_reset_request'),
+                    'body' => link_to('Click', '/password_reset_form.php?key=' . $reset_request_result->password_reset_hash),
+                    'name' => $result->name . ' ' . $result->surname
+                ]);
 
             } else {
 
-                flash('warning', t('caretaker_acceptance_needed'));
+                flash('warning', t('account_inactive_please_contact'));
 
             }
 
+        } elseif (password_verify($params['password'], $result->password_hash)) {
+
+            if ($result->is_active) {
+
+                if ($result->caretaker_check) {
+
+                    session_regenerate_id(true);
+                    $_SESSION['user_id'] = $result->id;
+                    $_SESSION['role_id'] = $result->role_id;
+
+                    flash('notice', t('login_success'));
+
+                } else {
+
+                    flash('warning', t('caretaker_acceptance_needed'));
+
+                }
+
+            } else {
+
+                flash('warning', t('login_activation_needed'));
+
+            }
+
+            redirect('/');
+
         } else {
 
-            flash('warning', t('login_activation_needed'));
+            $params['errors']['login'] = t('login_failure');
 
         }
 
-        redirect('/');
-
-    } else {
-
-        $params['errors']['login'] = t('login_failure');
-
     }
+
 }
 
 function content($params, $data) { ?>
@@ -59,8 +89,8 @@ function content($params, $data) { ?>
     <?php include 'partials/errors.php'; ?>
 
     <?= csrf_field() ?>
-    <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" included autofocus />
-    <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" included />
+    <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" required autofocus />
+    <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
     <input type="submit" value="<?= t('log_in') ?>"/>
 
     <p><?= link_to(t('forgot_password'), '/password_reset_request.php') ?></p>

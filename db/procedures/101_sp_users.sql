@@ -44,7 +44,14 @@ CREATE PROCEDURE `sp_users_find_by_nick_or_email` (
     IN `p_login` VARCHAR(255)
 )
 BEGIN
-    SELECT _users.id, _users.is_active, role_id, password_hash, IFNULL(_caretakers.is_active, 1) AS caretaker_check FROM _users
+    SELECT _users.id
+    , _users.is_active
+    , _users.email
+    , _users.name
+    , _users.surname
+    , role_id
+    , password_hash
+    , IFNULL(_caretakers.is_active, 1) AS caretaker_check FROM _users
     LEFT JOIN _caretakers ON _users.id = _caretakers.user_id
     WHERE (_users.nick = p_login OR _users.email = p_login)
     LIMIT 1;
@@ -331,6 +338,7 @@ BEGIN
     UPDATE _users
     SET password_reset_hash = p_password_reset_hash
     , password_reset_expires_at = DATE_ADD(NOW(), INTERVAL 3 DAY)
+    , updated_at = NOW()
     WHERE (email = p_email);
 
     SELECT ROW_COUNT() AS rowCount, p_password_reset_hash AS password_reset_hash;
@@ -349,6 +357,7 @@ BEGIN
     SET password_reset_hash = NULL
     , password_reset_expires_at = NULL
     , password_hash = p_new_password_hash
+    , updated_at = NOW()
     WHERE (password_reset_hash = p_password_reset_hash)
     AND (password_reset_expires_at > NOW());
 
@@ -396,6 +405,7 @@ BEGIN
     UPDATE _users
     SET marked_as_deleted_at = NOW()
     , marked_as_deleted_by = p_marked_as_deleted_by
+    , is_active = 0
     WHERE (id = p_id);
 
     SELECT ROW_COUNT() AS rowCount;

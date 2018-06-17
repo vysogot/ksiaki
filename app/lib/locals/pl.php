@@ -13,7 +13,7 @@ $translations = [
 
   'home_page' => 'Strona główna',
   'contests' => 'Konkursy',
-  'login' => 'Zaloguj się',
+  'login' => 'Login',
   'dashboard' => 'Twoje konto',
   'admin_panel' => 'Admin',
 
@@ -68,6 +68,7 @@ $translations = [
   'no_account_yet' => 'Nie masz jeszcze konta?',
   'forgot_password' => 'Hasło wyleciało Ci z głowy?',
   'already_have_account' => 'Posiadasz już konto?',
+  'not_found' => 'Nie ma takiego konta!',
 
   // password reset
 
@@ -158,6 +159,7 @@ $translations = [
   'caretaker_activation_failure' => 'Niestety, ale coś poszło nie tak. Najlepiej skontaktuj się z nami mailowo.',
   'caretaker_acceptance_needed' => 'Czemy na zgodę Twojego opiekuna. Poproś, aby sprawdził podanego przez Ciebie maila.',
   'activation_success' => 'Twoje konto zostało aktywowane.',
+  'known_user_password_reset' => 'Cześć! Na Twojego maila wysłaliśmy link! Kliknij w niego i ustaw nowe hasło!',
 
   // validation
 
