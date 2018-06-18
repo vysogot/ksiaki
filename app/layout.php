@@ -160,6 +160,7 @@
     .vex.vex-theme-os { padding-top: 50px; padding-bottom: 50px; }
     .vex.vex-theme-os .vex-content { width: unset; max-width: 80%; }
     .vex.vex-theme-os .vex-content p { margin-bottom: 30px; }
+    .vex.vex-theme-os .vex-content .wrapper { width: 100%; }
     </style>
 
   </body>
