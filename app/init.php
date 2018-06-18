@@ -5,7 +5,7 @@ require realpath(__DIR__ . '/../vendor/autoload.php');
 ini_set('output_buffering', 1);
 
 // set config.example.php and move it one folder up from the root folder
-$envs = require realpath(__DIR__ . '/../../ksiaki_config.php');
+$envs = require realpath(__DIR__ . '/../config/ksiaki.php');
 $env = getenv('APPLICATION_ENV');
 if (!$env) $env = 'development';
 $GLOBALS['config'] = $envs[$env];

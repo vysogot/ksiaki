@@ -1,0 +1,16 @@
+server {
+    server_name cdn.takemefrom.com;
+    root /var/www/ksiaki-uploads/;
+
+    listen   80;
+
+    access_log /var/log/nginx/cdn.ksiaki.pl.access.log;
+    error_log  /var/log/nginx/cdn.ksiaki.pl.error.log;
+
+
+    location / {
+	    try_files $uri $uri/ =404;
+    }
+
+    include sites-available/cdn.conf;
+}

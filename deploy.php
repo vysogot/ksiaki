@@ -23,6 +23,13 @@ set('writable_dirs', []);
 // Hosts
 
 host('ksiaki')
+    ->stage('staging')
+    ->forwardAgent(true)
+    ->set('deploy_path', '/var/www/{{application}}')
+    ->set('db_user', 'ksiaki_production')
+    ->set('db_name', 'ksiaki');
+
+host('ksiaki-production')
     ->stage('production')
     ->forwardAgent(true)
     ->set('deploy_path', '/var/www/{{application}}')
@@ -57,6 +64,16 @@ task('deploy:nginx_restart', function () {
 
 task('deploy:phpfpm_restart', function () {
     run('service php7.0-fpm restart');
+});
+
+task('deploy:run_migrations', function () {
+    cd('{{release_path}}');
+    run('APPLICATION_ENV={{stage}} php db/migrate.php');
+});
+
+task('deploy:db_update_procedures', function () {
+    cd('{{release_path}}');
+    run('APPLICATION_ENV={{stage}} php db/update_procedures.php');
 });
 
 task('db:backup', function () {

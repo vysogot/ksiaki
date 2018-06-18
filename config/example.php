@@ -12,6 +12,7 @@ return array(
 
     'protocol' => 'https://',
     'domain' => 'www.ksiaki.jgodawa',
+    'cdn' => 'https://ksiaki.www.jgodawa',
 
     'smtp_host' => 'smtp.gmail.com',
     'smtp_username' => 'jakub.godawa@gmail.com',
@@ -21,7 +22,10 @@ return array(
     'smtp_from_email' => 'jakub.godawa@gmail.com',
     'smtp_from_name' => 'Jakub Godawa',
     'smtp_reply_to_email' => 'jakub.godawa@gmail.com',
-    'smtp_reply_to_name' => 'Jakub Godawa'
+    'smtp_reply_to_name' => 'Jakub Godawa',
+
+    'uploads_dir' => '/var/www/ksiaki/app/uploads/',
+    'backup_dir' => '/var/www/ksiaki/db/'
   ),
 
   'testing' => array(
@@ -45,7 +49,10 @@ return array(
     'smtp_from_email' => 'testing@email.com',
     'smtp_from_name' => 'Testing',
     'smtp_reply_to_email' => 'testing@email.com',
-    'smtp_reply_to_name' => 'Testing'
+    'smtp_reply_to_name' => 'Testing',
+
+    'uploads_dir' => '/var/www/ksiaki/app/uploads/',
+    'backup_dir' => '/var/www/ksiaki/db/'
   ),
 
   'production' => array(
@@ -71,5 +78,7 @@ return array(
     'smtp_reply_to_name' => 'Production',
 
     'sentry_key' => 'https://key@sentry.io/id'
+    'uploads_dir' => '/var/www/ksiaki/app/uploads/',
+    'backup_dir' => '/var/www/ksiaki/db/'
   )
 );
