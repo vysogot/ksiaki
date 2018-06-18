@@ -5,14 +5,30 @@ DROP PROCEDURE IF EXISTS sp_video_ads_create;
 DROP PROCEDURE IF EXISTS sp_video_ads_update;
 DROP PROCEDURE IF EXISTS sp_video_ads_delete;
 DROP PROCEDURE IF EXISTS sp_video_ads_get;
+DROP PROCEDURE IF EXISTS sp_video_ads_get_random;
+DROP PROCEDURE IF EXISTS sp_video_ads_get_all_active_in_random_order;
+DROP PROCEDURE IF EXISTS sp_video_ads_get_one_random;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_video_ads_get`()
+CREATE PROCEDURE `sp_video_ads_get_all_active_in_random_order`()
 BEGIN
-    SELECT image_url, link_url
+    SELECT image_url, link_url, video_url, RAND()
     FROM _video_ads
     WHERE is_active
-    AND NOW() BETWEEN begins_at AND ends_at;
+    AND NOW() BETWEEN begins_at AND ends_at
+    ORDER BY RAND();
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_video_ads_get_one_random`()
+BEGIN
+    SELECT image_url, link_url, video_url, RAND()
+    FROM _video_ads
+    WHERE is_active
+    AND NOW() BETWEEN begins_at AND ends_at
+    ORDER BY RAND()
+    LIMIT 1;
 END$$
 DELIMITER ;
 

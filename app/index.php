@@ -3,7 +3,7 @@
 include 'init.php';
 
 $data['slides'] = execute('call sp_slides_all();', [], true);
-$data['video_ads'] = execute('call sp_video_ads_all();', [], true);
+$data['video_ads'] = execute('call sp_video_ads_get_all_active_in_random_order();', [], true);
 $data['contests'] = execute('call sp_contests_all();', [], true);
 $data['boxes'] = execute('call sp_boxes_all();', [], true);
 
@@ -27,7 +27,7 @@ function content($params, $data) { ?>
         foreach($data['video_ads'] as $key => $video_ad) { ?>
             <?php $options = ($key == $first) ? 'autoplay' : 'muted preload="none"' ?>
             <div>
-            <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>"></video>
+            <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>" type="video/mp4"></video>
                 <div class="mute"></div>
                 <?= link_to(image($video_ad->image_url), $video_ad->link_url) ?>
             </div>

@@ -203,3 +203,7 @@ function slugify($str, $max_length = 50) {
     $str = substr($str, 0, $max_length);
     return $str;
 }
+
+function is_production_env() {
+    return $GLOBALS['env'] == 'production';
+}
