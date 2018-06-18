@@ -1,6 +1,6 @@
 <?php
 
-$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
+$envs = include realpath(__DIR__ . '/../config/ksiaki.php');
 
 $env = getenv('APPLICATION_ENV');
 if (!$env) $env = 'development';
