@@ -32,7 +32,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="slug" name="slug" type="text" required>
+                            <input class="form-control" id="slug" name="slug" type="text">
                             <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="begins_at" name="begins_at" type="datetime-local">
+                            <input class="form-control" id="begins_at" name="begins_at" type="datetime-local" step="1" required>
                             <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="ends_at" name="ends_at" type="datetime-local">
+                            <input class="form-control" id="ends_at" name="ends_at" type="datetime-local" step="1" required>
                             <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
                         </div>
                     </div>
@@ -148,6 +148,19 @@
                         <div class='input-group'>
                             <input id="is_active_check" class="form-check-input" type="checkbox">
                         </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12">
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-2" for="content">
+                        <?= t('statute') ?>
+                    </label>
+                    <div class="col-sm-10">
+                        <textarea id="statute" name="statute" style="width:100%; height: 300px;"></textarea>
                     </div>
                 </div>
 

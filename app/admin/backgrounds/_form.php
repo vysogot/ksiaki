@@ -78,7 +78,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div id="begins_at" name="begins_at" class='input-group date'>
-                        <input name="begins_at" type="datetime-local" class='form-control'>
+                        <input name="begins_at" type="datetime-local" class='form-control' step="1" required>
                         <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div id="ends_at" class='input-group date'>
-                        <input name="ends_at" type="datetime-local" class='form-control'>
+                        <input name="ends_at" type="datetime-local" class='form-control' step="1" required>
                         <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
                     </div>
                 </div>

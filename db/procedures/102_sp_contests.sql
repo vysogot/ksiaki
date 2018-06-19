@@ -16,6 +16,7 @@ SELECT 0 AS id
 , '' AS name
 , '' AS slug
 , '' AS description
+, '' AS statute
 , '' AS box_url
 , '' AS header_url
 , NOW() AS begins_at
@@ -34,6 +35,7 @@ SELECT _contests.id
 , def_games.name AS game_name
 , def_contest_types.name AS contest_type_name
 , _contests.description
+, statute
 , slug
 , box_url
 , header_url
@@ -104,22 +106,11 @@ CREATE PROCEDURE `sp_contests_all_but_one`(
 BEGIN
 SELECT _contests.id
 , _contests.name
-, game_id
-, def_games.name AS game_name
-, def_contest_types.name AS contest_type_name
-, _contests.description
 , slug
 , box_url
-, header_url
-, begins_at
-, ends_at
-, display_ad
-, is_active
-, is_ended
 FROM _contests
-LEFT JOIN def_games ON game_id = def_games.id
-LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
 WHERE (marked_as_deleted_by = 0)
+AND (is_active = 1)
 AND (_contests.id != p_id);
 END$$
 DELIMITER ;
@@ -131,6 +122,7 @@ CREATE PROCEDURE `sp_contests_create`(
 	IN `p_name` VARCHAR(255),
     IN `p_slug` VARCHAR(255),
 	IN `p_description` text,
+    IN `p_statute` text,
 	IN `p_box_url` VARCHAR(255),
 	IN `p_header_url` VARCHAR(255),
 	IN `p_begins_at` DATETIME,
@@ -145,6 +137,7 @@ BEGIN
 		, name
         , slug
 		, description
+        , statute
 		, box_url
 		, header_url
 		, begins_at
@@ -157,6 +150,7 @@ BEGIN
 		p_name,
         p_slug,
 		p_description,
+        p_statute,
 		p_box_url,
 		p_header_url,
 		p_begins_at,
@@ -176,6 +170,7 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_name` VARCHAR(255),
     IN `p_slug` VARCHAR(255),
 	IN `p_description` text,
+    IN `p_statute` text,
 	IN `p_box_url` VARCHAR(255),
 	IN `p_header_url` VARCHAR(255),
 	IN `p_begins_at` DATETIME,
@@ -190,6 +185,7 @@ SET game_id = p_game_id
 	, name = p_name
     , slug = p_slug
 	, description = p_description
+    , statute = p_statute
 	, box_url = p_box_url
 	, header_url = p_header_url
 	, begins_at = p_begins_at

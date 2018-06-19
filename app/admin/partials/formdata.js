@@ -5,6 +5,7 @@ const t_show = '<?= t("show") ?>';
 const t_edit = '<?= t("edit") ?>';
 const t_delete = '<?= t("delete") ?>';
 const t_ended = '<?= t("contest_end") ?>';
+const t_cancel = '<?= t("cancel") ?>';
 const aActive = ['fa fa-times', 'fa fa-check'];
 
 function vex_confirm(msg, callback) {
@@ -13,11 +14,11 @@ function vex_confirm(msg, callback) {
         overlayClosesOnClick: false,
         buttons: [
             $.extend({}, vex.dialog.buttons.YES, {
-                text: 'Usuń',
+                text: t_delete,
                 className: 'vex-dialog-button-secondary'
             }),
             $.extend({}, vex.dialog.buttons.NO, {
-                text: 'Anuluj',
+                text: t_cancel,
                 className: 'vex-dialog-button-primary'
             })
         ],
@@ -37,7 +38,7 @@ function submitForm() {
     if (suneditor != null) {
         let content = suneditor.getContent();
         $('textarea[name="content"]').val(content);
-        $('textarea[name="description"]').val(content);
+        $('textarea[name="statute"]').val(content);
     }
 
     let row_index = $('input[name="row_index"]').val();
@@ -117,9 +118,8 @@ function get_data(myObj) {
             }
         }
 
-        $('textarea[name="license_description"]').val(ret.license_description);
-        $('textarea[name="description"]').val(ret.description);
         $('textarea[name="content"]').val(ret.content);
+        $('textarea[name="statute"]').val(ret.statute);
 
         if (ret.begins_at != undefined) {
             $('input[name="begins_at"]').val(ret.begins_at.replace(' ', 'T'));
@@ -195,9 +195,10 @@ $('#modal').on('shown.bs.modal', function(e) {
         suneditor = SUNEDITOR.create('content');
         suneditor.setContent($('textarea[name="content"]').val());
     }
-    if ($('textarea[name="description"]').length) {
-        suneditor = SUNEDITOR.create('description');
-        suneditor.setContent($('textarea[name="description"]').val());
+
+    if ($('textarea[name="statute"]').length) {
+        suneditor = SUNEDITOR.create('statute');
+        suneditor.setContent($('textarea[name="statute"]').val());
     }
 });
 

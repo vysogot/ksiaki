@@ -143,6 +143,7 @@ $translations = [
   'show' => 'Pokaż',
   'edit' => 'Edytuj',
   'delete' => 'Usuń',
+  'cancel' => 'Anuluj',
   'edit_form' => 'Edycja',
   'new_form' => 'Nowy',
 
