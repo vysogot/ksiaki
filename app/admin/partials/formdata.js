@@ -1,4 +1,5 @@
 var oTable = null;
+var suneditor = null;
 
 const t_show = '<?= t("show") ?>';
 const t_edit = '<?= t("edit") ?>';
@@ -6,15 +7,43 @@ const t_delete = '<?= t("delete") ?>';
 const t_ended = '<?= t("contest_end") ?>';
 const aActive = ['fa fa-times', 'fa fa-check'];
 
+function vex_confirm(msg, callback) {
+    vex.dialog.open({
+        message: msg,
+        overlayClosesOnClick: false,
+        buttons: [
+            $.extend({}, vex.dialog.buttons.YES, {
+                text: 'Usuń',
+                className: 'vex-dialog-button-secondary'
+            }),
+            $.extend({}, vex.dialog.buttons.NO, {
+                text: 'Anuluj',
+                className: 'vex-dialog-button-primary'
+            })
+        ],
+        callback: function(value) {
+            if (value) {
+                callback();
+            };
+        }
+    });
+}
+
 function submitForm() {
 
     $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
     $('input[name="display_ad"]').val($('#display_ad_check').prop('checked') ? '1' : '0');
 
+    if (suneditor != null) {
+        let content = suneditor.getContent();
+        $('textarea[name="content"]').val(content);
+        $('textarea[name="description"]').val(content);
+    }
+
     let row_index = $('input[name="row_index"]').val();
     let form_data = new FormData(document.getElementById("form"));
 
-    $("input[type=submit]").attr('disabled','disabled');
+    $("input[type=submit]").attr('disabled', 'disabled');
 
     $.ajax({
 
@@ -34,8 +63,8 @@ function submitForm() {
             $(".modal .errorList").empty();
 
             $.each(response.errors, function(field, message) {
-              $("input[name='" + field + "']").addClass('error');
-              error_list.append($("<li>").text(field + ": " + message));
+                $("input[name='" + field + "']").addClass('error');
+                error_list.append($("<li>").text(field + ": " + message));
             });
 
             $("input[name=token]").val(response['token']);
@@ -44,13 +73,13 @@ function submitForm() {
 
         } else {
 
-          if (row_index == 0) {
-              oTable.ajax.reload(null, false);
-          } else {
-              oTable.row(row_index).data(response[0]);
-          }
+            if (row_index == 0) {
+                oTable.ajax.reload(null, false);
+            } else {
+                oTable.row(row_index).data(response[0]);
+            }
 
-          $(".modal .close").click();
+            $(".modal .close").click();
 
         }
 
@@ -67,10 +96,13 @@ function get_data(myObj) {
 
     $.ajax({
 
-        url: ((id==0) ? 'new.php' : 'edit.php?id=' + id),
-        dataType : 'json',
+        url: ((id == 0) ? 'new.php' : 'edit.php?id=' + id),
+        dataType: 'json',
         method: 'GET',
-        error: function(x,e) { console.log(e); console.log(x.responseText); }
+        error: function(x, e) {
+            console.log(e);
+            console.log(x.responseText);
+        }
 
     }).success(function(data) {
 
@@ -101,15 +133,22 @@ function get_data(myObj) {
         $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
 
         $("#role_id option").removeAttr('selected');
-        $('#role_id ').find('option').filter(function(index) { return $(this).val() == ret.role_id; }).prop('selected', true);
+        $('#role_id ').find('option').filter(function(index) {
+            return $(this).val() == ret.role_id;
+        }).prop('selected', true);
 
         $("#hero_file_type_id option").removeAttr('selected');
-        $('#hero_file_type_id ').find('option').filter(function(index) { return $(this).val() == ret.hero_file_type_id; }).prop('selected', true);
+        $('#hero_file_type_id ').find('option').filter(function(index) {
+            return $(this).val() == ret.hero_file_type_id;
+        }).prop('selected', true);
 
         $("#hero_id option").removeAttr('selected');
-        $('#hero_id ').find('option').filter(function(index) { return $(this).val() == ret.hero_id; }).prop('selected', true);
+        $('#hero_id ').find('option').filter(function(index) {
+            return $(this).val() == ret.hero_id;
+        }).prop('selected', true);
 
         $('input[name="row_index"]').val($(myObj).data('index'));
+
         $('#modal').modal('show');
 
     });
@@ -120,7 +159,7 @@ function fEdit(myObj) {
     let row = $(myObj).data();
 
     $('.modal-content .form-content').load('_form.php', function() {
-        $("#form").on('submit', function () {
+        $("#form").on('submit', function() {
             return submitForm();
         });
 
@@ -132,21 +171,34 @@ function fEdit(myObj) {
 
 function fDelete(myObj) {
     let title = '<?= t("are_you_sure") ?>';
-    let ret = confirm(title);
-
-    if (ret == true) {
-        $.get("delete.php?id=" + $(myObj).data('id'),
-            function(data, status){
-                if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
-            });
-    }
+    vex_confirm(title, function() {
+    $.get("delete.php?id=" + $(myObj).data('id'),
+        function(data, status) {
+            if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
+        });
+    });
 }
 
-$('#modal').on('hidden.bs.modal', function (e) {
+
+$('#modal').on('hidden.bs.modal', function(e) {
     $("#form")[0].reset();
     $("input").removeClass('error');
     $(".modal .errorList").addClass('hidden');
     $(".modal .errorList").empty();
+    if (suneditor != null) {
+        suneditor.destroy();
+    }
+});
+
+$('#modal').on('shown.bs.modal', function(e) {
+    if ($('textarea[name="content"]').length) {
+        suneditor = SUNEDITOR.create('content');
+        suneditor.setContent($('textarea[name="content"]').val());
+    }
+    if ($('textarea[name="description"]').length) {
+        suneditor = SUNEDITOR.create('description');
+        suneditor.setContent($('textarea[name="description"]').val());
+    }
 });
 
 $('#new').click(function(e) {
@@ -154,7 +206,7 @@ $('#new').click(function(e) {
     let object = this;
 
     $('.modal-content .form-content').load('_form.php', function() {
-        $("#form").on('submit', function () {
+        $("#form").on('submit', function() {
             return submitForm();
         });
 
