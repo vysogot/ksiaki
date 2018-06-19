@@ -10,27 +10,8 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
 	<meta name="msapplication-tap-highlight" content="no"/>
 
-        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
-        <script type="text/javascript" src="js/ctl_utils.js"></script>
-        <script type="text/javascript" src="js/sprite_lib.js"></script>
-        <script type="text/javascript" src="js/settings.js"></script>
-        <script type="text/javascript" src="js/CLang.js"></script>
-        <script type="text/javascript" src="js/CPreloader.js"></script>
-        <script type="text/javascript" src="js/CMain.js"></script>
-        <script type="text/javascript" src="js/CTextButton.js"></script>
-        <script type="text/javascript" src="js/CGfxButton.js"></script>
-        <script type="text/javascript" src="js/CToggle.js"></script>
-        <script type="text/javascript" src="js/CMenu.js"></script>
-        <script type="text/javascript" src="js/CGame.js"></script>
-        <script type="text/javascript" src="js/CCard.js"></script>
-        <script type="text/javascript" src="js/CLevels.js"></script>
-        <script type="text/javascript" src="js/CNextLevel.js"></script>
-        <script type="text/javascript" src="js/CInterface.js"></script>
-        <script type="text/javascript" src="js/CGameOver.js"></script>
-        <script type="text/javascript" src="js/CVictory.js"></script>
-        <script type="text/javascript" src="js/CCredits.js"></script>
-        
+        <script type="text/javascript" src="/games/memory/js/memory.min.js?v=<?php echo filemtime("js/memory.min.js")?>"></script>
+
     </head>
     <body ondragstart="return false;" ondrop="return false;" >
 	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
@@ -41,7 +22,7 @@
                                                                     8,      //NUM CARD IN LEVEL 2
                                                                     16,     //NUM CARD IN LEVEL 3
                                                                     32      //NUM CARD IN LEVEL 4
-                                                                    ],     
+                                                                    ],
 
                                                 time_level:[30,  //NUM SECONDS PER LEVEL 1
                                                             60,  //NUM SECONDS PER LEVEL 2
@@ -51,7 +32,7 @@
 
                                                 score_match_card: 10,     //SCORE ASSIGNED WHEN USER MATCH TWO CARDS
                                                 score_time_left_mult: 2,  //MULTIPLIER ASSIGNED TO REMAINING LEVEL TIME
-                                                time_match_mult: 3000,     //TIME AVAILABLE BETWEEN DISCOVERED MATCHING TO GET SCORE MULTIPLIER 
+                                                time_match_mult: 3000,     //TIME AVAILABLE BETWEEN DISCOVERED MATCHING TO GET SCORE MULTIPLIER
                                                 show_cards: 0,             //IF YOU WANT TO SHOW CARDS FOR SOME SECONDS WHEN LEVEL START, SET THIS VALUE > 0 (NUM OF SECONDS)
 												fullscreen:true, //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
 												check_orientation:true     //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
@@ -70,7 +51,7 @@
                            }
                            //...ADD YOUR CODE HERE EVENTUALLY
                     });
-                    
+
                     $(oMain).on("start_level", function(evt, iLevel) {
                            if(getParamValue('ctl-arcade') === "true"){
                                parent.__ctlArcadeStartLevel({level:iLevel});
@@ -106,7 +87,7 @@
                                                                 msg_share: TEXT_SHARE_SHARE1 + iScore + TEXT_SHARE_SHARE1});
                            }
                     });
-                     
+
                     if(isIOS()){
                         setTimeout(function(){sizeHandler();},200);
                     }else{

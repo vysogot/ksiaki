@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# Run `bash build.sh` from within the theme's directory whenever
-# you need to perform these tasks.
-
-# Concatenate all JS files to into `site.js`
-# Explicitly name and order the files if needed
-
 cat app/games/sorcerer/js_src/jquery-3.1.1.min.js \
     app/games/sorcerer/js_src/createjs-2015.11.26.min.js \
     app/games/sorcerer/js_src/howler.min.js \
@@ -34,7 +28,8 @@ cat app/games/sorcerer/js_src/jquery-3.1.1.min.js \
     app/games/sorcerer/js_src/CLevelBut.js \
     app/games/sorcerer/js_src/CMsgBox.js \
     app/games/sorcerer/js_src/CCreditsPanel.js \
-    app/games/sorcerer/js_src/CAlertSavingBox.js > app/games/sorcerer/js_src/concat.js
+    app/games/sorcerer/js_src/CAlertSavingBox.js \
+    app/games/sorcerer/js_src/gameplay.js > app/games/sorcerer/js_src/concat.js
 
 echo "JS concatenation successful"
 

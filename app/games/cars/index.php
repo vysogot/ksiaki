@@ -10,46 +10,8 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
 	<meta name="msapplication-tap-highlight" content="no"/>
 
-        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="js/createjs-2014.12.12.min.js"></script>
-        <script type="text/javascript" src="js/screenfull.js"></script>
-        <script type="text/javascript" src="js/howler.min.js"></script>
-        <script type="text/javascript" src="js/ctl_utils.js"></script>
-        <script type="text/javascript" src="js/sprite_lib.js"></script>
-        <script type="text/javascript" src="js/settings.js"></script>
-        <script type="text/javascript" src="js/CLang.js"></script>
-        <script type="text/javascript" src="js/CPreloader.js"></script>
-        <script type="text/javascript" src="js/CMain.js"></script>
-        <script type="text/javascript" src="js/CCreditsPanel.js"></script>
-        <script type="text/javascript" src="js/CTextButton.js"></script>
-        <script type="text/javascript" src="js/CToggle.js"></script>
-        <script type="text/javascript" src="js/CGfxButton.js"></script>
-        <script type="text/javascript" src="js/CMenu.js"></script>
-        <script type="text/javascript" src="js/CGame.js"></script>
-        <script type="text/javascript" src="js/CInterface.js"></script>
-        <script type="text/javascript" src="js/CHelpPanel.js"></script>
-        <script type="text/javascript" src="js/CEndPanel.js"></script>
-        <script type="text/javascript" src="js/CPlayer.js"></script>
-        <script type="text/javascript" src="js/CRenderer.js"></script>
-        <script type="text/javascript" src="js/CRoad.js"></script>
-        <script type="text/javascript" src="js/CCar.js"></script>
-        <script type="text/javascript" src="js/CLevelBuilder.js"></script>
-        <script type="text/javascript" src="js/CWorldMenu.js"></script>
-        <script type="text/javascript" src="js/CTrackMenu.js"></script>
-        <script type="text/javascript" src="js/CLevelBut.js"></script>
-        <script type="text/javascript" src="js/levelsettings.js"></script>
-        <script type="text/javascript" src="js/CHorizon.js"></script>
-        <script type="text/javascript" src="js/CBackground.js"></script>
-        <script type="text/javascript" src="js/CNextLevelPanel.js"></script>
-        <script type="text/javascript" src="js/CRollingText.js"></script>
-        <script type="text/javascript" src="js/CLocalStorage.js"></script>
-        <script type="text/javascript" src="js/CLosePanel.js"></script>
-        <script type="text/javascript" src="js/CTimer.js"></script>
-        <script type="text/javascript" src="js/CTachometer.js"></script>
-        <script type="text/javascript" src="js/CMsgBox.js"></script>
-        <script type="text/javascript" src="js/CTremble.js"></script>
-        <script type="text/javascript" src="js/CAreYouSurePanel.js"></script>
-        
+        <script type="text/javascript" src="/games/cars/js/cars.min.js?v=<?php echo filemtime("js/cars.min.js")?>"></script>
+
     </head>
     <body ondragstart="return false;" ondrop="return false;" >
 	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
@@ -60,25 +22,25 @@
                                             player_max_speed: 12000,            //SET MAX SPEED OF THE PLAYER
                                             player_maxspeed_indicator: 200,     //VALUE ON THE TACHOMETER, WHEN PLAYER REACH THE MAX SPEED. YOU CAN CHANGE THE UNITS IN CLANG.
                                             player_centrifugal_force: 0.3,      //CENTRIFUGAL FORCE VALUE WHEN IN CURVE.
-                                            
+
                                             /////////////SCORE SETTINGS
-                                            points_per_seconds_remaining: 100, //Number of points gained per seconds remaining  
-                                            
+                                            points_per_seconds_remaining: 100, //Number of points gained per seconds remaining
+
                                             /////////////GENERAL SETTINGS
                                             fullscreen:true,            //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
-                                            check_orientation:true     //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES   
-                                            
-                                            
+                                            check_orientation:true     //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
+
+
                                            });
-                                           
-                                           
+
+
                     $(oMain).on("start_session", function(evt) {
                             if(getParamValue('ctl-arcade') === "true"){
                                 parent.__ctlArcadeStartSession();
                             }
                             //...ADD YOUR CODE HERE EVENTUALLY
                     });
-                     
+
                     $(oMain).on("end_session", function(evt) {
                            if(getParamValue('ctl-arcade') === "true"){
                                parent.__ctlArcadeEndSession();
@@ -120,7 +82,7 @@
                            }
                            //...ADD YOUR CODE HERE EVENTUALLY
                     });
-                    
+
                     $(oMain).on("share_event", function(evt, iScore) {
                            if(getParamValue('ctl-arcade') === "true"){
                                parent.__ctlArcadeShareEvent({   img: TEXT_SHARE_IMAGE,
@@ -130,11 +92,11 @@
                            }
                            //...ADD YOUR CODE HERE EVENTUALLY
                     });
-					 
-                    if(isIOS()){ 
-                        setTimeout(function(){sizeHandler();},200); 
-                    }else{ sizeHandler(); } 
-                                         
+
+                    if(isIOS()){
+                        setTimeout(function(){sizeHandler();},200);
+                    }else{ sizeHandler(); }
+
            });
 
         </script>

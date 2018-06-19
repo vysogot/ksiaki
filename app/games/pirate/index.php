@@ -10,35 +10,8 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
         <meta name="msapplication-tap-highlight" content="no"/>
 
-        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/createjs-2015.11.26.min.js"></script>
-        <script type="text/javascript" src="js/howler.min.js"></script>
-        <script type="text/javascript" src="js/screenfull.js"></script>
-        <script type="text/javascript" src="js/hammer.min.js"></script>
-        <script type="text/javascript" src="js/easystar-0.2.3.min.js"></script>
-        <script type="text/javascript" src="js/ctl_utils.js"></script>
-        <script type="text/javascript" src="js/sprite_lib.js"></script>
-        <script type="text/javascript" src="js/floor_settings.js"></script>
-        <script type="text/javascript" src="js/objects_settings.js"></script>
-        <script type="text/javascript" src="js/settings.js"></script>
-        <script type="text/javascript" src="js/CLang.js"></script>
-        <script type="text/javascript" src="js/CPreloader.js"></script>
-        <script type="text/javascript" src="js/CMain.js"></script>
-        <script type="text/javascript" src="js/CTextButton.js"></script>
-        <script type="text/javascript" src="js/CTextToggle.js"></script>
-        <script type="text/javascript" src="js/CToggle.js"></script>
-        <script type="text/javascript" src="js/CNumToggle.js"></script>
-        <script type="text/javascript" src="js/CGfxButton.js"></script>
-        <script type="text/javascript" src="js/CMenu.js"></script>
-        <script type="text/javascript" src="js/CGame.js"></script>
-        <script type="text/javascript" src="js/CInterface.js"></script>
-        <script type="text/javascript" src="js/CCell.js"></script>
-        <script type="text/javascript" src="js/CCharacter.js"></script>
-        <script type="text/javascript" src="js/CEnemy.js"></script>
-        <script type="text/javascript" src="js/CFloor.js"></script>
-        <script type="text/javascript" src="js/CLevelMenu.js"></script>
-        <script type="text/javascript" src="js/CLevelBut.js"></script>
-        <script type="text/javascript" src="js/CCreditsPanel.js"></script>
+        <script type="text/javascript" src="/games/pirate/js/easystar-0.2.3.min.js?v=<?php echo filemtime("js/easystar-0.2.3.min.js")?>"></script>
+        <script type="text/javascript" src="/games/pirate/js/pirate.min.js?v=<?php echo filemtime("js/pirate.min.js")?>"></script>
 
     </head>
     <body ondragstart="return false;" ondrop="return false;" >
@@ -55,8 +28,8 @@
                     fullscreen:true, //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
                     check_orientation:true,     //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
                     num_levels_for_ads: 1 //NUMBER OF TURNS PLAYED BEFORE AD SHOWING //
-                            //////// THIS FEATURE  IS ACTIVATED ONLY WITH CTL ARCADE PLUGIN./////////////////////////// 
-                            /////////////////// YOU CAN GET IT AT: ///////////////////////////////////////////////////////// 
+                            //////// THIS FEATURE  IS ACTIVATED ONLY WITH CTL ARCADE PLUGIN.///////////////////////////
+                            /////////////////// YOU CAN GET IT AT: /////////////////////////////////////////////////////////
                             // http://codecanyon.net/item/ctl-arcade-wordpress-plugin/13856421///////////
 
                 });
@@ -124,11 +97,11 @@
             });
 
         </script>
-        
+
         <div class="check-fonts">
             <p class="check-font-1">test 1</p>
-        </div> 
-        
+        </div>
+
         <canvas id="canvas" class='ani_hack' width="960" height="1440"> </canvas>
         <div data-orientation="portrait" class="orientation-msg-container"><p class="orientation-msg-text">Please rotate your device</p></div>
         <div id="block_game" style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%; display:none"></div>
