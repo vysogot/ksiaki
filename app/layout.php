@@ -7,19 +7,30 @@
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
 
-    <script src="/assets/js/min.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--<script src="/assets/js/min.js" type="text/javascript"></script>-->
 
     <?php if (function_exists('meta')) meta(); ?>
     <?php $background = get_background(); ?>
+
+    <!--<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
 
     <style>
       html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
-      body { visibility: hidden; background: <?= $background->background_color ?> url('<?= $background->image_url ?>') top no-repeat; background-attachment: fixed;}
+      body { visibility: hidden; background: <?= $background->background_color ?> url('<?= cdn_url($background->image_url) ?>') top no-repeat; background-attachment: fixed;}
       .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
       nav, .ad, .rankings h2, .rankings ul, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
       main { display: block;}
+      .modal {padding-top: 10px !important;}
     </style>
 
     <!-- Google Tag Manager -->
@@ -45,6 +56,7 @@
         $('.modal').hide();
       });
   </script>
+  <div id="modal-ranking"></div>
   <header>
     <div class="wrapper">
 
@@ -64,7 +76,7 @@
                   <li class="right"><?= link_to(t('admin_panel'), '/admin', ['id' => 'menu-admin']) ?></li>
                 <?php } ?>
               <?php } else { ?>
-                <li class="right"><?= link_to(t('login'), '/login.php', ['id' => 'menu-login']) ?></li>
+                <li class="right"><?= link_to(t('log_in'), '/login.php', ['id' => 'menu-login']) ?></li>
               <?php } ?>
           </ul>
         </nav>
@@ -111,11 +123,42 @@
    });
     </script>
 
+
     <script type="text/javascript">
       $(document).on('ready', function() { $
         (document.body).css('visibility', 'visible');
       });
+
+      $('a.modal-image').on('click', function(event) {
+        event.preventDefault();
+        vex.dialog.alert({
+            unsafeMessage: '<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>'
+        })
+      });
+
+      $('a.modal-remote').on('click', function(event) {
+        event.preventDefault();
+
+        var href = $(this).attr('href');
+        var className = $(this).data('modal-class');
+
+        $.get(href, function(response) {
+            vex.open({
+                unsafeContent: response,
+                contentClassName: className
+            })
+        })
+      });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
+	<script>vex.defaultOptions.className = 'vex-theme-flat-attack'</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-flat-attack.min.css" />
+
+    <style>
+    .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
+    </style>
 
   </body>
   </html>

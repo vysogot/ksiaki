@@ -13,7 +13,7 @@ if ($post) {
   if (empty($params['errors'])) {
 
     if (!empty($_FILES['image_file']['name'])) {
-      $params['image_url'] = file_upload($_FILES['image_file']);
+      $params['image_url'] = file_upload($_FILES['image_file'], ['subdir' => 'backgrounds', 'thumbnail' => true]);
     }
 
     $result = execute('call sp_backgrounds_create(
@@ -41,7 +41,8 @@ if ($post) {
   } else {
 
       $result = ['rowCount' => -1, 'lastInsertId' => 0,
-          'errors' => $params['errors']
+          'errors' => $params['errors'],
+          'token' => get_csrf_token()
       ];
 
   }

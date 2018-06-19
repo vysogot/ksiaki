@@ -6,7 +6,9 @@ $(document).ready(function() {
             {
                 "data": "file_url",
                 "render": function (data) {
-                    return '<img height=75px src="' + data + '">';
+                    var ext = data.substr(data.lastIndexOf('.'));
+                    var name = data.substr(0, data.lastIndexOf('.')) + '_thumb' + ext;
+                    return '<img height=75px src="' + name + '">';
                 },
                 "orderable": false
             },

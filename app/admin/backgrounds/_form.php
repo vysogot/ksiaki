@@ -1,4 +1,8 @@
+<?php include '../init.php'; ?>
+
 <form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
+
+    <?= csrf_field() ?>
 
     <input type="hidden" name="id" value="">
     <input type="hidden" name="row_index" value="">

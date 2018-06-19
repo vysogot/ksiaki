@@ -1,37 +1,34 @@
 <?php
 
-$envs = include realpath(__DIR__ . '/../../ksiaki_config.php');
-
-$env = getenv('APPLICATION_ENV');
-$config = empty($env) ? $envs['development'] : $envs[$env];
+require 'init.php';
 
 list($host, $dbname, $user, $pass, $port) = [
-  $config['DB_HOST'],
-  $config['DB_NAME'],
-  $config['DB_USER'],
-  $config['DB_PASS'],
-  $config['DB_PORT']
+  $GLOBALS['config']['DB_HOST'],
+  $GLOBALS['config']['DB_NAME'],
+  $GLOBALS['config']['DB_USER'],
+  $GLOBALS['config']['DB_PASS'],
+  $GLOBALS['config']['DB_PORT']
 ];
 
-if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"DROP DATABASE IF EXISTS $dbname\"")) {
-  echo "\nDatabase '$dbname' dropped if existed\n";
-}
+if (in_array($env, ['development', 'testing'])) {
 
-if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"CREATE DATABASE $dbname CHARACTER SET utf8 COLLATE utf8_polish_ci\"")) {
-  echo "Database '$dbname' created\n\n";
-}
+    if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"DROP DATABASE IF EXISTS $dbname\"")) {
+      echo "\nDatabase '$dbname' dropped if existed\n";
+    }
 
-$path = realpath(__DIR__ . "/migrations");
-$files = scandir($path);
+    if (!exec("mysql -h $host -P $port -u $user --password=$pass -e \"CREATE DATABASE $dbname CHARACTER SET utf8 COLLATE utf8_polish_ci\"")) {
+      echo "Database '$dbname' created\n\n";
+    }
 
-foreach ($files as $file) {
-    if (!fnmatch('*.sql', $file)) continue;
+    run_scripts_in_folder('installs');
+    run_scripts_in_folder('procedures');
+    run_scripts_in_folder('migrations');
+    run_scripts_in_folder('seeds');
 
-    $realpath = $path . '/' . $file;
-    $query = file_get_contents($realpath);
+    echo "\nReset db '$dbname' completed\n\n";
 
-    if (exec("mysql -h $host -P $port -u $user --password=$pass $dbname < $realpath"))
-         echo "$file => Success\n";
-    else
-         echo "$file => Fail\n";
+} else {
+
+    echo "\nCan't run in '$env', do it manually or use 'db/migrate.php'\n\n";
+
 }

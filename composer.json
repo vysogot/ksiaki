@@ -3,7 +3,8 @@
     "type": "project",
     "require": {
         "sentry/sentry": "^1.9",
-        "monolog/monolog": "^1.23"
+        "monolog/monolog": "^1.23",
+        "calcinai/php-imagick": "^0.1.2"
     },
     "authors": [
         {

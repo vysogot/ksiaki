@@ -1,6 +1,9 @@
 Options FollowSymLinks
 RewriteEngine on
 RewriteRule ^info/([a-z0-9A-Z_-]+)$ static_site.php?slug=$1 [L,NC]
-RewriteRule ^hero/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]
 RewriteRule ^bohater/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]
 RewriteRule ^konkurs/([a-z0-9A-Z_-]+)$ contest.php?slug=$1  [L,NC]
+RewriteRule ^konkurs/([a-z0-9A-Z_-]+)/reklama$ /contest_preroll.php?slug=$1 [L,NC]
+RewriteRule ^konkurs/([a-z0-9A-Z_-]+)/graj$ /contest_play.php?slug=$1 [L,NC]
+RewriteRule ^konkursy$ /contests.php [L,NC]
+RewriteRule ^nagroda/([a-z0-9A-Z_-]+)$ /contest_prize.php?id=$1 [L,NC]

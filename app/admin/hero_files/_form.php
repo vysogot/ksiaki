@@ -1,11 +1,15 @@
 <?php
 
+    include '../init.php';
+
     $heroes = execute('call sp_heroes_all();', [], true);
     $hero_file_types = execute('call sp_hero_file_types_all();', [], true);
 
 ?>
 
 <form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
+
+    <?= csrf_field() ?>
 
     <input type="hidden" name="id">
     <input type="hidden" name="row_index" value="">

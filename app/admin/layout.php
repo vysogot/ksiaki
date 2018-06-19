@@ -7,9 +7,10 @@
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <!--<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 
     <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -83,6 +84,8 @@
             <ul class="dropdown-menu">
               <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['class' => 'remote']) ?></li> -->
               <li><?= link_to(t('hero_files'), '/admin/hero_files/', ['class' => 'remote']) ?></li>
+              <li><?= link_to(t('contest_prizes'), '/admin/contest_prizes/', ['class' => 'remote']) ?></li>
+              <li><?= link_to(t('sponsors'), '/admin/sponsors/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('back_to_home_page'), '/') ?></li>
             </ul>

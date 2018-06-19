@@ -26,21 +26,44 @@ function content($params, $data) { ?>
 
 <div id="heroes-page">
   <div class="wrapper">
-    <div class="center"><img src="<?= $data['hero']->header_url ?>"></div>
+
+    <?php if (!empty($data['hero']->header_url)) { ?>
+        <div class="center hero-header">
+            <?= image($data['hero']->header_url) ?>
+        </div>
+    <?php } ?>
 
     <?php include './partials/stroer_sky.html' ?>
 
     <div class="row hero">
-        <h2><?= e($data['hero']->name) ?></h2>
+        <h2>
+            <?= e($data['hero']->name) ?>
+            <?php if (is_admin()) { ?>
+                <?= link_to(t('edit_form'), '/admin/heroes') ?>
+            <?php } ?>
+        </h2>
 
-        <div class="column-13">
-            <?= image($data['hero']->cover_url) ?>
-        </div>
-        <div class="column-23"><?= $data['hero']->description ?>
-            <div class="center" style="margin-top: 30px;">
-                <?= image($data['hero']->gadget_url) ?>
+        <?php if (!empty($data['hero']->cover_url)) { ?>
+
+            <div class="column-13 hero-cover">
+                <?php if (!empty($data['hero']->cover_url)) { ?>
+                    <?= link_to(image(thumbnail_name($data['hero']->cover_url)), $data['hero']->cover_url, ['class' => 'modal-image']) ?>
+                <?php } ?>
             </div>
-        </div>
+
+        <?php } ?>
+
+        <?php if (!empty($data['hero']->gadget_url)) { ?>
+
+            <div class="column-23">
+                <p><?= $data['hero']->description ?></p>
+                <div class="center hero-gadget">
+                    <?= link_to(image(thumbnail_name($data['hero']->gadget_url)), $data['hero']->gadget_url, ['class' => 'modal-image']) ?>
+                </div>
+            </div>
+
+        <?php } ?>
+
     </div>
 
     <?php if (!empty($data['hero']->video_url)) { ?>
@@ -57,11 +80,11 @@ function content($params, $data) { ?>
     <div class="row hero">
         <h3><?= t('in_current_edition') ?></h3>
         <div class="column-33">
-            <section id="box-banners">
+            <section>
               <div id="box-banners-slider" class="boxes">
                 <?php foreach($data['hero_magazines'] as $box) { ?>
                   <div>
-                      <?= link_to(image($box->file_url), $box->file_url, ['class' => 'modal-image']) ?>
+                      <?= link_to(image(thumbnail_name($box->file_url)), $box->file_url, ['class' => 'modal-image']) ?>
                       <p><?= link_to($box->name, "$box->file_url", ['class' => 'modal-image']) ?></p>
                   </div>
                 <?php } ?>
@@ -76,11 +99,11 @@ function content($params, $data) { ?>
         <div class="row hero">
             <h3><?= t('to_download') ?></h3>
             <div class="column-33">
-                <section id="box-banners-2">
+                <section>
                   <div id="box-banners-slider" class="boxes">
                     <?php foreach($data['hero_wallpapers'] as $box) { ?>
                       <div>
-                        <?= link_to(image($box->file_url), $box->file_url, ['class' => 'modal-image']) ?>
+                        <?= link_to(image(thumbnail_name($box->file_url)), $box->file_url, ['class' => 'modal-image']) ?>
                         <p><?= link_to($box->name, "$box->file_url", ['class' => 'modal-image']) ?></p>
                       </div>
                     <?php } ?>
@@ -88,10 +111,22 @@ function content($params, $data) { ?>
                 </section>
             </div>
         </div>
-      </div>
-    </div>
 
     <?php } ?>
+
+        <?php if (!empty($data['hero']->footer_url)) { ?>
+            <div class="row">
+                <div class="column-33">
+                    <section class="hero-footer">
+                      <?= image($data['hero']->footer_url) ?>
+                      <p><?= $data['hero']->license_description ?></p>
+                    </section>
+                </div>
+            </div>
+        <?php } ?>
+
+  </div>
+</div>
 
     <script>
 
@@ -109,12 +144,6 @@ function content($params, $data) { ?>
                 $(e.currentTarget).removeClass('expanded-light');
             });
 
-        $('a.modal-image').on('click', function(event) {
-          event.preventDefault();
-
-          $('.modal-content p').append('<div class="center"><img src="' + $(this).attr('href') + '"/></div>');
-          $('.modal').show();
-        });
     </script>
 
 <?php }

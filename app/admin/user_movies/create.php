@@ -13,11 +13,11 @@ if ($post) {
   if (empty($params['errors'])) {
 
       if (!empty($_FILES['image_file']['name'])) {
-          $params['image_url'] = file_upload($_FILES['image_file']);
+          $params['image_url'] = file_upload($_FILES['image_file'], ['subdir' => 'user_movies']);
       }
 
       if (!empty($_FILES['video_file']['name'])) {
-          $params['video_url'] = file_upload($_FILES['video_file']);
+          $params['video_url'] = file_upload($_FILES['video_file'], ['subdir' => 'user_movies']);
       }
 
       $result = execute('call sp_user_movies_create(
@@ -45,7 +45,8 @@ if ($post) {
   } else {
 
       $result = ['rowCount' => -1, 'lastInsertId' => 0,
-          'errors' => $params['errors']
+          'errors' => $params['errors'],
+          'token' => get_csrf_token()
       ];
 
   }

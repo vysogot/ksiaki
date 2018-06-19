@@ -22,14 +22,15 @@ if ($post) {
           array('p_id', $params['id'], PDO::PARAM_INT),
           array('p_title', $params['title'], PDO::PARAM_STR),
           array('p_slug', $params['slug'], PDO::PARAM_STR),
-          array('p_content', $params['content'], PDO::PARAM_STR),
+          array('p_content', $params['content'], PDO::PARAM_LOB),
           array('p_is_active', $params['is_active'], PDO::PARAM_INT)
         ), false, false);
 
     } else {
 
         $result = ['rowCount' => -1, 'lastInsertId' => 0,
-            'errors' => $params['errors']
+            'errors' => $params['errors'],
+            'token' => get_csrf_token()
         ];
 
     }

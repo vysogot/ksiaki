@@ -4,7 +4,7 @@ include 'init.php';
 
 $params = [
   "offset" => 0,
-  "limit" => 50,
+  "limit" => 10,
   "month" => date('Y-m-01'),
   "year" => date('Y-m-d')
 ];
@@ -39,10 +39,10 @@ function content($params, $data) { ?>
   <h2 class="hidden"><?= t('contests') ?></h2>
 
   <div class="side rankings">
-    <h2><?= link_to(t('monthly_ranking'), '/ranking.php?type=monthly&month=' . $params['month']) ?></h2>
+    <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . $params['month']) ?></h2>
     <?= ranking_list($data['monthly_ranking']) ?>
 
-    <h2><?= link_to(t('yearly_ranking'), '/ranking.php?type=yearly&year=' . $params['year']) ?></h2>
+    <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . $params['year']) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
   </div>
 

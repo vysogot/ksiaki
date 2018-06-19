@@ -13,7 +13,7 @@ $translations = [
 
   'home_page' => 'Strona główna',
   'contests' => 'Konkursy',
-  'login' => 'Zaloguj się',
+  'login' => 'Login',
   'dashboard' => 'Twoje konto',
   'admin_panel' => 'Admin',
 
@@ -50,6 +50,7 @@ $translations = [
   'points' => 'Punkty',
   'points_total' => 'Punkty w tym roku',
   'contest_end' => 'Zakończ',
+  'place' => 'Miejsce',
 
   // downloads
 
@@ -67,6 +68,7 @@ $translations = [
   'no_account_yet' => 'Nie masz jeszcze konta?',
   'forgot_password' => 'Hasło wyleciało Ci z głowy?',
   'already_have_account' => 'Posiadasz już konto?',
+  'not_found' => 'Nie ma takiego konta!',
 
   // password reset
 
@@ -129,6 +131,11 @@ $translations = [
   'static_sites' => 'Strony statyczne',
   'admin_menu_other_items' => 'Pozostałe',
   'back_to_home_page' => 'Powrót do strony głównej',
+  'contest_prize' => 'Nagroda w konkursie',
+  'contest_prizes' => 'Nagrody konkursów',
+  'sponsor_name' => 'Sponsor',
+  'sponsors' => 'Sponsorzy',
+  'sponsor' => 'Sponsor',
 
   // data
 
@@ -152,6 +159,7 @@ $translations = [
   'caretaker_activation_failure' => 'Niestety, ale coś poszło nie tak. Najlepiej skontaktuj się z nami mailowo.',
   'caretaker_acceptance_needed' => 'Czemy na zgodę Twojego opiekuna. Poproś, aby sprawdził podanego przez Ciebie maila.',
   'activation_success' => 'Twoje konto zostało aktywowane.',
+  'known_user_password_reset' => 'Cześć! Na Twojego maila wysłaliśmy link! Kliknij w niego i ustaw nowe hasło!',
 
   // validation
 
@@ -189,6 +197,7 @@ $translations = [
   'slug' => 'Uproszczona nazwa',
   'avatar' => 'Awatar',
   'cover_url' => 'Okładka',
+  'video_cover_url' => 'Kadr video',
   'gadget_url' => 'Gadżet',
   'footer_url' => 'Grafika stopki',
   'license_description' => 'Opis w stopce - licencja',
@@ -235,7 +244,7 @@ $translations = [
 
   // static sites form
 
-  'static_site_title' => 'Tytuł',
+  'title' => 'Tytuł',
   'content' => 'Treść',
 
   // Your account
@@ -267,6 +276,8 @@ $translations = [
   'contest_slug' => '/konkurs/{{slug}}',
   'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
   'contest_play_slug' => '/konkurs/{{slug}}/graj',
+  'static_site_slug' => '/info/{{slug}}',
+  'contest_prize_slug' => '/nagroda/{{slug}}',
 
   // games
 
@@ -275,6 +286,10 @@ $translations = [
 
   // security
 
-  'invalid_token' => 'Formularz wygasł. Spróbuj jeszcze raz.'
+  'invalid_token' => 'Formularz wygasł. Odśwież go i spróbuj ponownie.',
+  'form_error' => 'Błąd formularza',
+
+  // contest prizes
+  'prizes_in_this_contest' => 'Nagrody w tym konkursie',
 
 ];

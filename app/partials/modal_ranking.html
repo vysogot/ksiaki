@@ -1,20 +1,31 @@
 <script type="text/javascript">
-$('.rankings a').on('click', function(event) {
+
+
+$('.rankings h2 > a').on('click', function(event) {
   event.preventDefault();
 
   var href = $(this).attr('href');
-  $('.modal-content p').load(href, function() {
-    $('.loaded ul.rankings a').on('click', function(event) {
-      event.preventDefault();
-
-      var href = $(this).attr('href');
-      $('.modal-content p').load(href);
-    });
+  $('#modal-ranking').load(href, function(responseTxt, statusTxt, xhr){
+    if(statusTxt == "success")
+      $('#show-ranking').modal('show');
+    if(statusTxt == "error")
+      alert("Error: " + xhr.status + ": " + xhr.statusText);
   });
-  $('.modal').show();
+});
+
+$('.rankings li > a').on('click', function(event) {
+  event.preventDefault();
+
+  var href = $(this).attr('href');
+  $.get(href, function(response) {
+      vex.open({
+          unsafeContent: response
+      })
+  })
 });
 
 $('.modal .close').click(function() {
+  $('.modal-content p').empty();
   $('.modal').hide();
 });
 </script>

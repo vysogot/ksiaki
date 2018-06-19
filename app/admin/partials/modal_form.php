@@ -8,9 +8,8 @@
       </div>
       <div class="row">
         <ul class="errorList hidden"></ul>
-        <?php include '_form.php'; ?>
+        <div class="form-content"></div>
       </div>
-      <script>$("#form").submit(function () { return submitForm(); });</script>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ if ($post) {
     if (empty($params['errors'])) {
 
         if (!empty($_FILES['avatar_file']['name'])) {
-            $params['avatar_url'] = file_upload($_FILES['avatar_file']);
+            $params['avatar_url'] = file_upload($_FILES['avatar_file'], ['subdir' => 'users', 'filename' => 'konkursiak-' . $params['nick']]);
         }
 
         $result = execute('call sp_users_update(
@@ -39,7 +39,8 @@ if ($post) {
     } else {
 
         $result = ['rowCount' => -1, 'lastInsertId' => 0,
-            'errors' => $params['errors']
+            'errors' => $params['errors'],
+            'token' => get_csrf_token()
         ];
 
     }

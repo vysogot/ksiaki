@@ -90,15 +90,67 @@ function get_background() {
     return $background;
 }
 
-function file_upload($file) {
-    $target_dir = __DIR__ . '/../uploads/';
-    $target_file = $target_dir . basename($file["name"]);
+function file_upload($file, $options = []) {
+
+    $filename = basename($file["name"]);
+    $ext = file_extension($filename);
+
+    if (isset($options['filename'])) {
+        $filename = $options['filename'] . ".$ext";
+    }
+
+    $subdir = $options['subdir'] ?? '';
+
+    $relative_filepath =  '/' . $subdir . '/' . time() . '-' . $filename;
+    $physical_filepath = str_replace('//', '/', $GLOBALS['config']['uploads_dir'] . $relative_filepath);
 
     // hard limit to 100mb
     if ($file['size'] < 100000000) {
-        move_uploaded_file($file["tmp_name"], $target_file);
-        return '/uploads/' . basename($file["name"]);
+        move_uploaded_file($file["tmp_name"], $physical_filepath);
+
+        if ($GLOBALS['env'] == 'development') {
+            $relative_filepath = '/uploads/' . $relative_filepath;
+        }
+
+        if (isset($options['thumbnail']) && $options['thumbnail'] == true) {
+            create_thumbnail($physical_filepath, $ext);
+        }
+
+        return cdn_url($relative_filepath);
     }
+}
+
+function create_thumbnail($physical_filepath, $ext) {
+
+    if (in_array($ext, ['jpg', 'jpeg', 'gif', 'png'])) {
+        $image = new Imagick($physical_filepath);
+        $image->resizeImage(300, 300, Imagick::FILTER_CATROM, 0, true);
+
+        $output_file_path = thumbnail_name($physical_filepath);
+        $output_file = fopen($output_file_path, "w");
+
+        if (fwrite($output_file, $image->getImageBlob()) === false) {
+          throw new Exception("Error writing to file: $output_file_path");
+        }
+
+        fclose($output_file);
+    }
+
+}
+
+function file_extension($filename) {
+    return pathinfo($filename, PATHINFO_EXTENSION);
+}
+
+function thumbnail_name($filename) {
+    $ext = file_extension($filename);
+    return str_replace(".$ext", "_thumb.$ext", $filename);
+}
+
+function cdn_url($src) {
+    if (substr($src, 0, 4) == 'http') return $src;
+
+    return $GLOBALS['config']['cdn'] . $src;
 }
 
 function ranking_list($scores) {
@@ -106,7 +158,7 @@ function ranking_list($scores) {
 
     foreach($scores as $score) {
         $html .= "<li>" . "$score->place. " . link_to($score->nick, '/profile.php?nick=' . urlencode($score->nick)) .
-            " – $score->points " . t('points') . "</li>";
+            " – $score->points " . "</li>";
     }
 
     return $html . '</ul>';
@@ -138,4 +190,20 @@ function get_csrf_token() {
 
 function csrf_field() {
     return '<input type="hidden" name="token" value="' . get_csrf_token() . '" />';
+}
+
+function slugify($str, $max_length = 50) {
+    $polish = array('/ą/', '/ż/', '/ź/', '/ę/', '/ć/', '/ń/', '/ó/', '/ł/', '/ś/', '/Ą/', '/Ż/', '/Ź/', '/Ę/', '/Ć/', '/Ń/', '/Ó/', '/Ł/', '/Ś/');
+    $ascii = array('a', 'z', 'z', 'e', 'c', 'n', 'o', 'l', 's', 'A', 'Z', 'Z', 'E', 'C', 'N', 'O', 'L', 'S');
+    $str = preg_replace($polish, $ascii, $str);
+    $str = strtolower(trim($str));
+    $str = preg_replace('/\?/', '', $str);
+    $str = preg_replace('/[^a-z0-9-]/', '-', $str);
+    $str = preg_replace('/-+/', "-", $str);
+    $str = substr($str, 0, $max_length);
+    return $str;
+}
+
+function is_production_env() {
+    return $GLOBALS['env'] == 'production';
 }

@@ -22,7 +22,7 @@ function send_email($to, $options = []) {
         $mail = new PHPMailer(true);
 
         try {
-            $mail->SMTPDebug = 1;
+
             $mail->isSMTP();
             $mail->SMTPAuth = true;
 
@@ -36,21 +36,29 @@ function send_email($to, $options = []) {
                 $GLOBALS['config']['smtp_from_email'],
                 $GLOBALS['config']['smtp_from_name']
             );
+
             $mail->addAddress($to, $options['name']);
             $mail->addReplyTo(
-                $GLOBALS['config']['smtp_reply_to_email'], 
+                $GLOBALS['config']['smtp_reply_to_email'],
                 $GLOBALS['config']['smtp_reply_to_name']
             );
 
             $mail->isHTML(true);
-            $mail->Subject = $options['subject'];
-            $mail->Body    = $options['body'];
+            $mail->WordWrap = 80;
+            $mail->CharSet = "UTF-8";
+            $mail->Encoding = "base64";
+            
+            $mail->Subject = htmlentities(trim($options['subject']), ENT_NOQUOTES, 'utf-8');
+            $mail->Body = trim($options['body']);
 
             $mail->send();
 
             return true;
+
         } catch (Exception $e) {
+
             throw new Exception("Message could not be sent. Mailer Error: $mail->ErrorInfo");
+
         }
 
     }

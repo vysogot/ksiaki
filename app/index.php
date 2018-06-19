@@ -3,7 +3,7 @@
 include 'init.php';
 
 $data['slides'] = execute('call sp_slides_all();', [], true);
-$data['video_ads'] = execute('call sp_video_ads_all();', [], true);
+$data['video_ads'] = execute('call sp_video_ads_get_all_active_in_random_order();', [], true);
 $data['contests'] = execute('call sp_contests_all();', [], true);
 $data['boxes'] = execute('call sp_boxes_all();', [], true);
 
@@ -27,7 +27,7 @@ function content($params, $data) { ?>
         foreach($data['video_ads'] as $key => $video_ad) { ?>
             <?php $options = ($key == $first) ? 'autoplay' : 'muted preload="none"' ?>
             <div>
-            <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>"></video>
+            <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>" type="video/mp4"></video>
                 <div class="mute"></div>
                 <?= link_to(image($video_ad->image_url), $video_ad->link_url) ?>
             </div>
@@ -36,8 +36,9 @@ function content($params, $data) { ?>
 
     <?php include './partials/stroer_sky.html' ?>
 
+<?php if (!empty($data['contests'])) { ?>
+
     <section id="contests" class="slider">
-      <h2><?= t('contests') ?></h2>
       <div id="contests-slider" class="boxes">
         <?php foreach($data['contests'] as $contest) { ?>
           <div>
@@ -48,10 +49,12 @@ function content($params, $data) { ?>
       </div>
     </section>
 
+<?php } ?>
+
     <?php // include 'partials/user_movies_list.php'; ?>
 
+<?php if (!empty($data['boxes'])) { ?>
     <section id="box-banners">
-      <h2><?= t('box_banners') ?></h2>
       <div id="box-banners-slider" class="boxes">
         <?php foreach($data['boxes'] as $box) { ?>
           <div>
@@ -61,6 +64,7 @@ function content($params, $data) { ?>
         <?php } ?>
       </div>
     </section>
+<?php } ?>
 
 </div>
 

@@ -12,12 +12,8 @@ if ($post) {
 
     if (empty($params['errors'])) {
 
-        if (!empty($_FILES['avatar_file']['name'])) {
-            $params['avatar_url'] = file_upload($_FILES['avatar_file']);
-        }
-
-        if (!empty($_FILES['header_file']['name'])) {
-            $params['header_url'] = file_upload($_FILES['header_file']);
+        if (!empty($_FILES['image_file']['name'])) {
+          $params['image_url'] = file_upload($_FILES['image_file'], ['subdir' => 'backgrounds', 'thumbnail' => true]);
         }
 
         $result = execute('call sp_backgrounds_update(
@@ -47,7 +43,8 @@ if ($post) {
     } else {
 
         $result = ['rowCount' => -1, 'lastInsertId' => 0,
-            'errors' => $params['errors']
+            'errors' => $params['errors'],
+            'token' => get_csrf_token()
         ];
 
     }

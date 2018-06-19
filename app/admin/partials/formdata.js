@@ -14,6 +14,8 @@ function submitForm() {
     let row_index = $('input[name="row_index"]').val();
     let form_data = new FormData(document.getElementById("form"));
 
+    $("input[type=submit]").attr('disabled','disabled');
+
     $.ajax({
 
         url: (form_data.get('id') == 0) ? 'create.php' : 'update.php',
@@ -29,10 +31,14 @@ function submitForm() {
 
             let error_list = $(".modal .errorList");
 
+            $(".modal .errorList").empty();
+
             $.each(response.errors, function(field, message) {
-              $("input[name=" + field + "]").addClass('error');
+              $("input[name='" + field + "']").addClass('error');
               error_list.append($("<li>").text(field + ": " + message));
             });
+
+            $("input[name=token]").val(response['token']);
 
             error_list.removeClass('hidden');
 
@@ -56,6 +62,7 @@ function submitForm() {
 
 function get_data(myObj) {
 
+    console.log('myobj', myObj);
     let id = $(myObj).data('id');
 
     $.ajax({
@@ -70,11 +77,26 @@ function get_data(myObj) {
         let ret = data[0];
 
         for (var key in ret) {
-            $('input[name="' + key + '"]').val(ret[key]);
+            var field = $('input[name="' + key + '"]');
+            field.val(ret[key]);
+
+            if (key.endsWith('_url')) {
+                field.prop('readonly', true);
+            }
         }
 
+        $('textarea[name="license_description"]').val(ret.license_description);
         $('textarea[name="description"]').val(ret.description);
         $('textarea[name="content"]').val(ret.content);
+
+        if (ret.begins_at != undefined) {
+            $('input[name="begins_at"]').val(ret.begins_at.replace(' ', 'T'));
+        }
+
+        if (ret.ends_at != undefined) {
+            $('input[name="ends_at"]').val(ret.ends_at.replace(' ', 'T'));
+        }
+
         $('#is_active_check').prop("checked", ($('input[name="is_active"]').val() == '1'));
         $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
 
@@ -93,9 +115,50 @@ function get_data(myObj) {
     });
 }
 
+function fEdit(myObj) {
+    let title = '<?= t("edit_form") ?>';
+    let row = $(myObj).data();
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('input[name=row_index]').val(row.index);
+        $('.modal-title').text(title);
+        get_data(myObj);
+    });
+}
+
+function fDelete(myObj) {
+    let title = '<?= t("are_you_sure") ?>';
+    let ret = confirm(title);
+
+    if (ret == true) {
+        $.get("delete.php?id=" + $(myObj).data('id'),
+            function(data, status){
+                if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
+            });
+    }
+}
+
 $('#modal').on('hidden.bs.modal', function (e) {
     $("#form")[0].reset();
     $("input").removeClass('error');
     $(".modal .errorList").addClass('hidden');
     $(".modal .errorList").empty();
+});
+
+$('#new').click(function(e) {
+    let title = '<?= t("new_form") ?>';
+    let object = this;
+
+    $('.modal-content .form-content').load('_form.php', function() {
+        $("#form").on('submit', function () {
+            return submitForm();
+        });
+
+        $('.modal-title').text(title);
+        get_data(object);
+    });
 });

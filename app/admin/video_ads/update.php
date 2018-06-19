@@ -12,12 +12,12 @@ if ($post) {
 
   if (empty($params['errors'])) {
 
-      if (!empty($_FILES['video_file']['name'])) {
-          $params['video_url'] = file_upload($_FILES['video_file']);
+      if (!empty($_FILES['image_file']['name'])) {
+          $params['image_url'] = file_upload($_FILES['image_file'], ['subdir' => 'videos']);
       }
 
-      if (!empty($_FILES['image_file']['name'])) {
-          $params['image_url'] = file_upload($_FILES['image_file']);
+      if (!empty($_FILES['video_file']['name'])) {
+          $params['video_url'] = file_upload($_FILES['video_file'], ['subdir' => 'videos']);
       }
 
       $result = execute('call sp_video_ads_update(
@@ -43,7 +43,8 @@ if ($post) {
   } else {
 
       $result = ['rowCount' => -1, 'lastInsertId' => 0,
-          'errors' => $params['errors']
+          'errors' => $params['errors'],
+          'token' => get_csrf_token()
       ];
 
   }

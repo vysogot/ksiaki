@@ -12,8 +12,14 @@ if ($post) {
 
   if (empty($params['errors'])) {
 
+      $hero = execute('call sp_heroes_find(:p_id);', array(
+          array('p_id', $params['hero_id'], PDO::PARAM_INT)
+      ));
+
+      $filename = $params['hero_file_type_id'] . '-' . $hero->slug;
+
       if (!empty($_FILES['actual_file']['name'])) {
-          $params['file_url'] = file_upload($_FILES['actual_file']);
+          $params['file_url'] = file_upload($_FILES['actual_file'], ['subdir' => 'heroes', 'thumbnail' => true, 'filename' => $filename]);
       }
 
       $result = execute('call sp_hero_files_update(
@@ -39,7 +45,8 @@ if ($post) {
   } else {
 
       $result = ['rowCount' => -1, 'lastInsertId' => 0,
-          'errors' => $params['errors']
+          'errors' => $params['errors'],
+          'token' => get_csrf_token()
       ];
 
   }
