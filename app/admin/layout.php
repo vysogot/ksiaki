@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 
+    <link rel="stylesheet" href="/assets/css/suneditor.css">
+    <link rel="stylesheet" href="/assets/js/css/suneditor-contents.css">
+
     <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
@@ -20,8 +23,10 @@
     <script src="//cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.16/features/mark.js/datatables.mark.min.js"></script>
 
-
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="/assets/js/suneditor.js"></script>
+    <script src="/assets/lang/pl.js"></script>
 
     <link rel="icon" href="data:;base64,=">
     <?php if (function_exists('meta')) meta(); ?>
@@ -134,6 +139,18 @@
     });
 
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
+	  <script>
+      vex.defaultOptions.className = 'vex-theme-flat-attack';
+      vex.defaultOptions.closeAllOnPopState = false;
+    </script>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex.min.css" />
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-flat-attack.min.css" />
+
+    <style>
+    .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
+    </style>
 
   </body>
 </html>
