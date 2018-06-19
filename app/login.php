@@ -52,6 +52,7 @@ if ($post) {
                     session_regenerate_id(true);
                     $_SESSION['user_id'] = $result->id;
                     $_SESSION['role_id'] = $result->role_id;
+                    $_SESSION['nick'] = $result->nick;
 
                     flash('notice', t('login_success'));
 

@@ -45,13 +45,15 @@ CREATE PROCEDURE `sp_users_find_by_nick_or_email` (
 )
 BEGIN
     SELECT _users.id
-    , _users.is_active
+    , _users.nick
     , _users.email
     , _users.name
     , _users.surname
     , role_id
     , password_hash
-    , IFNULL(_caretakers.is_active, 1) AS caretaker_check FROM _users
+    , _users.is_active
+    , IFNULL(_caretakers.is_active, 1) AS caretaker_check
+    FROM _users
     LEFT JOIN _caretakers ON _users.id = _caretakers.user_id
     WHERE (_users.nick = p_login OR _users.email = p_login)
     LIMIT 1;
