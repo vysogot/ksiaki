@@ -25,6 +25,7 @@ $(document).ready(function() {
             { "data": "points_total" },
             { "data": "checknumber_client" },
             { "data": "checknumber_server" },
+            { "data": "is_suspected" },
             { "data": null }
         ],
 
@@ -36,13 +37,14 @@ $(document).ready(function() {
             "targets": -1,
             "data": null,
             "className": "links",
+            "orderable": false,
             "render": function (data, type, row, meta) {
-                return (row.checknumber_client == row.checknumber_server) ? '0' : '1';
+                return '';
             }
         }],
 
         "createdRow": function(row, data, dataIndex) {
-            if (data.checknumber_client != row.checknumber_server) {
+            if (data.is_suspected == '1') {
                 $(row).addClass('data-table-row-warning');
             }
         },

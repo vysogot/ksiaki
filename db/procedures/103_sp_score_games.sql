@@ -1,6 +1,7 @@
 DROP PROCEDURE IF EXISTS sp_score_games_create;
 DROP PROCEDURE IF EXISTS sp_score_games_all;
 DROP PROCEDURE IF EXISTS sp_score_games_all_count;
+DROP PROCEDURE IF EXISTS sp_score_games_all_client_side;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_score_games_create`(
@@ -47,20 +48,23 @@ DELIMITER $$
 CREATE PROCEDURE `sp_score_games_all_client_side` ()
 BEGIN
 
-    SELECT score_games.id as id
-    , _users.nick as nick
-    , _contests.name as contest_name
+    SELECT score_games.id AS id
+    , _users.nick AS nick
+    , _contests.name AS contest_name
     , level
-    , score_games.begins_at as begins_at
-    , score_games.ends_at as ends_at
+    , score_games.begins_at AS begins_at
+    , score_games.ends_at AS ends_at
     , win
     , points
     , points_total
     , checknumber_client
     , checknumber_server
-	 FROM score_games
+    , IFNULL(checknumber_client != checknumber_server, 0) AS is_suspected
+     FROM score_games
      LEFT JOIN _users ON score_games.user_id = _users.id
-     LEFT JOIN _contests ON score_games.contest_id = _contests.id;
+     LEFT JOIN _contests ON score_games.contest_id = _contests.id
+     ORDER BY is_suspected DESC, score_games.id DESC;
+
 END$$
 DELIMITER ;
 
@@ -88,6 +92,7 @@ BEGIN
     , points_total
     , checknumber_client
     , checknumber_server
+    , IFNULL(checknumber_client != checknumber_server, 0) AS is_suspected
 	 FROM score_games
      LEFT JOIN _users ON score_games.user_id = _users.id
      LEFT JOIN _contests ON score_games.contest_id = _contests.id

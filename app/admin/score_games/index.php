@@ -14,7 +14,8 @@ $data['column_names'] = [
     'points',
     'points_total',
     'checknumber_client',
-    'checknumber_server'
+    'checknumber_server',
+    'is_suspected'
 ];
 
 ?>

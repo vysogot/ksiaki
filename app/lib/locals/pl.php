@@ -301,6 +301,7 @@ $translations = [
   'win' => 'Wygrana',
   'checknumber_client' => 'x',
   'checknumber_server' => 'y',
-  'score_games' => 'Punktacja gier'
+  'score_games' => 'Punktacja gier',
+  'is_suspected' => 'Podejrzany'
 
 ];
