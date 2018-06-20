@@ -12,4 +12,4 @@ list($host, $dbname, $user, $pass, $port, $backup_dir) = [
   $GLOBALS['config']['backup_dir']
 ];
 
-exec("mysqldump -u$user --databases $dbname --events --routines --single-transaction >> $backup_dir" . $timestamp . "_ksiaki_backup.sql");
+exec("mysqldump -u$user $dbname --events --routines --single-transaction --complete-insert --no-create-db >> $backup_dir" . $timestamp . "_ksiaki_backup.sql");
