@@ -93,6 +93,7 @@
               <li><?= link_to(t('contest_prizes'), '/admin/contest_prizes/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('sponsors'), '/admin/sponsors/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['class' => 'remote']) ?></li>
+              <li><?= link_to(t('mail_templates'), '/admin/mail_templates/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('score_games'), '/admin/score_games/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('back_to_home_page'), '/') ?></li>
             </ul>

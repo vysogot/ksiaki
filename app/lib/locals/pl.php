@@ -302,6 +302,10 @@ $translations = [
   'checknumber_client' => 'x',
   'checknumber_server' => 'y',
   'score_games' => 'Punktacja gier',
-  'is_suspected' => 'Podejrzany'
+  'is_suspected' => 'Podejrzany',
+
+  // mail templates
+  'mail_templates' => 'Szablony maili',
+  'subject' => 'Temat',
 
 ];
