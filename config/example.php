@@ -19,10 +19,10 @@ return array(
     'smtp_password' => 'password',
     'smtp_protocol' => 'ssl',
     'smtp_port' => 465,
-    'smtp_from_email' => 'jakub.godawa@gmail.com',
-    'smtp_from_name' => 'Jakub Godawa',
-    'smtp_reply_to_email' => 'jakub.godawa@gmail.com',
-    'smtp_reply_to_name' => 'Jakub Godawa',
+    'mail_from_email' => 'jakub.godawa@gmail.com',
+    'mail_from_name' => 'Jakub Godawa',
+    'mail_reply_to_email' => 'jakub.godawa@gmail.com',
+    'mail_reply_to_name' => 'Jakub Godawa',
 
     'uploads_dir' => '/var/www/ksiaki/app/uploads/',
     'backup_dir' => '/var/www/ksiaki/db/'

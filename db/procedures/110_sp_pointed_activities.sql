@@ -10,7 +10,6 @@ SELECT p_user_id
 , NOW()
 FROM def_pointed_activities
 WHERE (id = p_activity_id);
-SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
 END//
 DELIMITER ;
 

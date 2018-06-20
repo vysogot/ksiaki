@@ -287,6 +287,8 @@ BEGIN
         );
     END IF;
 
+    CALL sp_pointed_activities_registration(@last_insert_user_id);
+
     SELECT @last_insert_user_id AS lastInsertId,
     p_activation_hash AS activation_hash,
     p_caretaker_activation_hash AS caretaker_activation_hash;
