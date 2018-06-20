@@ -62,6 +62,7 @@
       mark {background: orange;color: black;}
       a[disabled="disabled"] {pointer-events: none;}
       a[disabled="disabled"] > .fas {opacity: 0.5;}
+      .table-striped tbody tr.data-table-row-warning { background-color: #FF0; }
     </style>
 </head>
 <body>
@@ -92,6 +93,7 @@
               <li><?= link_to(t('contest_prizes'), '/admin/contest_prizes/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('sponsors'), '/admin/sponsors/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('static_sites'), '/admin/static_sites/', ['class' => 'remote']) ?></li>
+              <li><?= link_to(t('score_games'), '/admin/score_games/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('back_to_home_page'), '/') ?></li>
             </ul>
           </li>

@@ -294,6 +294,13 @@ $translations = [
   'prizes_in_this_contest' => 'Nagrody w tym konkursie',
   'contest_starts' => 'Start – {{date}}',
   'contest_ends' => 'Zakończenie – {{date}}',
-  'contest_statute_consent' => '*Biorąc udział w konkursie akceptujesz jego {{link}}'
+  'contest_statute_consent' => '*Biorąc udział w konkursie akceptujesz jego {{link}}',
+
+  // score games
+  'level' => 'Poziom',
+  'win' => 'Wygrana',
+  'checknumber_client' => 'x',
+  'checknumber_server' => 'y',
+  'score_games' => 'Punktacja gier'
 
 ];
