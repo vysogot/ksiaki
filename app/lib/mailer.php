@@ -23,31 +23,35 @@ function send_email($to, $options = []) {
 
         try {
 
-            $mail->isSMTP();
-            $mail->SMTPAuth = true;
+            if (!is_production_env()) {
 
-            $mail->Host         = $GLOBALS['config']['smtp_host'];
-            $mail->Username     = $GLOBALS['config']['smtp_username'];
-            $mail->Password     = $GLOBALS['config']['smtp_password'];
-            $mail->SMTPSecure   = $GLOBALS['config']['smtp_protocol'];
-            $mail->Port         = $GLOBALS['config']['smtp_port'];
+                $mail->isSMTP();
+                $mail->SMTPAuth = true;
+
+                $mail->Host         = $GLOBALS['config']['smtp_host'];
+                $mail->Username     = $GLOBALS['config']['smtp_username'];
+                $mail->Password     = $GLOBALS['config']['smtp_password'];
+                $mail->SMTPSecure   = $GLOBALS['config']['smtp_protocol'];
+                $mail->Port         = $GLOBALS['config']['smtp_port'];
+
+            }
 
             $mail->setFrom(
-                $GLOBALS['config']['smtp_from_email'],
-                $GLOBALS['config']['smtp_from_name']
+                $GLOBALS['config']['mail_from_email'],
+                $GLOBALS['config']['mail_from_name']
             );
 
             $mail->addAddress($to, $options['name']);
             $mail->addReplyTo(
-                $GLOBALS['config']['smtp_reply_to_email'],
-                $GLOBALS['config']['smtp_reply_to_name']
+                $GLOBALS['config']['mail_reply_to_email'],
+                $GLOBALS['config']['mail_reply_to_name']
             );
 
             $mail->isHTML(true);
             $mail->WordWrap = 80;
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
-            
+
             $mail->Subject = htmlentities(trim($options['subject']), ENT_NOQUOTES, 'utf-8');
             $mail->Body = trim($options['body']);
 
