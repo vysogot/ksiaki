@@ -12,6 +12,16 @@ if ($post) {
 
   if (!empty($_SESSION['user_id'])) {
 
+      execute('call sp_score_games_add_activities(
+          :p_user_id,
+          :p_contest_id,
+          :p_points_total
+      );', array(
+          array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT),
+          array('p_contest_id', $params['contest_id'], PDO::PARAM_INT),
+          array('p_points_total', $params['points_total'], PDO::PARAM_INT)
+      ));
+
       $data = execute('call sp_score_games_create(
         :p_user_id,
         :p_contest_id,
