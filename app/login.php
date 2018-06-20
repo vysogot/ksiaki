@@ -54,6 +54,11 @@ if ($post) {
                     $_SESSION['role_id'] = $result->role_id;
                     $_SESSION['nick'] = $result->nick;
 
+                    $result = execute('call sp_user_login(:p_user_id, :p_session_id);', array(
+                        array('p_user_id', $result->id, PDO::PARAM_INT),
+                        array('p_session_id', session_id(), PDO::PARAM_STR)
+                    ));
+
                     flash('notice', t('login_success'));
 
                 } else {
@@ -82,25 +87,34 @@ if ($post) {
 
 function content($params, $data) { ?>
 
-<div class="wrapper">
+    <div class="wrapper">
 
-  <form action="<?= path_to('/login.php') ?>" method="post" class="vertical-form">
+        <form action="<?= path_to('/login.php') ?>" method="post" class="vertical-form">
 
-    <legend><h2><?= t('sign_in') ?></h2></legend>
-    <?php include 'partials/errors.php'; ?>
+            <legend>
+                <h2>
+                    <?= t('sign_in') ?>
+                </h2>
+            </legend>
+            <?php include 'partials/errors.php'; ?>
 
-    <?= csrf_field() ?>
-    <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" required autofocus />
-    <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
-    <input type="submit" value="<?= t('log_in') ?>"/>
+            <?= csrf_field() ?>
+                <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" required autofocus />
+                <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
+                <input type="submit" value="<?= t('log_in') ?>" />
 
-    <p><?= link_to(t('forgot_password'), '/password_reset_request.php') ?></p>
-    <p><?= t('no_account_yet') ?> <?= link_to(t('register'), '/register.php') ?></p>
+                <p>
+                    <?= link_to(t('forgot_password'), '/password_reset_request.php') ?>
+                </p>
+                <p>
+                    <?= t('no_account_yet') ?>
+                        <?= link_to(t('register'), '/register.php') ?>
+                </p>
 
-  </form>
+        </form>
 
-</div>
+    </div>
 
-<?php }
+    <?php }
 
 include 'layout.php';

@@ -1,4 +1,10 @@
-<?php include '../init.php'; ?>
+<?php
+
+include '../init.php';
+
+$games = execute('call sp_games_all();', [], true);
+
+?>
 
 <form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
@@ -108,8 +114,9 @@
                     <div class="col-sm-8">
                         <div class='input-group'>
                             <select id="game_id" name="game_id">
-                                <option value="1">Sorcerer</option>
-                                <option value="2">Pacman</option>
+                              <?php foreach($games as $game) { ?>
+                                  <option value="<?= $game->id ?>"><?= $game->name ?></option>
+                              <?php } ?>
                             </select>
                         </div>
                     </div>

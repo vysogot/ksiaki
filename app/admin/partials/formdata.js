@@ -137,6 +137,11 @@ function get_data(myObj) {
             return $(this).val() == ret.role_id;
         }).prop('selected', true);
 
+        $("#game_id option").removeAttr('selected');
+        $('#game_id ').find('option').filter(function(index) {
+            return $(this).val() == ret.game_id;
+        }).prop('selected', true);
+
         $("#hero_file_type_id option").removeAttr('selected');
         $('#hero_file_type_id ').find('option').filter(function(index) {
             return $(this).val() == ret.hero_file_type_id;

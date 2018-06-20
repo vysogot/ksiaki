@@ -39,7 +39,16 @@ DROP PROCEDURE IF EXISTS `sp_pointed_activities_login`;
 DELIMITER //
 CREATE PROCEDURE `sp_pointed_activities_login`(IN `p_user_id` INT)
 BEGIN
-CALL sp_pointed_activities_create(p_user_id,2);
+  SET @date_now = DATE(NOW());
+  SET @login_count = (
+  	SELECT COUNT(*) AS login_count
+  	FROM score_pointed_activities
+  	WHERE (user_id = p_user_id) AND (DATE(given_at) = @date_now)
+  );
+
+  IF (@login_count = 0) THEN
+  	CALL sp_pointed_activities_create(p_user_id,2);
+  END IF;
 END//
 DELIMITER ;
 
