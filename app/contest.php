@@ -62,12 +62,25 @@ function content($params, $data) { ?>
 <div id="contests-page">
   <div class="full-wrapper contest-header" style="background: url('<?= $data['contest']->header_url ?>') center top no-repeat">
     <h1 class="center"><?= $data['contest']->name ?></h1>
-    <p class="center"><?= t($data['game']->description) ?></p>
+    <p class="center description">
+        <?php if (!empty($data['contest']->description)) { ?>
+            <?= $data['contest']->description ?>
+        <?php } else { ?>
+            <?= t($data['game']->description) ?>
+        <?php } ?>
+    </p>
     <?php if ($data['contest']->display_ad) { ?>
         <h2 class="center"><?= link_to(t('play'), t('contest_preroll_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <?php } else { ?>
         <h2 class="center"><?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <?php } ?>
+    <p class="bold bigger-font">
+        <span class="left"><?= t('contest_starts', ['date' => date('m.d', strtotime($data['contest']->begins_at))]) ?></span>
+        <span class="right"><?= t('contest_ends', ['date' => date('m.d', strtotime($data['contest']->ends_at))]) ?></span>
+    </p>
+    <p class="center smaller-font">
+        <?= t('contest_statute_consent', ['link' => link_to(t('statute'), '/contest_statute.php?slug=' . $params['slug'], ['class' => 'modal-remote', 'data-modal-class' => 'wide-text'])]) ?>
+    </p>
   </div>
 
   <div class="wrapper">

@@ -27,6 +27,10 @@ video { max-width: 100%; background: white; }
 .center { text-align: center; }
 .clear { clear: both; }
 .left { float: left; }
+.right { float: right; }
+.bold { font-weight: bold; }
+.smaller-font { font-size: 80%; }
+.bigger-font { font-size: 140%; }
 .hidden { display: none!important; }
 
 #logo         { width: 130px; height: 130px; }
@@ -135,7 +139,8 @@ footer p {
 
 .contest-header { min-height: 360px; z-index: 2; position: relative; margin-bottom: 50px; }
 .contest-header h1 { padding-top: 50px; }
-.contest-header p { height: 120px; width: 400px; margin: 10px auto; }
+.contest-header p { width: 480px; height: 20px; margin: 20px auto; display: block; }
+.contest-header p.description { height: 60px; }
 
 .shrink img { max-width: 100%; }
 

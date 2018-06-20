@@ -159,6 +159,7 @@
     <style>
     .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
     .vex.vex-theme-flat-attack .vex-content p { margin: 25px 0 0 0; }
+    .vex.vex-theme-flat-attack .vex-content.wide-text { width: 80%; font-size: 80%; }
     </style>
 
   </body>

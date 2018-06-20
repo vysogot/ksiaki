@@ -292,5 +292,8 @@ $translations = [
 
   // contest prizes
   'prizes_in_this_contest' => 'Nagrody w tym konkursie',
+  'contest_starts' => 'Start – {{date}}',
+  'contest_ends' => 'Zakończenie – {{date}}',
+  'contest_statute_consent' => '*Biorąc udział w konkursie akceptujesz jego {{link}}'
 
 ];

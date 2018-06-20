@@ -60,6 +60,7 @@ SELECT _contests.id
 , def_games.name AS game_name
 , def_contest_types.name AS contest_type_name
 , _contests.description
+, statute
 , slug
 , box_url
 , header_url
