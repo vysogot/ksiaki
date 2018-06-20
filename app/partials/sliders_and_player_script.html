@@ -1,5 +1,8 @@
 <script type="text/javascript">
 
+    // Keep players mute/unmute setting
+    var is_muted = true;
+
     $(document).on('ready', function() {
 
         // Slider
@@ -44,7 +47,7 @@
         // Player
 
         // Run autoplay videos to satisfy Chrome
-        $("#player video[autoplay]").each(function(){ this.muted = true; this.play(); });
+        $("#player video[autoplay]").each(function(){ this.muted = window.is_muted; this.play(); });
 
         // Hide every link so it can be set to display: block in CSS
         $("#player video").each(function(){ $(this).next().next().hide(); });
@@ -54,7 +57,8 @@
             var mute = $(this);
             var video = $(this).prev()[0];
 
-            video.muted = false;
+            window.is_muted = false;
+            video.muted = window.is_muted;
             mute.fadeOut();
         });
 
@@ -63,7 +67,8 @@
             var mute = $($(this).next());
             var video = $(this)[0];
 
-            video.muted = true;
+            window.is_muted = true;
+            video.muted = window.is_muted;
             mute.fadeIn();
         })
 
@@ -91,7 +96,12 @@
             var video = $($(slick.$slides.get(currentSlide)).children('video:first-child')[0]);
             var mute = $($(video).next()[0]);
 
-            mute.show();
+            if (window.is_muted) {
+                mute.show();
+            } else {
+                mute.hide();
+            }
+
             video.show();
         });
 
@@ -100,7 +110,13 @@
             var video = $(slick.$slides.get(currentSlide)).children('video:first-child')[0];
             var mute = $($(video).next()[0]);
 
-            video.muted = true;
+            if (window.is_muted) {
+                mute.show();
+            } else {
+                mute.hide();
+            }
+
+            video.muted = window.is_muted;
             video.play();
         });
 
