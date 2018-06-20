@@ -52,7 +52,7 @@ function send_email($to, $options = []) {
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
 
-            $mail->Subject = htmlentities(trim($options['subject']), ENT_NOQUOTES, 'utf-8');
+            $mail->Subject = e(trim($options['subject']));
             $mail->Body = trim($options['body']);
 
             $mail->send();
