@@ -65,7 +65,7 @@ CREATE PROCEDURE `sp_users_find_by_email` (
     IN `p_email` VARCHAR(255)
 )
 BEGIN
-    SELECT id, is_active, name, surname FROM _users
+    SELECT id, is_active, nick, email, name, surname FROM _users
     WHERE (email = p_email)
     LIMIT 1;
 END$$

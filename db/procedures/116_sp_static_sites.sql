@@ -49,7 +49,6 @@ BEGIN
     SELECT id
     , title
     , slug
-    , content
     , is_active
     FROM _static_sites
     WHERE (marked_as_deleted_by = 0);

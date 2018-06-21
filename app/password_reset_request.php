@@ -10,13 +10,13 @@ if ($post) {
 
     $params = array_merge($params, $_POST);
 
-    $result = execute('call sp_users_find_by_email(:p_email);', array(
+    $user = execute('call sp_users_find_by_email(:p_email);', array(
         array('p_email', $params['email'], PDO::PARAM_STR)
     ));
 
-    if (validate_existance($params, 'email', $result)) {
+    if (validate_existance($params, 'email', $user)) {
 
-        if ($result->is_active) {
+        if ($user->is_active) {
 
             $password_reset_hash = bin2hex(random_bytes(32));
 
@@ -25,13 +25,16 @@ if ($post) {
                 array('p_password_reset_hash', $password_reset_hash, PDO::PARAM_STR)
             ));
 
-            flash('notice', t('password_restoration_email_sent'));
-
-            send_email($params['email'], [
-                'subject' => t('email_subject_password_reset_request'),
-                'body' => link_to('Click', '/password_reset_form.php?key=' . $reset_request_result->password_reset_hash),
-                'name' => $result->name . ' ' . $result->surname
+            $mail_sent = send_registration_email($user->email, [
+                'nick' => $user->nick,
+                'link' => link_to('Click', '/password_reset_form.php?key=' . $reset_request_result->password_reset_hash)
             ]);
+
+            if ($mail_sent) {
+                flash('notice', t('password_restoration_email_sent'));
+            } else {
+                flash('warning', t('email_sending_problem'));
+            }
 
         } else {
 

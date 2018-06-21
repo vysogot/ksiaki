@@ -51,6 +51,7 @@ if ($post) {
 
     validate_not_shorter_than($params, 'password', 6);
     validate_not_null($params, 'gender');
+    validate_distinctness($params, ['email', 'caretaker_email']);
 
 
     if (empty($params['errors'])) {
@@ -109,19 +110,30 @@ if ($post) {
 
             flash('notice', t('registration_success'));
 
-            send_email($params['email'], [
-                'subject' => t('email_subject_registration'),
-                'body' => link_to('Click', '/activate.php?key=' . $result->activation_hash),
-                'name' => $params['name'] . ' ' . $params['surname']
+            $mail_sent = send_registration_email($params['email'], [
+                'nick' => $params['nick'],
+                'link' => link_to('Click', '/activate.php?key=' . $result->activation_hash)
             ]);
+
+            if ($mail_sent) {
+                flash('important', t('registration_email_sent'));
+            } else {
+                flash('warning', t('email_sending_problem'));
+            }
 
             if ($params['caretaker_email']) {
 
-                send_email($params['caretaker_email'], [
-                    'subject' => t('email_subject_caretaker_registration'),
-                    'body' => link_to('Click', '/caretaker_activate.php?key=' . $result->caretaker_activation_hash),
-                    'name' => $params['caretaker_name'] . ' ' . $params['caretaker_surname']
+                $mail_sent = send_registration_for_caretaker_email($params['caretaker_email'], [
+                    'nick' => $params['nick'],
+                    'link' => link_to('Click', '/caretaker_activate.php?key=' . $result->caretaker_activation_hash),
+                    'caretaker_name' => $params['caretaker_name'] . ' ' . $params['caretaker_surname']
                 ]);
+
+                if ($mail_sent) {
+                    flash('important', t('caretaker_email_sent'));
+                } else {
+                    flash('warning', t('email_sending_problem'));
+                }
 
             }
 

@@ -68,7 +68,7 @@ $translations = [
   'no_account_yet' => 'Nie masz jeszcze konta?',
   'forgot_password' => 'Hasło wyleciało Ci z głowy?',
   'already_have_account' => 'Posiadasz już konto?',
-  'not_found' => 'Nie ma takiego konta!',
+  'not_found' => 'Nie znaleziono!',
 
   // password reset
 
@@ -76,7 +76,7 @@ $translations = [
   'password_restoration_email_sent' => 'Wysłaliśmy do Ciebie email z linkiem do zakładania nowego hasła!',
   'submit' => 'Wyślij',
   'password_reset' => 'Załóż nowe hasło',
-  'password_reset_successful' => 'Super! Masz już nowe hasło! Zaloguj się!',
+  'password_reset_successful' => 'Super! Masz już nowe hasło!',
   'account_inactive_please_contact' => 'Twoje konto jest nieaktywne. Skontaktuj się z nami mailowo.',
   'password_reset_failed' => 'Nie udało się założyć nowego hasła. Spróbuj później.',
   'put_your_email' => 'Podaj swojego maila',
@@ -153,20 +153,27 @@ $translations = [
   'login_failure' => 'Logowanie nie powiodło się!',
   'login_activation_needed' => 'Twoje konto wymaga aktywacji! Sprawdź maila :)',
   'logged_out_safely' => 'Bezpiecznie wylogowano!',
-  'registration_success' => 'Rejestracja powiodła się! Aktywuj swoje konto klikając w link przesłany mailem!',
+
+  'registration_success' => 'Rejestracja powiodła się!',
   'registration_failure' => 'Rejestracja nie powiodła się',
-  'unauthorized' => 'Brak dostępu',
+  'known_user_password_reset' => 'Cześć! Na Twojego maila wysłaliśmy link! Kliknij w niego i ustaw nowe hasło!',
+  'registration_email_sent' =>  'Aktywuj swoje konto klikając w link przesłany mailem!',
+  'caretaker_email_sent' => 'Osobny link aktywujący został wysłany także na konto Twojego opiekuna!',
+
+  'activation_success' => 'Twoje konto zostało aktywowane.',
   'caretaker_activation_success' => 'Twoja zgoda na konto podopiecznego została przyjęta! Może się już zalogować.',
   'caretaker_activation_failure' => 'Niestety, ale coś poszło nie tak. Najlepiej skontaktuj się z nami mailowo.',
-  'caretaker_acceptance_needed' => 'Czemy na zgodę Twojego opiekuna. Poproś, aby sprawdził podanego przez Ciebie maila.',
-  'activation_success' => 'Twoje konto zostało aktywowane.',
-  'known_user_password_reset' => 'Cześć! Na Twojego maila wysłaliśmy link! Kliknij w niego i ustaw nowe hasło!',
+  'caretaker_acceptance_needed' => 'Czekamy na zgodę Twojego opiekuna. Poproś, aby sprawdził podanego przez Ciebie maila.',
+
+  'unauthorized' => 'Brak dostępu',
+
 
   // validation
 
   'has_to_be_present' => 'Musi być podany',
   'has_to_be_unique' => 'Jest już zajęte',
   'has_to_be_long_enough' => 'Musi zawierać co najmniej {{length}} znaków',
+  'have_to_be_distinct' => 'Muszą być różne',
 
 
   // generic

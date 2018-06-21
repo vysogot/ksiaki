@@ -7,6 +7,31 @@ include realpath(__DIR__ . '/phpmailer/exception.php');
 include realpath(__DIR__ . '/phpmailer/phpmailer.php');
 include realpath(__DIR__ . '/phpmailer/smtp.php');
 
+function send_registration_email($to, $interpolations) {
+    return send_template_email($to, 'registration', $interpolations);
+}
+
+function send_password_reset_email($to, $interpolations) {
+    return send_template_email($to, 'password_reset', $interpolations);
+}
+
+function send_registration_for_caretaker_email($to, $interpolations) {
+    return send_template_email($to, 'registration_for_caretaker', $interpolations);
+}
+
+function send_known_user_new_password_email($to, $interpolations) {
+    return send_template_email($to, 'known_user_new_password', $interpolations);
+}
+
+function send_template_email($to, $template_name, $interpolations) {
+    return send_email($to, [
+        'template' => [
+            'name' => 'password_reset',
+            'interpolations' => $interpolations
+        ]
+    ]);
+}
+
 function send_email($to, $options = []) {
 
     if (getenv('APPLICATION_ENV') != 'testing') {
@@ -14,7 +39,8 @@ function send_email($to, $options = []) {
         $defaults = [
             'name' => 'Recipient',
             'subject' => 'A message from our service',
-            'body' => 'We wish you all the best!'
+            'body' => 'We wish you all the best!',
+            'template' => null
         ];
 
         $options = array_merge($defaults, $options);
@@ -52,8 +78,24 @@ function send_email($to, $options = []) {
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
 
-            $mail->Subject = e(trim($options['subject']));
-            $mail->Body = trim($options['body']);
+            $subject = e(trim($options['subject']));
+            $body = trim($options['body']);
+
+            if ($options['template']) {
+
+                $template = execute('call sp_mail_templates_find_by_name(
+                    :p_name
+                );', [
+                    array('p_name', $options['template']['name'], PDO::PARAM_STR)
+                ]);
+
+                $subject = interpolate($template->subject, $options['template']['interpolations']);
+                $body    = interpolate($template->content, $options['template']['interpolations']);
+
+            }
+
+            $mail->Subject = $subject;
+            $mail->Body = $body;
 
             $mail->send();
 

@@ -57,15 +57,23 @@ function submitForm() {
 
     }).done(function(response) {
 
+        console.log(response);
+
+
         if ('errors' in response) {
 
             let error_list = $(".modal .errorList");
 
             $(".modal .errorList").empty();
 
-            $.each(response.errors, function(field, message) {
+            $.each(response.errors, function(field, bundle) {
                 $("input[name='" + field + "']").addClass('error');
-                error_list.append($("<li>").text(field + ": " + message));
+
+                if (field == 'NOT_A_FIELD') {
+                    error_list.append($("<li>").text(bundle.message));
+                } else {
+                    error_list.append($("<li>").text(bundle.field_translation + ": " + bundle.message));
+                }
             });
 
             $("input[name=token]").val(response['token']);

@@ -1,6 +1,7 @@
 DROP PROCEDURE IF EXISTS sp_mail_templates_find;
 DROP PROCEDURE IF EXISTS sp_mail_templates_all;
 DROP PROCEDURE IF EXISTS sp_mail_templates_update;
+DROP PROCEDURE IF EXISTS sp_mail_templates_find_by_name;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_mail_templates_find`(IN `p_id` INT)
@@ -11,6 +12,18 @@ BEGIN
     , content
     FROM def_mail_templates
     WHERE (id = p_id);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_mail_templates_find_by_name`(IN `p_name` varchar(255))
+BEGIN
+    SELECT id
+    , name
+    , subject
+    , content
+    FROM def_mail_templates
+    WHERE (name = p_name);
 END$$
 DELIMITER ;
 
@@ -32,7 +45,7 @@ CREATE PROCEDURE `sp_mail_templates_update`(
 )
 BEGIN
 
-    UPDATE _mail_templates
+    UPDATE def_mail_templates
     SET subject = p_subject
     , content = p_content
     WHERE (id = p_id);
