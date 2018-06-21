@@ -1,5 +1,8 @@
 <?php
 
+use \Rollbar\Rollbar;
+use \Rollbar\Payload\Level;
+
 use \Monolog\Logger;
 use \Monolog\Formatter\LineFormatter;
 use \Monolog\Handler\StreamHandler;
@@ -62,13 +65,13 @@ error_reporting(E_ALL);
 set_error_handler('error_handler');
 set_exception_handler('exception_handler');
 
-if ($env == 'production') {
+if ($GLOBALS['env'] == 'production' || $GLOBALS['env'] == 'staging') {
 
-    Raven_Autoloader::register();
-
-    $client = new Raven_Client($GLOBALS['config']['sentry_key']);
-
-    $error_handler = new Raven_ErrorHandler($client);
-    $error_handler->registerExceptionHandler();
+    Rollbar::init(
+        array(
+            'access_token' => $GLOBALS['config']['rollbar_key'],
+            'environment' => $GLOBALS['env']
+        )
+    );
 
 }

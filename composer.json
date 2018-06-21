@@ -2,9 +2,9 @@
     "name": "jgodawa/ksiaki",
     "type": "project",
     "require": {
-        "sentry/sentry": "^1.9",
         "monolog/monolog": "^1.23",
-        "calcinai/php-imagick": "^0.1.2"
+        "calcinai/php-imagick": "^0.1.2",
+        "rollbar/rollbar": "~1.5"
     },
     "authors": [
         {

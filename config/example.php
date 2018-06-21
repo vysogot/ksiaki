@@ -19,6 +19,7 @@ return array(
     'smtp_password' => 'password',
     'smtp_protocol' => 'ssl',
     'smtp_port' => 465,
+
     'mail_from_email' => 'jakub.godawa@gmail.com',
     'mail_from_name' => 'Jakub Godawa',
     'mail_reply_to_email' => 'jakub.godawa@gmail.com',
@@ -77,7 +78,7 @@ return array(
     'smtp_reply_to_email' => 'production@email.com',
     'smtp_reply_to_name' => 'Production',
 
-    'sentry_key' => 'https://key@sentry.io/id'
+    'rollbar_key' => 'adfjasdfjalsdkfje23874283'
     'uploads_dir' => '/var/www/ksiaki/app/uploads/',
     'backup_dir' => '/var/www/ksiaki/db/'
   )

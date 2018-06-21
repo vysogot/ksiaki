@@ -212,6 +212,10 @@ function is_testing_env() {
     return $GLOBALS['env'] == 'testing';
 }
 
+function is_development_env() {
+    return $GLOBALS['env'] == 'development';
+}
+
 function params($key) {
     if (isset($GLOBALS['params'][$key])) {
         return e($GLOBALS['params'][$key]);
