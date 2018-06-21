@@ -213,5 +213,15 @@ function is_testing_env() {
 }
 
 function params($key) {
-    return $GLOBALS['params'][$key] ?? '';
+    if (isset($GLOBALS['params'][$key])) {
+        return e($GLOBALS['params'][$key]);
+    } else {
+        return '';
+    }
+}
+
+function sanitize(&$params) {
+    array_walk($params, function(&$value, $key) {
+        $value = e($value);
+    });
 }

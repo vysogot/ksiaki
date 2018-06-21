@@ -7,6 +7,7 @@ if ($post) {
 
     $params = array_merge($params, $_POST);
 
+    sanitize($params);
     validate($params);
 
     if (empty($params['errors'])) {
