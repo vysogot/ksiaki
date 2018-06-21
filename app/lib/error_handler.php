@@ -3,7 +3,7 @@
 use \Rollbar\Rollbar;
 use \Rollbar\Payload\Level;
 
-if ($GLOBALS['env'] != 'production') {
+if ($GLOBALS['env'] == 'production') {
 
     Rollbar::init(
         array(
