@@ -2,10 +2,6 @@
 
 include 'init.php';
 
-$params = [
-    "slug" => null
-];
-
 $params = array_merge($params, $_GET);
 
 $data['preroll'] = execute('call sp_video_ads_get_one_random();', []);
@@ -24,13 +20,13 @@ function content($params, $data) { ?>
 </div>
 
   <?php if (!is_production_env()) { ?>
-    <h2><?= link_to(t('play'), t('contest_play_slug', ['slug' => $params['slug']])) ?></h2>
+    <h2><?= link_to(t('play'), t('contest_play_slug', ['slug' => params('slug')])) ?></h2>
   <?php }?>
 
   <script type="text/javascript">
   $(document).on('ready', function() {
     $('#content_video').on('ended', function() {
-        location.href = '<?= t('contest_play_slug', ['slug' => $params['slug']]) ?>';
+        location.href = '<?= t('contest_play_slug', ['slug' => params('slug')]) ?>';
     });
   });
   </script>

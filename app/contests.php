@@ -39,10 +39,10 @@ function content($params, $data) { ?>
   <h2 class="hidden"><?= t('contests') ?></h2>
 
   <div class="side rankings">
-    <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . $params['month']) ?></h2>
+    <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . params('month')) ?></h2>
     <?= ranking_list($data['monthly_ranking']) ?>
 
-    <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . $params['year']) ?></h2>
+    <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . params('year')) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
   </div>
 

@@ -2,10 +2,6 @@
 
 include 'init.php';
 
-$params = [
-  "slug" => null
-];
-
 $params = array_merge($params, $_GET);
 
 $data['hero'] = execute('call sp_heroes_find_by_slug(:p_slug);', array(

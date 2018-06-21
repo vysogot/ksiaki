@@ -1,58 +1,13 @@
 <?php
 
 include 'init.php';
-
-$params = [
-    'birthday' => null,
-    'caretaker_name' => null,
-    'caretaker_surname' => null,
-    'caretaker_email' => null,
-    'nick' => null,
-    'email' => null,
-    'gender' => null,
-    'name' => null,
-    'surname' => null,
-    'address' => null,
-    'postcode' => null,
-    'city' => null,
-    'contest_agreement' => null,
-    'marketing_agreement' => null,
-    'notifications_agreement' => null,
-    'statute_agreement' => null,
-    'email' => null,
-    'password_hash' => null
-];
+include '_validation_for_register.php';
 
 if ($post) {
 
     $params = array_merge($params, $_POST);
 
-    if (validate_presence($params, 'nick')) {
-
-        $result = execute('call sp_users_find_by_nick_or_email(
-            :p_nick_or_email
-        );', array(
-            array('p_nick_or_email', $params['nick'], PDO::PARAM_STR)
-        ));
-
-        validate_uniqueness($params, 'nick', $result);
-    }
-
-    if (validate_email($params, 'email')) {
-
-        $result = execute('call sp_users_find_by_nick_or_email(
-            :p_nick_or_email
-        );', array(
-            array('p_nick_or_email', $params['email'], PDO::PARAM_STR)
-        ));
-
-        validate_uniqueness($params, 'email', $result);
-    }
-
-    validate_not_shorter_than($params, 'password', 6);
-    validate_not_null($params, 'gender');
-    validate_distinctness($params, ['email', 'caretaker_email']);
-
+    validate($params);
 
     if (empty($params['errors'])) {
 
@@ -60,7 +15,7 @@ if ($post) {
         $activation_hash = bin2hex(random_bytes(32));
 
         $caretaker_activation_hash = '';
-        if (is_adult(strtotime($params['birthday']))) {
+        if (!is_adult(strtotime($params['birthday']))) {
           $caretaker_activation_hash = bin2hex(random_bytes(32));
         }
 
@@ -166,54 +121,54 @@ function content($params, $data) { ?>
 
         <?= csrf_field() ?>
 
-        <input id="birthday" type="text" placeholder="<?= t('birthday') ?>" name="birthday" value="<?= $params['birthday'] ?>" required />
+        <input id="birthday" type="text" placeholder="<?= t('birthday') ?>" name="birthday" value="<?= params('birthday'); ?>" required />
 
         <div class="hidden" id="caretaker_fields">
-            <input id="caretaker_name" type="text" placeholder="<?= t('caretaker_name') ?>" name="caretaker_name" value="<?= $params['caretaker_name'] ?>" />
-            <input id="caretaker_surname" type="text" placeholder="<?= t('caretaker_surname') ?>" name="caretaker_surname" value="<?= $params['caretaker_surname'] ?>" />
-            <input id="caretaker_email" type="email" placeholder="<?= t('caretaker_email') ?>" name="caretaker_email" value="<?= $params['caretaker_email'] ?>" />
+            <input id="caretaker_name" type="text" placeholder="<?= t('caretaker_name') ?>" name="caretaker_name" value="<?= params('caretaker_name') ?>" />
+            <input id="caretaker_surname" type="text" placeholder="<?= t('caretaker_surname') ?>" name="caretaker_surname" value="<?= params('caretaker_surname') ?>" />
+            <input id="caretaker_email" type="email" placeholder="<?= t('caretaker_email') ?>" name="caretaker_email" value="<?= params('caretaker_email') ?>" />
         </div>
 
-        <input id="nick" type="text" name="nick" placeholder="<?= t('nick') ?>" value="<?= $params['nick'] ?>" required />
-        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= $params['email'] ?>" required />
+        <input id="nick" type="text" name="nick" placeholder="<?= t('nick') ?>" value="<?= params('nick') ?>" required />
+        <input id="email" type="email" placeholder="<?= t('email') ?>" name="email" value="<?= params('email') ?>" required />
         <div class="center">
         <label class="required"><?= t('gender') ?></label>
-        <input type="radio" name="gender" id="gender_male" value="1" <?php if ($params['gender'] === '1') echo "checked" ?> required/>
+        <input type="radio" name="gender" id="gender_male" value="1" <?php if (params('gender') === '1') echo "checked" ?> required/>
         <label for="gender_male"><?= t('male') ?></label>
-        <input type="radio" name="gender" id="gender_female" value="0" <?php if ($params['gender'] === '0') echo "checked" ?>/>
+        <input type="radio" name="gender" id="gender_female" value="0" <?php if (params('gender') === '0') echo "checked" ?>/>
         <label for="gender_female"><?= t('female') ?></label>
         </div>
-        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= $params['name'] ?>" required  />
-        <input id="surname" type="text" name="surname" placeholder="<?= t('surname') ?>" value="<?= $params['surname'] ?>" required  />
-        <input id="address" type="text" name="address" placeholder="<?= t('address') ?>" value="<?= $params['address'] ?>" required  />
-        <input id="postcode" type="text" name="postcode" placeholder="<?= t('postcode') ?>" value="<?= $params['postcode'] ?>" required  />
-        <input id="city" type="text" name="city" placeholder="<?= t('city') ?>" value="<?= $params['city'] ?>" required  />
+        <input id="name" type="text" name="name" placeholder="<?= t('name') ?>" value="<?= params('name') ?>" required  />
+        <input id="surname" type="text" name="surname" placeholder="<?= t('surname') ?>" value="<?= params('surname') ?>" required  />
+        <input id="address" type="text" name="address" placeholder="<?= t('address') ?>" value="<?= params('address') ?>" required  />
+        <input id="postcode" type="text" name="postcode" placeholder="<?= t('postcode') ?>" value="<?= params('postcode') ?>" required  />
+        <input id="city" type="text" name="city" placeholder="<?= t('city') ?>" value="<?= params('city') ?>" required  />
         <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
 
          <div class="agreement">
             <span class="info"><strong class="required"><?= t('contest_agreement') ?></strong></span><br />
             <input type="hidden" name="contest_agreement" value="0">
-            <input id="contest_agreement" type="checkbox" name="contest_agreement" value="1" <?php if ($params['contest_agreement'] == 1) echo "checked" ?> required />
+            <input id="contest_agreement" type="checkbox" name="contest_agreement" value="1" <?php if (params('contest_agreement') == 1) echo "checked" ?> required />
             <label for="contest_agreement"><?= t('contest_agreement_description') ?></label>
         </div>
 <div class="agreement">
             <span class="info"><strong class="required"><?= t('marketing_agreement') ?></strong></span><br />
             <input type="hidden" name="marketing_agreement" value="0">
-            <input id="marketing_agreement" type="checkbox" name="marketing_agreement" value="1" <?php if ($params['marketing_agreement'] == 1) echo "checked" ?> />
+            <input id="marketing_agreement" type="checkbox" name="marketing_agreement" value="1" <?php if (params('marketing_agreement') == 1) echo "checked" ?> />
             <label for="marketing_agreement"><?= t('marketing_agreement_description') ?></label>
         </div>
 
         <div class="agreement">
             <strong><span class="info"><?= t('notifications_agreement') ?></strong></span><br />
             <input type="hidden" name="notifications_agreement" value="0">
-            <input id="notifications_agreement" type="checkbox" name="notifications_agreement" value="1" <?php if ($params['notifications_agreement'] == 1) echo "checked" ?> />
+            <input id="notifications_agreement" type="checkbox" name="notifications_agreement" value="1" <?php if (params('notifications_agreement') == 1) echo "checked" ?> />
             <label for="notifications_agreement"><?= t('notifications_agreement_description') ?></label>
         </div>
 
         <div class="agreement">
             <span class="info"><strong class="required"><?= t('statute_agreement') ?></strong></span><br />
             <input type="hidden" name="statute_agreement" value="0">
-            <input id="statute_agreement" type="checkbox" name="statute_agreement" value="1" <?php if ($params['statute_agreement'] == 1) echo "checked" ?> required />
+            <input id="statute_agreement" type="checkbox" name="statute_agreement" value="1" <?php if (params('statute_agreement') == 1) echo "checked" ?> required />
             <label for="statute_agreement"><?= t('statute_agreement_description') ?></label>
         </div>
 

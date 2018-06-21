@@ -2,12 +2,6 @@
 
 include 'init.php';
 
-$params = [
-    'login' => null,
-    'password' => null,
-    'active_link' => 'login'
-];
-
 if ($post) {
 
     $params = array_merge($params, $_POST);
@@ -102,7 +96,7 @@ function content($params, $data) { ?>
             <?php include 'partials/errors.php'; ?>
 
             <?= csrf_field() ?>
-                <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= $params['login'] ?>" required autofocus />
+                <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= params('login') ?>" required autofocus />
                 <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
                 <input type="submit" value="<?= t('log_in') ?>" />
 

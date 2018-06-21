@@ -3,7 +3,6 @@
 include 'init.php';
 
 $params = [
-    "id" => null,
     "offset" => 0,
     "limit" => 50
 ];
@@ -40,7 +39,7 @@ function content($params, $data) { ?>
                 <h5><?= t('likes') ?>: <span id="likes-number"><?= $data['user_movie']->likes_count ?></span></h5>
                 <p id="like-button-container"></p>
                 <script>
-                var user_movie_id = <?= $data['user_movie']->id ?>; 
+                var user_movie_id = <?= $data['user_movie']->id ?>;
 
                 $.ajax({
                     url: '/check_like.php?user_movie_id=' + user_movie_id
@@ -78,13 +77,13 @@ function content($params, $data) { ?>
                             $('#likes-number').text(likesNumber - 1);
                             container.html('<?= t('unlike_done') ?>');
                         });
-                    });    
+                    });
                 });
                 </script>
             </div>
         <?php } ?>
     </section>
-    
+
     <section id="movies">
         <h2><?= t('user_movies') ?></h2>
         <div>
@@ -93,10 +92,10 @@ function content($params, $data) { ?>
               <?= link_to(image($user_movie->image_url), '/user_movie.php?id=' . $user_movie->id) ?>
               <p><?= link_to($user_movie->name, '/user_movie.php?id=' . $user_movie->id) ?></p>
             </div>
-          <?php } ?> 
+          <?php } ?>
         </div>
     </section>
-    
+
 </div>
 
 <?php }

@@ -79,7 +79,7 @@ function content($params, $data) { ?>
         <span class="right"><?= t('contest_ends', ['date' => date('m.d', strtotime($data['contest']->ends_at))]) ?></span>
     </p>
     <p class="center smaller-font">
-        <?= t('contest_statute_consent', ['link' => link_to(t('statute'), '/contest_statute.php?slug=' . $params['slug'], ['class' => 'modal-remote', 'data-modal-class' => 'wide-text'])]) ?>
+        <?= t('contest_statute_consent', ['link' => link_to(t('statute'), '/contest_statute.php?slug=' . params('slug'), ['class' => 'modal-remote', 'data-modal-class' => 'wide-text'])]) ?>
     </p>
   </div>
 
@@ -89,10 +89,10 @@ function content($params, $data) { ?>
       <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/rankings/index.php?type=contest&date=' . $data['contest']->id) ?></h2>
       <?= ranking_list($data['contest_ranking']) ?>
 
-      <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . $params['month']) ?></h2>
+      <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . params('month')) ?></h2>
       <?= ranking_list($data['monthly_ranking']) ?>
 
-      <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . $params['year']) ?></h2>
+      <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . params('year')) ?></h2>
       <?= ranking_list($data['yearly_ranking']) ?>
     </div>
 

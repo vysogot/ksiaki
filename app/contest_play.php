@@ -2,10 +2,6 @@
 
 include 'init.php';
 
-$params = [
-    "slug" => null
-];
-
 $params = array_merge($params, $_GET);
 
 $data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(

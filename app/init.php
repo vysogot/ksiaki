@@ -44,7 +44,7 @@ $get  = $_SERVER['REQUEST_METHOD'] === 'GET';
 $xhr  = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
-if ($post) {
+if ($post && !is_testing_env()) {
     if (!(isset($_POST['token']) && hash_equals(get_csrf_token(), $_POST['token']))) {
         if ($env == 'development') {
             send_json(['errors' => ['NOT_A_FIELD' => ['message' => t('invalid_token')]]]); exit();

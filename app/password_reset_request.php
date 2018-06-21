@@ -2,10 +2,6 @@
 
 include 'init.php';
 
-$params = [
-    'email' => null,
-];
-
 if ($post) {
 
     $params = array_merge($params, $_POST);
@@ -60,7 +56,7 @@ function content($params, $data) { ?>
 
     <?= csrf_field() ?>
 
-    <input id="email" type="text" name="email" placeholder="<?= t('put_your_email') ?>" value="<?= $params['email'] ?>" autofocus required />
+    <input id="email" type="text" name="email" placeholder="<?= t('put_your_email') ?>" value="<?= params('email') ?>" autofocus required />
     <input type="submit" value="<?= t('submit') ?>"/>
 
     <p><?= t('no_account_yet') ?> <?= link_to(t('register'), '/register.php') ?></p>

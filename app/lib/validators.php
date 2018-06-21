@@ -74,6 +74,16 @@ function validate_not_shorter_than(&$params, $key, $length) {
     }
 }
 
+function validate_not_longer_than(&$params, $key, $length) {
+    if (strlen($params[$key]) <= $length) {
+        return true;
+    } else {
+        $params['errors'][$key]['message'] = t('has_to_be_no_longer_than', ['length' => $length]);
+        $params['errors'][$key]['field_translation'] = t($key);
+        return false;
+    }
+}
+
 function validate_distinctness(&$params, $keys) {
 
     $values = array_map(function($key) use($params) { return $params[$key]; }, $keys);

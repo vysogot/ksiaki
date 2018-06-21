@@ -44,7 +44,7 @@ function is_admin() {
 }
 
 function is_adult($birthday) {
-    return ((time() - $birthday) < 18*(60*60*24*365));
+    return ((time() - $birthday) >= 18*(60*60*24*365));
 }
 
 function redirect($destination)
@@ -206,4 +206,12 @@ function slugify($str, $max_length = 50) {
 
 function is_production_env() {
     return $GLOBALS['env'] == 'production';
+}
+
+function is_testing_env() {
+    return $GLOBALS['env'] == 'testing';
+}
+
+function params($key) {
+    return $GLOBALS['params'][$key] ?? '';
 }
