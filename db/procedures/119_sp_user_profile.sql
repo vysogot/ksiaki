@@ -21,6 +21,7 @@ IF (@id != 0) THEN
 
 	SELECT usr.id
 	, usr.nick
+    , usr.avatar_url
 	, usr.email
     , act.address
 	, IFNULL(usb.badge_ids, '') AS badge_ids

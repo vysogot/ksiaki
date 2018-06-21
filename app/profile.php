@@ -17,7 +17,12 @@ $badge_titles = array_filter(explode(', ', $profile->badge_titles));
 
 ?>
 
-<h2><?= $profile->nick ?></h2>
+<h2>
+    <?php if (!empty($profile->avatar_url)) { ?>
+        <?= image($profile->avatar_url) ?>
+    <?php } ?>
+    <?= $profile->nick ?>
+</h2>
 
 <p><?= t('points_total') ?>: <?= $profile->points ?></p>
 
