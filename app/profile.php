@@ -2,6 +2,10 @@
 
 include 'init.php';
 
+$params = [
+    'nick' => $_SESSION['nick']
+];
+
 $params = array_merge($params, $_GET);
 
 $profile = execute('call sp_user_profile(:p_nick);', array(
@@ -31,6 +35,8 @@ $badge_titles = array_filter(explode(', ', $profile->badge_titles));
 
 </p>
 
-<?php if ($profile->id == $_SESSION['user_id']) { ?>
+<?php if ($profile->nick == $_SESSION['nick']) { ?>
     <p><?= link_to(t('password_reset'), '/password_reset_request.php') ?></p>
+
+    <p><?= $profile->address ?></p>
 <?php } ?>

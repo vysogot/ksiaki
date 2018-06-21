@@ -22,6 +22,7 @@ IF (@id != 0) THEN
 	SELECT usr.id
 	, usr.nick
 	, usr.email
+    , act.address
 	, IFNULL(usb.badge_ids, '') AS badge_ids
 	, IFNULL(usb.badge_image_urls, '') AS badge_image_urls
 	, IFNULL(usb.badge_titles, '') AS badge_titles
@@ -34,6 +35,7 @@ IF (@id != 0) THEN
 	, usr.created_at
 	FROM _users AS usr
 	LEFT JOIN tmp_ranking rnky ON (usr.id = rnky.user_id)
+    LEFT JOIN _accounts act ON (usr.id = act.user_id)
 	LEFT JOIN
 	(
 	SELECT user_id

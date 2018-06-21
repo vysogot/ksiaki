@@ -2,10 +2,6 @@
 
 include 'init.php';
 
-$params = [
-    'key' => null
-];
-
 if ($get) {
 
     $params = array_merge($params, $_GET);
@@ -65,7 +61,7 @@ function content($params, $data) { ?>
 
     <?= csrf_field() ?>
 
-    <input id="key" type="hidden" name="key" value="<?= $params['key'] ?>" />
+    <input id="key" type="hidden" name="key" value="<?= params('key') ?>" />
     <input id="password" type="password" name="password" placeholder="<?= t('password') ?>" autofocus required />
     <input type="submit" value="<?= t('submit') ?>"/>
 

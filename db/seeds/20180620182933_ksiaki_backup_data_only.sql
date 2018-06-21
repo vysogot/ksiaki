@@ -15,6 +15,19 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+LOCK TABLES `def_mail_templates` WRITE;
+INSERT INTO `def_mail_templates` (`name`, `subject`, `content`)
+VALUES
+('registration', 'Dziękujemy za rejestrację!', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
+('registration_for_caretaker', 'Twój podopieczny się zarejestrował', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
+('password_reset', 'Ustaw nowe hasło', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
+('account_deactivation', 'Twoje konto zostało deaktywowane', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
+('inviting_an_outsider', '{{nick}} wysłał Ci zaproszenie na Konkursiaki.pl!', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
+('being_a_contest_laureate', 'Gratulujemy!', 'Treść. Link do zmiany hasła: <p>{{link}}</p> Do zobaczenia!'),
+('new_contest_creation', 'Zostałeś laureatem konkursu {{contest_name}} na Konkursiaki.pl!', 'Treść. Link do zmiany hasła: <p>{{link}}</p> Do zobaczenia!');
+UNLOCK TABLES;
+
 --
 -- Dumping data for table `_accounts`
 --
