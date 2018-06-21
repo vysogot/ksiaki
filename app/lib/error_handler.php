@@ -3,12 +3,23 @@
 use \Rollbar\Rollbar;
 use \Rollbar\Payload\Level;
 
+if ($GLOBALS['env'] != 'production') {
+
+    Rollbar::init(
+        array(
+            'access_token' => $GLOBALS['config']['rollbar_key'],
+            'environment' => $GLOBALS['env']
+        )
+    );
+
+}
+
 use \Monolog\Logger;
 use \Monolog\Formatter\LineFormatter;
 use \Monolog\Handler\StreamHandler;
 
 // access log
-if ($env == 'development') {
+if ($GLOBALS['env'] == 'development') {
     $log = new Logger('info');
     $formatter = new LineFormatter(null, null, false, true);
 
@@ -45,10 +56,11 @@ function exception_handler($exception) {
 
     http_response_code($code);
 
-    if ($GLOBALS['env'] != 'production') {
-        include realpath(__DIR__ . "/../500.php");
-    } else {
+    if ($GLOBALS['env'] == 'production') {
+        Rollbar::log(Level::ERROR, $exception);
         redirect('/404.php');
+    } else {
+        include realpath(__DIR__ . "/../500.php");
     }
 
     exit();
@@ -64,14 +76,3 @@ function error_handler($level, $message, $file, $line)
 error_reporting(E_ALL);
 set_error_handler('error_handler');
 set_exception_handler('exception_handler');
-
-if ($GLOBALS['env'] == 'production' || $GLOBALS['env'] == 'staging') {
-
-    Rollbar::init(
-        array(
-            'access_token' => $GLOBALS['config']['rollbar_key'],
-            'environment' => $GLOBALS['env']
-        )
-    );
-
-}
