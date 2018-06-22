@@ -3,7 +3,7 @@
 include 'init.php';
 
 $params = [
-    'nick' => $_SESSION['nick']
+    'nick' => $_SESSION['nick'] ?? ''
 ];
 
 $params = array_merge($params, $_GET);

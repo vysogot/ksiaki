@@ -2,7 +2,6 @@
     "name": "jgodawa/ksiaki",
     "type": "project",
     "require": {
-        "monolog/monolog": "^1.23",
         "calcinai/php-imagick": "^0.1.2",
         "rollbar/rollbar": "~1.5"
     },

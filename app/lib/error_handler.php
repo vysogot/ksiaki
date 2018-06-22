@@ -3,60 +3,39 @@
 use \Rollbar\Rollbar;
 use \Rollbar\Payload\Level;
 
-if ($GLOBALS['env'] == 'production') {
+include 'logger.php';
+
+if ($env == 'development' || $env == 'staging') {
+    log_access('REQUEST: ' . $_SERVER['REQUEST_URI'] . ' SCRIPT: ' . $_SERVER['PHP_SELF'], array_merge($_GET, $_POST));
+}
+
+if ($env == 'production' || $env == 'staging') {
 
     Rollbar::init(
         array(
             'access_token' => $GLOBALS['config']['rollbar_key'],
-            'environment' => $GLOBALS['env']
+            'environment' => $env
         )
     );
 
-}
-
-use \Monolog\Logger;
-use \Monolog\Formatter\LineFormatter;
-use \Monolog\Handler\StreamHandler;
-
-// access log
-if ($GLOBALS['env'] == 'development') {
-    $log = new Logger('info');
-    $formatter = new LineFormatter(null, null, false, true);
-
-    $infoHandler = new StreamHandler(realpath(__DIR__ . '/../../log/info.log'), Logger::DEBUG);
-    $infoHandler->setFormatter($formatter);
-
-    $log->pushHandler($infoHandler);
-    $log->info('REQUEST: ' . $_SERVER['REQUEST_URI'] . ' SCRIPT: ' . $_SERVER['PHP_SELF'], array_merge($_GET, $_POST));
 }
 
 function exception_handler($exception) {
 
     ob_get_clean();
 
-    $formatter = new LineFormatter(null, null, false, true);
-
     $code = $exception->getCode();
 
     if ($code != 404) {
 
-        $log = new Logger('error');
-
-        // Error level handler
-        $errorHandler = new StreamHandler(realpath(__DIR__ . '/../../log/error.log'), Logger::ERROR);
-        $errorHandler->setFormatter($formatter);
-
-        // This will have only ERROR messages
-        $log->pushHandler($errorHandler);
-        $log->error($exception->getFile() . ":" . $exception->getLine() . " " . $exception->getMessage(), array_merge($_GET, $_POST));
-
+        log_error($exception->getFile() . ":" . $exception->getLine() . " " . $exception->getMessage(), array_merge($_GET, $_POST));
         $code = 500;
 
     }
 
     http_response_code($code);
 
-    if ($GLOBALS['env'] == 'production') {
+    if ($env == 'production' || $env == 'staging') {
         Rollbar::log(Level::ERROR, $exception);
         redirect('/404.php');
     } else {
@@ -64,6 +43,7 @@ function exception_handler($exception) {
     }
 
     exit();
+
 }
 
 function error_handler($level, $message, $file, $line)
