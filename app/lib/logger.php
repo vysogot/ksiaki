@@ -14,11 +14,11 @@ function log_write($log_type, $message, $context = []) {
   switch ($log_type) {
 
     case 'error':
-      $log_file = realpath(__DIR__ . '/../../log/error.log');
+      $log_file = $GLOBALS['config']['logs_dir'] . 'error.log';
     break;
 
     case 'access':
-      $log_file = realpath(__DIR__ . '/../../log/access.log');
+      $log_file = $GLOBALS['config']['logs_dir'] . 'access.log';
     break;
 
   }
