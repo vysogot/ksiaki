@@ -222,7 +222,8 @@ CREATE PROCEDURE `sp_users_register`(
     IN `p_statute_agreement` tinyint(1),
     IN `p_password_hash` VARCHAR(255),
     IN `p_activation_hash` VARCHAR(255),
-    IN `p_caretaker_activation_hash` VARCHAR(255)
+    IN `p_caretaker_activation_hash` VARCHAR(255),
+    IN `p_invitation_hash` VARCHAR(255)
 )
 
 BEGIN
@@ -272,6 +273,7 @@ BEGIN
     );
 
     IF (p_caretaker_activation_hash != '') THEN
+
         INSERT INTO _caretakers (
             user_id
             , name
@@ -285,6 +287,32 @@ BEGIN
             , p_caretaker_email
             , p_caretaker_activation_hash
         );
+
+    END IF;
+
+    IF (p_invitation_hash != '') THEN
+
+        SET @invitation = (
+            SELECT COUNT(*) FROM _invitations WHERE invitation_hash = p_invitation_hash LIMIT 1
+        );
+
+        IF (@invitation = 1) THEN
+
+            SET @inviter_id = (
+                SELECT user_id FROM _invitations WHERE invitation_hash = p_invitation_hash
+            );
+
+            UPDATE _invitations
+            SET new_user_id = @last_insert_user_id,
+            updated_at = NOW(),
+            invitation_hash = NULL
+            WHERE invitation_hash = p_invitation_hash
+            LIMIT 1;
+
+            CALL sp_pointed_activities_invitation_login(@inviter_id);
+
+        END IF;
+
     END IF;
 
     CALL sp_pointed_activities_registration(@last_insert_user_id);

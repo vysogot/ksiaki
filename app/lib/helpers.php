@@ -177,7 +177,7 @@ function send_json($result) {
 
 
 function set_csrf_token() {
-    $_SESSION['token'] = bin2hex(random_bytes(32));
+    $_SESSION['token'] = generate_random_hash();
 }
 
 function get_csrf_token() {
@@ -228,4 +228,22 @@ function sanitize(&$params) {
     array_walk($params, function(&$value, $key) {
         $value = e($value);
     });
+}
+
+function must_be_logged_in() {
+    if (!is_logged_in()) {
+        flash('notice', t('unauthorized'));
+        redirect('/login.php');
+    }
+}
+
+function must_be_an_admin() {
+    if (!is_admin()) {
+        flash('notice', t('unauthorized'));
+        redirect('/login.php');
+    }
+}
+
+function generate_random_hash($length = 8) {
+    return bin2hex(random_bytes($length));
 }

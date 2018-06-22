@@ -65,7 +65,7 @@ $translations = [
   'log_in' => 'Zaloguj się!',
   'register' => 'Zarejestruj się!',
   'logout' => 'Wyloguj',
-  'no_account_yet' => 'Nie masz jeszcze konta?',
+  'no_account_yet' => 'Nie masz jeszcze konta? {{link}}',
   'forgot_password' => 'Hasło wyleciało Ci z głowy?',
   'already_have_account' => 'Posiadasz już konto?',
   'not_found' => 'Nie znaleziono!',
@@ -80,12 +80,6 @@ $translations = [
   'account_inactive_please_contact' => 'Twoje konto jest nieaktywne. Skontaktuj się z nami mailowo.',
   'password_reset_failed' => 'Nie udało się założyć nowego hasła. Spróbuj później.',
   'put_your_email' => 'Podaj swojego maila',
-
-  // email
-
-  'email_subject_password_reset_request' => 'Chcesz założyć nowe hasło?',
-  'email_subject_caretaker_registration' => 'Potwierdzenie konta Twojego podopiecznego',
-  'email_subject_registration' => 'Potwierdź swój adres email!',
 
   // register
 
@@ -166,10 +160,23 @@ $translations = [
   'caretaker_acceptance_needed' => 'Czekamy na zgodę Twojego opiekuna. Poproś, aby sprawdził podanego przez Ciebie maila.',
 
   'unauthorized' => 'Brak dostępu',
+  'email_sending_problem' => 'Upsss... problem z wysłaniem maila. Zaczekaj, spróbujemy to naprawić! Spróbuj później!',
 
+  'invitation_successful' => 'Zaproszenie zostało zapakowane w elektroniczną kopertę!',
+  'invitation_email_sent' => 'Wiadomość została wysłana na adres {{email}}',
+
+
+  // invitations
+
+  'invitation_content_preview' => 'Poniższa wiadomość zostanie wysłana do wskazanej przez Ciebie osoby:',
+  'invitation_link' => 'Link zaproszeniowy',
+  'invite_friends' => 'Zaproś przyjaciół do gry!',
+  'your_friends_email' => 'Wpisz email adresata!',
+  'invitation_failed_already_exists' => 'Użytkownik z tym mailem już u nas gra! Wpisz kogoś innego.',
 
   // validation
 
+  'key' => 'Klucz bezpieczeństwa',
   'has_to_be_present' => 'Musi być podany',
   'has_to_be_unique' => 'Jest już zajęte',
   'has_to_be_long_enough' => 'Musi zawierać co najmniej {{length}} znaków',

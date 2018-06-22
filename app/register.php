@@ -3,6 +3,8 @@
 include 'init.php';
 include '_validation_for_register.php';
 
+$params = array_merge($params, $_GET);
+
 if ($post) {
 
     $params = array_merge($params, $_POST);
@@ -13,11 +15,11 @@ if ($post) {
     if (empty($params['errors'])) {
 
         $password_hash = password_hash($params['password'], PASSWORD_DEFAULT);
-        $activation_hash = bin2hex(random_bytes(32));
+        $activation_hash = generate_random_hash();
 
         $caretaker_activation_hash = '';
         if (!is_adult(strtotime($params['birthday']))) {
-          $caretaker_activation_hash = bin2hex(random_bytes(32));
+          $caretaker_activation_hash = generate_random_hash();
         }
 
         $result = execute('call sp_users_register(
@@ -39,7 +41,8 @@ if ($post) {
             :p_statute_agreement,
             :p_password_hash,
             :p_activation_hash,
-            :p_caretaker_activation_hash
+            :p_caretaker_activation_hash,
+            :p_invitation_hash
         );', array(
             array('p_birthday', date('Y-m-d H:i:s', strtotime($params['birthday'])), PDO::PARAM_STR),
             array('p_caretaker_name', $params['caretaker_name'], PDO::PARAM_STR),
@@ -59,7 +62,8 @@ if ($post) {
             array('p_statute_agreement', $params['statute_agreement'], PDO::PARAM_INT),
             array('p_password_hash', $password_hash, PDO::PARAM_STR),
             array('p_activation_hash', $activation_hash, PDO::PARAM_STR),
-            array('p_caretaker_activation_hash', $caretaker_activation_hash, PDO::PARAM_STR)
+            array('p_caretaker_activation_hash', $caretaker_activation_hash, PDO::PARAM_STR),
+            array('p_invitation_hash', params('invitation_hash'), PDO::PARAM_STR)
         ));
 
         if (!empty($result)) {
@@ -119,6 +123,8 @@ function content($params, $data) { ?>
         <legend><h2><?= t('register') ?></h2></legend>
 
         <?php include 'partials/errors.php'; ?>
+
+        <input type="hidden" id="invitation_hash" name="invitation_hash" value="<?= params('invitation_hash') ?>" />
 
         <?= csrf_field() ?>
 

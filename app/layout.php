@@ -142,6 +142,10 @@
             })
         })
       });
+
+      $('a.no-action').on('click', function(event) {
+        event.preventDefault();
+      });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>

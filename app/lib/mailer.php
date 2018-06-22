@@ -23,16 +23,24 @@ function send_known_user_new_password_email($to, $interpolations) {
     return send_template_email($to, 'known_user_new_password', $interpolations);
 }
 
-function send_template_email($to, $template_name, $interpolations) {
-    return send_email($to, [
-        'template' => [
-            'name' => 'password_reset',
-            'interpolations' => $interpolations
-        ]
-    ]);
+function send_invitation_email($to, $interpolations) {
+    return send_template_email($to, 'inviting_an_outsider', $interpolations);
 }
 
-function send_email($to, $options = []) {
+function send_template_email($to, $template_name, $interpolations) {
+
+    $template = execute('call sp_mail_templates_find_by_name(:p_name);', [
+        array('p_name', $template_name, PDO::PARAM_STR)
+    ]);
+
+    $subject = interpolate($template->subject, $interpolations);
+    $body    = interpolate($template->content, $interpolations);
+
+    return send_email($to, $subject, $body);
+
+}
+
+function send_email($to, $subject, $body, $options = []) {
 
     if (getenv('APPLICATION_ENV') != 'testing') {
 
@@ -78,24 +86,8 @@ function send_email($to, $options = []) {
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
 
-            $subject = e(trim($options['subject']));
-            $body = trim($options['body']);
-
-            if ($options['template']) {
-
-                $template = execute('call sp_mail_templates_find_by_name(
-                    :p_name
-                );', [
-                    array('p_name', $options['template']['name'], PDO::PARAM_STR)
-                ]);
-
-                $subject = interpolate($template->subject, $options['template']['interpolations']);
-                $body    = interpolate($template->content, $options['template']['interpolations']);
-
-            }
-
             $mail->Subject = $subject;
-            $mail->Body = $body;
+            $mail->Body    = $body;
 
             $mail->send();
 

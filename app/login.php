@@ -16,7 +16,7 @@ if ($post) {
 
             if ($user->is_active) {
 
-                $password_reset_hash = bin2hex(random_bytes(32));
+                $password_reset_hash = generate_random_hash();
 
                 $reset_request_result = execute('call sp_users_password_reset_request(:p_email, :p_password_reset_hash);', array(
                     array('p_email', $user->email, PDO::PARAM_STR),
@@ -93,20 +93,21 @@ function content($params, $data) { ?>
                     <?= t('sign_in') ?>
                 </h2>
             </legend>
+
             <?php include 'partials/errors.php'; ?>
 
             <?= csrf_field() ?>
-                <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= params('login') ?>" required autofocus />
-                <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
-                <input type="submit" value="<?= t('log_in') ?>" />
 
-                <p>
-                    <?= link_to(t('forgot_password'), '/password_reset_request.php') ?>
-                </p>
-                <p>
-                    <?= t('no_account_yet') ?>
-                        <?= link_to(t('register'), '/register.php') ?>
-                </p>
+            <input id="login" type="text" name="login" placeholder="<?= t('nick_or_email') ?>" value="<?= params('login') ?>" required autofocus />
+            <input id="password" type="password" placeholder="<?= t('password') ?>" name="password" required />
+            <input type="submit" value="<?= t('log_in') ?>" />
+
+            <p>
+                <?= link_to(t('forgot_password'), '/password_reset_request.php') ?>
+            </p>
+            <p>
+                <?= t('no_account_yet', ['link' => link_to(t('register'), '/register.php')]) ?>
+            </p>
 
         </form>
 

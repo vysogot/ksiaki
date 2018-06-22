@@ -42,6 +42,7 @@ $badge_titles = array_filter(explode(', ', $profile->badge_titles));
 
 <?php if ($profile->nick == $_SESSION['nick']) { ?>
     <p><?= link_to(t('password_reset'), '/password_reset_request.php') ?></p>
+    <p><?= link_to(t('invite_friends'), '/invite_friends.php') ?></p>
 
     <p><?= $profile->address ?></p>
 <?php } ?>

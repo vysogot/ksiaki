@@ -14,7 +14,7 @@ if ($post) {
 
         if ($user->is_active) {
 
-            $password_reset_hash = bin2hex(random_bytes(32));
+            $password_reset_hash = generate_random_hash();
 
             $reset_request_result = execute('call sp_users_password_reset_request(:p_email, :p_password_reset_hash);', array(
                 array('p_email', $params['email'], PDO::PARAM_STR),
@@ -46,7 +46,6 @@ if ($post) {
 function content($params, $data) { ?>
 
 <div class="wrapper">
-
 
   <form action="<?= path_to('/password_reset_request.php') ?>" method="post" class="vertical-form">
 

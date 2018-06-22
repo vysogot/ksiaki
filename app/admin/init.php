@@ -2,7 +2,4 @@
 
 include realpath(__DIR__ . '/../init.php');
 
-if (!is_admin()) {
-  flash('notice', t('unauthorized'));
-  redirect('/login.php');
-}
+must_be_an_admin();

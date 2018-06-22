@@ -46,7 +46,7 @@ $xhr  = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 
 if ($post && !is_testing_env()) {
     if (!(isset($_POST['token']) && hash_equals(get_csrf_token(), $_POST['token']))) {
-        if ($env == 'development') {
+        if ($xhr) {
             send_json(['errors' => ['NOT_A_FIELD' => ['message' => t('invalid_token')]]]); exit();
         } else {
             flash('warning', t('invalid_token'));

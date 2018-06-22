@@ -32,6 +32,7 @@ video { max-width: 100%; background: white; }
 .smaller-font { font-size: 80%; }
 .bigger-font { font-size: 140%; }
 .hidden { display: none!important; }
+.font-fantasy { font-family: fantasy; }
 
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
@@ -236,6 +237,8 @@ footer p {
 .vertical-form .agreement label {
     color: #999;
 }
+
+.vertical-form input.center { text-align: center; }
 
 /* MODAL */
 

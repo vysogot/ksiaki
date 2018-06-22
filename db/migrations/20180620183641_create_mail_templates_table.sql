@@ -26,13 +26,13 @@ IF (@last_migration_at < @migration_timestamp) THEN
 
   INSERT INTO `def_mail_templates` (`name`, `subject`, `content`)
   VALUES
-  ('registration', 'Dziękujemy za rejestrację!', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
-  ('registration_for_caretaker', 'Twój podopieczny się zarejestrował', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
-  ('password_reset', 'Ustaw nowe hasło', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
-  ('account_deactivation', 'Twoje konto zostało deaktywowane', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
-  ('inviting_an_outsider', '{{nick}} wysłał Ci zaproszenie na Konkursiaki.pl!', 'Treść. Link: <p>{{link}}</p> Do zobaczenia!'),
-  ('being_a_contest_laureate', 'Gratulujemy!', 'Treść. Link do zmiany hasła: <p>{{link}}</p> Do zobaczenia!'),
-  ('new_contest_creation', 'Zostałeś laureatem konkursu {{contest_name}} na Konkursiaki.pl!', 'Treść. Link do zmiany hasła: <p>{{link}}</p> Do zobaczenia!');
+  ('registration', 'registration', 'content <p>{{link}}</p>'),
+  ('registration_for_caretaker', 'registration_for_caretaker', 'content <p>{{link}}</p>'),
+  ('password_reset', 'password_reset', 'content <p>{{link}}</p>'),
+  ('account_deactivation', 'account_deactivation', 'content <p>{{link}}</p>'),
+  ('inviting_an_outsider', '{{nick}} inviting_an_outsider', 'inviting_an_outsider <p>{{link}}</p>'),
+  ('being_a_contest_laureate', 'being_a_contest_laureate', 'content <p>{{link}}</p>'),
+  ('new_contest_creation', 'new_contest_creation {{contest_name}} na Konkursiaki.pl!', 'content <p>{{link}}</p>');
 
 
     /*** END OF MIGRATION ***/
