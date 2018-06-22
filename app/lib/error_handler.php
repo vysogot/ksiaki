@@ -35,7 +35,7 @@ function exception_handler($exception) {
 
     http_response_code($code);
 
-    if ($env == 'production' || $env == 'staging') {
+    if ($GLOBALS['env'] == 'production' || $GLOBALS['env'] == 'staging') {
         Rollbar::log(Level::ERROR, $exception);
         redirect('/404.php');
     } else {
