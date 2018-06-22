@@ -1,0 +1,23 @@
+https://myadmin.rall.pl
+
+define('DATABASE_HOST','10.3.0.1');
+
+/**
+ * User to log in to SQL server.
+ */
+define('DATABASE_USER','rgodawa_epesi');
+
+/**
+ * User password to authorize SQL server.
+ */
+define('DATABASE_PASSWORD','ol58qyu17k0ow3s6fv2aizgbrdjhn4');
+
+/**
+ * Database to use.
+ */
+define('DATABASE_NAME','rgodawa_epesi');
+
+/**
+ * Database driver.
+ */
+define('DATABASE_DRIVER','mysqlt');
