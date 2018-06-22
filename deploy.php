@@ -54,6 +54,7 @@ task('deploy', [
     'deploy:unlock',
     'deploy:nginx_restart',
     'deploy:phpfpm_restart',
+    'inform:rollbar',
     'cleanup',
     'success'
 ]);
@@ -90,6 +91,32 @@ task('db:backup', function () {
 task('db:update', function () {
     cd('{{release_path}}');
     run('APPLICATION_ENV={{stage}} php db/reset.php');
+});
+
+task('inform:rollbar', function () {
+    putenv('APPLICATION_ENV={{stage}}');
+    $envs = include realpath(__DIR__ . '/config/ksiaki.php');
+    $config = $envs['{{stage}}'];
+
+    $url = 'https://api.rollbar.com/api/1/deploy/';
+    $data = array(
+        'access_token' => $config['rollbar_key'],
+        'environment' => '{{stage}}',
+        'revision' => exec('git log -n 1 --pretty=format:"%H"'),
+        'local_username' => 'ksiaki-production'
+    );
+
+    // use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        )
+    );
+    
+    $context  = stream_context_create($options);
+    return file_get_contents($url, false, $context);
 });
 
 // [Optional] If deploy fails automatically unlock.
