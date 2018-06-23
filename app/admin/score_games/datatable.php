@@ -2,7 +2,7 @@
 
 include '../init.php';
 
-$result = execute('call sp_score_games_all_client_side();', [], true, false);
+$result = execute('call sp_score_games_all_client_side();', [], true);
 
 send_json(['data' => $result]);
 

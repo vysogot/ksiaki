@@ -36,7 +36,7 @@ if ($post) {
           array('p_image_url', $params['image_url'], PDO::PARAM_INT),
           array('p_is_active',$params['is_active'], PDO::PARAM_STR),
           array('p_user_id', $_SESSION['user_id'], PDO::PARAM_STR)
-    ), false, false);
+    ));
 
   } else {
 

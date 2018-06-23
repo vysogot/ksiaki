@@ -6,7 +6,7 @@ use \Rollbar\Payload\Level;
 include 'logger.php';
 
 if ($env == 'development' || $env == 'staging') {
-    log_access('REQUEST: ' . $_SERVER['REQUEST_URI'] . ' SCRIPT: ' . $_SERVER['PHP_SELF'], array_merge($_GET, $_POST));
+    logger('access', 'REQUEST: ' . $_SERVER['REQUEST_URI'] . ' SCRIPT: ' . $_SERVER['PHP_SELF'], array_merge($_GET, $_POST));
 }
 
 if ($env == 'production' || $env == 'staging') {
@@ -28,7 +28,7 @@ function exception_handler($exception) {
 
     if ($code != 404) {
 
-        log_error($exception->getFile() . ":" . $exception->getLine() . " " . $exception->getMessage(), array_merge($_GET, $_POST));
+        logger('error', $exception->getFile() . ":" . $exception->getLine() . " " . $exception->getMessage(), array_merge($_GET, $_POST));
         $code = 500;
 
     }

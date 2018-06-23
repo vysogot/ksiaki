@@ -34,7 +34,7 @@ if ($post) {
             array('p_avatar_url', $params['avatar_url'], PDO::PARAM_STR),
             array('p_is_active', $params['is_active'], PDO::PARAM_INT),
             array('p_updated_by', $_SESSION['user_id'], PDO::PARAM_INT)
-        ), false, false);
+        ));
 
     } else {
 

@@ -1,36 +1,48 @@
 <?php
 
-function execute($sql, $fields, $all = false, $num = false)
-{
-  $dbc = get_connection($num);
-  $query = $dbc->prepare($sql);
+function execute($statement, $arguments, $all = false) {
 
-  foreach ($fields as $field) {
-    list($name, $value, $type) = $field;
-    $query->bindValue(':' . $name, $value, $type);
+  $connection = get_connection();
+  $prepared_statement = $connection->prepare($statement);
+
+  foreach ($arguments as $argument) {
+    list($name, $value, $type) = $argument;
+    $prepared_statement->bindValue(':' . $name, $value, $type);
   }
 
   try {
-    $query->execute();
+
+    $time_start = microtime(true);
+
+    $prepared_statement->execute();
+
+    $time_end = microtime(true);
+
   } catch(PDOException $e) {
+
     exit('Error execute query');
+
   }
 
-  $ret = $query->fetchAll();
+  $execution_time = number_format((($time_end - $time_start)/60)*1000, 6);
+  logger('db', $statement . ' execution time: ' . $execution_time . 'ms', $arguments);
 
-  if ($all || empty($ret)) return $ret;
-  return $ret[0];
+  if ($all) {
+      return $prepared_statement->fetchAll();
+  } else {
+      return $prepared_statement->fetch();
+  }
 
 }
 
-function get_connection($num = false)
+function get_connection()
 {
 
   if (!isset($GLOBALS['db_connection'])) {
 
     try {
         $options = array(
-          PDO::ATTR_DEFAULT_FETCH_MODE => (($num == true)?PDO::FETCH_NUM:PDO::FETCH_OBJ),
+          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
           PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
           PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
         );
@@ -55,4 +67,5 @@ function get_connection($num = false)
   }
 
   return $GLOBALS['db_connection'];
+
 }

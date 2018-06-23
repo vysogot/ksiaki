@@ -50,7 +50,7 @@ if ($post) {
         array('p_ends_at', date('Y-m-d H:i:s', strtotime($params['ends_at'])), PDO::PARAM_STR),
         array('p_display_ad', $params['display_ad'], PDO::PARAM_BOOL),
         array('p_is_active', $params['is_active'], PDO::PARAM_BOOL)
-    ), false, false);
+    ));
 
   } else {
 

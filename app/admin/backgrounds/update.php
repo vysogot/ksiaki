@@ -38,7 +38,7 @@ if ($post) {
             array('p_begins_at', $params['begins_at'], PDO::PARAM_STR),
             array('p_ends_at', $params['ends_at'], PDO::PARAM_STR),
             array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT)
-        ), false, false);
+        ));
 
     } else {
 

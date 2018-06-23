@@ -20,7 +20,7 @@ if ($post) {
           array('p_id', $params['id'], PDO::PARAM_INT),
           array('p_subject', $params['subject'], PDO::PARAM_STR),
           array('p_content', $params['content'], PDO::PARAM_LOB)
-        ), false, false);
+        ));
 
     } else {
 
