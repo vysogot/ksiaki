@@ -1,9 +1,10 @@
+<?php include '../../init.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>HTML5 Pacman</title>
-    
+
     <style type="text/css">
       @font-face {
 	    font-family: 'BDCartoonShoutRegular';
@@ -16,8 +17,8 @@
         width:342px;
         margin:20px auto;
       }
-      #shim { 
-        font-family: BDCartoonShoutRegular; 
+      #shim {
+        font-family: BDCartoonShoutRegular;
         position:absolute;
         visibility:hidden
       }
@@ -29,10 +30,17 @@
 </head>
 
 <body>
-  
+
   <div id="shim">shim for font face</div>
 
+  <script>
+ var levelStartTimestamp = 0;
+ var token = 0;
+ var contestId = 1;
+  </script>
+
   <div id="pacman"></div>
+  <script src="js/jquery-3.1.1.min.js"></script>
   <script src="pacman.js"></script>
   <script src="modernizr-1.5.min.js"></script>
 
@@ -40,11 +48,11 @@
 
     var el = document.getElementById("pacman");
 
-    if (Modernizr.canvas && Modernizr.localstorage && 
+    if (Modernizr.canvas && Modernizr.localstorage &&
         Modernizr.audio && (Modernizr.audio.ogg || Modernizr.audio.mp3)) {
       window.setTimeout(function () { PACMAN.init(el, "./"); }, 0);
-    } else { 
-      el.innerHTML = "Sorry, needs a decent browser<br /><small>" + 
+    } else {
+      el.innerHTML = "Sorry, needs a decent browser<br /><small>" +
         "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";
     }
   </script>

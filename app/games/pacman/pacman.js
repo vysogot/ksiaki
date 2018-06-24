@@ -8,6 +8,62 @@
  * do proper ghost mechanics (blinky/wimpy etc)
  */
 
+function getXmlDoc() {
+  var xmlDoc;
+
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlDoc = new XMLHttpRequest();
+  }
+  else {
+    // code for IE6, IE5
+    xmlDoc = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  return xmlDoc;
+}
+
+function myGet(url, callback) {
+  var xmlDoc = getXmlDoc();
+
+  xmlDoc.open('GET', url, true);
+
+  xmlDoc.onreadystatechange = function() {
+    if (xmlDoc.readyState === 4 && xmlDoc.status === 200) {
+      callback(xmlDoc);
+    }
+  }
+
+  xmlDoc.send();
+}
+
+function jsonToQueryString(json) {
+    return Object.keys(json).map(function(key) {
+            return encodeURIComponent(key) + '=' +
+                encodeURIComponent(json[key]);
+        }).join('&');
+}
+
+function myPost(url, data, callback) {
+  var xmlDoc = getXmlDoc();
+
+  xmlDoc.open('POST', url, true);
+  xmlDoc.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+  xmlDoc.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+  xmlDoc.onreadystatechange = function() {
+    if (xmlDoc.readyState === 4 && xmlDoc.status === 200) {
+      callback(JSON.parse(xmlDoc.response));
+    }
+  }
+
+  xmlDoc.send(jsonToQueryString(data));
+}
+
+function adsColor(score) {
+    return "000000" + score.toString(16).substr(-6,6);
+}
+
 var NONE        = 4,
     UP          = 3,
     LEFT        = 2,
@@ -444,7 +500,15 @@ Pacman.User = function (game, map) {
                 console.log('from eaten level call');
             //}
 
-            if (eaten === 182) {
+            $(document.body).addClass('hello');
+
+            if (eaten === 3) {
+
+
+
+
+
+
                 game.completedLevel();
 
                 /*$.post('/score.php', function() {
@@ -826,6 +890,19 @@ var PACMAN = (function () {
     };
 
     function startLevel() {
+
+        // ksiaki
+        myGet('/timestamp.php', function(xmlDoc) {
+
+
+            data = JSON.parse(xmlDoc.response);
+            console.log(data);
+
+            levelStartTimestamp = data.timestamp;
+            token = data.token;
+
+        })
+
         user.resetPosition();
         for (var i = 0; i < ghosts.length; i += 1) {
             ghosts[i].reset();
@@ -833,6 +910,8 @@ var PACMAN = (function () {
         audio.play("start");
         timerStart = tick;
         setState(COUNTDOWN);
+
+
     }
 
     function startNewGame() {
@@ -842,11 +921,15 @@ var PACMAN = (function () {
         map.reset();
         map.draw(ctx);
         startLevel();
+
+
     }
 
     function keyDown(e) {
         if (e.keyCode === KEY.N) {
+
             startNewGame();
+
         } else if (e.keyCode === KEY.S) {
             audio.disableSound();
             localStorage["soundDisabled"] = !soundDisabled();
@@ -1025,6 +1108,21 @@ var PACMAN = (function () {
     };
 
     function completedLevel() {
+
+        // ksiaki
+        myPost("/score.php", {
+            token: token,
+            contest_id: contestId,
+            level: level,
+            begins_at: levelStartTimestamp,
+            points: user.theScore(),
+            points_total: user.theScore(),
+            main_ball_color: adsColor(user.theScore()),
+            win: 1
+        }, function(data) {
+            console.log(data);
+        });
+
         setState(WAITING);
         level += 1;
         map.reset();

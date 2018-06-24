@@ -44,15 +44,24 @@ $get  = $_SERVER['REQUEST_METHOD'] === 'GET';
 $xhr  = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
+
+// CSRF validation
 if ($post && !is_testing_env()) {
-    if (!(isset($_POST['token']) && hash_equals(get_csrf_token(), $_POST['token']))) {
+
+    $token = $_POST['token'] ?? false;
+
+    if ($token && hash_equals(get_csrf_token(), $token)) {
+
+        set_csrf_token();
+
+    } else {
+
         if ($xhr) {
             send_json(['errors' => ['NOT_A_FIELD' => ['message' => t('invalid_token')]]]); exit();
         } else {
             flash('warning', t('invalid_token'));
             redirect('/');
         }
-    } else {
-        set_csrf_token();
+
     }
 }
