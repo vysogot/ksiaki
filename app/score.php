@@ -22,7 +22,7 @@ if ($post) {
           array('p_points_total', $params['points_total'], PDO::PARAM_INT)
       ));
 
-      $data = execute('call sp_score_games_create(
+      $result = execute('call sp_score_games_create(
         :p_user_id,
         :p_contest_id,
         :p_level,
@@ -48,6 +48,11 @@ if ($post) {
 
   }
 
-  send_json($data);
+  if ($result->rowCount == 1) {
+      send_json(['success' => true]);
+  } else {
+      send_json(['success' => false]);
+  }
+
 
 }

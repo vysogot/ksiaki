@@ -18,10 +18,14 @@ function content($params, $data) { ?>
 var contestId = <?= $data['contest']->id ?>;
 </script>
 
+<?php if ($data['contest']->game_name == 'pacman') { ?>
+    <style>.game-iframe { height: 700px; }</style>
+<?php } ?>
+
 <div class="wrapper center">
   <h2><?= link_to(t('back_to_contest'), t('contest_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <div id="stroer_pregame_video"></div>
-      <iframe onload="this.contentWindow.focus()" style="border: 0; width: 100%; height: 80vh;" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
+      <iframe onload="this.contentWindow.focus()" class="game-iframe" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
   </div>
 
 <script type="text/javascript">

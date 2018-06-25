@@ -61,7 +61,7 @@ function myPost(url, data, callback) {
 }
 
 function adsColor(score) {
-    return "000000" + score.toString(16).substr(-6,6);
+    return ("000000" + score.toString(16)).substr(-6,6);
 }
 
 var NONE        = 4,
@@ -495,25 +495,9 @@ Pacman.User = function (game, map) {
             addScore((block === Pacman.BISCUIT) ? 10 : 50);
             eaten += 1;
 
-
-            //$.post('/score.php', function() {
-                console.log('from eaten level call');
-            //}
-
-            $(document.body).addClass('hello');
-
-            if (eaten === 3) {
-
-
-
-
-
+            if (eaten === 182) {
 
                 game.completedLevel();
-
-                /*$.post('/score.php', function() {
-                    console.log('from completed level call');
-                }*/
 
             }
 
@@ -896,21 +880,20 @@ var PACMAN = (function () {
 
 
             data = JSON.parse(xmlDoc.response);
-            console.log(data);
+            console.log("from startlevel: ", data);
 
             levelStartTimestamp = data.timestamp;
             token = data.token;
 
-        })
+            user.resetPosition();
+            for (var i = 0; i < ghosts.length; i += 1) {
+                ghosts[i].reset();
+            }
+            audio.play("start");
+            timerStart = tick;
+            setState(COUNTDOWN);
 
-        user.resetPosition();
-        for (var i = 0; i < ghosts.length; i += 1) {
-            ghosts[i].reset();
-        }
-        audio.play("start");
-        timerStart = tick;
-        setState(COUNTDOWN);
-
+        });
 
     }
 
@@ -996,8 +979,8 @@ var PACMAN = (function () {
 
         ctx.fillStyle = "#FFFF00";
         ctx.font      = "14px BDCartoonShoutRegular";
-        ctx.fillText("Score: " + user.theScore(), 30, textBase);
-        ctx.fillText("Level: " + level, 260, textBase);
+        ctx.fillText("Punkty: " + user.theScore(), 30, textBase);
+        ctx.fillText("Poziom: " + level, 260, textBase);
     }
 
     function redrawBlock(pos) {
@@ -1063,7 +1046,7 @@ var PACMAN = (function () {
         } else if (state === WAITING && stateChanged) {
             stateChanged = false;
             map.draw(ctx);
-            dialog("Press N to start a New game");
+            dialog("Kliknij 'N' i graj!");
         } else if (state === EATEN_PAUSE &&
                    (tick - timerStart) > (Pacman.FPS / 3)) {
             map.draw(ctx);
@@ -1090,7 +1073,7 @@ var PACMAN = (function () {
                 if (diff !== lastTime) {
                     lastTime = diff;
                     map.draw(ctx);
-                    dialog("Starting in: " + diff);
+                    dialog("Zaczynamy za: " + diff);
                 }
             }
         }
@@ -1112,7 +1095,7 @@ var PACMAN = (function () {
         // ksiaki
         myPost("/score.php", {
             token: token,
-            contest_id: contestId,
+            contest_id: window.parent.contestId,
             level: level,
             begins_at: levelStartTimestamp,
             points: user.theScore(),
@@ -1120,14 +1103,15 @@ var PACMAN = (function () {
             main_ball_color: adsColor(user.theScore()),
             win: 1
         }, function(data) {
-            console.log(data);
+            console.log("from score: ", data);
+            setState(WAITING);
+            level += 1;
+            map.reset();
+            user.newLevel();
+            startLevel();
         });
 
-        setState(WAITING);
-        level += 1;
-        map.reset();
-        user.newLevel();
-        startLevel();
+
     };
 
     function keyPress(e) {
@@ -1163,7 +1147,7 @@ var PACMAN = (function () {
         }
 
         map.draw(ctx);
-        dialog("Loading ...");
+        dialog("Ładowanie gry...");
 
         var extension = Modernizr.audio.ogg ? 'ogg' : 'mp3';
 

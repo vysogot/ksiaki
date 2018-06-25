@@ -155,6 +155,8 @@ footer p {
   opacity: 0.9;
 }
 
+.game-iframe { border: 0; width: 100%; height: 80vh; }
+
 
 .vertical-form input[type='text'],
 .vertical-form input[type='date'],
