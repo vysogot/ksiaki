@@ -11,11 +11,13 @@ CREATE PROCEDURE `sp_backgrounds_get`(
     IN p_placement VARCHAR(255)
 )
 BEGIN
-SELECT image_url, background_color, details_color, link_url
+SELECT image_url, background_color, details_color, link_url, RAND()
 FROM _backgrounds
 WHERE is_active
 AND NOW() BETWEEN begins_at AND ends_at
-AND UPPER(p_placement) LIKE CONCAT('%', UPPER(placement));
+AND UPPER(p_placement) LIKE CONCAT('%', UPPER(placement))
+ORDER BY RAND()
+LIMIT 1;
 END$$
 DELIMITER ;
 
