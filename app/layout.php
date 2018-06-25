@@ -37,7 +37,7 @@
             box-shadow: 2px 2px 5px <?= $background->details_color ?>;
         }
     <?php } else { ?>
-        body { background: url(assets/images/bg-pattern-orange.png) left top repeat; }
+        body { background: url(/assets/images/bg-pattern-orange.png) left top repeat; }
     <?php } ?>
     </style>
 
