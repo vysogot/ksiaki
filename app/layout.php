@@ -16,7 +16,6 @@
     <!--<script src="/assets/js/min.js" type="text/javascript"></script>-->
 
     <?php if (function_exists('meta')) meta(); ?>
-    <?php $background = get_background(); ?>
 
     <!--<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,11 +23,26 @@
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
 
+
+    <?php $background = get_background($_SERVER['REQUEST_URI']); ?>
+
     <style>
-      html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
-      body { visibility: hidden; background: <?= $background->background_color ?> url('<?= cdn_url($background->image_url) ?>') top no-repeat; background-attachment: fixed;}
-      .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
-      nav, .ad, .rankings h2, .rankings ul, #banner, #slajder, #player, .box, #heroes .slick-slide, .boxes .slick-slide { box-shadow: 2px 2px 5px <?= $background->details_color ?>; }
+    <?php if (!empty($background)) { ?>
+        html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
+        body { background: <?= $background->background_color ?> url('<?= cdn_url($background->image_url) ?>') top no-repeat; background-attachment: fixed;}
+        .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
+
+        nav, .ad, .rankings h2, .rankings ul, #banner, #slajder,
+        #player, .box, #heroes .slick-slide, .boxes .slick-slide {
+            box-shadow: 2px 2px 5px <?= $background->details_color ?>;
+        }
+    <?php } else { ?>
+        body { background: url(assets/images/bg-pattern-orange.png) left top repeat; }
+    <?php } ?>
+    </style>
+
+    <style>
+      body { visibility: hidden; }
       main { display: block;}
       .modal {padding-top: 10px !important;}
     </style>
@@ -42,7 +56,9 @@
 
 </head>
 <body>
-  <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
+    <?php if (!empty($background)) { ?>
+        <?= link_to('', $background->link_url, ['class' => 'background-link', 'target' => '_blank']) ?>
+    <?php } ?>
   <div class="modal"><div class="modal-content"><a href="#" class="close">&times;</a><p></p></div></div>
   <script>
       $('.modal .close').click(function() {
@@ -61,7 +77,7 @@
       <nav>
         <ul class="bare">
             <li><?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?></li>
-            <li><?= link_to(t('contests'), '/contests.php', ['id' => 'menu-contests']) ?></li>
+            <li><?= link_to(t('contests'), t('contests_slug'), ['id' => 'menu-contests']) ?></li>
               <?php if (is_logged_in()) { ?>
                 <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
                 <li class="right"><?= link_to(t('dashboard'), '/profile.php', ['id' => 'menu-login', 'class' => 'modal-remote']) ?></li>

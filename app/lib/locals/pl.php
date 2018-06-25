@@ -258,6 +258,7 @@ $translations = [
   'details_color' => 'Kolor detali',
   'background_name' => 'Nazwa',
   'background_color' => 'Kolor tła',
+  'placement' => 'Umiejscowienie',
 
   // static sites form
 
@@ -295,6 +296,7 @@ $translations = [
   'contest_play_slug' => '/konkurs/{{slug}}/graj',
   'static_site_slug' => '/info/{{slug}}',
   'contest_prize_slug' => '/nagroda/{{slug}}',
+  'contests_slug' => '/konkursy',
 
   // games
 

@@ -8,8 +8,7 @@ $data['column_names'] = [
     'image_url',
     'name',
     'link_url',
-    'background_color',
-    'details_color',
+    'placement',
     'begins_at',
     'ends_at',
     'is_active'

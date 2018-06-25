@@ -14,8 +14,7 @@ $(document).ready(function() {
             },
             { "data": "name" },
             { "data": "link_url" },
-            { "data": "background_color" },
-            { "data": "details_color" },
+            { "data": "placement" },
             { "data": "begins_at" },
             { "data": "ends_at" },
             {

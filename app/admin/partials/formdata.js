@@ -139,6 +139,7 @@ function get_data(myObj) {
 
         $('#is_active_check').prop("checked", ($('input[name="is_active"]').val() == '1'));
         $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
+        $('#link_url').prop('readonly', false);
 
         $("#role_id option").removeAttr('selected');
         $('#role_id ').find('option').filter(function(index) {

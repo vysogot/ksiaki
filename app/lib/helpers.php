@@ -84,9 +84,14 @@ function image($src, $options = []) {
     return $image . ">";
 }
 
-function get_background() {
-    $background = execute('call sp_backgrounds_get();', array());
-    if (empty($background)) $background = execute('call sp_backgrounds_new();', array());
+function get_background($placement) {
+
+    $background = execute('call sp_backgrounds_get(
+        :p_placement
+    );', array(
+        array('p_placement', $placement, PDO::PARAM_STR)
+    ));
+
     return $background;
 }
 

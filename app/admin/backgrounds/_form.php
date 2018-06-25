@@ -49,6 +49,18 @@
             </div>
 
             <div class='form-group'>
+                <label class="control-label col-sm-4" for="placement">
+                    <?= t('placement') ?>
+                </label>
+                <div class="col-sm-8">
+                    <div class='input-group'>
+                        <input class="form-control" id="placement" name="placement" type="text" required>
+                        <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='form-group'>
                 <label class="control-label col-sm-4" for="background_color">
                     <?= t('background_color') ?>
                 </label>
