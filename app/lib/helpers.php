@@ -67,8 +67,7 @@ function link_to($name, $destination, $options = []) {
         $link .= ' ' . $key . '="' . $value . '"';
     }
 
-    if (current_url() == $destination &&
-        !(isset($options['class']) && $options['class'] == 'non-active')) {
+    if (current_url() == $destination) {
         $link .= ' class="active"';
     }
 

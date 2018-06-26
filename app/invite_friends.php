@@ -39,7 +39,7 @@ if ($post) {
 
             $mail_sent = send_invitation_email($params['email_to'], [
                 'nick' => $_SESSION['nick'],
-                'link' => link_to(t('invitation_link'), '/register.php?invitation_hash=' . $invitation_result->invitation_hash)
+                'link' => link_to(t('invitation_link'), t('invitation_registration_slug', ['invitation_hash' => $invitation_result->invitation_hash]))
             ]);
 
             if ($mail_sent) {

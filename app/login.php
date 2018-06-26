@@ -25,7 +25,7 @@ if ($post) {
 
                 $mail_sent = send_known_user_new_password_email($user->email, [
                     'nick' => $user->nick,
-                    'link' => link_to('Click', '/password_reset_form.php?key=' . $reset_request_result->password_reset_hash)
+                    'link' => link_to(t('reset_your_password'), t('password_reset_form_slug', ['key' => $reset_request_result->password_reset_hash]))
                 ]);
 
                 if ($mail_sent) {

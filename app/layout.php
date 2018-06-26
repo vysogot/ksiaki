@@ -70,7 +70,7 @@
   <header>
     <div class="wrapper">
 
-      <div id="logo"><?= link_to(image('/assets/images/logo.png'), '/', ['class' => 'non-active']) ?></div>
+      <div id="logo"><?= link_to(image('/assets/images/logo.png'), '/') ?></div>
 
       <div id='stroer_topbanner'>
       </div>
@@ -175,9 +175,19 @@
     <style>
     .vex.vex-theme-flat-attack { padding-top: 50px; }
     .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
-    .vex.vex-theme-flat-attack .vex-content p { margin: 25px 0 0 0; }
+    .vex.vex-theme-flat-attack .vex-content p { margin: 40px 0 0 0; }
     .vex.vex-theme-flat-attack .vex-content.wide-text { width: 80%; font-size: 80%; }
     .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
+    </style>
+
+    <?php if (current_url() == '/') { ?>
+        <?php include 'partials/rodo.html'; ?>
+    <?php } ?>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=pl&theme=white&privacyPage=https%3A%2F%2Fkonkursiaki.pl%2Fpolityka-prywatnosci"></script>
+    <style>
+        #cookie-bar p { padding: 30px; font-size: 110%; }
+        #cookie-bar-button { padding: 10px; margin-top: 25px; }
     </style>
 
   </body>

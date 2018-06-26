@@ -298,6 +298,17 @@ $translations = [
   'static_site_slug' => '/{{slug}}',
   'contest_prize_slug' => '/nagroda/{{slug}}',
   'contests_slug' => '/konkursy',
+  'login_slug' => '/logowanie',
+  'registration_slug' => '/rejestracja',
+  'password_reset_request_slug' => '/zakladanie-nowego-hasla',
+  'password_reset_form_slug' => '/zaloz-nowe-haslo/{{key}}',
+  'account_activation_slug' => '/aktywacja-konta/{{key}}',
+  'invitation_registration_slug' => '/rejestracja-za-zaproszeniem/{{invitation_hash}}',
+
+  // actions
+
+  'activate_your_account' => 'Aktywuj swoje konto!',
+  'reset_your_password' => 'Załóż nowe hasło!',
 
   // games
 

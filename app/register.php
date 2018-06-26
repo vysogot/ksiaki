@@ -72,7 +72,8 @@ if ($post) {
 
             $mail_sent = send_registration_email($params['email'], [
                 'nick' => $params['nick'],
-                'link' => link_to('Click', '/activate.php?key=' . $result->activation_hash)
+                'activation_link' => link_to(t('activate_your_account'), t('account_activation_slug', ['key' => $result->activation_hash])),
+                'password_reset_link' => link_to(t('reset_your_password'), t('password_reset_request_slug'))
             ]);
 
             if ($mail_sent) {
