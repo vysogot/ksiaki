@@ -39,7 +39,7 @@ video { max-width: 100%; background: white; }
 #heroes       { width: 960px; height: 140px; overflow: visible; }
 #stroer_topbanner, #stroer_topbanner img { width: 830px; height: 130px; overflow: hidden; }
 
-.sky-banner { display:inline-block; width: 232px; height: 600px; float: left;  text-align: center; padding-top: 10px; }
+.sky-banner { display:inline-block; width: 232px; float: left;  text-align: center; padding-top: 10px; }
 .sky-banner#index { padding-top: 70px; }
 .sky-banner img { margin-bottom: 10px; }
 
