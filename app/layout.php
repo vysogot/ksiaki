@@ -40,6 +40,11 @@
         }
     <?php } else { ?>
         body { background: url(/assets/images/bg-pattern-orange.png) left top repeat; }
+        nav, .ad, .rankings h2, .rankings ul, #banner, #slajder,
+        #player, .box, #heroes .slick-slide, .boxes .slick-slide,
+        .sky-banner img, .shadow {
+            box-shadow: 2px 2px 5px #000;
+        }
     <?php } ?>
     </style>
 

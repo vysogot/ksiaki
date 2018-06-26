@@ -23,6 +23,7 @@ if (in_array($env, ['development', 'testing'])) {
     run_scripts_in_folder('installs');
     run_scripts_in_folder('procedures');
     run_scripts_in_folder('migrations');
+    run_scripts_in_folder('indexes');
     run_scripts_in_folder('seeds');
 
     echo "\nReset db '$dbname' completed\n\n";

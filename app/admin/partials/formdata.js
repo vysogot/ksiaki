@@ -153,6 +153,16 @@ function get_data(myObj) {
             return $(this).val() == ret.game_id;
         }).prop('selected', true);
 
+        $("#sponsor_id option").removeAttr('selected');
+        $('#sponsor_id ').find('option').filter(function(index) {
+            return $(this).val() == ret.sponsor_id;
+        }).prop('selected', true);
+
+        $("#contest_id option").removeAttr('selected');
+        $('#contest_id ').find('option').filter(function(index) {
+            return $(this).val() == ret.contest_id;
+        }).prop('selected', true);
+
         $("#hero_file_type_id option").removeAttr('selected');
         $('#hero_file_type_id ').find('option').filter(function(index) {
             return $(this).val() == ret.hero_file_type_id;

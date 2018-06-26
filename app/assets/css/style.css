@@ -39,7 +39,7 @@ video { max-width: 100%; background: white; }
 #heroes       { width: 960px; height: 140px; overflow: visible; }
 #stroer_topbanner, #stroer_topbanner img { width: 830px; height: 130px; overflow: hidden; }
 
-.sky-banner { display:inline-block; width: 232px; float: left;  text-align: center; padding-top: 10px; }
+.sky-banner { display:inline-block; width: 232px; float: left;  text-align: center; padding-top: 10px; margin-bottom: 25px; }
 .sky-banner#index { padding-top: 70px; }
 .sky-banner img { margin-bottom: 10px; }
 
@@ -119,6 +119,7 @@ ul.bare li.right { float: right; }
   height: 100%; width: 100%; position: fixed; z-index: 1;
 }
 
+.rankings { margin-bottom: 25px; }
 .rankings h2 { background: #ddd; color: #333; text-align: left; opacity: 0.8; font-size: 120%; margin: 0 15px; padding-left: 20px;}
 .rankings ul { background: #fff; text-align: left; padding: 15px 0 15px 20px; opacity: 0.8; list-style: none; margin: 0 15px 15px 15px;}
 .rankings ul li { line-height: 25px; }
