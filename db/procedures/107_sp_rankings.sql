@@ -118,8 +118,13 @@ SELECT user_id
 		SELECT 1 AS point_type, user_id, points FROM score_contests WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
 		UNION ALL
 		SELECT 2 AS point_type, user_id, points FROM score_pointed_activities WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
-    UNION ALL
-    SELECT 3 AS point_type, user_id, CASE WHEN p_interval = 12 THEN max_points ELSE 0 END FROM old_score_total
+	    UNION ALL
+	    SELECT 3 AS point_type, user_id, CASE WHEN p_interval = 12 THEN max_points ELSE 0 END FROM old_score_total 
+	    WHERE (1 = (case when p_interval = 12 then 1 else 0 end))
+	    UNION ALL
+	    SELECT 4 AS point_type, user_id,  CASE WHEN p_interval = 12 THEN 0 ELSE max_points END max_points FROM old_score_total_by_month
+	    WHERE (1 = (case when p_interval = 12 then 0 else 1 end))
+		AND (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
 	) AS rzm
 GROUP BY user_id
 ORDER BY SUM(points) DESC
