@@ -45,7 +45,7 @@ function content($params, $data) { ?>
 
             <div class="column-13 hero-cover">
                 <?php if (!empty($data['hero']->cover_url)) { ?>
-                    <?= link_to(image(thumbnail_name($data['hero']->cover_url)), $data['hero']->cover_url, ['class' => 'modal-image']) ?>
+                    <?= link_to(image(thumbnail_name(secure_url($data['hero']->cover_url))), secure_url($data['hero']->cover_url), ['class' => 'modal-image']) ?>
                 <?php } ?>
             </div>
 
@@ -56,7 +56,7 @@ function content($params, $data) { ?>
             <div class="column-23">
                 <p><?= $data['hero']->description ?></p>
                 <div class="center hero-gadget">
-                    <?= link_to(image(thumbnail_name($data['hero']->gadget_url)), $data['hero']->gadget_url, ['class' => 'modal-image']) ?>
+                    <?= link_to(image(thumbnail_name(secure_url($data['hero']->gadget_url))), secure_url($data['hero']->gadget_url), ['class' => 'modal-image']) ?>
                 </div>
             </div>
 
@@ -68,8 +68,8 @@ function content($params, $data) { ?>
         <div class="row hero">
             <h3><?= t('tv_spot') ?></h3>
             <div class="column-33">
-                <video controls muted preload="none" src="<?= $data['hero']->video_url ?>"
-                    poster="<?= $data['hero']->video_cover_url ?>"></video>
+                <video controls muted preload="none" src="<?= secure_url($data['hero']->video_url) ?>"
+                    poster="<?= secure_url($data['hero']->video_cover_url) ?>"></video>
             </div>
         </div>
     <?php } ?>
@@ -82,8 +82,8 @@ function content($params, $data) { ?>
               <div id="box-banners-slider" class="boxes">
                 <?php foreach($data['hero_magazines'] as $box) { ?>
                   <div>
-                      <?= link_to(image(thumbnail_name($box->file_url)), $box->file_url, ['class' => 'modal-image']) ?>
-                      <p><?= link_to($box->name, "$box->file_url", ['class' => 'modal-image']) ?></p>
+                      <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
+                      <p><?= link_to($box->name, secure_url($box->file_url), ['class' => 'modal-image']) ?></p>
                   </div>
                 <?php } ?>
               </div>
@@ -101,8 +101,8 @@ function content($params, $data) { ?>
                   <div id="box-banners-slider" class="boxes">
                     <?php foreach($data['hero_wallpapers'] as $box) { ?>
                       <div>
-                        <?= link_to(image(thumbnail_name($box->file_url)), $box->file_url, ['class' => 'modal-image']) ?>
-                        <p><?= link_to($box->name, "$box->file_url", ['class' => 'modal-image']) ?></p>
+                        <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
+                        <p><?= link_to($box->name, secure_url($box->file_url), ['class' => 'modal-image']) ?></p>
                       </div>
                     <?php } ?>
                   </div>

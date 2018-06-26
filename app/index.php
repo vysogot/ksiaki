@@ -27,7 +27,7 @@ function content($params, $data) { ?>
         foreach($data['video_ads'] as $key => $video_ad) { ?>
             <?php $options = ($key == $first) ? 'autoplay' : 'muted preload="none"' ?>
             <div>
-            <video controls <?= $options ?> poster="<?= $video_ad->image_url ?>" src="<?= $video_ad->video_url ?>" type="video/mp4"></video>
+            <video controls <?= $options ?> poster="<?= secure_url($video_ad->image_url) ?>" src="<?= secure_url($video_ad->video_url) ?>" type="video/mp4"></video>
                 <div class="mute"></div>
                 <?= link_to(image($video_ad->image_url), $video_ad->link_url) ?>
             </div>

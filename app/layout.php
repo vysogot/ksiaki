@@ -70,7 +70,7 @@
   <header>
     <div class="wrapper">
 
-      <div id="logo"><a href="/"><img src="/assets/images/logo.png" /></a></div>
+      <div id="logo"><?= link_to(image('/assets/images/logo.png'), '/', ['class' => 'non-active']) ?></div>
 
       <div id='stroer_topbanner'>
       </div>

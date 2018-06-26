@@ -11,7 +11,7 @@ $heroes = execute('call sp_heroes_all();', [], true);
       <?php foreach($heroes as $hero) { ?>
         <li>
           <div>
-            <?= link_to("<img src='$hero->avatar_url' title='$hero->name'>", t('hero_slug', ['slug' => $hero->slug])) ?>
+            <?= link_to(image($hero->avatar_url, ['title' => $hero->name]), t('hero_slug', ['slug' => $hero->slug])) ?>
           </div>
         </li>
       <?php } ?>

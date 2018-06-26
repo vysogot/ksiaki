@@ -32,7 +32,7 @@ function path_to($destination) {
 }
 
 function current_url() {
-    return $_SERVER['PHP_SELF'] == '/index.php' ? '/' : $_SERVER['PHP_SELF'];
+    return $_SERVER['PHP_SELF'] == '/index.php' ? '/' : $_SERVER['REQUEST_URI'];
 }
 
 function is_logged_in() {
@@ -67,15 +67,20 @@ function link_to($name, $destination, $options = []) {
         $link .= ' ' . $key . '="' . $value . '"';
     }
 
-    if (current_url() == $destination) {
+    if (current_url() == $destination &&
+        !(isset($options['class']) && $options['class'] == 'non-active')) {
         $link .= ' class="active"';
     }
 
     return $link . ">$name</a>";
 }
 
+function secure_url($url) {
+    return str_replace('http://', $GLOBALS['config']['protocol'], $url);
+}
+
 function image($src, $options = []) {
-    $image = '<img src="' . $src . '"';
+    $image = '<img src="' . secure_url($src) . '"';
 
     foreach($options as $key => $value) {
         $image .= ' ' . $key . '="' . $value . '"';
