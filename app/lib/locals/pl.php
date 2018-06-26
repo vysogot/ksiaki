@@ -295,7 +295,7 @@ $translations = [
   'contest_slug' => '/konkurs/{{slug}}',
   'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
   'contest_play_slug' => '/konkurs/{{slug}}/graj',
-  'static_site_slug' => '/info/{{slug}}',
+  'static_site_slug' => '/{{slug}}',
   'contest_prize_slug' => '/nagroda/{{slug}}',
   'contests_slug' => '/konkursy',
 
