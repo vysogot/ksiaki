@@ -23,11 +23,7 @@ IF (@last_migration_at < @migration_timestamp) THEN
     	PRIMARY KEY (`id`),
     	INDEX `idx_user_id` (`user_id`),
     	INDEX `idx_given_at` (`given_at`)
-    )
-COMMENT='Punkty ze starych konkursiakow'
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
+    ) COMMENT='Punkty ze starych konkursiakow' COLLATE='utf8_general_ci' ENGINE=InnoDB;
 
     /*** END OF MIGRATION ***/
 
