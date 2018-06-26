@@ -140,8 +140,10 @@
 
       $('a.modal-image').on('click', function(event) {
         event.preventDefault();
-        vex.dialog.alert({
-            unsafeMessage: '<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>'
+        vex.open({
+            unsafeContent: '<div class="center shrink"><img src="' + $(this).attr('href') + '"/></div>',
+            contentClassName: 'wide',
+            showCloseButton: false
         })
       });
 
@@ -170,9 +172,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-flat-attack.min.css" />
 
     <style>
+    .vex.vex-theme-flat-attack { padding-top: 50px; }
     .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
     .vex.vex-theme-flat-attack .vex-content p { margin: 25px 0 0 0; }
     .vex.vex-theme-flat-attack .vex-content.wide-text { width: 80%; font-size: 80%; }
+    .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
     </style>
 
   </body>
