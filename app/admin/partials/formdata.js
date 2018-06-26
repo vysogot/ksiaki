@@ -128,6 +128,8 @@ function get_data(myObj) {
 
         $('textarea[name="content"]').val(ret.content);
         $('textarea[name="statute"]').val(ret.statute);
+        $('textarea[name="description"]').val(ret.description);
+        $('textarea[name="license_description"]').val(ret.license_description);
 
         if (ret.begins_at != undefined) {
             $('input[name="begins_at"]').val(ret.begins_at.replace(' ', 'T'));
