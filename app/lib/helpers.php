@@ -129,7 +129,12 @@ function create_thumbnail($physical_filepath, $ext) {
 
     if (in_array($ext, ['jpg', 'jpeg', 'gif', 'png'])) {
         $image = new Imagick($physical_filepath);
-        $image->resizeImage(300, 300, Imagick::FILTER_CATROM, 0, true);
+
+        try {
+            $image->scaleImage(300, 300, true);
+        } catch (Exception $e) {
+            $image->resizeImage(300, 300, Imagick::FILTER_CATROM, 0, true);
+        }
 
         $output_file_path = thumbnail_name($physical_filepath);
         $output_file = fopen($output_file_path, "w");

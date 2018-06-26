@@ -2,12 +2,12 @@
 
 include 'init.php';
 
-$data['slides'] = execute('call sp_slides_all();', [], true);
-$data['video_ads'] = execute('call sp_video_ads_get_all_active_in_random_order();', [], true);
-$data['contests'] = execute('call sp_contests_all();', [], true);
-$data['boxes'] = execute('call sp_boxes_all();', [], true);
+$data['slides'] = fetch_all('call sp_slides_all_for_display();');
+$data['video_ads'] = fetch_all('call sp_video_ads_all_for_display();');
+$data['contests'] = fetch_all('call sp_contests_all_for_display();');
+$data['boxes'] = fetch_all('call sp_boxes_all_for_display();');
 
-// $data['user_movies'] = execute('call sp_user_movies_sorted_by_likes();', [], true);
+// $data['user_movies'] = fetch_all('call sp_user_movies_sorted_by_likes();');
 
 function content($params, $data) { ?>
 

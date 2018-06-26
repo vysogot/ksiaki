@@ -1,6 +1,10 @@
 <?php
 
-function execute($statement, $arguments, $all = false) {
+function fetch_all($statement, $arguments = []) {
+    return execute($statement, $arguments, true);
+}
+
+function execute($statement, $arguments = [], $all = false) {
 
   $connection = get_connection();
   $prepared_statement = $connection->prepare($statement);

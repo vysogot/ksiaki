@@ -5,6 +5,7 @@ DROP PROCEDURE IF EXISTS sp_boxes_create;
 DROP PROCEDURE IF EXISTS sp_boxes_update;
 DROP PROCEDURE IF EXISTS sp_boxes_delete;
 DROP PROCEDURE IF EXISTS sp_boxes_get;
+DROP PROCEDURE IF EXISTS sp_boxes_all_for_display;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_boxes_get`()
@@ -56,6 +57,23 @@ BEGIN
     , ends_at
     FROM _boxes
     WHERE (marked_as_deleted_by = 0);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_boxes_all_for_display`()
+BEGIN
+    SELECT id
+    , name
+    , image_url
+    , link_url
+    , is_active
+    , begins_at
+    , ends_at
+    FROM _boxes
+    WHERE (marked_as_deleted_by = 0)
+    AND is_active
+    AND NOW() BETWEEN begins_at AND ends_at;
 END$$
 DELIMITER ;
 

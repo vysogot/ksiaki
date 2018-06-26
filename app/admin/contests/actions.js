@@ -21,7 +21,7 @@ function fEnd(myObj) {
     let ret = confirm(title + ' ' + oRow.data('name') + '?');
 
     if (ret == true) {
-        $.post("end.php?id=" + oRow.data('id'),
+        $.get("end.php?id=" + oRow.data('id'),
             function(data, status){
                 if (status == 'success') {
                   let row_index = oRow.data('index');

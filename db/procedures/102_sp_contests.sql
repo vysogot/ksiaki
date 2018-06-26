@@ -6,6 +6,7 @@ DROP PROCEDURE IF EXISTS sp_contests_create;
 DROP PROCEDURE IF EXISTS sp_contests_update;
 DROP PROCEDURE IF EXISTS sp_contests_delete;
 DROP PROCEDURE IF EXISTS sp_contests_find_by_slug;
+DROP PROCEDURE IF EXISTS sp_contests_all_for_display;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_new`()
@@ -101,18 +102,35 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_contests_all_but_one`(
-    IN p_id INT
-)
+CREATE PROCEDURE `sp_contests_all_for_display`()
 BEGIN
-SELECT _contests.id
-, _contests.name
+SELECT id
+, name
 , slug
 , box_url
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
-AND (is_active = 1)
-AND (_contests.id != p_id);
+AND is_active
+AND NOT is_ended
+AND NOW() BETWEEN begins_at AND ends_at;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_all_but_one`(
+    IN p_id INT
+)
+BEGIN
+SELECT id
+, name
+, slug
+, box_url
+FROM _contests
+WHERE (marked_as_deleted_by = 0)
+AND is_active
+AND NOT is_ended
+AND (id != p_id)
+AND NOW() BETWEEN begins_at AND ends_at;
 END$$
 DELIMITER ;
 

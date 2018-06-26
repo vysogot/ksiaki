@@ -5,6 +5,7 @@ DROP PROCEDURE IF EXISTS sp_slides_create;
 DROP PROCEDURE IF EXISTS sp_slides_update;
 DROP PROCEDURE IF EXISTS sp_slides_delete;
 DROP PROCEDURE IF EXISTS sp_slides_get;
+DROP PROCEDURE IF EXISTS sp_slides_all_for_display;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_slides_get`()
@@ -56,6 +57,20 @@ SELECT id
 , ends_at
 FROM _slides
 WHERE (marked_as_deleted_by = 0);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_slides_all_for_display`()
+BEGIN
+SELECT id
+, name
+, image_url
+, link_url
+FROM _slides
+WHERE (marked_as_deleted_by = 0)
+AND is_active
+AND NOW() BETWEEN begins_at AND ends_at;
 END$$
 DELIMITER ;
 

@@ -6,11 +6,11 @@ DROP PROCEDURE IF EXISTS sp_video_ads_update;
 DROP PROCEDURE IF EXISTS sp_video_ads_delete;
 DROP PROCEDURE IF EXISTS sp_video_ads_get;
 DROP PROCEDURE IF EXISTS sp_video_ads_get_random;
-DROP PROCEDURE IF EXISTS sp_video_ads_get_all_active_in_random_order;
+DROP PROCEDURE IF EXISTS sp_video_ads_all_for_display;
 DROP PROCEDURE IF EXISTS sp_video_ads_get_one_random;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_video_ads_get_all_active_in_random_order`()
+CREATE PROCEDURE `sp_video_ads_all_for_display`()
 BEGIN
     SELECT image_url, link_url, video_url, RAND()
     FROM _video_ads
