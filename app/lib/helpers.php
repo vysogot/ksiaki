@@ -181,7 +181,7 @@ function thumbnail_name($filename) {
 function cdn_url($src) {
     if (substr($src, 0, 4) == 'http') return $src;
 
-    return $GLOBALS['config']['cdn'] . $src;
+    return secure_url($GLOBALS['config']['cdn'] . $src);
 }
 
 function ranking_list($scores) {
