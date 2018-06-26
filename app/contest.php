@@ -15,6 +15,10 @@ $data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(
     array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
+if (empty($data['contest'])) redirect('/404.php');
+
+$params['title'] = $data['contest']->name;
+
 $data['game'] = execute('call sp_games_find(:p_id);', array(
     array('p_id', $data['contest']->game_id, PDO::PARAM_INT)
 ));

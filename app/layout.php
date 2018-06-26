@@ -2,7 +2,8 @@
 <!doctype html>
 <html>
 <head>
-    <title><?= t('website_title') ?></title>
+    <title><?= website_title($params) ?></title>
+    <meta name="description" content="<?= t('website_description') ?>" />
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />

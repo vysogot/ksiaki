@@ -6,7 +6,8 @@ $params = [
   "offset" => 0,
   "limit" => 10,
   "month" => date('Y-m-01'),
-  "year" => date('Y-m-d')
+  "year" => date('Y-m-d'),
+  'title' => t('contests')
 ];
 
 $params = array_merge($params, $_GET);

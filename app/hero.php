@@ -10,6 +10,8 @@ $data['hero'] = execute('call sp_heroes_find_by_slug(:p_slug);', array(
 
 if (empty($data['hero'])) redirect('/404.php');
 
+$params['title'] = $data['hero']->name;
+
 $data['hero_magazines'] = execute('call sp_hero_magazines_by_hero_id(:p_hero_id);', array(
   array('p_hero_id', $data['hero']->id, PDO::PARAM_STR)
 ), true);

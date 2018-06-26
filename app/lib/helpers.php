@@ -88,6 +88,18 @@ function current_session($key) {
     return $_SESSION[$key] ?? null;
 }
 
+function website_title($params) {
+
+    $title = t('website_title');
+
+    if (isset($params['title'])) {
+        $title = $params['title'] . ' | ' . $title;
+    }
+
+    return $title;
+
+}
+
 function get_background($placement) {
 
     $background = execute('call sp_backgrounds_get(

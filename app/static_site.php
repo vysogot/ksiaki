@@ -8,6 +8,10 @@ $data['static_site'] = execute('call sp_static_sites_find_by_slug(:p_slug);', ar
     array('p_slug', $params['slug'], PDO::PARAM_STR)
 ));
 
+if (empty($data['static_site'])) redirect('/404.php');
+
+$params['title'] = $data['static_site']->title;
+
 function content($params, $data) { ?>
 
 <div class="wrapper static-site">

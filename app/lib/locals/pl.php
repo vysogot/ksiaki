@@ -2,7 +2,8 @@
 
 $translations = [
 
-  'website_title' => 'Konkursiaki',
+  'website_title' => 'Konkursiaki.pl - Konkursy dla dzieci, super nagrody, ulubieni bohaterowie i filmy',
+  'website_description' => 'Co tydzień nowe gry i konkursy, zawsze super nagrody. Ulubieni bohaterowie i filmy: LEGO CHIMA, Scooby-Doo, WINX Club, Ben10, Mia i ja, Cartoon Network, Pingwiny z Madagaskaru, W Siodle',
 
   // general fields
 
