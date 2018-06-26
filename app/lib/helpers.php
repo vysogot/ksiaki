@@ -84,6 +84,10 @@ function image($src, $options = []) {
     return $image . ">";
 }
 
+function current_session($key) {
+    return $_SESSION[$key] ?? null;
+}
+
 function get_background($placement) {
 
     $background = execute('call sp_backgrounds_get(
