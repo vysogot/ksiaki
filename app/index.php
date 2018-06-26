@@ -40,7 +40,7 @@ function content($params, $data) { ?>
 
 <?php if (!empty($data['contests'])) { ?>
 
-    <section id="contests" class="slider">
+    <section id="contests" class="slider box-slider-container">
       <div id="contests-slider" class="boxes">
         <?php foreach($data['contests'] as $contest) { ?>
           <div>
@@ -56,7 +56,7 @@ function content($params, $data) { ?>
     <?php // include 'partials/user_movies_list.php'; ?>
 
 <?php if (!empty($data['boxes'])) { ?>
-    <section id="box-banners">
+    <section id="box-banners" class="slider box-slider-container">
       <div id="box-banners-slider" class="boxes">
         <?php foreach($data['boxes'] as $box) { ?>
           <div>
