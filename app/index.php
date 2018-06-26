@@ -36,6 +36,8 @@ function content($params, $data) { ?>
 
     <?php include './partials/stroer_sky.html' ?>
 
+    <div class="main">
+
 <?php if (!empty($data['contests'])) { ?>
 
     <section id="contests" class="slider">
@@ -65,6 +67,14 @@ function content($params, $data) { ?>
       </div>
     </section>
 <?php } ?>
+
+  <div class="clear">
+    <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
+  </div>
+
+  </div>
+
+  <?php include './partials/app_sky_banner.php' ?>
 
 </div>
 

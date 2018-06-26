@@ -45,6 +45,8 @@ function content($params, $data) { ?>
 
     <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . params('year')) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
+
+    <?= image('/assets/images/nagroda-konkursiaka.png', ['class' => 'shadow']) ?>
   </div>
 
   <?php include './partials/modal_ranking.html' ?>

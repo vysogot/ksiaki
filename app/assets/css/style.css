@@ -45,9 +45,9 @@ video { max-width: 100%; background: white; }
 
 #slajder      { width: 474px; height: 289px; margin-right: 12px; overflow-y: hidden; }
 #player       { width: 474px; height: 289px; }
-#contests     { width: 725px; min-height: 340px; }
-#movies       { width: 725px; min-height: 340px; }
-#box-banners  { width: 725px; min-height: 340px; }
+#contests     { width: 485px; min-height: 340px; }
+#movies       { width: 485px; min-height: 340px; }
+#box-banners  { width: 485px; min-height: 340px; }
 
 #static-sites { width: 100%;  height: 50px; color: white;
   background-color: #999; opacity: 0.9; }
@@ -99,7 +99,7 @@ ul.bare li.right { float: right; }
 #menu-users       { background: white url('/assets/images/menu-users.png')        10px 10px no-repeat; }
 #menu-heroes      { background: white url('/assets/images/menu-heroes.png')       10px 10px no-repeat; }
 
-.main { width: 480px; }
+.main { width: 480px; margin-bottom: 25px;}
 .side { width: 240px; }
 .main, .side { float: left; }
 
