@@ -186,9 +186,12 @@
     .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
     </style>
 
-    <?php if (current_url() == '/') { ?>
-        <?php include 'partials/rodo.html'; ?>
-    <?php } ?>
+    <?php 
+      if ((current_url() == '/') && !isset($_COOKIE['RODO'])) {
+         setcookie('RODO', '1', time()+3600*24*7);
+         include 'partials/rodo.html'; 
+      } 
+    ?>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=pl&theme=white&privacyPage=https%3A%2F%2Fkonkursiaki.pl%2Fpolityka-prywatnosci"></script>
     <style>
