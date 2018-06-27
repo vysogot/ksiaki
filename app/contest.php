@@ -79,8 +79,8 @@ function content($params, $data) { ?>
         <h2 class="center"><?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <?php } ?>
     <p class="bold bigger-font">
-        <span class="left"><?= t('contest_starts', ['date' => date('m.d', strtotime($data['contest']->begins_at))]) ?></span>
-        <span class="right"><?= t('contest_ends', ['date' => date('m.d', strtotime($data['contest']->ends_at))]) ?></span>
+        <span class="left"><?= t('contest_starts', ['date' => date('d.m', strtotime($data['contest']->begins_at))]) ?></span>
+        <span class="right"><?= t('contest_ends', ['date' => date('d.m', strtotime($data['contest']->ends_at))]) ?></span>
     </p>
     <p class="center smaller-font">
         <?= t('contest_statute_consent', ['link' => link_to(t('statute'), '/contest_statute.php?slug=' . params('slug'), ['class' => 'modal-remote', 'data-modal-class' => 'wide-text'])]) ?>
