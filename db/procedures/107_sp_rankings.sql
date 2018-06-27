@@ -146,7 +146,7 @@ SET @inter_val:= p_interval;
 SET @date_start:= p_date_start;
 SET @contest_id:= p_contest_id;
 SET @offset_rows:= p_offset + 1;
-SET @limit_rows:= CASE WHEN (@name = '') THEN (p_limit + p_offset) ELSE 2000000 END;
+SET @limit_rows:= CASE WHEN (p_id = 0) THEN (p_limit + p_offset) ELSE 2000000 END;
 
 
 SET @date_start =
@@ -183,6 +183,9 @@ LEFT JOIN (
       WHERE (ends_at BETWEEN @date_start AND @date_end)
 		AND (contest_id = CASE WHEN (@contest_id = 0) THEN contest_id ELSE @contest_id END)
       GROUP BY user_id, contest_id
+      UNION ALL
+      SELECT user_id, contest_id, max_points AS points
+	  FROM old_score_games WHERE (contest_id = CASE WHEN (@contest_id = 0) THEN contest_id ELSE @contest_id END) 
     ) AS rpt
     GROUP BY user_id
     ORDER BY SUM(points) DESC
