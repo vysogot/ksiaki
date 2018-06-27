@@ -4,6 +4,10 @@ function fetch_all($statement, $arguments = []) {
     return execute($statement, $arguments, true);
 }
 
+function fetch_one($statement, $arguments = []) {
+    return execute($statement, $arguments, false);
+}
+
 function execute($statement, $arguments = [], $all = false) {
 
   $connection = get_connection();

@@ -304,6 +304,7 @@ $translations = [
   'password_reset_form_slug' => '/zaloz-nowe-haslo/{{key}}',
   'account_activation_slug' => '/aktywacja-konta/{{key}}',
   'invitation_registration_slug' => '/rejestracja-za-zaproszeniem/{{invitation_hash}}',
+  'download_slug' => '/pobieranie-tapety/{{id}}',
 
   // actions
 

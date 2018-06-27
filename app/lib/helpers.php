@@ -60,8 +60,8 @@ function flash($type, $message) {
     $_SESSION['flashes'][] = ['type' => $type, 'message' => $message];
 }
 
-function link_to($name, $destination, $options = []) {
-    $link = '<a href="' . path_to($destination) . '"';
+function link_to($name, $destination, $options = [], $props = []) {
+    $link = '<a href="' . secure_url(path_to($destination)) . '"';
 
     foreach($options as $key => $value) {
         $link .= ' ' . $key . '="' . $value . '"';
@@ -69,6 +69,10 @@ function link_to($name, $destination, $options = []) {
 
     if (current_url() == $destination) {
         $link .= ' class="active"';
+    }
+
+    foreach($props as $prop) {
+        $link .= ' ' . $prop;
     }
 
     return $link . ">$name</a>";

@@ -101,8 +101,8 @@ function content($params, $data) { ?>
                   <div id="box-banners-slider" class="boxes">
                     <?php foreach($data['hero_wallpapers'] as $box) { ?>
                       <div>
-                        <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
-                        <p><?= link_to($box->name, secure_url($box->file_url), ['class' => 'modal-image']) ?></p>
+                        <?= link_to(image(thumbnail_name($box->file_url)), t('download_slug', ['id' => $box->id])) ?>
+                        <p><?= link_to($box->name, t('download_slug', ['id' => $box->id])) ?></p>
                       </div>
                     <?php } ?>
                   </div>
