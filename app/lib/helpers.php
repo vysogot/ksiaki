@@ -188,7 +188,7 @@ function cdn_url($src) {
 }
 
 function ranking_list($scores) {
-    $html = '<ul class="rankings">';
+    $html = '<ul class="rankings smaller-font">';
 
     foreach($scores as $score) {
         $html .= "<li>" . link_to($score->nick, '/profile.php?nick=' . urlencode($score->nick)) .
