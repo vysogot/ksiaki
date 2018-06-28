@@ -22,7 +22,7 @@ IF (@last_migration_at < @migration_timestamp) THEN
       `updated_at` datetime DEFAULT NULL,
       `updated_by` int(10) DEFAULT 0,
       PRIMARY KEY (`id`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Szablony maili';
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Szablony maili';
 
   INSERT INTO `def_mail_templates` (`name`, `subject`, `content`)
   VALUES

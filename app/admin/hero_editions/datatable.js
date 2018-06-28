@@ -1,20 +1,24 @@
 $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
-        "ajax": { "url": "/admin/hero_files/datatable.php" },
+        "ajax": { "url": "/admin/hero_editions/datatable.php" },
         "columns": [
             { "data": "id" },
             {
-                "data": "file_url",
+                "data": "cover_url",
                 "render": function (data) {
-                    var ext = data.substr(data.lastIndexOf('.'));
-                    var name = data.substr(0, data.lastIndexOf('.')) + '_thumb' + ext;
-                    return '<img height=75px src="' + name + '">';
+                    console.log(data);
+                    if (data != null) {
+                        var ext = data.substr(data.lastIndexOf('.'));
+                        var name = data.substr(0, data.lastIndexOf('.')) + '_thumb' + ext;
+                        return '<img height=75px src="' + name + '">';
+                    } else {
+                        return '';
+                    }
                 },
                 "orderable": false
             },
             { "data": "name" },
             { "data": "hero_name" },
-            { "data": "edition_name" },
             {
                 "data": "is_active",
                 "className": "center",

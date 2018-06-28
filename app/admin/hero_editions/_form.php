@@ -2,8 +2,7 @@
 
     include '../init.php';
 
-    $hero_editions = fetch_all('call sp_hero_editions_all();');
-    $hero_file_types = fetch_all('call sp_hero_file_types_all();');
+    $heroes = execute('call sp_heroes_all();', [], true);
 
 ?>
 
@@ -32,30 +31,14 @@
                 </div>
 
                 <div class='form-group'>
-                    <label class="control-label col-sm-4" for="hero_edition_id">
-                        <?= t('hero_edition') ?>
-                    </label>
-                    <div class="col-sm-8">
-                        <div class='input-group'>
-                            <select class="form-control" id="hero_edition_id" name="hero_edition_id">
-                                <?php foreach($hero_editions as $hero_edition) { ?>
-                                    <option value="<?= $hero_edition->id ?>"><?= $hero_edition->name ?></option>
-                                <?php } ?>
-                            </select>
-                            <div class='input-group-addon'><i class='glyphicon glyphicon-list'></i></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='form-group'>
                     <label class="control-label col-sm-4" for="name">
-                        <?= t('hero_file_type') ?>
+                        <?= t('hero') ?>
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <select class="form-control" id="hero_file_type_id" name="hero_file_type_id">
-                                <?php foreach($hero_file_types as $file_type) { ?>
-                                    <option value="<?= $file_type->id ?>"><?= t($file_type->name) ?></option>
+                            <select class="form-control" id="hero_id" name="hero_id">
+                                <?php foreach($heroes as $hero) { ?>
+                                    <option value="<?= $hero->id ?>"><?= $hero->name ?></option>
                                 <?php } ?>
                             </select>
                             <div class='input-group-addon'><i class='glyphicon glyphicon-list'></i></div>
@@ -64,17 +47,57 @@
                 </div>
 
                 <div class='form-group'>
-                    <label class="control-label col-sm-4" for="file_url">
-                        <?= t('file_url') ?>
+                    <label class="control-label col-sm-4" for="cover_url">
+                        <?= t('cover_url') ?>
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="file_url" name="file_url" type="text">
+                            <input class="form-control" id="cover_url" name="cover_url" type="text">
                             <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
                         </div>
-                        <input id="actual_file" name="actual_file" type="file">
+                        <input id="cover_file" name="cover_file" type="file" class="form-control-file">
                     </div>
                 </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="video_url">
+                        <?= t('video_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="video_url" name="video_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-facetime-video'></i></div>
+                        </div>
+                        <input id="video_file" name="video_file" type="file" class="form-control-file">
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="video_cover_url">
+                        <?= t('video_cover_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="video_cover_url" name="video_cover_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-facetime-video'></i></div>
+                        </div>
+                        <input id="video_cover_file" name="video_cover_file" type="file" class="form-control-file">
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="gadget_url">
+                        <?= t('gadget_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="gadget_url" name="gadget_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-file'></i></div>
+                        </div>
+                        <input id="gadget_file" name="gadget_file" type="file" class="form-control-file">
+                    </div>
+                </div>
+                
             </div>
 
             <div class="col-sm-6">

@@ -5,14 +5,14 @@ DROP PROCEDURE IF EXISTS sp_hero_files_create;
 DROP PROCEDURE IF EXISTS sp_hero_files_update;
 DROP PROCEDURE IF EXISTS sp_hero_files_delete;
 DROP PROCEDURE IF EXISTS sp_hero_file_types_all;
-DROP PROCEDURE IF EXISTS sp_hero_magazines_by_hero_id;
-DROP PROCEDURE IF EXISTS sp_hero_wallpapers_by_hero_id;
+DROP PROCEDURE IF EXISTS sp_hero_magazines_by_hero_edition_id;
+DROP PROCEDURE IF EXISTS sp_hero_wallpapers_by_hero_edition_id;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_hero_files_new`()
 BEGIN
     SELECT 0 AS id
-    , '' AS hero_id
+    , '' AS hero_edition_id
     , '' AS hero_file_type_id
     , '' AS name
     , '' AS description
@@ -24,9 +24,12 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_hero_files_find`(IN `p_id` INT)
 BEGIN
-    SELECT _hero_files.*, _heroes.name AS hero_name
+    SELECT _hero_files.*
+    , _hero_editions.name AS edition_name
+    , _heroes.name AS hero_name
     FROM _hero_files
-    INNER JOIN _heroes on _hero_files.hero_id = _heroes.id
+    INNER JOIN _hero_editions on _hero_files.hero_edition_id = _hero_editions.id
+    INNER JOIN _heroes on _hero_editions.hero_id = _heroes.id
     WHERE (_hero_files.id = p_id);
 END$$
 DELIMITER ;
@@ -34,36 +37,39 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_hero_files_all`()
 BEGIN
-    SELECT _hero_files.*, _heroes.name AS hero_name
+    SELECT _hero_files.*
+    , _hero_editions.name AS edition_name
+    , _heroes.name AS hero_name
     FROM _hero_files
-    INNER JOIN _heroes on _hero_files.hero_id = _heroes.id
+    INNER JOIN _hero_editions on _hero_files.hero_edition_id = _hero_editions.id
+    INNER JOIN _heroes on _hero_editions.hero_id = _heroes.id
     WHERE (_hero_files.marked_as_deleted_by = 0);
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_hero_magazines_by_hero_id`(
-    IN `p_hero_id` INT
+CREATE PROCEDURE `sp_hero_magazines_by_hero_edition_id`(
+    IN `p_hero_edition_id` INT
 )
 BEGIN
     SELECT *
     FROM _hero_files
     WHERE (_hero_files.marked_as_deleted_by = 0)
     AND hero_file_type_id = 1
-    AND hero_id = p_hero_id;
+    AND hero_edition_id = p_hero_edition_id;
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_hero_wallpapers_by_hero_id`(
-    IN `p_hero_id` INT
+CREATE PROCEDURE `sp_hero_wallpapers_by_hero_edition_id`(
+    IN `p_hero_edition_id` INT
 )
 BEGIN
     SELECT *
     FROM _hero_files
     WHERE (_hero_files.marked_as_deleted_by = 0)
     AND hero_file_type_id = 2
-    AND hero_id = p_hero_id;
+    AND hero_edition_id = p_hero_edition_id;
 END$$
 DELIMITER ;
 
@@ -77,7 +83,7 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_hero_files_create`(
-    IN `p_hero_id` VARCHAR(255),
+    IN `p_hero_edition_id` VARCHAR(255),
     IN `p_hero_file_type_id` VARCHAR(255),
     IN `p_name` VARCHAR(255),
     IN `p_description` VARCHAR(255),
@@ -87,7 +93,7 @@ CREATE PROCEDURE `sp_hero_files_create`(
 )
 BEGIN
     INSERT INTO _hero_files(
-        hero_id
+        hero_edition_id
         , hero_file_type_id
         , name
         , description
@@ -96,7 +102,7 @@ BEGIN
         , created_at
         , created_by
         ) VALUES(
-        p_hero_id
+        p_hero_edition_id
         , p_hero_file_type_id
         , p_name
         , p_description
@@ -114,7 +120,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `sp_hero_files_update`(
     IN `p_id` INT,
-    IN `p_hero_id` VARCHAR(255),
+    IN `p_hero_edition_id` VARCHAR(255),
     IN `p_hero_file_type_id` VARCHAR(255),
     IN `p_name` VARCHAR(255),
     IN `p_description` VARCHAR(255),
@@ -125,7 +131,7 @@ CREATE PROCEDURE `sp_hero_files_update`(
 BEGIN
     UPDATE _hero_files
     SET name = p_name
-    , hero_id = p_hero_id
+    , hero_edition_id = p_hero_edition_id
     , hero_file_type_id = p_hero_file_type_id
     , description = p_description
     , file_url = p_file_url

@@ -15,6 +15,7 @@ BEGIN
     , '' AS description
     , '' AS avatar_url
     , '' AS header_url
+    , '' AS footer_url
     , 1 AS is_active;
 END$$
 DELIMITER ;
@@ -59,10 +60,6 @@ CREATE PROCEDURE `sp_heroes_create`(
     IN `p_description` text,
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
-    IN `p_cover_url` VARCHAR(255),
-    IN `p_video_url` VARCHAR(255),
-    IN `p_video_cover_url` VARCHAR(255),
-    IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
     IN `p_is_active` INT,
@@ -75,10 +72,6 @@ BEGIN
         , description
         , avatar_url
         , header_url
-        , cover_url
-        , video_url
-        , video_cover_url
-        , gadget_url
         , footer_url
         , license_description
         , is_active
@@ -89,10 +82,6 @@ BEGIN
         , p_description
         , p_avatar_url
         , p_header_url
-        , p_cover_url
-        , p_video_url
-        , p_video_cover_url
-        , p_gadget_url
         , p_footer_url
         , p_license_description
         , p_is_active
@@ -112,10 +101,6 @@ CREATE PROCEDURE `sp_heroes_update`(
     IN `p_description` text,
     IN `p_avatar_url` VARCHAR(255),
     IN `p_header_url` VARCHAR(255),
-    IN `p_cover_url` VARCHAR(255),
-    IN `p_video_url` VARCHAR(255),
-    IN `p_video_cover_url` VARCHAR(255),
-    IN `p_gadget_url` VARCHAR(255),
     IN `p_footer_url` VARCHAR(255),
     IN `p_license_description` text,
     IN `p_is_active` INT,
@@ -128,10 +113,6 @@ BEGIN
     , description = p_description
     , avatar_url = p_avatar_url
     , header_url = p_header_url
-    , cover_url = p_cover_url
-    , video_url = p_video_url
-    , video_cover_url = p_video_cover_url
-    , gadget_url = p_gadget_url
     , footer_url = p_footer_url
     , license_description = p_license_description
     , is_active = p_is_active

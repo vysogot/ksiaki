@@ -63,58 +63,6 @@
                 </div>
 
                 <div class='form-group'>
-                    <label class="control-label col-sm-4" for="cover_url">
-                        <?= t('cover_url') ?>
-                    </label>
-                    <div class="col-sm-8">
-                        <div class='input-group'>
-                            <input class="form-control" id="cover_url" name="cover_url" type="text">
-                            <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
-                        </div>
-                        <input id="cover_file" name="cover_file" type="file" class="form-control-file">
-                    </div>
-                </div>
-
-                <div class='form-group'>
-                    <label class="control-label col-sm-4" for="video_url">
-                        <?= t('video_url') ?>
-                    </label>
-                    <div class="col-sm-8">
-                        <div class='input-group'>
-                            <input class="form-control" id="video_url" name="video_url" type="text">
-                            <div class='input-group-addon'><i class='glyphicon glyphicon-facetime-video'></i></div>
-                        </div>
-                        <input id="video_file" name="video_file" type="file" class="form-control-file">
-                    </div>
-                </div>
-
-                <div class='form-group'>
-                    <label class="control-label col-sm-4" for="video_cover_url">
-                        <?= t('video_cover_url') ?>
-                    </label>
-                    <div class="col-sm-8">
-                        <div class='input-group'>
-                            <input class="form-control" id="video_cover_url" name="video_cover_url" type="text">
-                            <div class='input-group-addon'><i class='glyphicon glyphicon-facetime-video'></i></div>
-                        </div>
-                        <input id="video_cover_file" name="video_cover_file" type="file" class="form-control-file">
-                    </div>
-                </div>
-
-                <div class='form-group'>
-                    <label class="control-label col-sm-4" for="gadget_url">
-                        <?= t('gadget_url') ?>
-                    </label>
-                    <div class="col-sm-8">
-                        <div class='input-group'>
-                            <input class="form-control" id="gadget_url" name="gadget_url" type="text">
-                            <div class='input-group-addon'><i class='glyphicon glyphicon-file'></i></div>
-                        </div>
-                        <input id="gadget_file" name="gadget_file" type="file" class="form-control-file">
-                    </div>
-                </div>
-
-                <div class='form-group'>
                     <label class="control-label col-sm-4" for="footer_url">
                         <?= t('footer_url') ?>
                     </label>

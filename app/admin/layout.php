@@ -96,6 +96,7 @@
             </a>
             <ul class="dropdown-menu">
               <!-- <li><?= link_to(t('user_movies'), '/admin/user_movies/', ['class' => 'remote']) ?></li> -->
+              <li><?= link_to(t('hero_editions'), '/admin/hero_editions/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('hero_files'), '/admin/hero_files/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('contest_prizes'), '/admin/contest_prizes/', ['class' => 'remote']) ?></li>
               <li><?= link_to(t('sponsors'), '/admin/sponsors/', ['class' => 'remote']) ?></li>

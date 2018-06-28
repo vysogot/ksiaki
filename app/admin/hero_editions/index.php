@@ -2,13 +2,12 @@
 
 include '../init.php';
 
-$data['title'] = 'hero_files';
+$data['title'] = 'hero_editions';
 $data['column_names'] = [
     'id',
-    'file_url',
-    'name',
+    'cover_url',
+    'the_name',
     'hero_name',
-    'edition_name',
     'is_active'
 ];
 

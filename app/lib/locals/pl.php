@@ -131,6 +131,7 @@ $translations = [
   'sponsor_name' => 'Sponsor',
   'sponsors' => 'Sponsorzy',
   'sponsor' => 'Sponsor',
+  'hero_editions' => 'Edycje bohaterów',
 
   // data
 
@@ -338,5 +339,10 @@ $translations = [
   // mail templates
   'mail_templates' => 'Szablony maili',
   'subject' => 'Temat',
+
+  // hero editions
+
+  'edition_name' => 'Nazwa edycji',
+  'hero_edition' => 'Edycja bohatera',
 
 ];

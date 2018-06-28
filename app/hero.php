@@ -12,11 +12,7 @@ if (empty($data['hero'])) redirect('/404.php');
 
 $params['title'] = $data['hero']->name;
 
-$data['hero_magazines'] = execute('call sp_hero_magazines_by_hero_id(:p_hero_id);', array(
-  array('p_hero_id', $data['hero']->id, PDO::PARAM_STR)
-), true);
-
-$data['hero_wallpapers'] = execute('call sp_hero_wallpapers_by_hero_id(:p_hero_id);', array(
+$data['hero_editions'] = fetch_all('call sp_hero_editions_find_by_hero_id(:p_hero_id);', array(
   array('p_hero_id', $data['hero']->id, PDO::PARAM_STR)
 ), true);
 
@@ -33,82 +29,98 @@ function content($params, $data) { ?>
 
     <?php include './partials/stroer_sky.html' ?>
 
-    <div class="row hero">
-        <h2>
-            <?= e($data['hero']->name) ?>
-            <?php if (is_admin()) { ?>
-                <?= link_to(t('edit_form'), '/admin/heroes') ?>
-            <?php } ?>
-        </h2>
+    <?php foreach($data['hero_editions'] as $hero_edition) { ?>
 
-        <?php if (!empty($data['hero']->cover_url)) { ?>
+        <?php
 
-            <div class="column-13 hero-cover">
-                <?php if (!empty($data['hero']->cover_url)) { ?>
-                    <?= link_to(image(thumbnail_name(secure_url($data['hero']->cover_url))), secure_url($data['hero']->cover_url), ['class' => 'modal-image']) ?>
+        $hero_magazines = fetch_all('call sp_hero_magazines_by_hero_edition_id(:p_hero_edition_id);', array(
+          array('p_hero_edition_id', $hero_edition->id, PDO::PARAM_INT)
+        ));
+
+        $hero_wallpapers = fetch_all('call sp_hero_wallpapers_by_hero_edition_id(:p_hero_edition_id);', array(
+          array('p_hero_edition_id', $hero_edition->id, PDO::PARAM_INT)
+        ));
+
+        ?>
+
+        <div class="row hero">
+            <h2>
+                <?= e($hero_edition->name) ?>
+                <?php if (is_admin()) { ?>
+                    <?= link_to(t('edit_form'), '/admin/hero_editions') ?>
                 <?php } ?>
-            </div>
+            </h2>
 
-        <?php } ?>
+            <?php if (!empty($hero_edition->cover_url)) { ?>
 
-        <?php if (!empty($data['hero']->gadget_url)) { ?>
+                <div class="column-13 hero-cover">
+                    <?php if (!empty($hero_edition->cover_url)) { ?>
+                        <?= link_to(image(thumbnail_name(secure_url($hero_edition->cover_url))), secure_url($hero_edition->cover_url), ['class' => 'modal-image']) ?>
+                    <?php } ?>
+                </div>
 
-            <div class="column-23">
-                <p><?= $data['hero']->description ?></p>
-                <div class="center hero-gadget">
-                    <?= link_to(image(thumbnail_name(secure_url($data['hero']->gadget_url))), secure_url($data['hero']->gadget_url), ['class' => 'modal-image']) ?>
+            <?php } ?>
+
+            <?php if (!empty($hero_edition->gadget_url)) { ?>
+
+                <div class="column-23">
+                    <p><?= $hero_edition->description ?></p>
+                    <div class="center hero-gadget">
+                        <?= link_to(image(thumbnail_name(secure_url($hero_edition->gadget_url))), secure_url($hero_edition->gadget_url), ['class' => 'modal-image']) ?>
+                    </div>
+                </div>
+
+            <?php } ?>
+
+        </div>
+
+        <?php if (!empty($hero_edition->video_url)) { ?>
+            <div class="row hero">
+                <h3><?= t('tv_spot') ?></h3>
+                <div class="column-33">
+                    <video controls muted preload="none" src="<?= secure_url($hero_edition->video_url) ?>"
+                        poster="<?= secure_url($hero_edition->video_cover_url) ?>"></video>
                 </div>
             </div>
-
         <?php } ?>
 
-    </div>
-
-    <?php if (!empty($data['hero']->video_url)) { ?>
+        <?php if (!empty($hero_magazines)) { ?>
         <div class="row hero">
-            <h3><?= t('tv_spot') ?></h3>
-            <div class="column-33">
-                <video controls muted preload="none" src="<?= secure_url($data['hero']->video_url) ?>"
-                    poster="<?= secure_url($data['hero']->video_cover_url) ?>"></video>
-            </div>
-        </div>
-    <?php } ?>
-
-    <?php if (!empty($data['hero_magazines'])) { ?>
-    <div class="row hero">
-        <h3><?= t('in_current_edition') ?></h3>
-        <div class="column-33">
-            <section>
-              <div id="box-banners-slider" class="boxes">
-                <?php foreach($data['hero_magazines'] as $box) { ?>
-                  <div>
-                      <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
-                      <p><?= link_to($box->name, secure_url($box->file_url), ['class' => 'modal-image']) ?></p>
-                  </div>
-                <?php } ?>
-              </div>
-            </section>
-        </div>
-    </div>
-    <?php } ?>
-
-    <?php if (!empty($data['hero_wallpapers'])) { ?>
-
-        <div class="row hero">
-            <h3><?= t('to_download') ?></h3>
+            <h3><?= t('in_current_edition') ?></h3>
             <div class="column-33">
                 <section>
                   <div id="box-banners-slider" class="boxes">
-                    <?php foreach($data['hero_wallpapers'] as $box) { ?>
+                    <?php foreach($hero_magazines as $box) { ?>
                       <div>
-                        <?= link_to(image(thumbnail_name($box->file_url)), t('download_slug', ['id' => $box->id])) ?>
-                        <p><?= link_to($box->name, t('download_slug', ['id' => $box->id])) ?></p>
+                          <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
+                          <p><?= link_to($box->name, secure_url($box->file_url), ['class' => 'modal-image']) ?></p>
                       </div>
                     <?php } ?>
                   </div>
                 </section>
             </div>
         </div>
+        <?php } ?>
+
+        <?php if (!empty($hero_wallpapers)) { ?>
+
+            <div class="row hero">
+                <h3><?= t('to_download') ?></h3>
+                <div class="column-33">
+                    <section>
+                      <div id="box-banners-slider" class="boxes">
+                        <?php foreach($hero_wallpapers as $box) { ?>
+                          <div>
+                            <?= link_to(image(thumbnail_name($box->file_url)), t('download_slug', ['id' => $box->id])) ?>
+                            <p><?= link_to($box->name, t('download_slug', ['id' => $box->id])) ?></p>
+                          </div>
+                        <?php } ?>
+                      </div>
+                    </section>
+                </div>
+            </div>
+
+        <?php } ?>
 
     <?php } ?>
 

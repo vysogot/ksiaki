@@ -12,11 +12,11 @@ if ($post) {
 
   if (empty($params['errors'])) {
 
-      $hero = execute('call sp_heroes_find(:p_id);', array(
-          array('p_id', $params['hero_id'], PDO::PARAM_INT)
+      $hero_edition = execute('call sp_hero_editions_find(:p_id);', array(
+          array('p_id', $params['hero_edition_id'], PDO::PARAM_INT)
       ));
 
-      $filename = $params['hero_file_type_id'] . '-' . $hero->slug;
+      $filename = slugify($hero_edition->name);
 
       if (!empty($_FILES['actual_file']['name'])) {
           $params['file_url'] = file_upload($_FILES['actual_file'], ['subdir' => 'heroes', 'thumbnail' => true, 'filename' => $filename]);
@@ -24,7 +24,7 @@ if ($post) {
 
       $result = execute('call sp_hero_files_update(
           :p_id,
-          :p_hero_id,
+          :p_hero_edition_id,
           :p_hero_file_type_id,
           :p_name,
           :p_description,
@@ -33,8 +33,8 @@ if ($post) {
           :p_user_id
       );', array(
           array('p_id', $params['id'], PDO::PARAM_STR),
-          array('p_hero_id', $params['hero_id'], PDO::PARAM_STR),
-          array('p_hero_file_type_id', $params['hero_file_type_id'], PDO::PARAM_STR),
+          array('p_hero_edition_id', $params['hero_edition_id'], PDO::PARAM_INT),
+          array('p_hero_file_type_id', $params['hero_file_type_id'], PDO::PARAM_INT),
           array('p_name', $params['name'], PDO::PARAM_STR),
           array('p_description', $params['description'], PDO::PARAM_STR),
           array('p_file_url', $params['file_url'], PDO::PARAM_INT),

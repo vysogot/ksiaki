@@ -123,7 +123,9 @@ function get_data(myObj) {
 
             if (key.endsWith('_url')) {
                 field.prop('readonly', true);
+                console.log('_url', field);
             }
+            console.log('out', field);
         }
 
         $('textarea[name="content"]').val(ret.content);

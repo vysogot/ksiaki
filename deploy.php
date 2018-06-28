@@ -41,6 +41,7 @@ host('ksiaki-production')
 
 desc('Deploy your project');
 task('deploy', [
+    'deploy:backup',
     'deploy:info',
     'deploy:prepare',
     'deploy:lock',
@@ -51,6 +52,8 @@ task('deploy', [
     'deploy:vendors',
     'deploy:clear_paths',
     'deploy:symlink',
+    'deploy:run_migrations',
+    'deploy:update_procedures',
     'deploy:unlock',
     'deploy:nginx_restart',
     'deploy:phpfpm_restart',
@@ -72,51 +75,18 @@ task('deploy:run_migrations', function () {
     run('APPLICATION_ENV={{stage}} php db/migrate.php');
 });
 
-task('deploy:db_update_procedures', function () {
+task('deploy:update_procedures', function () {
     cd('{{release_path}}');
     run('APPLICATION_ENV={{stage}} php db/update_procedures.php');
 });
 
-task('db:backup', function () {
-    // still not working
-
-    $timestamp = date('Ymd_His', time());
-
-    // requires .ssh/environment MYSQL_PWD set on remote
-    // check /etc/ssh/sshd_config for PermitUserEnvironment yes
-    run('mysqldump -u{{db_user}} --databases {{db_name}} --events --routines --single-transaction >> /var/www/{{application}}-backups/' . $timestamp . '-{{application}}-backup.sql');
-    // run('php /var/www/backup-ksiaki.php');
-});
-
-task('db:update', function () {
-    cd('{{release_path}}');
-    run('APPLICATION_ENV={{stage}} php db/reset.php');
+task('deploy:backup', function () {
+    run('php /var/www/full-backup-ksiaki.php');
 });
 
 task('inform:rollbar', function () {
-    putenv('APPLICATION_ENV={{stage}}');
-    $envs = include realpath(__DIR__ . '/config/ksiaki.php');
-    $config = $envs['{{stage}}'];
-
-    $url = 'https://api.rollbar.com/api/1/deploy/';
-    $data = array(
-        'access_token' => $config['rollbar_key'],
-        'environment' => '{{stage}}',
-        'revision' => exec('git log -n 1 --pretty=format:"%H"'),
-        'local_username' => 'ksiaki-production'
-    );
-
-    // use key 'http' even if you send the request to https://...
-    $options = array(
-        'http' => array(
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
-            'content' => http_build_query($data)
-        )
-    );
-    
-    $context  = stream_context_create($options);
-    return file_get_contents($url, false, $context);
+    cd('{{release_path}}');
+    run('APPLICATION_ENV={{stage}} php rollbar_deploy.php');
 });
 
 // [Optional] If deploy fails automatically unlock.

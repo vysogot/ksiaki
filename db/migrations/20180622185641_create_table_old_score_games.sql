@@ -21,7 +21,7 @@ IF (@last_migration_at < @migration_timestamp) THEN
     	`max_points` INT(11) NULL DEFAULT '0',
     	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     	PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty za gry ze starych konkursiakow';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Punkty za gry ze starych konkursiakow';
 
     /*** END OF MIGRATION ***/
 

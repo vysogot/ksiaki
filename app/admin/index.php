@@ -27,6 +27,9 @@ function content($params, $data) { ?>
             <?= link_to(t('video_ads'), '/admin/video_ads/', ['class' => 'remote']) ?>
         </li>
         <li>
+            <?= link_to(t('hero_editions'), '/admin/hero_editions/', ['class' => 'remote']) ?>
+        </li>
+        <li>
             <?= link_to(t('hero_files'), '/admin/hero_files/', ['class' => 'remote']) ?>
         </li>
         <li>
