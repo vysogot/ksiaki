@@ -319,9 +319,9 @@ footer p {
 
     display: block;
 
-    width: 20px;
-    height: 20px;
-    padding: 0;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
@@ -331,7 +331,11 @@ footer p {
     color: transparent;
     border: none;
     outline: none;
-    background: transparent;
+    background: white;
+
+    -moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
 }
 .slick-prev:hover,
 .slick-prev:focus,
@@ -340,7 +344,8 @@ footer p {
 {
     color: transparent;
     outline: none;
-    background: transparent;
+    background: white;
+
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,
@@ -371,7 +376,7 @@ footer p {
 
 .slick-prev
 {
-    left: -25px;
+    left: -35px;
 }
 [dir='rtl'] .slick-prev
 {
@@ -391,6 +396,8 @@ footer p {
 {
     right: -25px;
 }
+
+#heroes .slick-next { right: -35px; }
 [dir='rtl'] .slick-next
 {
     right: auto;

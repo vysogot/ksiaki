@@ -58,7 +58,7 @@ function content($params, $data) { ?>
     <input id="email" type="text" name="email" placeholder="<?= t('put_your_email') ?>" value="<?= params('email') ?>" autofocus required />
     <input type="submit" value="<?= t('submit') ?>"/>
 
-    <p><?= t('no_account_yet') ?> <?= link_to(t('register'), '/register.php') ?></p>
+    <p><?= t('no_account_yet', ['link' => link_to(t('register'), '/register.php')]) ?></p>
 
   </form>
 
