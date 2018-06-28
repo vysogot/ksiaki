@@ -11,6 +11,10 @@ if (empty($wallpaper)) redirect('/404.php');
 $ext = file_extension($wallpaper->file_url);
 $file_name = $wallpaper->name . '.' . $ext;
 
+if ($ext == 'jpg') {
+    $ext = 'jpeg';
+}
+
 header("Content-disposition: attachment; filename=$file_name");
-header("Content-type: application/$ext");
+header("Content-type: image/$ext");
 readfile("$wallpaper->file_url");
