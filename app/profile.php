@@ -32,10 +32,10 @@ $badge_titles = array_filter(explode(', ', $profile->badge_titles));
 
 <p>
 
-    <?= image($profile->rank_image_url, ["title" => t($profile->rank_title)]) ?>
+    <?= image($profile->rank_image_url, ["title" => $profile->rank_title]) ?>
 
     <?php foreach($badge_image_urls as $index => $url) { ?>
-        <?= image($url, ["title" => t($badge_titles[$index])]) ?>
+        <?= image($url, ["title" => $badge_titles[$index]]) ?>
     <?php } ?>
 
 </p>
