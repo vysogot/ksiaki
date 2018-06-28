@@ -7,9 +7,12 @@ $(document).ready(function() {
                   }
         },
         "columns": [
-            { "data": "place" },
+            { "data": "place",
+              "className": 'text-right bold' },
             { "data": "nick" },
-            { "data": "points" }
+            { "data": "points", 
+              "render": $.fn.dataTable.render.number( ' ', '.', 0 ),
+              "className": 'text-right bold' }
         ],
 
         "initComplete": function() { $('.panel-body').show(); },
