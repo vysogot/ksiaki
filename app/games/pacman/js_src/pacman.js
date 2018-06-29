@@ -340,6 +340,7 @@ Pacman.User = function (game, map) {
         due       = null,
         lives     = null,
         score     = 5,
+        pScore    = 0,
         keyMap    = {};
 
     keyMap[KEY.ARROW_LEFT]  = LEFT;
@@ -356,6 +357,14 @@ Pacman.User = function (game, map) {
 
     function theScore() {
         return score;
+    };
+
+    function preScore() {
+        return pScore;
+    };
+
+    function setPreScore(levelScore) {
+        pScore = levelScore;
     };
 
     function loseLife() {
@@ -495,7 +504,7 @@ Pacman.User = function (game, map) {
             addScore((block === Pacman.BISCUIT) ? 10 : 50);
             eaten += 1;
 
-            if (eaten === 182) {
+            if (eaten === 10) {
 
                 game.completedLevel();
 
@@ -579,6 +588,8 @@ Pacman.User = function (game, map) {
         "loseLife"      : loseLife,
         "getLives"      : getLives,
         "score"         : score,
+        "preScore"      : preScore,
+        "setPreScore"   : setPreScore,
         "addScore"      : addScore,
         "theScore"      : theScore,
         "keyDown"       : keyDown,
@@ -1090,7 +1101,7 @@ var PACMAN = (function () {
             contest_id: window.parent.contestId,
             level: level,
             begins_at: levelStartTimestamp,
-            points: user.theScore(),
+            points: user.theScore() - user.preScore(),
             points_total: user.theScore(),
             main_ball_color: adsColor(user.theScore()),
             win: 1
@@ -1098,11 +1109,15 @@ var PACMAN = (function () {
 
             // ksiaki
 
+            user.setPreScore(user.theScore());
+
             myGet('/timestamp.php', function(xmlDoc) {
                 data = JSON.parse(xmlDoc.response);
 
                 levelStartTimestamp = data.timestamp;
                 token = data.token;
+
+                
 
                 setState(WAITING);
                 level += 1;
