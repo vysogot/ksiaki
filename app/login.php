@@ -103,10 +103,10 @@ function content($params, $data) { ?>
             <input type="submit" value="<?= t('log_in') ?>" />
 
             <p>
-                <?= link_to(t('forgot_password'), '/password_reset_request.php') ?>
+                <?= link_to(t('forgot_password'), t('password_reset_request_slug')) ?>
             </p>
             <p>
-                <?= t('no_account_yet', ['link' => link_to(t('register'), '/register.php')]) ?>
+                <?= t('no_account_yet', ['link' => link_to(t('register'), t('registration_slug'))]) ?>
             </p>
 
         </form>

@@ -187,7 +187,7 @@ function content($params, $data) { ?>
 
         <input type="submit" value="<?= t('sign_up') ?>" />
 
-        <p><?= t('already_have_account') ?> <?= link_to(t('log_in'), '/login.php') ?></a></p>
+        <p><?= t('already_have_account') ?> <?= link_to(t('log_in'), t('login_slug')) ?></a></p>
 
     </form>
 

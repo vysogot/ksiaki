@@ -86,13 +86,13 @@
             <li><?= link_to(t('home_page'), '/', ['id' => 'menu-home']) ?></li>
             <li><?= link_to(t('contests'), t('contests_slug'), ['id' => 'menu-contests']) ?></li>
               <?php if (is_logged_in()) { ?>
-                <li class="right"><?= link_to(t('logout'), '/logout.php', ['id' => 'menu-logout']) ?></li>
-                <li class="right"><?= link_to(t('dashboard'), '/profile.php', ['id' => 'menu-login', 'class' => 'modal-remote']) ?></li>
+                <li class="right"><?= link_to(t('logout'), t('logout_slug'), ['id' => 'menu-logout']) ?></li>
+                <li class="right"><?= link_to(t('dashboard'), t('your_account_slug'), ['id' => 'menu-login', 'class' => 'modal-remote']) ?></li>
                 <?php if (is_admin()) { ?>
                   <li class="right"><?= link_to(t('admin_panel'), '/admin', ['id' => 'menu-admin']) ?></li>
                 <?php } ?>
               <?php } else { ?>
-                <li class="right"><?= link_to(t('log_in'), '/login.php', ['id' => 'menu-login']) ?></li>
+                <li class="right"><?= link_to(t('log_in'), t('login_slug'), ['id' => 'menu-login']) ?></li>
               <?php } ?>
           </ul>
         </nav>

@@ -21,9 +21,10 @@ if ($post) {
                 array('p_password_reset_hash', $password_reset_hash, PDO::PARAM_STR)
             ));
 
-            $mail_sent = send_registration_email($user->email, [
+            $mail_sent = send_password_reset_email($user->email, [
                 'nick' => $user->nick,
-                'link' => link_to('Click', '/password_reset_form.php?key=' . $reset_request_result->password_reset_hash)
+                'link' => link_to(t('reset_your_password'), 
+                    t('password_reset_form_slug', ['key' => $reset_request_result->password_reset_hash]))
             ]);
 
             if ($mail_sent) {
@@ -55,10 +56,10 @@ function content($params, $data) { ?>
 
     <?= csrf_field() ?>
 
-    <input id="email" type="text" name="email" placeholder="<?= t('put_your_email') ?>" value="<?= params('email') ?>" autofocus required />
+    <input id="email" type="email" name="email" placeholder="<?= t('put_your_email') ?>" value="<?= params('email') ?>" autofocus required />
     <input type="submit" value="<?= t('submit') ?>"/>
 
-    <p><?= t('no_account_yet', ['link' => link_to(t('register'), '/register.php')]) ?></p>
+    <p><?= t('no_account_yet', ['link' => link_to(t('register'), t('registration_slug'))]) ?></p>
 
   </form>
 

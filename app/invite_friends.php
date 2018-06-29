@@ -63,7 +63,7 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-  <form action="<?= path_to('/invite_friends.php') ?>" method="post" class="vertical-form">
+  <form action="<?= path_to(t('invitation_slug')) ?>" method="post" class="vertical-form">
 
     <legend><h2><?= t('invite_friends') ?></h2></legend>
 

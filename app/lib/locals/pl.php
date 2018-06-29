@@ -293,6 +293,7 @@ $translations = [
 
   'hero_slug' => '/bohater/{{slug}}',
   'user_slug' => '/gracz/{{slug}}',
+  'your_account_slug' => '/twoje-konto',
   'contest_slug' => '/konkurs/{{slug}}',
   'contest_preroll_slug' => '/konkurs/{{slug}}/reklama',
   'contest_play_slug' => '/konkurs/{{slug}}/graj',
@@ -300,11 +301,13 @@ $translations = [
   'contest_prize_slug' => '/nagroda/{{slug}}',
   'contests_slug' => '/konkursy',
   'login_slug' => '/logowanie',
+  'logout_slug' => '/wyloguj-sie',
   'registration_slug' => '/rejestracja',
   'password_reset_request_slug' => '/zakladanie-nowego-hasla',
   'password_reset_form_slug' => '/zaloz-nowe-haslo/{{key}}',
   'account_activation_slug' => '/aktywacja-konta/{{key}}',
   'invitation_registration_slug' => '/rejestracja-za-zaproszeniem/{{invitation_hash}}',
+  'invitation_slug' => '/zapros-przyjaciol-do-gry',
   'download_slug' => '/pobieranie-tapety/{{id}}',
 
   // actions
