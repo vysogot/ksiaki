@@ -2,6 +2,28 @@ DROP PROCEDURE IF EXISTS sp_score_games_create;
 DROP PROCEDURE IF EXISTS sp_score_games_all;
 DROP PROCEDURE IF EXISTS sp_score_games_all_count;
 DROP PROCEDURE IF EXISTS sp_score_games_all_client_side;
+DROP PROCEDURE IF EXISTS sp_score_games_find_max_by_contest_ant_user_id;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_score_games_find_max_by_contest_ant_user_id`(
+    IN `p_contest_id` INT
+    , IN `p_user_id` INT
+)
+BEGIN
+    SELECT IFNULL(SUM(rpt.points),0) AS points
+    FROM (
+      SELECT user_id
+      , contest_id
+      , MAX(points_total) AS points
+      FROM score_games
+      WHERE (contest_id = p_contest_id) AND (user_id = p_user_id)
+      GROUP BY user_id, contest_id
+      UNION ALL
+      SELECT user_id, contest_id, max_points AS points
+      FROM old_score_games WHERE (contest_id = p_contest_id) AND (user_id = p_user_id)
+    ) AS rpt;
+END$$
+DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_score_games_create`(
