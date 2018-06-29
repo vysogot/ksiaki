@@ -2,6 +2,8 @@
 
 include 'init.php';
 
+if (!isset($_SESSION['user_id'])) redirect('/');
+
 $result = execute('call sp_user_logout(:p_user_id, :p_session_id);', array(
     array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT),
     array('p_session_id', session_id(), PDO::PARAM_STR)
