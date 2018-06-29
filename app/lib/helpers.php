@@ -193,10 +193,14 @@ function ranking_list($scores) {
 
     foreach($scores as $score) {
         $html .= "<li>" . link_to($score->nick, '/profile.php?nick=' . urlencode($score->nick)) .
-            " – " . number_format($score->points,0,'',chr(32)) . "</li>";
+            " – " . polish_number_format($score->points) . "</li>";
     }
 
     return $html . '</ul>';
+}
+
+function polish_number_format($number) {
+    return number_format($number, 0, '', chr(32));
 }
 
 function form_date($date) {

@@ -84,6 +84,17 @@ function content($params, $data) { ?>
         <?php } else { ?>
             <?= t($data['game']->description) ?>
         <?php } ?>
+
+        <?php if (isset($data['current_user_score']) && !empty($data['current_user_score'])) { ?>
+            
+            <span class="bold bigger-font block margin-top-10">
+              <?= t('your_best_score') ?> 
+              <span class="red">
+                <?= polish_number_format($data['current_user_score']) ?>
+              </span>
+            </span>
+          
+        <?php } ?>
     </p>
 
     <h2 class="center">
@@ -123,11 +134,6 @@ function content($params, $data) { ?>
     <?php include './partials/modal_ranking.html' ?>
 
     <div class="main">
-
-    <?php if (isset($data['current_user_score']) && !empty($data['current_user_score'])) { ?>
-      <h3 class="center"><?= t('your_best_score') ?></h3>
-      <h2 class="center bold red"><?= $data['current_user_score'] ?></h2>
-    <?php } ?>
 
     <?php if (!empty($data['contest_prizes'])) { ?>
       <h2 class="center"><?= t('prizes_in_this_contest') ?></h2>
