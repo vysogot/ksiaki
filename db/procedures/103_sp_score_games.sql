@@ -10,7 +10,7 @@ CREATE PROCEDURE `sp_score_games_find_max_by_contest_and_user_id`(
     , IN `p_user_id` INT
 )
 BEGIN
-    SELECT IFNULL(SUM(rpt.points),0) AS points
+    SELECT IFNULL(MAX(rpt.points),0) AS points
     FROM (
       SELECT user_id
       , contest_id

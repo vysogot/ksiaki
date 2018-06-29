@@ -174,7 +174,7 @@ LEFT JOIN (
   , points
   FROM (
     SELECT user_id
-    , SUM(points) AS points
+    , MAX(points) AS points
     FROM (
       SELECT user_id
        	, contest_id
@@ -188,7 +188,7 @@ LEFT JOIN (
 	  FROM old_score_games WHERE (contest_id = CASE WHEN (@contest_id = 0) THEN contest_id ELSE @contest_id END) 
     ) AS rpt
     GROUP BY user_id
-    ORDER BY SUM(points) DESC
+    ORDER BY MAX(points) DESC
   ) AS res
 ) AS rnk ON (rnk.user_id = usr.id)
 WHERE (rnk.place BETWEEN @offset_rows AND @limit_rows)
