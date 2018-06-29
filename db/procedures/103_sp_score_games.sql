@@ -2,10 +2,10 @@ DROP PROCEDURE IF EXISTS sp_score_games_create;
 DROP PROCEDURE IF EXISTS sp_score_games_all;
 DROP PROCEDURE IF EXISTS sp_score_games_all_count;
 DROP PROCEDURE IF EXISTS sp_score_games_all_client_side;
-DROP PROCEDURE IF EXISTS sp_score_games_find_max_by_contest_ant_user_id;
+DROP PROCEDURE IF EXISTS sp_score_games_find_max_by_contest_and_user_id;
 
 DELIMITER $$
-CREATE PROCEDURE `sp_score_games_find_max_by_contest_ant_user_id`(
+CREATE PROCEDURE `sp_score_games_find_max_by_contest_and_user_id`(
     IN `p_contest_id` INT
     , IN `p_user_id` INT
 )

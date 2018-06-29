@@ -350,4 +350,8 @@ $translations = [
   'edition_name' => 'Nazwa edycji',
   'hero_edition' => 'Edycja bohatera',
 
+  // gameplay
+
+  'your_best_score' => 'Twój najlepszy wynik:',
+
 ];

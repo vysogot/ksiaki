@@ -23,6 +23,18 @@ $data['game'] = execute('call sp_games_find(:p_id);', array(
     array('p_id', $data['contest']->game_id, PDO::PARAM_INT)
 ));
 
+if (is_logged_in()) {
+  $result = execute('call sp_score_games_find_max_by_contest_and_user_id(
+    :p_contest_id, 
+    :p_user_id
+  );', array(
+      array('p_contest_id', $data['contest']->id, PDO::PARAM_INT),
+      array('p_user_id', $_SESSION['user_id'], PDO::PARAM_INT)
+  ));
+
+  $data['current_user_score'] = $result->points;
+}
+
 $data['other_contests'] = execute('call sp_contests_all_but_one(:p_id);', array(
     array('p_id', $data['contest']->id, PDO::PARAM_INT)
 ), true);
@@ -111,6 +123,11 @@ function content($params, $data) { ?>
     <?php include './partials/modal_ranking.html' ?>
 
     <div class="main">
+
+    <?php if (isset($data['current_user_score']) && !empty($data['current_user_score'])) { ?>
+      <h3 class="center"><?= t('your_best_score') ?></h3>
+      <h2 class="center bold red"><?= $data['current_user_score'] ?></h2>
+    <?php } ?>
 
     <?php if (!empty($data['contest_prizes'])) { ?>
       <h2 class="center"><?= t('prizes_in_this_contest') ?></h2>

@@ -33,6 +33,7 @@ video { max-width: 100%; background: white; }
 .bigger-font { font-size: 140%; }
 .hidden { display: none!important; }
 .font-fantasy { font-family: fantasy; }
+.red { color: #F66; }
 
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
