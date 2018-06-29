@@ -79,7 +79,8 @@ function link_to($name, $destination, $options = [], $props = []) {
 }
 
 function secure_url($url) {
-    return str_replace('http://', $GLOBALS['config']['protocol'], $url);
+    //return str_replace('http://', $GLOBALS['config']['protocol'], $url);
+    return $url;
 }
 
 function image($src, $options = []) {
