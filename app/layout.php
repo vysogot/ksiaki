@@ -193,11 +193,23 @@
       } 
     ?>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=pl&theme=white&privacyPage=https%3A%2F%2Fkonkursiaki.pl%2Fpolityka-prywatnosci"></script>
-    <style>
-        #cookie-bar p { padding: 30px; font-size: 110%; }
-        #cookie-bar-button { padding: 10px; margin-top: 25px; }
-    </style>
+    <script id="cookieinfo" 
+      src="/assets/js/cookieinfo.min.js"
+      data-message="Ta strona używa ciasteczek (cookies), dzięki którym nasz serwis może działać lepiej."
+      data-linkmsg="Dowiedz się więcej"
+      data-moreinfo="//pl.wikipedia.org/wiki/HTTP_cookie"
+      data-close-text="Rozumiem">
+    </script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50691492-1', 'konkursiaki.pl');
+    ga('send', 'pageview');
+    </script>
 
   </body>
   </html>
