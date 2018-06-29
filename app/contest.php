@@ -73,11 +73,19 @@ function content($params, $data) { ?>
             <?= t($data['game']->description) ?>
         <?php } ?>
     </p>
-    <?php if ($data['contest']->display_ad) { ?>
-        <h2 class="center"><?= link_to(t('play'), t('contest_preroll_slug', ['slug' => $data['contest']->slug])) ?></h2>
-    <?php } else { ?>
-        <h2 class="center"><?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?></h2>
-    <?php } ?>
+
+    <h2 class="center">
+      <?php if (!$data['contest']->is_ended) { ?>
+        <?php if ($data['contest']->display_ad) { ?>
+            <?= link_to(t('play'), t('contest_preroll_slug', ['slug' => $data['contest']->slug])) ?>
+        <?php } else { ?>
+            <?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?>
+        <?php } ?>
+      <?php } else { ?>
+            <?= t('contest_ended') ?>
+      <?php } ?>
+    </h2>
+
     <p class="bold bigger-font">
         <span class="left"><?= t('contest_starts', ['date' => date('d.m', strtotime($data['contest']->begins_at))]) ?></span>
         <span class="right"><?= t('contest_ends', ['date' => date('d.m', strtotime($data['contest']->ends_at))]) ?></span>

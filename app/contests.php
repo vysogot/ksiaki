@@ -12,9 +12,9 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data['contests'] = execute('call sp_contests_all();', [], true);
+$data['contests'] = fetch_all('call sp_contests_all_for_display();');
 
-$data['monthly_ranking'] = execute('call sp_rankings_monthly(
+$data['monthly_ranking'] = fetch_all('call sp_rankings_monthly(
   :p_date,
   :p_offset,
   :p_limit
@@ -22,9 +22,9 @@ $data['monthly_ranking'] = execute('call sp_rankings_monthly(
   array('p_date', $params['month'], PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+));
 
-$data['yearly_ranking'] = execute('call sp_rankings_yearly(
+$data['yearly_ranking'] = fetch_all('call sp_rankings_yearly(
   :p_date,
   :p_offset,
   :p_limit
@@ -32,7 +32,7 @@ $data['yearly_ranking'] = execute('call sp_rankings_yearly(
   array('p_date', $params['year'], PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+));
 
 function content($params, $data) { ?>
 

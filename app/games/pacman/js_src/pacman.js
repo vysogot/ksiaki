@@ -875,15 +875,8 @@ var PACMAN = (function () {
 
     function startLevel() {
 
-        // ksiaki
-        myGet('/timestamp.php', function(xmlDoc) {
-
-
-            data = JSON.parse(xmlDoc.response);
-            console.log("from startlevel: ", data);
-
-            levelStartTimestamp = data.timestamp;
-            token = data.token;
+       
+       
 
             user.resetPosition();
             for (var i = 0; i < ghosts.length; i += 1) {
@@ -893,7 +886,6 @@ var PACMAN = (function () {
             timerStart = tick;
             setState(COUNTDOWN);
 
-        });
 
     }
 
@@ -1102,14 +1094,27 @@ var PACMAN = (function () {
             points_total: user.theScore(),
             main_ball_color: adsColor(user.theScore()),
             win: 1
-        }, function(data) {
-            console.log("from score: ", data);
-            setState(WAITING);
-            level += 1;
-            map.reset();
-            user.newLevel();
-            startLevel();
-        });
+        }, function(dataScore) {
+
+            // ksiaki
+
+            myGet('/timestamp.php', function(xmlDoc) {
+                data = JSON.parse(xmlDoc.response);
+
+                levelStartTimestamp = data.timestamp;
+                token = data.token;
+
+                setState(WAITING);
+                level += 1;
+                map.reset();
+                user.newLevel();
+                startLevel();
+            });
+            
+
+                
+
+            });
 
 
     };

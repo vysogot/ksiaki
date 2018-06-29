@@ -1,6 +1,13 @@
 var levelStartTimestamp = 0;
 var token = 0;
 
+myGet('/timestamp.php', function(xmlDoc) {
+	data = JSON.parse(xmlDoc.response);
+
+	levelStartTimestamp = data.timestamp;
+	token = data.token;
+});
+
 $(document).ready(function () {
 
   var el = document.getElementById("pacman");

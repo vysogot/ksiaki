@@ -330,6 +330,8 @@ $translations = [
   'contest_starts' => 'Start – {{date}}',
   'contest_ends' => 'Zakończenie – {{date}}',
   'contest_statute_consent' => '*Biorąc udział w konkursie akceptujesz jego {{link}}',
+  'contest_ended' => 'Zakończony',
+  'contest_ended_play_other' => 'Ten konkurs dobiegł już końca. Wybierz inny!',
 
   // score games
   'level' => 'Poziom',
