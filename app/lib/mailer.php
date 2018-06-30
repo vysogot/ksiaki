@@ -91,7 +91,7 @@ function send_email($to, $subject, $body) {
                 array('p_email', $to, PDO::PARAM_STR),
                 array('p_subject', $subject, PDO::PARAM_STR),
                 array('p_body', $body, PDO::PARAM_STR),
-                array('p_user_id', $_SESSION['user_id'], PDO::PARAM_STR)
+                array('p_user_id', current_session('user_id'), PDO::PARAM_INT)
             ));
 
             return true;
