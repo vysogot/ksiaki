@@ -132,6 +132,7 @@ $translations = [
   'sponsors' => 'Sponsorzy',
   'sponsor' => 'Sponsor',
   'hero_editions' => 'Edycje bohaterów',
+  'log_mail' => 'Historia wysyłki email',
 
   // data
 
@@ -353,5 +354,11 @@ $translations = [
   // gameplay
 
   'your_best_score' => 'Twój najlepszy wynik:',
+
+  // table stamps
+
+  'created_at' => 'Utworzono dnia',
+  'updated_at' => 'Zaktualizowano dnia',
+  'created_by' => 'Utworzone przez',
 
 ];

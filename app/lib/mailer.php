@@ -40,18 +40,9 @@ function send_template_email($to, $template_name, $interpolations) {
 
 }
 
-function send_email($to, $subject, $body, $options = []) {
+function send_email($to, $subject, $body) {
 
     if (getenv('APPLICATION_ENV') != 'testing') {
-
-        $defaults = [
-            'name' => 'Recipient',
-            'subject' => 'A message from our service',
-            'body' => 'We wish you all the best!',
-            'template' => null
-        ];
-
-        $options = array_merge($defaults, $options);
 
         $mail = new PHPMailer(true);
 
@@ -75,7 +66,7 @@ function send_email($to, $subject, $body, $options = []) {
                 $GLOBALS['config']['mail_from_name']
             );
 
-            $mail->addAddress($to, $options['name']);
+            $mail->addAddress($to);
             $mail->addReplyTo(
                 $GLOBALS['config']['mail_reply_to_email'],
                 $GLOBALS['config']['mail_reply_to_name']
@@ -90,6 +81,18 @@ function send_email($to, $subject, $body, $options = []) {
             $mail->Body    = $body;
 
             $mail->send();
+
+            $result = execute('call sp_log_mail_create(
+                :p_email,
+                :p_subject,
+                :p_body,
+                :p_user_id
+            );', array(
+                array('p_email', $to, PDO::PARAM_STR),
+                array('p_subject', $subject, PDO::PARAM_STR),
+                array('p_body', $body, PDO::PARAM_STR),
+                array('p_user_id', $_SESSION['user_id'], PDO::PARAM_STR)
+            ));
 
             return true;
 
