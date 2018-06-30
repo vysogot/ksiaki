@@ -1,30 +1,21 @@
 <?php
 
-require realpath(__DIR__ . '/../vendor/autoload.php');
+date_default_timezone_set('Europe/Warsaw');
 
 ini_set('output_buffering', 1);
+ini_set('session.use_only_cookies', 1);
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_httponly', 1);
 
-// set config.example.php and move it one folder up from the root folder
+require realpath(__DIR__ . '/../vendor/autoload.php');
+
+$env = empty(getenv('APPLICATION_ENV')) ? 'development' : getenv('APPLICATION_ENV');
 $envs = require realpath(__DIR__ . '/../config/ksiaki.php');
-$env = getenv('APPLICATION_ENV');
-if (!$env) $env = 'development';
 $GLOBALS['config'] = $envs[$env];
 
 require realpath(__DIR__ . '/lib/error_handler.php');
 
-// **PREVENTING SESSION HIJACKING**
-// Prevents javascript XSS attacks aimed to steal the session ID
-ini_set('session.cookie_httponly', 1);
-
-// **PREVENTING SESSION FIXATION**
-// Session ID cannot be passed through URLs
-ini_set('session.use_only_cookies', 1);
-
-// Uses a secure connection (HTTPS) if possible
-// ini_set('session.cookie_secure', 1);
-
 session_start();
-ini_set('session.cookie_httponly', 1);
 
 $GLOBALS['base_url'] = $GLOBALS['config']['protocol'] . $GLOBALS['config']['domain'];
 $GLOBALS['url'] = $GLOBALS['base_url'] . dirname($_SERVER['SCRIPT_NAME']) . '/';

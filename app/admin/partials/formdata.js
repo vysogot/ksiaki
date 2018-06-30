@@ -30,6 +30,12 @@ function vex_confirm(msg, callback) {
     });
 }
 
+function vex_open(htmlContent) {
+    vex.open({
+        unsafeContent: htmlContent
+    });
+}
+
 function submitForm() {
 
     $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
