@@ -4,7 +4,7 @@ var _rollbarConfig = {
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {
-        environment: "production"
+        environment: "<?= $GLOBALS['env'] ?>"
     }
 };
 // Rollbar Snippet

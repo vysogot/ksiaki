@@ -55,10 +55,10 @@
       .modal {padding-top: 10px !important;}
     </style>
 
-    <?php if (is_production_env()) { ?>
+    <?php if (is_public_env()) { ?>
 
-        <?php include 'partials/rollbar_client.html'; ?>
-        <?php include 'partials/stroer_client.html'; ?>
+        <?php include 'partials/rollbar_client.php'; ?>
+        <?php include 'partials/stroer_client.php'; ?>
 
     <?php } ?>
 

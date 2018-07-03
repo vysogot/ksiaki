@@ -48,10 +48,14 @@
 
         // Run autoplay videos to satisfy Chrome
         $("#player video[autoplay]").each(function() { 
+            
             this.muted = window.is_muted;
 
             if (!isMobile.any()) {
                 this.play();  
+            } else {
+                this.preload = 'metadata';
+                this.autoplay = false;
             }
 
         });

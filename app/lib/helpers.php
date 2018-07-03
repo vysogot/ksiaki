@@ -255,6 +255,18 @@ function is_development_env() {
     return $GLOBALS['env'] == 'development';
 }
 
+function is_staging_env() {
+    return $GLOBALS['env'] == 'staging';
+}
+
+function is_public_env() {
+    return !is_production_env() || is_staging_env();
+}
+
+function is_homepage() {
+    return current_url() == '/';
+}
+
 function params($key) {
     if (isset($GLOBALS['params'][$key])) {
         return e($GLOBALS['params'][$key]);
