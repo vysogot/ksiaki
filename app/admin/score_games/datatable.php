@@ -2,11 +2,7 @@
 
 include '../init.php';
 
-$result = execute('call sp_score_games_all_client_side();', [], true);
-
-send_json(['data' => $result]);
-
-/* $params = [
+$params = [
     "start" => 0,
     "length" => 10,
     "search" => '',
@@ -21,11 +17,11 @@ $columnIdx = $params['order'][0]['column'];
 $columnOrd = $params['order'][0]['dir'];
 $requestColumn = $params['columns'][$columnIdx]['data'];
 
-$count = execute('call sp_score_games_all_count(:p_search);', array(
+$count = fetch_one('call sp_score_games_all_count(:p_search);', array(
     array('p_search', $params['search']['value'], PDO::PARAM_STR)
-), false, false);
+));
 
-$result = execute('call sp_score_games_all(
+$result = fetch_all('call sp_score_games_all(
     :p_offset,
     :p_limit,
     :p_search,
@@ -37,11 +33,11 @@ $result = execute('call sp_score_games_all(
     array('p_search', $params['search']['value'], PDO::PARAM_STR),
     array('p_ordercolumn', $requestColumn, PDO::PARAM_STR),
     array('p_orderdir', $columnOrd, PDO::PARAM_STR)
-), true, false);
+));
 
 send_json([
     'draw' => $params['draw'],
     'recordsTotal' => $count->recordsTotal,
     'recordsFiltered' => $count->recordsFiltered,
     'data' => $result
-]); */
+]);

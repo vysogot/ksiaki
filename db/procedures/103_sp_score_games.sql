@@ -116,12 +116,11 @@ BEGIN
     , checknumber_server
     , IFNULL(checknumber_client != checknumber_server, 0) AS is_suspected
 	 FROM score_games
-     LEFT JOIN _users ON score_games.user_id = _users.id
-     LEFT JOIN _contests ON score_games.contest_id = _contests.id
-   AND (
-         (score_games.id = p_search)
-		 OR (UPPER(nick) LIKE @search)
-		 OR (UPPER(_contests.name) LIKE @search)
+     INNER JOIN _users ON score_games.user_id = _users.id
+     INNER JOIN _contests ON score_games.contest_id = _contests.id
+    WHERE ( (UPPER(nick) LIKE @search)
+     OR (UPPER(_contests.name) LIKE @search)
+     OR (score_games.points_total LIKE @search)
     )
 
 	 ORDER BY
@@ -154,12 +153,11 @@ BEGIN
 	SELECT @recordsTotal AS recordsTotal
 	, SUM(1) AS recordsFiltered
 	FROM score_games
-    LEFT JOIN _users ON score_games.user_id = _users.id
-    LEFT JOIN _contests ON score_games.contest_id = _contests.id
-    AND (
-        (score_games.id = p_search)
-		OR (UPPER(_users.nick) LIKE @search)
-        OR (UPPER(_contests.name) LIKE @search)
+    INNER JOIN _users ON score_games.user_id = _users.id
+    INNER JOIN _contests ON score_games.contest_id = _contests.id
+    WHERE ( (UPPER(_users.nick) LIKE @search)
+      OR (UPPER(_contests.name) LIKE @search)
+      OR (score_games.points_total LIKE @search)
     );
 END$$
 DELIMITER ;

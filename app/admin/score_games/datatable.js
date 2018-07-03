@@ -2,7 +2,7 @@ $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
         "mark": true,
         "processing": true,
-        /*"serverSide": true, */
+        "serverSide": true,
         "deferRender": true,
         "searchDelay": 1000,
         "ajax": { "url": "/admin/score_games/datatable.php" },
