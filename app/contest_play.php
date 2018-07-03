@@ -25,20 +25,27 @@ var contestId = <?= $data['contest']->id ?>;
 
 <div class="wrapper center">
   <h2><?= link_to(t('back_to_contest'), t('contest_slug', ['slug' => $data['contest']->slug])) ?></h2>
-    <div id="stroer_pregame_video"></div>
-      <iframe onload="this.contentWindow.focus()" class="game-iframe" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
-  </div>
-
-<script type="text/javascript">
-   var stroertag = stroertag || {};
-   stroertag.pregame = {
-       init: function() {},
-       onBeforeStart: function() {},
-       onAfterStart: function() {},
-       onBeforeEnd: function() {},
-       onAfterEnd: function() {}
-   }
-</script>
+    <?php if ($data['contest']->display_ad) { ?>
+      <script>
+        var stroertag = stroertag || {};
+        stroertag.pregame = {
+          init: function() {},
+          onBeforeStart: function() {
+            document.getElementsByClassName('game')[0].style.display = 'none';
+          },
+          onAfterStart: function() {},
+          onBeforeEnd: function() {},
+          onAfterEnd: function() {
+            document.getElementsByClassName('game')[0].style.display = 'block';
+          }
+        }
+      </script>
+    <?php } ?>
+    
+    <div class="game">
+    <iframe onload="this.contentWindow.focus()" class="game-iframe" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
+    </div>
+    <div id="stroer_pregame_video" data-stroer-width="600"></div>
 
 <?php }
 

@@ -1049,7 +1049,7 @@ var PACMAN = (function () {
         } else if (state === WAITING && stateChanged) {
             stateChanged = false;
             map.draw(ctx);
-            dialog("Kliknij 'N' i graj!");
+            dialog("Naciśnij 'N' i graj!");
         } else if (state === EATEN_PAUSE &&
                    (tick - timerStart) > (Pacman.FPS / 3)) {
             map.draw(ctx);

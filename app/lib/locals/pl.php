@@ -9,6 +9,7 @@ $translations = [
 
   'the_name' => 'Nazwa',
   'id' => 'ID',
+  'turn_on_javascript' => 'Włącz JavaScript',
 
   // menu
 

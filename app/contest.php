@@ -98,14 +98,10 @@ function content($params, $data) { ?>
     </p>
 
     <h2 class="center">
-      <?php if (!$data['contest']->is_ended) { ?>
-        <?php if ($data['contest']->display_ad) { ?>
-            <?= link_to(t('play'), t('contest_preroll_slug', ['slug' => $data['contest']->slug])) ?>
-        <?php } else { ?>
-            <?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?>
-        <?php } ?>
+      <?php if ($data['contest']->is_ended || !$data['contest']->is_active) { ?>
+          <?= t('contest_ended') ?>
       <?php } else { ?>
-            <?= t('contest_ended') ?>
+          <?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?>
       <?php } ?>
     </h2>
 
