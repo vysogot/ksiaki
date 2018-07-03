@@ -8,13 +8,10 @@ $data['column_names'] = [
     'nick',
     'contest_name',
     'level',
-    'begins_at',
-    'ends_at',
+    'game_duration',
     'win',
     'points',
     'points_total',
-    'checknumber_client',
-    'checknumber_server',
     'is_suspected'
 ];
 

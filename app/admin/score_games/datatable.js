@@ -10,9 +10,14 @@ $(document).ready(function() {
             { "data": "id" },
             { "data": "nick" },
             { "data": "contest_name" },
-            { "data": "level" },
-            { "data": "begins_at" },
-            { "data": "ends_at" },
+            { 
+                "data": "level",
+                "className": "center"
+            },
+            { 
+                "data": "game_duration",
+                "className": "center" 
+            },
             {
                 "data": "win",
                 "className": "center",
@@ -21,11 +26,20 @@ $(document).ready(function() {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
             },
-            { "data": "points" },
-            { "data": "points_total" },
-            { "data": "checknumber_client" },
-            { "data": "checknumber_server" },
-            { "data": "is_suspected" },
+            { 
+                "data": "points", 
+                "render": $.fn.dataTable.render.number( ' ', '.', 0 ),
+                "className": 'text-right'
+            },
+            { 
+                "data": "points_total", 
+                "render": $.fn.dataTable.render.number( ' ', '.', 0 ),
+                "className": 'text-right'
+            },
+            { 
+                "data": "is_suspected",
+                "className": "center" 
+            },
             { "data": null }
         ],
 

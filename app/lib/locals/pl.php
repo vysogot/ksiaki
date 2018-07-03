@@ -343,6 +343,7 @@ $translations = [
   'checknumber_server' => 'y',
   'score_games' => 'Punktacja gier',
   'is_suspected' => 'Podejrzany',
+  'game_duration' => 'Czas trwania',
 
   // mail templates
   'mail_templates' => 'Szablony maili',
