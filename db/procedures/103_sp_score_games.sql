@@ -103,19 +103,17 @@ BEGIN
 	 	CASE WHEN LOCATE('%', p_search) = 0 THEN CONCAT('%', UPPER(p_search), '%')
 		ELSE UPPER(p_search) END;
 
-    SELECT score_games.id as id
-    , _users.nick as nick
-    , _contests.name as contest_name
+    SELECT score_games.id AS id
+    , _users.nick AS nick
+    , _contests.name AS contest_name
     , level
-    , score_games.begins_at as begins_at
-    , score_games.ends_at as ends_at
+    , score_games.begins_at
+    , SEC_TO_TIME(TIME_TO_SEC(TIMEDIFF(score_games.ends_at, score_games.begins_at))) AS game_duration
     , win
     , points
     , points_total
-    , checknumber_client
-    , checknumber_server
     , IFNULL(checknumber_client != checknumber_server, 0) AS is_suspected
-	 FROM score_games
+   FROM score_games
      INNER JOIN _users ON score_games.user_id = _users.id
      INNER JOIN _contests ON score_games.contest_id = _contests.id
     WHERE ( (UPPER(nick) LIKE @search)

@@ -8,6 +8,7 @@ $data['column_names'] = [
     'nick',
     'contest_name',
     'level',
+    'begins_at',
     'game_duration',
     'win',
     'points',

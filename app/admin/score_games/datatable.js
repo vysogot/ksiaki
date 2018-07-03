@@ -14,6 +14,9 @@ $(document).ready(function() {
                 "data": "level",
                 "className": "center"
             },
+            {   "data": "begins_at",
+                "className": "center" 
+            },
             { 
                 "data": "game_duration",
                 "className": "center" 
