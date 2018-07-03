@@ -78,7 +78,7 @@ function content($params, $data) { ?>
 <div id="contests-page">
   <div class="full-wrapper contest-header" style="background: url('<?= $data['contest']->header_url ?>') center top no-repeat">
     <h1 class="center"><?= $data['contest']->name ?></h1>
-    <p class="center description">
+    <p class="center description smaller-font">
         <?php if (!empty($data['contest']->description)) { ?>
             <?= $data['contest']->description ?>
         <?php } else { ?>
