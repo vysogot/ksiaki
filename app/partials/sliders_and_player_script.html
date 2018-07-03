@@ -52,7 +52,14 @@
             this.muted = window.is_muted;
 
             if (!isMobile.any()) {
-                this.play();  
+                
+                var isPlaying = this.currentTime > 0 && !this.paused && !this.ended 
+                                && this.readyState > 2;
+
+                if (!isPlaying) {
+                  this.play();
+                }  
+
             } else {
                 this.preload = 'metadata';
                 this.autoplay = false;
@@ -128,7 +135,14 @@
             }
 
             video.muted = window.is_muted;
-            video.play();
+
+            var isPlaying = video.currentTime > 0 && !video.paused && !video.ended 
+                               && video.readyState > 2;
+
+            if (!isPlaying) {
+              video.play();
+            }
+            //video.play();
         });
 
     });

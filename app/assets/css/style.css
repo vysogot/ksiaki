@@ -138,7 +138,10 @@ footer p {
 .hero .boxes .slick-prev  { margin-left: 10px; }
 .hero .boxes .slick-next:before  { margin-left: -25px; }
 
-.slider .boxes .unplayable a, .slider .boxes .unplayable p { background: #ddd; }
+.slider .boxes .unplayable a,
+.slider .boxes .unplayable p,
+.box.unplayable a, .box.unplayable p
+ { background: #1c4260; color: white; }
 
 .hero-header img { width: 100%; height: 150px; margin-bottom: 17px;  box-shadow: 5px 6px 33px #2D2D2D; }
 .hero-cover img { max-width: 200px; max-height: 266px; }
