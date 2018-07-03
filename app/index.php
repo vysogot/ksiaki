@@ -43,7 +43,7 @@ function content($params, $data) { ?>
     <section id="contests" class="slider box-slider-container">
       <div id="contests-slider" class="boxes">
         <?php foreach($data['contests'] as $contest) { ?>
-          <div>
+          <div <?php if (!$contest->playable) echo 'class="unplayable"'; ?>>
             <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
             <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
           </div>

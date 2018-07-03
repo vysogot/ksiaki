@@ -70,10 +70,12 @@ SELECT _contests.id
 , display_ad
 , is_active
 , is_ended
+, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
-WHERE (_contests.slug = p_slug);
+WHERE (_contests.slug = p_slug)
+AND is_active;
 END$$
 DELIMITER ;
 
@@ -108,11 +110,11 @@ SELECT id
 , name
 , slug
 , box_url
+, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
 AND is_active
-AND NOT is_ended
-AND NOW() BETWEEN begins_at AND ends_at;
+ORDER BY playable DESC;
 END$$
 DELIMITER ;
 
@@ -125,12 +127,12 @@ SELECT id
 , name
 , slug
 , box_url
+, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
 AND is_active
-AND NOT is_ended
 AND (id != p_id)
-AND NOW() BETWEEN begins_at AND ends_at;
+ORDER BY playable DESC;
 END$$
 DELIMITER ;
 
