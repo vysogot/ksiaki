@@ -52,6 +52,8 @@ $translations = [
   'back_to_contest' => 'Powrót do strony konkursu',
   'points' => 'Punkty',
   'points_total' => 'Punkty w tym roku',
+  'points_in_level' => 'Punkty poziom',
+  'points_in_game' => 'Punkty total',
   'contest_end' => 'Zakończ',
   'place' => 'Miejsce',
 

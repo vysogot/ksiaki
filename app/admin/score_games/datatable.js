@@ -10,10 +10,6 @@ $(document).ready(function() {
             { "data": "id" },
             { "data": "nick" },
             { "data": "contest_name" },
-            { 
-                "data": "level",
-                "className": "center"
-            },
             {   "data": "begins_at",
                 "className": "center" 
             },
@@ -28,6 +24,10 @@ $(document).ready(function() {
                 function (data) {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
+            },
+            { 
+                "data": "level",
+                "className": "center"
             },
             { 
                 "data": "points", 

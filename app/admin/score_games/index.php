@@ -7,12 +7,12 @@ $data['column_names'] = [
     'id',
     'nick',
     'contest_name',
-    'level',
     'begins_at',
     'game_duration',
     'win',
-    'points',
-    'points_total',
+    'level',
+    'points_in_level',
+    'points_in_game',
     'is_suspected'
 ];
 
