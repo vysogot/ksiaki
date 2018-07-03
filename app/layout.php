@@ -40,7 +40,7 @@
             box-shadow: 2px 2px 5px <?= $background->details_color ?>;
         }
     <?php } else { ?>
-        body { background: url(/assets/images/bg-pattern-orange.png) left top repeat; }
+        body { background: linear-gradient(#c6f1ff, #e3e3e3); }
         nav, .ad, .rankings h2, .rankings ul, #banner, #slajder,
         #player, .box, #heroes .slick-slide, .boxes .slick-slide,
         .sky-banner img, .shadow {
