@@ -10,6 +10,7 @@ $translations = [
   'the_name' => 'Nazwa',
   'id' => 'ID',
   'turn_on_javascript' => 'Włącz JavaScript',
+  'rodo' => 'Regulacje o Ochronie Danych Osobowych (RODO)',
 
   // menu
 

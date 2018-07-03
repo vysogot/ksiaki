@@ -108,6 +108,12 @@
       <div class="wrapper-full">
         <?php include 'partials/static_sites.php' ?>
 
+        <section id="rodo">
+          <div class="wrapper">
+            <p><?= link_to(t('rodo'), '/rodo', ['class' => 'rodo']) ?></p>
+          </div>
+        </section>
+
         <section id="copyright">
           <div class="wrapper">
             <p><?= t('copyright') ?></p>
@@ -172,6 +178,21 @@
       $('a.no-action').on('click', function(event) {
         event.preventDefault();
       });
+
+      $('a.rodo').click(function(event) {
+        event.preventDefault();
+
+        $.get('/rodo', function(response) {
+          vex.dialog.open({
+              unsafeMessage: response,
+              contentClassName: 'wide-text',
+              overlayClosesOnClick: false,
+              buttons: [
+                  $.extend({}, vex.dialog.buttons.YES, { text: 'Rozumiem' }),
+              ]
+          });
+        });
+      });
     </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
@@ -187,12 +208,10 @@
     .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
     </style>
 
-    <?php 
-      if ((current_url() == '/') && !isset($_COOKIE['RODO'])) {
-         setcookie('RODO', '1', time()+3600*24*7);
-         include 'partials/rodo.html'; 
-      } 
-    ?>
+    <?php if ((current_url() == '/') && !isset($_COOKIE['RODO'])) {
+         setcookie('RODO', '1', time()+3600*24*7); ?>
+      <script>$('a.rodo').trigger('click');</script>
+    <?php } ?>
 
     <script id="cookieinfo" 
       src="/assets/js/cookieinfo.min.js"
