@@ -67,7 +67,7 @@
 
     <?php if (is_production_env()) { ?>
 
-        <?php include realpath(__DIR__ . '/../partials/rollbar_client.html'); ?>
+        <?php include realpath(__DIR__ . '/../partials/rollbar_client.php'); ?>
 
     <?php } ?>
     
