@@ -76,6 +76,10 @@ function CMain(oData){
         if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
             this._initSounds();
         }
+
+        if(START_WITH_SOUND === false){
+            Howler.mute(true);
+        }
         
         
         _bUpdate = true;
@@ -282,7 +286,7 @@ function CMain(oData){
 }
 
 var s_bMobile;
-var s_bAudioActive = true;
+var s_bAudioActive = START_WITH_SOUND;
 var s_iCntTime = 0;
 var s_iTimeElaps = 0;
 var s_iPrevTime = 0;

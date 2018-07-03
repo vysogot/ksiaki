@@ -27,6 +27,7 @@ var contestId = <?= $data['contest']->id ?>;
   <h2><?= link_to(t('back_to_contest'), t('contest_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <?php if ($data['contest']->display_ad) { ?>
       <script>
+
         var stroertag = stroertag || {};
         stroertag.pregame = {
           init: function() {},
@@ -44,6 +45,11 @@ var contestId = <?= $data['contest']->id ?>;
     
     <div class="game">
     <iframe onload="this.contentWindow.focus()" class="game-iframe" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
+    <script>
+      var iframe = document.getElementsByClassName('game-iframe')[0];
+          iframe.contentWindow.postMessage('{"method":"setVolume", "value":0}','*');
+
+    </script>
     </div>
     <div id="stroer_pregame_video" data-stroer-width="600"></div>
 

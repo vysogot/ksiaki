@@ -260,7 +260,7 @@ function is_staging_env() {
 }
 
 function is_public_env() {
-    return !is_production_env() || is_staging_env();
+    return is_production_env() || is_staging_env();
 }
 
 function is_homepage() {
