@@ -17,7 +17,7 @@ $(document).ready(function() {
 
         "initComplete": function() { $('.panel-body').show(); },
         "bAutoWidth": false,
-        "language": { "url": "/assets/json/dataTables.polish.json" },
+        "language": { "url": "/assets/datatables/polish.json" },
 
         "stateSave": true,
         "stateSaveParams": function (oSettings, oData) {

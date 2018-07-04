@@ -28,7 +28,7 @@ $(document).ready(function() {
 
         "initComplete": function() { $('.panel-body').show(); },
         "bAutoWidth": false,
-        "language": { "url": "/assets/json/dataTables.polish.json" },
+        "language": { "url": "/assets/lib/datatables/polish.json" },
 
         "columnDefs": [ {
             "targets": -1,

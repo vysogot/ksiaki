@@ -3,67 +3,33 @@
 <html>
 <head>
     <title><?= t('website_title') ?></title>
+
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
-
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-
-    <link rel="stylesheet" href="/assets/css/suneditor.css">
-    <link rel="stylesheet" href="/assets/js/css/suneditor-contents.css">
-
-    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script src="//cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/1.10.16/features/mark.js/datatables.mark.min.js"></script>
-
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script src="/assets/js/suneditor.js"></script>
-    <script src="/assets/lang/pl.js"></script>
+    <?php if (function_exists('meta')) meta(); ?>
 
     <link rel="icon" href="data:;base64,=">
-    <?php if (function_exists('meta')) meta(); ?>
-    <style>
-      html { background-color: #eee; margin: 0; }
-      header {min-height: 125px !important;}
-      nav    { opacity: 1!important; margin:0!important;}
-      nav ul { margin-top: 25px!important; margin-left: 25px!important; }
-      nav a {background: transparent !important;}
-      nav a:hover, .active {filter: invert(100%); -webkit-filter: none!important; }
-      .navbar {padding-left: 10px;padding-right: 10px;min-height: 32px !important;z-index: 1!important;}
-      .navbar-brand {height: 100% !important;}
-      .navbar-fixed-top .navbar-brand {padding: 15px 0;}
-      .navbar-fixed-top .nav {padding-left: 15px;padding-top: 25px;}
-      .nav>li>a {padding: 20px 5px !important;}
-      .panel-body {padding-bottom: 0px;}
-      .fas {padding-left: 10px;color:#979797;font-size: 2em;}
-      .fa-times {color:red;}
-      .fa-check {color:blue;}
-      .none {display:none;}
-      .dataTables_wrapper .dataTables_length {padding-left: 10px;}
-      #dataTable .active { text-align: center; }
-      #dataTable .links { white-space: nowrap; text-align: center; }
-      #dataTable .links a { margin-right: 15px; }
-      .table-vcenter td { vertical-align: middle !important;}
-      .wrapper { z-index: unset!important; }
-      .wrapper h4 {margin-top: 15px;}
-      .modal {padding-top: 10px !important;}
-      .modal-dialog {width: 70%;}
-      #is_active_check {margin: 13px 0 0;}
-      input.error { background: #FDD; }
-      textarea { margin: auto; width: 100%; height: 10em; }
-      mark {background: orange;color: black;}
-      a[disabled="disabled"] {pointer-events: none;}
-      a[disabled="disabled"] > .fas {opacity: 0.5;}
-      .table-striped tbody tr.data-table-row-warning { background-color: #FF0; }
-    </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+
+    <link rel="stylesheet" href="/assets/lib/fontawesome-v5.0.11.css">
+    <link rel="stylesheet" href="/assets/lib/jquery-ui/jquery-ui-v1.12.1.css">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/bootstrap-v3.3.7.min.css">
+    <link rel="stylesheet" href="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.css">
+    <link rel="stylesheet" href="/assets/lib/suneditor/css/suneditor.css">
+    <link rel="stylesheet" href="/assets/lib/suneditor/css/suneditor-contents.css">
+
+    <link rel="stylesheet" href="/assets/css/admin.css?v=<?php echo filemtime(realpath(__DIR__ . '/../assets/css/admin.css')) ?>"">
+
+    <script src="/assets/lib/jquery-v2.2.4.min.js"></script>
+    <script src="/assets/lib/bootstrap/bootstrap-v3.3.7.min.js"></script>
+    <script src="/assets/lib/markjs-v8.11.1.js"></script>
+    <script src="/assets/lib/jquery-ui/jquery-ui-v1.12.1.js"></script>
+    
+    <script src="/assets/lib/datatables/jquery-dataTables-v1.10.16.min.js"></script>
+    <script src="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.js"></script>
+    <script src="/assets/lib/datatables/markjs-dataTables-v1.10.16.min.js"></script>
+
+    <script src="/assets/lib/suneditor/suneditor.js"></script>
+    <script src="/assets/lib/suneditor/lang/pl.js"></script>
 
     <?php if (is_production_env()) { ?>
 
@@ -128,7 +94,7 @@
 
     <?php if (function_exists('before_body_close')) before_body_close(); ?>
 
-    <script type="text/javascript">
+    <script>
 
       $(document).ready(function() {
         $('.confirmation').on('click', function () {
@@ -139,26 +105,24 @@
 
       });
 
+      $('a.remote').click(function(event) {
+          event.preventDefault();
+
+          $('main').load($(this).attr('href'));
+          window.history.pushState($(this).attr('href'), $(this).attr('href'), $(this).attr('href'));
+      });
+
     </script>
 
+
+
+    <script src="/assets/lib/vex/vex.combined-v4.1.0.min.js"></script>
     <script>
-
-    $('a.remote').click(function(event) {
-        event.preventDefault();
-
-        $('main').load($(this).attr('href'));
-        window.history.pushState($(this).attr('href'), $(this).attr('href'), $(this).attr('href'));
-    });
-
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
-	  <script>
       vex.defaultOptions.className = 'vex-theme-flat-attack';
       vex.defaultOptions.closeAllOnPopState = false;
     </script>
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex.min.css" />
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-flat-attack.min.css" />
+    <link rel="stylesheet" href="/assets/lib/vex/vex-v4.1.0.min.css" />
+    <link rel="stylesheet" href="/assets/lib/vex/vex-theme-flat-attack-v4.1.0.min.css" />
 
     <style>
     .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }

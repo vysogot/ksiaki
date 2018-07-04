@@ -23,7 +23,7 @@ $GLOBALS['url'] = $GLOBALS['base_url'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
 // use include for custom error handling
 include realpath(__DIR__ . '/lib/helpers.php');
 include realpath(__DIR__ . '/lib/db.php');
-include realpath(__DIR__ . '/lib/locals.php');
+include realpath(__DIR__ . '/lib/locales.php');
 include realpath(__DIR__ . '/lib/validators.php');
 include realpath(__DIR__ . '/lib/mailer.php');
 

@@ -4,27 +4,26 @@
 <head>
     <title><?= website_title($params) ?></title>
     <meta name="description" content="<?= t('website_description') ?>" />
+    
     <meta charset="utf-8">
+    <?php if (function_exists('meta')) meta(); ?>
+
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
 
-    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/assets/js/isMobile.js"></script>
+    <link rel="stylesheet" href="/assets/lib/bootstrap/bootstrap-v3.3.7.min.css">
+    <link rel="stylesheet" href="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.css">
 
-    <!--<script src="/assets/js/min.js" type="text/javascript"></script>-->
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
 
-    <?php if (function_exists('meta')) meta(); ?>
+    <script src="/assets/lib/jquery-v2.2.4.min.js"></script>
+    <script src="/assets/lib/bootstrap/bootstrap-v3.3.7.min.js"></script>
+    
+    <script src="/assets/lib/datatables/jquery-dataTables-v1.10.16.min.js"></script>
+    <script src="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.js"></script>
 
-    <!--<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
-
+    <script src="/assets/lib/slick-carousel-v1.8.1.min.js"></script>
+    <script src="/assets/lib/isMobile.js"></script>
 
     <?php $background = get_background($_SERVER['REQUEST_URI']); ?>
 
@@ -99,11 +98,28 @@
         </nav>
       </div>
     </header>
+
+    <script src="/assets/lib/vex/vex.combined-v4.1.0.min.js"></script>
+    <script>
+      vex.defaultOptions.className = 'vex-theme-flat-attack'
+    </script>
+    <link rel="stylesheet" href="/assets/lib/vex/vex-v4.1.0.min.css" />
+    <link rel="stylesheet" href="/assets/lib/vex/vex-theme-flat-attack-v4.1.0.min.css" />
+
+    <style>
+    .vex.vex-theme-flat-attack { padding-top: 50px; }
+    .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
+    .vex.vex-theme-flat-attack .vex-content p { margin: 40px 0 0 0; }
+    .vex.vex-theme-flat-attack .vex-content.wide-text { width: 80%; font-size: 80%; }
+    .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
+    </style>
+
     <main>
       <?php include 'partials/heroes.php'; ?>
       <?php include 'partials/flashes.php'; ?>
       <?php content($params, $data); ?>
     </main>
+
     <footer>
       <div class="wrapper-full">
         <?php include 'partials/static_sites.php' ?>
@@ -195,44 +211,36 @@
       });
     </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/js/vex.combined.min.js"></script>
-	<script>vex.defaultOptions.className = 'vex-theme-flat-attack'</script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.1.0/css/vex-theme-flat-attack.min.css" />
-
-    <style>
-    .vex.vex-theme-flat-attack { padding-top: 50px; }
-    .vex.vex-theme-flat-attack .vex-content .wrapper { width: 100%; }
-    .vex.vex-theme-flat-attack .vex-content p { margin: 40px 0 0 0; }
-    .vex.vex-theme-flat-attack .vex-content.wide-text { width: 80%; font-size: 80%; }
-    .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
-    </style>
-
     <?php if ((current_url() == '/') && !isset($_COOKIE['RODO'])) {
          setcookie('RODO', '1', time()+3600*24*7); ?>
       <script>$('a.rodo').trigger('click');</script>
     <?php } ?>
 
     <script id="cookieinfo" 
-      src="/assets/js/cookieinfo.min.js"
+      src="/assets/lib/cookieinfo.min.js"
       data-message="Ta strona używa ciasteczek (cookies), dzięki którym nasz serwis może działać lepiej."
       data-linkmsg="Dowiedz się więcej"
       data-moreinfo="//pl.wikipedia.org/wiki/HTTP_cookie"
       data-close-text="Rozumiem">
     </script>
 
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <?php if (is_public_env()) { ?>
 
-    ga('create', 'UA-50691492-1', 'konkursiaki.pl');
-    ga('send', 'pageview');
-    </script>
+      <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50691492-1', 'konkursiaki.pl');
+      ga('send', 'pageview');
+      </script>
+
+    <?php } ?>
 
   </body>
   </html>
+
 <?php
 
 $content = ob_get_clean();
