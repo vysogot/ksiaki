@@ -2,6 +2,7 @@ $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
         "mark": true,
         "processing": true,
+        "serverSide": true,
         "deferRender": true,
         "searchDelay": 1000,
         "ajax": { "url": "/admin/log_mail/datatable.php" },
@@ -9,8 +10,11 @@ $(document).ready(function() {
             { "data": "id" },
             { "data": "email" },
             { "data": "subject" },
-            { "data": "created_at" },
-            { "data": "created_by" },
+            { 
+                "data": "created_at",
+                "className": "center" 
+            },
+            { "data": "nick" },
             { "data": null }
         ],
 
