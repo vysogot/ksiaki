@@ -113,12 +113,6 @@ function content($params, $data) { ?>
 
 <div class="wrapper">
 
-
-    <script src="/assets/js/jquery-ui.js"></script>
-    <script src="/assets/js/calendar-pl.js"></script>
-
-    <link rel="stylesheet" href="/assets/css/jquery-ui.css">
-
     <form method="post" action="/register.php" id="register" class="vertical-form" accept-charset="UTF-8">
 
         <legend><h2><?= t('register') ?></h2></legend>

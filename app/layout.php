@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.css">
 
     <link rel="stylesheet" href="/assets/css/style.css?v=<?php echo filemtime("assets/css/style.css")?>" />
+    <link rel="stylesheet" href="/assets/lib/jquery-ui/jquery-ui-v1.12.1.css">
 
     <script src="/assets/lib/jquery-v2.2.4.min.js"></script>
     <script src="/assets/lib/bootstrap/bootstrap-v3.3.7.min.js"></script>
@@ -24,6 +25,9 @@
 
     <script src="/assets/lib/slick-carousel-v1.8.1.min.js"></script>
     <script src="/assets/lib/isMobile.js"></script>
+
+    <script src="/assets/lib/jquery-ui/jquery-ui-v1.12.1.js"></script>
+    <script src="/assets/lib/jquery-ui/calendar-pl.js"></script>
 
     <?php $background = get_background($_SERVER['REQUEST_URI']); ?>
 
