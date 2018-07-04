@@ -22,7 +22,7 @@ IF (@last_migration_at < @migration_timestamp) THEN
         `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
         `created_by` INT(10) UNSIGNED NULL,
         PRIMARY KEY (`id`)
-    ) COMMENT='Logowanie wysylki' COLLATE='utf8_general_ci' ENGINE=InnoDB;
+    ) COMMENT='Logowanie wysylki' COLLATE='utf8_polish_ci' ENGINE=InnoDB;
 
     /*** END OF MIGRATION ***/
 
