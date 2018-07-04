@@ -27,7 +27,10 @@ function content($params, $data) { ?>
         </div>
     <?php } ?>
 
-    <?php include './partials/stroer_sky.html' ?>
+    <aside class="sky-banner">
+        <?php include './partials/stroer_sky.html' ?>
+        <?= link_to(image('/assets/images/nagroda-konkursiaka-lipiec.png', ['class' => 'shadow', 'style' => 'width: 100%;']), t('contests_slug')) ?>
+    </aside>
 
     <?php foreach($data['hero_editions'] as $hero_edition) { ?>
 

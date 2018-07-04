@@ -1,0 +1,1 @@
+<?= image('/assets/images/nagroda-konkursiaka-lipiec.png', ['class' => 'shadow', 'style' => 'max-width: 90%;']) ?>

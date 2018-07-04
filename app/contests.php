@@ -46,7 +46,9 @@ function content($params, $data) { ?>
     <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . params('year')) ?></h2>
     <?= ranking_list($data['yearly_ranking']) ?>
 
-    <?= image('/assets/images/nagroda-konkursiaka.png', ['class' => 'shadow']) ?>
+    <p class="center">
+      <?php include './partials/konkursiak_of_the_month.php' ?>
+    </p>
   </div>
 
   <?php include './partials/modal_ranking.html' ?>
@@ -60,7 +62,9 @@ function content($params, $data) { ?>
     <?php } ?>
   </div>
 
-  <?php include './partials/stroer_sky.html' ?>
+  <aside class="sky-banner">
+      <?php include './partials/stroer_sky.html' ?>
+  </aside>
 
 </div>
 

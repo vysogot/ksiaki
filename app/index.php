@@ -11,7 +11,7 @@ $data['boxes'] = fetch_all('call sp_boxes_all_for_display();');
 
 function content($params, $data) { ?>
 
-<div class="wrapper">
+<div class="wrapper index">
 
     <section id="slajder" class="slider">
         <?php foreach($data['slides'] as $slide) { ?>
@@ -34,43 +34,45 @@ function content($params, $data) { ?>
     <?php } ?>
     </section>
 
-    <?php include './partials/stroer_sky.html' ?>
+    <aside class="sky-banner">
+      <?php include './partials/stroer_sky.html' ?>
+    </aside>
 
     <div class="main">
 
-<?php if (!empty($data['contests'])) { ?>
+        <?php if (!empty($data['contests'])) { ?>
 
-    <section id="contests" class="slider box-slider-container">
-      <div id="contests-slider" class="boxes">
-        <?php foreach($data['contests'] as $contest) { ?>
-          <div <?php if (!$contest->playable) echo 'class="unplayable"'; ?>>
-            <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
-            <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
-          </div>
+            <section id="contests" class="slider box-slider-container">
+              <div id="contests-slider" class="boxes">
+                <?php foreach($data['contests'] as $contest) { ?>
+                  <div <?php if (!$contest->playable) echo 'class="unplayable"'; ?>>
+                    <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
+                    <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
+                  </div>
+                <?php } ?>
+              </div>
+            </section>
+
         <?php } ?>
-      </div>
-    </section>
 
-<?php } ?>
+            <?php // include 'partials/user_movies_list.php'; ?>
 
-    <?php // include 'partials/user_movies_list.php'; ?>
-
-<?php if (!empty($data['boxes'])) { ?>
-    <section id="box-banners" class="slider box-slider-container">
-      <div id="box-banners-slider" class="boxes">
-        <?php foreach($data['boxes'] as $box) { ?>
-          <div>
-            <?= link_to(image($box->image_url), $box->link_url) ?>
-            <p><?= link_to($box->name, "$box->link_url") ?></p>
-          </div>
+        <?php if (!empty($data['boxes'])) { ?>
+            <section id="box-banners" class="slider box-slider-container">
+              <div id="box-banners-slider" class="boxes">
+                <?php foreach($data['boxes'] as $box) { ?>
+                  <div>
+                    <?= link_to(image($box->image_url), $box->link_url) ?>
+                    <p><?= link_to($box->name, "$box->link_url") ?></p>
+                  </div>
+                <?php } ?>
+              </div>
+            </section>
         <?php } ?>
-      </div>
-    </section>
-<?php } ?>
 
-  <div class="clear">
-    <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
-  </div>
+        <div class="clear">
+            <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
+        </div>
 
   </div>
 

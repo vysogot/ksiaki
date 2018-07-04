@@ -162,7 +162,10 @@ function content($params, $data) { ?>
 
     </div>
 
-    <?php include './partials/stroer_sky.html' ?>
+    <aside class="sky-banner">
+      <?php include './partials/stroer_sky.html' ?>
+      <?php include './partials/konkursiak_of_the_month.php' ?>
+    </aside>
 
     <script>
       $(document).on('ready', function() {
