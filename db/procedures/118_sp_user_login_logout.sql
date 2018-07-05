@@ -7,11 +7,20 @@ CREATE PROCEDURE `sp_user_login`(
   IN `p_session_id` CHAR(32)
   )
   BEGIN
-    INSERT INTO _user_logins(user_id, session_id)
-    VALUES(p_user_id, p_session_id);
-    SET @row_insert = (SELECT ROW_COUNT() AS rowCount);
-    CALL sp_pointed_activities_login(p_user_id);
-    SELECT @row_insert AS rowCount;
+  
+  SET @current = NOW();
+  INSERT INTO _user_logins(user_id, session_id, login_at)
+  VALUES(p_user_id, p_session_id, @current);
+  
+  SET @row_insert = (SELECT ROW_COUNT() AS rowCount);
+  
+  UPDATE _users
+  SET last_login_at = @current
+  WHERE (id = p_user_id);
+  
+  CALL sp_pointed_activities_login(p_user_id);
+  
+  SELECT @row_insert AS rowCount;
   END$$
 DELIMITER ;
 

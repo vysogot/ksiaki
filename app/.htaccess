@@ -3,6 +3,7 @@ RewriteEngine on
 
 RewriteRule ^admin$ /admin/ [L,NC]
 RewriteRule ^logowanie$ /login.php [L,NC]
+RewriteRule ^wyloguj-sie$ /logout.php [L,NC]
 RewriteRule ^rejestracja$ /register.php [L,NC]
 RewriteRule ^zakladanie-nowego-hasla$ /password_reset_request.php [L,NC]
 RewriteRule ^bohater/([a-z0-9A-Z_-]+)$ hero.php?slug=$1  [L,NC]
