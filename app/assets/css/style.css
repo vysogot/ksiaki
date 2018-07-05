@@ -139,9 +139,9 @@ footer p {
 .hero .boxes .slick-prev  { margin-left: 10px; }
 .hero .boxes .slick-next:before  { margin-left: -25px; }
 
-.slider .boxes .ended a,
-.slider .boxes .ended p,
-.box.ended a, .box.ended p
+.slider .boxes .finished a,
+.slider .boxes .finished p,
+.box.finished a, .box.finished p
  { background: #1c4260; color: white; }
 
 .slider .boxes .yetToBegin a,
