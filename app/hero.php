@@ -14,7 +14,7 @@ $params['title'] = $data['hero']->name;
 
 $data['hero_editions'] = fetch_all('call sp_hero_editions_find_by_hero_id(:p_hero_id);', array(
   array('p_hero_id', $data['hero']->id, PDO::PARAM_STR)
-), true);
+));
 
 function content($params, $data) { ?>
 

@@ -115,7 +115,6 @@ $translations = [
   'registration_info' => 'Drodzy uczestnicy, przed wzięciem udziału w konkursie prosimy zapoznać się z informacjami zawartymi w Polityce prywatności oraz Regulaminie konkursu. W Polityce prywatności, w części Polityka informacyjna, zawarte są niezbędne informacje, określające zasady postępowania z danymi osobowymi, a także ważne uprawniania, jakie przysługują osobom, których dane dotyczą. Informacje podawane są bez jakichkolwiek opłat. Polityka prywatności dostępna jest na stronie www.konkursiaki.pl. Powyższe prawa i informacje mają także zastosowanie do tych osób, które już uczestniczyły w konkursach i przekazały swoje dane osobowe.',
 
   // admin
-
   'contest' => 'Konkurs',
   'user' => 'Użytkownik',
   'users' => 'Użytkownicy',
@@ -137,6 +136,14 @@ $translations = [
   'sponsor' => 'Sponsor',
   'hero_editions' => 'Edycje bohaterów',
   'log_mail' => 'Historia wysyłki email',
+
+  'admin_caretaker_name' => 'Imię rodzica lub opiekuna',
+  'admin_caretaker_surname' => 'Nazwisko rodzica lub opiekuna',
+  'admin_caretaker_email' => 'Email rodzica lub opiekuna',
+  'admin_agreement' => 'Wyrażenie zgody',
+  'admin_contest_agreement' => 'Realizacja konkursu', 
+  'admin_marketing_agreement' => 'Cele marketingowe',
+  'admin_notifications_agreement' => 'Otrzymywanie powiadomień',
 
   // data
 
@@ -276,10 +283,12 @@ $translations = [
 
   // Your account
 
+  'account_settings' => 'Ustawienia konta',
   'your_profile' => 'Twój profil',
   'your_nick' => 'Twój nick',
   'your_email' => 'Twój email',
   'your_role' => 'Twoja rola',
+
 
   // Profile
 
@@ -316,6 +325,7 @@ $translations = [
   'invitation_registration_slug' => '/rejestracja-za-zaproszeniem/{{invitation_hash}}',
   'invitation_slug' => '/zapros-przyjaciol-do-gry',
   'download_slug' => '/pobieranie-tapety/{{id}}',
+  'account_settings_slug' => '/ustawienia-konta',
 
   // actions
 
@@ -335,10 +345,14 @@ $translations = [
   // contest prizes
   'prizes_in_this_contest' => 'Nagrody w tym konkursie',
   'contest_starts' => 'Start – {{date}}',
+
+  // contest status
+
   'contest_ends' => 'Zakończenie – {{date}}',
   'contest_statute_consent' => '*Biorąc udział w konkursie akceptujesz jego {{link}}',
   'contest_ended' => 'Zakończony',
   'contest_inactive' => 'Nieaktywny',
+  'contest_yet_to_begin' => 'Już wkrótce!',
   'contest_ended_play_other' => 'Ten konkurs dobiegł już końca. Wybierz inny!',
 
   // score games

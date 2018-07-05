@@ -100,6 +100,8 @@ function content($params, $data) { ?>
     <h2 class="center">
       <?php if (!$data['contest']->is_active) { ?>
           <?= t('contest_inactive') ?>
+      <?php } elseif ($data['contest']->yet_to_begin) { ?>
+          <?= t('contest_yet_to_begin') ?>
       <?php } elseif ($data['contest']->is_ended || !$data['contest']->playable) { ?>
           <?= t('contest_ended') ?>
       <?php } else { ?>

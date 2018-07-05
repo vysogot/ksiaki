@@ -71,6 +71,7 @@ SELECT _contests.id
 , is_active
 , is_ended
 , CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) OR (NOT is_active) THEN 0 ELSE 1 END AS 'playable'
+, CASE WHEN (NOW() < begins_at) THEN 1 ELSE 0 END AS 'yet_to_begin'
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
@@ -110,6 +111,7 @@ SELECT id
 , slug
 , box_url
 , CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
+, CASE WHEN (NOW() < begins_at) THEN 1 ELSE 0 END AS 'yet_to_begin'
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
 AND is_active
@@ -127,6 +129,7 @@ SELECT id
 , slug
 , box_url
 , CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
+, CASE WHEN (NOW() < begins_at) THEN 1 ELSE 0 END AS 'yet_to_begin'
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
 AND is_active
