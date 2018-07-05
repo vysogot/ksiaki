@@ -61,7 +61,7 @@ function CCreditsPanel(){
         _oButLogo.y = 265;
         _oContainer.addChild(_oButLogo);
         
-        _oLinkOutline = new createjs.Text("www.codethislab.com", "20px " + FONT_GAME, "#000");
+        _oLinkOutline = new createjs.Text(CREDITS_LINK, "20px " + FONT_GAME, "#000");
         _oLinkOutline.textAlign = "center";
         _oLinkOutline.textBaseline = "alphabetic";
 	_oLinkOutline.x = CANVAS_WIDTH/2+ 20;
@@ -69,7 +69,7 @@ function CCreditsPanel(){
         _oLinkOutline.outline = 2;
         _oContainer.addChild(_oLinkOutline);
         
-        _oLink = new createjs.Text("www.codethislab.com", "20px " + FONT_GAME, "#fff");
+        _oLink = new createjs.Text(CREDITS_LINK, "20px " + FONT_GAME, "#fff");
         _oLink.textAlign = "center";
         _oLink.textBaseline = "alphabetic";
 	_oLink.x = CANVAS_WIDTH/2+ 20;
@@ -94,7 +94,7 @@ function CCreditsPanel(){
     };
     
     this._onLogoButRelease = function(){
-        window.open("http://www.codethislab.com/index.php?&l=en","_blank");
+        window.open(CREDITS_LINK,"_blank");
     };
     
     this._init();

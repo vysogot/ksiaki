@@ -2,6 +2,7 @@ var CONTEST_ID = window.parent.contestId;
 
 // make empty string for testing
 var ASSETS_PATH = window.parent.assetsUrl;
+var CREDITS_LINK = window.parent.sponsorUrl;
 
 var CANVAS_WIDTH = 960;
 var CANVAS_HEIGHT = 540;
