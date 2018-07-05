@@ -30,3 +30,8 @@ mark {background: orange;color: black;}
 a[disabled="disabled"] {pointer-events: none;}
 a[disabled="disabled"] > .fas {opacity: 0.5;}
 .table-striped tbody tr.data-table-row-warning { background-color: #FF0; }
+
+.yellow { color: yellow; }
+.blue { color: blue; }
+.green { color: green; }
+.purple { color: purple; }

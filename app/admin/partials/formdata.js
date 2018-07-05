@@ -7,6 +7,21 @@ const t_delete = '<?= t("delete") ?>';
 const t_ended = '<?= t("contest_end") ?>';
 const t_cancel = '<?= t("cancel") ?>';
 const aActive = ['fa fa-times', 'fa fa-check'];
+const aStatus = {
+    'yetToBegin': 'fa fa-check blue',
+    'current': 'fa fa-check green',
+    'finished': 'fa fa-check yellow',
+    'ended': 'fa fa-check purple',
+    'inactive': 'fa fa-times'
+};
+
+const aStatusT = {
+    'yetToBegin': 'Już wkrótce',
+    'current': 'Trwa',
+    'finished': 'Zakończony',
+    'ended': 'Rozliczony',
+    'inactive': 'Nieaktywny'
+};
 
 function vex_confirm(msg, callback) {
     vex.dialog.open({

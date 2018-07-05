@@ -16,11 +16,11 @@ $(document).ready(function() {
             { "data": "begins_at" },
             { "data": "ends_at" },
             {
-                "data": "is_active",
+                "data": "status",
                 "className": "center",
                 "render":
                 function (data) {
-                    return '<i class="' + aActive[data] + '"></i>';
+                    return '<i class="' + aStatus[data] + '"></i><br />' + aStatusT[data];
                 }
             },
             { "data": "is_ended", "className": "none" },

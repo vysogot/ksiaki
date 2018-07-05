@@ -55,7 +55,7 @@ function content($params, $data) { ?>
 
   <div class="main">
     <?php foreach($data['contests'] as $contest) { ?>
-      <div class="left box <?php if (!$contest->playable) echo 'unplayable'; ?>">
+      <div class="left box <?= $contest->status ?>">
         <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
         <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
       </div>

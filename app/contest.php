@@ -155,7 +155,7 @@ function content($params, $data) { ?>
       <section id="otherContests" class="slider box-slider-container">
         <div id="other-contests-slider" class="boxes">
           <?php foreach($data['other_contests'] as $contest) { ?>
-            <div <?php if (!$contest->playable) echo 'class="unplayable"'; ?>>
+            <div class="<?= $contest->status ?>">
               <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
               <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
             </div>
