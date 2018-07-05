@@ -40,7 +40,7 @@ video { max-width: 100%; background: white; }
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
 #heroes       { width: 960px; height: 140px; overflow: visible; }
-#stroer_topbanner, #stroer_topbanner img { width: 830px; height: 130px; overflow: hidden; }
+#stroer_topbanner_container { width: 830px; height: 200px; overflow: hidden; }
 
 .sky-banner { display:inline-block; width: 232px; float: left;  text-align: center; margin-bottom: 25px; }
 .sky-banner#index { padding-top: 70px; }

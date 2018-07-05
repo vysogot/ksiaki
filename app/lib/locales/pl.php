@@ -172,6 +172,8 @@ $translations = [
   'invitation_successful' => 'Zaproszenie zostało zapakowane w elektroniczną kopertę!',
   'invitation_email_sent' => 'Wiadomość została wysłana na adres {{email}}',
 
+  'active_password_restoration_key_not_found' => 'Ten link został już unieważniony. Sprawdź maila, czy nie masz nowszego.',
+
 
   // invitations
 
@@ -336,6 +338,7 @@ $translations = [
   'contest_ends' => 'Zakończenie – {{date}}',
   'contest_statute_consent' => '*Biorąc udział w konkursie akceptujesz jego {{link}}',
   'contest_ended' => 'Zakończony',
+  'contest_inactive' => 'Nieaktywny',
   'contest_ended_play_other' => 'Ten konkurs dobiegł już końca. Wybierz inny!',
 
   // score games

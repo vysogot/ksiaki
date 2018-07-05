@@ -8,15 +8,20 @@ $data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(
   array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
-if (empty($data['contest']) || !$data['contest']->playable) {
+if (empty($data['contest']) || (!$data['contest']->is_active && !is_admin())) redirect('/404.php');
+
+if (!$data['contest']->playable && !is_admin()) {
     flash('warning', t('contest_ended_play_other'));
     redirect('/');
 }
+
+$data['assets_url'] = $GLOBALS['config']['cdn'] . '/contest_games/' . $data['contest']->game_name . '/' . $data['contest']->id . '/';
 
 function content($params, $data) { ?>
 
 <script type="text/javascript">
 var contestId = <?= $data['contest']->id ?>;
+var assetsUrl = '<?= $data['assets_url'] ?>';
 </script>
 
 <?php if ($data['contest']->game_name == 'pacman') { ?>
@@ -42,7 +47,7 @@ var contestId = <?= $data['contest']->id ?>;
         }
       </script>
     <?php } ?>
-    
+
     <div class="game">
     <iframe onload="this.contentWindow.focus()" class="game-iframe" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
     <script>

@@ -22,7 +22,7 @@ function CSpriteLibrary(){
             return;
         }
         
-        _oLibSprites[szKey] = { szPath:szPath, oSprite: new Image() };
+        _oLibSprites[szKey] = { szPath: ASSETS_PATH + szPath, oSprite: new Image() };
         _iNumSprites++;
         
     };

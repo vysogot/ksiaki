@@ -70,12 +70,11 @@ SELECT _contests.id
 , display_ad
 , is_active
 , is_ended
-, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
+, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) OR (NOT is_active) THEN 0 ELSE 1 END AS 'playable'
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
-WHERE (_contests.slug = p_slug)
-AND is_active;
+WHERE (_contests.slug = p_slug);
 END$$
 DELIMITER ;
 

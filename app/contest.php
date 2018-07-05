@@ -15,7 +15,7 @@ $data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(
     array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
-if (empty($data['contest'])) redirect('/404.php');
+if (empty($data['contest']) || (!$data['contest']->is_active && !is_admin())) redirect('/404.php');
 
 $params['title'] = $data['contest']->name;
 
@@ -25,7 +25,7 @@ $data['game'] = execute('call sp_games_find(:p_id);', array(
 
 if (is_logged_in()) {
   $result = execute('call sp_score_games_find_max_by_contest_and_user_id(
-    :p_contest_id, 
+    :p_contest_id,
     :p_user_id
   );', array(
       array('p_contest_id', $data['contest']->id, PDO::PARAM_INT),
@@ -86,19 +86,21 @@ function content($params, $data) { ?>
         <?php } ?>
 
         <?php if (isset($data['current_user_score']) && !empty($data['current_user_score'])) { ?>
-            
+
             <span class="bold bigger-font block margin-top-10">
-              <?= t('your_best_score') ?> 
+              <?= t('your_best_score') ?>
               <span class="red">
                 <?= polish_number_format($data['current_user_score']) ?>
               </span>
             </span>
-          
+
         <?php } ?>
     </p>
 
     <h2 class="center">
-      <?php if ($data['contest']->is_ended || !$data['contest']->playable) { ?>
+      <?php if (!$data['contest']->is_active) { ?>
+          <?= t('contest_inactive') ?>
+      <?php } elseif ($data['contest']->is_ended || !$data['contest']->playable) { ?>
           <?= t('contest_ended') ?>
       <?php } else { ?>
           <?= link_to(t('play'), t('contest_play_slug', ['slug' => $data['contest']->slug])) ?>
