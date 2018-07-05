@@ -139,8 +139,8 @@ function content($params, $data) { ?>
         <div id="prizes-slider" class="boxes">
         <?php foreach($data['contest_prizes'] as $prize) { ?>
           <div>
-            <?= link_to(image($prize->image_url), t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'prize']) ?>
-            <p><?= link_to($prize->name, t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'prize']) ?></p>
+            <?= link_to(image($prize->image_url), t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'wide']) ?>
+            <p><?= link_to($prize->name, t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'wide']) ?></p>
           </div>
         <?php } ?>
       </section>

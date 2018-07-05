@@ -4,7 +4,7 @@
 <head>
     <title><?= website_title($params) ?></title>
     <meta name="description" content="<?= t('website_description') ?>" />
-    
+
     <meta charset="utf-8">
     <?php if (function_exists('meta')) meta(); ?>
 
@@ -19,7 +19,7 @@
 
     <script src="/assets/lib/jquery-v2.2.4.min.js"></script>
     <script src="/assets/lib/bootstrap/bootstrap-v3.3.7.min.js"></script>
-    
+
     <script src="/assets/lib/datatables/jquery-dataTables-v1.10.16.min.js"></script>
     <script src="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.js"></script>
 
@@ -118,6 +118,7 @@
     .vex.vex-theme-flat-attack .vex-content p { margin: 40px 0 0 0; }
     .vex.vex-theme-flat-attack .vex-content.wide-text { width: 80%; font-size: 80%; }
     .vex.vex-theme-flat-attack .vex-content.wide { width: fit-content; max-width: 80%; }
+    .vex.vex-theme-flat-attack .vex-content.wide img { max-width: 100%; }
     </style>
 
     <main>
@@ -222,7 +223,7 @@
       <script>$('a.rodo').trigger('click');</script>
     <?php } ?>
 
-    <script id="cookieinfo" 
+    <script id="cookieinfo"
       src="/assets/lib/cookieinfo.min.js"
       data-message="Ta strona używa ciasteczek (cookies), dzięki którym nasz serwis może działać lepiej."
       data-linkmsg="Dowiedz się więcej"
