@@ -109,7 +109,7 @@
                         {"x":556.9,"y":206.2}
         ] },
 
-{"ball_speed":10,
+{"ball_speed":30,
      "ball_number":100,
      "num_colors":5,
      "hero_pos":{"x":500,"y":200},
