@@ -177,7 +177,7 @@ function CMain(oData){
 
     this._allResourcesLoaded = function(){
         _oPreloader.unload();
-        jQuery.getJSON("levels.json", this.onLoadedJSON);    
+        jQuery.getJSON("levels2.json", this.onLoadedJSON);    
     };
     
     this.onLoadedJSON = function (oData) {
