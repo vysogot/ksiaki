@@ -112,7 +112,7 @@ BEGIN
     , score_games.win
     , CASE WHEN (score_games.points < 0) THEN 0 ELSE score_games.points END AS points
     , points_total
-    , IFNULL(score_games.checknumber_client != score_games.checknumber_server, 0) AS is_suspected
+    , CASE WHEN (LENGTH(score_games.checknumber_client) = 6) THEN 0 ELSE IFNULL(score_games.checknumber_client != score_games.checknumber_server, 0) END AS is_suspected
    FROM score_games
      INNER JOIN _users ON score_games.user_id = _users.id
      INNER JOIN _contests ON score_games.contest_id = _contests.id
