@@ -50,7 +50,8 @@ function CEndPanel(oSpriteBg){
         $(s_oMain).trigger("show_interlevel_ad");
     };
 
-    this.show = function(iScore, iLastLevel, sMainBallColor, bWin){
+    // KSIAKI
+    this.show = function(iScore, iLastLevel, sMainBallColor, bWin, sTickTime){
         if(bWin){
             _oMsgTextBack.text = TEXT_CONGRATS;
             _oMsgText.text = TEXT_CONGRATS;
@@ -65,7 +66,8 @@ function CEndPanel(oSpriteBg){
         var oParent = this;
         createjs.Tween.get(_oGroup).to({alpha:1 }, 500).call(function() {oParent._initListener();});
 
-        $(s_oMain).trigger("save_score", [iScore, iLastLevel, sMainBallColor]);
+        // KSIAKI
+        $(s_oMain).trigger("save_score", [iScore, iLastLevel, sMainBallColor, sTickTime]);
     };
 
     this._onExit = function(){

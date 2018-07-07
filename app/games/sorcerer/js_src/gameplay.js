@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     $(oMain).on("start_session", function(evt) {});
     $(oMain).on("end_session", function(evt) {});
-    $(oMain).on("save_score", function(evt, iScore, iLevel, sMainBallColor) {
+    $(oMain).on("save_score", function(evt, iScore, iLevel, sMainBallColor, sTickTime) {
 
         $.post("/score.php", {
             token: token,
@@ -21,7 +21,8 @@ $(document).ready(function() {
             points: iScore - this.getScoreTillLevel(iLevel),
             points_total: iScore,
             main_ball_color: sMainBallColor,
-            win: 0
+            win: 0,
+            tick_time: sTickTime
         });
     });
 
@@ -35,7 +36,7 @@ $(document).ready(function() {
         });
     });
 
-    $(oMain).on("end_level", function(evt, iLevel, iLevelScore, iTotalScore, sMainBallColor) {
+    $(oMain).on("end_level", function(evt, iLevel, iLevelScore, iTotalScore, sMainBallColor, sTickTime) {
         $.post("/score.php", {
             token: token,
             contest_id: window.parent.contestId,
@@ -44,7 +45,8 @@ $(document).ready(function() {
             points: iLevelScore,
             points_total: iTotalScore,
             main_ball_color: sMainBallColor,
-            win: 1
+            win: 1,
+            tick_time: sTickTime
         });
     });
 

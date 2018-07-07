@@ -147,7 +147,10 @@ BEGIN
    CASE WHEN p_ordercolumn = 'points_total' AND p_orderdir = 'desc' THEN score_games.points_total END DESC,
    CASE WHEN p_ordercolumn = 'points_total' THEN score_games.points_total END,
 
-   CASE WHEN p_ordercolumn = '' THEN score_games.id END DESC
+   CASE WHEN p_ordercolumn = 'is_suspected' AND p_orderdir = 'desc' THEN is_suspected END DESC,
+   CASE WHEN p_ordercolumn = 'is_suspected' THEN is_suspected END,
+
+   CASE WHEN p_ordercolumn = '' THEN is_suspected END DESC, score_games.id DESC
 
    LIMIT p_limit
    OFFSET p_offset;

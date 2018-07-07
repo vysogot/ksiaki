@@ -111,12 +111,13 @@ function CInterface(iScore){
         s_oGame.onShot(iX,iY);
     };
 
-    this.gameOver = function(iScore, iLastLevel, sMainBallColor) {
-        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, false);
+    //KSIAKI
+    this.gameOver = function(iScore, iLastLevel, sMainBallColor, sTickTime) {
+        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, false, sTickTime);
     };
 
-    this.win = function(iScore, iLastLevel) {
-        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, true);
+    this.win = function(iScore, iLastLevel, sTickTime) {
+        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, true, sTickTime);
     };
 
     this.nextLevel = function(iLevel,iScore){

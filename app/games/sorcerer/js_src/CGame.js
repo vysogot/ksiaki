@@ -17,8 +17,10 @@ function CGame(oData,iLevel,iScore){
     var _iBallColors;
     var _iTimeElaps;
     var _iCurLevel;
+    //KSIAKI
+    var _sTickTime;
     var _sMainBallColor;
-    var _sBlackColor = "000000";
+    var _sBlackColor = "000000";    
     var _aBalls;
     var _aCurveMapData;
     var _aBallShooted;
@@ -587,9 +589,11 @@ function CGame(oData,iLevel,iScore){
         }else{
             s_oMain.setLocalStorageScore(_iCurLevelScore,_iTotScore,_iCurLevel);
 
+            // KSIAKI
             _sMainBallColor = (_sBlackColor + _iTotScore.toString(16)).substr(-6,6);
+            _sTickTime = _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
 
-            $(s_oMain).trigger("end_level", [_iCurLevel, _iCurLevelScore, _iTotScore, _sMainBallColor]);
+            $(s_oMain).trigger("end_level", [_iCurLevel, _iCurLevelScore, _iTotScore, _sMainBallColor, _sTickTime]);
             clearInterval(_iIntervalID);
             s_oStage.removeEventListener("stagemousemove");
             _bCanShoot = false;
@@ -598,7 +602,9 @@ function CGame(oData,iLevel,iScore){
 
             if(_iCurLevel > s_oLevelSettings.getNumLevels()){
                 _iCurLevel--;
-                _oInterface.win(_iTotScore, _iLastLevel, _sMainBallColor);
+
+                //KSIAKI
+                _oInterface.win(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime);
             }else{
                 s_oMain.setLocalStorageLevel(_iCurLevel);
                 _oInterface.nextLevel(_iCurLevel,_iTotScore);
@@ -674,7 +680,10 @@ function CGame(oData,iLevel,iScore){
                 if(_aBalls.length === 0){
                     _iGameState = -1;
                     _sMainBallColor = (_sBlackColor + _iTotScore.toString(16)).substr(-6,6);
-                     _oInterface.gameOver(_iTotScore, _iLastLevel, _sMainBallColor);
+                    _sTickTime = _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
+
+                    //KSIAKI
+                     _oInterface.gameOver(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime);
                 }
             }else{
                 _aBalls[i].increasePos(8,_aCurveMapData);
@@ -784,10 +793,9 @@ function CGame(oData,iLevel,iScore){
 
     s_oGame = this;
 
-    COMBO_VALUE = oData.combo_value;
-    EXTRA_SCORE = oData.extra_score;
-
-
+    //KSIAKI
+    COMBO_VALUE = _msTime = oData.combo_value;
+    EXTRA_SCORE = _mClock = oData.extra_score;
 
 
     this._init(iLevel,iScore);
