@@ -116,7 +116,7 @@ function CInterface(iScore){
         _oEndPanel.show(iScore, iLastLevel, sMainBallColor, false, sTickTime);
     };
 
-    this.win = function(iScore, iLastLevel, sTickTime) {
+    this.win = function(iScore, iLastLevel, sMainBallColor, sTickTime) {
         _oEndPanel.show(iScore, iLastLevel, sMainBallColor, true, sTickTime);
     };
 

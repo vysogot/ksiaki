@@ -67,7 +67,7 @@ function CEndPanel(oSpriteBg){
         createjs.Tween.get(_oGroup).to({alpha:1 }, 500).call(function() {oParent._initListener();});
 
         // KSIAKI
-        $(s_oMain).trigger("save_score", [iScore, iLastLevel, sMainBallColor, sTickTime]);
+        $(s_oMain).trigger("save_score", [iScore, iLastLevel, sMainBallColor, bWin, sTickTime]);
     };
 
     this._onExit = function(){

@@ -607,7 +607,9 @@ function CGame(oData,iLevel,iScore){
                 _oInterface.win(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime);
             }else{
                 s_oMain.setLocalStorageLevel(_iCurLevel);
-                _oInterface.nextLevel(_iCurLevel,_iTotScore);
+
+                //KSIAKI
+                _oInterface.nextLevel(_iCurLevel-1,_iTotScore);
             }
 
         }
