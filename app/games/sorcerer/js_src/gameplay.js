@@ -11,22 +11,20 @@ $(document).ready(function() {
 
     $(oMain).on("start_session", function(evt) {});
     $(oMain).on("end_session", function(evt) {});
-    $(oMain).on("save_score", function(evt, iScore, iLevel, sMainBallColor, bWin, sTickTime) {
+    $(oMain).on("save_score", function(evt, iScoreLevel, iScoreTotal, iLevel, sMainBallColor, bWin, sTickTime) {
 
         // Don't save when game finished because it fires "end_level" anyway
         if (!bWin) {
-
-            iWin = bWin ? 1 : 0;
 
             $.post("/score.php", {
                 token: token,
                 contest_id: window.parent.contestId,
                 level: iLevel,
                 begins_at: levelStartTimestamp,
-                points: iScore - this.getScoreTillLevel(iLevel),
-                points_total: iScore,
+                points: iScoreLevel,
+                points_total: iScoreTotal,
                 main_ball_color: sMainBallColor,
-                win: iWin,
+                win: 0,
                 tick_time: sTickTime
             });
         }

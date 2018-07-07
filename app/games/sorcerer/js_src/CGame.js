@@ -604,7 +604,7 @@ function CGame(oData,iLevel,iScore){
                 _iCurLevel--;
 
                 //KSIAKI
-                _oInterface.win(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime);
+                _oInterface.win(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime, _iCurLevel, _iCurLevelScore);
             }else{
                 s_oMain.setLocalStorageLevel(_iCurLevel);
 
@@ -685,7 +685,7 @@ function CGame(oData,iLevel,iScore){
                     _sTickTime = _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
 
                     //KSIAKI
-                     _oInterface.gameOver(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime);
+                     _oInterface.gameOver(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime, _iCurLevel, _iCurLevelScore);
                 }
             }else{
                 _aBalls[i].increasePos(8,_aCurveMapData);

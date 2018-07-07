@@ -51,7 +51,7 @@ function CEndPanel(oSpriteBg){
     };
 
     // KSIAKI
-    this.show = function(iScore, iLastLevel, sMainBallColor, bWin, sTickTime){
+    this.show = function(iScore, iLastLevel, sMainBallColor, bWin, sTickTime, iCurLevel, iCurLevelScore){
         if(bWin){
             _oMsgTextBack.text = TEXT_CONGRATS;
             _oMsgText.text = TEXT_CONGRATS;
@@ -67,7 +67,7 @@ function CEndPanel(oSpriteBg){
         createjs.Tween.get(_oGroup).to({alpha:1 }, 500).call(function() {oParent._initListener();});
 
         // KSIAKI
-        $(s_oMain).trigger("save_score", [iScore, iLastLevel, sMainBallColor, bWin, sTickTime]);
+        $(s_oMain).trigger("save_score", [iCurLevelScore, iScore, iCurLevel, sMainBallColor, bWin, sTickTime]);
     };
 
     this._onExit = function(){

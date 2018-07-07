@@ -112,12 +112,12 @@ function CInterface(iScore){
     };
 
     //KSIAKI
-    this.gameOver = function(iScore, iLastLevel, sMainBallColor, sTickTime) {
-        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, false, sTickTime);
+    this.gameOver = function(iScore, iLastLevel, sMainBallColor, sTickTime, iCurLevel, iCurLevelScore) {
+        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, false, sTickTime, iCurLevel, iCurLevelScore);
     };
 
-    this.win = function(iScore, iLastLevel, sMainBallColor, sTickTime) {
-        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, true, sTickTime);
+    this.win = function(iScore, iLastLevel, sMainBallColor, sTickTime, iCurLevel, iCurLevelScore) {
+        _oEndPanel.show(iScore, iLastLevel, sMainBallColor, true, sTickTime, iCurLevel, iCurLevelScore);
     };
 
     this.nextLevel = function(iLevel,iScore){
