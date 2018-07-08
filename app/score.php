@@ -8,38 +8,10 @@ if ($post) {
 
       $params = array_merge($params, $_POST);
 
-
-      // cheat check in game settings
-      // game settings are in tick_time field
       $tick_time = $params['tick_time'] ?? '';
-
-      // checking for cheating in games
-      // JS calculates the same and passes it through obscure field "main_ball_color"
+      
       $checknumber_client = $tick_time . $params['main_ball_color'];
-
-      $contest = fetch_one('call sp_games_find_by_contest_id(
-        :p_contest_id
-      );', array(
-        array('p_contest_id', $params['contest_id'], PDO::PARAM_INT)
-      ));
-
-      $game_settings = '';
-
-      if ($contest->name == 'sorcerer') {
-        switch ($params['level']) {
-          case '1':
-            $game_settings = '1000:1000/50:60:4;';
-            break;
-          case '2':
-            $game_settings = '1000:1000/40:80:5;';
-            break;
-          case '3':
-            $game_settings = '1000:1000/30:100:5;';
-            break;
-        }
-      }
-
-      $checknumber_server = $game_settings . str_pad(dechex($params['points_total']), 6, "0", STR_PAD_LEFT);  
+      $checknumber_server = cheat_check($params);
 
       execute('call sp_score_games_add_activities(
           :p_user_id,
@@ -83,5 +55,46 @@ if ($post) {
       send_json(['success' => false]);
   }
 
+
+}
+
+function cheat_check($params) {
+      
+      $game = fetch_one('call sp_games_find_by_contest_id(
+        :p_contest_id
+      );', array(
+        array('p_contest_id', $params['contest_id'], PDO::PARAM_INT)
+      ));
+
+      $game_settings = '';
+
+      switch ($game->name) {
+
+        case 'sorcerer':
+
+          switch ($params['level']) {
+            case '1':
+              $game_settings = '1000:1000/50:60:4;';
+              break;
+            case '2':
+              $game_settings = '1000:1000/40:80:5;';
+              break;
+            case '3':
+              $game_settings = '1000:1000/30:100:5;';
+              break;
+          }
+
+          break;
+
+        case 'memory':
+          $game_settings = '2:10/4,8,16,32:30,60,120,240;';
+          break;
+
+      }
+
+      $points_total_check = str_pad(dechex($params['points_total']), 6, "0", STR_PAD_LEFT);
+      $checknumber_server = $game_settings . $points_total_check;
+
+      return $checknumber_server;
 
 }

@@ -39,12 +39,15 @@ function CGameOver(){
         _oContinueButton.addEventListener(ON_MOUSE_UP, this.unload, this);
 	}
 
-    this.display = function(iScore){
+	// KSIAKI
+    this.display = function(iCurrentLevel, iLevelScore, iScore, sMainBallColor, sTickTime){
         _oMsgTextScore.text = TEXT_TOTALSCORE + " " + iScore;
 		
-	_oGroup.visible = true;
+		_oGroup.visible = true;
         createjs.Tween.get(_oGroup).to({alpha:1},250).call(function(){$(s_oMain).trigger("show_interlevel_ad");});
-	$(s_oMain).trigger("save_score",iScore);
+
+        // KSIAKI
+		$(s_oMain).trigger("save_score", [iCurrentLevel, iLevelScore, iScore, sMainBallColor, sTickTime]);
     };
 
     this.unload = function(){

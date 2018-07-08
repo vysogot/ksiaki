@@ -19,7 +19,8 @@ cat app/games/memory/js_src/jquery-2.0.3.min.js \
     app/games/memory/js_src/CInterface.js \
     app/games/memory/js_src/CGameOver.js \
     app/games/memory/js_src/CVictory.js \
-    app/games/memory/js_src/CCredits.js > app/games/memory/js_src/concat.js
+    app/games/memory/js_src/CCredits.js \
+    app/games/memory/js_src/gameplay.js > app/games/memory/js_src/concat.js
 
 echo "JS concatenation successful"
 

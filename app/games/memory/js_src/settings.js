@@ -1,3 +1,7 @@
+// KSIAKI make empty string for testing
+var ASSETS_PATH = window.parent.assetsUrl;
+var CREDITS_LINK = window.parent.sponsorUrl;
+
 var CANVAS_WIDTH = 1920;
 var CANVAS_HEIGHT = 1080;
 

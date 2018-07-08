@@ -19,6 +19,11 @@ function CGame(oData){
     var _oGameOverUI;
     var _oVictoryUI;
     var _oAttachCard;
+
+    //KSIAKI
+    var _sTickTime;
+    var _sMainBallColor;
+    var _sBlackColor = "000000"; 
     
     this._init = function(){
 
@@ -73,7 +78,8 @@ function CGame(oData){
         _oInterface.unload();
         
         if(bFromExit){
-            $(s_oMain).trigger("end_level",_iCurrentLevel);
+            // KSIAKI
+            // $(s_oMain).trigger("end_level",_iCurrentLevel);
         }
         $(s_oMain).trigger("end_session");
         $(s_oMain).trigger("share_event",_iScore);
@@ -166,7 +172,12 @@ function CGame(oData){
         // Update Interface
         _oInterface.refreshScore(_iScore);   
         
-        $(s_oMain).trigger("end_level",_iCurrentLevel);
+        // KSIAKI
+        _sMainBallColor = (_sBlackColor + _iScore.toString(16)).substr(-6,6);
+        _sTickTime = _mClock + ':' + _msTime + '/' + s_aCardsPerLevel + ':' + s_aSecsPerLevel + ';';
+
+        $(s_oMain).trigger("end_level", [_iCurrentLevel, _iLevelScore+_iLevelTimeBonus, _iScore, _sMainBallColor, _sTickTime]);
+
         if (_iCurrentLevel < s_aCardsPerLevel.length) {
                 playSound("next_level", 1, 0);
                 _oNextLevelUI.display(_iLevelScore,_iLevelTimeBonus,_iLevelScore+_iLevelTimeBonus,_iScore,_iCurrentLevel); 
@@ -240,8 +251,12 @@ function CGame(oData){
             _bUpdatesSuspended = true;
             _iTimeLeft = 0;
 
+            // KSIAKI
+            _sMainBallColor = (_sBlackColor + _iScore.toString(16)).substr(-6,6);
+            _sTickTime = _mClock + ':' + _msTime + '/' + s_aCardsPerLevel + ':' + s_aSecsPerLevel + ';';
+
             playSound("game_over", 1, 0);
-            _oGameOverUI.display(_iScore);
+            _oGameOverUI.display(_iCurrentLevel, _iLevelScore, _iScore, _sMainBallColor, _sTickTime);
 
             _iCurrentLevel = 1;
             
@@ -254,8 +269,9 @@ function CGame(oData){
     
     s_oGame = this;
 	
-	SCORE_MATCH_CARD = oData.score_match_card;
-	SCORE_TIME_LEFT_MULT = oData.score_time_left_mult;
+    // KSIAKI
+	SCORE_MATCH_CARD = _msTime = oData.score_match_card;
+	SCORE_TIME_LEFT_MULT = _mClock = oData.score_time_left_mult;
 	TIME_FOR_MATCH_MULT = oData.time_match_mult;
 	s_aCardsPerLevel = oData.card_per_level;
 	s_aSecsPerLevel = oData.time_level;

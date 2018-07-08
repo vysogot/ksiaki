@@ -54,7 +54,7 @@ function CNextLevel(){
 		
 		_oContinueButton =  new CTextButton(CANVAS_WIDTH/2,700,
                                         s_oSpriteLibrary.getSprite('but_menu_bg'),
-                                        "CONTINUE",
+                                        TEXT_CONTINUE,
                                         FONT_GAME,
                                         "White",
                                         "24",

@@ -22,7 +22,8 @@ function CSpriteLibrary(){
             return;
         }
         
-        _oLibSprites[szKey] = { szPath:szPath, oSprite: new Image() };
+        // KSIAKI
+        _oLibSprites[szKey] = { szPath: ASSETS_PATH + szPath, oSprite: new Image() };
         _iNumSprites++;
         
     };
