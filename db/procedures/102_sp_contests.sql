@@ -71,6 +71,7 @@ SELECT _contests.id
 , def_games.name AS game_name
 , def_contest_types.name AS contest_type_name
 , _contests.description
+, MAX(_sponsors.link_url) AS sponsor_link_url
 , statute
 , slug
 , box_url
@@ -78,13 +79,13 @@ SELECT _contests.id
 , begins_at
 , ends_at
 , display_ad
-, is_active
+, _contests.is_active
 , is_ended
-, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) OR (NOT is_active) THEN 0 ELSE 1 END AS 'playable'
+, CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) OR (NOT _contests.is_active) THEN 0 ELSE 1 END AS 'playable'
 , CASE WHEN (NOW() < begins_at) THEN 1 ELSE 0 END AS 'yet_to_begin'
 , CASE
 	WHEN is_ended THEN 'ended'
-	WHEN NOT is_active THEN 'inactive'
+	WHEN NOT _contests.is_active THEN 'inactive'
 	WHEN (NOW() < begins_at) THEN 'yetToBegin' 
 	WHEN (NOW() > ends_at) THEN 'finished'
 	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current' 
@@ -93,6 +94,8 @@ SELECT _contests.id
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
+LEFT JOIN _contest_prizes ON _contests.id = _contest_prizes.contest_id
+LEFT JOIN _sponsors ON _contest_prizes.sponsor_id = _sponsors.id
 WHERE (_contests.slug = p_slug);
 END$$
 DELIMITER ;

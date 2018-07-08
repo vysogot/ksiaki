@@ -12,10 +12,6 @@ if ($post) {
 
   if (empty($params['errors'])) {
 
-      $contest = execute('call sp_contests_find(:p_id);', array(
-          array('p_id', $params['contest_id'], PDO::PARAM_INT)
-      ));
-
       $filename = slugify($params['name']);
 
       if (!empty($_FILES['actual_file']['name'])) {
@@ -27,13 +23,15 @@ if ($post) {
           :p_name,
           :p_description,
           :p_image_url,
+          :p_link_url,
           :p_is_active,
           :p_user_id
       );', array(
-          array('p_sponsor_id', $params['sponsor_id'], PDO::PARAM_INT),
+          array('p_id', $params['id'], PDO::PARAM_INT),
           array('p_name', $params['name'], PDO::PARAM_STR),
           array('p_description', $params['description'], PDO::PARAM_STR),
           array('p_image_url', $params['image_url'], PDO::PARAM_INT),
+          array('p_link_url', $params['link_url'], PDO::PARAM_INT),
           array('p_is_active',$params['is_active'], PDO::PARAM_STR),
           array('p_user_id', $_SESSION['user_id'], PDO::PARAM_STR)
     ));

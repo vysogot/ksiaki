@@ -40,6 +40,18 @@
                         <input id="actual_file" name="actual_file" type="file">
                     </div>
                 </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="link_url">
+                       <?= t('link_url') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" id="link_url" name="link_url" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-link'></i></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-sm-6">

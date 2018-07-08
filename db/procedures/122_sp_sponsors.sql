@@ -12,6 +12,7 @@ BEGIN
     , '' AS name
     , '' AS description
     , '' AS image_url
+    , '' AS link_url
     , 1 AS is_active;
 END$$
 DELIMITER ;
@@ -39,6 +40,7 @@ CREATE PROCEDURE `sp_sponsors_create`(
     IN `p_name` VARCHAR(255),
     IN `p_description` VARCHAR(255),
     IN `p_image_url` VARCHAR(255),
+    IN `p_link_url` VARCHAR(255),
     IN `p_is_active` INT,
     IN `p_user_id` INT
 )
@@ -47,6 +49,7 @@ BEGIN
         name
         , description
         , image_url
+        , link_url
         , is_active
         , created_at
         , created_by
@@ -54,6 +57,7 @@ BEGIN
         p_name
         , p_description
         , p_image_url
+        , p_link_url
         , p_is_active
         , NOW()
         , p_user_id
@@ -70,6 +74,7 @@ CREATE PROCEDURE `sp_sponsors_update`(
     IN `p_name` VARCHAR(255),
     IN `p_description` VARCHAR(255),
     IN `p_image_url` VARCHAR(255),
+    IN `p_link_url` VARCHAR(255),
     IN `p_is_active` INT,
     IN `p_user_id` INT
 )
@@ -78,6 +83,7 @@ BEGIN
     SET name = p_name
     , description = p_description
     , image_url = p_image_url
+    , link_url = p_link_url
     , is_active = p_is_active
     , updated_by = p_user_id
     , updated_at = NOW()

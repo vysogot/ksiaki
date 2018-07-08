@@ -22,7 +22,7 @@ function content($params, $data) { ?>
 <script type="text/javascript">
 var contestId = <?= $data['contest']->id ?>;
 var assetsUrl = '<?= $data['assets_url'] ?>';
-var sponsorUrl = 'https://epee.pl';
+var sponsorUrl = '<?= $data['contest']->sponsor_link_url ?>';
 </script>
 
 <?php if ($data['contest']->game_name == 'pacman') { ?>
