@@ -383,4 +383,10 @@ $translations = [
   'updated_at' => 'Zaktualizowano dnia',
   'created_by' => 'Utworzone przez',
 
+  // games
+
+  'sorcerer' => 'Czarodziej',
+  'pacman' => 'Stary Pacman',
+  'memory' => 'Memory',
+
 ];

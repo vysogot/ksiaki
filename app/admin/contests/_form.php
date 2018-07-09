@@ -115,7 +115,7 @@ $games = execute('call sp_games_all();', [], true);
                         <div class='input-group'>
                             <select id="game_id" name="game_id">
                               <?php foreach($games as $game) { ?>
-                                  <option value="<?= $game->id ?>"><?= $game->name ?></option>
+                                  <option value="<?= $game->id ?>"><?= t($game->name) ?></option>
                               <?php } ?>
                             </select>
                         </div>

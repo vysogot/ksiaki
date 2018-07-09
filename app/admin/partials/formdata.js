@@ -23,6 +23,12 @@ const aStatusT = {
     'inactive': 'Nieaktywny'
 };
 
+const aGamesT = {
+    'sorcerer': 'Czarodziej',
+    'pacman': 'Stary Pacman',
+    'memory': 'Memory'
+}
+
 function vex_confirm(msg, callback) {
     vex.dialog.open({
         message: msg,

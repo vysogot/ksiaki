@@ -11,7 +11,13 @@ $(document).ready(function() {
                 "orderable": false
             },
             { "data": "name" },
-            { "data": "game_name" },
+            {
+                "data": "game_name",
+                "render":
+                function (data) {
+                    return aGamesT[data];
+                }
+            },
             { "data": "contest_type_name" },
             { "data": "begins_at" },
             { "data": "ends_at" },
