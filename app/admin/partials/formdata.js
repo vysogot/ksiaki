@@ -64,7 +64,7 @@ function displayErrors(errors) {
     $(".modal .errorList").empty();
 
     $.each(errors, function(field, bundle) {
-        console.log(field, bundle);
+
         $("input[name='" + field + "']").addClass('error');
 
         if (field == 'NOT_A_FIELD') {

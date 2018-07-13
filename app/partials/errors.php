@@ -6,6 +6,11 @@
       <?php } else { ?>
           <li><?= $bundle['message'] ?></li>
       <?php } ?>
+      <script>
+      	$(document).ready(function() { 
+	      	$("input[name='<?= $field ?>']").addClass('error') 
+	    });
+  	  </script>
   <?php } ?>
   </ul>
 <?php } ?>

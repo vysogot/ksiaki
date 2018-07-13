@@ -272,6 +272,8 @@ footer p {
   font-weight: normal;
 }
 
+.vertical-form input.error { background: #FDD; }
+
 /* MODAL */
 
 /* The Modal (background) */
