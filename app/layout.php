@@ -219,7 +219,7 @@
     </script>
 
     <?php if ((current_url() == '/') && !isset($_COOKIE['RODO'])) {
-         setcookie('RODO', '1', time()+3600*24*7); ?>
+         setcookie('RODO', '1', time()+3600*24*7, "/", $GLOBALS['config']['domain'], true, true); ?>
       <script>$('a.rodo').trigger('click');</script>
     <?php } ?>
 
