@@ -140,10 +140,12 @@ $translations = [
   'admin_caretaker_name' => 'Imię rodzica lub opiekuna',
   'admin_caretaker_surname' => 'Nazwisko rodzica lub opiekuna',
   'admin_caretaker_email' => 'Email rodzica lub opiekuna',
+
   'admin_agreement' => 'Wyrażenie zgody',
-  'admin_contest_agreement' => 'Realizacja konkursu', 
+  'admin_contest_agreement' => 'Realizacja konkursu',
   'admin_marketing_agreement' => 'Cele marketingowe',
   'admin_notifications_agreement' => 'Otrzymywanie powiadomień',
+  'admin_statute_agreement' => 'Regulamin',
 
   // data
 
@@ -180,6 +182,9 @@ $translations = [
   'invitation_email_sent' => 'Wiadomość została wysłana na adres {{email}}',
 
   'active_password_restoration_key_not_found' => 'Ten link został już unieważniony. Sprawdź maila, czy nie masz nowszego.',
+
+  'account_update_success' => 'Twoje konto zostało zaktualizowane',
+  'account_update_failure' => 'Nie udało się zaktualizować Twojego konta. Spróbuj później',
 
 
   // invitations
@@ -288,6 +293,7 @@ $translations = [
   'your_nick' => 'Twój nick',
   'your_email' => 'Twój email',
   'your_role' => 'Twoja rola',
+  'update_settings' => 'Zapisz ustawienia',
 
 
   // Profile

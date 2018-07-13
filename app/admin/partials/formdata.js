@@ -57,10 +57,28 @@ function vex_open(htmlContent) {
     });
 }
 
-function submitForm() {
+function displayErrors(errors) {
 
-    $('input[name="is_active"]').val($('#is_active_check').prop('checked') ? '1' : '0');
-    $('input[name="display_ad"]').val($('#display_ad_check').prop('checked') ? '1' : '0');
+    let error_list = $(".modal .errorList");
+
+    $(".modal .errorList").empty();
+
+    $.each(errors, function(field, bundle) {
+        console.log(field, bundle);
+        $("input[name='" + field + "']").addClass('error');
+
+        if (field == 'NOT_A_FIELD') {
+            error_list.append($("<li>").text(bundle.message));
+        } else {
+            error_list.append($("<li>").text(bundle.field_translation + ": " + bundle.message));
+        }
+
+    });
+
+    error_list.removeClass('hidden');
+}
+
+function submitForm() {
 
     if (suneditor != null) {
         let content = suneditor.getContent();
@@ -84,28 +102,10 @@ function submitForm() {
 
     }).done(function(response) {
 
-        console.log(response);
-
-
         if ('errors' in response) {
 
-            let error_list = $(".modal .errorList");
-
-            $(".modal .errorList").empty();
-
-            $.each(response.errors, function(field, bundle) {
-                $("input[name='" + field + "']").addClass('error');
-
-                if (field == 'NOT_A_FIELD') {
-                    error_list.append($("<li>").text(bundle.message));
-                } else {
-                    error_list.append($("<li>").text(bundle.field_translation + ": " + bundle.message));
-                }
-            });
-
+            displayErrors(response.errors);
             $("input[name=token]").val(response['token']);
-
-            error_list.removeClass('hidden');
 
         } else {
 
@@ -127,7 +127,6 @@ function submitForm() {
 
 function get_data(myObj) {
 
-    console.log('myobj', myObj);
     let id = $(myObj).data('id');
 
     $.ajax({
@@ -145,62 +144,25 @@ function get_data(myObj) {
         let ret = data[0];
 
         for (var key in ret) {
-            var field = $('input[name="' + key + '"]');
-            field.val(ret[key]);
 
-            if (key.endsWith('_url')) {
+            var field = $('[name=' + key + ']');
+            var value = ret[key] || '';
+
+            if (key.endsWith('_url') && key != 'link_url') {
                 field.prop('readonly', true);
-                console.log('_url', field);
             }
-            console.log('out', field);
+
+            if (field.is(':checkbox')) {
+                field.prop("checked", value == '1');
+            } else if (field.is(':radio')) {
+                field.val([value]);
+            } else if (key.endsWith('_at')) {
+                field.val(value.replace(' ', 'T'));
+            } else {
+                field.val(value);
+            }
+
         }
-
-        $('textarea[name="content"]').val(ret.content);
-        $('textarea[name="statute"]').val(ret.statute);
-        $('textarea[name="description"]').val(ret.description);
-        $('textarea[name="license_description"]').val(ret.license_description);
-
-        if (ret.begins_at != undefined) {
-            $('input[name="begins_at"]').val(ret.begins_at.replace(' ', 'T'));
-        }
-
-        if (ret.ends_at != undefined) {
-            $('input[name="ends_at"]').val(ret.ends_at.replace(' ', 'T'));
-        }
-
-        $('#is_active_check').prop("checked", ($('input[name="is_active"]').val() == '1'));
-        $('#display_ad_check').prop("checked", ($('input[name="display_ad"]').val() == '1'));
-        $('#link_url').prop('readonly', false);
-
-        $("#role_id option").removeAttr('selected');
-        $('#role_id ').find('option').filter(function(index) {
-            return $(this).val() == ret.role_id;
-        }).prop('selected', true);
-
-        $("#game_id option").removeAttr('selected');
-        $('#game_id ').find('option').filter(function(index) {
-            return $(this).val() == ret.game_id;
-        }).prop('selected', true);
-
-        $("#sponsor_id option").removeAttr('selected');
-        $('#sponsor_id ').find('option').filter(function(index) {
-            return $(this).val() == ret.sponsor_id;
-        }).prop('selected', true);
-
-        $("#contest_id option").removeAttr('selected');
-        $('#contest_id ').find('option').filter(function(index) {
-            return $(this).val() == ret.contest_id;
-        }).prop('selected', true);
-
-        $("#hero_file_type_id option").removeAttr('selected');
-        $('#hero_file_type_id ').find('option').filter(function(index) {
-            return $(this).val() == ret.hero_file_type_id;
-        }).prop('selected', true);
-
-        $("#hero_id option").removeAttr('selected');
-        $('#hero_id ').find('option').filter(function(index) {
-            return $(this).val() == ret.hero_id;
-        }).prop('selected', true);
 
         $('input[name="row_index"]').val($(myObj).data('index'));
 

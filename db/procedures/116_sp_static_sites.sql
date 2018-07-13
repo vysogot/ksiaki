@@ -11,8 +11,8 @@ CREATE PROCEDURE `sp_static_sites_new`()
 BEGIN
     SELECT 0 AS id
     , '' AS title
-    , '/uploads/static_site-1.jpg' AS slug
-    , 'https://konkursiaki.pl' AS content
+    , '' AS slug
+    , '' AS content
     , 1 AS is_active;
 END$$
 DELIMITER ;

@@ -12,8 +12,6 @@ $games = execute('call sp_games_all();', [], true);
 
     <input type="hidden" name="id">
     <input type="hidden" name="row_index" value="">
-    <input type="hidden" name="is_active">
-    <input type="hidden" name="display_ad">
 
     <div class="col-sm-12">
         <div class="modal-body">
@@ -142,7 +140,8 @@ $games = execute('call sp_games_all();', [], true);
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input id="display_ad_check" class="form-check-input" type="checkbox">
+                            <input type="hidden" name="display_ad" value="0">
+                            <input name="display_ad" class="form-check-input" type="checkbox" value="1">
                         </div>
                     </div>
                 </div>
@@ -153,7 +152,8 @@ $games = execute('call sp_games_all();', [], true);
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input id="is_active_check" class="form-check-input" type="checkbox">
+                            <input type="hidden" name="is_active" value="0">
+                            <input name="is_active" class="form-check-input" type="checkbox" value="1">
                         </div>
                     </div>
                 </div>

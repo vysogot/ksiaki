@@ -5,7 +5,6 @@
     <?= csrf_field() ?>
 
     <input type="hidden" name="id" value="">
-    <input type="hidden" name="is_active">
     <input type="hidden" name="row_index">
 
     <div class="col-sm-12">
@@ -18,8 +17,82 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="name" name="name" type="text">
+                            <input class="form-control" name="name" type="text">
                             <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="surname">
+                        <?= t('surname') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="surname" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="gender">
+                        <?= t('gender') ?>
+                    </label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline"><?= t('male') ?></label>
+                        <input type="radio" name="gender" value="1" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="radio-inline"><?= t('female') ?></label>
+                        <input type="radio" name="gender" value="0" />
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="address">
+                        <?= t('address') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="address" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="postcode">
+                        <?= t('postcode') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="postcode" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="city">
+                        <?= t('city') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="city" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="birthday">
+                        <?= t('birthday') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="birthday" type="date" step="1">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></div>
                         </div>
                     </div>
                 </div>
@@ -30,7 +103,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="nick" name="nick" type="text">
+                            <input class="form-control" name="nick" type="text">
                             <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
                         </div>
                     </div>
@@ -42,7 +115,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <select class="form-control" id="role_id" name="role_id">
+                            <select class="form-control" name="role_id">
                                 <option value="2">Gracz</option>
                                 <option value="1">Admin</option>
                             </select>
@@ -52,24 +125,24 @@
                 </div>
 
                 <div class='form-group'>
-                    <label class="control-label col-sm-4" for="name">
+                    <label class="control-label col-sm-4" for="email">
                         <?= t('email') ?>
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" type="email" id="email" name="email">
+                            <input class="form-control" type="email" name="email">
                             <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
                         </div>
                     </div>
                 </div>
 
                 <div class='form-group'>
-                    <label class="control-label col-sm-4" for="name">
+                    <label class="control-label col-sm-4" for="password">
                         <?= t('password') ?>
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="password" type="password" placeholder="<?= t('password') ?>" name="password" />
+                            <input class="form-control" name="password" type="password" />
                             <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
                         </div>
                     </div>
@@ -81,34 +154,135 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input class="form-control" id="avatar_url" name="avatar_url" type="text">
+                            <input class="form-control" name="avatar_url" type="text">
                             <div class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></div>
                         </div>
-                        <input id="avatar_file" name="avatar_file" type="file" class="form-control-file">
+                        <input name="avatar_file" type="file" class="form-control-file">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="is_active_check">
+                    <label class="control-label col-sm-4" for="is_active">
                         <?= t('is_active') ?>
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input id="is_active_check" class="form-check-input" type="checkbox">
+                            <input type="hidden" name="is_active" value="0">
+                            <input name="is_active" class="form-check-input" type="checkbox" value="1">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="modal-footer clear">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-                <?= t('close') ?>
-            </button>
-            <button type="submit" class="btn btn-primary">
-                <?= t('save') ?>
-            </button>
-        </div>
+            <div class="col-sm-6">
 
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="caretaker_name">
+                        <?= t('admin_caretaker_name') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="caretaker_name" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="caretaker_surname">
+                        <?= t('admin_caretaker_surname') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="caretaker_surname" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class="control-label col-sm-4" for="caretaker_email">
+                        <?= t('admin_caretaker_email') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input class="form-control" name="caretaker_email" type="text">
+                            <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="caretaker_is_active">
+                        <?= t('is_active') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class='input-group'>
+                            <input type="hidden" name="caretaker_is_active" value="0">
+                            <input name="caretaker_is_active" class="form-check-input" type="checkbox" value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4><?= t('admin_agreement') ?></h4></div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-8 align-left" for="contest_agreement">
+                                <?= t('admin_contest_agreement') ?>
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="hidden" name="contest_agreement" value="0">
+                                <input name="contest_agreement" type="checkbox" name="contest_agreement" value="1"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label text-left col-sm-8 align-left" for="marketing_agreement">
+                                <?= t('admin_marketing_agreement') ?>
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="hidden" name="marketing_agreement" value="0">
+                                <input name="marketing_agreement" type="checkbox" name="marketing_agreement" value="1"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-8 align-left" for="notifications_agreement">
+                                <?= t('admin_notifications_agreement') ?>
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="hidden" name="notifications_agreement" value="0">
+                                <input name="notifications_agreement" type="checkbox" name="notifications_agreement" value="1"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-8 align-left" for="statute_agreement">
+                                <?= t('admin_statute_agreement') ?>
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="hidden" name="statute_agreement" value="0">
+                                <input name="statute_agreement" type="checkbox" name="statute_agreement" value="1"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer clear">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <?= t('close') ?>
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <?= t('save') ?>
+                </button>
+            </div>
+
+        </div>
     </div>
+
 </form>

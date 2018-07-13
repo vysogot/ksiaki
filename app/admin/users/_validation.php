@@ -3,6 +3,9 @@
 function validate(&$params) {
     validate_presence($params, 'name');
     validate_presence($params, 'email');
+    validate_presence($params, 'birthday');
+
+    validate_not_null($params, 'gender');
 
     if (validate_presence($params, 'nick')) {
 

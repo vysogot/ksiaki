@@ -6,7 +6,6 @@
 
     <input type="hidden" name="id" value="">
     <input type="hidden" name="row_index" value="">
-    <input type="hidden" name="is_active">
 
     <div class="col-sm-12">
         <div class="modal-body">

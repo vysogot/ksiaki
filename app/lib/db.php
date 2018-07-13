@@ -1,16 +1,16 @@
 <?php
 
-function fetch_all($statement, $arguments = []) {
-    return execute($statement, $arguments, true);
+function fetch_all($statement, $arguments = [], $options = []) {
+    return execute($statement, $arguments, true, $options);
 }
 
-function fetch_one($statement, $arguments = []) {
-    return execute($statement, $arguments, false);
+function fetch_one($statement, $arguments = [], $options = []) {
+    return execute($statement, $arguments, false, $options);
 }
 
-function execute($statement, $arguments = [], $all = false) {
+function execute($statement, $arguments = [], $all = false, $options = []) {
 
-  $connection = get_connection();
+  $connection = get_connection($options);
   $prepared_statement = $connection->prepare($statement);
 
   foreach ($arguments as $argument) {
@@ -21,9 +21,7 @@ function execute($statement, $arguments = [], $all = false) {
   try {
 
     $time_start = microtime(true);
-
     $prepared_statement->execute();
-
     $time_end = microtime(true);
 
   } catch(PDOException $e) {
@@ -43,14 +41,27 @@ function execute($statement, $arguments = [], $all = false) {
 
 }
 
-function get_connection()
+function get_connection($query_options = [])
 {
 
-  if (!isset($GLOBALS['db_connection'])) {
+  $defaults = [
+    'fetch_type' => PDO::FETCH_OBJ
+  ];
+
+  $query_options = array_merge($defaults, $query_options);
+
+  $needs_refresh = (!isset($GLOBALS['db_connection']) ||
+        (isset($GLOBALS['db_connection_options']) &&
+        ($GLOBALS['db_connection_options'] != $query_options)));
+
+  if ($needs_refresh) {
 
     try {
-        $options = array(
-          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+
+        $GLOBALS['db_connection_options'] = $query_options;
+
+        $connection_options = array(
+          PDO::ATTR_DEFAULT_FETCH_MODE => $query_options['fetch_type'],
           PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
           PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
         );
@@ -63,7 +74,7 @@ function get_connection()
             ';charset=' . $GLOBALS['config']['DB_CHARSET'],
           $GLOBALS['config']['DB_USER'],
           $GLOBALS['config']['DB_PASS'],
-          $options
+          $connection_options
          );
 
     } catch (PDOException $e) {

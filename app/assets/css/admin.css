@@ -35,3 +35,5 @@ a[disabled="disabled"] > .fas {opacity: 0.5;}
 .blue { color: blue; }
 .green { color: green; }
 .purple { color: purple; }
+
+.form-horizontal .control-label.align-left { text-align: left; }

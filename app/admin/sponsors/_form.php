@@ -10,7 +10,6 @@
 
     <input type="hidden" name="id">
     <input type="hidden" name="row_index" value="">
-    <input type="hidden" name="is_active">
 
     <div class="col-sm-12">
         <div class="modal-body">
@@ -71,8 +70,8 @@
                     </label>
                     <div class="col-sm-8">
                         <div class='input-group'>
-                            <input type="hidden" name="is_active_check">
-                            <input id="is_active_check" class="form-check-input" type="checkbox">
+                            <input type="hidden" name="is_active" value="0">
+                            <input name="is_active" class="form-check-input" type="checkbox" value="1">
                         </div>
                     </div>
                 </div>

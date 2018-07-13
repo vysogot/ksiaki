@@ -36,6 +36,7 @@ video { max-width: 100%; background: white; }
 .red { color: #F66; }
 .block { display: block; }
 .margin-top-10 { margin-top: 10px; }
+.margin-right-10 { margin-right: 10px; }
 
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
@@ -127,6 +128,7 @@ ul.bare li.right { float: right; }
 .rankings ul { background: #fff; text-align: left; padding: 15px 0 15px 30px; opacity: 0.8; list-style: decimal; margin: 0 15px 15px 15px;}
 .rankings ul li { line-height: 25px; }
 
+footer { margin-top: 20px; }
 footer p {
     margin-top: 15px;
 }
@@ -180,7 +182,7 @@ footer p {
 .vertical-form input[type='submit'] {
     background: #fcfcfc;
     border: 2px solid #e7e7e7;
-    margin: 20px auto;
+    margin: 5px auto 20px auto;
     padding: 15px;
     width: 390px;
     display: block;
@@ -204,6 +206,12 @@ footer p {
   margin-bottom: 0;
   height: auto;
   -webkit-appearance: none;
+}
+
+.vertical-form label.radio {
+  margin-left: 0;
+  margin-right: 10px;
+  display: inline;
 }
 
 .vertical-form p {
@@ -255,6 +263,14 @@ footer p {
 }
 
 .vertical-form input.center { text-align: center; }
+.vertical-form input[readonly] { background-color: #ccc; }
+
+.vertical-form label {
+  margin-left: 0;
+  color: #666;
+  margin-top: 20px;
+  font-weight: normal;
+}
 
 /* MODAL */
 

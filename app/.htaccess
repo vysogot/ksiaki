@@ -12,5 +12,6 @@ RewriteRule ^konkurs/([a-z0-9A-Z_-]+)/reklama$ /contest_preroll.php?slug=$1 [L,N
 RewriteRule ^konkurs/([a-z0-9A-Z_-]+)/graj$ /contest_play.php?slug=$1 [L,NC]
 RewriteRule ^konkursy$ /contests.php [L,NC]
 RewriteRule ^nagroda/([a-z0-9A-Z_-]+)$ /contest_prize.php?id=$1 [L,NC]
-RewriteRule ^([a-z0-9A-Z_-]+)$ static_site.php?slug=$1 [L,NC]
 RewriteRule ^pobieranie-tapety/([a-z0-9A-Z_-]+)$ /download_wallpaper.php?id=$1 [L,NC]
+
+RewriteRule ^([a-z0-9A-Z_-]+)$ static_site.php?slug=$1 [L,NC]

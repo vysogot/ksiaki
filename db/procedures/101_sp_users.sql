@@ -33,8 +33,24 @@ CREATE PROCEDURE `sp_users_find` (
     IN `p_id` INT
 )
 BEGIN
-    SELECT * FROM _users
-    WHERE (id = p_id)
+    SELECT _users.*,
+    _accounts.gender,
+    _accounts.birthday,
+    _accounts.address,
+    _accounts.postcode,
+    _accounts.city,
+    _accounts.contest_agreement,
+    _accounts.marketing_agreement,
+    _accounts.notifications_agreement,
+    _accounts.statute_agreement,
+    _caretakers.name AS caretaker_name,
+    _caretakers.surname AS caretaker_surname,
+    _caretakers.email AS caretaker_email,
+    _caretakers.is_active AS caretaker_is_active
+    FROM _users
+    LEFT JOIN _accounts ON _users.id = _accounts.user_id
+    LEFT JOIN _caretakers ON _users.id = _caretakers.user_id
+    WHERE (_users.id = p_id)
     LIMIT 1;
 END$$
 DELIMITER ;
@@ -400,27 +416,83 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_users_update`(
-    IN `p_id` INT
-    , IN `p_role_id` INT
-    , IN `p_nick` VARCHAR(255)
-    , IN `p_name` VARCHAR(255)
-    , IN `p_email` VARCHAR(255)
-    , IN `p_avatar_url` VARCHAR(255)
-    , IN `p_is_active` VARCHAR(255)
-    , IN `p_updated_by` INT
+    IN `p_id` INT,
+    IN `p_role_id` INT,
+    IN `p_is_active` tinyint(1),
+    IN `p_birthday` date,
+    IN `p_caretaker_name` VARCHAR(255),
+    IN `p_caretaker_surname` VARCHAR(255),
+    IN `p_caretaker_email` VARCHAR(255),
+    IN `p_caretaker_is_active` VARCHAR(255),
+    IN `p_nick` VARCHAR(255),
+    IN `p_email` VARCHAR(255),
+    IN `p_avatar_url` VARCHAR(255),
+    IN `p_gender` tinyint(1),
+    IN `p_name` VARCHAR(255),
+    IN `p_surname` VARCHAR(255),
+    IN `p_address` VARCHAR(255),
+    IN `p_postcode` VARCHAR(255),
+    IN `p_city` VARCHAR(255),
+    IN `p_contest_agreement` tinyint(1),
+    IN `p_marketing_agreement` tinyint(1),
+    IN `p_notifications_agreement` tinyint(1),
+    IN `p_statute_agreement` tinyint(1),
+    IN `p_password_hash` VARCHAR(255),
+    IN `p_caretaker_activation_hash` VARCHAR(255),
+    IN `p_updated_by` INT
 )
 BEGIN
 
+    IF (p_caretaker_activation_hash != '') THEN
+
+        INSERT INTO _caretakers (
+            user_id
+            , name
+            , surname
+            , email
+            , activation_hash
+        ) VALUES (
+            p_id
+            , p_caretaker_name
+            , p_caretaker_surname
+            , p_caretaker_email
+            , p_caretaker_activation_hash
+        );
+
+    END IF;
+
     UPDATE _users
-    SET name = p_name
-    , role_id = p_role_id
-    , nick = p_nick
-    , email = p_email
-    , avatar_url = p_avatar_url
-    , is_active = p_is_active
-    , updated_at = NOW()
-    , updated_by = p_updated_by
-    WHERE (id = p_id);
+    LEFT JOIN _accounts ON _users.id = _accounts.user_id
+    LEFT JOIN _caretakers ON _users.id = _caretakers.user_id
+    SET _users.name = p_name
+    , _users.role_id = CASE WHEN (p_role_id IS NULL) THEN _users.role_id ELSE p_role_id END
+    , _users.nick = p_nick
+    , _users.email = p_email
+    , _users.name = p_name
+    , _users.surname = p_surname
+    , _users.avatar_url = CASE WHEN (p_avatar_url IS NULL) THEN _users.avatar_url ELSE p_avatar_url END
+    , _users.is_active = p_is_active
+    , _users.updated_at = NOW()
+    , _users.updated_by = p_updated_by
+    , _users.password_hash = CASE WHEN (LENGTH(p_password_hash) = 0) THEN _users.password_hash ELSE p_password_hash END
+    , _accounts.birthday = CASE WHEN (p_birthday IS NULL) THEN _accounts.birthday ELSE p_birthday END
+    , _accounts.gender = p_gender
+    , _accounts.address = p_address
+    , _accounts.postcode = p_postcode
+    , _accounts.city = p_city
+    , _accounts.contest_agreement = p_contest_agreement
+    , _accounts.marketing_agreement = p_marketing_agreement
+    , _accounts.notifications_agreement = p_notifications_agreement
+    , _accounts.statute_agreement = p_statute_agreement
+    , _accounts.updated_at = NOW()
+    , _accounts.updated_by = p_updated_by
+    , _caretakers.name = p_caretaker_name
+    , _caretakers.surname = p_caretaker_surname
+    , _caretakers.email = p_caretaker_email
+    , _caretakers.is_active = CASE WHEN (p_caretaker_is_active IS NULL) THEN _caretakers.is_active ELSE p_caretaker_is_active END
+    , _caretakers.updated_at = NOW()
+    , _caretakers.updated_by = p_updated_by
+    WHERE (_users.id = p_id);
 
     CALL `sp_users_find`(p_id);
 

@@ -26,8 +26,8 @@ CREATE PROCEDURE `sp_backgrounds_new`()
 BEGIN
 SELECT 0 AS id
 , '' AS name
-, '/uploads/background-1.jpg' AS image_url
-, 'https://konkursiaki.pl' AS link_url
+, '' AS image_url
+, '' AS link_url
 , '#ffffff' AS background_color
 , '#000000' details_color
 , 1 AS is_active

@@ -40,9 +40,7 @@ $badge_titles = array_filter(explode(', ', $profile->badge_titles));
 
 </p>
 
-<?php if (($profile->nick == current_session('nick')) || is_admin()) { ?>
-    <p><?= link_to(t('password_reset'), t('password_reset_request_slug')) ?></p>
+<?php if (($profile->nick == current_session('nick'))) { ?>
     <p><?= link_to(t('invite_friends'), t('invitation_slug')) ?></p>
-
-    <p><?= $profile->address ?></p>
+    <p><?= link_to(t('account_settings'), t('account_settings_slug')) ?></p>
 <?php } ?>

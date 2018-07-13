@@ -22,8 +22,8 @@ CREATE PROCEDURE `sp_slides_new`()
 BEGIN
 SELECT 0 AS id
 , '' AS name
-, '/uploads/slide-1.jpg' AS image_url
-, 'https://konkursiaki.pl' AS link_url
+, '' AS image_url
+, '' AS link_url
 , 1 AS is_active
 , NOW() AS begins_at
 , DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at;

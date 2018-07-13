@@ -13,7 +13,7 @@ CREATE PROCEDURE `sp_contests_new`()
 BEGIN
 SELECT 0 AS id
 , 1 AS game_id
-, 0 AS contest_type_id
+, 1 AS contest_type_id
 , '' AS name
 , '' AS slug
 , '' AS description
@@ -31,6 +31,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_contests_find`(IN `p_id` INT)
 BEGIN
 SELECT _contests.id
+, _contests.contest_type_id
 , _contests.name
 , game_id
 , def_games.name AS game_name

@@ -24,9 +24,9 @@ BEGIN
     , 0 AS user_id
     , '' AS name
     , '' AS description
-    , '/uploads/user_movie-1.mp4' AS video_url
-    , '/uploads/user_movie-1.jpg' AS image_url
-    , 'https://konkursiaki.pl' AS link_url
+    , '' AS video_url
+    , '' AS image_url
+    , '' AS link_url
     , 1 AS is_active
     , NOW() AS begins_at
     , DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at;
