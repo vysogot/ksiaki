@@ -11,24 +11,15 @@ function test_guest_sees_contests_page() {
 }
 
 function test_guest_sees_single_contest_page() {
-    when_i_go_to('/contest.php?slug=polska-izba-mleka');
-    return i_should_see_no_error();
-}
-
-function test_guest_sees_contest_preroll() {
-    when_i_go_to('/contest_preroll.php?id=1');
+    // TODO: create_contest(['slug' => 'polska-izba-mleka']);
+    when_i_go_to('/konkurs/polska-izba-mleka');
     return i_should_see_no_error();
 }
 
 function test_guest_can_play_contest() {
-    when_i_go_to('/contest_play.php?slug=polska-izba-mleka');
+    when_i_go_to('/konkurs/polska-izba-mleka/graj');
     return i_should_see_no_error();
 }
-
-/* function test_guest_sees_user_movie() {
-    when_i_go_to('/user_movie.php?id=1');
-    return i_should_see_no_error();
-} */
 
 function test_guest_sees_login_page() {
     when_i_go_to('/login.php');

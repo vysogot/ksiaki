@@ -4,16 +4,13 @@ include 'init.php';
 include '_validation_for_account.php';
 
 $params = [
-    'form_for' => 'register'
+    'form_for' => 'register',
+    'gender' => null
 ];
 
 $params = array_merge($params, $_GET);
 
 if ($post) {
-
-    $params = [
-        'gender' => null
-    ];
 
     $params = array_merge($params, $_POST);
 

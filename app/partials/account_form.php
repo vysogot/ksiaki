@@ -47,7 +47,7 @@
 <label for="city"><?= t('city') ?></label>
 <input id="city" type="text" name="city" value="<?= params('city') ?>" required />
 
-<?php if ($params['form_for'] == 'register') { ?>
+<?php if (params('form_for') == 'register') { ?>
     <label for="password"><?= t('password') ?></label>
     <input id="password" type="password" name="password" required />
 <?php } ?>

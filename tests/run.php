@@ -9,6 +9,7 @@ require 'support/db.php';
 require 'support/io.php';
 require 'support/dsl.php';
 require 'support/helpers.php';
+require 'support/factories.php';
 
 /* all acceptance test files */
 $dirpath = realpath(__DIR__ . "/acceptance");

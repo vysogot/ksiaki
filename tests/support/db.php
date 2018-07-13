@@ -2,7 +2,6 @@
 
 require realpath(__DIR__ . '/../../app/lib/db.php');
 
-const SQL_TRUNCATE_FILE_PATH = 'tests/support/truncate.sql';
 const SQL_SEED_FILE_PATH = 'tests/support/seeds.sql';
 
 function last_inserted_in($tablename) {
@@ -18,6 +17,5 @@ function db_seed() {
     $GLOBALS['config']['DB_PORT']
   ];
 
-  exec("mysql -h $host -P $port -u $user --password=$pass $dbname < " . SQL_TRUNCATE_FILE_PATH);
   exec("mysql -h $host -P $port -u $user --password=$pass $dbname < " . SQL_SEED_FILE_PATH);
 }
