@@ -3,7 +3,7 @@
 function test_player_profile() {
   when_i_login_as('admin');
   and_i_go_to('/profile.php?nick=admin');
-  return i_should_see('user');
+  return i_should_see('admin');
 }
 
 function test_player_can_login() {

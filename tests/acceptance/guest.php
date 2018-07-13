@@ -47,7 +47,7 @@ function test_guest_sees_contest_ranking() {
 }
 
 function test_guest_minor_can_register() {
-    when_i_submit('/register.php', [
+    when_i_submit('/rejestracja', [
         'birthday' => '16.01.1998',
         'nick' => 'Newky',
         'email' => 'new_email@test.com',
@@ -70,7 +70,7 @@ function test_guest_minor_can_register() {
 }
 
 function test_guest_adult_can_register() {
-    when_i_submit('/register.php', [
+    when_i_submit('/rejestracja', [
         'birthday' => '16.01.1998',
         'nick' => 'Newky',
         'email' => 'new_email@test.com',
@@ -93,13 +93,16 @@ function test_guest_adult_can_register() {
 }
 
 function test_guest_cant_register_with_existing_nick() {
-    when_i_submit('/register.php', [
+    when_i_submit('/rejestracja', [
         'birthday' => '16.01.1998',
-        'nick' => 'user',
+        'nick' => 'admin',
         'email' => 'new_email@test.com',
         'gender' => '1',
         'name' => 'new_user',
         'surname' => 'newsurname',
+        'caretaker_name' => '',
+        'caretaker_surname' => '',
+        'caretaker_email' => '',
         'address' => 'Avenue',
         'postcode' => '12-122',
         'city' => 'New York',
@@ -114,7 +117,7 @@ function test_guest_cant_register_with_existing_nick() {
 }
 
 function test_guest_unknown_fails_to_login() {
-  when_i_submit('/login.php', [
+  when_i_submit('/logowanie', [
         'login' => 'unknownuser',
         'password' => '12345678'
     ]);
