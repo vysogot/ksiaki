@@ -4,8 +4,11 @@
 <head>
     <title><?= t('website_title') ?></title>
 
+    <script>
+      var appEnv = '<?= $GLOBALS['env'] ?>';
+    </script>
+
     <meta charset="utf-8">
-    <?php if (function_exists('meta')) meta(); ?>
 
     <link rel="icon" href="data:;base64,=">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
@@ -31,10 +34,8 @@
     <script src="/assets/lib/suneditor/suneditor.js"></script>
     <script src="/assets/lib/suneditor/lang/pl.js"></script>
 
-    <?php if (is_production_env()) { ?>
-
-        <?php include realpath(__DIR__ . '/../partials/rollbar_client.php'); ?>
-
+    <?php if (is_public_env()) { ?>
+        <script src="/assets/lib/rollbar_client.js"></script>
     <?php } ?>
     
 </head>
@@ -91,8 +92,6 @@
     </footer>
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-
-    <?php if (function_exists('before_body_close')) before_body_close(); ?>
 
     <script>
 
