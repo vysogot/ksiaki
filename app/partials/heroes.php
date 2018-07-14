@@ -1,6 +1,6 @@
 <?php
 
-$heroes = execute('call sp_heroes_all();', [], true);
+$heroes = fetch_all('call sp_heroes_all();');
 
 ?>
 
@@ -19,23 +19,3 @@ $heroes = execute('call sp_heroes_all();', [], true);
   </section>
   </div>
 </div>
-
-<script type="text/javascript">
-$(document).on('ready', function() {
-  $("#heroes-slider").slick({
-    dots: false,
-    infinite: true,
-    centerMode: true,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    variableWidth: true,
-    lazyLoad: 'ondemand'
-  })
-  .on('mouseenter', '.slick-slide', function (e) {
-    $(e.currentTarget).addClass('expanded');
-  })
-  .on('mouseleave', '.slick-slide', function(e) {
-    $(e.currentTarget).removeClass('expanded');
-  });
-});
-</script>

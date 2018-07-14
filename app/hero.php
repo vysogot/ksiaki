@@ -92,7 +92,7 @@ function content($params, $data) { ?>
             <h3><?= t('in_current_edition') ?></h3>
             <div class="column-33">
                 <section>
-                  <div id="box-banners-slider" class="boxes">
+                  <div class="boxes box-slider">
                     <?php foreach($hero_magazines as $box) { ?>
                       <div>
                           <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
@@ -111,7 +111,7 @@ function content($params, $data) { ?>
                 <h3><?= t('to_download') ?></h3>
                 <div class="column-33">
                     <section>
-                      <div id="box-banners-slider" class="boxes">
+                      <div class="boxes box-slider">
                         <?php foreach($hero_wallpapers as $box) { ?>
                           <div>
                             <?= link_to(image(thumbnail_name($box->file_url)), t('download_slug', ['id' => $box->id])) ?>

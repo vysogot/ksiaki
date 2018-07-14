@@ -20,7 +20,8 @@ if ($get) {
 if ($post) {
 
     $params = [
-        'gender' => null
+        'gender' => null,
+        'form_for' => 'account_settings'
     ];
 
     $params = array_merge($params, $_POST);
@@ -101,7 +102,7 @@ function content($params, $data) { ?>
 
     <div class="wrapper">
 
-        <form method="post" action="/account_settings.php" class="vertical-form" accept-charset="UTF-8">
+        <form method="post" action="<?= t('account_settings_slug') ?>" class="vertical-form" accept-charset="UTF-8">
 
             <legend>
                 <h2><?= t('account_settings') ?></h2>

@@ -7,8 +7,6 @@ $data['video_ads'] = fetch_all('call sp_video_ads_all_for_display();');
 $data['contests'] = fetch_all('call sp_contests_all_for_display();');
 $data['boxes'] = fetch_all('call sp_boxes_all_for_display();');
 
-// $data['user_movies'] = fetch_all('call sp_user_movies_sorted_by_likes();');
-
 function content($params, $data) { ?>
 
 <div class="wrapper index">
@@ -43,7 +41,7 @@ function content($params, $data) { ?>
         <?php if (!empty($data['contests'])) { ?>
 
             <section id="contests" class="slider box-slider-container">
-              <div id="contests-slider" class="boxes">
+              <div id="contests-slider" class="boxes box-slider">
                 <?php foreach($data['contests'] as $contest) { ?>
                   <div class="<?= $contest->status ?>">
                     <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
@@ -55,11 +53,9 @@ function content($params, $data) { ?>
 
         <?php } ?>
 
-            <?php // include 'partials/user_movies_list.php'; ?>
-
         <?php if (!empty($data['boxes'])) { ?>
             <section id="box-banners" class="slider box-slider-container">
-              <div id="box-banners-slider" class="boxes">
+              <div id="box-banners-slider" class="boxes box-slider">
                 <?php foreach($data['boxes'] as $box) { ?>
                   <div>
                     <?= link_to(image($box->image_url), $box->link_url) ?>
@@ -76,14 +72,12 @@ function content($params, $data) { ?>
 
   </div>
 
-  <?php include './partials/app_sky_banner.php' ?>
+  <aside>
+    <?php include './partials/app_sky_banner.php' ?>
+  </aside>
 
 </div>
 
 <?php }
-
-function before_body_close() {
-    include 'partials/sliders_and_player_script.html';
-}
 
 include 'layout.php';

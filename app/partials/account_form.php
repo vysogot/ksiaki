@@ -85,6 +85,8 @@
     <label class="info last-info"><?= t('registration_info') ?></label>
 </div>
 
+<?php if (params('form_for') == 'register') { ?>
+
 <script>
     $(document).on('ready', function() {
         function toggle_caretaker_fields() {
@@ -123,3 +125,5 @@
         });
     });
 </script>
+
+<?php } ?>

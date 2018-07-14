@@ -138,7 +138,7 @@ function content($params, $data) { ?>
     <?php if (!empty($data['contest_prizes'])) { ?>
       <h2 class="center"><?= t('prizes_in_this_contest') ?></h2>
       <section id="prizes" class="slider box-slider-container">
-        <div id="prizes-slider" class="boxes">
+        <div id="prizes-slider" class="boxes box-slider">
         <?php foreach($data['contest_prizes'] as $prize) { ?>
           <div>
             <?= link_to(image($prize->image_url), t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'wide']) ?>
@@ -153,7 +153,7 @@ function content($params, $data) { ?>
 
       <h2 class="center"><?= t('other_contests') ?></h2>
       <section id="otherContests" class="slider box-slider-container">
-        <div id="other-contests-slider" class="boxes">
+        <div id="other-contests-slider" class="boxes box-slider">
           <?php foreach($data['other_contests'] as $contest) { ?>
             <div class="<?= $contest->status ?>">
               <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
@@ -170,26 +170,6 @@ function content($params, $data) { ?>
       <?php include './partials/stroer_sky.html' ?>
       <?php include './partials/konkursiak_of_the_month.php' ?>
     </aside>
-
-    <script>
-      $(document).on('ready', function() {
-
-        $("#prizes-slider, #other-contests-slider").slick({
-            variableWidth: true,
-            infinite: false,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            lazyLoad: 'ondemand'
-        })
-            .on('mouseenter', '.slick-slide', function (e) {
-                $(e.currentTarget).addClass('expanded-light');
-            })
-            .on('mouseleave', '.slick-slide', function(e) {
-                $(e.currentTarget).removeClass('expanded-light');
-            });
-
-      });
-    </script>
 
   </div>
 </div>

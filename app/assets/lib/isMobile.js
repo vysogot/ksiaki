@@ -1,4 +1,4 @@
-const isMobile = {
+var isMobile = {
     getUserAgent: function() {
         return navigator.userAgent;
     },
