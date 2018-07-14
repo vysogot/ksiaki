@@ -133,7 +133,7 @@ FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
 LEFT JOIN def_contest_types ON contest_type_id = def_contest_types.id
 WHERE (marked_as_deleted_by = 0)
-ORDER BY playable DESC, yet_to_begin DESC;
+ORDER BY begins_at DESC, playable DESC, yet_to_begin DESC;
 END$$
 DELIMITER ;
 
@@ -157,7 +157,7 @@ SELECT id
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
 AND is_active
-ORDER BY playable DESC, yet_to_begin DESC;
+ORDER BY begins_at DESC, playable DESC, yet_to_begin DESC;
 END$$
 DELIMITER ;
 
@@ -184,7 +184,7 @@ FROM _contests
 WHERE (marked_as_deleted_by = 0)
 AND is_active
 AND (id != p_id)
-ORDER BY playable DESC, yet_to_begin DESC;
+ORDER BY begins_at DESC, playable DESC, yet_to_begin DESC;
 END$$
 DELIMITER ;
 
