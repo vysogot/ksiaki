@@ -21,7 +21,7 @@ function when_i_submit($path, $data) {
 function when_i_login_as($username, $password = '12345678') {
   when_i_submit('/login.php', [
     'login' => $username,
-    'password' => '12345678'
+    'password' => $password
   ]);
 }
 

@@ -3,6 +3,8 @@
 include '../init.php';
 include '_validation.php';
 
+authorize(is_admin());
+
 if ($post) {
 
     $params = [

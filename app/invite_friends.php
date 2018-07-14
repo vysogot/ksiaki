@@ -2,7 +2,7 @@
 
 include 'init.php';
 
-must_be_logged_in();
+authorize(is_logged_in());
 
 $params = array_merge($params, $_GET);
 

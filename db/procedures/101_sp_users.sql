@@ -14,6 +14,7 @@ DROP PROCEDURE IF EXISTS sp_users_activate;
 DROP PROCEDURE IF EXISTS sp_users_caretaker_activate;
 DROP PROCEDURE IF EXISTS sp_users_password_reset_request;
 DROP PROCEDURE IF EXISTS sp_users_password_reset_execute;
+DROP PROCEDURE IF EXISTS sp_roles_all;
 
 
 DELIMITER $$
@@ -514,5 +515,13 @@ BEGIN
 
     SELECT ROW_COUNT() AS rowCount;
 
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_roles_all`()
+BEGIN
+    SELECT *
+    FROM def_roles;
 END$$
 DELIMITER ;

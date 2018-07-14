@@ -1,5 +1,8 @@
 <?php
 
+const ADMIN_ROLE_ID  = 1;
+const EDITOR_ROLE_ID = 3;
+
 function e($value) {
     return htmlspecialchars($value);
 }
@@ -40,7 +43,11 @@ function is_logged_in() {
 }
 
 function is_admin() {
-    if (isset($_SESSION['role_id'])) return $_SESSION['role_id'] == 1;
+    return current_session('role_id') == ADMIN_ROLE_ID;
+}
+
+function is_editor() {
+    return current_session('role_id') == EDITOR_ROLE_ID;
 }
 
 function is_adult($birthday) {
@@ -281,16 +288,13 @@ function sanitize(&$params) {
     });
 }
 
-function must_be_logged_in() {
-    if (!is_logged_in()) {
-        flash('notice', t('unauthorized'));
-        redirect('/login.php');
-    }
+function can_access_admin() {
+    return is_admin() || is_editor();
 }
 
-function must_be_an_admin() {
-    if (!is_admin()) {
-        flash('notice', t('unauthorized'));
+function authorize($can_access) {
+    if (!$can_access) {
+        flash('warning', t('unauthorized'));
         redirect('/login.php');
     }
 }

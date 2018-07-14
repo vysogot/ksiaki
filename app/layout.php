@@ -102,7 +102,7 @@
               <?php if (is_logged_in()) { ?>
                 <li class="right"><?= link_to(t('logout'), t('logout_slug'), ['id' => 'menu-logout']) ?></li>
                 <li class="right"><?= link_to(t('dashboard'), t('your_account_slug'), ['id' => 'menu-login', 'class' => 'modal-remote']) ?></li>
-                <?php if (is_admin()) { ?>
+                <?php if (can_access_admin()) { ?>
                   <li class="right"><?= link_to(t('admin_panel'), '/admin', ['id' => 'menu-admin']) ?></li>
                 <?php } ?>
               <?php } else { ?>

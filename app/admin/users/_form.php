@@ -1,4 +1,10 @@
-<?php include '../init.php'; ?>
+<?php
+
+include '../init.php';
+
+$roles = fetch_all('call sp_roles_all();');
+
+?>
 
 <form id="form" class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
 
@@ -116,8 +122,9 @@
                     <div class="col-sm-8">
                         <div class='input-group'>
                             <select class="form-control" name="role_id">
-                                <option value="2">Gracz</option>
-                                <option value="1">Admin</option>
+                                <?php foreach($roles as $role) { ?>
+                                    <option value="<?= $role->id ?>"><?= $role->name ?></option>
+                                <?php } ?>
                             </select>
                             <div class='input-group-addon'><i class='glyphicon glyphicon-list'></i></div>
                         </div>
@@ -277,9 +284,12 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     <?= t('close') ?>
                 </button>
-                <button type="submit" class="btn btn-primary">
-                    <?= t('save') ?>
-                </button>
+
+                <?php if (is_admin()) { ?>
+                    <button type="submit" class="btn btn-primary">
+                        <?= t('save') ?>
+                    </button>
+                <?php } ?>
             </div>
 
         </div>

@@ -7,6 +7,7 @@ DROP PROCEDURE IF EXISTS sp_contests_update;
 DROP PROCEDURE IF EXISTS sp_contests_delete;
 DROP PROCEDURE IF EXISTS sp_contests_find_by_slug;
 DROP PROCEDURE IF EXISTS sp_contests_all_for_display;
+DROP PROCEDURE IF EXISTS sp_contest_types_all;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_new`()
@@ -286,5 +287,13 @@ BEGIN
 
     SELECT ROW_COUNT() AS rowCount;
 
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contest_types_all`()
+BEGIN
+    SELECT *
+    FROM def_contest_types;
 END$$
 DELIMITER ;

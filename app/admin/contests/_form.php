@@ -2,7 +2,8 @@
 
 include '../init.php';
 
-$games = execute('call sp_games_all();', [], true);
+$games = fetch_all('call sp_games_all();');
+$contest_types = fetch_all('call sp_contest_types_all();');
 
 ?>
 
@@ -127,8 +128,9 @@ $games = execute('call sp_games_all();', [], true);
                     <div class="col-sm-8">
                         <div class='input-group'>
                             <select id="contest_type_id" name="contest_type_id">
-                                <option value="1">Normalny</option>
-                                <option value="2">Specjalny</option>
+                                <?php foreach($contest_types as $contest_type) { ?>
+                                    <option value="<?= $contest_type->id ?>"><?= $contest_type->name ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
