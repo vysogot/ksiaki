@@ -25,7 +25,8 @@ BEGIN
     SELECT _contest_prizes.*,
     _contests.name AS contest_name,
     _sponsors.name AS sponsor_name,
-    _sponsors.image_url AS sponsor_image_url
+    _sponsors.image_url AS sponsor_image_url,
+    _sponsors.link_url AS sponsor_link_url
     FROM _contest_prizes
     INNER JOIN _contests on _contest_prizes.contest_id = _contests.id
     INNER JOIN _sponsors on _contest_prizes.sponsor_id = _sponsors.id

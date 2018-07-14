@@ -20,9 +20,9 @@ $prize = execute('call sp_contest_prizes_find(:p_id);', array(
 
 <p>
     <?= t('sponsor') ?>:
-    <?= $prize->sponsor_name ?>
+    <?= link_to($prize->sponsor_name, $prize->sponsor_link_url, ['target' => '_blank']) ?>
 </p>
 
 <p>
-    <?= image($prize->sponsor_image_url) ?></p>
+    <?= link_to(image($prize->sponsor_image_url), $prize->sponsor_link_url, ['target' => '_blank']) ?></p>
 </p>
