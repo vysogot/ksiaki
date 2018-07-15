@@ -293,7 +293,7 @@ $translations = [
   'your_nick' => 'Twój nick',
   'your_email' => 'Twój email',
   'your_role' => 'Twoja rola',
-  'update_settings' => 'Zapisz ustawienia',
+  'update_settings' => 'Potwierdź',
 
 
   // Profile
