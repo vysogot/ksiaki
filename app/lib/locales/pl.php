@@ -388,6 +388,7 @@ $translations = [
   'created_at' => 'Utworzono dnia',
   'updated_at' => 'Zaktualizowano dnia',
   'created_by' => 'Utworzone przez',
+  'updated_by' => 'Zaktualizowane przez',
 
   // games
 

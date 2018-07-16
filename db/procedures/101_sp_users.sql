@@ -34,23 +34,34 @@ CREATE PROCEDURE `sp_users_find` (
     IN `p_id` INT
 )
 BEGIN
-    SELECT _users.*,
-    _accounts.gender,
-    _accounts.birthday,
-    _accounts.address,
-    _accounts.postcode,
-    _accounts.city,
-    _accounts.contest_agreement,
-    _accounts.marketing_agreement,
-    _accounts.notifications_agreement,
-    _accounts.statute_agreement,
-    _caretakers.name AS caretaker_name,
-    _caretakers.surname AS caretaker_surname,
-    _caretakers.email AS caretaker_email,
-    _caretakers.is_active AS caretaker_is_active
+    SELECT _users.id
+    , _users.name
+    , _users.role_id
+    , _users.nick
+    , _users.email
+    , _users.name
+    , _users.surname
+    , _users.avatar_url
+    , _users.is_active
+    , _updater.nick AS updated_by
+    , _users.updated_at
+    , _accounts.gender
+    , _accounts.birthday
+    , _accounts.address
+    , _accounts.postcode
+    , _accounts.city
+    , _accounts.contest_agreement
+    , _accounts.marketing_agreement
+    , _accounts.notifications_agreement
+    , _accounts.statute_agreement
+    , _caretakers.name AS caretaker_name
+    , _caretakers.surname AS caretaker_surname
+    , _caretakers.email AS caretaker_email
+    , _caretakers.is_active AS caretaker_is_active
     FROM _users
     LEFT JOIN _accounts ON _users.id = _accounts.user_id
     LEFT JOIN _caretakers ON _users.id = _caretakers.user_id
+    LEFT JOIN _users AS _updater ON _updater.id = _users.updated_by
     WHERE (_users.id = p_id)
     LIMIT 1;
 END$$
@@ -153,7 +164,7 @@ BEGIN
    CASE	WHEN p_ordercolumn = 'is_active' THEN is_active END,
 
 
-   CASE WHEN p_ordercolumn = '' THEN UPPER(nick) END
+   CASE WHEN p_ordercolumn = '' THEN updated_at END DESC, last_login_at DESC
 
    LIMIT p_limit
    OFFSET p_offset;

@@ -9,7 +9,7 @@ function fShow(myObj) {
     let url = '/admin/log_mail/show.php?id=' + row.id;
 
     $.get(url, function (response) {
-        vex_open(response);
+        vexOpen(response);
     });
 
 }

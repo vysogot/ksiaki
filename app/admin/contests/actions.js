@@ -1,3 +1,25 @@
+const aStatus = {
+    'yetToBegin': 'fa fa-check blue',
+    'current': 'fa fa-check green',
+    'finished': 'fa fa-check yellow',
+    'ended': 'fa fa-check purple',
+    'inactive': 'fa fa-times'
+};
+
+const aStatusT = {
+    'yetToBegin': 'Już wkrótce',
+    'current': 'Trwa',
+    'finished': 'Zakończony',
+    'ended': 'Rozliczony',
+    'inactive': 'Nieaktywny'
+};
+
+const aGamesT = {
+    'sorcerer': 'Czarodziej',
+    'pacman': 'Stary Pacman',
+    'memory': 'Memory'
+}
+
 function set_button(myFunc, myIndex, myRow, myTitle, myIcon, myDisable) {
     return '<a href="#" onclick="' + myFunc + '"' +
         ' data-index="' + myIndex + '"' +

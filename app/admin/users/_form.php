@@ -232,7 +232,11 @@ $roles = fetch_all('call sp_roles_all();');
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h4><?= t('admin_agreement') ?></h4></div>
+
+                    <div class="panel-heading text-center">
+                        <h4><?= t('admin_agreement') ?></h4>
+                    </div>
+
                     <div class="panel-body">
 
                         <div class="form-group">
@@ -277,6 +281,24 @@ $roles = fetch_all('call sp_roles_all();');
 
                     </div>
 
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4">
+                        <?= t('updated_at') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <p id="updated_at"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4">
+                        <?= t('updated_by') ?>
+                    </label>
+                    <div class="col-sm-8">
+                        <p id="updated_by"></p>
+                    </div>
                 </div>
             </div>
 

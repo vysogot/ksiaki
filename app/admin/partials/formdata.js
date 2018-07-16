@@ -7,29 +7,8 @@ const t_delete = '<?= t("delete") ?>';
 const t_ended = '<?= t("contest_end") ?>';
 const t_cancel = '<?= t("cancel") ?>';
 const aActive = ['fa fa-times', 'fa fa-check'];
-const aStatus = {
-    'yetToBegin': 'fa fa-check blue',
-    'current': 'fa fa-check green',
-    'finished': 'fa fa-check yellow',
-    'ended': 'fa fa-check purple',
-    'inactive': 'fa fa-times'
-};
 
-const aStatusT = {
-    'yetToBegin': 'Już wkrótce',
-    'current': 'Trwa',
-    'finished': 'Zakończony',
-    'ended': 'Rozliczony',
-    'inactive': 'Nieaktywny'
-};
-
-const aGamesT = {
-    'sorcerer': 'Czarodziej',
-    'pacman': 'Stary Pacman',
-    'memory': 'Memory'
-}
-
-function vex_confirm(msg, callback) {
+function vexConfirm(msg, callback) {
     vex.dialog.open({
         message: msg,
         overlayClosesOnClick: false,
@@ -51,7 +30,7 @@ function vex_confirm(msg, callback) {
     });
 }
 
-function vex_open(htmlContent) {
+function vexOpen(htmlContent) {
     vex.open({
         unsafeContent: htmlContent
     });
@@ -162,6 +141,8 @@ function get_data(myObj) {
                 field.val(value);
             }
 
+            $('p#' + key).text(value);
+
         }
 
         $('input[name="row_index"]').val($(myObj).data('index'));
@@ -188,7 +169,8 @@ function fEdit(myObj) {
 
 function fDelete(myObj) {
     let title = '<?= t("are_you_sure") ?>';
-    vex_confirm(title, function() {
+
+    vexConfirm(title, function() {
     $.get("delete.php?id=" + $(myObj).data('id'),
         function(data, status) {
             if (data[0].rowCount == 1) oTable.ajax.reload(null, false);
