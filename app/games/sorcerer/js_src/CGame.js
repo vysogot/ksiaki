@@ -601,6 +601,7 @@ function CGame(oData,iLevel,iScore){
             _iCurLevel++;
 
             if(_iCurLevel > s_oLevelSettings.getNumLevels()){
+                ServerScore.send(_iCurLevel, _iCurLevelScore, _iTotScore);
                 _iCurLevel--;
 
                 //KSIAKI

@@ -116,6 +116,7 @@ function CInterface(iScore){
         _oEndPanel.show(iScore, iLastLevel, sMainBallColor, false, sTickTime, iCurLevel, iCurLevelScore);
     };
 
+    //KSIAKI
     this.win = function(iScore, iLastLevel, sMainBallColor, sTickTime, iCurLevel, iCurLevelScore) {
         _oEndPanel.show(iScore, iLastLevel, sMainBallColor, true, sTickTime, iCurLevel, iCurLevelScore);
     };

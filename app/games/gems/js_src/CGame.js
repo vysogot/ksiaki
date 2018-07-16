@@ -45,12 +45,16 @@ function CGame(oData, iLevel, iScore){
     var _oContainerGrid;
     var _oTextErrorStroke;
     var _oTextError;
+
+    // KSIAKI
+    var _ServerScore;
     
     this._init = function(){
         
         setVolume("soundtrack", 0.6);
         
         $(s_oMain).trigger("start_level",[_iLevel]);
+
         var oBg = createBitmap(s_oSpriteLibrary.getSprite('bg_game'));
         s_oStage.addChild(oBg); //Draws on canvas
         
@@ -117,6 +121,10 @@ function CGame(oData, iLevel, iScore){
         this.refreshGridScale();
         
         _oInterface = new CInterface(_iLevel, _iNumMoves, _aLevelInfo[_iLevel].maxMoves);
+
+        //KSIAKI
+        var sGameSettings = SCORE_TO_ADD + ':' + SCORE_TO_SUBTRACT + ';';
+        _ServerScore = new ServerScore(sGameSettings);
     };
     
     this.refreshGridScale = function(){
@@ -906,7 +914,13 @@ function CGame(oData, iLevel, iScore){
                             _iNumMoves++;
                             _oInterface.refreshScore(_iNumMoves, _aLevelInfo[_iLevel].maxMoves);
                             if(_iPiecesConnected === _iNumFlowers && this.checkIfLevelCompleted()){
+
                                 this.endPanel();
+
+                                //KSIAKI
+                                var iTotalScore = s_oLocalStorage.getTotalScore();
+                                _ServerScore.send(_iLevel, _iScore, iTotalScore, 1);
+
                             }else if(_iPiecesConnected === _iNumFlowers && !this.checkIfLevelCompleted()){
                                 _oTextErrorStroke =  new createjs.Text("YOU HAVE TO FILL ALL THE CELLS"," 50px "+FONT, "#730358");
                                 _oTextErrorStroke.x = CANVAS_WIDTH/2;

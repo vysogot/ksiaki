@@ -57,7 +57,8 @@ function CCreditsPanel(){
         oLogo.y = CANVAS_HEIGHT/2;
         _oContainer.addChild(oLogo);
         
-        _oLink = new createjs.Text("www.codethislab.com","26px "+FONT, "#ffffff");
+        // KSIAKI
+        _oLink = new createjs.Text(CREDITS_LINK,"26px "+FONT, "#ffffff");
         _oLink.x = CANVAS_WIDTH/2;
         _oLink.y = 526;
         _oLink.textAlign = "center";
@@ -74,7 +75,9 @@ function CCreditsPanel(){
     };
     
     this._onLogoButRelease = function(){
-        window.open("http://www.codethislab.com/index.php?&l=en");
+
+        //KSIAKI
+        window.open(CREDITS_LINK);
     };
     
     this._init();

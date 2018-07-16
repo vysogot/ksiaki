@@ -12,6 +12,7 @@ cat app/games/gems/js_src/jquery-2.0.3.min.js \
     app/games/gems/js_src/screenfull.js \
     app/games/gems/js_src/ctl_utils.js \
     app/games/gems/js_src/sprite_lib.js \
+    app/games/gems/js_src/ServerScore.js \
     app/games/gems/js_src/settings.js \
     app/games/gems/js_src/CLang.js \
     app/games/gems/js_src/CPreloader.js \
@@ -32,7 +33,8 @@ cat app/games/gems/js_src/jquery-2.0.3.min.js \
     app/games/gems/js_src/CLocalStorage.js \
     app/games/gems/js_src/CModeMenu.js \
     app/games/gems/js_src/CMsgBox.js \
-    app/games/gems/js_src/levelsettings.js > app/games/gems/js_src/concat.js
+    app/games/gems/js_src/levelsettings.js \
+    app/games/gems/js_src/gameplay.js > app/games/gems/js_src/concat.js
 
 echo "JS concatenation successful"
 

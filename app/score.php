@@ -90,6 +90,10 @@ function cheat_check($params) {
           $game_settings = '2:10/4,8,16,32:30,60,120,240;';
           break;
 
+        case 'gems':
+          $game_settings = '10:5;';
+          break;
+
       }
 
       $points_total_check = str_pad(dechex($params['points_total']), 6, "0", STR_PAD_LEFT);
