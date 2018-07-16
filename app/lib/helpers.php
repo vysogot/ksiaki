@@ -90,8 +90,8 @@ function secure_url($url) {
     return $url;
 }
 
-function image($src, $options = [], $is_cloud = false) {
-    $image = '<img src="' . (($is_cloud) ? $GLOBALS['cloud'] : '') . secure_url($src) . '"';
+function image($src, $options = []) {
+    $image = '<img src="' . secure_url($src) . '"';
 
     foreach($options as $key => $value) {
         $image .= ' ' . $key . '="' . $value . '"';

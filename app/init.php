@@ -19,7 +19,6 @@ session_start();
 
 $GLOBALS['base_url'] = $GLOBALS['config']['protocol'] . $GLOBALS['config']['domain'];
 $GLOBALS['url'] = $GLOBALS['base_url'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
-$GLOBALS['cloud'] = 'https://res.cloudinary.com/rall/image/fetch/';
 
 // use include for custom error handling
 include realpath(__DIR__ . '/lib/helpers.php');

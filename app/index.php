@@ -14,7 +14,7 @@ function content($params, $data) { ?>
     <section id="slajder" class="slider">
         <?php foreach($data['slides'] as $slide) { ?>
           <div>
-            <?= link_to(image($slide->image_url,[],true), $slide->link_url) ?>
+            <?= link_to(image($slide->image_url), $slide->link_url) ?>
             <p><?= link_to($slide->name, $slide->link_url) ?></p>
           </div>
         <?php } ?>
@@ -27,7 +27,7 @@ function content($params, $data) { ?>
             <div>
             <video controls <?= $options ?> poster="<?= secure_url($video_ad->image_url) ?>" src="<?= secure_url($video_ad->video_url) ?>" type="video/mp4"></video>
                 <div class="mute"></div>
-                <?= link_to(image($video_ad->image_url,[],true), $video_ad->link_url) ?>
+                <?= link_to(image($video_ad->image_url), $video_ad->link_url) ?>
             </div>
     <?php } ?>
     </section>
@@ -44,7 +44,7 @@ function content($params, $data) { ?>
               <div id="contests-slider" class="boxes box-slider">
                 <?php foreach($data['contests'] as $contest) { ?>
                   <div class="<?= $contest->status ?>">
-                    <?= link_to(image($contest->box_url,[],true), t('contest_slug', ['slug' => $contest->slug])) ?>
+                    <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
                     <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
                   </div>
                 <?php } ?>
@@ -58,7 +58,7 @@ function content($params, $data) { ?>
               <div id="box-banners-slider" class="boxes box-slider">
                 <?php foreach($data['boxes'] as $box) { ?>
                   <div>
-                    <?= link_to(image($box->image_url,[],true), $box->link_url) ?>
+                    <?= link_to(image($box->image_url), $box->link_url) ?>
                     <p><?= link_to($box->name, "$box->link_url") ?></p>
                   </div>
                 <?php } ?>
