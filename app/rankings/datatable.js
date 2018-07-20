@@ -2,7 +2,13 @@ $(document).ready(function() {
     oTable = $('#dataTable').DataTable({
         "ajax": { "url": "/rankings/datatable.php?type=" + type + "&date=" + date,
                   "dataSrc": function ( json ) {
+
                     $('.panel-heading h2').text(json.title);
+
+                    if (json.status) {
+                        $('.panel-heading h2').prepend('<span style="color: red">' + json.status + '</span> ');
+                    }
+
                     return json.data;
                   }
         },

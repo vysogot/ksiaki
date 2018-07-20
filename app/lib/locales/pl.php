@@ -361,6 +361,11 @@ $translations = [
   'contest_yet_to_begin' => 'Już wkrótce!',
   'contest_ended_play_other' => 'Ten konkurs dobiegł już końca. Wybierz inny!',
 
+  // ranking status
+
+  'verified' => 'Zweryfikowany',
+  'unverified' => 'Niezweryfikowany',
+
   // score games
   'level' => 'Poziom',
   'win' => 'Wygrana',
