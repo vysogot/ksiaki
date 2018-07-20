@@ -40,7 +40,7 @@
 
       <script src="/assets/lib/jquery-ui/jquery-ui-v1.12.1.js"></script>
       <script src="/assets/lib/vex/vex.combined-v4.1.0.min.js"></script>
-      <script src="/assets/js/app.js"></script>
+      <script src="/assets/js/app.js?v=<?php echo filemtime("assets/js/app.js")?>"></script>
 
     <?php } ?>
 

@@ -40,12 +40,13 @@ function content($params, $data) { ?>
 
         <?php if (!empty($data['contests'])) { ?>
 
-            <section id="contests" class="slider box-slider-container">
-              <div id="contests-slider" class="boxes box-slider" data-per-page="3">
+            <section id="contests" class="slider-container">
+              <div id="contests-slider" class="box-slider" data-per-page="3">
                 <?php foreach($data['contests'] as $contest) { ?>
-                  <div class="<?= $contest->status ?>">
-                    <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
+                  <div class="box <?= $contest->status ?>">
+                    <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug]), ['class' => 'imageLink']) ?>
                     <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
+                    <?= link_to('', t('contest_slug', ['slug' => $contest->slug]), ['class' => 'overlay']) ?>
                   </div>
                 <?php } ?>
               </div>
@@ -54,10 +55,10 @@ function content($params, $data) { ?>
         <?php } ?>
 
         <?php if (!empty($data['boxes'])) { ?>
-            <section id="box-banners" class="slider box-slider-container">
-              <div id="box-banners-slider" class="boxes box-slider" data-per-page="3">
+            <section id="box-banners" class="slider-container">
+              <div class="box-slider" data-per-page="3">
                 <?php foreach($data['boxes'] as $box) { ?>
-                  <div>
+                  <div class="box">
                     <?= link_to(image($box->image_url), $box->link_url) ?>
                     <p><?= link_to($box->name, "$box->link_url") ?></p>
                   </div>

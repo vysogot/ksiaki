@@ -92,9 +92,9 @@ function content($params, $data) { ?>
             <h3><?= t('in_current_edition') ?></h3>
             <div class="column-33">
                 <section>
-                  <div class="boxes box-slider" data-per-page="3">
+                  <div class="box-slider" data-per-page="3">
                     <?php foreach($hero_magazines as $box) { ?>
-                      <div>
+                      <div class="box">
                           <?= link_to(image(thumbnail_name(secure_url($box->file_url))), secure_url($box->file_url), ['class' => 'modal-image']) ?>
                           <p><?= link_to($box->name, secure_url($box->file_url), ['class' => 'modal-image']) ?></p>
                       </div>
@@ -111,9 +111,9 @@ function content($params, $data) { ?>
                 <h3><?= t('to_download') ?></h3>
                 <div class="column-33">
                     <section>
-                      <div class="boxes box-slider" data-per-page="3">
+                      <div class="box-slider" data-per-page="3">
                         <?php foreach($hero_wallpapers as $box) { ?>
-                          <div>
+                          <div class="box">
                             <?= link_to(image(thumbnail_name($box->file_url)), t('download_slug', ['id' => $box->id])) ?>
                             <p><?= link_to($box->name, t('download_slug', ['id' => $box->id])) ?></p>
                           </div>
@@ -140,24 +140,6 @@ function content($params, $data) { ?>
 
   </div>
 </div>
-
-    <script>
-
-        $("#contests-slider, #movies-slider, #box-banners-slider").slick({
-            variableWidth: true,
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            lazyLoad: 'ondemand'
-        })
-            .on('mouseenter', '.slick-slide', function (e) {
-                $(e.currentTarget).addClass('expanded-light');
-            })
-            .on('mouseleave', '.slick-slide', function(e) {
-                $(e.currentTarget).removeClass('expanded-light');
-            });
-
-    </script>
 
 <?php }
 

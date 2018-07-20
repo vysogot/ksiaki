@@ -54,12 +54,15 @@ function content($params, $data) { ?>
   <?php include './partials/modal_ranking.html' ?>
 
   <div class="main">
-    <?php foreach($data['contests'] as $contest) { ?>
-      <div class="left box <?= $contest->status ?>">
-        <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
-        <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
-      </div>
-    <?php } ?>
+    <div class="boxes">
+      <?php foreach($data['contests'] as $contest) { ?>
+        <div class="left box <?= $contest->status ?>">
+          <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug]), ['class' => 'imageLink']) ?>
+          <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
+          <?= link_to('', t('contest_slug', ['slug' => $contest->slug]), ['class' => 'overlay']) ?>
+        </div>
+      <?php } ?>
+    </div>
   </div>
 
   <aside class="sky-banner">

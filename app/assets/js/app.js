@@ -96,8 +96,7 @@ $(document).on('ready', function() {
 
     $(".box-slider").each(function() {
 
-        console.log($(this).data('per-page'));
-        var perPage = parseInt($(this).data('per-page')) || 2;
+        var perPage = $(this).data('per-page') || 2;
 
         $(this).slick({
             variableWidth: true,

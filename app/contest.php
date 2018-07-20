@@ -76,9 +76,12 @@ $data['contest_ranking'] = execute('call sp_rankings_contest(
 function content($params, $data) { ?>
 
 <div id="contests-page">
-  <div class="full-wrapper contest-header" style="background: url('<?= $data['contest']->header_url ?>') center top no-repeat">
+  <div class="full-wrapper contest-header"
+       style="background: url('<?= $data['contest']->header_url ?>') center top no-repeat">
+
     <h1 class="center"><?= $data['contest']->name ?></h1>
     <p class="center description smaller-font">
+
         <?php if (!empty($data['contest']->description)) { ?>
             <?= $data['contest']->description ?>
         <?php } else { ?>
@@ -95,6 +98,7 @@ function content($params, $data) { ?>
             </span>
 
         <?php } ?>
+
     </p>
 
     <h2 class="center">
@@ -136,39 +140,53 @@ function content($params, $data) { ?>
     <div class="main">
 
     <?php if (!empty($data['contest_prizes'])) { ?>
+
       <h2 class="center"><?= t('prizes_in_this_contest') ?></h2>
-      <section id="prizes" class="slider box-slider-container">
+      <section id="prizes" class="slider-container">
         <div id="prizes-slider" class="boxes box-slider">
+
         <?php foreach($data['contest_prizes'] as $prize) { ?>
-          <div>
+
+          <div class="box">
             <?= link_to(image($prize->image_url), t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'wide']) ?>
             <p><?= link_to($prize->name, t('contest_prize_slug', ['slug' => $prize->id]), ['class' => 'modal-remote', 'data-modal-class' => 'wide']) ?></p>
           </div>
+
         <?php } ?>
+
       </section>
+
     <?php } ?>
 
 
     <?php if (!empty($data['other_contests'])) { ?>
 
       <h2 class="center"><?= t('other_contests') ?></h2>
-      <section id="otherContests" class="slider box-slider-container">
+      <section id="otherContests" class="slider-container">
         <div id="other-contests-slider" class="boxes box-slider">
+
           <?php foreach($data['other_contests'] as $contest) { ?>
-            <div class="<?= $contest->status ?>">
-              <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
+
+            <div class="box <?= $contest->status ?>">
+              <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug]), ['class' => 'imageLink']) ?>
               <p><?= link_to($contest->name, t('contest_slug', ['slug' => $contest->slug])) ?></p>
+              <?= link_to('', t('contest_slug', ['slug' => $contest->slug]), ['class' => 'overlay']) ?>
             </div>
+
           <?php } ?>
+
         </div>
       </section>
+
     <?php } ?>
 
     </div>
 
     <aside class="sky-banner">
+
       <?php include './partials/stroer_sky.html' ?>
       <?php include './partials/konkursiak_of_the_month.php' ?>
+
     </aside>
 
   </div>
