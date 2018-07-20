@@ -404,6 +404,7 @@ footer p {
     font-family: 'slick';
     font-size: 20px;
     line-height: 1;
+    display: block;
 
     opacity: .75;
     color: white;
@@ -429,6 +430,7 @@ footer p {
 .slick-prev:before
 {
     content: '<';
+    margin-right: 1px;
 }
 [dir='rtl'] .slick-prev:before
 {
@@ -449,6 +451,7 @@ footer p {
 .slick-next:before
 {
     content: '>';
+    margin-left: 2px;
 }
 [dir='rtl'] .slick-next:before
 {
@@ -630,6 +633,7 @@ footer p {
 .slick-prev:before,
 .slick-next:before {
   color: white;
+  padding-bottom: 1px;
 }
 
 
