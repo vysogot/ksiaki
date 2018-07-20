@@ -32,7 +32,7 @@ function content($params, $data) { ?>
     <?php } ?>
     </section>
 
-    <aside class="sky-banner">
+    <aside class="sky-banner left">
       <?php include './partials/stroer_sky.html' ?>
     </aside>
 
@@ -41,7 +41,7 @@ function content($params, $data) { ?>
         <?php if (!empty($data['contests'])) { ?>
 
             <section id="contests" class="slider box-slider-container">
-              <div id="contests-slider" class="boxes box-slider">
+              <div id="contests-slider" class="boxes box-slider" data-per-page="3">
                 <?php foreach($data['contests'] as $contest) { ?>
                   <div class="<?= $contest->status ?>">
                     <?= link_to(image($contest->box_url), t('contest_slug', ['slug' => $contest->slug])) ?>
@@ -55,7 +55,7 @@ function content($params, $data) { ?>
 
         <?php if (!empty($data['boxes'])) { ?>
             <section id="box-banners" class="slider box-slider-container">
-              <div id="box-banners-slider" class="boxes box-slider">
+              <div id="box-banners-slider" class="boxes box-slider" data-per-page="3">
                 <?php foreach($data['boxes'] as $box) { ?>
                   <div>
                     <?= link_to(image($box->image_url), $box->link_url) ?>
@@ -66,13 +66,13 @@ function content($params, $data) { ?>
             </section>
         <?php } ?>
 
-        <div class="clear">
+        <div class="clear center">
             <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
         </div>
 
   </div>
 
-  <aside>
+  <aside class="sky-banner right">
     <?php include './partials/app_sky_banner.php' ?>
   </aside>
 

@@ -95,11 +95,15 @@ $(document).on('ready', function() {
     });
 
     $(".box-slider").each(function() {
+
+        console.log($(this).data('per-page'));
+        var perPage = parseInt($(this).data('per-page')) || 2;
+
         $(this).slick({
             variableWidth: true,
             infinite: false,
-            slidesToShow: 2,
-            slidesToScroll: 2,
+            slidesToShow: perPage,
+            slidesToScroll: perPage,
             lazyLoad: 'ondemand'
         })
         .on('mouseenter', '.slick-slide', function (e) {

@@ -50,7 +50,7 @@
       <?php if (!empty($background)) { ?>
           html { background: white url('/assets/images/loading.gif') center 10% no-repeat; }
           body { background: <?= $background->background_color ?> url('<?= cdn_url($background->image_url) ?>') center top no-repeat; background-attachment: fixed; margin-top: -5px; }
-          .slick-prev:before, .slick-next:before { color: <?= $background->details_color ?>!important; }
+          
 
           nav, .ad, .rankings h2, .rankings ul, #slajder,
           #player, .box, #heroes .slick-slide, .boxes .slick-slide,

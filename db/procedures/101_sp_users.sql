@@ -455,24 +455,6 @@ CREATE PROCEDURE `sp_users_update`(
 )
 BEGIN
 
-    IF (p_caretaker_activation_hash != '') THEN
-
-        INSERT INTO _caretakers (
-            user_id
-            , name
-            , surname
-            , email
-            , activation_hash
-        ) VALUES (
-            p_id
-            , p_caretaker_name
-            , p_caretaker_surname
-            , p_caretaker_email
-            , p_caretaker_activation_hash
-        );
-
-    END IF;
-
     UPDATE _users
     LEFT JOIN _accounts ON _users.id = _accounts.user_id
     LEFT JOIN _caretakers ON _users.id = _caretakers.user_id

@@ -38,19 +38,22 @@ video { max-width: 100%; background: white; }
 .margin-top-10 { margin-top: 10px; }
 .margin-right-10 { margin-right: 10px; }
 
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+
 #logo         { width: 130px; height: 130px; }
 #logo img     { width: 100px; height: 105px; }
 #heroes       { width: 960px; height: 140px; overflow: visible; }
 #stroer_topbanner_container { width: 830px; height: 200px; overflow: hidden; }
 
 .sky-banner { display:inline-block; width: 232px; float: left;  text-align: center; margin-bottom: 25px; }
-.sky-banner#index { padding-top: 70px; }
+.index .sky-banner { width: 160px; margin-top: 20px;}
 .sky-banner img { margin-bottom: 10px; }
 
 #slajder      { width: 474px; height: 289px; margin-right: 12px; overflow-y: hidden; }
 #player       { width: 474px; height: 289px; }
 .slider.box-slider-container  { width: 485px; min-height: 340px; }
-.index .sky-banner { margin-top: 20px; }
+.index .slider.box-slider-container { width: 590px; min-height: 240px; margin-left: 30px;}
 
 #static-sites { width: 100%;  height: 50px; color: white;
   background-color: #999; opacity: 0.9; }
@@ -64,6 +67,8 @@ video { max-width: 100%; background: white; }
 
 #logo, #banner, #slajder, #player, #static-sites,
 #contests, #movies, #box-banners, #copyright, #rodo { float: left; text-align: center; }
+
+.index aside { width: 160px; }
 
 nav { float: left; }
 nav ul li { margin-right: 20px; margin-left: 10px; }
@@ -104,6 +109,8 @@ ul.bare li.right { float: right; }
 #menu-heroes      { background: white url('/assets/images/menu-heroes.png')       10px 10px no-repeat; }
 
 .main { width: 480px; margin-bottom: 25px;}
+.index .main { width: 640px; }
+
 .side { width: 240px; }
 .main, .side { float: left; }
 
@@ -138,8 +145,8 @@ footer p {
 .hero .boxes .slick-slide a { height: 192px; }
 .hero .boxes .slick-slide p a { height: 32px; background: white;  }
 .hero .boxes .slick-slide img  { width: 192px; }
-.hero .boxes .slick-prev  { margin-left: 10px; }
-.hero .boxes .slick-next:before  { margin-left: -25px; }
+.hero .boxes .slick-prev  { margin-left: 3px; }
+.hero .boxes .slick-next:before  { margin-left: 0; }
 
 .slider .boxes .finished a,
 .slider .boxes .finished p,
@@ -352,33 +359,31 @@ footer p {
 
     display: block;
 
-    width: 30px;
-    height: 30px;
-    padding: 5px;
+    width: 27px;
+    height: 27px;
+    padding: 3px;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
 
     cursor: pointer;
 
-    color: transparent;
+    color: white;
+    font-weight: bold;
     border: none;
     outline: none;
-    background: white;
+    background: #ef4721;
 
-    -moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
+    -moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
 }
 .slick-prev:hover,
 .slick-prev:focus,
 .slick-next:hover,
 .slick-next:focus
 {
-    color: transparent;
     outline: none;
-    background: white;
-
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,
@@ -409,11 +414,16 @@ footer p {
 
 .slick-prev
 {
-    left: -35px;
+    left: -22px;
 }
+
+#heroes .slick-prev {
+  left: -35px;
+}
+
 [dir='rtl'] .slick-prev
 {
-    right: -25px;
+    right: -35px;
     left: auto;
 }
 .slick-prev:before
@@ -427,7 +437,7 @@ footer p {
 
 .slick-next
 {
-    right: -25px;
+    right: -18px;
 }
 
 #heroes .slick-next { right: -35px; }
@@ -564,8 +574,17 @@ footer p {
   margin-bottom: 15px;
 }
 
+.index .boxes .slick-slide {
+  width: 176px;
+  height: 200px;
+}
+
 .box img, .box video, .boxes .slick-slide img, .boxes .slick-slide video {
   width:220px;
+}
+
+.index .boxes .slick-slide img, .index .boxes .slick-slide video {
+  width: 176px;
 }
 
 .box a, .boxes .slick-slide a {
@@ -578,8 +597,14 @@ footer p {
   background: #eee;
 }
 
+.index .box a, .index .boxes .slick-slide a {
+  height: 160px;
+}
+
 .box p, .boxes .slick-slide p { margin: 0; }
 .box p a, .boxes .slick-slide p a { height: 40px; padding-top: 10px; background: white; }
+
+.index .box p a, .index .boxes .slick-slide p a { height: 40px; padding-top: 10px; background: transparent; }
 
 #heroes .slick-list.draggable { padding: 20px 0!important; }
 .boxes .slick-list.draggable { padding: 20px 10px!important; }
@@ -604,7 +629,7 @@ footer p {
 
 .slick-prev:before,
 .slick-next:before {
-  color: black;
+  color: white;
 }
 
 
