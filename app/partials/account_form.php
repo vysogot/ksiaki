@@ -3,11 +3,11 @@
 <?= csrf_field() ?>
 
 <label for="birthday"><?= t('birthday') ?></label>
-<input id="birthday" name="birthday" type="text" value="<?= params('birthday'); ?>" required <?php if (params('form_for') == 'account_settings') echo 'readonly'; ?> />
+<input id="birthday" name="birthday" type="date" value="<?= params('birthday') ?>" required />
 
 <div class="hidden" id="caretaker_fields">
 
-    <label for="birthday"><?= t('caretaker_name') ?></label>
+    <label for="caretaker_name"><?= t('caretaker_name') ?></label>
     <input id="caretaker_name" type="text" name="caretaker_name" value="<?= params('caretaker_name') ?>" />
 
     <label for="birthday"><?= t('caretaker_surname') ?></label>
@@ -85,45 +85,42 @@
     <label class="info last-info"><?= t('registration_info') ?></label>
 </div>
 
-<?php if (params('form_for') == 'register') { ?>
-
 <script>
     $(document).on('ready', function() {
         function toggle_caretaker_fields() {
+
             birthday_string = $('#birthday').val();
-            if (/\d{2}\.\d{2}.\d{4}/.test(birthday_string)) {
-                var parts = birthday_string.split('.');
-                var birthday = new Date(parts[2], parts[1] - 1, parts[0]);
+
+            if (/\d{4}-\d{2}-\d{2}/.test(birthday_string)) {
+
+                var parts = birthday_string.split('-');
+                var birthday = new Date(parts[0], parts[1] - 1, parts[2]);
                 var today = new Date();
                 var back18years = today.setFullYear(today.getFullYear() - 18);
+
                 if (birthday > back18years) {
+
                     $('#caretaker_fields').removeClass('hidden');
                     $("#caretaker_name").prop('required', true);
                     $("#caretaker_surname").prop('required', true);
                     $("#caretaker_email").prop('required', true);
+
                 } else {
+
                     $('#caretaker_fields').addClass('hidden');
                     $("#caretaker_name").prop('required', false);
                     $("#caretaker_surname").prop('required', false);
                     $("#caretaker_email").prop('required', false);
+
                 }
             }
         }
 
         toggle_caretaker_fields();
 
-        $("#birthday").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            maxDate: "0D",
-            yearRange: "c-99:n+0"
-        });
-
-
         $("#birthday").on('change', function() {
             toggle_caretaker_fields();
         });
+
     });
 </script>
-
-<?php } ?>

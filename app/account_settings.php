@@ -13,15 +13,12 @@ if ($get) {
 
     $params = $user;
 
-    $params = array_merge($params, ['form_for' => 'account_settings']);
-
 }
 
 if ($post) {
 
     $params = [
         'gender' => null,
-        'form_for' => 'account_settings'
     ];
 
     $params = array_merge($params, $_POST);
@@ -60,7 +57,7 @@ if ($post) {
             array('p_id', current_session('user_id'), PDO::PARAM_INT),
             array('p_role_id', null, PDO::PARAM_INT),
             array('p_is_active', 1, PDO::PARAM_INT),
-            array('p_birthday', null, PDO::PARAM_STR),
+            array('p_birthday', date('Y-m-d H:i:s', strtotime($params['birthday'])), PDO::PARAM_STR),
             array('p_caretaker_name', $params['caretaker_name'], PDO::PARAM_STR),
             array('p_caretaker_surname', $params['caretaker_surname'], PDO::PARAM_STR),
             array('p_caretaker_email', $params['caretaker_email'], PDO::PARAM_STR),
@@ -85,7 +82,7 @@ if ($post) {
 
         if (!empty($result)) {
 
-            flash('notice', t('account_update_success'));
+            flash('important', t('account_update_success'));
 
         } else {
 
@@ -97,6 +94,8 @@ if ($post) {
     }
 
 }
+
+$params = array_merge($params, ['form_for' => 'account_settings']);
 
 function content($params, $data) { ?>
 

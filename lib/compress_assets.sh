@@ -7,7 +7,6 @@ cat app/assets/lib/jquery-v2.2.4.min.js \
     app/assets/lib/slick-carousel-v1.8.1.min.js \
     app/assets/lib/isMobile.js \
     app/assets/lib/jquery-ui/jquery-ui-v1.12.1.js \
-    app/assets/lib/jquery-ui/calendar-pl.js \
     app/assets/lib/vex/vex.combined-v4.1.0.min.js \
     app/assets/lib/stroer_client.js \
     app/assets/lib/rollbar_client.js \
