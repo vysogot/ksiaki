@@ -161,7 +161,7 @@ footer p {
   opacity: 0.9;
 }
 
-.game-iframe { border: 0; width: 100%; height: 80vh; }
+.game-iframe { border: 0; width: 960px; height: 540px; }
 
 
 .vertical-form input[type='text'],
