@@ -778,13 +778,13 @@ footer p {
 }
 
 .box.finished .overlay {
-  background: url('/assets/images/contest_finished.png') center center no-repeat;
+  background: url('/assets/images/contest_finished_v2.png') center center no-repeat;
   background-size: 160px 160px;
   display: block;
 }
 
 .box.yetToBegin .overlay {
-  background: url('/assets/images/contest_soon.png') center center no-repeat;
+  background: url('/assets/images/contest_soon_v2.png') center center no-repeat;
   background-size: 160px 160px;
   display: block;
 }
