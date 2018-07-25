@@ -3,6 +3,7 @@ DROP PROCEDURE IF EXISTS sp_score_games_all;
 DROP PROCEDURE IF EXISTS sp_score_games_all_count;
 DROP PROCEDURE IF EXISTS sp_score_games_all_client_side;
 DROP PROCEDURE IF EXISTS sp_score_games_find_max_by_contest_and_user_id;
+DROP PROCEDURE IF EXISTS sp_score_games_toggle_rankable;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_score_games_find_max_by_contest_and_user_id`(
@@ -113,6 +114,7 @@ BEGIN
     , CASE WHEN (score_games.points < 0) THEN 0 ELSE score_games.points END AS points
     , points_total
     , CASE WHEN (LENGTH(score_games.checknumber_client) = 6) THEN 0 ELSE IFNULL(score_games.checknumber_client != score_games.checknumber_server, 0) END AS is_suspected
+    , is_rankable
    FROM score_games
      INNER JOIN _users ON score_games.user_id = _users.id
      INNER JOIN _contests ON score_games.contest_id = _contests.id
@@ -131,24 +133,27 @@ BEGIN
 
    CASE WHEN p_ordercolumn = 'contest_name' AND p_orderdir = 'desc' THEN UPPER(_contests.name) END DESC,
    CASE WHEN p_ordercolumn = 'contest_name' THEN UPPER(_contests.name) END,
-   
+
    CASE WHEN p_ordercolumn = 'level' AND p_orderdir = 'desc' THEN score_games.level END DESC,
    CASE WHEN p_ordercolumn = 'level' THEN score_games.level END,
 
   CASE  WHEN p_ordercolumn = 'begins_at' AND p_orderdir = 'desc' THEN score_games.begins_at END DESC,
    CASE WHEN p_ordercolumn = 'begins_at' THEN score_games.begins_at END,
-   
+
    CASE WHEN p_ordercolumn = 'game_duration' AND p_orderdir = 'desc' THEN TIME_TO_SEC(TIMEDIFF(score_games.ends_at, score_games.begins_at)) END DESC,
    CASE WHEN p_ordercolumn = 'game_duration' THEN TIME_TO_SEC(TIMEDIFF(score_games.ends_at, score_games.begins_at)) END,
-   
+
    CASE WHEN p_ordercolumn = 'points' AND p_orderdir = 'desc' THEN score_games.points END DESC,
    CASE WHEN p_ordercolumn = 'points' THEN score_games.points END,
-   
+
    CASE WHEN p_ordercolumn = 'points_total' AND p_orderdir = 'desc' THEN score_games.points_total END DESC,
    CASE WHEN p_ordercolumn = 'points_total' THEN score_games.points_total END,
 
    CASE WHEN p_ordercolumn = 'is_suspected' AND p_orderdir = 'desc' THEN is_suspected END DESC,
    CASE WHEN p_ordercolumn = 'is_suspected' THEN is_suspected END,
+
+   CASE WHEN p_ordercolumn = 'is_rankable' AND p_orderdir = 'desc' THEN is_rankable END DESC,
+   CASE WHEN p_ordercolumn = 'is_rankable' THEN is_rankable END,
 
    CASE WHEN p_ordercolumn = '' THEN is_suspected END DESC, score_games.id DESC
 
@@ -175,5 +180,20 @@ BEGIN
       OR (UPPER(_contests.name) LIKE @search)
       OR (score_games.points_total LIKE @search)
     );
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_score_games_toggle_rankable`(
+    IN `p_id` INT
+)
+BEGIN
+
+    UPDATE score_games
+    SET is_rankable = NOT is_rankable
+    WHERE (id = p_id);
+
+    SELECT ROW_COUNT() AS rowCount;
+
 END$$
 DELIMITER ;

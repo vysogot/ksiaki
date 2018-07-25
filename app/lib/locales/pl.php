@@ -147,7 +147,7 @@ $translations = [
   'admin_notifications_agreement' => 'Otrzymywanie powiadomień',
   'admin_statute_agreement' => 'Regulamin',
 
-  // data
+  // actions
 
   'add_new' => 'Dodaj nowy',
   'show' => 'Pokaż',
@@ -156,6 +156,10 @@ $translations = [
   'cancel' => 'Anuluj',
   'edit_form' => 'Edycja',
   'new_form' => 'Nowy',
+  'change' => 'Zmień',
+  'confirm' => 'Potwierdź',
+  'exclude_from_ranking' => 'Czy na pewno wyłączyć z rankingu?',
+  'include_in_ranking' => 'Czy na pewno włączyć do rankingu?',
 
   // flashes
 
@@ -374,6 +378,7 @@ $translations = [
   'score_games' => 'Punktacja gier',
   'is_suspected' => 'Podejrzany',
   'game_duration' => 'Czas trwania',
+  'is_rankable' => 'W rankingu',
 
   // mail templates
   'mail_templates' => 'Szablony maili',

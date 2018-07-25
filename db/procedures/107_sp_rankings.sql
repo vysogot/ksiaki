@@ -1,5 +1,4 @@
 DROP PROCEDURE IF EXISTS `sp_rankings_contest`;
-DROP PROCEDURE IF EXISTS `sp_rankings_contest_find_by_nick`;
 DROP PROCEDURE IF EXISTS `sp_rankings_monthly`;
 DROP PROCEDURE IF EXISTS `sp_rankings_monthly_find_by_nick`;
 DROP PROCEDURE IF EXISTS `sp_rankings_periodic`;
@@ -7,55 +6,69 @@ DROP PROCEDURE IF EXISTS `sp_rankings_score_games`;
 DROP PROCEDURE IF EXISTS `sp_rankings_yearly`;
 DROP PROCEDURE IF EXISTS `sp_rankings_yearly_find_by_nick`;
 
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_contest`(IN `p_contest_id` INT, IN `p_offset` INT, IN `p_limit` INT)
+DELIMITER $$
+CREATE PROCEDURE `sp_rankings_contest`(
+    IN `p_contest_id` INT,
+    IN `p_offset` INT,
+    IN `p_limit` INT
+)
 BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
-, user_id INT
-, nick VARCHAR(50)
-, points INT
-);
 
-CALL sp_rankings_score_games('0', NULL, p_contest_id, 0, p_offset, p_limit);
+SELECT place
+       , user_id
+       , nick
+       , points
+FROM   (SELECT @rank := @rank + 1 AS place,
+               user_id,
+               nick,
+               points
+        FROM   (SELECT  user_id,
+                        nick,
+                        MAX(points) as points
+                                FROM    (SELECT score_games.user_id,
+                                _users.nick,
+                               Max(score_games.points_total) AS points
+                        FROM   score_games
+                               INNER JOIN _users
+                                       ON _users.id = score_games.user_id
+                        WHERE  score_games.contest_id = p_contest_id
+                               AND _users.is_active
+                               AND score_games.is_rankable
+                        GROUP  BY user_id
+                        UNION ALL
+                                SELECT user_id, nick, max_points AS points
+                                FROM old_score_games
+                                INNER JOIN _users
+                                       ON _users.id = old_score_games.user_id
+                                WHERE contest_id = p_contest_id
+                        ) as withOld
+                GROUP  BY user_id
+                ORDER  BY MAX(points) DESC
+        ) t3,
+        (SELECT @rank := 0) t2
+) AS t1
 
-SELECT place, nick, points FROM tmp_ranking;
+WHERE (place BETWEEN p_offset + 1 AND p_offset + p_limit );
 
-DROP TEMPORARY TABLE tmp_ranking;
-END//
+END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE `sp_rankings_monthly`(
+    IN `p_date` DATE,
+    IN `p_offset` INT,
+    IN `p_limit` INT
+)
 
-
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_contest_find_by_nick`(IN `p_contest_id` INT, IN `p_nick` VARCHAR(50))
 BEGIN
-SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
-IF (@id != 0) THEN
-	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
-	, user_id INT
-	, nick VARCHAR(50)
-	, points INT
-	);
 
-	CALL sp_rankings_score_games('1', '', p_contest_id, @id, 0, 10);
+DROP TEMPORARY TABLE IF EXISTS tmp_ranking;
 
-	SELECT place, nick, points FROM tmp_ranking;
-
-	DROP TEMPORARY TABLE tmp_ranking;
-
-END IF;
-END//
-DELIMITER ;
-
-
-
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_monthly`(IN `p_date` DATE, IN `p_offset` INT, IN `p_limit` INT)
-BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
-, user_id INT
-, nick VARCHAR(50)
-, points INT
+CREATE TEMPORARY TABLE tmp_ranking (
+    place INT
+    , user_id INT
+    , nick VARCHAR(50)
+    , points INT
 );
 
 CALL sp_rankings_periodic('1', p_date, 0, p_offset, p_limit);
@@ -63,150 +76,27 @@ CALL sp_rankings_periodic('1', p_date, 0, p_offset, p_limit);
 SELECT place, nick, points FROM tmp_ranking;
 
 DROP TEMPORARY TABLE tmp_ranking;
-END//
+
+END$$
 DELIMITER ;
 
 
+DELIMITER $$
+CREATE PROCEDURE `sp_rankings_yearly`(
+    IN `p_date` DATE,
+    IN `p_offset` INT,
+    IN `p_limit` INT
 
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_monthly_find_by_nick`(IN `p_date` DATE, IN `p_nick` VARCHAR(50))
+)
 BEGIN
-SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
-IF (@id != 0) THEN
-	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
-	, user_id INT
-	, nick VARCHAR(50)
-	, points INT
-	);
 
-	CALL sp_rankings_periodic('1', p_date, @id, 0, 10);
+DROP TEMPORARY TABLE IF EXISTS tmp_ranking;
 
-	SELECT place, nick, points FROM tmp_ranking;
-
-	DROP TEMPORARY TABLE tmp_ranking;
-
-END IF;
-END//
-DELIMITER ;
-
-
-
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_periodic`(IN `p_interval` INT, IN `p_date` DATE, IN `p_id` INT, IN `p_offset` INT, IN `p_limit` INT)
-BEGIN
-SET @inter_val:= p_interval;
-SET @date_start = p_date;
-SET @offset_rows:= p_offset + 1;
-SET @limit_rows:= CASE WHEN (p_id = 0) THEN (p_limit + p_offset) ELSE 2000000 END;
-SET @date_start = CASE WHEN (@inter_val=12) THEN DATE_ADD(DATE_ADD(MAKEDATE(YEAR(@date_start)-1, 1), INTERVAL 9 MONTH), INTERVAL (1)-1 DAY) ELSE @date_start END;
-SET @date_end = LAST_DAY(DATE_ADD(@date_start, INTERVAL @inter_val-1 MONTH));
-SET @row_number = 0;
-
-INSERT INTO tmp_ranking
-SELECT rnk.place
-, rnk.user_id
-, usr.nick
-, rnk.points
-FROM (
-SELECT (@row_number:=@row_number + 1) AS place
-, user_id
-, points
-FROM (
-SELECT user_id
-, SUM(points) AS points
-	FROM (
-		SELECT 1 AS point_type, user_id, points FROM score_contests WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
-		UNION ALL
-		SELECT 2 AS point_type, user_id, points FROM score_pointed_activities WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
-	    UNION ALL
-	    SELECT 3 AS point_type, user_id, CASE WHEN p_interval = 12 THEN max_points ELSE 0 END FROM old_score_total 
-	    WHERE (1 = (case when p_interval = 12 then 1 else 0 end))
-	    UNION ALL
-	    SELECT 4 AS point_type, user_id,  CASE WHEN p_interval = 12 THEN 0 ELSE max_points END max_points FROM old_score_total_by_month
-	    WHERE (1 = (case when p_interval = 12 then 0 else 1 end))
-		AND (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
-	) AS rzm
-GROUP BY user_id
-ORDER BY SUM(points) DESC
-) AS rpt
-) AS rnk
-INNER JOIN _users AS usr ON (user_id = usr.id)
-WHERE (place BETWEEN @offset_rows AND @limit_rows)
-HAVING rnk.user_id = CASE WHEN (p_id = 0) THEN rnk.user_id ELSE p_id END
-ORDER BY place ASC;
-END//
-DELIMITER ;
-
-
-
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_score_games`(IN `p_interval` INT, IN `p_date_start` DATE, IN `p_contest_id` INT, IN `p_id` INT, IN `p_offset` INT, IN `p_limit` INT)
-BEGIN
-SET @inter_val:= p_interval;
-SET @date_start:= p_date_start;
-SET @contest_id:= p_contest_id;
-SET @offset_rows:= p_offset + 1;
-SET @limit_rows:= CASE WHEN (p_id = 0) THEN (p_limit + p_offset) ELSE 2000000 END;
-
-
-SET @date_start =
-	CASE
-		WHEN (@inter_val=12) AND (@contest_id = 0) THEN DATE_ADD(DATE_ADD(MAKEDATE(YEAR(@date_start)-1, 1), INTERVAL 9 MONTH), INTERVAL (1)-1 DAY)
-		WHEN (@contest_id != 0) THEN '2000-01-01'
-		ELSE @date_start
-	END;
-SET @date_end =
-	CASE
-	WHEN (@contest_id != 0) THEN '2100-12-01'
-	ELSE LAST_DAY(DATE_ADD(@date_start, INTERVAL @inter_val-1 MONTH))
-	END;
-SET @row_number = 0;
-
-INSERT INTO tmp_ranking
-SELECT rnk.place
-, rnk.user_id
-, usr.nick
-, rnk.points
-FROM _users AS usr
-LEFT JOIN (
-  SELECT (@row_number:=@row_number + 1) AS place
-  , user_id
-  , points
-  FROM (
-    SELECT user_id
-    , MAX(points) AS points
-    FROM (
-      SELECT user_id
-       	, contest_id
-       	, MAX(points_total) AS points
-      FROM score_games
-      WHERE (ends_at BETWEEN @date_start AND @date_end)
-		AND (contest_id = CASE WHEN (@contest_id = 0) THEN contest_id ELSE @contest_id END)
-      GROUP BY user_id, contest_id
-      UNION ALL
-      SELECT user_id, contest_id, max_points AS points
-	  FROM old_score_games WHERE (contest_id = CASE WHEN (@contest_id = 0) THEN contest_id ELSE @contest_id END) 
-    ) AS rpt
-    GROUP BY user_id
-    ORDER BY MAX(points) DESC
-  ) AS res
-) AS rnk ON (rnk.user_id = usr.id)
-WHERE (rnk.place BETWEEN @offset_rows AND @limit_rows)
-
-HAVING rnk.user_id = CASE WHEN (p_id = 0) THEN rnk.user_id ELSE p_id END
-ORDER BY place ASC;
-END//
-DELIMITER ;
-
-
-
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_yearly`(IN `p_date` DATE, IN `p_offset` INT, IN `p_limit` INT)
-BEGIN
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
-, user_id INT
-, nick VARCHAR(50)
-, points INT
+CREATE TEMPORARY TABLE tmp_ranking (
+    place INT
+    , user_id INT
+    , nick VARCHAR(50)
+    , points INT
 );
 
 CALL sp_rankings_periodic('12', p_date, 0, p_offset, p_limit);
@@ -215,29 +105,101 @@ SELECT place, nick, points FROM tmp_ranking;
 
 DROP TEMPORARY TABLE tmp_ranking;
 
-END//
+END$$
 DELIMITER ;
 
 
+DELIMITER $$
+CREATE PROCEDURE `sp_rankings_periodic`(
+    IN `p_interval` INT,
+    IN `p_date` DATE,
+    IN `p_id` INT,
+    IN `p_offset` INT,
+    IN `p_limit` INT
+)
 
-DELIMITER //
-CREATE PROCEDURE `sp_rankings_yearly_find_by_nick`(IN `p_date` DATE, IN `p_nick` VARCHAR(50))
 BEGIN
-SET @id = (SELECT CASE WHEN SUM(1) = 1 THEN id ELSE 0 END AS id FROM _users WHERE (nick = p_nick));
-IF (@id != 0) THEN
 
-	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_ranking ( place INT
-	, user_id INT
-	, nick VARCHAR(50)
-	, points INT
-	);
+SET @inter_val   = p_interval;
+SET @date_start  = p_date;
+SET @offset_rows = p_offset + 1;
+SET @limit_rows  = p_limit;
 
-	CALL sp_rankings_periodic('12', p_date, @id, 0, 10);
+SET @date_start = CASE
+    WHEN    (@inter_val = 12)
+    THEN    DATE_ADD(
+                DATE_ADD(
+                    MAKEDATE(YEAR(@date_start) - 1, 1),
+                INTERVAL 9 MONTH),
+            INTERVAL (1) - 1 DAY)
+    ELSE @date_start
+END;
 
-	SELECT place, nick, points FROM tmp_ranking;
+SET @date_end = LAST_DAY(DATE_ADD(@date_start, INTERVAL @inter_val - 1 MONTH));
+SET @row_number = 0;
 
-	DROP TEMPORARY TABLE tmp_ranking;
+INSERT INTO tmp_ranking
+SELECT  place
+        , user_id
+        , nick
+        , points
+FROM    (SELECT (@rank := @rank + 1) AS place
+                , user_id
+                , points
+        FROM (  SELECT  user_id
+                        , SUM(points) AS points
+                FROM (
+                        SELECT 1 AS point_type
+                            , user_id
+                            , points
+                        FROM score_contests
+                        WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
 
-END IF;
-END//
+                        UNION ALL
+
+                        SELECT 2 AS point_type
+                            , user_id
+                            , points
+                        FROM score_pointed_activities
+                        WHERE (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
+
+                        UNION ALL
+
+                        SELECT 3 AS point_type
+                            , user_id
+                            , CASE WHEN p_interval = 12 THEN max_points ELSE 0 END
+                        FROM old_score_total
+                        WHERE (1 = (CASE WHEN p_interval = 12 THEN 1 ELSE 0 END))
+
+                        UNION ALL
+
+                        SELECT 4 AS point_type
+                            , user_id
+                            , CASE WHEN p_interval = 12 THEN 0 ELSE max_points END max_points
+                        FROM old_score_total_by_month
+                        WHERE (1 = (CASE WHEN p_interval = 12 THEN 0 ELSE 1 END))
+                        AND (CAST(given_at AS DATE) BETWEEN @date_start AND @date_end)
+                ) AS rzm
+
+                INNER JOIN _users ON _users.id = user_id
+
+        GROUP BY user_id
+        ORDER BY SUM(points) DESC
+
+    ) AS t3,
+
+    (SELECT @rank := 0) t2
+
+) AS t1
+
+INNER JOIN _users ON user_id = _users.id
+WHERE
+    CASE WHEN (p_id = 0)
+    THEN (place BETWEEN @offset_rows AND @limit_rows)
+    ELSE _users.id = p_id
+    END
+AND _users.is_active
+ORDER BY place ASC;
+
+END$$
 DELIMITER ;

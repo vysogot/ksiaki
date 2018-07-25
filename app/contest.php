@@ -11,20 +11,22 @@ $params = [
 
 $params = array_merge($params, $_GET);
 
-$data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(
+$data['contest'] = fetch_one('call sp_contests_find_by_slug(:p_slug);', array(
     array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
-if (empty($data['contest']) || (!$data['contest']->is_active && !is_admin())) redirect('/404.php');
+if (empty($data['contest']) || (!$data['contest']->is_active && !is_admin())) {
+  redirect('/404.php');
+}
 
 $params['title'] = $data['contest']->name;
 
-$data['game'] = execute('call sp_games_find(:p_id);', array(
+$data['game'] = fetch_one('call sp_games_find(:p_id);', array(
     array('p_id', $data['contest']->game_id, PDO::PARAM_INT)
 ));
 
 if (is_logged_in()) {
-  $result = execute('call sp_score_games_find_max_by_contest_and_user_id(
+  $result = fetch_one('call sp_score_games_find_max_by_contest_and_user_id(
     :p_contest_id,
     :p_user_id
   );', array(
@@ -35,15 +37,15 @@ if (is_logged_in()) {
   $data['current_user_score'] = $result->points;
 }
 
-$data['other_contests'] = execute('call sp_contests_all_but_one(:p_id);', array(
+$data['other_contests'] = fetch_all('call sp_contests_all_but_one(:p_id);', array(
     array('p_id', $data['contest']->id, PDO::PARAM_INT)
-), true);
+));
 
-$data['contest_prizes'] = execute('call sp_contest_prizes_by_contest_id(:p_id);', array(
+$data['contest_prizes'] = fetch_all('call sp_contest_prizes_by_contest_id(:p_id);', array(
     array('p_id', $data['contest']->id, PDO::PARAM_INT)
-), true);
+));
 
-$data['monthly_ranking'] = execute('call sp_rankings_monthly(
+$data['monthly_ranking'] = fetch_all('call sp_rankings_monthly(
   :p_date,
   :p_offset,
   :p_limit
@@ -51,9 +53,9 @@ $data['monthly_ranking'] = execute('call sp_rankings_monthly(
   array('p_date', $params['month'], PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+));
 
-$data['yearly_ranking'] = execute('call sp_rankings_yearly(
+$data['yearly_ranking'] = fetch_all('call sp_rankings_yearly(
   :p_date,
   :p_offset,
   :p_limit
@@ -61,9 +63,9 @@ $data['yearly_ranking'] = execute('call sp_rankings_yearly(
   array('p_date', $params['year'], PDO::PARAM_STR),
   array('p_offset', $params['offset'], PDO::PARAM_INT),
   array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+));
 
-$data['contest_ranking'] = execute('call sp_rankings_contest(
+$data['contest_ranking'] = fetch_all('call sp_rankings_contest(
     :p_contest_id,
     :p_offset,
     :p_limit
@@ -71,7 +73,7 @@ $data['contest_ranking'] = execute('call sp_rankings_contest(
     array('p_contest_id', $data['contest']->id, PDO::PARAM_INT),
     array('p_offset', $params['offset'], PDO::PARAM_INT),
     array('p_limit', $params['limit'], PDO::PARAM_INT)
-), true);
+));
 
 function content($params, $data) { ?>
 

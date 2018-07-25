@@ -13,7 +13,8 @@ $data['column_names'] = [
     'level',
     'points_in_level',
     'points_in_game',
-    'is_suspected'
+    'is_suspected',
+    'is_rankable'
 ];
 
 ?>
@@ -25,6 +26,7 @@ $data['column_names'] = [
   <script type="text/javascript">
   <?php include "../partials/formdata.js"; ?>
   <?php include "datatable.js"; ?>
+  <?php include "actions.js"; ?>
   </script>
 
 <?php }

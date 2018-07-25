@@ -11,11 +11,11 @@ $(document).ready(function() {
             { "data": "nick" },
             { "data": "contest_name" },
             {   "data": "begins_at",
-                "className": "center" 
+                "className": "center"
             },
-            { 
+            {
                 "data": "game_duration",
-                "className": "center" 
+                "className": "center"
             },
             {
                 "data": "win",
@@ -25,23 +25,31 @@ $(document).ready(function() {
                     return '<i class="' + aActive[data] + '"></i>';
                 }
             },
-            { 
+            {
                 "data": "level",
                 "className": "center"
             },
-            { 
-                "data": "points", 
+            {
+                "data": "points",
                 "render": $.fn.dataTable.render.number( ' ', '.', 0 ),
                 "className": 'text-right'
             },
-            { 
-                "data": "points_total", 
+            {
+                "data": "points_total",
                 "render": $.fn.dataTable.render.number( ' ', '.', 0 ),
                 "className": 'text-right'
             },
-            { 
+            {
                 "data": "is_suspected",
-                "className": "center" 
+                "className": "center"
+            },
+            {
+                "data": "is_rankable",
+                "className": "center",
+                "render":
+                function (data) {
+                    return '<i class="' + aActive[data] + '"></i>';
+                }
             },
             { "data": null }
         ],
@@ -56,7 +64,7 @@ $(document).ready(function() {
             "className": "links",
             "orderable": false,
             "render": function (data, type, row, meta) {
-                return '';
+                return set_button("fToggleRankable(this)", meta.row, row, t_change, ((row.is_rankable == 1) ? 'fa-trash-alt' : 'fa-eye'), "");
             }
         }],
 

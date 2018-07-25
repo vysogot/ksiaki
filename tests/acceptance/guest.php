@@ -46,6 +46,11 @@ function test_guest_sees_contest_ranking() {
     return i_should_see_no_error();
 }
 
+function test_guest_sees_profile() {
+    when_i_go_to('/profile.php?nick=admin');
+    return i_should_see_no_error();
+}
+
 function test_guest_minor_can_register() {
     when_i_submit('/rejestracja', [
         'birthday' => '16.01.1998',

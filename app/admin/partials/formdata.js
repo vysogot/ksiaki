@@ -6,6 +6,8 @@ const t_edit = '<?= t("edit") ?>';
 const t_delete = '<?= t("delete") ?>';
 const t_ended = '<?= t("contest_end") ?>';
 const t_cancel = '<?= t("cancel") ?>';
+const t_confirm = '<?= t("confirm") ?>';
+const t_change = '<?= t("change") ?>';
 const aActive = ['fa fa-times', 'fa fa-check'];
 
 function vexConfirm(msg, callback) {
@@ -14,7 +16,7 @@ function vexConfirm(msg, callback) {
         overlayClosesOnClick: false,
         buttons: [
             $.extend({}, vex.dialog.buttons.YES, {
-                text: t_delete,
+                text: t_confirm,
                 className: 'vex-dialog-button-secondary'
             }),
             $.extend({}, vex.dialog.buttons.NO, {

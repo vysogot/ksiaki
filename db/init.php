@@ -36,10 +36,10 @@ function run_scripts_in_folder($folder) {
         }
 
         if ($result == '2')
-             echo "$file => Skipping\n";
+             echo ".";
         else
-             echo "$file => Success\n";
+             echo "\n$file => Success";
     }
 
-    echo "\nCompleted $folder\n";
+    echo "\n\nCompleted $folder\n";
 }
