@@ -14,6 +14,7 @@ cat app/games/gems/js_src/jquery-2.0.3.min.js \
     app/games/gems/js_src/sprite_lib.js \
     app/games/gems/js_src/ServerScore.js \
     app/games/gems/js_src/settings.js \
+    app/games/gems/js_src/CLocalStorage.js \
     app/games/gems/js_src/CLang.js \
     app/games/gems/js_src/CPreloader.js \
     app/games/gems/js_src/CMain.js \
@@ -30,7 +31,6 @@ cat app/games/gems/js_src/jquery-2.0.3.min.js \
     app/games/gems/js_src/CHelpPanel.js \
     app/games/gems/js_src/CScrollingBg.js \
     app/games/gems/js_src/CCreditsPanel.js \
-    app/games/gems/js_src/CLocalStorage.js \
     app/games/gems/js_src/CModeMenu.js \
     app/games/gems/js_src/CMsgBox.js \
     app/games/gems/js_src/levelsettings.js \
