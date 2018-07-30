@@ -32,7 +32,7 @@ FROM (
   FROM old_score_games
 ) AS score_games
 INNER JOIN _contests ON (score_games.contest_id = _contests.id)
-WHERE (contest_id = @p_contest_id)
+WHERE (contest_id = p_contest_id)
 GROUP BY user_id
 ORDER BY MAX(points_total) DESC
 LIMIT 200
