@@ -31,6 +31,7 @@ function ServerScore(sGameSettings){
 
     this.send = function(iCurLevel, iCurLevelScore, iTotalScore, iWin) {
 
+        console.log(iTotalScore);
         _sMainBallColor = (_sBlackColor + iTotalScore.toString(16)).substr(-6,6);
 
         $.post("/score.php", {
