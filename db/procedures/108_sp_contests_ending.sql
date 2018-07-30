@@ -22,15 +22,25 @@ SELECT user_id
 , MAX(contest_id) AS contest_id
 , MAX(_contests.contest_type_id) AS contest_type_id
 , MAX(points_total) AS points
-FROM score_games
+FROM (
+  SELECT user_id
+   	, contest_id
+   	, points_total AS points_total
+  FROM score_games WHERE (is_rankable = 1)
+  UNION ALL
+  SELECT user_id, contest_id, max_points
+  FROM old_score_games
+) AS score_games
 INNER JOIN _contests ON (score_games.contest_id = _contests.id)
-WHERE (contest_id = p_contest_id) AND (score_games.is_rankable)
+WHERE (contest_id = @p_contest_id)
 GROUP BY user_id
 ORDER BY MAX(points_total) DESC
 LIMIT 200
 ) AS rpt;
 
+
 DELETE FROM score_contests WHERE (contest_id = p_contest_id);
+
 
 INSERT INTO score_contests(user_id, contest_id, place, points, given_at)
 SELECT top100users.user_id
