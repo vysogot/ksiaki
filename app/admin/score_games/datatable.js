@@ -70,7 +70,7 @@ $(document).ready(function() {
 
         "createdRow": function(row, data, dataIndex) {
             if (data.is_suspected == '1') {
-                $(row).addClass('data-table-row-warning');
+                //$(row).addClass('data-table-row-warning');
             }
         },
 

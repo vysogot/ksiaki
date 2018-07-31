@@ -20,12 +20,13 @@ function CGame(oData,iLevel,iScore){
     //KSIAKI
     var _sTickTime;
     var _sMainBallColor;
-    var _sBlackColor = "000000";    
+    var _sBlackColor = "000000";
     var _aBalls;
     var _aCurveMapData;
     var _aBallShooted;
     var _aBallCrushed;
     var _aBallAttracted = null;
+    var _iTotalBallsCleared = 0;
 
     var _oCurve = null;
     var _oEndSprite = null;
@@ -455,6 +456,7 @@ function CGame(oData,iLevel,iScore){
 
         if(aTemp.length > 2 && bClear){
             this._clearBall(j,aTemp);
+            _iTotalBallsCleared += aTemp.length;
         }
         return aTemp.length;
     };
@@ -591,7 +593,7 @@ function CGame(oData,iLevel,iScore){
 
             // KSIAKI
             _sMainBallColor = (_sBlackColor + _iTotScore.toString(16)).substr(-6,6);
-            _sTickTime = _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
+            _sTickTime = _iTotalBallsCleared + '/' + _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
 
             $(s_oMain).trigger("end_level", [_iCurLevel, _iCurLevelScore, _iTotScore, _sMainBallColor, _sTickTime]);
             clearInterval(_iIntervalID);
@@ -683,7 +685,7 @@ function CGame(oData,iLevel,iScore){
                 if(_aBalls.length === 0){
                     _iGameState = -1;
                     _sMainBallColor = (_sBlackColor + _iTotScore.toString(16)).substr(-6,6);
-                    _sTickTime = _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
+                    _sTickTime = _iTotalBallsCleared + '/' + _mClock*10 + ':' + _msTime*20 + '/' + s_oLevelSettings.getBallSpeedForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallNumberForLevel(_iCurLevel) + ':' + s_oLevelSettings.getBallColorsForLevel(_iCurLevel) + ';';
 
                     //KSIAKI
                      _oInterface.gameOver(_iTotScore, _iLastLevel, _sMainBallColor, _sTickTime, _iCurLevel, _iCurLevelScore);
