@@ -11,6 +11,7 @@ function CEndPanel(oSpriteBg, iLevel, iScore){
     var _oMsgScore;
     var _oLevelSprite;
     var _oEndSprite;
+    var _oListener;
     
     this._init = function(oSpriteBg, iLevel, iScore){
         
@@ -77,7 +78,7 @@ function CEndPanel(oSpriteBg, iLevel, iScore){
     this._onNextLevel = function(event){
         s_oStage.removeChild(_oGroup);
         $(s_oMain).trigger("show_interlevel_ad");
-        _oLevelContainer.off("mousedown", this._onNextLevel, this);
+        _oLevelContainer.off("mousedown", _oListener, this);
         s_oGame.nextLevel();
         
     };
@@ -92,7 +93,7 @@ function CEndPanel(oSpriteBg, iLevel, iScore){
         _oMsgScore.text = TEXT_SCORE+iScore;
         
         _oGroup.addChild(_oLevelContainer);
-        _oLevelContainer.on("mousedown", this._onNextLevel, this);
+        _oListener = _oLevelContainer.on("mousedown", this._onNextLevel, this);
         
         _oGroup.visible = true;
         
@@ -133,7 +134,6 @@ function CEndPanel(oSpriteBg, iLevel, iScore){
     };
     
     this._onExit = function(){
-        _oGroup.off("mousedown",this._onExit);
         s_oStage.removeChild(_oGroup);
         
         s_oGame.onRestart();

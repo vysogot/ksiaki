@@ -4,6 +4,8 @@ function CToggle(iXPos,iYPos,oSprite,bActive){
     var _aCbOwner;
     var _aParams = [];
     var _oButton;
+    var _oListenerMouseDown;
+    var _oListenerMouseUp;
     
     this._init = function(iXPos,iYPos,oSprite,bActive){
         _aCbCompleted=new Array();
@@ -33,15 +35,15 @@ function CToggle(iXPos,iYPos,oSprite,bActive){
     };
     
     this.unload = function(){
-       _oButton.off("mousedown", this.buttonDown);
-       _oButton.off("pressup" , this.buttonRelease);
+       _oButton.off("mousedown", _oListenerMouseDown);
+       _oButton.off("pressup" , _oListenerMouseUp);
 	   
        s_oStage.removeChild(_oButton);
     };
     
     this._initListener = function(){
-       _oButton.on("mousedown", this.buttonDown);
-       _oButton.on("pressup" , this.buttonRelease);      
+       _oListenerMouseDown = _oButton.on("mousedown", this.buttonDown);
+       _oListenerMouseUp = _oButton.on("pressup" , this.buttonRelease);      
     };
     
     this.addEventListener = function( iEvent,cbCompleted, cbOwner ){

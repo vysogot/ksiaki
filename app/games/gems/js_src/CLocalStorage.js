@@ -7,14 +7,14 @@ var s_aScore = new Array();
 function CLocalStorage(szName){
     var _bLocalStorage = true;
 
-    this._init = function(szName){
+    this._init = function(szName){   
         var bFlag = window.localStorage.getItem(szName);
 
         this.resetAllData();
-        if(bFlag !== null && bFlag !== undefined){
+        if(bFlag !== null && bFlag !== undefined){  
             this.loadData();
         }
-
+        
     };
 
     this.isDirty = function(){
@@ -31,7 +31,7 @@ function CLocalStorage(szName){
         }catch(evt){
             _bLocalStorage = false;
         }
-
+        
         return _bLocalStorage;
     };
 
@@ -62,21 +62,19 @@ function CLocalStorage(szName){
         */
 
         window.localStorage.setItem(szName, JSON.stringify(oJSONData));
-
+        
     };
 
     this.loadData = function(){
         var szData = JSON.parse(window.localStorage.getItem(szName));
-
+        
         var iLoadedScore = szData[LOCALSTORAGE_LAST_LEVEL];
         s_iLastLevel = parseInt(iLoadedScore);
-
+        
         var aLoadedScore = szData[LOCALSTORAGE_SCORE];
-        s_aScore = new Array();
         for(var i=0; i<aLoadedScore.length; i++){
             s_aScore[i] = parseInt(aLoadedScore[i]);
         }
-
     };
 
     this.getTotalScore = function(){
@@ -86,7 +84,7 @@ function CLocalStorage(szName){
         }
         return iTotalScore;
     };
-
+    
     this.getPartialScore = function(iLevel){
         var iPartialScore = 0;
         for(var i=0; i<iLevel; i++){

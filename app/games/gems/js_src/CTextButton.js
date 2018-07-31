@@ -1,12 +1,14 @@
-function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize){
+function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize, oParentContainer){
     
     var _aCbCompleted;
     var _aCbOwner;
     var _oButton;
     var _oText;
     var _oTextBack;
+    var _oListenerMouseDown;
+    var _oListenerMouseUp;
     
-    this._init =function(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize){
+    this._init =function(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize,oParentContainer){
         
         _aCbCompleted=new Array();
         _aCbOwner =new Array();
@@ -38,16 +40,16 @@ function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize){
         if (!s_bMobile){
             _oButton.cursor = "pointer";
 	}
-        s_oStage.addChild(_oButton);
+        oParentContainer.addChild(_oButton);
 
         this._initListener();
     };
     
     this.unload = function(){
-       _oButton.off("mousedown");
-       _oButton.off("pressup");
+       _oButton.off("mousedown", _oListenerMouseDown);
+       _oButton.off("pressup", _oListenerMouseUp);
        
-       s_oStage.removeChild(_oButton);
+       oParentContainer.removeChild(_oButton);
     };
     
     this.setVisible = function(bVisible){
@@ -57,8 +59,8 @@ function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize){
     this._initListener = function(){
        oParent = this;
 
-       _oButton.on("mousedown", this.buttonDown);
-       _oButton.on("pressup" , this.buttonRelease);      
+       _oListenerMouseDown = _oButton.on("mousedown", this.buttonDown);
+       _oListenerMouseUp = _oButton.on("pressup" , this.buttonRelease);      
     };
     
     this.addEventListener = function( iEvent,cbCompleted, cbOwner ){
@@ -117,7 +119,11 @@ function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize){
         return _oButton.y;
     };
 
-    this._init(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize);
+    this.removeStroke = function(){
+        _oTextBack.visible = false;
+    };  
+
+    this._init(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize,oParentContainer);
     
     return this;
     

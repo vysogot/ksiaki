@@ -10,13 +10,14 @@ function CMsgBox(){
     var _oButConfirm;
     var _oButExit;
     var _oParent;
+    var _oListener;
     
     this._init = function(){
         var oSprite = s_oSpriteLibrary.getSprite('msg_box');
         _oBg = createBitmap(oSprite);
 
         _oGroup = new createjs.Container();
-        _oGroup.on("mousedown", function(){});
+        _oListener = _oGroup.on("mousedown", function(){});
         
         var iSize = 30;
         
@@ -51,7 +52,7 @@ function CMsgBox(){
     };
 
     this.unload = function(){
-        _oGroup.off("mousedown",function(){});
+        _oGroup.off("mousedown",_oListener);
         
         s_oStage.removeChild(_oGroup);
     };

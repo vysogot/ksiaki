@@ -29,23 +29,23 @@ function isIOS() {
        'iPod Simulator',
        'iPad',
        'iPhone',
-       'iPod' 
-   ]; 
+       'iPod'
+   ];
 
    if (navigator.userAgent.toLowerCase().indexOf("iphone") !== -1){
        s_bIsIphone = true;
    }
-           
+
    while (iDevices.length) {
        if (navigator.platform === iDevices.pop()){
-           
-               
-           return true; 
-       } 
-   } 
+
+
+           return true;
+       }
+   }
    s_bIsIphone = false;
 
-   return false; 
+   return false;
 }
 
 function getSize(Name) {
@@ -95,15 +95,15 @@ window.addEventListener("orientationchange", onOrientationChange );
 
 function onOrientationChange(){
     if (window.matchMedia("(orientation: portrait)").matches) {
-       // you're in PORTRAIT mode	   
+       // you're in PORTRAIT mode
 	   sizeHandler();
     }
 
     if (window.matchMedia("(orientation: landscape)").matches) {
-       // you're in LANDSCAPE mode   
+       // you're in LANDSCAPE mode
 	   sizeHandler();
     }
-	
+
 }
 
 function getIOSWindowHeight() {
@@ -112,7 +112,7 @@ function getIOSWindowHeight() {
     // We use width, instead of height, because there are no vertical toolbars :)
     var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
 
-    // window.innerHeight returns height of the visible area. 
+    // window.innerHeight returns height of the visible area.
     // We multiply it by zoom and get out real height.
     return window.innerHeight * zoomLevel;
 };
@@ -137,18 +137,18 @@ function sizeHandler() {
 
         if(iOS){
             h = getIOSWindowHeight();
-        }else{ 
+        }else{
             h = getSize("Height");
         }
-        
+
         var w = getSize("Width");
-        
+
         _checkOrientation(w,h);
 	var multiplier = Math.min((h / CANVAS_HEIGHT), (w / CANVAS_WIDTH));
 
 	var destW = CANVAS_WIDTH * multiplier;
 	var destH = CANVAS_HEIGHT * multiplier;
-        
+
         var iAdd = 0;
         if (destH < h){
             iAdd = h-destH;
@@ -164,28 +164,28 @@ function sizeHandler() {
         var fOffsetX = ((w / 2) - (destW / 2));
         var fGameInverseScaling = (CANVAS_WIDTH/destW);
 
-        if( fOffsetX*fGameInverseScaling < -EDGEBOARD_X ||  
+        if( fOffsetX*fGameInverseScaling < -EDGEBOARD_X ||
             fOffsetY*fGameInverseScaling < -EDGEBOARD_Y ){
             multiplier = Math.min( h / (CANVAS_HEIGHT-(EDGEBOARD_Y*2)), w / (CANVAS_WIDTH-(EDGEBOARD_X*2)));
             destW = CANVAS_WIDTH * multiplier;
             destH = CANVAS_HEIGHT * multiplier;
             fOffsetY = ( h - destH ) / 2;
             fOffsetX = ( w - destW ) / 2;
-            
+
             fGameInverseScaling = (CANVAS_WIDTH/destW);
         }
 
         s_iOffsetX = (-1*fOffsetX * fGameInverseScaling);
         s_iOffsetY = (-1*fOffsetY * fGameInverseScaling);
-        
+
         if(fOffsetY >= 0 ){
             s_iOffsetY = 0;
         }
-        
+
         if(fOffsetX >= 0 ){
             s_iOffsetX = 0;
         }
-        
+
         if(s_oInterface !== null){
             s_oInterface.refreshButtonPos( s_iOffsetX,s_iOffsetY);
         }
@@ -195,7 +195,7 @@ function sizeHandler() {
         if(s_oLevelMenu !== null){
             s_oLevelMenu.refreshButtonPos( s_iOffsetX,s_iOffsetY);
         };
-        
+
 	if(s_bIsIphone){
             canvas = document.getElementById('canvas');
             s_oStage.canvas.width = destW*2;
@@ -204,7 +204,7 @@ function sizeHandler() {
             canvas.style.height = destH+"px";
             var iScale = Math.min(destW / CANVAS_WIDTH, destH / CANVAS_HEIGHT);
             s_iScaleFactor = iScale*2;
-            s_oStage.scaleX = s_oStage.scaleY = s_iScaleFactor;  
+            s_oStage.scaleX = s_oStage.scaleY = s_iScaleFactor;
         }else if(s_bMobile || isChrome()){
             $("#canvas").css("width",destW+"px");
             $("#canvas").css("height",destH+"px");
@@ -213,7 +213,7 @@ function sizeHandler() {
             s_oStage.canvas.height = destH;
 
             s_iScaleFactor = Math.min(destW / CANVAS_WIDTH, destH / CANVAS_HEIGHT);
-            s_oStage.scaleX = s_oStage.scaleY = s_iScaleFactor; 
+            s_oStage.scaleX = s_oStage.scaleY = s_iScaleFactor;
         }
 
         if(fOffsetY < 0){
@@ -221,22 +221,22 @@ function sizeHandler() {
         }else{
             $("#canvas").css("top","0px");
         }
-        
+
         $("#canvas").css("left",fOffsetX+"px");
-        
+
         fullscreenHandler();
 };
 
 function _checkOrientation(iWidth,iHeight){
     if(s_bMobile && ENABLE_CHECK_ORIENTATION){
-        if( iWidth>iHeight ){ 
+        if( iWidth>iHeight ){
             if( $(".orientation-msg-container").attr("data-orientation") === "landscape" ){
                 $(".orientation-msg-container").css("display","none");
                 s_oMain.startUpdate();
             }else{
                 $(".orientation-msg-container").css("display","block");
                 s_oMain.stopUpdate();
-            }  
+            }
         }else{
             if( $(".orientation-msg-container").attr("data-orientation") === "portrait" ){
                 $(".orientation-msg-container").css("display","none");
@@ -244,7 +244,7 @@ function _checkOrientation(iWidth,iHeight){
             }else{
                 $(".orientation-msg-container").css("display","block");
                 s_oMain.stopUpdate();
-            }   
+            }
         }
     }
 }
@@ -252,7 +252,7 @@ function _checkOrientation(iWidth,iHeight){
 function createBitmap(oSprite, iWidth, iHeight){
 	var oBmp = new createjs.Bitmap(oSprite);
 	var hitObject = new createjs.Shape();
-	
+
 	if (iWidth && iHeight){
 		hitObject .graphics.beginFill("#fff").drawRect(0, 0, iWidth, iHeight);
 	}else{
@@ -270,12 +270,12 @@ function createSprite(oSpriteSheet, szState, iRegX,iRegY,iWidth, iHeight){
 	}else{
 		var oRetSprite = new createjs.Sprite(oSpriteSheet);
 	}
-	
+
 	var hitObject = new createjs.Shape();
 	hitObject .graphics.beginFill("#000000").drawRect(-iRegX, -iRegY, iWidth, iHeight);
 
 	oRetSprite.hitArea = hitObject;
-	
+
 	return oRetSprite;
 }
 
@@ -309,12 +309,12 @@ function shuffle(array) {
   return array;
 }
 
-function formatTime(iTime){	
+function formatTime(iTime){
     iTime/=1000;
     var iMins = Math.floor(iTime/60);
     var iSecs = iTime-(iMins*60);
     iSecs = parseFloat(iSecs).toFixed(1)
-    
+
     var szRet = "";
 
     if ( iMins < 10 ){
@@ -327,7 +327,7 @@ function formatTime(iTime){
             szRet += "0" + iSecs;
     }else{
             szRet += iSecs;
-    }	
+    }
 
     return szRet;
 }
@@ -361,27 +361,27 @@ handleEvent: function(e) {
         case 'touchend': this.onTouchEnd(e); break;
     }
 },
-	
+
 onTouchStart: function(e) {
     e.preventDefault();
     this.moved = false;
-    
+
     this.element.addEventListener('touchmove', this, false);
     this.element.addEventListener('touchend', this, false);
 },
-	
+
 onTouchMove: function(e) {
     this.moved = true;
 },
-	
+
 onTouchEnd: function(e) {
     this.element.removeEventListener('touchmove', this, false);
     this.element.removeEventListener('touchend', this, false);
-    
+
     if( !this.moved ) {
         var theTarget = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
         if(theTarget.nodeType == 3) theTarget = theTarget.parentNode;
-        
+
         var theEvent = document.createEvent('MouseEvents');
         theEvent.initEvent('click', true, true);
         theTarget.dispatchEvent(theEvent);
@@ -407,20 +407,20 @@ onTouchEnd: function(e) {
         document.onfocusin = document.onfocusout = onchange;
     // All others:
     else
-        window.onpageshow = window.onpagehide 
+        window.onpageshow = window.onpagehide
             = window.onfocus = window.onblur = onchange;
 
     function onchange (evt) {
         var v = 'visible', h = 'hidden',
-            evtMap = { 
-                focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h 
+            evtMap = {
+                focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
             };
 
         evt = evt || window.event;
-		
+
         if (evt.type in evtMap){
             document.body.className = evtMap[evt.type];
-        }else{        
+        }else{
             document.body.className = this[hidden] ? "hidden" : "visible";
 
 			if(document.body.className === "hidden"){
@@ -442,16 +442,16 @@ function ctlArcadePause(){
     if(s_oMain !== null){
         s_oMain.stopUpdate();
     }
-    
+
 }
 
 function getParamValue(paramName){
     var url = window.location.search.substring(1);
-    var qArray = url.split('&'); 
-    for (var i = 0; i < qArray.length; i++) 
+    var qArray = url.split('&');
+    for (var i = 0; i < qArray.length; i++)
     {
             var pArr = qArray[i].split('=');
-            if (pArr[0] == paramName) 
+            if (pArr[0] == paramName)
                     return pArr[1];
     }
 }
@@ -473,13 +473,13 @@ function stopSound(szSound){
     if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
         s_aSounds[szSound].stop();
     }
-}   
+}
 
 function setVolume(szSound, iVolume){
     if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
         s_aSounds[szSound].volume(iVolume);
     }
-}  
+}
 
 function setMute(szSound, bMute){
     if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
@@ -488,13 +488,13 @@ function setMute(szSound, bMute){
 }
 function saveItem(szItem,oValue){
     if(s_bStorageAvailable){
-        localStorage.setItem(szItem, oValue);
-    } 
+        localStorage.setItem(szItem + '_' + window.parent.contestId, oValue);
+    }
 }
 
 function getItem(szItem){
     if(s_bStorageAvailable){
-        return localStorage.getItem(szItem);
+        return localStorage.getItem(szItem + '_' + window.parent.contestId);
     }
     return null;
 }
@@ -503,7 +503,7 @@ function fullscreenHandler(){
     if (!ENABLE_FULLSCREEN || screenfull.enabled === false){
        return;
     }
-	
+
     if(screen.height < window.innerHeight+3 && screen.height > window.innerHeight-3){
         s_bFullscreen = true;
     }else{
@@ -517,7 +517,7 @@ function fullscreenHandler(){
     if (s_oMenu !== null){
         s_oMenu.resetFullscreenBut();
     }
-    
+
     if (s_oLevelMenu !== null){
         s_oLevelMenu.resetFullscreenBut();
     }
@@ -535,11 +535,11 @@ if (screenfull.enabled) {
             if (s_oMenu !== null){
                 s_oMenu.resetFullscreenBut();
             }
-            
+
             if (s_oLevelMenu !== null){
                 s_oLevelMenu.resetFullscreenBut();
             }
-            
+
     });
 }
 

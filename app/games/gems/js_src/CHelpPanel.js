@@ -8,6 +8,7 @@ function CHelp(iLevel){
     var _oTitleText;
     var _oHelpTextOutline;
     var _oHelpText;
+    var _oListener;
 
     
     this._init = function(iLevel){        
@@ -59,7 +60,7 @@ function CHelp(iLevel){
 
         
         _oGroup.alpha = 0;
-        _oGroup.on("mousedown", this._onExit);
+        _oListener = _oGroup.on("mousedown", this._onExit);
         s_oStage.addChild(_oGroup);
         
         var oParent = this;
@@ -68,7 +69,7 @@ function CHelp(iLevel){
     
     
     this._onExit = function(){
-        _oGroup.off("mousedown", this._onExit);
+        _oGroup.off("mousedown", _oListener);
         s_oStage.removeChild(_oGroup);
         s_oMain.gotoGame(iLevel, 0);
     };

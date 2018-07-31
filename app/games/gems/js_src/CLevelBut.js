@@ -6,6 +6,8 @@ function CLevelBut(iXPos,iYPos,oSprite,bActive, Level, oParentContainer){
     var _aParams = [];
     var _oButtonSprite;
     var _oButton;
+    var _oListenerMouseDown;
+    var _oListenerMouseUp;
     
     this._init = function(iXPos,iYPos,oSprite,bActive, oParentContainer){
         _aCbCompleted=new Array();
@@ -62,15 +64,15 @@ function CLevelBut(iXPos,iYPos,oSprite,bActive, Level, oParentContainer){
     };
     
     this.unload = function(){
-       _oButton.off("mousedown", this.buttonDown);
-       _oButton.off("pressup" , this.buttonRelease);
+       _oButton.off("mousedown", _oListenerMouseDown);
+       _oButton.off("pressup" , _oListenerMouseUp);
 	   
        oParentContainer.removeChild(_oButton);
     };
     
     this._initListener = function(){
-       _oButton.on("mousedown", this.buttonDown);
-       _oButton.on("pressup" , this.buttonRelease);      
+       _oListenerMouseDown = _oButton.on("mousedown", this.buttonDown);
+       _oListenerMouseUp = _oButton.on("pressup" , this.buttonRelease);      
     };
     
     this.viewBut = function(oButton){

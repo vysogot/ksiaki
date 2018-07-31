@@ -52,10 +52,6 @@ function CMain(oData){
         _iCurResource++;
         var iPerc = Math.floor(_iCurResource/RESOURCE_TO_LOAD *100);
         _oPreloader.refreshLoader(iPerc);
-
-         if(_iCurResource === RESOURCE_TO_LOAD){
-            s_oMain._allResourcesLoaded();
-         }
     };
     
     this._initSounds = function(){
@@ -73,7 +69,7 @@ function CMain(oData){
         s_aSounds = new Array();
         for(var i=0; i<aSoundsInfo.length; i++){
             s_aSounds[aSoundsInfo[i].ingamename] = new Howl({ 
-                                                            src: [aSoundsInfo[i].path+aSoundsInfo[i].filename+'.mp3', aSoundsInfo[i].path+aSoundsInfo[i].filename+'.ogg'],
+                                                            src: [aSoundsInfo[i].path+aSoundsInfo[i].filename+'.mp3'],
                                                             autoplay: false,
                                                             preload: true,
                                                             loop: aSoundsInfo[i].loop, 
@@ -132,10 +128,6 @@ function CMain(oData){
         var iPerc = Math.floor(_iCurResource/RESOURCE_TO_LOAD *100);
 
         _oPreloader.refreshLoader(iPerc);
-        
-        if(_iCurResource === RESOURCE_TO_LOAD){
-            s_oMain._allResourcesLoaded();
-        }
     };
     
     this._onAllImagesLoaded = function(){

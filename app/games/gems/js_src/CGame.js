@@ -15,9 +15,9 @@ function CGame(oData, iLevel, iScore){
     var _iHalfCellHeight;
     var _iCellWidth;
     var _iCellHeight;
-            
+
     var _szActualColor;
-    
+
     var _aOrangeLine = new Array();
     var _aGreenLine = new Array();
     var _aYellowLine = new Array();
@@ -28,39 +28,39 @@ function CGame(oData, iLevel, iScore){
     var _aPinkLine = new Array();
     var _aOrangeYellowkLine = new Array();
     var _aPurpleLine = new Array();
-    
+
     var _oInterface;
     var _oEndPanel = null;
     var _oParent;
-    
+
     var _bMoving = false;
     var _bFirstMoveDone = false;
     var _bLevelStarted = false;
     var _bStartMoving = false;
-    
+
     var _aScrollingBg = new Array(2);
     var _aLevelInfo;
     var _aGrid = new Array();
-    
+
     var _oContainerGrid;
     var _oTextErrorStroke;
     var _oTextError;
+    var _oListener;
 
-    // KSIAKI
+    //KSIAKI
     var _ServerScore;
-    
-    this._init = function(){
-        
-        setVolume("soundtrack", 0.6);
-        
-        $(s_oMain).trigger("start_level",[_iLevel]);
 
+    this._init = function(){
+
+        setVolume("soundtrack", 0.6);
+
+        $(s_oMain).trigger("start_level",[_iLevel]);
         var oBg = createBitmap(s_oSpriteLibrary.getSprite('bg_game'));
         s_oStage.addChild(oBg); //Draws on canvas
-        
+
         _aScrollingBg[0] = new CScrollingBg(s_oSpriteLibrary.getSprite('clouds_back'), 0);
         _aScrollingBg[1] = new CScrollingBg(s_oSpriteLibrary.getSprite('clouds_back'), -SCROLLING_BG_WIDTH);
-        
+
         _iMatrixDim = _aLevelInfo[_iLevel].dim;
         _iNumFlowers = _aLevelInfo[_iLevel].points.length;
 
@@ -68,93 +68,93 @@ function CGame(oData, iLevel, iScore){
         _iCellHeight = _iCellWidth = parseInt(GRID_AREA_SIZE/_iMatrixDim);
         _iHalfCellWidth = _iHalfCellHeight = _iCellHeight/2;
 
-        
-        
+
+
         _oContainerGrid = new createjs.Container();
         s_oStage.addChild(_oContainerGrid);
-        
+
         var oSourceImage = s_oSpriteLibrary.getSprite("grid_spritesheet");
-        
-        var oData = {   
-                        images: [oSourceImage], 
+
+        var oData = {
+                        images: [oSourceImage],
                         framerate: 35,
                         // width, height & registration point of each sprite
-                        frames: {width: CELL_WIDTH, height: CELL_HEIGHT, regX: CELL_WIDTH/2, regY: CELL_HEIGHT/2}, 
-                        animations: {orange0:[0], orangeGrowing:[0, 9, "orange1"], orangeDwarfing:{frames:[9, 8, 7, 6, 5, 4, 3, 2, 1, 0], next: "orange0"}, orange1:[9], orange2:[10], orange3:[11], orange4:[12], orange5:[9], 
-                                     green0:[13], greenGrowing:[13, 22, "green1"], greenDwarfing:{frames:[22, 21, 20, 19, 18, 17, 16, 15, 14, 13], next: "green0"}, green1:[22], green2:[23], green3:[24], green4:[25], green5:[22], 
-                                     yellow0:[26], yellowGrowing:[26, 35, "yellow1"], yellowDwarfing:{frames:[35, 34, 33, 32, 31, 30, 29, 28, 27, 26], next: "yellow0"}, yellow1:[35], yellow2:[36], yellow3:[37], yellow4:[38], yellow5:[35], 
-                                     red0:[39], redGrowing:[39, 48, "red1"], redDwarfing:{frames:[48, 47, 46, 45, 44, 43, 42, 41, 40, 39], next: "red0"}, red1:[48], red2:[49], red3:[50], red4:[51], red5:[48], 
-                                     blue0:[52], blueGrowing:[52, 61, "blue1"], blueDwarfing:{frames:[61, 60, 59, 58, 57, 56, 55, 54, 53, 52], next: "blue0"}, blue1:[61], blue2:[62], blue3:[63], blue4:[64], blue5:[61], 
+                        frames: {width: CELL_WIDTH, height: CELL_HEIGHT, regX: CELL_WIDTH/2, regY: CELL_HEIGHT/2},
+                        animations: {orange0:[0], orangeGrowing:[0, 9, "orange1"], orangeDwarfing:{frames:[9, 8, 7, 6, 5, 4, 3, 2, 1, 0], next: "orange0"}, orange1:[9], orange2:[10], orange3:[11], orange4:[12], orange5:[9],
+                                     green0:[13], greenGrowing:[13, 22, "green1"], greenDwarfing:{frames:[22, 21, 20, 19, 18, 17, 16, 15, 14, 13], next: "green0"}, green1:[22], green2:[23], green3:[24], green4:[25], green5:[22],
+                                     yellow0:[26], yellowGrowing:[26, 35, "yellow1"], yellowDwarfing:{frames:[35, 34, 33, 32, 31, 30, 29, 28, 27, 26], next: "yellow0"}, yellow1:[35], yellow2:[36], yellow3:[37], yellow4:[38], yellow5:[35],
+                                     red0:[39], redGrowing:[39, 48, "red1"], redDwarfing:{frames:[48, 47, 46, 45, 44, 43, 42, 41, 40, 39], next: "red0"}, red1:[48], red2:[49], red3:[50], red4:[51], red5:[48],
+                                     blue0:[52], blueGrowing:[52, 61, "blue1"], blueDwarfing:{frames:[61, 60, 59, 58, 57, 56, 55, 54, 53, 52], next: "blue0"}, blue1:[61], blue2:[62], blue3:[63], blue4:[64], blue5:[61],
                                      heavenly0:[65], heavenlyGrowing:[65, 74, "heavenly1"], heavenlyDwarfing:{frames:[74, 73, 72, 71, 70, 69, 68, 67, 66, 65], next: "heavenly0"}, heavenly1:[74], heavenly2:[75], heavenly3:[76], heavenly4:[77], heavenly5:[74],
                                      violet0:[78], violetGrowing:[78, 87, "violet1"], violetDwarfing:{frames:[87, 86, 84, 83, 82, 81, 80, 79, 78], next: "violet0"}, violet1:[87], violet2:[88], violet3:[89], violet4:[90], violet5:[87],
                                      pink0:[91], pinkGrowing:[91, 100, "pink1"], pinkDwarfing:{frames:[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], next: "pink0"}, pink1:[100], pink2:[101], pink3:[102], pink4:[103], pink5:[100],
                                      orangeyellow0:[104], orangeyellowGrowing:[104, 113, "orangeyellow1"], orangeyellowDwarfing:{frames:[113, 112, 111, 110, 109, 108, 107, 106, 105, 104], next: "orangeyellow0"}, orangeyellow1:[113], orangeyellow2:[114], orangeyellow3:[115], orangeyellow4:[116], orangeyellow5:[113],
                                      purple0:[117], purpleGrowing:[117, 126, "purple1"], purpleDwarfing:{frames:[126, 125, 124, 123, 122, 121, 120, 119, 118, 117], next: "purple0"}, purple1:[126], purple2:[127], purple3:[128], purple4:[129], purple5:[126], hide:[130]}
-                    
+
             };
-                    
+
         var oSpriteSheet = new createjs.SpriteSheet(oData);
 
         for(var r=0; r<_iMatrixDim; r++){
             _aGrid[r] = new Array();
             for(var c=0; c<_iMatrixDim; c++){
-                _aGrid[r][c] = new CCell(oSpriteSheet, r,c, 
-                (START_X_GRID + c*_iCellWidth)+_iHalfCellWidth,  
+                _aGrid[r][c] = new CCell(oSpriteSheet, r,c,
+                (START_X_GRID + c*_iCellWidth)+_iHalfCellWidth,
                 (START_Y_GRID + r*_iCellHeight)+ _iHalfCellHeight,
-                _oContainerGrid, "hide", 
+                _oContainerGrid, "hide",
                 (GRID_AREA_SIZE/_iMatrixDim) / CELL_WIDTH  );
             }
         }
-        
+
         for(var i=0; i < _iNumFlowers; i++){
             _aGrid[_aLevelInfo[_iLevel].points[i].start_r][_aLevelInfo[_iLevel].points[i].start_c].changeCellState(_aLevelInfo[_iLevel].points[i].color, 0, 0, _iDir, NONE, true );
             _aGrid[_aLevelInfo[_iLevel].points[i].end_r][_aLevelInfo[_iLevel].points[i].end_c].changeCellState(_aLevelInfo[_iLevel].points[i].color, 0, 0, _iDir, NONE, true );
         }
         _bLevelStarted = true;
-        
-        s_oStage.on("stagemousemove", this.onMouseMove, this);
-        
+
+        _oListener = s_oStage.on("stagemousemove", this.onMouseMove, this);
+
         if(s_bMobile && !s_bIsIphone){
             s_oStage.update();
         }
-        
+
         this.refreshGridScale();
-        
+
         _oInterface = new CInterface(_iLevel, _iNumMoves, _aLevelInfo[_iLevel].maxMoves);
 
         //KSIAKI
         var sGameSettings = SCORE_TO_ADD + ':' + SCORE_TO_SUBTRACT + ';';
         _ServerScore = new ServerScore(sGameSettings);
     };
-    
+
     this.refreshGridScale = function(){
         GRID_AREA_SIZE = CANVAS_WIDTH - s_iOffsetX*2;
         START_X_GRID = parseInt( (CANVAS_WIDTH-GRID_AREA_SIZE) / 2 );
         START_Y_GRID = parseInt( (CANVAS_HEIGHT-GRID_AREA_SIZE) / 2 );
-        
+
         _iCellHeight = _iCellWidth = parseInt(GRID_AREA_SIZE/_iMatrixDim);
         _iHalfCellWidth = _iHalfCellHeight = _iCellHeight/2;
-        
+
         for(var r=0; r<_iMatrixDim; r++){
             for(var c=0; c<_iMatrixDim; c++){
-                _aGrid[r][c].refreshScale( 
-                        (START_X_GRID + c*_iCellWidth)+_iHalfCellWidth, 
+                _aGrid[r][c].refreshScale(
+                        (START_X_GRID + c*_iCellWidth)+_iHalfCellWidth,
                         (START_Y_GRID + r*_iCellHeight)+ _iHalfCellHeight,
                         (GRID_AREA_SIZE/_iMatrixDim) / CELL_WIDTH  );
             }
         }
-        
+
         if(s_bMobile && !s_bIsIphone){
             s_oStage.update();
         }
     };
-    
+
     this.onCellClick = function(event, r, c){
         //TOUCH EVENTS
         if(_bLevelStarted){
         _iStartRow = r;
         _iStartCol = c;
-            
+
             _iCurPos = {x: _aGrid[r][c].getX(), y: _aGrid[r][c].getY() };
             _szActualColor = _aGrid[r][c].getValue();
 
@@ -260,21 +260,21 @@ function CGame(oData, iLevel, iScore){
                 }else{
                     _aGrid[r][c].changeCellState(_szActualColor, 2, _aGrid[oLastCell.r][oLastCell.c].getRotation(), _aGrid[oLastCell.r][oLastCell.c].getDirection(), _aGrid[oLastCell.r][oLastCell.c].getDirection());
                 }
-                _bMoving = true; 
+                _bMoving = true;
             }
-            
+
             if(s_bMobile && !s_bIsIphone){
                 s_oStage.update();
             }
         }
     };
-    
+
     this.onMouseMove = function(event){
-          
+
         if(!_bMoving){
             return;
         }
-        
+
         if(s_bIsIphone){
             _iNextX = s_oStage.mouseX;
             _iNextY = s_oStage.mouseY;
@@ -285,21 +285,21 @@ function CGame(oData, iLevel, iScore){
             _iNextX = s_oStage.mouseX / s_iScaleFactor;
             _iNextY = s_oStage.mouseY / s_iScaleFactor;
         }
-        
-        
+
+
         _bStartMoving = true;
     };
-    
+
     this.releaseForm = function(event){
         _bMoving = false;
         _bFirstMoveDone = false;
         _bStartMoving = false;
-        
+
         if(s_bMobile && !s_bIsIphone){
             s_oStage.update();
         }
     };
-    
+
     this.getCellPositionInArray = function(r, c, szColor){
         switch(szColor){
             case "orange":
@@ -374,7 +374,7 @@ function CGame(oData, iLevel, iScore){
                 break;
         }
     };
-    
+
     this.updateColorArray = function(szColor, iRow, iCol ){
         switch(szColor){
             case "orange":
@@ -409,10 +409,10 @@ function CGame(oData, iLevel, iScore){
                 break;
         }
     };
-                                
+
     this._cancelNextLines = function(iStart, szColor, aArray){
         //aArray.length;
-        
+
         for(var i=iStart; i< aArray.length; i++){
             if(_aGrid[aArray[i].r][aArray[i].c].getState() === 5){
                 _aGrid[aArray[i].r][aArray[i].c].flowerDwarfing(0, 0, NONE, NONE);
@@ -427,12 +427,12 @@ function CGame(oData, iLevel, iScore){
         }else{
             aArray.splice(iStart, (aArray.length-iStart));
         }
-        
+
         if(aArray.length === 1){
             this._cancelThisLineColor(szColor);
         }
     };
-    
+
     this.checkIfLevelCompleted = function(){
         for(var i=0; i<_iMatrixDim; i++){
             for(var j=0; j<_iMatrixDim; j++){
@@ -443,7 +443,7 @@ function CGame(oData, iLevel, iScore){
         }
         return true;
     };
-    
+
     this._cancelThisLineColor = function(szColor){
         switch(szColor){
             case "orange":
@@ -485,7 +485,7 @@ function CGame(oData, iLevel, iScore){
                 }else if(_aGrid[i][j].getValue() === szColor && _aGrid[i][j].getState() > 1){
                     _aGrid[i][j].changeCellState("hide", null, 0, NONE, false);
                 }else if(_aGrid[i][j].getValue() === szColor && _aGrid[i][j].getState() === 1){
-                    
+
                     playSound("flower_closed", 1, false);
 
                     _aGrid[i][j].flowerDwarfing(0, 0, NONE, NONE);
@@ -493,7 +493,7 @@ function CGame(oData, iLevel, iScore){
             }
         }
     };
-    
+
     this.checkIfNextIsGoal = function(r, c){
         if(this._checkIfNotOccupied(r, c) === false){
             if(_aGrid[_iStartRow][_iStartCol].getValue() === _aGrid[r][c].getValue() && _aGrid[r][c].getState() === 0){
@@ -502,9 +502,9 @@ function CGame(oData, iLevel, iScore){
         }
         return false;
     };
-    
+
     this._checkIfNear = function(iOldRow, iOldCol, iNewRow, iNewCol){
-        
+
         if(iOldRow < iNewRow && iOldCol === iNewCol){           //down
             _iDir = DOWN;
             return {r:1, c:0};
@@ -520,9 +520,9 @@ function CGame(oData, iLevel, iScore){
         }
         return null;
     };
-    
+
     this.checkIfThereIsAnotherLineNear = function(r, c){
-        
+
         if(c > 0){
             if(_aGrid[r][c-1].getValue() === _szActualColor && _aGrid[r][c-1].getState() !== 5){     //left
                 return LEFT;
@@ -545,20 +545,20 @@ function CGame(oData, iLevel, iScore){
         }
         return null;
     };
-    
+
     this._checkIfNotOccupied = function(r, c){
         if(_aGrid[r][c].getValue() === "hide"){
             if((_iStartRow >= r-1 && _iStartRow <= r+1) && (_iStartCol >= c-1 && _iStartCol <= c+1))
             return true;
         }
         return false;
-        
+
     };
-    
+
     this._getTypeSprite = function(iNewDir, iOldDir){
         var oType = {typeOld: NONE, typeNew: NONE, rotationOld: 0, rotationNew: 0, changeSprite: false};
         switch(iOldDir){
-            case DOWN:                 
+            case DOWN:
                 switch(iNewDir){
                     case LEFT:
                         oType.rotationOld = 90;
@@ -592,7 +592,7 @@ function CGame(oData, iLevel, iScore){
                         break;
                 }
                 break;
-            case UP:                        
+            case UP:
                 switch(iNewDir){
                     case LEFT:
                         oType.rotationOld = 0;
@@ -624,9 +624,9 @@ function CGame(oData, iLevel, iScore){
                         oType.rotationNew = 180;
                         oType.typeNew = 2;
                         break;
-                }         
+                }
                 break;
-            case LEFT:                
+            case LEFT:
                 switch(iNewDir){
                     case UP:
                         oType.rotationOld = 180;
@@ -660,7 +660,7 @@ function CGame(oData, iLevel, iScore){
                         break;
                 }
                 break;
-            case RIGHT:                
+            case RIGHT:
                 switch(iNewDir){
                     case DOWN:
                         oType.rotationOld = 0;
@@ -725,17 +725,17 @@ function CGame(oData, iLevel, iScore){
         }
         return oType;
     };
-    
+
     this.unload = function(){
         _oInterface.unload();
-        
-        
+
+
         for(var i=0; i<_iMatrixDim; i++){
             for(var j=0; j<_iMatrixDim; j++){
                 _aGrid[i][j].unload();
             }
         }
-        
+
         _aGrid = [];
         _aOrangeLine = [];
         _aGreenLine = [];
@@ -747,19 +747,19 @@ function CGame(oData, iLevel, iScore){
         _aPinkLine = [];
         _aOrangeYellowkLine = [];
         _aPurpleLine = [];
-        
-        s_oStage.off("stagemousemove", this.onMouseMove, this);
+
+        s_oStage.off("stagemousemove", _oListener, this);
         createjs.Tween.removeAllTweens();
-        s_oStage.removeAllChildren(); 
+        s_oStage.removeAllChildren();
     };
- 
+
     this.onExit = function(){
         this.unload();
         s_oMain.gotoMenu();
-        
+
         $(s_oMain).trigger("restart");
     };
-    
+
     this.onRestart = function(){
         $(s_oMain).trigger("restart_level", _iLevel);
         $(s_oMain).trigger("show_interlevel_ad");
@@ -773,7 +773,7 @@ function CGame(oData, iLevel, iScore){
         this._cancelThisLineColor("pink");
         this._cancelThisLineColor("orangeyellow");
         this._cancelThisLineColor("purple");
-        
+
         /*
         for(; _iNumMoves > 0; _iNumMoves--){
             if(_iNumMoves > _aLevelInfo[_iLevel].maxMoves - _iNumFlowers){
@@ -784,16 +784,16 @@ function CGame(oData, iLevel, iScore){
         }
         */
         _iScore = 0;
-        
+
         _bLevelStarted = true;
 
         s_oStage.update();
     };
-    
-    this.endPanel = function(){   
+
+    this.endPanel = function(){
         _iLevel++;
         _bLevelStarted = false;
-        
+
         if(_iScore > s_aScore[s_iLastLevel-1] ){
             s_aScore[s_iLastLevel-1] = _iScore;
         }
@@ -806,7 +806,7 @@ function CGame(oData, iLevel, iScore){
                         s_iLastLevel = _iLevel+1;
                     }
                     _oEndPanel.nextLevel();
-                },500); 
+                },500);
             }else{
                 _oEndPanel = CEndPanel(s_oSpriteLibrary.getSprite('msg_box'), _iLevel-1, _iScore);
                 if(s_iLastLevel < _iLevel+1){
@@ -814,52 +814,52 @@ function CGame(oData, iLevel, iScore){
                 }
                 _oEndPanel.nextLevel();
             }
-            
+
         }else{
             if(s_bMobile && !s_bIsIphone){
                 setTimeout(function(){
                     _oEndPanel = CEndPanel(s_oSpriteLibrary.getSprite('bg_win'), _iLevel-1, _iScore);
                     _oEndPanel.lastLevelCompleted();
-                },500); 
+                },500);
             }else{
                 _oEndPanel = CEndPanel(s_oSpriteLibrary.getSprite('bg_win'), _iLevel-1, _iScore);
             _oEndPanel.lastLevelCompleted();
             }
         }
-        
+
         s_oLocalStorage.saveData();
-        
+
     };
-    
+
     this.nextLevel = function(){
         this.unload();
         s_oMain.gotoGame(_iLevel, 0);
     };
-    
+
     this.update = function(){
         if(!s_bMobile || s_bIsIphone){
             _aScrollingBg[0].move();
             _aScrollingBg[1].move();
         }
-        
+
         if(_bStartMoving){
-            
+
             var iRow = _iStartRow;
             var iCol = _iStartCol;
             var iOldDir = _aGrid[iRow][iCol].getDirectionNoChange();
 
             if((_iNextX > START_X_GRID && _iNextX <= START_X_GRID+GRID_AREA_SIZE ) &&    //check X
                (_iNextY > START_Y_GRID && _iNextY <= START_Y_GRID+GRID_AREA_SIZE )){     //check Y
-                   
+
                 var r = Math.floor((_iNextY-START_Y_GRID)/_iCellWidth);
-                var c = Math.floor((_iNextX-START_X_GRID)/_iCellHeight); 
-                
+                var c = Math.floor((_iNextX-START_X_GRID)/_iCellHeight);
+
                 if(!((r !== iRow && r >= 0) || (c !== iCol && c >= 0)) ){
                     return;
                 }
-                
+
                 var oDirection = this._checkIfNear(iRow, iCol, r, c);
-                
+
                 var szColor = _aGrid[r][c].getValue();
                 if(oDirection !== null){
                     if(this._checkIfNotOccupied(r, c)){
@@ -905,7 +905,7 @@ function CGame(oData, iLevel, iScore){
 
                             _bMoving = false;
                             _iPiecesConnected++;
-                            
+
                             if(_iNumMoves < _aLevelInfo[_iLevel].maxMoves - _iNumFlowers){
                                 _iScore+=SCORE_TO_ADD;
                             }else{
@@ -914,7 +914,6 @@ function CGame(oData, iLevel, iScore){
                             _iNumMoves++;
                             _oInterface.refreshScore(_iNumMoves, _aLevelInfo[_iLevel].maxMoves);
                             if(_iPiecesConnected === _iNumFlowers && this.checkIfLevelCompleted()){
-
                                 this.endPanel();
 
                                 //KSIAKI
@@ -938,7 +937,7 @@ function CGame(oData, iLevel, iScore){
                                 _oTextError.textBaseline = "alphabetic";
                                 _oTextError.lineWidth = 500;
                                 s_oStage.addChild(_oTextError);
-                                
+
                                 createjs.Tween.get(_oTextErrorStroke).to({y: CANVAS_HEIGHT/2 }, 1000, createjs.Ease.bounceOut).wait(500).call(function() {
                                     createjs.Tween.get(_oTextErrorStroke).to({y: -100 }, 1000, createjs.Ease.backIn ).wait(500).call(function() {
                                         s_oStage.removeChild(this);
@@ -1019,12 +1018,12 @@ function CGame(oData, iLevel, iScore){
     };
 
     s_oGame=this;
-    
+
     _aLevelInfo = s_aLevelsData;
-    
+
     SCORE_TO_ADD = oData.score_to_add;
     SCORE_TO_SUBTRACT = oData.score_to_subtract;
-    
+
     _oParent=this;
     this._init();
 }
