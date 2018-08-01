@@ -43,7 +43,6 @@ function CGame(oData,iLevel,iScore){
         _iLastLevel = iLevel;
         _iTotScore = iScore;
         s_oBezier = new CBezier();
-        _iTotalBallsCleared = 0;
 
 	_oBgAttach = new createjs.Container();
         _oBg = createBitmap(s_oSpriteLibrary.getSprite(s_oLevelSettings.getBgForLevel(_iCurLevel)) );
@@ -98,6 +97,9 @@ function CGame(oData,iLevel,iScore){
         _iMultiplierCombo = 1;
         _iTimeElaps = 0;
         _iCurLevelScore = 0;
+
+        //KSIAKI
+        _iTotalBallsCleared = 0;
 
         _oHero.reset(s_oLevelSettings.getHeroPosForLevel(_iCurLevel),_iBallColors);
         if(_oCurve !== null){
