@@ -43,6 +43,7 @@ function CGame(oData,iLevel,iScore){
         _iLastLevel = iLevel;
         _iTotScore = iScore;
         s_oBezier = new CBezier();
+        _iTotalBallsCleared = 0;
 
 	_oBgAttach = new createjs.Container();
         _oBg = createBitmap(s_oSpriteLibrary.getSprite(s_oLevelSettings.getBgForLevel(_iCurLevel)) );
