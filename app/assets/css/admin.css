@@ -37,3 +37,7 @@ a[disabled="disabled"] > .fas {opacity: 0.5;}
 .purple { color: purple; }
 
 .form-horizontal .control-label.align-left { text-align: left; }
+
+.sortable { list-style-type: none; margin: 0; height: 200px; padding: 20px; width: 100%; }
+.sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left;
+            width: 100px; height: 100px; text-align: center; }

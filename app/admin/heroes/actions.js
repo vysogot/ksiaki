@@ -1,3 +1,5 @@
+positionsUpdated = '<?= t('positions_updated') ?>';
+
 function set_button(myFunc, myIndex, myRow, myTitle, myIcon, myDisable) {
     return '<a href="#" onclick="' + myFunc + '"' +
         ' data-index="' + myIndex + '"' +

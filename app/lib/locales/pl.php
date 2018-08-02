@@ -246,6 +246,9 @@ $translations = [
   'in_current_edition' => 'W aktualnym numerze',
   'to_download' => 'Do pobrania',
   'tv_spot' => 'Spot telewizyjny',
+  'positions_updated' => 'Pozycje zostały zaktualizowane',
+  'sort' => 'Ustaw kolejność bohaterów',
+  'sort_info' => 'Kolejność od lewej do prawej tutaj odzwierciedla się jako kolejność od środka w prawo do środka (po okręgu) na slajderze',
 
   // hero files
 

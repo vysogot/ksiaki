@@ -7,6 +7,10 @@
                     <?php if (!in_array($data['title'], ['users', 'score_games', 'mail_templates'])) { ?>
                         <p><?= link_to('<i class="fas fa-plus-circle"></i>', '#', ['title'=>t('add_new'), 'data-target' => 'new.php', 'data-index' => '0', 'id' => 'new', 'data-id' => '0']) ?></p>
                     <?php } ?>
+
+                    <?php if (in_array($data['title'], ['heroes'])) { ?>
+                        <p><?= link_to(t('sort'), 'sort_form.php') ?></p>
+                    <?php } ?>
                     <table id="dataTable" class="table table-striped table-vcenter">
                         <thead>
                             <tr>

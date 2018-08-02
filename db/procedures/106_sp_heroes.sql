@@ -5,6 +5,7 @@ DROP PROCEDURE IF EXISTS sp_heroes_create;
 DROP PROCEDURE IF EXISTS sp_heroes_update;
 DROP PROCEDURE IF EXISTS sp_heroes_delete;
 DROP PROCEDURE IF EXISTS sp_heroes_find_by_slug;
+DROP PROCEDURE IF EXISTS sp_heroes_update_positions;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_heroes_new`()
@@ -47,9 +48,11 @@ BEGIN
     , slug
     , avatar_url
     , header_url
+    , position
     , is_active
     FROM _heroes
-    WHERE (marked_as_deleted_by = 0);
+    WHERE (marked_as_deleted_by = 0)
+    ORDER BY position;
 END$$
 DELIMITER ;
 
@@ -121,6 +124,37 @@ BEGIN
     WHERE (id = p_id);
 
     CALL `sp_heroes_find`(p_id);
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_heroes_update_positions`(
+    IN `p_heroes_positions` VARCHAR(255)
+)
+BEGIN
+
+    SET @positions = REPLACE(p_heroes_positions, ',', '),(');
+    SET @positions = CONCAT('(', @positions, ')');
+
+    DROP TEMPORARY TABLE IF EXISTS tmpPositions;
+
+    CREATE TEMPORARY TABLE tmpPositions(
+        `position` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `hero_id` int(10) unsigned NOT NULL
+    );
+
+    SET @insertString = CONCAT('INSERT INTO tmpPositions (`hero_id`) VALUES ', @positions);
+
+    PREPARE insertStatement FROM @insertString;
+    EXECUTE insertStatement;
+    DEALLOCATE PREPARE insertStatement;
+
+    UPDATE _heroes
+    INNER JOIN tmpPositions ON hero_id = _heroes.id
+    SET _heroes.position = tmpPositions.position;
+
+    SELECT ROW_COUNT() AS rowCount;
 
 END$$
 DELIMITER ;
