@@ -755,7 +755,7 @@ footer p {
   color: black;
 }
 
-.box.finished {
+.box.finished, .box.ended {
   background: #1c4260;
 }
 
@@ -763,7 +763,7 @@ footer p {
   background: #ef75b8;
 }
 
-.box.finished a, .box.yetToBegin a {
+.box.finished a, .box.yetToBegin a, .box.ended a {
   color: white;
 }
 
@@ -777,7 +777,7 @@ footer p {
   display: none;
 }
 
-.box.finished .overlay {
+.box.finished .overlay, .box.ended .overlay {
   background: url('/assets/images/contest_finished_v2.png') center center no-repeat;
   background-size: 160px 160px;
   display: block;
