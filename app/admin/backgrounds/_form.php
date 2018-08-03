@@ -64,9 +64,9 @@
                     <?= t('background_color') ?>
                 </label>
                 <div class="col-sm-8">
-                    <div class='input-group'>
+                    <div id="cp_background_color" class='input-group colorpicker-component'>
                         <input class="form-control" id="background_color" name="background_color" type="text" required>
-                        <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        <div class='input-group-addon'><i></i></div>
                     </div>
                 </div>
             </div>
@@ -76,9 +76,9 @@
                     <?= t('details_color') ?>
                 </label>
                 <div class="col-sm-8">
-                    <div class='input-group'>
+                    <div id="cp_details_color" class='input-group colorpicker-component'>
                         <input class="form-control" id="details_color" name="details_color" type="text" required>
-                        <div class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></div>
+                        <div class='input-group-addon'><i></i></div>
                     </div>
                 </div>
             </div>

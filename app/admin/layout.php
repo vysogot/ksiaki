@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/assets/lib/fontawesome-v5.0.11.css">
     <link rel="stylesheet" href="/assets/lib/jquery-ui/jquery-ui-v1.12.1.css">
     <link rel="stylesheet" href="/assets/lib/bootstrap/bootstrap-v3.3.7.min.css">
+    <link rel="stylesheet" href="/assets/lib/bootstrap-colorpicker/bootstrap-colorpicker-v2.5.2.min.css">
     <link rel="stylesheet" href="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.css">
     <link rel="stylesheet" href="/assets/lib/suneditor/css/suneditor.css">
     <link rel="stylesheet" href="/assets/lib/suneditor/css/suneditor-contents.css">
@@ -24,12 +25,14 @@
 
     <script src="/assets/lib/jquery-v2.2.4.min.js"></script>
     <script src="/assets/lib/bootstrap/bootstrap-v3.3.7.min.js"></script>
+    <script src="/assets/lib/bootstrap-colorpicker/bootstrap-colorpicker-v2.5.2.min.js"></script>
     <script src="/assets/lib/markjs-v8.11.1.js"></script>
     <script src="/assets/lib/jquery-ui/jquery-ui-v1.12.1.js"></script>
     
     <script src="/assets/lib/datatables/jquery-dataTables-v1.10.16.min.js"></script>
     <script src="/assets/lib/datatables/bootstrap-dataTables-v1.10.16.min.js"></script>
     <script src="/assets/lib/datatables/markjs-dataTables-v1.10.16.min.js"></script>
+    
 
     <script src="/assets/lib/suneditor/suneditor.js"></script>
     <script src="/assets/lib/suneditor/lang/pl.js"></script>

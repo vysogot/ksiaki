@@ -56,6 +56,8 @@ $translations = [
   'points_in_game' => 'Punkty total',
   'contest_end' => 'Zakończ',
   'place' => 'Miejsce',
+  'play_not_logged' => '<div class="text-center"><p>Jesteś nie zalogowany.<p/><p>Twój wynik nie zostanie zapisany!</p></div>',
+  'i_understand' => 'Rozumiem',
 
   // downloads
 

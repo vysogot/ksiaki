@@ -20,9 +20,20 @@ $data['assets_url'] = $GLOBALS['config']['cdn'] . '/contest_games/' . $data['con
 function content($params, $data) { ?>
 
 <script type="text/javascript">
+var nick = '<?= $_SESSION['nick']??'' ?>';
 var contestId = <?= $data['contest']->id ?>;
 var assetsUrl = '<?= $data['assets_url'] ?>';
 var sponsorUrl = '<?= $data['contest']->sponsor_link_url ?>';
+
+if (nick === '') {
+    vex.dialog.open({
+        unsafeMessage: '<?= t('play_not_logged') ?>',
+        overlayClosesOnClick: false,
+        buttons: [
+            $.extend({}, vex.dialog.buttons.YES, { text: '<?= t('i_understand') ?>' }),
+        ]
+    });
+}
 </script>
 
 <?php if ($data['contest']->game_name == 'pacman') { ?>

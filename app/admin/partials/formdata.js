@@ -201,6 +201,12 @@ $('#modal').on('shown.bs.modal', function(e) {
         suneditor = SUNEDITOR.create('statute');
         suneditor.setContent($('textarea[name="statute"]').val());
     }
+    
+    
+    $('#cp_background_color').colorpicker({format: 'hex'});
+    $('#cp_details_color').colorpicker({format: 'hex'});
+            
+            
 });
 
 $('#new').click(function(e) {
