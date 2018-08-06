@@ -2,6 +2,7 @@
 
 function validate(&$params) {
     validate_presence($params, 'name');
+    validate_presence($params, 'prizes_count');
     validate_not_longer_than($params, 'name', 25);
 
     if (empty($params['slug'])) {

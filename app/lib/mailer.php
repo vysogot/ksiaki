@@ -27,6 +27,10 @@ function send_invitation_email($to, $interpolations) {
     return send_template_email($to, 'inviting_an_outsider', $interpolations);
 }
 
+function send_laureate_email($to, $interpolations) {
+    return send_template_email($to, 'being_a_contest_laureate', $interpolations);
+}
+
 function send_template_email($to, $template_name, $interpolations) {
 
     $template = execute('call sp_mail_templates_find_by_name(:p_name);', [

@@ -1,4 +1,5 @@
 DROP PROCEDURE IF EXISTS sp_contests_ending;
+DROP PROCEDURE IF EXISTS sp_contests_get_laureats;
 
 DELIMITER $$
 CREATE PROCEDURE `sp_contests_ending`(
@@ -61,5 +62,25 @@ WHERE (id = p_contest_id);
 CALL sp_contests_find(p_contest_id);
 
 
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE `sp_contests_get_laureats`(
+    IN `p_contest_id` INT
+)
+BEGIN
+
+    SELECT
+        _users.email
+        , _users.nick
+        , _contests.name as contest_name
+    FROM top100users
+    INNER JOIN _contests ON top100users.contest_id = _contests.id
+    INNER JOIN _users ON top100users.user_id = _users.id
+    WHERE contest_id = p_contest_id
+    AND place BETWEEN 1 AND _contests.prizes_count;
 END$$
 DELIMITER ;

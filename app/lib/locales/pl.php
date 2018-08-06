@@ -58,6 +58,8 @@ $translations = [
   'place' => 'Miejsce',
   'play_not_logged' => '<div class="text-center"><p>Jesteś nie zalogowany.<p/><p>Twój wynik nie zostanie zapisany!</p></div>',
   'i_understand' => 'Rozumiem',
+  'prizes_count' => 'Liczba nagród/laureatów',
+  'laureats_list' => 'Laureaci do których poszły maile:',
 
   // downloads
 

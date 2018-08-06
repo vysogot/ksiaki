@@ -48,7 +48,19 @@ function fEnd(myObj) {
             function(data, status){
                 if (status == 'success') {
                   let row_index = oRow.data('index');
-                  oTable.row(row_index).data(data[0]);
+                  oTable.row(row_index).data(data['contest']);
+
+                  let title = '<?= t("laureats_list") ?>'
+
+                  let html = '<p>' + title + '</p><table>';
+                  data['laureats'].forEach(function (item) {
+                      html += '<tr>';
+                      html += '<td>' + item['nick'] + '</td>';
+                      html += '</tr>';
+                  });
+                  html += '</table>';
+
+                  vexOpen(html);
                 }
             });
     }

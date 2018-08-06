@@ -24,6 +24,7 @@ SELECT 0 AS id
 , NOW() AS begins_at
 , DATE_ADD(NOW(), INTERVAL 14 DAY) AS ends_at
 , 1 AS display_ad
+, '' AS prizes_count
 , 1 AS is_active;
 END$$
 DELIMITER ;
@@ -45,6 +46,7 @@ SELECT _contests.id
 , begins_at
 , ends_at
 , display_ad
+, prizes_count
 , is_active
 , is_ended
 , CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
@@ -52,10 +54,10 @@ SELECT _contests.id
 , CASE
 	WHEN is_ended THEN 'ended'
 	WHEN NOT is_active THEN 'inactive'
-	WHEN (NOW() < begins_at) THEN 'yetToBegin' 
+	WHEN (NOW() < begins_at) THEN 'yetToBegin'
 	WHEN (NOW() > ends_at) THEN 'finished'
-	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current' 
-	ELSE '' END 
+	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current'
+	ELSE '' END
 	AS 'status'
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
@@ -81,6 +83,7 @@ SELECT _contests.id
 , begins_at
 , ends_at
 , display_ad
+, prizes_count
 , _contests.is_active
 , is_ended
 , CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) OR (NOT _contests.is_active) THEN 0 ELSE 1 END AS 'playable'
@@ -88,10 +91,10 @@ SELECT _contests.id
 , CASE
 	WHEN is_ended THEN 'ended'
 	WHEN NOT _contests.is_active THEN 'inactive'
-	WHEN (NOW() < begins_at) THEN 'yetToBegin' 
+	WHEN (NOW() < begins_at) THEN 'yetToBegin'
 	WHEN (NOW() > ends_at) THEN 'finished'
-	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current' 
-	ELSE '' END 
+	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current'
+	ELSE '' END
 	AS 'status'
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
@@ -117,6 +120,7 @@ SELECT _contests.id
 , begins_at
 , ends_at
 , display_ad
+, prizes_count
 , is_active
 , is_ended
 , CASE WHEN (NOW() NOT BETWEEN begins_at AND ends_at) THEN 0 ELSE 1 END AS 'playable'
@@ -124,10 +128,10 @@ SELECT _contests.id
 , CASE
 	WHEN is_ended THEN 'ended'
 	WHEN NOT is_active THEN 'inactive'
-	WHEN (NOW() < begins_at) THEN 'yetToBegin' 
+	WHEN (NOW() < begins_at) THEN 'yetToBegin'
 	WHEN (NOW() > ends_at) THEN 'finished'
-	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current' 
-	ELSE '' END 
+	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current'
+	ELSE '' END
 	AS 'status'
 FROM _contests
 LEFT JOIN def_games ON game_id = def_games.id
@@ -149,10 +153,10 @@ SELECT id
 , CASE
 	WHEN is_ended THEN 'ended'
 	WHEN NOT is_active THEN 'inactive'
-	WHEN (NOW() < begins_at) THEN 'yetToBegin' 
+	WHEN (NOW() < begins_at) THEN 'yetToBegin'
 	WHEN (NOW() > ends_at) THEN 'finished'
-	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current' 
-	ELSE '' END 
+	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current'
+	ELSE '' END
 	AS 'status'
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
@@ -175,10 +179,10 @@ SELECT id
 , CASE
 	WHEN is_ended THEN 'ended'
 	WHEN NOT is_active THEN 'inactive'
-	WHEN (NOW() < begins_at) THEN 'yetToBegin' 
+	WHEN (NOW() < begins_at) THEN 'yetToBegin'
 	WHEN (NOW() > ends_at) THEN 'finished'
-	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current' 
-	ELSE '' END 
+	WHEN NOW() BETWEEN begins_at AND ends_at THEN 'current'
+	ELSE '' END
 	AS 'status'
 FROM _contests
 WHERE (marked_as_deleted_by = 0)
@@ -201,6 +205,7 @@ CREATE PROCEDURE `sp_contests_create`(
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
 	IN `p_display_ad` TINYINT(1),
+    IN `p_prizes_count` INT,
 	IN `p_is_active` TINYINT(1)
 )
 BEGIN
@@ -216,6 +221,7 @@ BEGIN
 		, begins_at
 		, ends_at
 		, display_ad
+        , prizes_count
 		, is_active
 	) VALUES(
 		p_game_id,
@@ -229,6 +235,7 @@ BEGIN
 		p_begins_at,
 		p_ends_at,
 		p_display_ad,
+        p_prizes_count,
 		p_is_active
 	);
 SELECT ROW_COUNT() AS rowCount, LAST_INSERT_ID() AS lastInsertId;
@@ -249,6 +256,7 @@ CREATE PROCEDURE `sp_contests_update`(
 	IN `p_begins_at` DATETIME,
 	IN `p_ends_at` DATETIME,
 	IN `p_display_ad` TINYINT(1),
+    IN `p_prizes_count` INT,
 	IN `p_is_active` TINYINT(1)
 )
 BEGIN
@@ -263,7 +271,8 @@ SET game_id = p_game_id
 	, header_url = p_header_url
 	, begins_at = p_begins_at
 	, ends_at = p_ends_at
-  , display_ad = p_display_ad
+    , display_ad = p_display_ad
+    , prizes_count = p_prizes_count
 	, is_active = p_is_active
 WHERE (id = p_id);
 
