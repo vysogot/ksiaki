@@ -178,6 +178,7 @@ $(document).on('ready', function() {
             }
         });
 
+
     // make sure video and mute are available
     $('#player').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
         var video = $($(slick.$slides.get(currentSlide)).children('video:first-child')[0]);
@@ -189,7 +190,10 @@ $(document).on('ready', function() {
             mute.hide();
         }
 
-        video.show();
+        $('video').each(function() {
+            $(this).get(0).pause();
+        });
+        
     });
 
     // and play the video silently
@@ -213,6 +217,7 @@ $(document).on('ready', function() {
         }
 
     });
+
 
     if (window.appEnv == 'production') {
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
