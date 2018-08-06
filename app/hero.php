@@ -29,7 +29,7 @@ function content($params, $data) { ?>
 
     <aside class="sky-banner">
         <?php include './partials/stroer_sky.html' ?>
-        <?= link_to(image('/assets/images/nagroda-konkursiaka-lipiec.png', ['class' => 'shadow', 'style' => 'width: 100%;']), t('contests_slug')) ?>
+        <?php include './partials/konkursiak_of_the_month.php' ?>
     </aside>
 
     <?php foreach($data['hero_editions'] as $hero_edition) { ?>

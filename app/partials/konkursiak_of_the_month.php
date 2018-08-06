@@ -1,1 +1,1 @@
-<?= image('/assets/images/nagroda-konkursiaka-lipiec.png', ['class' => 'shadow', 'style' => 'max-width: 90%;']) ?>
+<?= link_to(image('/assets/images/konkursiak-nagroda-08.png', ['class' => 'shadow', 'style' => 'width: 100%;']), t('contests_slug')) ?>
