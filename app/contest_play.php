@@ -36,10 +36,6 @@ if (nick === '') {
 }
 </script>
 
-<?php if ($data['contest']->game_name == 'pacman') { ?>
-    <style>.game-iframe { height: 700px; }</style>
-<?php } ?>
-
 <div class="wrapper center">
   <h2><?= link_to(t('back_to_contest'), t('contest_slug', ['slug' => $data['contest']->slug])) ?></h2>
     <?php if ($data['contest']->display_ad) { ?>
@@ -61,7 +57,7 @@ if (nick === '') {
     <?php } ?>
 
     <div class="game">
-    <iframe onload="this.contentWindow.focus()" class="game-iframe" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
+    <iframe onload="this.contentWindow.focus()" class="game-iframe <?= $data['contest']->game_name ?>" src="/games/<?= $data['contest']->game_name ?>/index.php"></iframe>
     <script>
       var iframe = document.getElementsByClassName('game-iframe')[0];
           iframe.contentWindow.postMessage('{"method":"setVolume", "value":0}','*');

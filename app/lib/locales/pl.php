@@ -413,5 +413,6 @@ $translations = [
   'pacman' => 'Stary Pacman',
   'memory' => 'Memory',
   'gems' => 'Diamenty',
+  'pirate' => 'Pirat',
 
 ];

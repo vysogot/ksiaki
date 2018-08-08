@@ -162,6 +162,9 @@ footer p {
 }
 
 .game-iframe { border: 0; width: 960px; height: 540px; }
+.game-iframe.pirate { width: 540px; height: 810px; }
+.game-iframe.gems { width: 540px; height: 960px; }
+.game-iframe.pacman { height: 700px; }
 
 
 .vertical-form input[type='text'],

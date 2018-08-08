@@ -16,6 +16,7 @@ cat app/games/pirate/js_src/jquery-3.2.1.min.js \
     app/games/pirate/js_src/hammer.min.js \
     app/games/pirate/js_src/ctl_utils.js \
     app/games/pirate/js_src/sprite_lib.js \
+    app/games/pirate/js_src/ServerScore.js \
     app/games/pirate/js_src/floor_settings.js \
     app/games/pirate/js_src/objects_settings.js \
     app/games/pirate/js_src/settings.js \

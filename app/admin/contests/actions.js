@@ -18,7 +18,8 @@ const aGamesT = {
     'sorcerer': 'Czarodziej',
     'pacman': 'Stary Pacman',
     'memory': 'Memory',
-    'gems': 'Diamenty'
+    'gems': 'Diamenty',
+    'pirate': 'Pirat',
 }
 
 function set_button(myFunc, myIndex, myRow, myTitle, myIcon, myDisable) {

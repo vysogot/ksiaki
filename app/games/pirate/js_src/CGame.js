@@ -55,6 +55,9 @@ function CGame(oData, iLevel) {
     var _bSpaceBarNextLv;
     var _oHammer;
 
+    //KSIAKI
+    var _ServerScore;
+
     this._init = function () {
 
         setVolume("soundtrack", 0.4);
@@ -168,6 +171,26 @@ function CGame(oData, iLevel) {
         else
             _oInterface.showLevelNum(_iLevel);
 
+        CHARACTER_SPEED = oData.character_speed;
+    ENEMY_SPEED = oData.enemy_speed;
+    LIVES = oData.life_character;
+    COIN_SCORE = oData.coin_score;
+    ENEMY_SCORE_COMBO = oData.score_kill_enemy;
+    TIME_BONUS_ATTACK = oData.time_bonus_attack;
+    NUM_LEVELS_FOR_ADS = oData.num_levels_for_ads;
+
+        //KSIAKI
+        var sGameSettings = CHARACTER_SPEED +
+            ':' + ENEMY_SPEED +
+            ':' + LIVES +
+            ':' + COIN_SCORE +
+            ':' + ENEMY_SCORE_COMBO +
+            ':' + TIME_BONUS_ATTACK +
+            ':' + NUM_LEVELS_FOR_ADS +
+            ';';
+
+        _ServerScore = new ServerScore(sGameSettings);
+
         $(s_oMain).trigger("start_level", _iLevel);
     };
     this.setPause = function (bVal) {
@@ -177,7 +200,7 @@ function CGame(oData, iLevel) {
         setVolume("soundtrack", 1);
         s_oGame.unload();
         s_oMain.gotoMenu();
-        
+
         $(s_oMain).trigger("end_level", _iLevel);
         $(s_oMain).trigger("end_session");
         $(s_oMain).trigger("show_interlevel_ad");
@@ -667,6 +690,10 @@ function CGame(oData, iLevel) {
             if (s_iLevelReached < _iLevel + 2) {
                 s_iLevelReached = _iLevel + 2;
             }
+
+            //KSIAKI
+            _ServerScore.send(_iLevel+1, _iLevelScore, _iScore, 1);
+
             $(s_oMain).trigger("end_level", _iLevel);
         }
     };
