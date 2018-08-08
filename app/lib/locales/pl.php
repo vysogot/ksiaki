@@ -414,5 +414,6 @@ $translations = [
   'memory' => 'Memory',
   'gems' => 'Diamenty',
   'pirate' => 'Pirat',
+  'cars' => 'Samochody',
 
 ];

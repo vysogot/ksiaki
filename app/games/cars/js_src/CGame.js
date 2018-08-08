@@ -1,11 +1,11 @@
 function CGame(oData, iLevel){
     var _bStartGame;
     var _bDamaged;
-    
+
     var _iStartCountDown;
     var _iTimeElaps;
     var _iLevel;
-    var _iScore;    
+    var _iScore;
     var _iGameState;
     var _oPrevSegment;
 
@@ -20,9 +20,13 @@ function CGame(oData, iLevel){
     var _oRoadDrawingLevel;
     var _oElementContainer;
     var _oHorizon;
-                        
+
     var _aCars;
-    
+
+    //KSIAKI
+    var _ServerScore;
+
+
     this._init = function(iLevel){
 
         _iLevel = iLevel;
@@ -45,11 +49,23 @@ function CGame(oData, iLevel){
         TRACK_LENGTH = _oRoad.getTrackLength();
 
 
-        _oInterface = new CInterface();        
+        _oInterface = new CInterface();
 
         _aCars = new Array();
         new CLevelBuilder(_oPlayer, _aCars, _oElementContainer, iLevel);
 
+        //KSIAKI
+        var sGameSettings = PLAYER_MAX_SPEED +
+            ':' + PLAYER_ACCELERATION +
+            ':' + PLAYER_DECELERATION +
+            ':' + PLAYER_MIN_SPEED_DAMAGE +
+            ':' + PLAYER_REAL_MAX_SPEED +
+            ':' + PLAYER_SPEED_CONVERSION_RATIO +
+            ':' + CENTRIFUGAL_FORCE +
+            ':' + POINTS_PER_SECONDS +
+            ';';
+
+        _ServerScore = new ServerScore(sGameSettings);
 
         this.resetParams();
     };
@@ -65,13 +81,13 @@ function CGame(oData, iLevel){
         evt.preventDefault();
         s_oGame.onKeyUp(evt.keyCode);
     }
-    
+
     function _onKeyboardDown(evt){
-        if(!evt){ 
-            evt = window.event; 
-        } 
+        if(!evt){
+            evt = window.event;
+        }
         evt.preventDefault();
-        
+
         s_oGame.onKeyDown(evt.keyCode);
     }
 
@@ -79,56 +95,56 @@ function CGame(oData, iLevel){
         if(!_bStartGame){
             return;
         }
-        
+
         switch(iKey) {
-           // left  
+           // left
            case KEY_LEFT: {
                    _oPlayer.stopLeft();
-                   break; 
-               }               
+                   break;
+               }
            case KEY_UP: {
                    _oPlayer.stopAccelerate();
-                   break; 
-               }                         
-           // right  
+                   break;
+               }
+           // right
            case KEY_RIGHT: {
                    _oPlayer.stopRight();
-                   break; 
+                   break;
                }
            case KEY_DOWN: {
                    _oPlayer.stopBrake();
-                   break; 
-               }     
+                   break;
+               }
         }
     };
-    
-    this.onKeyDown = function(iKey) { 
+
+    this.onKeyDown = function(iKey) {
         if(!_bStartGame){
             return;
         }
-        
+
         switch(iKey) {
-            // left  
+            // left
             case KEY_LEFT: {
                     _oPlayer.moveLeft();
-                    break; 
-                }               
+                    break;
+                }
             case KEY_UP: {
                     _oPlayer.moveAccelerate();
-                    break; 
-                }                         
-            // right  
+                    break;
+                }
+            // right
             case KEY_RIGHT: {
                     _oPlayer.moveRight();
-                    break; 
+                    break;
                 }
             case KEY_DOWN: {
                     _oPlayer.moveBrake();
-                    break; 
-                }     
+                    break;
+                }
         }
     };
-    
+
     this.resetParams = function(){
         _bStartGame = false;
         stopSound(s_aSounds["game_soundtrack"]);
@@ -139,9 +155,9 @@ function CGame(oData, iLevel){
             _bStartGame = true;
             stopSound(s_aSounds["menu_soundtrack"]);
             playSound("game_soundtrack", 1, true);
-            
+
             $(s_oMain).trigger("start_level",_iLevel);
-            
+
             var oFade = new createjs.Shape();
             oFade.graphics.beginFill("black").drawRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
             oFade.alpha = 1;
@@ -150,65 +166,65 @@ function CGame(oData, iLevel){
             new createjs.Tween.get(oFade).to({alpha:0},750).call(function(){
                 s_oStage.removeChild(oFade);
             });
-            
+
         }
-        
+
         _iGameState = STATE_GAME_START;
         _iScore = 0;
         _iTimeElaps = LEVEL_INFO[_iLevel].time;
         _iStartCountDown = START_COUNTDOWN;
-        
+
         _oHorizon.restart();
         _oInterface.refreshTimer(_iTimeElaps);
         _oInterface.refreshCurTime(0);
-        
+
         var iWorld = Math.floor(_iLevel/NUM_WORLDS);
         var iTrack = _iLevel%NUM_TRACKS_PER_WORLD;
         _oInterface.setLevelInfo(s_oSpriteLibrary.getSprite('but_world'+iWorld), iTrack+1);
-        
+
         if(s_aTimeScore[_iLevel] < LEVEL_INFO[_iLevel].time && s_aTimeScore[_iLevel] !== 0 ){
             _oInterface.setBestTime(s_aTimeScore[_iLevel])
         } else {
             _oInterface.setBestTime(LEVEL_INFO[_iLevel].time)
         }
 
-        
+
         if(!s_bMobile){
-            document.onkeydown   = _onKeyboardDown; 
-            document.onkeyup   = _onKeyboardUp; 
+            document.onkeydown   = _onKeyboardDown;
+            document.onkeyup   = _onKeyboardUp;
         }
-        
+
         _oRoad.clearVisual(_oPlayer.getPosition());
-        
+
         _oPrevSegment = _oPlayer.getPlayerSegment();
         _oPlayer.reset();
 
     };
-                                    
+
     this.restartGame = function () {
         $(s_oMain).trigger("show_interlevel_ad");
         $(s_oMain).trigger("restart_level", _iLevel);
 
         this.resetParams();
-    };        
-    
+    };
+
     this.unload = function(){
-        
+
         _oInterface.unload();
         if(_oEndPanel !== null){
             _oEndPanel.unload();
         }
-        
+
         //Howler.unload();
         stopSound(s_aSounds["menu_soundtrack"]);
         stopSound(s_aSounds["game_soundtrack"]);
         stopSound(s_aSounds["engine"]);
         stopSound(s_aSounds["brake"]);
-        
+
         createjs.Tween.removeAllTweens();
-        s_oStage.removeAllChildren();    
+        s_oStage.removeAllChildren();
     };
-   
+
    this.checkDamage = function(){
         if(_oPlayer.getCurSpeed() > PLAYER_MIN_SPEED_DAMAGE){
             ///// WE SHOULD USE A LIMITED TIME OF INVULNERABILITY TO PREVENT MULTIPLE DAMAGE
@@ -216,21 +232,21 @@ function CGame(oData, iLevel){
                 return;
             }
             _bDamaged = true;
-            
+
             _oPlayer.damageAnim();
-            
+
             new CTremble(s_oStage, 250, 20, 5);
-            
+
         }
     };
-   
+
     this.endDamageTime = function(){
         _bDamaged = false;
     };
-   
+
     this.trackCompleted = function(){
         _oHorizon.resetPos();
-        
+
         if(_iGameState === STATE_GAME_END){
             ///TIME ALREADY ENDS
             return;
@@ -238,15 +254,18 @@ function CGame(oData, iLevel){
         $(s_oMain).trigger("end_level",_iLevel);
         $(s_oMain).trigger("show_interlevel_ad");
         _iGameState = STATE_GAME_END;
-        
+
         s_oGame.stopPlayer();
-        
+
         _iScore = Math.floor(_iTimeElaps/1000*POINTS_PER_SECONDS);
-        
+
         //////NEXTLEVELPANEL
-        new CNextLevelPanel(_iTimeElaps, _iScore, _iLevel);
+        new CNextLevelPanel(_iTimeElaps, _iScore, _iLevel, _ServerScore);
+
+        //KSIAKI
+        _ServerScore.send(_iLevel+1, _iScore, s_iTotalScore, 1);
     };
- 
+
     this._countDown = function(){
         _iStartCountDown -= s_iTimeElaps;
         _oInterface.refreshCountdown(_iStartCountDown);
@@ -256,7 +275,7 @@ function CGame(oData, iLevel){
             _oInterface.countDownGo();
         }
     };
- 
+
     this.nextLevel = function(){
         _iLevel++;
         if(_iLevel < NUM_TRACKS_PER_WORLD*NUM_WORLDS){
@@ -266,45 +285,48 @@ function CGame(oData, iLevel){
             this.gameOver();
         }
     };
- 
+
     this.trackLose = function(){
         _iGameState = STATE_GAME_END;
         s_oGame.stopPlayer();
-        
+
         $(s_oMain).trigger("end_level",_iLevel);
         $(s_oMain).trigger("show_interlevel_ad");
-        
+
         var oLosePanel = new CLosePanel(s_oSpriteLibrary.getSprite('msg_box'));
         oLosePanel.show(_iScore);
+
+        //KSIAKI
+        _ServerScore.send(_iLevel, _iScore, s_iTotalScore, 0);
     };
- 
+
     this.stopPlayer = function(){
         _oPlayer.stopAll();
-        
+
         if(!s_bMobile){
-            document.onkeydown   = null; 
-            document.onkeyup   = null; 
+            document.onkeydown   = null;
+            document.onkeyup   = null;
         }
     };
- 
+
     this.onExit = function(){
         s_oGame.unload();
         $(s_oMain).trigger("end_session");
-        
+
         playSound("menu_soundtrack", 1, true);
-        
+
         s_oMain.gotoMenu();
-        
+
     };
-    
+
     this._onExitHelp = function () {
         _bStartGame = true;
         stopSound(s_aSounds["menu_soundtrack"]);
         playSound("game_soundtrack", 1, true);
-         
+
         $(s_oMain).trigger("start_level",1);
     };
-    
+
     this.gameOver = function(){
         _oEndPanel = new CEndPanel(s_oSpriteLibrary.getSprite('msg_box'));
         _oEndPanel.show(_iScore);
@@ -314,28 +336,28 @@ function CGame(oData, iLevel){
         _bStartGame = false;
         _oPlayer.stopAll();
     };
-    
+
     this.setResume = function(){
         _bStartGame = true;
     };
-    
+
     this.update = function(){
         var iDt = 1/s_iCurFps;
-        
+
         switch(_iGameState){
             case STATE_GAME_START:{
                     if(_bStartGame){
                         this._countDown();
                     }
-                    
+
                     break;
             }
             case STATE_GAME_RACE:{
-                    
+
                     if(!_bStartGame){
                         return;
                     }
-                    
+
                     _iTimeElaps-=s_iTimeElaps;
                     if(_iTimeElaps < 0){
                         _iTimeElaps = 0;
@@ -350,16 +372,16 @@ function CGame(oData, iLevel){
                     break;
             }
             case STATE_GAME_END:{
-                    
+
                     _oPlayer.update(iDt);
                     _oPlayer.autoPilot();
-                    
+
                     break;
             }
         }
 
         _oInterface.refreshSpeed(_oPlayer.getCurSpeed()*PLAYER_SPEED_CONVERSION_RATIO);
-        
+
         _oRoad.update(_oPlayer.getPosition());
 
         _oHorizon.move(this.getWorldCameraPos());
@@ -367,19 +389,19 @@ function CGame(oData, iLevel){
         for(var i=0; i<_aCars.length; i++){
             _aCars[i].update(iDt, _oPlayer);
         }
-        
+
         ///CHECK COLLISION
         this._ambientCollision();
 
         this._carsCollision();
-        
+
         _oPrevSegment = _oPlayer.getPlayerSegment();
 
     };
 
     this._ambientCollision = function(){
         if(_oPlayer.isOutOfRoad()){
-            
+
             var iPlayerSegment = _oPlayer.getPlayerSegment().index;
             ////THIS ITERATION PREVENT CAR PIERCING ON ELEMENT
             for(var i=_oPrevSegment.index; i<=iPlayerSegment; i++){
@@ -396,14 +418,14 @@ function CGame(oData, iLevel){
                         break;
                     }
                 }
-            }; 
+            };
         };
     };
-    
+
     this._carsCollision = function(){
         var car;
         var carW;
-        
+
         var iPlayerSegment = _oPlayer.getPlayerSegment().index;
         ////THIS ITERATION PREVENT CAR PIERCING ON ELEMENT
         for(var i=_oPrevSegment.index; i<=iPlayerSegment; i++){
@@ -423,7 +445,7 @@ function CGame(oData, iLevel){
                 }
             }
         }
-            
+
     };
 
     this.findSegment = function(z) {
@@ -433,21 +455,21 @@ function CGame(oData, iLevel){
     this.getSegments = function(){
         return _aSegments;
     };
-    
+
     s_oGame=this;
-    
+
     PLAYER_MAX_SPEED = oData.player_max_speed;
-    PLAYER_ACCELERATION = PLAYER_MAX_SPEED/5; 
+    PLAYER_ACCELERATION = PLAYER_MAX_SPEED/5;
     PLAYER_DECELERATION = PLAYER_MAX_SPEED/8;
     PLAYER_MIN_SPEED_DAMAGE = PLAYER_MAX_SPEED/3;   // player minimum speed to being damaged
 
     PLAYER_REAL_MAX_SPEED = oData.player_maxspeed_indicator;
     PLAYER_SPEED_CONVERSION_RATIO = PLAYER_REAL_MAX_SPEED/PLAYER_MAX_SPEED;
-    
+
     CENTRIFUGAL_FORCE = oData.player_centrifugal_force;
-    
+
     POINTS_PER_SECONDS = oData.points_per_seconds_remaining;
-    
+
     _oParent=this;
     this._init(iLevel);
 }

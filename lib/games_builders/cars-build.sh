@@ -6,6 +6,7 @@ cat app/games/cars/js_src/jquery-2.0.3.min.js \
     app/games/cars/js_src/howler.min.js \
     app/games/cars/js_src/ctl_utils.js \
     app/games/cars/js_src/sprite_lib.js \
+    app/games/cars/js_src/ServerScore.js \
     app/games/cars/js_src/settings.js \
     app/games/cars/js_src/CLang.js \
     app/games/cars/js_src/CPreloader.js \

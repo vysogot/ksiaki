@@ -20,6 +20,7 @@ const aGamesT = {
     'memory': 'Memory',
     'gems': 'Diamenty',
     'pirate': 'Pirat',
+    'cars': 'Samochody',
 }
 
 function set_button(myFunc, myIndex, myRow, myTitle, myIcon, myDisable) {
