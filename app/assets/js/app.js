@@ -70,7 +70,7 @@ $(document).on('ready', function() {
     });
 
     // Slider
-    $("#slajder").slick({
+    $("#slajder, #sky-banner").slick({
         dots: false,
         vertical: false,
         centerMode: false,
@@ -116,18 +116,18 @@ $(document).on('ready', function() {
     // Player
 
     // Run autoplay videos to satisfy Chrome
-    $("#player video[autoplay]").each(function() { 
-        
+    $("#player video[autoplay]").each(function() {
+
         this.muted = window.is_muted;
 
         if (!isMobile.any()) {
-            
-            var isPlaying = this.currentTime > 0 && !this.paused && !this.ended 
+
+            var isPlaying = this.currentTime > 0 && !this.paused && !this.ended
                             && this.readyState > 2;
 
             if (!isPlaying) {
               this.play();
-            }  
+            }
 
         } else {
             this.preload = 'metadata';
@@ -193,7 +193,7 @@ $(document).on('ready', function() {
         $('video').each(function() {
             $(this).get(0).pause();
         });
-        
+
     });
 
     // and play the video silently
@@ -209,7 +209,7 @@ $(document).on('ready', function() {
 
         video.muted = window.is_muted;
 
-        var isPlaying = video.currentTime > 0 && !video.paused && !video.ended 
+        var isPlaying = video.currentTime > 0 && !video.paused && !video.ended
                            && video.readyState > 2;
 
         if (!isPlaying) {

@@ -15,7 +15,7 @@ $data['contest'] = fetch_one('call sp_contests_find_by_slug(:p_slug);', array(
     array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
-if (empty($data['contest']) || (!$data['contest']->is_active && !is_admin())) {
+if (empty($data['contest']) || (!$data['contest']->is_active && !can_access_admin())) {
   redirect('/404.php');
 }
 

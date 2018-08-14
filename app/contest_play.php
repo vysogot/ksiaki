@@ -8,9 +8,11 @@ $data['contest'] = execute('call sp_contests_find_by_slug(:p_slug);', array(
   array('p_slug', $params['slug'], PDO::PARAM_INT)
 ));
 
-if (empty($data['contest']) || (!$data['contest']->is_active && !is_admin())) redirect('/404.php');
+if (empty($data['contest']) || (!$data['contest']->is_active && !can_access_admin())) {
+  redirect('/404.php');
+}
 
-if (!$data['contest']->playable && !is_admin()) {
+if (!$data['contest']->playable && !can_access_admin()) {
     flash('warning', t('contest_ended_play_other'));
     redirect('/');
 }

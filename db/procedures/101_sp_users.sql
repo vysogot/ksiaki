@@ -45,6 +45,7 @@ BEGIN
     , _users.is_active
     , _updater.nick AS updated_by
     , _users.updated_at
+    , _users.last_login_at
     , _accounts.gender
     , _accounts.birthday
     , _accounts.address
