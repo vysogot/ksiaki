@@ -678,7 +678,7 @@ function CGame(oData, iLevel) {
     this.totCoins = function () {
         _iToken++;
         _oInterface.refreshTokenMoney(_iToken);
-        if (_iTotCoins < 0) {
+        if (_iTotCoins > 0) {
             return;
         } else {
             this.setPause(true);
