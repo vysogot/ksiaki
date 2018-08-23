@@ -29,6 +29,16 @@ function ServerScore(sGameSettings){
 
     }
 
+    this.initLevel = function() {
+        $.ajax({
+            dataType: "json",
+            url: "/timestamp.php",
+        }).always(function(data) {
+            _iBeginsAt = data['timestamp'];
+            _sToken = data['token'];
+        });
+    }
+
     this.send = function(iCurLevel, iCurLevelScore, iTotalScore, iWin) {
 
         _sMainBallColor = (_sBlackColor + iTotalScore.toString(16)).substr(-6,6);

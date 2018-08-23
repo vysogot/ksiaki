@@ -491,6 +491,10 @@ function CGame(oData, iLevel) {
         _oInterface.setTotCoin(_iTotCoins);
         _oInterface.refreshTokenMoney(_iToken);
         _oInterface.showLevelNum(_iLevel);
+
+        // KSIAKI
+        _ServerScore.initLevel();
+
         $(s_oMain).trigger("start_level", _iLevel);
     };
 
@@ -674,7 +678,7 @@ function CGame(oData, iLevel) {
     this.totCoins = function () {
         _iToken++;
         _oInterface.refreshTokenMoney(_iToken);
-        if (_iTotCoins > 0) {
+        if (_iTotCoins < 0) {
             return;
         } else {
             this.setPause(true);
