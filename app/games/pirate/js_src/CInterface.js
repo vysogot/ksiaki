@@ -4,7 +4,7 @@ function CInterface() {
     var _pStartPosAudio;
     var _pStartPosExit;
     var _pStartPosFullscreen;
-    
+
     var _oButFullscreen;
     var _fRequestFullScreen = null;
     var _fCancelFullScreen = null;
@@ -49,13 +49,13 @@ function CInterface() {
 
     this._init = function () {
         var oButtonX;
-        
+
         var oSpritePause = s_oSpriteLibrary.getSprite('but_pause');
         oButtonX = CANVAS_WIDTH - (oSpritePause.width / 2) - 110;
         _pStartPosPause = {x: oButtonX, y: (oSpritePause.height / 2) + 20};
         _oButPause = new CGfxButton(_pStartPosPause.x, _pStartPosPause.y, oSpritePause);
         _oButPause.addEventListener(ON_MOUSE_UP, this.onButPauseRelease, this);
-        
+
         if (DISABLE_SOUND_MOBILE === false || s_bMobile === false){
             var oSprite = s_oSpriteLibrary.getSprite('icon_audio');
             oButtonX = CANVAS_WIDTH - (oSprite.width / 2) - 170;
@@ -73,25 +73,25 @@ function CInterface() {
         _oButExit = new CGfxButton(_pStartPosExit.x, _pStartPosExit.y, oSpriteExit);
         _oButExit.addEventListener(ON_MOUSE_UP, this._onExit, this);
 
-        
-        
+
+
         var doc = window.document;
         var docEl = doc.documentElement;
         _fRequestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
         _fCancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-        
+
         if(ENABLE_FULLSCREEN === false){
             _fRequestFullScreen = false;
         }
-        
+
         if (_fRequestFullScreen && screenfull.enabled){
             oSprite = s_oSpriteLibrary.getSprite('but_fullscreen');
-            
+
 
             _oButFullscreen = new CToggle(_pStartPosFullscreen.x,_pStartPosFullscreen.y,oSprite,s_bFullscreen,true);
             _oButFullscreen.addEventListener(ON_MOUSE_UP, this._onFullscreenRelease, this);
         }
-        
+
         _oScoreTextContainer = new createjs.Container();
         _oScoreTextContainer.x = CANVAS_WIDTH / 2 - 100;
         _oScoreTextContainer.y = CANVAS_HEIGHT / 2 + 550;
@@ -184,14 +184,14 @@ function CInterface() {
         var iLv = iLevel + 1;
         setVolume("soundtrack", 0.1);
         if (iLv < OBJECTS_LEVEL_POSITION.length) {
-            
+
 
             _oButPause.block(true);
 
             _oLevelCompleteContainer = new createjs.Container();
-            
+
             var oMsgBox = createBitmap(s_oSpriteLibrary.getSprite("msg_box"));
-            
+
             var oTextTitle;
 
             oTextTitle = new createjs.Text(TEXT_TITLE,  "100px " + PRIMARY_FONT, "#ffb400");
@@ -244,8 +244,8 @@ function CInterface() {
             };
             var oSpriteSheetHeroLeftRight = new createjs.SpriteSheet(oData);
 
-            oEnemyDied = createSprite(oSpriteSheetHeroLeftRight, 53, ((oSpriteEnemyLeftRight.width / 2) / 9) + ENEMY_OFFSET_REG[0].x, 
-                                                        ((oSpriteEnemyLeftRight.height / 2) / 6) + ENEMY_OFFSET_REG[0].y, oSpriteEnemyLeftRight.width / 9, 
+            oEnemyDied = createSprite(oSpriteSheetHeroLeftRight, 53, ((oSpriteEnemyLeftRight.width / 2) / 9) + ENEMY_OFFSET_REG[0].x,
+                                                        ((oSpriteEnemyLeftRight.height / 2) / 6) + ENEMY_OFFSET_REG[0].y, oSpriteEnemyLeftRight.width / 9,
                                                           oSpriteEnemyLeftRight.height / 6);
             oEnemyDied.gotoAndStop(53);
 
@@ -1086,7 +1086,7 @@ function CInterface() {
             _oAudioToggle.unload();
             _oAudioToggle = null;
         }
-        
+
         if (_fRequestFullScreen && screenfull.enabled){
             _oButFullscreen.unload();
         }
@@ -1107,23 +1107,23 @@ function CInterface() {
         Howler.mute(s_bAudioActive);
         s_bAudioActive = !s_bAudioActive;
     };
-    
+
     this.resetFullscreenBut = function(){
 	if (_fRequestFullScreen && screenfull.enabled){
 		_oButFullscreen.setActive(s_bFullscreen);
 	}
     };
-    
+
     this._onFullscreenRelease = function(){
-	if(s_bFullscreen) { 
+	if(s_bFullscreen) {
 		_fCancelFullScreen.call(window.document);
 	}else{
 		_fRequestFullScreen.call(window.document.documentElement);
 	}
-	
+
 	sizeHandler();
     };
-    
+
     s_oInterface = this;
 
     this._init();

@@ -1050,6 +1050,10 @@ function CGame(oData, iLevel) {
             _iOffsetUp = OFFSET_SCROLL[_iLevel].up;
         } else {
             _oInterface.refreshScore(_iScore);
+
+            //KSIAKI
+            _ServerScore.send(_iLevel+1, _iLevelScore, _iScore, 0);
+
             _oInterface.gameOver(_iScore);
         }
     };
