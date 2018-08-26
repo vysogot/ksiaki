@@ -4,17 +4,20 @@ var LOCALSTORAGE_TOTALSCORE = "totalscore";
 var s_aTimeScore = new Array();
 var s_iTotalScore = 0;
 
+//KSIAKI
+var s_aLevelTotalScore = new Array();
+
 function CLocalStorage(szName){
     var _bLocalStorage = true;
 
-    this._init = function(szName){   
+    this._init = function(szName){
         var bFlag = window.localStorage.getItem(szName);
 
         this.resetAllData();
-        if(bFlag !== null && bFlag !== undefined){  
+        if(bFlag !== null && bFlag !== undefined){
             this.loadData();
         }
-        
+
     };
 
     this.isDirty = function(){
@@ -32,7 +35,7 @@ function CLocalStorage(szName){
         }catch(evt){
             _bLocalStorage = false;
         }
-        
+
         return _bLocalStorage;
     };
 
@@ -41,8 +44,11 @@ function CLocalStorage(szName){
         s_aTimeScore = new Array();
         for(var i=0; i<NUM_TRACKS_PER_WORLD*NUM_WORLDS; i++){
             s_aTimeScore[i] = 0;
+
+            //KSIAKI
+            s_aLevelTotalScore[i] = 0;
         }
-        
+
         s_iTotalScore = 0;
 
     };
@@ -63,23 +69,23 @@ function CLocalStorage(szName){
         */
 
         window.localStorage.setItem(szName, JSON.stringify(oJSONData));
-        
+
     };
 
     this.loadData = function(){
         var szData = JSON.parse(window.localStorage.getItem(szName));
-        
+
         var aLoadedScore = szData[LOCALSTORAGE_TIMES];
         s_aTimeScore = new Array();
         for(var i=0; i<aLoadedScore.length; i++){
             s_aTimeScore[i] = parseInt(aLoadedScore[i]);
         }
-        
+
         var iLoadedScore = szData[LOCALSTORAGE_TOTALSCORE];
         s_iTotalScore = parseInt(iLoadedScore);
-        
+
     };
 
     this._init(szName);
-    
+
 }

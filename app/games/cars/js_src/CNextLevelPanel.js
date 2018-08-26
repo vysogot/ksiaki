@@ -121,11 +121,18 @@ function CNextLevelPanel(iTimeElaps, iScore, iLevel){
     this._sendScore = function(){
         var iNewTimeScore = LEVEL_INFO[iLevel].time - iTimeElaps;
 
-        s_iTotalScore += iScore;
+        //KSIAKI
+        //s_iTotalScore += iScore;
 
         if(iNewTimeScore < s_aTimeScore[iLevel] || s_aTimeScore[iLevel] === 0){
             s_aTimeScore[iLevel] = iNewTimeScore;
+
+            //KSIAKI
+            s_aLevelTotalScore[iLevel] = iScore;
         }
+
+        //KSIAKI
+        s_iTotalScore = s_aLevelTotalScore.reduce(function(acc, val) { return acc + val; }, 0);
 
         s_oLocalStorage.saveData();
 

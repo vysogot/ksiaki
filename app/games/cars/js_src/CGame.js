@@ -260,7 +260,7 @@ function CGame(oData, iLevel){
         _iScore = Math.floor(_iTimeElaps/1000*POINTS_PER_SECONDS);
 
         //////NEXTLEVELPANEL
-        new CNextLevelPanel(_iTimeElaps, _iScore, _iLevel, _ServerScore);
+        new CNextLevelPanel(_iTimeElaps, _iScore, _iLevel);
 
         //KSIAKI
         _ServerScore.send(_iLevel+1, _iScore, s_iTotalScore, 1);
