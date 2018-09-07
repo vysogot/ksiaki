@@ -67,8 +67,12 @@ function content($params, $data) { ?>
             </section>
         <?php } ?>
 
-        <div class="clear center">
+        <div class="center">
             <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
+        </div>
+
+        <div class="clear center" style="margin-top: 20px;">
+            <?= link_to(image('/assets/images/20lat-small.png', ['class' => 'shadow']), t('hero_slug', ['slug' => 'cartoon-network'])) ?>
         </div>
 
   </div>

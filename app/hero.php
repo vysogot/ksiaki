@@ -138,6 +138,17 @@ function content($params, $data) { ?>
             </div>
         <?php } ?>
 
+        <?php if($data['hero']->slug == 'cartoon-network') { ?>
+            <?= link_to('', '/assets/images/20lat-big.png', ['class' => 'modal-image', 'id' => 'popup']) ?>
+
+            <script type="text/javascript">
+                $(document).on('ready', function() {
+                    $('a#popup').trigger('click');
+                });
+            </script>
+
+        <?php } ?>
+
   </div>
 </div>
 
