@@ -139,7 +139,7 @@ function content($params, $data) { ?>
         <?php } ?>
 
         <?php if($data['hero']->slug == 'cartoon-network') { ?>
-            <?= link_to('', '/assets/images/20lat-big.png', ['class' => 'modal-image', 'id' => 'popup']) ?>
+            <?= link_to('', '/assets/images/20lat-big-v2.png', ['class' => 'modal-image', 'id' => 'popup']) ?>
 
             <script type="text/javascript">
                 $(document).on('ready', function() {
