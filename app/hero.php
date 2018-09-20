@@ -138,7 +138,7 @@ function content($params, $data) { ?>
             </div>
         <?php } ?>
 
-        <?php if($data['hero']->slug == 'cartoon-network') { ?>
+        <?php if($data['hero']->slug == 'turned-off') { ?>
             <?= link_to('', '/assets/images/20lat-big-v2.png', ['class' => 'modal-image', 'id' => 'popup']) ?>
 
             <script type="text/javascript">
