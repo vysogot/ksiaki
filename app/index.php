@@ -67,8 +67,12 @@ function content($params, $data) { ?>
             </section>
         <?php } ?>
 
-        <div class="center clear">
+        <div class="center">
             <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
+        </div>
+
+        <div class="center clear margin-top-10">
+            <?= link_to(image('/assets/images/icarly-1.png', ['class' => 'shadow']), 'http://www.nick.com.pl/seriale/342-icarly', ['target' => '_blank']) ?>
         </div>
 
   </div>
