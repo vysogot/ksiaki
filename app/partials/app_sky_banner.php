@@ -1,6 +1,6 @@
 <!--<?= link_to(image('/assets/images/konkursiak-miesiaca-08v2.png', ['style' => 'width: 100%;']), '/assets/images/konkursiak-nagroda-09.png', ['class' => 'modal-image']) ?>-->
 
-<?= link_to(image('/assets/images/icarly-2.png', ['style' => 'width: 100%;']), 'http://www.nick.com.pl/seriale/342-icarly', ['target' => '_blank']) ?>
+<!-- <?= link_to(image('/assets/images/icarly-2.png', ['style' => 'width: 100%;']), 'http://www.nick.com.pl/seriale/342-icarly', ['target' => '_blank']) ?> -->
 
 <?php
 
