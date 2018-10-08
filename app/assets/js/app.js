@@ -201,6 +201,8 @@ $(document).on('ready', function() {
         var video = $(slick.$slides.get(currentSlide)).children('video:first-child')[0];
         var mute = $($(video).next()[0]);
 
+        $(video).show();
+
         if (window.is_muted) {
             mute.show();
         } else {
