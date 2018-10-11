@@ -721,7 +721,7 @@ footer p {
 
 .index .box {
   width: 176px;
-  height: 200px;
+  height: 216px;
 }
 
 .box img, .box video {
@@ -741,7 +741,7 @@ footer p {
 }
 
 .index .box a {
-  height: 160px;
+  height: 176px;
 }
 
 .box p {
@@ -782,13 +782,13 @@ footer p {
 
 .box.finished .overlay, .box.ended .overlay {
   background: url('/assets/images/contest_finished_v2.png') center center no-repeat;
-  background-size: 160px 160px;
+  background-size: 176px 176px;
   display: block;
 }
 
 .box.yetToBegin .overlay {
   background: url('/assets/images/contest_soon_v2.png') center center no-repeat;
-  background-size: 160px 160px;
+  background-size: 176px 176px;
   display: block;
 }
 

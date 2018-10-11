@@ -12,6 +12,10 @@
         [
             'image_src' => '/assets/images/sky_banner_lego_jurassic_world.jpg',
             'href' => t('hero_slug', ['slug' => 'lego-jurassic-world'])
+        ],
+        [
+            'image_src' => '/assets/images/sky_banner_lego_city_2.jpg',
+            'href' => t('hero_slug', ['slug' => 'lego-city'])
         ]
     ]
 
