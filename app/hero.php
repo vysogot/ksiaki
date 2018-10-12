@@ -64,16 +64,18 @@ function content($params, $data) { ?>
 
             <?php } ?>
 
-            <?php if (!empty($hero_edition->gadget_url)) { ?>
+
 
                 <div class="column-23">
                     <p><?= $hero_edition->description ?></p>
-                    <div class="center hero-gadget">
-                        <?= link_to(image(thumbnail_name(secure_url($hero_edition->gadget_url))), secure_url($hero_edition->gadget_url), ['class' => 'modal-image']) ?>
-                    </div>
+                    <?php if (!empty($hero_edition->gadget_url)) { ?>
+                        <div class="center hero-gadget">
+                            <?= link_to(image(thumbnail_name(secure_url($hero_edition->gadget_url))), secure_url($hero_edition->gadget_url), ['class' => 'modal-image']) ?>
+                        </div>
+                    <?php } ?>
                 </div>
 
-            <?php } ?>
+
 
         </div>
 
