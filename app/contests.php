@@ -39,17 +39,11 @@ function content($params, $data) { ?>
 <div class="wrapper">
   <h2 class="hidden"><?= t('contests') ?></h2>
 
-  <div class="side rankings">
-    <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . params('month')) ?></h2>
-    <?= ranking_list($data['monthly_ranking']) ?>
 
-    <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . params('year')) ?></h2>
-    <?= ranking_list($data['yearly_ranking']) ?>
-
-    <p class="center">
+    <aside class="sky-banner right">
+      <?php include './partials/app_sky_banner.php' ?>
       <?php include './partials/konkursiak_of_the_month.php' ?>
-    </p>
-  </div>
+    </aside>
 
   <?php include './partials/modal_ranking.html' ?>
 

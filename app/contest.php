@@ -126,18 +126,9 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
 
-    <div class="side rankings">
-      <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/rankings/index.php?type=contest&date=' . $data['contest']->id) ?></h2>
-      <?= ranking_list($data['contest_ranking']) ?>
-
-      <h2><?= link_to(t('monthly_ranking'), '/rankings/index.php?type=monthly&date=' . params('month')) ?></h2>
-      <?= ranking_list($data['monthly_ranking']) ?>
-
-      <h2><?= link_to(t('yearly_ranking'), '/rankings/index.php?type=yearly&date=' . params('year')) ?></h2>
-      <?= ranking_list($data['yearly_ranking']) ?>
-    </div>
-
-    <?php include './partials/modal_ranking.html' ?>
+    <aside class="sky-banner right">
+      <?php include './partials/app_sky_banner.php' ?>
+    </aside>
 
     <div class="main">
 
