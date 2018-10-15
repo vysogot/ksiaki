@@ -126,9 +126,17 @@ function content($params, $data) { ?>
 
   <div class="wrapper">
 
-    <aside class="sky-banner right">
+    <div class="side rankings">
+
+    <h2><?= link_to(t('contest_ranking', ['name' => $data['contest']->name]), '/rankings/index.php?type=contest&date=' . $data['contest']->id) ?></h2>
+      <?= ranking_list($data['contest_ranking']) ?>
+
+      <aside class="sky-banner right">
       <?php include './partials/app_sky_banner.php' ?>
     </aside>
+    </div>
+
+
 
     <div class="main">
 
