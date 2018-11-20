@@ -67,9 +67,9 @@ function content($params, $data) { ?>
             </section>
         <?php } ?>
 
-        <!--<div class="center">
-            <?= image('/assets/images/konkursiak-roku.jpg', ['class' => 'shadow']) ?>
-        </div>-->
+        <div class="center">
+            <?= image('/assets/images/konkursiak-roku-2.png', ['class' => 'shadow']) ?>
+        </div>
 
         <div class="center clear margin-top-10">
             <?= link_to(image('/assets/images/nickel-1.png', ['class' => 'shadow']), 'http://www.nick.com.pl/seriale/3506-knight-squad', ['target' => '_blank']) ?>
